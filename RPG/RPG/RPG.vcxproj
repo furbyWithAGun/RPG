@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{23324235-f94c-4bd7-8228-6c783646d8a0}</ProjectGuid>
+    <RootNamespace>RPG</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\coding\c++\libraries\sdl2\include;D:\coding\c++\libraries\sdl2_image\include\;D:\coding\c++\libraries\sdl2_ttf\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\coding\c++\libraries\sdl2\lib\x64\;D:\coding\c++\libraries\sdl2_image\lib\x64\;D:\coding\c++\libraries\sdl2_ttf\lib\x64\;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <LibraryPath>D:\Coding\c++\game\libraries\sdl2\lib\x64\;D:\Coding\c++\game\libraries\SDL2_image\lib\x64\;D:\Coding\c++\game\libraries\TTF\lib\x64\;C:\coding\c++\vclib\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\Coding\c++\game\libraries\sdl2\include\;D:\Coding\c++\game\libraries\SDL2_image\include\;D:\Coding\c++\game\libraries\TTF\include\;C:\coding\c++\vclib\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sdl2.lib;sdl2main.lib;sdl2_image.lib;sdl2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sdl2.lib;sdl2main.lib;sdl2_image.lib;sdl2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AiUnit.cpp" />
+    <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Armour.cpp" />
+    <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="AttackingState.cpp" />
+    <ClCompile Include="BareHands.cpp" />
+    <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="BlueRat.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingTile.cpp" />
+    <ClCompile Include="Club.cpp" />
+    <ClCompile Include="CombatText.cpp" />
+    <ClCompile Include="ControllerInterface.cpp" />
+    <ClCompile Include="DooDad.cpp" />
+    <ClCompile Include="Equipment.cpp" />
+    <ClCompile Include="EquippedMenu.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="BaseGameEngine.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="HealingPad.cpp" />
+    <ClCompile Include="IdleState.cpp" />
+    <ClCompile Include="InputMessage.cpp" />
+    <ClCompile Include="InventoryMenu.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemBuyMenu.cpp" />
+    <ClCompile Include="ItemFactory.cpp" />
+    <ClCompile Include="ItemSellMenu.cpp" />
+    <ClCompile Include="ItemShop.cpp" />
+    <ClCompile Include="LinenBody.cpp" />
+    <ClCompile Include="LinenBoots.cpp" />
+    <ClCompile Include="LinenGloves.cpp" />
+    <ClCompile Include="LinenHat.cpp" />
+    <ClCompile Include="LinenPants.cpp" />
+    <ClCompile Include="LoadZoneMenu.cpp" />
+    <ClCompile Include="LongSword.cpp" />
+    <ClCompile Include="Mace.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MainMenuScene.cpp" />
+    <ClCompile Include="MapBuilderPortalButton.cpp" />
+    <ClCompile Include="MapBuilderTileButton.cpp" />
+    <ClCompile Include="MapTile.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
+    <ClCompile Include="MenuText.cpp" />
+    <ClCompile Include="MovingState.cpp" />
+    <ClCompile Include="OverWorldSceneMenu.cpp" />
+    <ClCompile Include="PagedPanel.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PortalPropertiesMenu.cpp" />
+    <ClCompile Include="PortalPropertiesOkButton.cpp" />
+    <ClCompile Include="Prompt.cpp" />
+    <ClCompile Include="RagBody.cpp" />
+    <ClCompile Include="RagBoots.cpp" />
+    <ClCompile Include="RagGloves.cpp" />
+    <ClCompile Include="RagHat.cpp" />
+    <ClCompile Include="RagPants.cpp" />
+    <ClCompile Include="Rat.cpp" />
+    <ClCompile Include="RatKing.cpp" />
+    <ClCompile Include="RpgKeysMouseController.cpp" />
+    <ClCompile Include="RpgOverWorldScene.cpp" />
+    <ClCompile Include="RpgWorldBuilderScene.cpp" />
+    <ClCompile Include="SaveAttribute.cpp" />
+    <ClCompile Include="SaveMapBuilderButton.cpp" />
+    <ClCompile Include="SaveObject.cpp" />
+    <ClCompile Include="SaveFile.cpp" />
+    <ClCompile Include="saveZoneMenu.cpp" />
+    <ClCompile Include="ScrollBox.cpp" />
+    <ClCompile Include="SelectPrompt.cpp" />
+    <ClCompile Include="ShortSword.cpp" />
+    <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TileGridScene.cpp" />
+    <ClCompile Include="TownsPerson.cpp" />
+    <ClCompile Include="UiElement.cpp" />
+    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="UnitState.cpp" />
+    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="ZoneBuilderMenu.cpp" />
+    <ClCompile Include="ZoneMap.cpp" />
+    <ClCompile Include="ZonePortal.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AiUnit.h" />
+    <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Armour.h" />
+    <ClInclude Include="Attack.h" />
+    <ClInclude Include="AttackingState.h" />
+    <ClInclude Include="BareHands.h" />
+    <ClInclude Include="BaseGameEngine.h" />
+    <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="BlueRat.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingTile.h" />
+    <ClInclude Include="Club.h" />
+    <ClInclude Include="CombatText.h" />
+    <ClInclude Include="ControllerInterface.h" />
+    <ClInclude Include="DooDad.h" />
+    <ClInclude Include="Equipment.h" />
+    <ClInclude Include="EquippedMenu.h" />
+    <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="HealingPad.h" />
+    <ClInclude Include="IdleState.h" />
+    <ClInclude Include="InputMessage.h" />
+    <ClInclude Include="InventoryMenu.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemBuyMenu.h" />
+    <ClInclude Include="ItemFactory.h" />
+    <ClInclude Include="ItemSellMenu.h" />
+    <ClInclude Include="ItemShop.h" />
+    <ClInclude Include="LinenBody.h" />
+    <ClInclude Include="LinenBoots.h" />
+    <ClInclude Include="LinenGloves.h" />
+    <ClInclude Include="LinenHat.h" />
+    <ClInclude Include="LinenPants.h" />
+    <ClInclude Include="LoadZoneMenu.h" />
+    <ClInclude Include="LongSword.h" />
+    <ClInclude Include="Mace.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MainMenuScene.h" />
+    <ClInclude Include="MapBuilderPortalButton.h" />
+    <ClInclude Include="MapBuilderTileButton.h" />
+    <ClInclude Include="MapTile.h" />
+    <ClInclude Include="MenuButton.h" />
+    <ClInclude Include="MenuText.h" />
+    <ClInclude Include="MovingState.h" />
+    <ClInclude Include="OverWorldSceneMenu.h" />
+    <ClInclude Include="PagedPanel.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PortalPropertiesCancelButton.h" />
+    <ClInclude Include="PortalPropertiesMenu.h" />
+    <ClInclude Include="PortalPropertiesOkButton.h" />
+    <ClInclude Include="Prompt.h" />
+    <ClInclude Include="RagBody.h" />
+    <ClInclude Include="RagBoots.h" />
+    <ClInclude Include="RagGloves.h" />
+    <ClInclude Include="RagHat.h" />
+    <ClInclude Include="RagPants.h" />
+    <ClInclude Include="Rat.h" />
+    <ClInclude Include="RatKing.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RpgGameConstants.h" />
+    <ClInclude Include="RpgKeysMouseController.h" />
+    <ClInclude Include="RpgOverWorldScene.h" />
+    <ClInclude Include="RpgWorldBuilderScene.h" />
+    <ClInclude Include="SaveAttribute.h" />
+    <ClInclude Include="SaveMapBuilderButton.h" />
+    <ClInclude Include="SaveObject.h" />
+    <ClInclude Include="SaveFile.h" />
+    <ClInclude Include="saveZoneMenu.h" />
+    <ClInclude Include="ScrollBox.h" />
+    <ClInclude Include="SelectPrompt.h" />
+    <ClInclude Include="ShortSword.h" />
+    <ClInclude Include="Soldier.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TextBox.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TileGridScene.h" />
+    <ClInclude Include="TownsPerson.h" />
+    <ClInclude Include="UiElement.h" />
+    <ClInclude Include="Unit.h" />
+    <ClInclude Include="UnitState.h" />
+    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="ZoneBuilderMenu.h" />
+    <ClInclude Include="ZoneMap.h" />
+    <ClInclude Include="ZonePortal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RPG.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

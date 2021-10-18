@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\gameEngine">
+      <UniqueIdentifier>{e04cdaab-ff0b-4ef4-ad8c-3318e36905dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameEngine">
+      <UniqueIdentifier>{e7959a16-2487-47bf-ab19-1a7f429dd4aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame">
+      <UniqueIdentifier>{7719a6e3-4488-402a-ab46-cf1752fbec47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame">
+      <UniqueIdentifier>{da263785-5055-49c8-bcba-2e7c71361727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units">
+      <UniqueIdentifier>{1b795d93-9f9d-4dd7-a837-2a70789ef8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units">
+      <UniqueIdentifier>{ab36d5cb-d392-4665-890f-5cb25e597f92}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes">
+      <UniqueIdentifier>{02fbcb61-b971-49e3-a0c6-9ce22bad0cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes">
+      <UniqueIdentifier>{a3dec4ed-7dad-4d33-b51e-58e340a07ec8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\overWorldScene">
+      <UniqueIdentifier>{91131c00-8a4e-4090-88e6-d36ef9494871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene">
+      <UniqueIdentifier>{76212309-c45d-4388-87c8-93b3d28d5963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\tileGridScene">
+      <UniqueIdentifier>{2f89c1b0-de4c-4ae1-af25-b51416fe50c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\tileGridScene">
+      <UniqueIdentifier>{558278cb-c147-4c38-81fd-b99e6a6ae13c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene">
+      <UniqueIdentifier>{d8e2d543-0af6-4281-908c-70d065772ecb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\overWorldScene">
+      <UniqueIdentifier>{4e5be56e-5391-416f-a1fa-d0edc026e158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\map">
+      <UniqueIdentifier>{6fd703a7-98d6-4bef-b50f-c9244ecda4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\map">
+      <UniqueIdentifier>{7dd709da-510f-4375-ae9a-c61d88e4f0c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\player">
+      <UniqueIdentifier>{669e8e98-67a0-4421-bd23-c945d704e069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\rat">
+      <UniqueIdentifier>{1c74d8b7-38a0-484b-9f55-d893f3c1b98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\player">
+      <UniqueIdentifier>{7feb7873-ea49-4288-b808-9ae8419cee58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\rat">
+      <UniqueIdentifier>{831dde75-867e-47ff-874d-c5b3edaa187d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\unitStates">
+      <UniqueIdentifier>{a776d08a-68ea-4ef0-9823-9f7e21b80d89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\unitStates">
+      <UniqueIdentifier>{aaf20559-a89f-4907-88e1-bacc48f9bd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameEngine\UI">
+      <UniqueIdentifier>{99ccbb86-eb38-4835-a570-94ac1934f3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameEngine\UI">
+      <UniqueIdentifier>{c58614c4-19ba-41fb-afa9-d9db0af1d7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu">
+      <UniqueIdentifier>{ca22183f-69f5-44b1-9e04-d71ec82843e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu">
+      <UniqueIdentifier>{f9c1121f-f2fa-4840-b6cd-c851a1356ad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu">
+      <UniqueIdentifier>{43ed22d4-de1c-4d63-89cd-11547ac5aa9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu">
+      <UniqueIdentifier>{86983733-2c32-401b-a1ac-83aae1ab49a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\saveZoneMenu">
+      <UniqueIdentifier>{e823faf0-4d45-47e4-826d-4bda80ba928a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\saveZoneMenu">
+      <UniqueIdentifier>{057e184f-ce3d-4ef5-8005-419f032c2bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\worldBuilderScene\loadZoneMenu">
+      <UniqueIdentifier>{84bc594c-3900-475d-a021-79ffe5230087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\worldBuilderScene\loadZoneMenu">
+      <UniqueIdentifier>{049c56e7-38a3-4cb2-b933-9586090d0ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\MainMenu">
+      <UniqueIdentifier>{f26c1fea-13aa-48a3-88a8-514c1239b046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\MainMenu">
+      <UniqueIdentifier>{7f0d4523-16c5-4ba7-9cc7-898bd93a9577}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\map\Buildings">
+      <UniqueIdentifier>{a40cebe4-4bb9-4b91-984b-dcf9f058c95b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\Soldier">
+      <UniqueIdentifier>{318bf77a-c491-4e3e-9664-3c51ffb4a638}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\Soldier">
+      <UniqueIdentifier>{1dc019df-a330-4835-9a25-9737606a325b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\map\buildings">
+      <UniqueIdentifier>{14ba9400-a17e-4c9a-a0b2-a71b71ec663f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\map\DooDads">
+      <UniqueIdentifier>{641e1492-b36c-4f3d-9bc3-aed1e601fff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\map\DooDads">
+      <UniqueIdentifier>{f10eb9f3-a188-456e-99ad-2750b0ea62c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\TownsPerson">
+      <UniqueIdentifier>{c625507f-4cbf-4e24-90c9-af3048f72a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\Items">
+      <UniqueIdentifier>{99dfdcfe-ef7f-431f-b31a-5ee929db9d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\Items">
+      <UniqueIdentifier>{5766fd12-5415-4acb-a9c6-bffe6bdeb0aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\TownsPerson">
+      <UniqueIdentifier>{1d543421-b5cf-41cf-a902-4457f2baf7f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\Items\Weapons">
+      <UniqueIdentifier>{0e5c58e6-168f-48d9-8c7d-fc8b9f528597}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\Items\Weapons">
+      <UniqueIdentifier>{0506ae00-5f4c-4648-938c-db1d4560cdb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\BlueRat">
+      <UniqueIdentifier>{51e45fb6-9057-42ed-8a81-ffc1c6f2ec61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\BlueRat">
+      <UniqueIdentifier>{7cd0878d-48a5-4297-bf30-811709efa238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\Items\Armours">
+      <UniqueIdentifier>{2091fb7b-7a8c-43dd-8308-adbda29c5394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\Items\Armours">
+      <UniqueIdentifier>{9b7f1974-b9ed-40e5-86a0-8303453835bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\RatKing">
+      <UniqueIdentifier>{72eba8ad-961c-4f80-b610-0ffb6ffa2f13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\RatKing">
+      <UniqueIdentifier>{2e4b6a6b-a6cf-4720-93ef-2e5a27cc80ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\scenes\overWorldScene\menus">
+      <UniqueIdentifier>{bb87ff57-67ac-4fb4-a9f1-e749eb1879c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\scenes\overWorldScene\menus">
+      <UniqueIdentifier>{5cfcb032-05ab-41fd-a01b-7d2b4324bcfa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseGameEngine.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveAttribute.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveFile.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveObject.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\RpgGame</Filter>
+    </ClCompile>
+    <ClCompile Include="AiUnit.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="TileGridScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgWorldBuilderScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgOverWorldScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClCompile>
+    <ClCompile Include="MapTile.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneMap.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ZonePortal.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\RpgGame\units\player</Filter>
+    </ClCompile>
+    <ClCompile Include="Rat.cpp">
+      <Filter>Source Files\RpgGame\units\rat</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicMeleeAttack.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackingState.cpp">
+      <Filter>Source Files\RpgGame\units\unitStates</Filter>
+    </ClCompile>
+    <ClCompile Include="InputMessage.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllerInterface.cpp">
+      <Filter>Source Files\gameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatText.cpp">
+      <Filter>Source Files\RpgGame</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgKeysMouseController.cpp">
+      <Filter>Source Files\RpgGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMenu.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuButton.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuText.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UiElement.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollBox.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderPortalButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="MapBuilderTileButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveMapBuilderButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="ZoneBuilderMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="TextBox.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalPropertiesMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="PortalPropertiesOkButton.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="saveZoneMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\saveZoneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadZoneMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\loadZoneMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectPrompt.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Prompt.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="Soldier.cpp">
+      <Filter>Source Files\RpgGame\units\Soldier</Filter>
+    </ClCompile>
+    <ClCompile Include="DooDad.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
+    <ClCompile Include="HealingPad.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files\RpgGame\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Equipment.cpp">
+      <Filter>Source Files\RpgGame\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="TownsPerson.cpp">
+      <Filter>Source Files\RpgGame\units\TownsPerson</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="BareHands.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortSword.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Armour.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="RagHat.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueRat.cpp">
+      <Filter>Source Files\RpgGame\units\BlueRat</Filter>
+    </ClCompile>
+    <ClCompile Include="RagBody.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="RagPants.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="RagGloves.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="RagBoots.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="RatKing.cpp">
+      <Filter>Source Files\RpgGame\units\RatKing</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingTile.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemShop.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="EquippedMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="OverWorldSceneMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemSellMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemBuyMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="LongSword.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="LinenBody.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="LinenBoots.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="LinenGloves.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="LinenHat.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="LinenPants.cpp">
+      <Filter>Source Files\RpgGame\Items\Armours</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemFactory.cpp">
+      <Filter>Source Files\RpgGame\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PagedPanel.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="Club.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Mace.cpp">
+      <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseGameEngine.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimatedSprite.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveAttribute.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFile.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveObject.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgGameConstants.h">
+      <Filter>Header Files\RpgGame</Filter>
+    </ClInclude>
+    <ClInclude Include="AiUnit.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgOverWorldScene.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgWorldBuilderScene.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene</Filter>
+    </ClInclude>
+    <ClInclude Include="TileGridScene.h">
+      <Filter>Header Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClInclude>
+    <ClInclude Include="MapTile.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneMap.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ZonePortal.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\RpgGame\units\player</Filter>
+    </ClInclude>
+    <ClInclude Include="Rat.h">
+      <Filter>Header Files\RpgGame\units\rat</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicMeleeAttack.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackingState.h">
+      <Filter>Header Files\RpgGame\units\unitStates</Filter>
+    </ClInclude>
+    <ClInclude Include="InputMessage.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllerInterface.h">
+      <Filter>Header Files\gameEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatText.h">
+      <Filter>Header Files\RpgGame</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgKeysMouseController.h">
+      <Filter>Header Files\RpgGame</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMenu.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuButton.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuText.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UiElement.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollBox.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TextBox.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderPortalButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="MapBuilderTileButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMapBuilderButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneBuilderMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesOkButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="PortalPropertiesCancelButton.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\portalPropertiesMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="saveZoneMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\saveZoneMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadZoneMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\loadZoneMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectPrompt.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Prompt.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Header Files\RpgGame\scenes\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\RpgGame\scenes\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Soldier.h">
+      <Filter>Header Files\RpgGame\units\Soldier</Filter>
+    </ClInclude>
+    <ClInclude Include="DooDad.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="HealingPad.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files\RpgGame\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Equipment.h">
+      <Filter>Header Files\RpgGame\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="TownsPerson.h">
+      <Filter>Header Files\RpgGame\units\TownsPerson</Filter>
+    </ClInclude>
+    <ClInclude Include="BareHands.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortSword.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Armour.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueRat.h">
+      <Filter>Header Files\RpgGame\units\BlueRat</Filter>
+    </ClInclude>
+    <ClInclude Include="RagHat.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RagBody.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="RagPants.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="RagGloves.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="RagBoots.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="RatKing.h">
+      <Filter>Header Files\RpgGame\units\RatKing</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingTile.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemShop.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="EquippedMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="OverWorldSceneMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemSellMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemBuyMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="LongSword.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="LinenBody.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="LinenBoots.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="LinenGloves.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="LinenHat.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="LinenPants.h">
+      <Filter>Header Files\RpgGame\Items\Armours</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemFactory.h">
+      <Filter>Header Files\RpgGame\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PagedPanel.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="Club.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Mace.h">
+      <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="RPG.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,130 @@
+﻿  AiUnit.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  AnimatedSprite.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Animation.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Armour.cpp
+  Attack.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  AttackingState.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  BareHands.cpp
+  BasicMeleeAttack.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  BlueRat.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Building.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  CombatText.cpp
+C:\coding\c++\game2\RPG\RPG\CombatText.h(3,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ControllerInterface.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  DooDad.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Equipment.cpp
+  EquippedMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Game.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  BaseGameEngine.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  GameMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  GameScene.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  HealingPad.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Compiling...
+  IdleState.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  InputMessage.cpp
+  InventoryMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Item.cpp
+  LoadZoneMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MainMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MainMenuScene.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MapBuilderPortalButton.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MapBuilderTileButton.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MapTile.cpp
+  MenuButton.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MenuText.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  MovingState.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  OverWorldSceneMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Player.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  PortalPropertiesMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  PortalPropertiesOkButton.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Prompt.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RagBody.cpp
+  RagBoots.cpp
+  Compiling...
+  RagGloves.cpp
+  RagHat.cpp
+  RagPants.cpp
+  Rat.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RatKing.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RpgKeysMouseController.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RpgOverWorldScene.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  RpgWorldBuilderScene.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  SaveAttribute.cpp
+C:\coding\c++\game2\RPG\RPG\SaveAttribute.cpp(51,38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\game2\RPG\RPG\SaveAttribute.cpp(103,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\game2\RPG\RPG\SaveAttribute.cpp(152,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  SaveMapBuilderButton.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  SaveObject.cpp
+  SaveFile.cpp
+  saveZoneMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ScrollBox.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  SelectPrompt.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ShortSword.cpp
+  Soldier.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Sprite.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  TextBox.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Texture.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Compiling...
+  TileGridScene.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  TownsPerson.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  UiElement.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  UiPanel.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Unit.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  UnitState.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  Weapon.cpp
+  ZoneBuilderMenu.cpp
+C:\coding\c++\game2\RPG\RPG\Texture.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ZoneMap.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
+  ZonePortal.cpp
+C:\coding\c++\game2\RPG\RPG\BaseGameEngine.h(2,10): fatal error C1083: Cannot open include file: 'SDL.h': No such file or directory
