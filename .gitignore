@@ -69,3 +69,4 @@
 *.tlog
 *.ilk
 *.ipch
+*.sarif
