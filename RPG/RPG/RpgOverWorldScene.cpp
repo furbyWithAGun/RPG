@@ -312,7 +312,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn troops
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 12000) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 120) > engine->randomDouble() && zone.second->mobSpawn)
         {
             /*int targetCoords[2] = { 0, 0 };
             while (true)
