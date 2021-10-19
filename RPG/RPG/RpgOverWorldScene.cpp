@@ -67,8 +67,11 @@ void RpgOverWorldScene::declareSceneAssets()
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_LEFT_SHEET, "images/basicMeleeAttackDown2.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/basicMeleeAttackDown2.png" });
     //enemy textures
-    texturesToLoad.insert({ RAT_IDLE_DOWN, "images/rat2.png" });
-    texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/BlueRat2.png" });
+    texturesToLoad.insert({ RAT_IDLE_DOWN, "images/ratIdleDown.png" });
+    texturesToLoad.insert({ RAT_IDLE_LEFT, "images/ratIdleLeft.png" });
+    texturesToLoad.insert({ RAT_IDLE_RIGHT, "images/ratIdleRight.png" });
+    texturesToLoad.insert({ RAT_IDLE_UP, "images/ratIdleUp.png" });
+    texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });
     texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/RatKing2.png" });
     //townsperson textures
     texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
@@ -312,7 +315,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn troops
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 120) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 1200) > engine->randomDouble() && zone.second->mobSpawn)
         {
             /*int targetCoords[2] = { 0, 0 };
             while (true)
@@ -372,26 +375,6 @@ void RpgOverWorldScene::renderHUD()
     engine->renderText("Gold: " + std::to_string(player->gold), engine->screenWidth * 0.01, engine->screenHeight * 0.16, COLOR_GOLD);
 
 }
-
-//void RpgOverWorldScene::unitEntersTile(Unit* unit, int x, int y)
-//{
-//    zones[unit->zone]->unitEntersTile(unit, x, y);
-//    if (unit->canGoThroughPortal)
-//    {
-//        ZonePortal* currentPortal = getPortalAtLocation(zones[unit->zone], unit->tileLocation->x, unit->tileLocation->y);
-//        if (currentPortal != nullptr)
-//        {
-//            portalUnit(currentPortal, unit);
-//        }
-//
-//        DooDad* currentDooDad = getDooDadAtLocation(zones[unit->zone], unit->tileLocation->x, unit->tileLocation->y);
-//        if (currentDooDad != nullptr)
-//        {
-//            currentDooDad->walkOn(unit);
-//        }
-//    }
-//}
-
 
 //functions
 int getPathThread(void* scene) {

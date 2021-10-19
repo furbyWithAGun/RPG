@@ -16,7 +16,7 @@ public:
     //methods
     //void declareSceneAssets() override;
     void setUpScene() override;
-    //void handleInput() override;
+    void handleInput() override;
     //void sceneLogic() override;
     //void renderScene() override;
 

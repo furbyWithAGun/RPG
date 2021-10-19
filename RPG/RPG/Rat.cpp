@@ -46,28 +46,28 @@ void Rat::init(TileGridScene* gameScene) {
 
 
 void Rat::createAnimations() {
-    addAnimation(IDLE_UP_LEFT,RAT_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_UP,RAT_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_UP_RIGHT,RAT_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_RIGHT,RAT_IDLE_DOWN, 1, 10);
+    addAnimation(IDLE_UP_LEFT,RAT_IDLE_UP, 1, 10);
+    addAnimation(IDLE_UP,RAT_IDLE_UP, 1, 10);
+    addAnimation(IDLE_UP_RIGHT, RAT_IDLE_UP, 1, 10);
+    addAnimation(IDLE_RIGHT,RAT_IDLE_RIGHT, 1, 10);
     addAnimation(IDLE_DOWN_RIGHT,RAT_IDLE_DOWN, 1, 10);
     addAnimation(IDLE_DOWN,RAT_IDLE_DOWN, 1, 10);
     addAnimation(IDLE_DOWN_LEFT,RAT_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_LEFT,RAT_IDLE_DOWN, 1, 10);
+    addAnimation(IDLE_LEFT,RAT_IDLE_LEFT, 1, 10);
 
     addAnimation(MOVE_DOWN,RAT_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_UP,RAT_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_RIGHT,RAT_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_LEFT,RAT_IDLE_DOWN, 1, 20);
+    addAnimation(MOVE_UP,RAT_IDLE_UP, 1, 20);
+    addAnimation(MOVE_RIGHT,RAT_IDLE_RIGHT, 1, 20);
+    addAnimation(MOVE_LEFT,RAT_IDLE_LEFT, 1, 20);
 
-    addAnimation(ATTACK_UP_LEFT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_UP,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_UP_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
+    addAnimation(ATTACK_UP_LEFT, RAT_IDLE_UP, 1, 10, false);
+    addAnimation(ATTACK_UP, RAT_IDLE_UP, 1, 10, false);
+    addAnimation(ATTACK_UP_RIGHT, RAT_IDLE_UP, 1, 10, false);
+    addAnimation(ATTACK_RIGHT, RAT_IDLE_RIGHT, 1, 10, false);
     addAnimation(ATTACK_DOWN_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_DOWN,RAT_IDLE_DOWN, 1, 10, false);
     addAnimation(ATTACK_DOWN_LEFT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_LEFT,RAT_IDLE_DOWN, 1, 10, false);
+    addAnimation(ATTACK_LEFT, RAT_IDLE_LEFT, 1, 10, false);
 }
 
 void Rat::setDropTable()

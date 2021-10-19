@@ -193,14 +193,14 @@ void RpgWorldBuilderScene::renderScene() {
         {
             getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
             coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
-            renderTexture(tileBeingPlaced->textureKey, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+            renderTexture(tileBeingPlaced->textureKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
         }
 
         if (placingPortal && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
         {
             getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
             coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
-            renderTexture(portalBeingPlaced, screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+            renderTexture(portalBeingPlaced, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
             engine->renderText("P", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
         }
 
