@@ -20,7 +20,6 @@ void UnitState::init() {
 
 int UnitState::update() {
     unit->updateCoords();
-    unit->updateAttacks();
     updateAnimation();
     unit->updateMovement();
     return id;

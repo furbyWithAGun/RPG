@@ -15,11 +15,11 @@ RatKing::RatKing(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
 
-RatKing::RatKing(int zoneId, int unitType, TileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
+RatKing::RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-RatKing::RatKing(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
+RatKing::RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -37,7 +37,7 @@ void RatKing::init() {
     setDropTable();
 }
 
-void RatKing::init(TileGridScene* gameScene) {
+void RatKing::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);

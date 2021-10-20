@@ -1,7 +1,5 @@
 #pragma once
-#include "TileGridScene.h"
-#include "Player.h"
-#include "AiUnit.h"
+#include "RpgTileGridScene.h"
 #include "RpgKeysMouseController.h"
 #include "OverWorldSceneMenu.h"
 #include "InventoryMenu.h"
@@ -11,12 +9,21 @@
 #include <cmath>
 #include <deque>
 
-class RpgOverWorldScene : public TileGridScene
+class AiUnit;
+class AiUnit;
+class AiUnit;
+class AiUnit;
+class AiUnit;
+class AiUnit;
+class AiUnit;
+class RpgUnit;
+
+class RpgOverWorldScene : public RpgTileGridScene
 {
 public:
     //attributes
     int frames = 0;
-    Unit* testUnit;
+    RpgUnit* testUnit;
     //Player* player;
 
     //constructors
@@ -35,13 +42,14 @@ public:
 
 private:
     //attributes
-    AiUnit enemy;
-    AiUnit enemy2;
+    class AiUnit;
+    //AiUnit enemy;
+    //AiUnit enemy2;
 
     //methods
     void init();
-    void pickUpItem(Unit* unit, Item* item);
-    void pickUpItemAtLocation(Unit* unit, int x, int y);
+    void pickUpItem(RpgUnit* unit, Item* item);
+    void pickUpItemAtLocation(RpgUnit* unit, int x, int y);
 };
 
 

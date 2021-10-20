@@ -14,11 +14,11 @@ TownsPerson::TownsPerson(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
 
-TownsPerson::TownsPerson(int zoneId, int unitType, TileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
+TownsPerson::TownsPerson(int zoneId, int unitType, RpgTileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-TownsPerson::TownsPerson(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
+TownsPerson::TownsPerson(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -28,7 +28,7 @@ void TownsPerson::init() {
     team = PLAYER_TEAM;
 }
 
-void TownsPerson::init(TileGridScene* gameScene) {
+void TownsPerson::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);

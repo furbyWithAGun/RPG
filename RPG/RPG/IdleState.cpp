@@ -1,5 +1,5 @@
 #include "IdleState.h"
-#include "Unit.h"
+#include "RpgUnit.h"
 #include "RpgOverWorldScene.h"
 
 //constructors
@@ -7,8 +7,8 @@ IdleState::IdleState() : UnitState() {
 
 }
 
-IdleState::IdleState(int newId, Unit* controlledUnit) : UnitState(newId, controlledUnit) {
-
+IdleState::IdleState(int newId, RpgUnit* controlledUnit) : UnitState(newId, controlledUnit) {
+    unit = controlledUnit;
 }
 
 //public methods

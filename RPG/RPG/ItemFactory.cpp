@@ -1,5 +1,16 @@
 #include "ItemFactory.h"
 
+struct ItemTemplate {
+	std::string name;
+	int textureKey;
+	int minDamage;
+	int maxDamage;
+	int value;
+	int armour;
+};
+
+std::unordered_map<int, ItemTemplate> itemTemplates = {};
+
 Item* createNewItem(int itemType)
 {
 	Item* itemToReturn;

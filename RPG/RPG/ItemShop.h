@@ -13,9 +13,10 @@ public:
     ItemShop();
     ItemShop(int newWidth, int newHeight);
     ItemShop(std::vector< std::vector<BuildingTile*> > newTileMap);
+    ItemShop(int entranceDirection);
 
     //methods
-    int onActionAssignedUnit(Unit* unit) override;
+    int onActionAssignedUnit(RpgUnit* unit) override;
     void setItemsForSale(std::vector<Item*> newItemsForSale);
 };
 

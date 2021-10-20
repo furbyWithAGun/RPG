@@ -1,31 +1,27 @@
 #pragma once
-#include "Unit.h"
+#include "RpgUnit.h"
 
-class TileGridScene;
+class RpgTileGridScene;
 
-class Player : public Unit
+class Player : public RpgUnit
 {
 public:
-    //attributes
-    //std::vector<int> startLocation;
-
     //constructor
     Player();
     Player(int zoneId, int unitType);
-    Player(int zoneId, int unitType, TileGridScene* gameScene);
-    Player(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    Player(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    Player(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
     
     //methods
     //void setStartLocation(int x, int y);
     void update();
     void faceMouseDirection(int x, int y);
+    void portalTo(int zoneId, int x, int y) override;
 
 private:
-    //attributes
-
     //methods
     void createAnimations();
     void init();
-    void init(TileGridScene * gameScene);
+    void init(RpgTileGridScene * gameScene);
 };
 

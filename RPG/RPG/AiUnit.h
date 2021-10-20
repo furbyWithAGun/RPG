@@ -1,9 +1,9 @@
 #pragma once
-#include "Unit.h"
+#include "RpgUnit.h"
 
 class RpgOverWorldScene;
 
-class AiUnit : public Unit
+class AiUnit : public RpgUnit
 {
 public:
     //attributes
@@ -13,11 +13,11 @@ public:
     //constructor
     AiUnit();
     AiUnit(int zoneId, int unitType);
-    AiUnit(int zoneId, int unitType, TileGridScene* gameScene);
-    AiUnit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    AiUnit(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    AiUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
-    void update();
+    void update() override;
 
 private:
     //attribues

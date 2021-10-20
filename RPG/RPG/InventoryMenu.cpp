@@ -1,5 +1,6 @@
 #include "InventoryMenu.h"
 #include "RpgOverWorldScene.h"
+#include "Player.h"
 
 enum INVENTORY_MENU_IDS {
     ITEMS_SCROLL_BOX,

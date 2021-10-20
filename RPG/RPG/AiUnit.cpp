@@ -5,19 +5,19 @@
 const double RANDOM_MOVE_CHANCE = 0.005;
 
 //constructors
-AiUnit::AiUnit() : Unit() {
+AiUnit::AiUnit() : RpgUnit() {
     init();
 }
 
-AiUnit::AiUnit(int zoneId, int unitType) : Unit(zoneId, unitType) {
+AiUnit::AiUnit(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {
     init();
 }
 
-AiUnit::AiUnit(int zoneId, int unitType, TileGridScene* gameScene) : Unit(zoneId, unitType, gameScene) {
+AiUnit::AiUnit(int zoneId, int unitType, RpgTileGridScene* gameScene) : RpgUnit(zoneId, unitType, gameScene) {
     init();
 }
 
-AiUnit::AiUnit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : Unit(zoneId, unitType, gameScene, startX, startY) {
+AiUnit::AiUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : RpgUnit(zoneId, unitType, gameScene, startX, startY) {
     init();
 }
 
@@ -34,7 +34,7 @@ void AiUnit::update() {
     {
         randomMovement();
     }
-    Unit::update();
+    RpgUnit::update();
 }
 
 
@@ -119,7 +119,7 @@ bool AiUnit::meleeAttackUnitInDirection(int direction)
     }
     targetUnit = scene->getUnitAtLocation(zone, x, y);
     //if (targetUnit != NULL && targetUnit->type == PLAYER)
-    if (targetUnit != NULL && getTeamStatus(targetUnit) == ENEMY)
+    if (targetUnit != NULL && getTeamStatus((RpgUnit*)targetUnit) == ENEMY)
     {
         scene->coordsFromTileIndex(x, y, coords);
         handleInput(&InputMessage(PERFORM_MAIN_ATTACK, coords[0], coords[1]));

@@ -1,7 +1,7 @@
 #pragma once
 #include "AiUnit.h"
 
-class TileGridScene;
+class RpgTileGridScene;
 
 class BlueRat : public AiUnit
 {
@@ -11,8 +11,8 @@ public:
     //constructors
     BlueRat();
     BlueRat(int zoneId, int unitType);
-    BlueRat(int zoneId, int unitType, TileGridScene* gameScene);
-    BlueRat(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();
@@ -20,6 +20,6 @@ public:
 
 private:
     void init();
-    void init(TileGridScene* gameScene);
+    void init(RpgTileGridScene* gameScene);
 };
 

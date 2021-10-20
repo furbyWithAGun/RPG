@@ -1,7 +1,8 @@
 #include "ItemShop.h"
-#include "Unit.h"
+#include "RpgUnit.h"
 #include "ItemSellMenu.h"
 #include "SelectPrompt.h"
+#include "RpgTileGridScene.h"
 
 ItemShop::ItemShop() : Building()
 {
@@ -15,7 +16,26 @@ ItemShop::ItemShop(std::vector<std::vector<BuildingTile*>> newTileMap) : Buildin
 {
 }
 
-int ItemShop::onActionAssignedUnit(Unit* unit)
+ItemShop::ItemShop(int entranceDirection)
+{
+    switch (entranceDirection)
+    {
+    case LEFT:
+        setTileMap({
+        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), nullptr, new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
+        });
+        
+        break;
+    default:
+        break;
+    }
+}
+
+int ItemShop::onActionAssignedUnit(RpgUnit* unit)
 {
     SelectPrompt* shopSelectPrompt;
     shopSelectPrompt = new SelectPrompt(unit->scene, COLOR_BLACK, unit->scene->engine->screenWidth * 0.5, unit->scene->engine->screenHeight * 0.5, unit->scene->engine->screenWidth * 0.1, unit->scene->engine->screenHeight * 0.1);

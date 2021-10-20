@@ -11,8 +11,8 @@ public:
     //constructors
     Rat();
     Rat(int zoneId, int unitType);
-    Rat(int zoneId, int unitType, TileGridScene* gameScene);
-    Rat(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    Rat(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    Rat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();
@@ -20,6 +20,6 @@ public:
 
 private:
     void init();
-    void init(TileGridScene* gameScene);
+    void init(RpgTileGridScene* gameScene);
 };
 

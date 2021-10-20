@@ -15,11 +15,11 @@ Rat::Rat(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
 
-Rat::Rat(int zoneId, int unitType, TileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
+Rat::Rat(int zoneId, int unitType, RpgTileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-Rat::Rat(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
+Rat::Rat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -38,7 +38,7 @@ void Rat::init() {
     setDropTable();
 }
 
-void Rat::init(TileGridScene* gameScene) {
+void Rat::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);

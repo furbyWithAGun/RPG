@@ -1,13 +1,15 @@
 #pragma once
 #include "UnitState.h"
+#include "RpgUnit.h"
 class AttackingState : public UnitState
 {
 public:
     //attributes
+    RpgUnit* unit;
 
     //constructors
     AttackingState();
-    AttackingState(int id, Unit* controlledUnit);
+    AttackingState(int id, RpgUnit* controlledUnit);
 
     //methods
     virtual int update();

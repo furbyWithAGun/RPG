@@ -8,14 +8,14 @@ public:
     //constructors
     Soldier();
     Soldier(int zoneId, int unitType);
-    Soldier(int zoneId, int unitType, TileGridScene* gameScene);
-    Soldier(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();
 
 private:
     void init();
-    void init(TileGridScene* gameScene);
+    void init(RpgTileGridScene* gameScene);
 };
 

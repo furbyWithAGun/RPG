@@ -1,5 +1,6 @@
 #include "EquippedMenu.h"
 #include "RpgOverWorldScene.h"
+#include "Player.h"
 
 enum EQUIPPED_MENU_IDS {
     SLOTS_SCROLL_BOX,

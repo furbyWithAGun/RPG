@@ -264,9 +264,6 @@
     <ClCompile Include="CombatText.cpp">
       <Filter>Source Files\RpgGame</Filter>
     </ClCompile>
-    <ClCompile Include="RpgKeysMouseController.cpp">
-      <Filter>Source Files\RpgGame</Filter>
-    </ClCompile>
     <ClCompile Include="GameMenu.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
@@ -428,6 +425,15 @@
     </ClCompile>
     <ClCompile Include="Mace.cpp">
       <Filter>Source Files\RpgGame\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgKeysMouseController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgTileGridScene.cpp">
+      <Filter>Source Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClCompile>
+    <ClCompile Include="RpgUnit.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -688,6 +694,12 @@
     </ClInclude>
     <ClInclude Include="Mace.h">
       <Filter>Header Files\RpgGame\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgTileGridScene.h">
+      <Filter>Header Files\RpgGame\scenes\tileGridScene</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgUnit.h">
+      <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

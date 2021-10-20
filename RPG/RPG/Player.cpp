@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "TileGridScene.h"
+#include "RpgTileGridScene.h"
 #include "BasicMeleeAttack.h"
 
 //stat constants
@@ -16,20 +16,20 @@ const int PLAYER_MOVE_ANIMATION_FRAME_LENGTH = 20;
 const int NUM_PLAYER_ATTACK_FRAMES = 2;
 const int PLAYER_ATTCK_ANIMATION_FRAME_LENGTH = 20;
 
-Player::Player() : Unit() {
+Player::Player() : RpgUnit() {
     init();
 }
 
-Player::Player(int zoneId, int unitType) : Unit(zoneId, unitType) {
+Player::Player(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {
     init();
     zone = 0;
 }
 
-Player::Player(int zoneId, int unitType, TileGridScene* gameScene) : Unit(zoneId, unitType, gameScene) {
+Player::Player(int zoneId, int unitType, RpgTileGridScene* gameScene) : RpgUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-Player::Player(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : Unit(zoneId, unitType, gameScene, startX, startY) {
+Player::Player(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : RpgUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -45,14 +45,14 @@ void Player::init() {
     team = PLAYER_TEAM;
 }
 
-void Player::init(TileGridScene* gameScene) {
+void Player::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
 }
 
 void Player::update() {
-    Unit::update();
+    RpgUnit::update();
 
     //centre on screen by changing scene x and y offsets
     int coords[2];
@@ -102,6 +102,12 @@ void Player::faceMouseDirection(int x, int y) {
     else if (x < xpos && y > ypos && y < ypos + height) {
         directionFacing = LEFT;
     }
+}
+
+void Player::portalTo(int zoneId, int x, int y)
+{
+    Unit::portalTo(zoneId, x, y);
+    scene->loadZone(zone);
 }
 
 //private methods

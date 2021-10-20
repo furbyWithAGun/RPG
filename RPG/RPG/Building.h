@@ -2,7 +2,7 @@
 #include <vector>
 #include "BuildingTile.h"
 
-class Unit;
+class RpgUnit;
 struct Location;
 
 class Building
@@ -13,7 +13,8 @@ public:
     Location* tileLocation;
     int width, height;
     bool active;
-    std::vector<Unit*> assignedUnits;
+    std::vector<RpgUnit*> assignedUnits;
+    std::vector<Location> unitLocations;
 
 
     //constructors
@@ -25,9 +26,10 @@ public:
 
     //methods
     BuildingTile* getTileAtMapLocation(int x, int y);
-    virtual int onActionAssignedUnit(Unit* unit);
-    void assignUnit(Unit* unit);
-    void unAssignUnit(Unit* unit);
+    virtual int onActionAssignedUnit(RpgUnit* unit);
+    void assignUnit(RpgUnit* unit);
+    void unAssignUnit(RpgUnit* unit);
+    void setTileMap(std::vector< std::vector<BuildingTile*> > newTileMap);
 
 private:
     //methods

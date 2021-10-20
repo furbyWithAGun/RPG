@@ -1,6 +1,7 @@
 #include "ItemSellMenu.h"
 #include "RpgOverWorldScene.h"
 #include "ItemShop.h"
+#include "Player.h"
 
 enum ITEM_SELL_MENU_IDS {
     ITEMS_SCROLL_BOX,

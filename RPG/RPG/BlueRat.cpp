@@ -15,11 +15,11 @@ BlueRat::BlueRat(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
 
-BlueRat::BlueRat(int zoneId, int unitType, TileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
+BlueRat::BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-BlueRat::BlueRat(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
+BlueRat::BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -38,7 +38,7 @@ void BlueRat::init() {
     setDropTable();
 }
 
-void BlueRat::init(TileGridScene* gameScene) {
+void BlueRat::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);

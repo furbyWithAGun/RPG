@@ -4,7 +4,7 @@
 
 
 class GameScene;
-class Unit;
+class RpgUnit;
 
 class BasicMeleeAttack : public Attack
 {
@@ -14,11 +14,11 @@ public:
 
     //constructors
     BasicMeleeAttack();
-    BasicMeleeAttack(int newType, Unit* newOwningUnit);
+    BasicMeleeAttack(int newType, RpgUnit* newOwningUnit);
 
     //methods
     bool startAttack() override;
-    void processHit(Unit* targetUnit);
+    void processHit(RpgUnit* targetUnit);
     void processAttack();
 
 private:

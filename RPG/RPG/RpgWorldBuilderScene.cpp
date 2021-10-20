@@ -11,11 +11,11 @@ const int DEFAULT_DESIRED_TILES_ACROSS = 19;
 const int SCROLL_SPEED = 4;
 
 //constructor
-RpgWorldBuilderScene::RpgWorldBuilderScene() : TileGridScene(){
+RpgWorldBuilderScene::RpgWorldBuilderScene() : RpgTileGridScene(){
     init();
 }
 
-RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : TileGridScene(gameEngine){
+RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : RpgTileGridScene(gameEngine){
     init();
     engine = gameEngine;
 }
@@ -37,12 +37,12 @@ void RpgWorldBuilderScene::init() {
 }
 
 void RpgWorldBuilderScene::declareSceneAssets() {
-    TileGridScene::declareSceneAssets();
+    RpgTileGridScene::declareSceneAssets();
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
 }
 
 void RpgWorldBuilderScene::setUpScene() {
-    TileGridScene::setUpScene();
+    RpgTileGridScene::setUpScene();
     sceneToEdit = ZoneMap(*zones[0]);
     currentZone = &sceneToEdit;
     ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
@@ -55,7 +55,7 @@ void RpgWorldBuilderScene::setUpScene() {
 }
 
 void RpgWorldBuilderScene::handleInput() {
-    TileGridScene::handleInput();
+    RpgTileGridScene::handleInput();
     int tileCoords[2];
     InputMessage* message = new InputMessage();
     while (controllerInterface->getNextMessage(message)) {

@@ -1,5 +1,5 @@
 #include "Building.h"
-#include "Unit.h"
+#include "RpgUnit.h"
 
 Building::Building()
 {
@@ -16,9 +16,7 @@ Building::Building(int newWidth, int newHeight)
 Building::Building(std::vector<std::vector<BuildingTile*>> newTileMap)
 {
     init();
-    tileMap = newTileMap;
-    width = newTileMap.size();
-    height = newTileMap[0].size();
+    setTileMap(newTileMap);
 }
 
 int Building::getX()
@@ -41,18 +39,18 @@ BuildingTile* Building::getTileAtMapLocation(int x, int y)
     return tileMap[x - tileLocation->x][y - tileLocation->y];
 }
 
-int Building::onActionAssignedUnit(Unit* unit)
+int Building::onActionAssignedUnit(RpgUnit* unit)
 {
     return 0;
 }
 
-void Building::assignUnit(Unit* unit)
+void Building::assignUnit(RpgUnit* unit)
 {
     assignedUnits.push_back(unit);
     unit->assignedToBuilding = this;
 }
 
-void Building::unAssignUnit(Unit* unit)
+void Building::unAssignUnit(RpgUnit* unit)
 {
     unit->assignedToBuilding = nullptr;
     auto unitIterator = assignedUnits.begin();
@@ -66,6 +64,13 @@ void Building::unAssignUnit(Unit* unit)
             unitIterator++;
         }
     }
+}
+
+void Building::setTileMap(std::vector<std::vector<BuildingTile*>> newTileMap)
+{
+    tileMap = newTileMap;
+    width = newTileMap.size();
+    height = newTileMap[0].size();
 }
 
 

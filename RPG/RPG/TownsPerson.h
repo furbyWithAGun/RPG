@@ -8,14 +8,14 @@ public:
     //constructors
     TownsPerson();
     TownsPerson(int zoneId, int unitType);
-    TownsPerson(int zoneId, int unitType, TileGridScene* gameScene);
-    TownsPerson(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
+    TownsPerson(int zoneId, int unitType, RpgTileGridScene* gameScene);
+    TownsPerson(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
     void createAnimations();
 
 private:
     void init();
-    void init(TileGridScene* gameScene);
+    void init(RpgTileGridScene* gameScene);
 };
 

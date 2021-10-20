@@ -13,5 +13,6 @@
 #include "LongSword.h"
 #include "Club.h"
 #include "Mace.h"
+#include <unordered_map>
 
 Item* createNewItem(int itemType);

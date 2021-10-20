@@ -1,11 +1,11 @@
 #include "Attack.h"
-#include "Unit.h"
+#include "RpgUnit.h"
 
 Attack::Attack() {
     init();
 }
 
-Attack::Attack(int newType, Unit* newOwningUnit){
+Attack::Attack(int newType, RpgUnit* newOwningUnit){
     init();
     type = newType;
     owningUnit = newOwningUnit;

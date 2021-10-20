@@ -1,5 +1,6 @@
 #include "BasicMeleeAttack.h"
-#include "Unit.h"
+#include "RpgUnit.h"
+#include "RpgTileGridScene.h"
 
 const int BASIC_MELEE_ATTACK_BASE_DMG = 1;
 
@@ -7,7 +8,7 @@ BasicMeleeAttack::BasicMeleeAttack() : Attack() {
     init();
 }
 
-BasicMeleeAttack::BasicMeleeAttack(int newType, Unit* newOwningUnit) : Attack(newType, newOwningUnit){
+BasicMeleeAttack::BasicMeleeAttack(int newType, RpgUnit* newOwningUnit) : Attack(newType, newOwningUnit){
     init();
 }
 
@@ -62,7 +63,7 @@ bool BasicMeleeAttack::startAttack() {
 }
 
 
-void BasicMeleeAttack::processHit(Unit* targetUnit) {
+void BasicMeleeAttack::processHit(RpgUnit* targetUnit) {
     if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
     {
         int damage = this->damageDealt();
@@ -75,9 +76,9 @@ void BasicMeleeAttack::processHit(Unit* targetUnit) {
 
 void BasicMeleeAttack::processAttack() {
     int attackTargetLocation[2];
-    Unit* targetUnit;
+    RpgUnit* targetUnit;
     owningUnit->getLocationUnitDestinationIsFacing(attackTargetLocation);
-    targetUnit = owningUnit->scene->getUnitAtLocation(owningUnit->zone, attackTargetLocation[0], attackTargetLocation[1]);
+    targetUnit = (RpgUnit*)owningUnit->scene->getUnitAtLocation(owningUnit->zone, attackTargetLocation[0], attackTargetLocation[1]);
     if (targetUnit != nullptr && targetUnit != owningUnit) {
         processHit(targetUnit);
     }

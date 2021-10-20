@@ -239,3 +239,7 @@ enum UNIT_TYPES {
     BLUE_RAT,
     RAT_KING
 };
+
+enum BUILDING_TYPES {
+    ITEM_SHOP
+};

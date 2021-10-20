@@ -23,11 +23,11 @@ Soldier::Soldier(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
 
-Soldier::Soldier(int zoneId, int unitType, TileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
+Soldier::Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene) : AiUnit(zoneId, unitType, gameScene) {
     init(gameScene);
 }
 
-Soldier::Soldier(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
+Soldier::Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY) : AiUnit(zoneId, unitType, gameScene, startX, startY) {
     init(gameScene);
 }
 
@@ -44,7 +44,7 @@ void Soldier::init() {
     team = PLAYER_TEAM;
 }
 
-void Soldier::init(TileGridScene* gameScene) {
+void Soldier::init(RpgTileGridScene* gameScene) {
     init();
     createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);

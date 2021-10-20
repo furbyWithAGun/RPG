@@ -211,6 +211,8 @@
     <ClCompile Include="RatKing.cpp" />
     <ClCompile Include="RpgKeysMouseController.cpp" />
     <ClCompile Include="RpgOverWorldScene.cpp" />
+    <ClCompile Include="RpgTileGridScene.cpp" />
+    <ClCompile Include="RpgUnit.cpp" />
     <ClCompile Include="RpgWorldBuilderScene.cpp" />
     <ClCompile Include="SaveAttribute.cpp" />
     <ClCompile Include="SaveMapBuilderButton.cpp" />
@@ -299,6 +301,8 @@
     <ClInclude Include="RpgGameConstants.h" />
     <ClInclude Include="RpgKeysMouseController.h" />
     <ClInclude Include="RpgOverWorldScene.h" />
+    <ClInclude Include="RpgTileGridScene.h" />
+    <ClInclude Include="RpgUnit.h" />
     <ClInclude Include="RpgWorldBuilderScene.h" />
     <ClInclude Include="SaveAttribute.h" />
     <ClInclude Include="SaveMapBuilderButton.h" />

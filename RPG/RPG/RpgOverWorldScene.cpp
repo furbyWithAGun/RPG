@@ -1,14 +1,19 @@
 #include "RpgOverWorldScene.h"
-#include "Rat.h"
 #include "DooDad.h"
 #include "ItemShop.h"
+#include "Player.h"
+#include "Rat.h"
+#include "RatKing.h"
+#include "BlueRat.h"
+#include "Soldier.h"
+#include "TownsPerson.h"
 
-RpgOverWorldScene::RpgOverWorldScene() : TileGridScene()
+RpgOverWorldScene::RpgOverWorldScene() : RpgTileGridScene()
 {
     init();
 }
 
-RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene(gameEngine)
+RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : RpgTileGridScene(gameEngine)
 {
     init();
 }
@@ -16,13 +21,14 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : TileGridScene
 void RpgOverWorldScene::init() {
     controllerInterface = new RpgKeysMouseController();
     new DooDad(this, 3,3,3);
+    testUnit = nullptr;
 }
 
-void RpgOverWorldScene::pickUpItem(Unit* unit, Item* item)
+void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
 {
 }
 
-void RpgOverWorldScene::pickUpItemAtLocation(Unit* unit, int x, int y)
+void RpgOverWorldScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
 {
     if (currentZone->itemMap[x][y].size() > 0)
     {
@@ -34,68 +40,17 @@ void RpgOverWorldScene::pickUpItemAtLocation(Unit* unit, int x, int y)
 
 void RpgOverWorldScene::loadZone(int zoneId)
 {
-    TileGridScene::loadZone(zoneId);
+    RpgTileGridScene::loadZone(zoneId);
 }
 
 void RpgOverWorldScene::declareSceneAssets()
 {
-    TileGridScene::declareSceneAssets();
-    //UI textures
-    texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
-    //player textures
-    //movement
-    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_RIGHT_SHEET, "images/playerIdleRight2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/playerIdleDownRight.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_SHEET, "images/playerIdleDown2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft2.png" });
-    texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerMoveDown2.png" });
-    texturesToLoad.insert({ PLAYER_MOVE_UP_SHEET, "images/playerMoveUp2.png" });
-    texturesToLoad.insert({ PLAYER_MOVE_RIGHT_SHEET, "images/playerMoveRight2.png" });
-    texturesToLoad.insert({ PLAYER_MOVE_LEFT_SHEET, "images/playerMoveLeft2.png" });
-    //attack
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/basicMeleeAttackDown2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_SHEET, "images/basicMeleeAttackUp.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_LEFT_SHEET, "images/baiscMeleeAttackLeft.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_RIGHT_SHEET, "images/basicMeleeAttackRight2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_LEFT_SHEET, "images/basicMeleeAttackUp.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_RIGHT_SHEET, "images/basicMeleeAttackUp.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_LEFT_SHEET, "images/basicMeleeAttackDown2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/basicMeleeAttackDown2.png" });
-    //enemy textures
-    texturesToLoad.insert({ RAT_IDLE_DOWN, "images/ratIdleDown.png" });
-    texturesToLoad.insert({ RAT_IDLE_LEFT, "images/ratIdleLeft.png" });
-    texturesToLoad.insert({ RAT_IDLE_RIGHT, "images/ratIdleRight.png" });
-    texturesToLoad.insert({ RAT_IDLE_UP, "images/ratIdleUp.png" });
-    texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });
-    //texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/RatKing2.png" });
-    texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/skeletonKing.png" });
-    //townsperson textures
-    texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
-    //item textures
-    texturesToLoad.insert({ ITEM_SHORT_SWORD, "images/itemSword.png" });
-    texturesToLoad.insert({ ITEM_CLUB, "images/club.png" });
-    texturesToLoad.insert({ ITEM_MACE, "images/mace.png" });
-    texturesToLoad.insert({ ITEM_RAG_HAT, "images/RagHat.png" });
-    texturesToLoad.insert({ ITEM_RAG_BODY, "images/RagBody.png" });
-    texturesToLoad.insert({ ITEM_RAG_PANTS, "images/RagPants.png" });
-    texturesToLoad.insert({ ITEM_RAG_GLOVES, "images/RagGloves.png" });
-    texturesToLoad.insert({ ITEM_RAG_BOOTS, "images/RagBoots.png" });
-    texturesToLoad.insert({ ITEM_LONG_SWORD, "images/longSword.png" });
-    texturesToLoad.insert({ ITEM_LINEN_HAT, "images/LinenHat.png" });
-    texturesToLoad.insert({ ITEM_LINEN_BODY, "images/LinenBody.png" });
-    texturesToLoad.insert({ ITEM_LINEN_PANTS, "images/LinenPants.png" });
-    texturesToLoad.insert({ ITEM_LINEN_GLOVES, "images/LinenGloves.png" });
-    texturesToLoad.insert({ ITEM_LINEN_BOOTS, "images/LinenBoots.png" });
+    RpgTileGridScene::declareSceneAssets();
 }
 
 void RpgOverWorldScene::setUpScene()
 {
-    TileGridScene::setUpScene();
+    RpgTileGridScene::setUpScene();
     //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
     teamRelations[MONSTER_TEAM][PLAYER_TEAM] = ENEMY;
@@ -118,28 +73,12 @@ void RpgOverWorldScene::setUpScene()
     //testUnit->setTargetLocation(testLocation);
     createUnitAtLocation(2, RAT_KING, 26, 12);
     createUnitAtLocation(1, TOWNSPERSON, 11, 2);
-    std::vector<Item*> startItems;
-    startItems.push_back(new LongSword());
-    startItems.push_back(new LinenBody());
-    startItems.push_back(new LinenBoots());
-    startItems.push_back(new LinenGloves());
-    startItems.push_back(new LinenHat());
-    startItems.push_back(new LinenPants());
-    //addItemsToMap(currentZone->id, 5, 6, startItems);
 
     //buildings
     ItemShop* testBuilding;
-    testBuilding = new ItemShop({
-        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), nullptr, new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
-        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
-        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
-        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
-        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
-        });
-    testBuilding->assignUnit(createUnitAtLocation(1, TOWNSPERSON, 13, 12));
+    testBuilding = (ItemShop*)createBuildingAtLocation(1, ITEM_SHOP, LEFT, 10, 10);
     testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
-    zones[1]->addBuildingToLocation(testBuilding, 10 , 10);
-
+    
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
     menus[ITEM_SELL_MENU] = new ItemSellMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.25, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
@@ -153,7 +92,7 @@ void RpgOverWorldScene::setUpScene()
 
 void RpgOverWorldScene::handleInput()
 {
-    TileGridScene::handleInput();
+    RpgTileGridScene::handleInput();
     InputMessage* message = new InputMessage();
     int tileCoords[2];
     
@@ -226,7 +165,7 @@ void RpgOverWorldScene::handleInput()
 void RpgOverWorldScene::sceneLogic()
 {
     //call base class logic
-    TileGridScene::sceneLogic();
+    RpgTileGridScene::sceneLogic();
     Location* soldierSpawn = new Location{ 4, 4 };
     Location* ratSpawn = new Location{32, 19};
     Location* ratSpawn2 = new Location{32, 2};
@@ -244,7 +183,7 @@ void RpgOverWorldScene::sceneLogic()
             }
             break;
         case USER_ACTION:
-            Unit* actionedUnit;
+            RpgUnit* actionedUnit;
             actionedUnit = getUnitAtLocation(player->zone, message->x, message->y);
             if (actionedUnit != nullptr)
             {
@@ -345,21 +284,8 @@ void RpgOverWorldScene::sceneLogic()
 void RpgOverWorldScene::renderScene()
 {
     int tileCoords[2], screenCoords[2];
-    TileGridScene::renderScene();
+    RpgTileGridScene::renderScene();
     renderHUD();
-    //testUnit->updateAggro2();
-    //getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
-    /*if (currentZone->isTilePassable(this, tileCoords[0], tileCoords[1]))
-    {
-        Location* testLocation;
-        testLocation = new Location{ tileCoords[0], tileCoords[1] };
-        for (auto location : currentZone->getPath(this, player->tileDestination, testLocation))
-        {
-            coordsFromTileIndex(location->x, location->y, screenCoords);
-            engine->renderText("O", screenCoords[0], screenCoords[1], tileWidth, tileHeight, COLOR_BLUE);
-        }
-        delete testLocation;
-    }*/
 }
 
 void RpgOverWorldScene::renderHUD()

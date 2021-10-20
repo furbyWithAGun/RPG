@@ -1,5 +1,5 @@
 #pragma once
-#include "TileGridScene.h"
+#include "RpgTileGridScene.h"
 #include "MapTile.h"
 #include <unordered_map>
 #include "Player.h"
@@ -11,7 +11,7 @@
 
 class BaseGameEngine;
 
-class RpgWorldBuilderScene : public TileGridScene
+class RpgWorldBuilderScene : public RpgTileGridScene
 {
 public:
     //attributes
