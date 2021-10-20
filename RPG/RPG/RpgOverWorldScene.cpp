@@ -72,7 +72,8 @@ void RpgOverWorldScene::declareSceneAssets()
     texturesToLoad.insert({ RAT_IDLE_RIGHT, "images/ratIdleRight.png" });
     texturesToLoad.insert({ RAT_IDLE_UP, "images/ratIdleUp.png" });
     texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });
-    texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/RatKing2.png" });
+    //texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/RatKing2.png" });
+    texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/skeletonKing.png" });
     //townsperson textures
     texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
     //item textures
@@ -105,7 +106,7 @@ void RpgOverWorldScene::setUpScene()
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    player->addExp(COMBAT_EXPERIENCE, 999999999);
 
     //createUnitAtLocation(currentZone->id, RAT, 4, 2);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
@@ -315,7 +316,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn troops
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 1200) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 12000) > engine->randomDouble() && zone.second->mobSpawn)
         {
             /*int targetCoords[2] = { 0, 0 };
             while (true)
