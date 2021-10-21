@@ -114,3 +114,6 @@ class ZoneMap {
         void setUpMaps();
 };
 
+
+std::string getLocationSaveString(Location* location);
+Location* getLocationFromSaveObject(SaveObject saveObject);

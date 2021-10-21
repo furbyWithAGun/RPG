@@ -1,4 +1,13 @@
 #pragma once
+
+enum MAP_TILE_SAVE_ATTRIBUTES {
+    MAP_TILE_PASSABLE,
+    MAP_TILE_TEXTURE_KEY,
+    MAP_TILE_WIDTH,
+    MAP_TILE_HEIGHT,
+    NUM_MAP_TILE_SAVE_ATTRIBUTES
+};
+
 class MapTile
 {
 public:

@@ -2,6 +2,8 @@
 #include "TileGridScene.h"
 #include "CombatText.h"
 #include "ItemShop.h"
+#include "Player.h"
+#include "RpgGameConstants.h"
 
 class Player;
 
@@ -33,10 +35,13 @@ public:
     void addDelayedCombatMessage(int delay, std::string text, SDL_Color colour, int tileX, int tileY, int duration);
     int getTeamStatus(int unitTeam, int otherUnitTeam);
     RpgUnit* getUnitAtLocation(int zoneId, int x, int y);
+    bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos);
+    bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
 
 protected:
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
+    Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);
 
 private:
     //attributes

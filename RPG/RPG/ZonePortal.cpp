@@ -55,12 +55,12 @@ std::string ZonePortal::toSaveString() {
     std::string saveString;
     int uniqueObjectId = getUniqueId();
 
-    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_PORTAL) + "\n";
+    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(LOCATION) + "\n";
     saveString += getAttributeString(getUniqueId(), ZONE_PORTAL_TEXTURE_ID, textureId);
     saveString += getAttributeString(getUniqueId(), TILE_COORDS, getIntVectorSaveString(tileCoords));
     saveString += getAttributeString(getUniqueId(), EXIT_ZONE_ID, exitZoneId);
     saveString += getAttributeString(getUniqueId(), EXIT_TILE_COORDS, getIntVectorSaveString(exitTileCoords));
-    saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_PORTAL) + "\n";
+    saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(LOCATION) + "\n";
 
     return saveString;
 }

@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include "SaveFile.h"
 
 Graph::Graph()
 {
@@ -59,4 +60,3 @@ int Graph::getCost(int x, int y)
 {
     return costs[Location{ x, y }];
 }
-

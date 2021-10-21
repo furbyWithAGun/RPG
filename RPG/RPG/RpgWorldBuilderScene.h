@@ -1,11 +1,5 @@
 #pragma once
 #include "RpgTileGridScene.h"
-#include "MapTile.h"
-#include <unordered_map>
-#include "Player.h"
-#include "GameMenu.h"
-#include "ZoneMap.h"
-#include "RpgGameConstants.h"
 #include "RpgKeysMouseController.h"
 #include "SelectPrompt.h"
 
@@ -15,7 +9,6 @@ class RpgWorldBuilderScene : public RpgTileGridScene
 {
 public:
     //attributes
-    BaseGameEngine* engine;
     bool placingTile;
     MapTile* tileBeingPlaced;
     bool placingPortal;
@@ -27,6 +20,9 @@ public:
     ZoneMap* portalExitZone;
     int previousZoneXoffset, previousZoneYoffset;
     ZoneMap sceneToEdit;
+    Building buildingBeingPlaced;
+    bool placingBuilding;
+
 
     //constructor
     RpgWorldBuilderScene();

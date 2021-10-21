@@ -81,10 +81,11 @@ ZoneMap::ZoneMap(const ZoneMap& oldMap)
 {
 	init();
 	id = oldMap.id;
-	zoneName = oldMap.zoneName;
+    zoneName = oldMap.zoneName;
 	tileMap = oldMap.tileMap;
 	buildingMap = oldMap.buildingMap;
 	unitMap = oldMap.unitMap;
+	itemMap = oldMap.itemMap;
 	portalMap = oldMap.portalMap;
 	doodads = oldMap.doodads;
 	buildings = oldMap.buildings;
@@ -94,6 +95,7 @@ ZoneMap::ZoneMap(const ZoneMap& oldMap)
 	difficulty = oldMap.difficulty;
 	backGroundTile = oldMap.backGroundTile;
 	mobSpawn = oldMap.mobSpawn;
+	graph = oldMap.graph;
 }
 
 void ZoneMap::init() {
@@ -314,6 +316,8 @@ void ZoneMap::draw(TileGridScene* scene)
 				if (buildingMap[j][i] != nullptr)
 				{
 					if (buildingMap[j][i]->getTileAtMapLocation(j, i) != nullptr) {
+						SDL_SetTextureColorMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255, 255, 255);
+						SDL_SetTextureAlphaMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255);
 						scene->renderTexture(buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 					}
 				}
@@ -1272,4 +1276,38 @@ void ZoneMap::setUpMaps()
 	clearPortalMap();
 	buildPortalMap();
 }
+
+
+
+std::string getLocationSaveString(Location* location)
+{
+	std::string saveString;
+	int uniqueObjectId = getUniqueId();
+
+	saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(LOCATION) + "\n";
+	saveString += getAttributeString(getUniqueId(), X_COORD, location->x);
+	saveString += getAttributeString(getUniqueId(), Y_COORD, location->y);
+	saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(LOCATION) + "\n";
+	return saveString;
+}
+
+Location* getLocationFromSaveObject(SaveObject saveObject)
+{
+	Location* returnLocation = new Location{0, 0};
+	for (int i = 0; i < saveObject.attributes.size(); i++)
+	{
+		switch (saveObject.attributes[i].attributeType) {
+		case X_COORD:
+			returnLocation->x = stoi(saveObject.attributes[i].valueString);
+			break;
+		case Y_COORD:
+			returnLocation->y = stoi(saveObject.attributes[i].valueString);
+			break;
+		default:
+			break;
+		}
+	}
+	return returnLocation;
+}
+
 

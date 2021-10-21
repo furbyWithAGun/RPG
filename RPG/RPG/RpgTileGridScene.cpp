@@ -175,6 +175,33 @@ RpgUnit* RpgTileGridScene::getUnitAtLocation(int zoneId, int x, int y)
     return (RpgUnit*)TileGridScene::getUnitAtLocation(zoneId, x, y);
 }
 
+bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos)
+{
+    bool buildingCanBePlaced = true;
+    for (int x = 0; x < building->tileMap.size(); x++)
+    {
+        for (int y = 0; y < building->tileMap[x].size(); y++) {
+            int xToCheck = xpos + x;
+            int yToCheck = ypos + y;
+            if (xToCheck < 0 || xToCheck >= zoneMap->tileMap[y].size() || yToCheck < 0 || yToCheck >= zoneMap->tileMap.size())
+            {
+                return false;
+            }
+            //if (!mapTiles[zoneMap->tileMap[yToCheck][xToCheck]].passable)
+            if (!zoneMap->isTilePassable(this, xToCheck, yToCheck))
+            {
+                return false;
+            }
+        }
+    }
+    return buildingCanBePlaced;
+}
+
+bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location)
+{
+    return buildingCanBePlacedAtLocation(building, zoneMap, location->x, location->y);
+}
+
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)
 {
     RpgUnit* createdUnit;
@@ -221,6 +248,23 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         break;
     }
     zones[zoneId]->addBuildingToLocation(createdBuilding, x, y);
+    return createdBuilding;
+}
+
+Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y)
+{
+    Building* createdBuilding;
+    switch (buildingType)
+    {
+    case ITEM_SHOP:
+        createdBuilding = new ItemShop(direction);
+        createdBuilding->assignUnit(createUnitAtLocation(1, TOWNSPERSON, x + 3, y + 2));
+        break;
+    default:
+        createdBuilding = nullptr;
+        break;
+    }
+    zone->addBuildingToLocation(createdBuilding, x, y);
     return createdBuilding;
 }
 

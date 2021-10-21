@@ -17,16 +17,16 @@ RpgWorldBuilderScene::RpgWorldBuilderScene() : RpgTileGridScene(){
 
 RpgWorldBuilderScene::RpgWorldBuilderScene(BaseGameEngine * gameEngine) : RpgTileGridScene(gameEngine){
     init();
-    engine = gameEngine;
 }
 
 void RpgWorldBuilderScene::init() {
-    engine = NULL;
-    tileBeingPlaced = NULL;
+    tileBeingPlaced = nullptr;
     portalExitZone = nullptr;
+    buildingBeingPlaced = ItemShop(LEFT);
     placingTile = false;
     placingPortal = false;
     pickingPortalCoords = false;
+    placingBuilding = true;
     portalBeingPlaced = -1;
     controllerInterface = new RpgKeysMouseController();
     portalBeingPlacedExitId = 0;
@@ -38,7 +38,7 @@ void RpgWorldBuilderScene::init() {
 
 void RpgWorldBuilderScene::declareSceneAssets() {
     RpgTileGridScene::declareSceneAssets();
-    texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
+    //texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
 }
 
 void RpgWorldBuilderScene::setUpScene() {
@@ -80,6 +80,15 @@ void RpgWorldBuilderScene::handleInput() {
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                     addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
+                }
+                if (placingBuilding && coordsAreOnDisplayedMapTile(message->x, message->y))
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    int buildingXoffset = buildingBeingPlaced.tileMap.size() / 2;
+                    int buildingYoffset = buildingBeingPlaced.tileMap[0].size() / 2;
+                    if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset)) {
+                        addCommand(InputMessage(PLACE_BUILDING, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset, buildingBeingPlaced.type));
+                    }
                 }
             }
             
@@ -169,6 +178,11 @@ void RpgWorldBuilderScene::sceneLogic() {
             portalMenu->open();
             pickingPortalCoords = false;
             break;
+        case PLACE_BUILDING:
+            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, message->x, message->y)) {
+                createBuildingAtLocation(&sceneToEdit, message->misc, LEFT, message->x, message->y);
+            }
+            break;
         default:
             break;
         }
@@ -202,6 +216,33 @@ void RpgWorldBuilderScene::renderScene() {
             coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
             renderTexture(portalBeingPlaced, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
             engine->renderText("P", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+        }
+
+        if (placingBuilding && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
+        {
+            getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+            int buildingXoffset = buildingBeingPlaced.tileMap.size() / 2;
+            int buildingYoffset = buildingBeingPlaced.tileMap[0].size() / 2;
+            bool buldingCanBePlaced = buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset);
+
+            for (int x = 0; x < buildingBeingPlaced.tileMap.size(); x++)
+            {
+                for (int y = 0; y < buildingBeingPlaced.tileMap[x].size(); y++) {
+                    coordsFromTileIndex(tileCoords[0] + x - buildingXoffset, tileCoords[1] + y - buildingYoffset, screenCoords);
+                    if (buildingBeingPlaced.tileMap[x][y] != nullptr) {
+                        if (!buldingCanBePlaced)
+                        {
+                            SDL_SetTextureColorMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255, 125, 125);
+                            SDL_SetTextureAlphaMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 195);
+                        }
+                        else {
+                            SDL_SetTextureColorMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255, 255, 255);
+                            SDL_SetTextureAlphaMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255);
+                        }
+                        renderTexture(buildingBeingPlaced.tileMap[x][y]->textureKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
+                    }
+                }
+            }
         }
 
         for (auto portal : sceneToEdit.portals) {

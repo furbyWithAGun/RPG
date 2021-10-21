@@ -2,6 +2,11 @@
 #include <unordered_map>
 #include <string>
 
+enum LOCATION_SAVE_ATTRIBUTES {
+    X_COORD,
+    Y_COORD
+};
+
 struct Location {
     int x, y;
     bool operator==(const Location& o) const {
@@ -58,4 +63,3 @@ private:
     std::unordered_map<Location, int> costs;
 
 };
-
