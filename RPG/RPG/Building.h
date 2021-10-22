@@ -30,6 +30,7 @@ public:
 
     //constructors
     Building();
+    Building(SaveObject saveObject);
     Building(int buildingType);
     Building(int newWidth, int newHeight);
     Building(int buildingType, int newWidth, int newHeight);

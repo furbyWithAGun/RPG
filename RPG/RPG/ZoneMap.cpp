@@ -61,6 +61,9 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 		case DOODADS:
 			doodads = getDooDadVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
+		case BUILDINGS:
+			buildings = getBuildingVectorFromSaveString(saveObject.attributes[i].valueString);
+			break;
 		case MOB_SPAWN:
 			mobSpawn = stoi(saveObject.attributes[i].valueString);
 			break;
@@ -212,6 +215,7 @@ std::string ZoneMap::toSaveString() {
 	saveString += getAttributeString(getUniqueId(), TILE_MAP, get2DIntVectorSaveString(tileMap));
 	saveString += getAttributeString(getUniqueId(), PORTALS, getPortalVectorSaveString(portals));
 	saveString += getAttributeString(getUniqueId(), DOODADS, getDooDadVectorSaveString(doodads));
+	saveString += getAttributeString(getUniqueId(), BUILDINGS, getBuildingVectorSaveString(buildings));
 	saveString += getAttributeString(getUniqueId(), ZONE_BACKGROUND, backGroundTile);
 	saveString += getAttributeString(getUniqueId(), MOB_SPAWN, mobSpawn);
 	saveString += getAttributeString(getUniqueId(), DIFFICULTY, difficulty);
@@ -1170,6 +1174,17 @@ std::string ZoneMap::getDooDadVectorSaveString(std::vector<DooDad*> vector)
 	return returnString;
 }
 
+std::string ZoneMap::getBuildingVectorSaveString(std::vector<Building*> vector)
+{
+	std::string returnString;
+	returnString += std::to_string(vector.size()) + "\n";
+	for (int i = 0; i < vector.size(); i++)
+	{
+		returnString += vector[i]->toSaveString() + "\n";
+	}
+	return returnString;
+}
+
 std::vector<ZonePortal*> ZoneMap::getPortalVectorFromSaveString(std::string saveString) {
 	std::vector<ZonePortal*> returnVector;
 
@@ -1202,6 +1217,35 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString));
+					break;
+				}
+				break;
+			}
+		}
+	}
+
+
+	return returnVector;
+}
+
+std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string saveString)
+{
+	std::vector<Building*> returnVector;
+
+	std::vector<SaveObject> savedBuildings= getSaveObjectVectorFromSaveString2(saveString);
+
+	for (size_t i = 0; i < savedBuildings.size(); i++)
+	{
+		for (int j = 0; j < savedBuildings[i].attributes.size(); j++)
+		{
+			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
+			{
+				switch (stoi(savedBuildings[i].attributes[j].valueString)) {
+				case BUILDING_ITEM_SHOP:
+					returnVector.push_back(new Building(savedBuildings[i].rawString));;
+					break;
+				default:
+					returnVector.push_back(new Building(savedBuildings[i].rawString));
 					break;
 				}
 				break;

@@ -43,6 +43,7 @@ class SaveObject
 
 //utility functions
 std::vector<SaveObject> getSaveObjectVectorFromSaveString2(std::string saveString);
+std::vector<std::vector<SaveObject>> getSaveObject2dVectorFromSaveString2(std::string saveString);
 SaveObject getNextSaveObject2(std::string saveString, std::string::size_type* index);
 std::string getNextSaveObjectString2(std::string saveString, std::string::size_type* index);
 

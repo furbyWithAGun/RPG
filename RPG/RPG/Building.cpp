@@ -6,6 +6,30 @@ Building::Building()
     init();
 }
 
+Building::Building(SaveObject saveObject)
+{
+    init();
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case BULDING_TYPE:
+            type = stoi(saveObject.attributes[i].valueString);
+            break;
+        case BUILDING_TILE_MAP:
+            setTileMap(getBuldingTileMapFromSaveString(saveObject.attributes[i].valueString));
+            break;
+        case BUILDING_ACTIVE:
+            active = stoi(saveObject.attributes[i].valueString);
+            break;
+        case BUILDING_LOCATION:
+            tileLocation = getLocationFromSaveObject(SaveObject(saveObject.attributes[i].valueString));
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 Building::Building(int buildingType)
 {
     init(buildingType);
@@ -115,7 +139,20 @@ std::string Building::getBuildingTileMapSaveString()
         returnString += std::to_string(tileMap[i].size()) + "\n";
         for (int j = 0; j < tileMap[i].size(); j++)
         {
-            returnString += tileMap[i][j]->toSaveString() + "\n";
+            if (tileMap[i][j] != nullptr)
+            {
+                returnString += tileMap[i][j]->toSaveString() + "\n";
+            }
+            else {
+                returnString += BEGIN_OBJECT_IDENTIFIER + std::to_string(getUniqueId()) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
+                returnString += getAttributeString(getUniqueId(), MAP_TILE_PASSABLE, true);
+                returnString += getAttributeString(getUniqueId(), MAP_TILE_TEXTURE_KEY, -1);
+                returnString += getAttributeString(getUniqueId(), MAP_TILE_WIDTH, -1);
+                returnString += getAttributeString(getUniqueId(), MAP_TILE_HEIGHT, -1);
+                returnString += getAttributeString(getUniqueId(), BUILDING_TILE_DESTRUCTABLE, false);
+                returnString += getAttributeString(getUniqueId(), BUILDING_TILE_HEALTH, -1);
+                returnString += END_OBJECT_IDENTIFIER + std::to_string(getUniqueId()) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
+            }
         }
     }
 
@@ -177,6 +214,7 @@ std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::str
     std::string::size_type index1 = 0, index2 = 0;
     int size;
     bool gotSize = false;
+    std::string objectHeader;
 
     for (std::string::size_type i = 0; i < saveString.size(); i++)
     {
@@ -190,6 +228,16 @@ std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::str
     size = stoi(saveString.substr(index1, index2 - index1));
     index1 = index2 + 1;
 
+    for (std::string::size_type i = index1; i < saveString.size(); i++)
+    {
+        if (saveString[i] == '\n')
+        {
+            index2 = i;
+            break;
+        }
+    }
+    objectHeader = saveString.substr(index1, index2 - index1);
+
     for (int i = 0; i < size; i++)
     {
         for (int j = index1; j < saveString.size(); j++)
@@ -197,7 +245,16 @@ std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::str
             if (saveString[j] == '\n')
             {
                 index2 = j;
-                returnVector.push_back(new BuildingTile(saveString.substr(index1, index2 - index1)));
+                BuildingTile* newBuildingTile = new BuildingTile(saveString.substr(index1, index2 - index1));
+                if (newBuildingTile->textureKey != -1)
+                {
+                    returnVector.push_back(newBuildingTile);
+                }
+                else {
+                    returnVector.push_back(nullptr);
+                    delete newBuildingTile;
+                }
+                //returnVector.push_back(new BuildingTile(saveString.substr(index1, index2 - index1)));
                 index1 = index2 + 1;
                 break;
             }

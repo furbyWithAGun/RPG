@@ -159,6 +159,7 @@
     <ClCompile Include="BasicMeleeAttack.cpp" />
     <ClCompile Include="BlueRat.cpp" />
     <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingTile.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="CombatText.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="BasicMeleeAttack.h" />
     <ClInclude Include="BlueRat.h" />
     <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingTile.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="CombatText.h" />

@@ -76,7 +76,7 @@ void RpgOverWorldScene::setUpScene()
 
     //buildings
     ItemShop* testBuilding;
-    testBuilding = (ItemShop*)createBuildingAtLocation(1, ITEM_SHOP, LEFT, 10, 10);
+    testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
     testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     
     //build menus
@@ -200,25 +200,6 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone :zones)
     {
-        //spawn enemy units
-        /*if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 500) > engine->randomDouble() && zone.second->mobSpawn)
-        {
-            int targetCoords[2] = { 0, 0 };
-            while (true)
-            {
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                if (mapTiles[zone.second->tileMap[targetCoords[1]][targetCoords[0]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
-                {
-                    break;
-                }
-            }
-            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, RAT, targetCoords[0], targetCoords[1]);
-            }
-        }*/
-
         if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn)
         {
             if (getUnitAtLocation(zone.second->id, ratSpawn->x, ratSpawn->y) == nullptr)

@@ -48,6 +48,8 @@ void RpgWorldBuilderScene::setUpScene() {
     ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
     zoneBuildMenu->isActive = true;
 
+    createUnitAtLocation(&sceneToEdit, RAT, 2, 2);
+
     menus[BUILD_MENU] = zoneBuildMenu;
     menus[PORTAL_PROPERTIES_MENU] = new PortalPropertiesMenu(this, PORTAL_PROPERTIES_MENU, 300, 300, 300, 300);
     menus[SAVE_ZONE_MENU] = new saveZoneMenu(this, SAVE_ZONE_MENU, 300, 200, 300, 300);
@@ -122,6 +124,8 @@ void RpgWorldBuilderScene::handleInput() {
 }
 
 void RpgWorldBuilderScene::sceneLogic() {
+    //RpgTileGridScene::sceneLogic();
+    //sceneToEdit.update();
     //handle commands
     InputMessage* message = new InputMessage();
     while (getNextCommand(message)) {
@@ -198,6 +202,11 @@ void RpgWorldBuilderScene::renderScene() {
         portalExitZone->draw(this);
     }
     else {
+        for (auto unit: sceneToEdit.units)
+        {
+            unit->updateCoords();
+            unit->currentState->updateAnimation();
+        }
         sceneToEdit.draw(this);
 
         //cover Left side

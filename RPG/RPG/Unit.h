@@ -70,10 +70,11 @@ public:
     void faceCoords(int x, int y);
     void getNewPath();
 
+    UnitState* currentState;
+
 
 protected:
     //attributes
-    UnitState* currentState;
     void setUnitState(int newState);
     std::unordered_map<int, UnitState*> unitStates;
 

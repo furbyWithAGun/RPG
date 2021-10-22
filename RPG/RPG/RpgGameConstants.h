@@ -245,5 +245,5 @@ enum UNIT_TYPES {
 };
 
 enum BUILDING_TYPES {
-    ITEM_SHOP
+    BUILDING_ITEM_SHOP
 };

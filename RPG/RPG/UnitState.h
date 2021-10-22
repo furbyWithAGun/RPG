@@ -15,6 +15,7 @@ public:
     //methods
     virtual int update();
     virtual int handleInput(InputMessage* message) { return id; };
+    virtual void updateAnimation() {};
 
 protected:
     //attributes
@@ -22,7 +23,6 @@ protected:
     Unit* unit;
 
     //methods
-    virtual void updateAnimation() {};
 
 private:
     //methods

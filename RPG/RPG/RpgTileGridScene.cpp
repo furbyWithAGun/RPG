@@ -234,14 +234,46 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
     return createdUnit;
 }
 
+RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y)
+{
+    RpgUnit* createdUnit;
+    switch (unitType)
+    {
+    case PLAYER:
+        createdUnit = new Player(zone->id, PLAYER, this, x, y);
+        break;
+    case RAT:
+        createdUnit = new Rat(zone->id, RAT, this, x, y);
+        break;
+    case RAT_KING:
+        createdUnit = new RatKing(zone->id, RAT_KING, this, x, y);
+        break;
+    case BLUE_RAT:
+        createdUnit = new BlueRat(zone->id, BLUE_RAT, this, x, y);
+        break;
+    case SOLDIER:
+        createdUnit = new Soldier(zone->id, SOLDIER, this, x, y);
+        break;
+    case TOWNSPERSON:
+        createdUnit = new TownsPerson(zone->id, SOLDIER, this, x, y);
+        break;
+    default:
+        createdUnit = NULL;
+        break;
+    }
+
+    zone->addUnitToLocation(createdUnit, x, y);
+    return createdUnit;
+}
+
 Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y)
 {
     Building* createdBuilding;
     switch (buildingType)
     {
-    case ITEM_SHOP:
-        createdBuilding = new ItemShop(direction);
-        createdBuilding->assignUnit(createUnitAtLocation(1, TOWNSPERSON, x + 3, y + 2));
+    case BUILDING_ITEM_SHOP:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
         break;
     default:
         createdBuilding = nullptr;
@@ -256,9 +288,9 @@ Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int building
     Building* createdBuilding;
     switch (buildingType)
     {
-    case ITEM_SHOP:
-        createdBuilding = new ItemShop(direction);
-        createdBuilding->assignUnit(createUnitAtLocation(1, TOWNSPERSON, x + 3, y + 2));
+    case BUILDING_ITEM_SHOP:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
         break;
     default:
         createdBuilding = nullptr;

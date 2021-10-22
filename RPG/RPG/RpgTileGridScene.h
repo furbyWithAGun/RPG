@@ -1,5 +1,6 @@
 #pragma once
 #include "TileGridScene.h"
+#include "BuildingFactory.h"
 #include "CombatText.h"
 #include "ItemShop.h"
 #include "Player.h"
@@ -40,6 +41,7 @@ public:
 
 protected:
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
+    virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);
 

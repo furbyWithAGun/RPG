@@ -16,7 +16,8 @@ enum ZONE_MAP_ATTRIBUTES{
     ZONE_BACKGROUND,
     MOB_SPAWN,
     DOODADS,
-    DIFFICULTY
+    DIFFICULTY,
+    BUILDINGS
 };
 
 class Unit;
@@ -104,8 +105,10 @@ class ZoneMap {
         void init(int newId);
         std::string getPortalVectorSaveString(std::vector<ZonePortal*> vector);
         std::string getDooDadVectorSaveString(std::vector<DooDad*> vector);
+        std::string getBuildingVectorSaveString(std::vector<Building*> vector);
         std::vector<ZonePortal*> getPortalVectorFromSaveString(std::string saveString);
         std::vector<DooDad*> getDooDadVectorFromSaveString(std::string saveString);
+        std::vector<Building*> getBuildingVectorFromSaveString(std::string saveString);
         void clearUnitMap();
         void clearItemMap();
         void clearBuildingMap();

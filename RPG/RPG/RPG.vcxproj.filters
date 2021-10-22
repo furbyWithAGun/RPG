@@ -435,6 +435,9 @@
     <ClCompile Include="RpgUnit.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
+    <ClCompile Include="BuildingFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -700,6 +703,9 @@
     </ClInclude>
     <ClInclude Include="RpgUnit.h">
       <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingFactory.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
