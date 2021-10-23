@@ -1312,6 +1312,18 @@ void ZoneMap::buildPortalMap()
 	}
 }
 
+void ZoneMap::buildBuildingMap()
+{
+	for (auto building : buildings)
+	{
+		for (int x = 0; x < building->tileMap.size(); x++) {
+			for (int y = 0; y < building->tileMap[x].size(); y++) {
+				buildingMap[building->tileLocation->x + x][building->tileLocation->y + y] = building;
+			}
+		}
+	}
+}
+
 void ZoneMap::setUpMaps()
 {
 	clearUnitMap();
@@ -1319,6 +1331,7 @@ void ZoneMap::setUpMaps()
 	clearBuildingMap();
 	clearPortalMap();
 	buildPortalMap();
+	buildBuildingMap();
 }
 
 

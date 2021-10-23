@@ -30,6 +30,13 @@ ItemShop::ItemShop(int entranceDirection)
         });
         
         break;
+    case RIGHT:
+        setTileMap({
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr},
+        {nullptr, new BuildingTile(false, WOOD_WALL_TWO)}
+            });
+
+        break;
     default:
         break;
     }

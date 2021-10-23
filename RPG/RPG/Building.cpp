@@ -141,17 +141,18 @@ std::string Building::getBuildingTileMapSaveString()
         {
             if (tileMap[i][j] != nullptr)
             {
-                returnString += tileMap[i][j]->toSaveString() + "\n";
+                returnString += tileMap[i][j]->toSaveString();
             }
             else {
-                returnString += BEGIN_OBJECT_IDENTIFIER + std::to_string(getUniqueId()) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
+                int uniqueObjectId = getUniqueId();
+                returnString += BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
                 returnString += getAttributeString(getUniqueId(), MAP_TILE_PASSABLE, true);
                 returnString += getAttributeString(getUniqueId(), MAP_TILE_TEXTURE_KEY, -1);
                 returnString += getAttributeString(getUniqueId(), MAP_TILE_WIDTH, -1);
                 returnString += getAttributeString(getUniqueId(), MAP_TILE_HEIGHT, -1);
                 returnString += getAttributeString(getUniqueId(), BUILDING_TILE_DESTRUCTABLE, false);
                 returnString += getAttributeString(getUniqueId(), BUILDING_TILE_HEALTH, -1);
-                returnString += END_OBJECT_IDENTIFIER + std::to_string(getUniqueId()) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
+                returnString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_BULIDING_TILE) + "\n";
             }
         }
     }
@@ -167,7 +168,20 @@ std::vector<std::vector<BuildingTile*>> Building::getBuldingTileMapFromSaveStrin
     std::string innerSaveString = "";
     bool gotInnerSize = false;
 
-    for (std::string::size_type i = 0; i < saveString.size(); i++)
+    std::vector<std::vector<SaveObject>> saveObjectsVector = getSaveObject2dVectorFromSaveString2(saveString);
+
+    for (int x = 0; x < saveObjectsVector.size(); x++)
+    {
+        std::vector<BuildingTile* > tileVector;
+        for (int y = 0; y < saveObjectsVector.size(); y++)
+        {
+            BuildingTile* newTile = new BuildingTile(saveObjectsVector[x][y]);
+            tileVector.push_back(newTile);
+        }
+        returnVector.push_back(tileVector);
+    }
+
+    /*for (std::string::size_type i = 0; i < saveString.size(); i++)
     {
         if (saveString[i] == '\n')
         {
@@ -203,7 +217,7 @@ std::vector<std::vector<BuildingTile*>> Building::getBuldingTileMapFromSaveStrin
                 }
             }
         }
-    }
+    }*/
 
 
     return returnVector;
@@ -211,57 +225,7 @@ std::vector<std::vector<BuildingTile*>> Building::getBuldingTileMapFromSaveStrin
 
 std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::string saveString) {
     std::vector<BuildingTile*> returnVector;
-    std::string::size_type index1 = 0, index2 = 0;
-    int size;
-    bool gotSize = false;
-    std::string objectHeader;
-
-    for (std::string::size_type i = 0; i < saveString.size(); i++)
-    {
-        if (saveString[i] == '\n')
-        {
-            index2 = i;
-            break;
-        }
-    }
-
-    size = stoi(saveString.substr(index1, index2 - index1));
-    index1 = index2 + 1;
-
-    for (std::string::size_type i = index1; i < saveString.size(); i++)
-    {
-        if (saveString[i] == '\n')
-        {
-            index2 = i;
-            break;
-        }
-    }
-    objectHeader = saveString.substr(index1, index2 - index1);
-
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = index1; j < saveString.size(); j++)
-        {
-            if (saveString[j] == '\n')
-            {
-                index2 = j;
-                BuildingTile* newBuildingTile = new BuildingTile(saveString.substr(index1, index2 - index1));
-                if (newBuildingTile->textureKey != -1)
-                {
-                    returnVector.push_back(newBuildingTile);
-                }
-                else {
-                    returnVector.push_back(nullptr);
-                    delete newBuildingTile;
-                }
-                //returnVector.push_back(new BuildingTile(saveString.substr(index1, index2 - index1)));
-                index1 = index2 + 1;
-                break;
-            }
-        }
-    }
-
-
+    
     return returnVector;
 }
 

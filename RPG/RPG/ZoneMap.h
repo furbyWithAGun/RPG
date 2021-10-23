@@ -114,6 +114,7 @@ class ZoneMap {
         void clearBuildingMap();
         void clearPortalMap();
         void buildPortalMap();
+        void buildBuildingMap();
         void setUpMaps();
 };
 
