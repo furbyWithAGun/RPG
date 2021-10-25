@@ -413,7 +413,7 @@ double BaseGameEngine::sigmoid(double x)
     return pow(x, sigmoidAlpha) / (pow(x, sigmoidAlpha) + pow(sigmoidOmega, sigmoidAlpha));
 }
 
-double BaseGameEngine::pickElementByProbability(std::vector<chanceObject> items)
+double BaseGameEngine::pickElementByProbability(std::vector<ChanceObject> items)
 {
     double testNumber = randomDouble();
     double cumulativeProbability = 0.0;
@@ -557,4 +557,60 @@ int logicThread(void* scene) {
         SDL_AtomicUnlock(&static_cast <GameScene*> (scene)->engine->sceneLock);
     }
     return 0;
+}
+
+
+std::string getChanceObjectSaveString(ChanceObject chanceObject)
+{
+    std::string saveString;
+    int uniqueObjectId = getUniqueId();
+
+    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(CHANCE_OBJECT) + "\n";
+    saveString += getAttributeString(getUniqueId(), CHANCE_OBJECT_WEIGHT, chanceObject.weight);
+    saveString += getAttributeString(getUniqueId(), CHANCE_OBJECT_VALUE, chanceObject.value);
+    saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(CHANCE_OBJECT) + "\n";
+    return saveString;
+}
+
+ChanceObject getChanceObjectFromSaveObject(SaveObject saveObject)
+{
+    ChanceObject returnChanceObject = ChanceObject{ 0, 0 };
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case CHANCE_OBJECT_WEIGHT:
+            returnChanceObject.weight = stoi(saveObject.attributes[i].valueString);
+            break;
+        case CHANCE_OBJECT_VALUE:
+            returnChanceObject.value = stoi(saveObject.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
+    return returnChanceObject;
+}
+
+std::vector<ChanceObject> getChanceObjectVectorFromSaveObject(std::string saveString){
+    std::vector<ChanceObject> returnVector;
+
+    std::vector<SaveObject> savedObjects = getSaveObjectVectorFromSaveString2(saveString);
+
+    for (size_t i = 0; i < savedObjects.size(); i++)
+    {
+        returnVector.push_back(getChanceObjectFromSaveObject(savedObjects[i].rawString));
+    }
+
+
+    return returnVector;
+}
+
+std::string getChancObjectVectorSaveString(std::vector<ChanceObject> vector) {
+    std::string returnString;
+    returnString += std::to_string(vector.size()) + "\n";
+    for (int i = 0; i < vector.size(); i++)
+    {
+        returnString += getChanceObjectSaveString(vector[i]) + "\n";
+    }
+    return returnString;
 }

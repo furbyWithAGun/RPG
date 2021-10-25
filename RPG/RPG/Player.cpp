@@ -20,6 +20,11 @@ Player::Player() : RpgUnit() {
     init();
 }
 
+Player::Player(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgUnit(saveObject, gameScene)
+{
+    createAnimations();
+}
+
 Player::Player(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {
     init();
     zone = 0;
@@ -43,11 +48,12 @@ void Player::init() {
     dex = PLAYER_DEX;
     agi = PLAYER_AGI;
     team = PLAYER_TEAM;
+    createAnimations();
 }
 
 void Player::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
+    //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
 }
 

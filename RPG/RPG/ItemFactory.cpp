@@ -169,10 +169,43 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} }
 };
 
-Item* createNewItem(int item)
+Item* createNewItem(int itemType)
 {
 	Item* itemToReturn;
-	ItemTemplate itemTemplate = itemTemplates[item];
+	ItemTemplate itemTemplate = itemTemplates[itemType];
+	switch (itemTemplate.itemType)
+	{
+	case WEAPON:
+		itemToReturn = new Weapon();
+		((Weapon*)itemToReturn)->name = itemTemplate.name;
+		((Weapon*)itemToReturn)->textureKey = itemTemplate.textureKey;
+		((Weapon*)itemToReturn)->minDamage = itemTemplate.minDamage;
+		((Weapon*)itemToReturn)->maxDamage = itemTemplate.maxDamage;
+		((Weapon*)itemToReturn)->value = itemTemplate.value;
+		((Weapon*)itemToReturn)->twoHanded = itemTemplate.twoHanded;
+		((Weapon*)itemToReturn)->slot = itemTemplate.slot;
+		break;
+	case ARMOUR:
+		itemToReturn = new Armour();
+		((Armour*)itemToReturn)->name = itemTemplate.name;
+		((Armour*)itemToReturn)->textureKey = itemTemplate.textureKey;
+		((Armour*)itemToReturn)->value = itemTemplate.value;
+		((Armour*)itemToReturn)->armour = itemTemplate.armour;
+		((Armour*)itemToReturn)->slot = itemTemplate.slot;
+		break;
+	default:
+		printf("Warning: creating blank Item() from item factory");
+		itemToReturn = new Item();
+		break;
+	}
+	itemToReturn->id = getUniqueItemId();
+	return itemToReturn;
+}
+
+Item* createNewItemBlankId(int itemType)
+{
+	Item* itemToReturn;
+	ItemTemplate itemTemplate = itemTemplates[itemType];
 	switch (itemTemplate.itemType)
 	{
 	case WEAPON:

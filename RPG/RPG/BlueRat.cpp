@@ -11,6 +11,11 @@ const int BLUE_RAT_EXP_VALUE = 50;
 BlueRat::BlueRat() : AiUnit() {
     init();
 }
+BlueRat::BlueRat(SaveObject saveObject, RpgTileGridScene* gameScene) : AiUnit(saveObject, gameScene)
+{
+    setDropTable();
+    createAnimations();
+}
 BlueRat::BlueRat(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
@@ -36,11 +41,12 @@ void BlueRat::init() {
     team = MONSTER_TEAM;
     goldValue = 45;
     setDropTable();
+    createAnimations();
 }
 
 void BlueRat::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
+    //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
 }
 

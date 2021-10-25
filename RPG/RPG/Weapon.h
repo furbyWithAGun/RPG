@@ -1,6 +1,12 @@
 #pragma once
 #include "Equipment.h"
 
+enum WEAPON_SAVE_ATTRIBUTES {
+    WEAPON_MIN_DAMAGE = NUM_EQUIPMENT_ATTRIBUTES,
+    WEAPON_MAX_DAMAGE,
+    WEAPON_TWO_HANDED
+};
+
 class Weapon : public Equipment
 {
 public:
@@ -11,6 +17,10 @@ public:
 
     //constructors
     Weapon();
+    Weapon(SaveObject saveObject);
+
+    //methods
+    std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 private:
     //methods

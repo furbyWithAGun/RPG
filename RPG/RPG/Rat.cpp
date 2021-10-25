@@ -11,6 +11,11 @@ const int RAT_EXP_VALUE = 3;
 Rat::Rat() : AiUnit() {
     init();
 }
+Rat::Rat(SaveObject saveObject, RpgTileGridScene* gameScene) : AiUnit(saveObject, gameScene)
+{
+    setDropTable();
+    createAnimations();
+}
 Rat::Rat(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
@@ -36,11 +41,12 @@ void Rat::init() {
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;
     setDropTable();
+    createAnimations();
 }
 
 void Rat::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
+    //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
 }
 

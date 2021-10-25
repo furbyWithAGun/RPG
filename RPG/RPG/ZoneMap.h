@@ -17,11 +17,13 @@ enum ZONE_MAP_ATTRIBUTES{
     MOB_SPAWN,
     DOODADS,
     DIFFICULTY,
-    BUILDINGS
+    BUILDINGS,
+    UNITS
 };
 
 class Unit;
 class TileGridScene;
+class RpgTileGridScene;
 class DooDad;
 
 class ZoneMap {
@@ -47,7 +49,7 @@ class ZoneMap {
         //constructors
         ZoneMap(int newId, std::vector< std::vector<int> > tiles);
         ZoneMap(int newId);
-        ZoneMap(SaveObject saveObject);
+        ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene);
         ZoneMap(const ZoneMap &oldMap);
         ZoneMap();
 
@@ -121,3 +123,6 @@ class ZoneMap {
 
 std::string getLocationSaveString(Location* location);
 Location* getLocationFromSaveObject(SaveObject saveObject);
+
+std::string getUnitVectorSaveString(std::vector<Unit*> vector);
+std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGridScene* gameScene);

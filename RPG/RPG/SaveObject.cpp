@@ -157,12 +157,13 @@ std::vector<std::vector<SaveObject>> getSaveObject2dVectorFromSaveString2(std::s
                     innerSize = stoi(saveString.substr(index1, index2 - index1));
                     gotInnerSize = true;
                 }
-                else if (innerCount < innerSize) {
+               while(innerCount < innerSize) {
+                    getNextSaveObjectString2(saveString, &index2);
                     innerCount += 1;
                 }
                 if (innerCount == innerSize) {
                     //std::string substring = saveString.substr(index1, index2 - index1);
-                    std::string substring = getNextSaveObjectString2(saveString, &index2);
+                    //std::string substring = getNextSaveObjectString2(saveString, &index2);
                     returnVector.push_back(getSaveObjectVectorFromSaveString2(saveString.substr(index1, index2 - index1 + 1)));
                     innerCount = 0;
                     gotInnerSize = false;
@@ -176,6 +177,69 @@ std::vector<std::vector<SaveObject>> getSaveObject2dVectorFromSaveString2(std::s
 
     return returnVector;
 }
+
+//std::vector<std::vector<SaveObject>> getSaveObject2dVectorFromSaveString2(std::string saveString) {
+//    std::vector<std::vector<SaveObject>> returnVector;
+//    std::string::size_type index1 = 0, index2 = 0;
+//    int outerSize, innerSize, innerCount = 0;
+//    std::string innerSaveString = "";
+//    bool gotInnerSize = false;
+//    std::string objectHeader;
+//
+//    for (std::string::size_type i = 0; i < saveString.size(); i++)
+//    {
+//        if (saveString[i] == '\n')
+//        {
+//            index2 = i;
+//            break;
+//        }
+//    }
+//
+//    outerSize = stoi(saveString.substr(index1, index2 - index1));
+//    index1 = index2 + 1;
+//
+//    for (std::string::size_type i = index1; i < saveString.size(); i++)
+//    {
+//        if (saveString[i] == '\n')
+//        {
+//            index2 = i;
+//            break;
+//        }
+//    }
+//    objectHeader = saveString.substr(index1, index2 - index1);
+//
+//    for (int i = 0; i < outerSize; i++)
+//    {
+//        for (int j = index1; j < saveString.size(); j++)
+//        {
+//            if (saveString[j] == '\n')
+//            {
+//                index2 = j;
+//                if (!gotInnerSize)
+//                {
+//                    innerSize = stoi(saveString.substr(index1, index2 - index1));
+//                    gotInnerSize = true;
+//                }
+//                else if (innerCount < innerSize) {
+//                    getNextSaveObjectString2(saveString, &index2);
+//                    innerCount += 1;
+//                }
+//                if (innerCount == innerSize) {
+//                    //std::string substring = saveString.substr(index1, index2 - index1);
+//                    //std::string substring = getNextSaveObjectString2(saveString, &index2);
+//                    returnVector.push_back(getSaveObjectVectorFromSaveString2(saveString.substr(index1, index2 - index1 + 1)));
+//                    innerCount = 0;
+//                    gotInnerSize = false;
+//                    index1 = index2 + 1;
+//                    break;
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    return returnVector;
+//}
 
 
 //std::vector<std::vector<SaveObject>> getSaveObject2dVectorFromSaveString2(std::string saveString) {

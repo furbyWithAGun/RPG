@@ -14,9 +14,18 @@
 #include <cmath>
 #include <iostream>
 
-struct chanceObject {
+struct ChanceObject {
     double weight;
     double value;
+};
+
+enum CHANCE_OBJECT_ATTRIBUTES {
+    CHANCE_OBJECT_WEIGHT,
+    CHANCE_OBJECT_VALUE
+};
+
+enum BASE_SAVE_OBJECTS {
+    CHANCE_OBJECT = 50000
 };
 
 const SDL_Color COLOR_BLACK = { 0, 0, 0 };
@@ -93,7 +102,7 @@ class BaseGameEngine
         double getProbFromSigmoid(double skill, double difficulty);
         void setSigmoidFunction(double omega, double alpha);
         double sigmoid(double x);
-        double pickElementByProbability(std::vector<chanceObject> items);
+        double pickElementByProbability(std::vector<ChanceObject> items);
 
     protected:
         
@@ -120,3 +129,8 @@ class BaseGameEngine
 };
 
 int logicThread(void* scene);
+
+std::string getChanceObjectSaveString(ChanceObject chanceObject);
+ChanceObject getChanceObjectFromSaveObject(SaveObject saveObject);
+std::vector<ChanceObject> getChanceObjectVectorFromSaveObject(std::string saveString);
+std::string getChancObjectVectorSaveString(std::vector<ChanceObject> vector);

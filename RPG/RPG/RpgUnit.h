@@ -7,6 +7,35 @@
 
 class RpgTileGridScene;
 
+enum RPG_UNIT_SAVE_ATTRIBUTES {
+    UNIT_TEAM = NUM_UNIT_ATTRIBUTES,
+    UNIT_GOLD,
+    UNIT_GOLD_VALUE,
+    UNIT_EXP_VALUE,
+    UNIT_EQUIPPED_ITEMS,
+    UNIT_INVENTORY,
+    UNIT_ASSIGNED_TO_BUILDING,
+    UNIT_MIN_NUM_DROPS,
+    UNIT_MAX_NUM_DROPS,
+    UNIT_DROP_CHANCE,
+    UNIT_AGGRO_TRIGGER_DISTANCE,
+    UNIT_AGGRO_MAINTAIN_DISTANCE,
+    UNIT_MAX_MANA,
+    UNIT_MANA,
+    UNIT_DEX,
+    UNIT_STR,
+    UNIT_AGI,
+    UNIT_END,
+    UNIT_INTL,
+    UNIT_BASE_ARMOUR,
+    UNIT_ARMOUR,
+    UNIT_COMBAT_EXPERIENCE,
+    UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL,
+    UNIT_COMBAT_EXPERIENCE_LAST_LEVEL,
+    UNIT_COMBAT_LEVEL,
+    NUM_RPG_UNIT_ATTRIBUTES
+};
+
 enum EXPERIENCE_TYPES {
     COMBAT_EXPERIENCE
 };
@@ -15,23 +44,7 @@ class RpgUnit : public Unit
 {
 public:
     //attributes
-    std::unordered_map<int, int> nextLevelExp = {
-    {1, 15},
-    {2, 20},
-    {3, 40},
-    {4, 50},
-    {5, 70},
-    {6, 80},
-    {7, 100},
-    {8, 115},
-    {9, 140},
-    {10, 200},
-    {11, 250},
-    {12, 300},
-    {13, 400},
-    {14, 550},
-    {15, 700}
-    };
+    
     int team;
     int gold;
     int goldValue;
@@ -40,7 +53,7 @@ public:
     std::unordered_map<int, Equipment*> equippedItems;
     std::vector<Item*> inventory;
     Building* assignedToBuilding;
-    std::vector<chanceObject> dropTable;
+    std::vector<ChanceObject> dropTable;
     int minNumDrops;
     int maxNumDrops;
     double dropChance;
@@ -68,8 +81,12 @@ public:
     std::unordered_map<int, Attack*> equipedAttacks;
     Attack* activeAttack;
 
+    //special attributes for loading saved units
+    int assignedToBuildingId;
+
     //constructors
     RpgUnit();
+    RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene);
     RpgUnit(int zoneId, int unitType);
     RpgUnit(int zoneId, int unitType, RpgTileGridScene* gameScene);
     RpgUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
@@ -96,11 +113,18 @@ public:
     virtual void setDropTable() {};
     void updateAggro();
     virtual void update() override;
+    void setScene(RpgTileGridScene* gameScene);
 
+    virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 private:
 
     //methods
     void init();
+    virtual void createAnimations() {};
+    std::string getEquippedItemsSavedString();
+    void setEquippedItemsFromSavedString(std::string saveString);
 };
 
+std::string getItemVectorSaveString(std::vector<Item*> vector);
+std::vector<Item*> getItemVectorFromSaveString(std::string saveString);

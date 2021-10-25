@@ -39,38 +39,35 @@ void TileGridScene::declareSceneAssets()
 void TileGridScene::setUpScene()
 {
     loadZones();
-    
 }
 
 void TileGridScene::loadZones()
 {
-    //load zones from file
-    SaveFile zonesFile = SaveFile("zones.txt");
-    zonesFile.loadFile();
-    for (auto zone : zonesFile.objects) {
-        ZoneMap* newZone = new ZoneMap(zone.rawString);
-        newZone->setupGraph(this);
-        zones[newZone->id] = newZone;
-        if (newZone->id >= nextZoneId)
-        {
-            nextZoneId = newZone->id + 1;
-        }
-    }
-    currentZone = zones[0];
-    xOffset = 0;
-    yOffset = 0;
+    ////load zones from file
+    //SaveFile zonesFile = SaveFile("zones.txt");
+    //zonesFile.loadFile();
+    //for (auto zone : zonesFile.objects) {
+    //    ZoneMap* newZone = new ZoneMap(zone.rawString, this);
+    //    newZone->setupGraph(this);
+    //    zones[newZone->id] = newZone;
+    //    if (newZone->id >= nextZoneId)
+    //    {
+    //        nextZoneId = newZone->id + 1;
+    //    }
+    //}
+    //currentZone = zones[0];
+    //xOffset = 0;
+    //yOffset = 0;
 }
 
 void TileGridScene::loadZone(int zoneId)
 {
-    //loadZones();
     currentZone = zones[zoneId];
     clearCommandQueue();
 }
 
 void TileGridScene::createNewZone()
 {
-    //loadZones();
     currentZone = new ZoneMap();
     currentZone->id = nextZoneId;
     currentZone->zoneName = std::to_string(currentZone->id);

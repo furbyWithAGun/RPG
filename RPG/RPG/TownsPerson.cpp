@@ -10,6 +10,11 @@ const int RAT_EXP_VALUE = 3;
 TownsPerson::TownsPerson() : AiUnit() {
     init();
 }
+TownsPerson::TownsPerson(SaveObject saveObject, RpgTileGridScene* gameScene) : AiUnit(saveObject, gameScene)
+{
+    setDropTable();
+    createAnimations();
+}
 TownsPerson::TownsPerson(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
@@ -26,11 +31,12 @@ void TownsPerson::init() {
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = PLAYER_TEAM;
+    createAnimations();
 }
 
 void TownsPerson::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
+    //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
     doesRandomMovement = false;
 }

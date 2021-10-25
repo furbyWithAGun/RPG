@@ -19,6 +19,11 @@ const int PLAYER_ATTCK_ANIMATION_FRAME_LENGTH = 20;
 Soldier::Soldier() : AiUnit() {
     init();
 }
+Soldier::Soldier(SaveObject saveObject, RpgTileGridScene* gameScene) : AiUnit(saveObject, gameScene)
+{
+    setDropTable();
+    createAnimations();
+}
 Soldier::Soldier(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
@@ -42,12 +47,11 @@ void Soldier::init() {
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = PLAYER_TEAM;
+    createAnimations();
 }
 
 void Soldier::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
-    //resize(scene->tileWidth, scene->tileWidth);
 }
 
 

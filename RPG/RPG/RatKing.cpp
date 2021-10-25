@@ -11,6 +11,11 @@ const int RAT_KING_EXP_VALUE = 300;
 RatKing::RatKing() : AiUnit() {
     init();
 }
+RatKing::RatKing(SaveObject saveObject, RpgTileGridScene* gameScene) : AiUnit(saveObject, gameScene)
+{
+    setDropTable();
+    createAnimations();
+}
 RatKing::RatKing(int zoneId, int unitType) : AiUnit(zoneId, unitType) {
     init();
 }
@@ -35,11 +40,12 @@ void RatKing::init() {
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;
     setDropTable();
+    createAnimations();
 }
 
 void RatKing::init(RpgTileGridScene* gameScene) {
     init();
-    createAnimations();
+    //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
 }
 

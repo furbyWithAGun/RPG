@@ -8,6 +8,12 @@
 #include "HealingPad.h"
 #include <deque>
 #include <queue>
+#include "Player.h"
+#include "Rat.h"
+#include "RatKing.h"
+#include "BlueRat.h"
+#include "Soldier.h"
+#include "TownsPerson.h"
 
 ZoneMap::ZoneMap() {
 	init();
@@ -41,9 +47,10 @@ ZoneMap::ZoneMap(int newId, std::vector< std::vector<int> > tiles) {
 	setUpMaps();
 }
 
-ZoneMap::ZoneMap(SaveObject saveObject) {
+ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 	init();
 	std::vector< Building* > buildingsToAdd;
+	std::vector< Unit* > unitsToAdd;
 	for (int i = 0; i < saveObject.attributes.size(); i++)
 	{
 		switch (saveObject.attributes[i].attributeType) {
@@ -65,6 +72,9 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 		case BUILDINGS:
 			buildingsToAdd = getBuildingVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
+		case UNITS:
+			unitsToAdd = getUnitVectorFromSaveString(saveObject.attributes[i].valueString, gameScene);
+			break;
 		case MOB_SPAWN:
 			mobSpawn = stoi(saveObject.attributes[i].valueString);
 			break;
@@ -81,6 +91,9 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 	setUpMaps();
 	for (auto building : buildingsToAdd) {
 		addBuildingToLocation(building, building->tileLocation->x, building->tileLocation->y);
+	}
+	for (auto unit : unitsToAdd) {
+		addUnitToLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
 	}
 }
 
@@ -220,6 +233,7 @@ std::string ZoneMap::toSaveString() {
 	saveString += getAttributeString(getUniqueId(), PORTALS, getPortalVectorSaveString(portals));
 	saveString += getAttributeString(getUniqueId(), DOODADS, getDooDadVectorSaveString(doodads));
 	saveString += getAttributeString(getUniqueId(), BUILDINGS, getBuildingVectorSaveString(buildings));
+	saveString += getAttributeString(getUniqueId(), UNITS, getUnitVectorSaveString(units));
 	saveString += getAttributeString(getUniqueId(), ZONE_BACKGROUND, backGroundTile);
 	saveString += getAttributeString(getUniqueId(), MOB_SPAWN, mobSpawn);
 	saveString += getAttributeString(getUniqueId(), DIFFICULTY, difficulty);
@@ -1372,3 +1386,54 @@ Location* getLocationFromSaveObject(SaveObject saveObject)
 }
 
 
+std::string getUnitVectorSaveString(std::vector<Unit*> vector) {
+	std::string returnString;
+	returnString += std::to_string(vector.size()) + "\n";
+	for (int i = 0; i < vector.size(); i++)
+	{
+		returnString += vector[i]->toSaveString() + "\n";
+	}
+	return returnString;
+}
+
+std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGridScene* gameScene) {
+	std::vector<Unit*> returnVector;
+
+	std::vector<SaveObject> savedItems = getSaveObjectVectorFromSaveString2(saveString);
+
+	for (size_t i = 0; i < savedItems.size(); i++)
+	{
+		for (int j = 0; j < savedItems[i].attributes.size(); j++)
+		{
+			if (savedItems[i].attributes[j].attributeType == UNIT_TYPE)
+			{
+				switch (stoi(savedItems[i].attributes[j].valueString)) {
+				case PLAYER:
+					returnVector.push_back(new Player(savedItems[i].rawString, gameScene));;
+					break;
+				case RAT:
+					returnVector.push_back(new Rat(savedItems[i].rawString, gameScene));;
+					break;
+				case SOLDIER:
+					returnVector.push_back(new Soldier(savedItems[i].rawString, gameScene));;
+					break;
+				case TOWNSPERSON:
+					returnVector.push_back(new TownsPerson(savedItems[i].rawString, gameScene));;
+					break;
+				case BLUE_RAT:
+					returnVector.push_back(new BlueRat(savedItems[i].rawString, gameScene));;
+					break;
+				case RAT_KING:
+					returnVector.push_back(new RatKing(savedItems[i].rawString, gameScene));;
+					break;
+				default:
+					returnVector.push_back(new RpgUnit(savedItems[i].rawString, gameScene));
+					break;
+				}
+				break;
+			}
+		}
+	}
+
+	return returnVector;
+}

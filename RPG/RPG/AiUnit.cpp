@@ -9,6 +9,27 @@ AiUnit::AiUnit() : RpgUnit() {
     init();
 }
 
+AiUnit::AiUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgUnit(saveObject, gameScene)
+{
+    init();
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case AI_UNIT_IS_HOSTILE:
+            isHostile = stoi(saveObject.attributes[i].valueString);
+            break;
+        case AI_UNIT_DOES_RANDOM_MOVEMENT:
+            doesRandomMovement = stoi(saveObject.attributes[i].valueString);
+            break;
+        case AI_UNIT_CHANCE_TO_MOVE_EACH_TICK:
+            chanceToMoveEachTick = stoi(saveObject.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 AiUnit::AiUnit(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {
     init();
 }
@@ -35,6 +56,26 @@ void AiUnit::update() {
         randomMovement();
     }
     RpgUnit::update();
+}
+
+std::string AiUnit::toSaveString(bool withHeaderAndFooter)
+{
+    std::string saveString;
+    int uniqueObjectId = getUniqueId();
+
+    if (withHeaderAndFooter)
+    {
+        saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_AI_UNIT) + "\n";
+    }
+    saveString += RpgUnit::toSaveString(false);
+    saveString += getAttributeString(getUniqueId(), AI_UNIT_IS_HOSTILE, isHostile);
+    saveString += getAttributeString(getUniqueId(), AI_UNIT_DOES_RANDOM_MOVEMENT, doesRandomMovement);
+    saveString += getAttributeString(getUniqueId(), AI_UNIT_CHANCE_TO_MOVE_EACH_TICK, chanceToMoveEachTick);
+    if (withHeaderAndFooter)
+    {
+        saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_AI_UNIT) + "\n";
+    }
+    return saveString;
 }
 
 

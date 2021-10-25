@@ -10,12 +10,13 @@ public:
 
     //constructors
     BlueRat();
+    BlueRat(SaveObject saveObject, RpgTileGridScene* gameScene);
     BlueRat(int zoneId, int unitType);
     BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene);
     BlueRat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
-    void createAnimations();
+    void createAnimations() override;
     void setDropTable() override;
 
 private:

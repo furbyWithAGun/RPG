@@ -68,6 +68,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     testUnit = createUnitAtLocation(currentZone->id, BLUE_RAT, 19, 5);
+    testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
     //testUnit->setTargetLocation(testLocation);
@@ -78,6 +79,7 @@ void RpgOverWorldScene::setUpScene()
     ItemShop* testBuilding;
     testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
     testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
+    testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);

@@ -10,12 +10,13 @@ public:
 
     //constructors
     RatKing();
+    RatKing(SaveObject saveObject, RpgTileGridScene* gameScene);
     RatKing(int zoneId, int unitType);
     RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene);
     RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
-    void createAnimations();
+    void createAnimations() override;
     void setDropTable() override;
 
 private:

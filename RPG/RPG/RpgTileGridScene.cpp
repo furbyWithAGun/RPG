@@ -202,6 +202,36 @@ bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap
     return buildingCanBePlacedAtLocation(building, zoneMap, location->x, location->y);
 }
 
+void RpgTileGridScene::loadZones()
+{
+    //load zones from file
+    SaveFile zonesFile = SaveFile("zones.txt");
+    zonesFile.loadFile();
+    for (auto zone : zonesFile.objects) {
+        ZoneMap* newZone = new ZoneMap(zone.rawString, this);
+        newZone->setupGraph(this);
+        zones[newZone->id] = newZone;
+        if (newZone->id >= nextZoneId)
+        {
+            nextZoneId = newZone->id + 1;
+        }
+        for (auto* unit : newZone->units)
+        {
+            if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
+                for (auto building : newZone->buildings) {
+                    if (building->id == ((RpgUnit*)unit)->assignedToBuildingId)
+                    {
+                        building->assignUnit((RpgUnit*)unit);
+                    }
+                }
+            }
+        }
+    }
+    currentZone = zones[0];
+    xOffset = 0;
+    yOffset = 0;
+}
+
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)
 {
     RpgUnit* createdUnit;
@@ -223,7 +253,7 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
         createdUnit = new Soldier(zoneId, SOLDIER, this, x, y);
         break;
     case TOWNSPERSON:
-        createdUnit = new TownsPerson(zoneId, SOLDIER, this, x, y);
+        createdUnit = new TownsPerson(zoneId, TOWNSPERSON, this, x, y);
         break;
     default:
         createdUnit = NULL;
@@ -255,13 +285,13 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
         createdUnit = new Soldier(zone->id, SOLDIER, this, x, y);
         break;
     case TOWNSPERSON:
-        createdUnit = new TownsPerson(zone->id, SOLDIER, this, x, y);
+        createdUnit = new TownsPerson(zone->id, TOWNSPERSON, this, x, y);
         break;
     default:
-        createdUnit = NULL;
+        createdUnit = new RpgUnit();
         break;
     }
-
+    createdUnit->id = getUniqueUnitId();
     zone->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
 }

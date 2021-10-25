@@ -8,6 +8,7 @@ class Player : public RpgUnit
 public:
     //constructor
     Player();
+    Player(SaveObject saveObject, RpgTileGridScene* gameScene);
     Player(int zoneId, int unitType);
     Player(int zoneId, int unitType, RpgTileGridScene* gameScene);
     Player(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
@@ -20,7 +21,7 @@ public:
 
 private:
     //methods
-    void createAnimations();
+    void createAnimations() override;
     void init();
     void init(RpgTileGridScene * gameScene);
 };

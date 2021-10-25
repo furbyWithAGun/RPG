@@ -4,9 +4,115 @@
 #include "IdleState.h"
 #include "BareHands.h"
 #include "RpgTileGridScene.h"
+#include "BasicMeleeAttack.h"
+std::unordered_map<int, int> nextLevelExp = {
+    {1, 15},
+    {2, 20},
+    {3, 40},
+    {4, 50},
+    {5, 70},
+    {6, 80},
+    {7, 100},
+    {8, 115},
+    {9, 140},
+    {10, 200},
+    {11, 250},
+    {12, 300},
+    {13, 400},
+    {14, 550},
+    {15, 700}
+};
 
 RpgUnit::RpgUnit() : Unit() {
     init();
+}
+
+RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(saveObject, gameScene)
+{
+    init();
+    scene = gameScene;
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case UNIT_TEAM:
+            team = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_GOLD:
+            gold = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_GOLD_VALUE:
+            goldValue = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_EXP_VALUE:
+            expValue = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_EQUIPPED_ITEMS:
+            setEquippedItemsFromSavedString(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_INVENTORY:
+            inventory = getItemVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_ASSIGNED_TO_BUILDING:
+            assignedToBuildingId = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MIN_NUM_DROPS:
+            minNumDrops = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MAX_NUM_DROPS:
+            maxNumDrops = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_DROP_CHANCE:
+            dropChance = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_AGGRO_TRIGGER_DISTANCE:
+            aggroTriggerDistance = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_AGGRO_MAINTAIN_DISTANCE:
+            aggroMaintainDistance = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MAX_MANA:
+            maxMana = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MANA:
+            mana = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_DEX:
+            dex = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_STR:
+            str = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_AGI:
+            agi = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_END:
+            end = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_INTL:
+            intl = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_BASE_ARMOUR:
+            baseArmour = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_ARMOUR:
+            armour = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_COMBAT_EXPERIENCE:
+            combatExperience = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL:
+            combatExperienceNextLevel = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_COMBAT_EXPERIENCE_LAST_LEVEL:
+            combatExperienceLastLevel = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_COMBAT_LEVEL:
+            combatLevel = stoi(saveObject.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
 }
 
 RpgUnit::RpgUnit(int zoneId, int unitType) : Unit(zoneId, unitType) {
@@ -257,6 +363,57 @@ void RpgUnit::update()
     }
 }
 
+void RpgUnit::setScene(RpgTileGridScene* gameScene)
+{
+    scene = gameScene;
+    Unit::setScene(gameScene);
+}
+
+std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
+{
+    std::string saveString;
+    int uniqueObjectId = getUniqueId();
+
+    if (withHeaderAndFooter)
+    {
+        saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_UNIT) + "\n";
+    }
+    saveString += Unit::toSaveString(false);
+    saveString += getAttributeString(getUniqueId(), UNIT_TEAM, team);
+    saveString += getAttributeString(getUniqueId(), UNIT_GOLD, gold);
+    saveString += getAttributeString(getUniqueId(), UNIT_GOLD_VALUE, goldValue);
+    saveString += getAttributeString(getUniqueId(), UNIT_EXP_VALUE, expValue);
+    saveString += getAttributeString(getUniqueId(), UNIT_EQUIPPED_ITEMS, getEquippedItemsSavedString());
+    saveString += getAttributeString(getUniqueId(), UNIT_INVENTORY, getItemVectorSaveString(inventory));
+    if (assignedToBuilding != nullptr)
+    {
+        saveString += getAttributeString(getUniqueId(), UNIT_ASSIGNED_TO_BUILDING, assignedToBuilding->id);
+    }
+    saveString += getAttributeString(getUniqueId(), UNIT_MIN_NUM_DROPS, minNumDrops);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_NUM_DROPS, maxNumDrops);
+    saveString += getAttributeString(getUniqueId(), UNIT_DROP_CHANCE, dropChance);
+    saveString += getAttributeString(getUniqueId(), UNIT_AGGRO_TRIGGER_DISTANCE, aggroTriggerDistance);
+    saveString += getAttributeString(getUniqueId(), UNIT_AGGRO_MAINTAIN_DISTANCE, aggroMaintainDistance);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_MANA, maxMana);
+    saveString += getAttributeString(getUniqueId(), UNIT_MANA, mana);
+    saveString += getAttributeString(getUniqueId(), UNIT_DEX, dex);
+    saveString += getAttributeString(getUniqueId(), UNIT_STR, str);
+    saveString += getAttributeString(getUniqueId(), UNIT_AGI, agi);
+    saveString += getAttributeString(getUniqueId(), UNIT_END, end);
+    saveString += getAttributeString(getUniqueId(), UNIT_INTL, intl);
+    saveString += getAttributeString(getUniqueId(), UNIT_BASE_ARMOUR, baseArmour);
+    saveString += getAttributeString(getUniqueId(), UNIT_ARMOUR, armour);
+    saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE, combatExperience);
+    saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL, combatExperienceNextLevel);
+    saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_LAST_LEVEL, combatExperienceLastLevel);
+    saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_LEVEL, combatLevel);
+    if (withHeaderAndFooter)
+    {
+        saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_UNIT) + "\n";
+    }
+    return saveString;
+}
+
 void RpgUnit::init()
 {
     scene = nullptr;
@@ -295,14 +452,39 @@ void RpgUnit::init()
     aggroMaintainDistance = 6;
     aggroUpdateRate = 70;
     aggroUpdateTick = 0;
+    //special attributes for loading saved units
+    assignedToBuildingId = -1;
     
     for (int i = BARE_HANDS; i != NUM_EQUIPMENT_SLOTS; i++)
     {
         equippedItems[i] = nullptr;
     }
     equippedItems[BARE_HANDS] = new BareHands();
+    equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    activeAttack = equipedAttacks[MAIN_ATTACK];
 
     setDropTable();
+    createAnimations();
+}
+
+std::string RpgUnit::getEquippedItemsSavedString()
+{
+    std::vector<Item*> equippedItemsVector;
+    for (auto item : equippedItems)
+    {
+        if (item.second != nullptr)
+        {
+            equippedItemsVector.push_back(item.second);
+        }
+    }
+    return getItemVectorSaveString(equippedItemsVector);
+}
+
+void RpgUnit::setEquippedItemsFromSavedString(std::string saveString)
+{
+    for (auto item : getItemVectorFromSaveString(saveString)) {
+        equippedItems[((Equipment*)item)->slot] = (Equipment*)item;
+    }
 }
 
 
@@ -326,4 +508,44 @@ void RpgUnit::death(RpgUnit* attackingUnit)
         scene->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, tileLocation->x, tileLocation->y, 140);
     }
     attackingUnit->gold += goldGiven;
+}
+
+std::string getItemVectorSaveString(std::vector<Item*> vector) {
+    std::string returnString;
+    returnString += std::to_string(vector.size()) + "\n";
+    for (int i = 0; i < vector.size(); i++)
+    {
+        returnString += vector[i]->toSaveString() + "\n";
+    }
+    return returnString;
+}
+
+std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
+    std::vector<Item*> returnVector;
+
+    std::vector<SaveObject> savedItems = getSaveObjectVectorFromSaveString2(saveString);
+
+    for (size_t i = 0; i < savedItems.size(); i++)
+    {
+        for (int j = 0; j < savedItems[i].attributes.size(); j++)
+        {
+            if (savedItems[i].attributes[j].attributeType == ITEM_TYPE)
+            {
+                switch (stoi(savedItems[i].attributes[j].valueString)) {
+                case WEAPON:
+                    returnVector.push_back(new Weapon(savedItems[i].rawString));;
+                    break;
+                case ARMOUR:
+                    returnVector.push_back(new Armour(savedItems[i].rawString));;
+                    break;
+                default:
+                    returnVector.push_back(new Item(savedItems[i].rawString));
+                    break;
+                }
+                break;
+            }
+        }
+    }
+
+    return returnVector;
 }

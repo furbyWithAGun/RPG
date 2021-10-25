@@ -8,6 +8,12 @@ void Unit::getNewPath()
     //SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
     scene->unitsNeedingPath.push_back(this);
 }
+void Unit::setScene(TileGridScene* gameScene)
+{
+    scene = gameScene;
+    Sprite::scene = gameScene;
+}
+
 std::string Unit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;
@@ -18,12 +24,22 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
         saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT) + "\n";
     }
     saveString += getAttributeString(getUniqueId(), UNIT_ID, id);
-    //saveString += getAttributeString(getUniqueId(), UNIT_BEING_TARGETED_BY, beingTargetedBy);
+    if (beingTargetedBy.size() > 0)
+    {
+        std::vector<int> beingTargetedByIds;
+        for (auto unit : beingTargetedBy) {
+            beingTargetedByIds.push_back(unit->id);
+        }
+        saveString += getAttributeString(getUniqueId(), UNIT_BEING_TARGETED_BY, getIntVectorSaveString(beingTargetedByIds));
+    }
     saveString += getAttributeString(getUniqueId(), UNIT_TO_BE_DELETED, toBeDeleted);
     saveString += getAttributeString(getUniqueId(), UNIT_TYPE, type);
     saveString += getAttributeString(getUniqueId(), UNIT_TILE_LOCATION, getLocationSaveString(tileLocation));
     saveString += getAttributeString(getUniqueId(), UNIT_TILE_DESTINATION, getLocationSaveString(tileDestination));
-    saveString += getAttributeString(getUniqueId(), UNIT_NAME, name);
+    if (name != "")
+    {
+        saveString += getAttributeString(getUniqueId(), UNIT_NAME, name);
+    }
     saveString += getAttributeString(getUniqueId(), UNIT_LEFT_TO_MOVE, leftToMove);
     saveString += getAttributeString(getUniqueId(), UNIT_IS_STATIC, isStatic);
     saveString += getAttributeString(getUniqueId(), UNIT_IS_PLAYER_CONTROLLED, isPlayerControlled);
@@ -41,7 +57,10 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
     else {
         saveString += getAttributeString(getUniqueId(), UNIT_TARGET_UNIT, -1);
     }
-    saveString += getAttributeString(getUniqueId(), UNIT_TARGET_LOCATION, getLocationSaveString(targetLocation));
+    if (targetLocation!= nullptr)
+    {
+        saveString += getAttributeString(getUniqueId(), UNIT_TARGET_LOCATION, getLocationSaveString(targetLocation));
+    }
     saveString += getAttributeString(getUniqueId(), UNIT_PATH_DIRECTIONS, getIntVectorSaveString(pathDirections));
     saveString += getAttributeString(getUniqueId(), UNIT_CURRENT_STATE, currentState->id);
     saveString += getAttributeString(getUniqueId(), UNIT_MAX_HEALTH, maxHealth);
@@ -53,9 +72,100 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
     }
     return saveString;
 }
+
 //constructors
 Unit::Unit() : AnimatedSprite() {
     init();
+}
+
+Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gameScene)
+{
+    init();
+    scene = gameScene;
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        switch (saveObject.attributes[i].attributeType) {
+        case UNIT_ID:
+            id = stoi(saveObject.attributes[i].valueString);
+            if (id > uniqueUnitId) {
+                uniqueUnitId = id;
+            }
+            else {
+                id = getUniqueUnitId();
+            }
+            break;
+        case UNIT_BEING_TARGETED_BY:
+            savedBeingTargetedByIds = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TO_BE_DELETED:
+            toBeDeleted = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TYPE:
+            type = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TILE_LOCATION:
+            tileLocation = getLocationFromSaveObject(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TILE_DESTINATION:
+            tileDestination = getLocationFromSaveObject(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_NAME:
+            name = saveObject.attributes[i].valueString;
+            break;
+        case UNIT_LEFT_TO_MOVE:
+            leftToMove = stod(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_IS_STATIC:
+            isStatic = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_IS_PLAYER_CONTROLLED:
+            isPlayerControlled = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MOVING_UP:
+            movingUp = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MOVING_DOWN:
+            movingDown = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MOVING_LEFT:
+            movingLeft = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MOVING_RIGHT:
+            movingRight = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_DIRECTION_FACING:
+            directionFacing = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_CAN_GO_THROUGH_PORTAL:
+            canGoThroughPortal = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TARGET_UNIT:
+            savedTargetUnitId = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_TARGET_LOCATION:
+            targetLocation = getLocationFromSaveObject(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_PATH_DIRECTIONS:
+            pathDirections = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_CURRENT_STATE:
+            savedCurrentStateId = stoi(saveObject.attributes[i].valueString);
+            setUnitState(savedCurrentStateId);
+            break;
+        case UNIT_MAX_HEALTH:
+            maxHealth = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_HEALTH:
+            health = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_SPEED:
+            speed = stoi(saveObject.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
+    resize(scene->tileWidth * 3, scene->tileHeight * 3);
 }
 
 Unit::Unit(int zoneId, int unitType) : AnimatedSprite() {
@@ -100,6 +210,10 @@ void Unit::init() {
     processPathFailLimit = 20;
     processPathFailTick = 0;
     currentState = nullptr;
+    //special attributes for loading saved units
+    savedSceneId = -1;
+    savedTargetUnitId = -1;
+    
 }
 
 void Unit::init(int zoneId, int unitType) {
@@ -489,7 +603,10 @@ void Unit::handleInput(InputMessage* message) {
     setUnitState(currentState->handleInput(message));
 }
 void Unit::setUnitState(int newState) {
-    currentState = unitStates[newState];
+    if (unitStates.find(newState) != unitStates.end())
+    {
+        currentState = unitStates[newState];
+    }
 }
 
 

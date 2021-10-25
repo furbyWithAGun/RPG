@@ -16,3 +16,4 @@
 #include <unordered_map>
 
 Item* createNewItem(int itemType);
+Item* createNewItemBlankId(int itemType);

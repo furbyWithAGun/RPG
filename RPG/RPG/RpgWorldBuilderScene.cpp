@@ -48,7 +48,7 @@ void RpgWorldBuilderScene::setUpScene() {
     ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
     zoneBuildMenu->isActive = true;
 
-    createUnitAtLocation(&sceneToEdit, RAT, 2, 2);
+    //createUnitAtLocation(&sceneToEdit, RAT, 2, 2);
 
     menus[BUILD_MENU] = zoneBuildMenu;
     menus[PORTAL_PROPERTIES_MENU] = new PortalPropertiesMenu(this, PORTAL_PROPERTIES_MENU, 300, 300, 300, 300);

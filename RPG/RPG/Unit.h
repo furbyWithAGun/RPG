@@ -30,7 +30,8 @@ enum UNIT_SAVE_ATTRIBUTES {
     UNIT_CURRENT_STATE,
     UNIT_MAX_HEALTH,
     UNIT_HEALTH,
-    UNIT_SPEED
+    UNIT_SPEED,
+    NUM_UNIT_ATTRIBUTES
 };
 
 class Unit : public AnimatedSprite
@@ -67,9 +68,15 @@ public:
     int maxHealth;
     int health;
     int speed;
+    //special attributes for loading saved units
+    int savedSceneId;
+    int savedTargetUnitId;
+    int savedCurrentStateId;
+    std::vector<int> savedBeingTargetedByIds;
     
     //constructors
     Unit();
+    Unit(SaveObject saveObject, TileGridScene* gameScene);
     Unit(int zoneId, int unitType);
     Unit(int zoneId, int unitType, TileGridScene* gameScene);
     Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY);
@@ -97,8 +104,9 @@ public:
     void handleInput(InputMessage* message);
     void faceCoords(int x, int y);
     void getNewPath();
+    void setScene(TileGridScene* gameScene);
     
-    std::string toSaveString(bool withHeaderAndFooter = true);
+    virtual std::string toSaveString(bool withHeaderAndFooter = true);
 
 
 
