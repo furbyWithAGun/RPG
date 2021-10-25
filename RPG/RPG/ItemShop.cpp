@@ -6,18 +6,22 @@
 
 ItemShop::ItemShop() : Building()
 {
+    init();
 }
 
 ItemShop::ItemShop(int newWidth, int newHeight) : Building(newWidth, newHeight)
 {
+    init();
 }
 
 ItemShop::ItemShop(std::vector<std::vector<BuildingTile*>> newTileMap) : Building(newTileMap)
 {
+    init();
 }
 
 ItemShop::ItemShop(int entranceDirection)
 {
+    init();
     switch (entranceDirection)
     {
     case LEFT:
@@ -32,8 +36,11 @@ ItemShop::ItemShop(int entranceDirection)
         break;
     case RIGHT:
         setTileMap({
-        {new BuildingTile(false, WOOD_WALL_TWO), nullptr},
-        {nullptr, new BuildingTile(false, WOOD_WALL_TWO)}
+        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), nullptr, nullptr, nullptr, new BuildingTile(false, WOOD_WALL_TWO) },
+        {new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO), nullptr, new BuildingTile(false, WOOD_WALL_TWO), new BuildingTile(false, WOOD_WALL_TWO) },
             });
 
         break;
@@ -73,4 +80,9 @@ int ItemShop::onActionAssignedUnit(RpgUnit* unit)
 void ItemShop::setItemsForSale(std::vector<Item*> newItemsForSale)
 {
     itemsForSale = newItemsForSale;
+}
+
+void ItemShop::init()
+{
+    type = BUILDING_ITEM_SHOP;
 }

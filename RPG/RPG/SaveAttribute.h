@@ -43,5 +43,6 @@ std::string getSubstrBeginEndWithInclusive(std::string string, std::string begin
 std::string getSubstrBeginEndWithExclusive(std::string string, std::string beginString, std::string endString, int skip = 0, std::string::size_type* endIndex = NULL);
 std::string getAttributeString(int id,int type, std::string value);
 std::string getAttributeString(int id, int type, int value);
+std::string getAttributeString(int id, int type, double value);
 int getUniqueId();
 

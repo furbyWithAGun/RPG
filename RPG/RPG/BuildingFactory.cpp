@@ -20,11 +20,12 @@ Building* createNewBuilding(int newBuildingType, int direction)
 	{
 	case BUILDING_ITEM_SHOP:
 		buildingToReturn = new ItemShop(direction);
-		return buildingToReturn;
 		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");
-		return new Building();
+		buildingToReturn = new Building();
 		break;
 	}
+	buildingToReturn->id = getUniqueBuildingId();
+	return buildingToReturn;
 }

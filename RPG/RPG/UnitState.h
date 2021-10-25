@@ -7,7 +7,7 @@ class UnitState
 {
 public:
     //attributes
-
+    int id;
     //constructors
     UnitState();
     UnitState(int id, Unit* controlledUnit);
@@ -18,8 +18,6 @@ public:
     virtual void updateAnimation() {};
 
 protected:
-    //attributes
-    int id;
     Unit* unit;
 
     //methods

@@ -184,7 +184,7 @@ void RpgWorldBuilderScene::sceneLogic() {
             break;
         case PLACE_BUILDING:
             if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, message->x, message->y)) {
-                createBuildingAtLocation(&sceneToEdit, message->misc, RIGHT, message->x, message->y);
+                createBuildingAtLocation(&sceneToEdit, message->misc, LEFT, message->x, message->y);
             }
             break;
         default:

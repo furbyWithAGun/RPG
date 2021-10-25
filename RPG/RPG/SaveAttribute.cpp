@@ -264,6 +264,13 @@ std::string getAttributeString(int id,int type,int value) {
     return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n";
 }
 
+std::string getAttributeString(int id, int type, double value) {
+    return BEGIN_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n" + std::to_string(value) + "\n" + END_ATTRIBUTE_IDENTIFIER + std::to_string(id) + "-" + std::to_string(type) + "\n";
+}
+
+
+
+
 int getUniqueId() {
     uniqueId += 1;
     return uniqueId;

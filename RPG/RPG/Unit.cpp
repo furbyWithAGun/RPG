@@ -1,10 +1,57 @@
 #include "Unit.h"
 #include"GameScene.h"
 
+int uniqueUnitId = 0;
+
 void Unit::getNewPath()
 {
     //SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
     scene->unitsNeedingPath.push_back(this);
+}
+std::string Unit::toSaveString(bool withHeaderAndFooter)
+{
+    std::string saveString;
+    int uniqueObjectId = getUniqueId();
+
+    if (withHeaderAndFooter)
+    {
+        saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT) + "\n";
+    }
+    saveString += getAttributeString(getUniqueId(), UNIT_ID, id);
+    //saveString += getAttributeString(getUniqueId(), UNIT_BEING_TARGETED_BY, beingTargetedBy);
+    saveString += getAttributeString(getUniqueId(), UNIT_TO_BE_DELETED, toBeDeleted);
+    saveString += getAttributeString(getUniqueId(), UNIT_TYPE, type);
+    saveString += getAttributeString(getUniqueId(), UNIT_TILE_LOCATION, getLocationSaveString(tileLocation));
+    saveString += getAttributeString(getUniqueId(), UNIT_TILE_DESTINATION, getLocationSaveString(tileDestination));
+    saveString += getAttributeString(getUniqueId(), UNIT_NAME, name);
+    saveString += getAttributeString(getUniqueId(), UNIT_LEFT_TO_MOVE, leftToMove);
+    saveString += getAttributeString(getUniqueId(), UNIT_IS_STATIC, isStatic);
+    saveString += getAttributeString(getUniqueId(), UNIT_IS_PLAYER_CONTROLLED, isPlayerControlled);
+    saveString += getAttributeString(getUniqueId(), UNIT_MOVING_UP, movingUp);
+    saveString += getAttributeString(getUniqueId(), UNIT_MOVING_DOWN, movingDown);
+    saveString += getAttributeString(getUniqueId(), UNIT_MOVING_LEFT, movingLeft);
+    saveString += getAttributeString(getUniqueId(), UNIT_MOVING_RIGHT, movingRight);
+    saveString += getAttributeString(getUniqueId(), UNIT_DIRECTION_FACING, directionFacing);
+    saveString += getAttributeString(getUniqueId(), UNIT_CAN_GO_THROUGH_PORTAL, canGoThroughPortal);
+    saveString += getAttributeString(getUniqueId(), UNIT_ZONE, zone);
+    if (targetUnit != nullptr)
+    {
+        saveString += getAttributeString(getUniqueId(), UNIT_TARGET_UNIT, targetUnit->id);
+    }
+    else {
+        saveString += getAttributeString(getUniqueId(), UNIT_TARGET_UNIT, -1);
+    }
+    saveString += getAttributeString(getUniqueId(), UNIT_TARGET_LOCATION, getLocationSaveString(targetLocation));
+    saveString += getAttributeString(getUniqueId(), UNIT_PATH_DIRECTIONS, getIntVectorSaveString(pathDirections));
+    saveString += getAttributeString(getUniqueId(), UNIT_CURRENT_STATE, currentState->id);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_HEALTH, maxHealth);
+    saveString += getAttributeString(getUniqueId(), UNIT_HEALTH, health);
+    saveString += getAttributeString(getUniqueId(), UNIT_SPEED, speed);
+    if (withHeaderAndFooter)
+    {
+        saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT) + "\n";
+    }
+    return saveString;
 }
 //constructors
 Unit::Unit() : AnimatedSprite() {
@@ -526,3 +573,9 @@ void Unit::faceCoords(int x, int y) {
 //    }
 //    return 0;
 //}
+
+int getUniqueUnitId()
+{
+    uniqueUnitId++;
+    return uniqueUnitId;
+}

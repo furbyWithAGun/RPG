@@ -18,5 +18,8 @@ public:
     //methods
     int onActionAssignedUnit(RpgUnit* unit) override;
     void setItemsForSale(std::vector<Item*> newItemsForSale);
+
+private:
+    void init();
 };
 

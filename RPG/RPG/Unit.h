@@ -6,10 +6,37 @@
 class BaseGameEngine;
 class InputMessage;
 
+enum UNIT_SAVE_ATTRIBUTES {
+    UNIT_ID,
+    UNIT_BEING_TARGETED_BY,
+    UNIT_TO_BE_DELETED,
+    UNIT_TYPE,
+    UNIT_TILE_LOCATION,
+    UNIT_TILE_DESTINATION,
+    UNIT_NAME,
+    UNIT_LEFT_TO_MOVE,
+    UNIT_IS_STATIC,
+    UNIT_IS_PLAYER_CONTROLLED,
+    UNIT_MOVING_UP,
+    UNIT_MOVING_DOWN,
+    UNIT_MOVING_LEFT,
+    UNIT_MOVING_RIGHT,
+    UNIT_DIRECTION_FACING,
+    UNIT_CAN_GO_THROUGH_PORTAL,
+    UNIT_ZONE,
+    UNIT_TARGET_UNIT,
+    UNIT_TARGET_LOCATION,
+    UNIT_PATH_DIRECTIONS,
+    UNIT_CURRENT_STATE,
+    UNIT_MAX_HEALTH,
+    UNIT_HEALTH,
+    UNIT_SPEED
+};
+
 class Unit : public AnimatedSprite
 {
 public:
-
+    int id;
     std::vector<Unit*> beingTargetedBy;
     bool toBeDeleted;
     int type;
@@ -27,10 +54,6 @@ public:
     Location* targetLocation;
     //std::vector<std::vector<int>> directions = { {0, -1},{0, 1},{-1, 0},{1, 0},{1, -1},{1, 1},{-1, -1},{-1, 1} }; // UP, DOWN, LEFT, RIGHT, UP RIGHT, DOWN RIGHT, UP LEFT, DOWN LEFT
     std::vector<int> pathDirections;
-    //attributes
-    int maxHealth;
-    int health;
-    int speed;
     int getPathTick;
     int getPathRate;
     int adjustPathTick;
@@ -39,6 +62,11 @@ public:
     int getNewPathFailTick;
     int processPathFailLimit;
     int processPathFailTick;
+    UnitState* currentState;
+    //attributes
+    int maxHealth;
+    int health;
+    int speed;
     
     //constructors
     Unit();
@@ -69,14 +97,17 @@ public:
     void handleInput(InputMessage* message);
     void faceCoords(int x, int y);
     void getNewPath();
+    
+    std::string toSaveString(bool withHeaderAndFooter = true);
 
-    UnitState* currentState;
 
 
 protected:
     //attributes
-    void setUnitState(int newState);
     std::unordered_map<int, UnitState*> unitStates;
+
+    //methods
+    void setUnitState(int newState);
 
 private:
     //methods
@@ -84,3 +115,5 @@ private:
     void init(int zoneId, int unitType);
     void init(int zoneId, int unitType, TileGridScene* gameScene);
 };
+
+int getUniqueUnitId();

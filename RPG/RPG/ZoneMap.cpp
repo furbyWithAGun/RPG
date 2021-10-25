@@ -43,6 +43,7 @@ ZoneMap::ZoneMap(int newId, std::vector< std::vector<int> > tiles) {
 
 ZoneMap::ZoneMap(SaveObject saveObject) {
 	init();
+	std::vector< Building* > buildingsToAdd;
 	for (int i = 0; i < saveObject.attributes.size(); i++)
 	{
 		switch (saveObject.attributes[i].attributeType) {
@@ -62,7 +63,7 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 			doodads = getDooDadVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
 		case BUILDINGS:
-			buildings = getBuildingVectorFromSaveString(saveObject.attributes[i].valueString);
+			buildingsToAdd = getBuildingVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
 		case MOB_SPAWN:
 			mobSpawn = stoi(saveObject.attributes[i].valueString);
@@ -78,6 +79,9 @@ ZoneMap::ZoneMap(SaveObject saveObject) {
 		}
 	}
 	setUpMaps();
+	for (auto building : buildingsToAdd) {
+		addBuildingToLocation(building, building->tileLocation->x, building->tileLocation->y);
+	}
 }
 
 ZoneMap::ZoneMap(const ZoneMap& oldMap)

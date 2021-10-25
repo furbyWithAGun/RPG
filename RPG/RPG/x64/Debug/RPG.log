@@ -1,11 +1,11 @@
 ﻿  ZoneMap.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(196,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(303,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(839,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(840,60): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(899,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(900,74): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(995,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(996,96): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(200,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(307,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(843,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(844,60): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(903,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(904,74): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(999,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1000,96): warning C4804: '>': unsafe use of type 'bool' in operation
   RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

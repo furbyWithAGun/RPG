@@ -1,6 +1,8 @@
 #include "Building.h"
 #include "RpgUnit.h"
 
+int uniqueBuildingId = 0;
+
 Building::Building()
 {
     init();
@@ -12,6 +14,15 @@ Building::Building(SaveObject saveObject)
     for (int i = 0; i < saveObject.attributes.size(); i++)
     {
         switch (saveObject.attributes[i].attributeType) {
+        case BUILDING_ID:
+            id = stoi(saveObject.attributes[i].valueString);
+            if (id > uniqueBuildingId) {
+                uniqueBuildingId = id;
+            }
+            else {
+                id = getUniqueBuildingId();
+            }
+            break;
         case BULDING_TYPE:
             type = stoi(saveObject.attributes[i].valueString);
             break;
@@ -122,6 +133,7 @@ std::string Building::toSaveString()
 
     saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_BUILDING) + "\n";
     saveString += getAttributeString(getUniqueId(), BULDING_TYPE, type);
+    saveString += getAttributeString(getUniqueId(), BUILDING_ID, id);
     saveString += getAttributeString(getUniqueId(), BUILDING_TILE_MAP, getBuildingTileMapSaveString());
     saveString += getAttributeString(getUniqueId(), BUILDING_LOCATION, getLocationSaveString(tileLocation));
     saveString += getAttributeString(getUniqueId(), BUILDING_ACTIVE, active);
@@ -232,9 +244,10 @@ std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::str
 
 void Building::init()
 {
-    type = 0;
+    id = -1;
+    type = -1;
     width = height = 0;
-    tileLocation = new Location{ 0, 0 };
+    tileLocation = new Location{ -1, -1 };
     active = true;
 }
 
@@ -242,4 +255,10 @@ void Building::init(int buildingType)
 {
     init();
     type = buildingType;
+}
+
+int getUniqueBuildingId()
+{
+    uniqueBuildingId++;
+    return uniqueBuildingId;
 }
