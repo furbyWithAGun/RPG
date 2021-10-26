@@ -435,8 +435,17 @@
     <ClCompile Include="RpgUnit.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
+    <ClCompile Include="TownCommand.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
     <ClCompile Include="BuildingFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="TownBuildMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="CampCommandCentre.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -704,8 +713,17 @@
     <ClInclude Include="RpgUnit.h">
       <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
+    <ClInclude Include="TownCommand.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
     <ClInclude Include="BuildingFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="TownBuildMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="CampCommandCentre.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

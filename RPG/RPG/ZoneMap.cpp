@@ -6,6 +6,7 @@
 #include "TileGridScene.h"
 #include "DooDad.h"
 #include "HealingPad.h"
+#include "TownCommand.h"
 #include <deque>
 #include <queue>
 #include "Player.h"
@@ -195,6 +196,50 @@ DooDad* ZoneMap::getDooDadAtLocation(int xpos, int ypos)
 	return nullptr;
 }
 
+void ZoneMap::addDooDadToLocation(DooDad* dooDad, int xpos, int ypos)
+{
+	dooDad->tileCoords[0] = xpos;
+	dooDad->tileCoords[1] = ypos;
+	doodads.push_back(dooDad);
+}
+
+void ZoneMap::destroyDooDad(DooDad* dooDad)
+{
+	auto dooDadIterator = doodads.begin();
+	while (dooDadIterator != doodads.end())
+	{
+		if ((*dooDadIterator) == dooDad) {
+			dooDadIterator = doodads.erase(dooDadIterator);
+			break;
+		}
+		else {
+			dooDadIterator++;
+		}
+	}
+	delete dooDad;
+}
+
+void ZoneMap::destroyBuilding(Building* building)
+{
+	removeBuildingFromZone(building);
+	for (auto unit : building->assignedUnits)
+	{
+		auto unitIterator = building->assignedUnits.begin();
+		while (unitIterator != building->assignedUnits.end())
+		{
+			if ((*unitIterator) == unit) {
+				unitIterator = building->assignedUnits.erase(unitIterator);
+			}
+			else {
+				unitIterator++;
+			}
+		}
+		destroyUnit(unit);
+		//unit->toBeDeleted = true;
+		delete building;
+	}
+}
+
 std::vector<Item*> ZoneMap::getItemsAtLocation(int xpos, int ypos)
 {
 	if (xpos < 0 || ypos < 0 || xpos >= itemMap.size() || ypos >= itemMap[0].size())
@@ -356,6 +401,16 @@ void ZoneMap::draw(TileGridScene* scene)
 			}
 		}
 
+		//render doodads
+		for (int j = 0; j < tileMap[i].size(); j++) {
+			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+			{
+				if (getDooDadAtLocation(j, i) != nullptr) {
+					scene->renderTexture(getDooDadAtLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+				}
+			}
+		}
+
 		//render items
 		for (int j = 0; j < tileMap[i].size(); j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
@@ -374,11 +429,6 @@ void ZoneMap::draw(TileGridScene* scene)
 				}
 			}
 		}
-	}
-
-	//draw portal
-	for (auto portal : portals) {
-		//scene->renderTexture(portal->textureId, (scene->tileWidth * portal->tileCoords[0]) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * portal->tileCoords[1] + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 	}
 }
 
@@ -437,16 +487,22 @@ bool ZoneMap::addBuildingToLocation(Building* building, int x, int y)
 bool ZoneMap::removeBuildingFromZone(Building* building)
 {
 	removeBuildingFromMap(building);
-	auto unitIterator = buildings.begin();
-	while (unitIterator != buildings.end())
+	auto buildingIterator = buildings.begin();
+	while (buildingIterator != buildings.end())
 	{
-		if ((*unitIterator) == building) {
-			unitIterator = buildings.erase(unitIterator);
+		if ((*buildingIterator) == building) {
+			buildingIterator = buildings.erase(buildingIterator);
 			break;
 		}
 		else {
-			unitIterator++;
+			buildingIterator++;
 		}
+	}
+	while (building->assignedDooDads.size() > 0)
+	{
+		DooDad* dooDad = building->assignedDooDads[0];
+		building->unAssignDooDad(dooDad);
+		destroyDooDad(dooDad);
 	}
 	return true;
 }
@@ -489,22 +545,7 @@ void ZoneMap::update()
 	}
 
 	//remove dead units
-	auto unitIterator = units.begin();
-	while (unitIterator != units.end())
-	{
-		if ((*unitIterator)->toBeDeleted) {
-			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileLocation->x, (*unitIterator)->tileLocation->y);
-			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileDestination->x, (*unitIterator)->tileDestination->y);
-			for (auto unit : (*unitIterator)->beingTargetedBy) {
-				unit->targetUnit = nullptr;
-			}
-			delete (*unitIterator);
-			unitIterator = units.erase(unitIterator);
-		}
-		else {
-			unitIterator++;
-		}
-	}
+	removeDeadUnits();	
 }
 
 void ZoneMap::removeUnitFromLocation(Unit* unit, int x, int y) {
@@ -549,6 +590,12 @@ bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 		}
 	}
 
+	DooDad* dooDad = getDooDadAtLocation(x, y);
+	if (dooDad != nullptr && !dooDad->passable)
+	{
+		return false;
+	}
+
 	return scene->mapTiles[tileMap[y][x]].passable && getUnitAtLocation(x, y) == nullptr ;
 }
 
@@ -571,6 +618,12 @@ bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 		}
 	}
 
+	DooDad* dooDad = getDooDadAtLocation(x, y);
+	if (dooDad != nullptr && !dooDad->passable)
+	{
+		return false;
+	}
+
 	return scene->mapTiles[tileMap[y][x]].passable;
 }
 
@@ -591,6 +644,12 @@ bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit*
 				return false;
 			}
 		}
+	}
+
+	DooDad* dooDad = getDooDadAtLocation(x, y);
+	if (dooDad != nullptr && !dooDad->passable)
+	{
+		return false;
 	}
 
 	bool ignoreUnitPresent = false;
@@ -622,6 +681,12 @@ bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std:
 				return false;
 			}
 		}
+	}
+
+	DooDad* dooDad = getDooDadAtLocation(x, y);
+	if (dooDad != nullptr && !dooDad->passable)
+	{
+		return false;
 	}
 
 	bool ignoreUnitPresent = false;
@@ -662,7 +727,6 @@ void ZoneMap::destroyUnit(Unit* unit)
 {
 	removeUnitFromLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
 	removeUnitFromLocation(unit, unit->tileDestination->x, unit->tileDestination->y);
-	delete (unit);
 	auto unitIterator = units.begin();
 	while (unitIterator != units.end())
 	{
@@ -674,6 +738,14 @@ void ZoneMap::destroyUnit(Unit* unit)
 			unitIterator++;
 		}
 	}
+	if (unit->beingTargetedBy.size() > 0)
+	{
+		for (auto targetingUnit : unit->beingTargetedBy) {
+			targetingUnit->targetUnit = nullptr;
+		}
+	}
+
+	delete (unit);
 }
 
 
@@ -1077,6 +1149,26 @@ std::vector<Location*> ZoneMap::constructPathToUnit(std::unordered_map<Location,
 	return path;
 }
 
+void ZoneMap::removeDeadUnits()
+{
+	auto unitIterator = units.begin();
+	while (unitIterator != units.end())
+	{
+		if ((*unitIterator)->toBeDeleted) {
+			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileLocation->x, (*unitIterator)->tileLocation->y);
+			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileDestination->x, (*unitIterator)->tileDestination->y);
+			for (auto unit : (*unitIterator)->beingTargetedBy) {
+				unit->targetUnit = nullptr;
+			}
+			delete (*unitIterator);
+			unitIterator = units.erase(unitIterator);
+		}
+		else {
+			unitIterator++;
+		}
+	}
+}
+
 void ZoneMap::setupGraph(TileGridScene* scene)
 {
 	int directions[4] = { UP, DOWN, RIGHT, LEFT };
@@ -1233,6 +1325,9 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 				case HEALING_PAD:
 					returnVector.push_back(new HealingPad(savedDooDads[i].rawString));;
 					break;
+				case DOODAD_TOWN_COMMAND:
+					returnVector.push_back(new TownCommand(savedDooDads[i].rawString));;
+					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString));
 					break;
@@ -1262,6 +1357,9 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 				switch (stoi(savedBuildings[i].attributes[j].valueString)) {
 				case BUILDING_ITEM_SHOP:
 					returnVector.push_back(new ItemShop(savedBuildings[i].rawString));;
+					break;
+				case BUILDING_CAMP_COMMAND_CENTRE:
+					returnVector.push_back(new CampCommandCentre(savedBuildings[i].rawString));;
 					break;
 				default:
 					returnVector.push_back(new Building(savedBuildings[i].rawString));

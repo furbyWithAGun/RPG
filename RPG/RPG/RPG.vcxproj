@@ -161,6 +161,7 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingTile.cpp" />
+    <ClCompile Include="CampCommandCentre.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="ControllerInterface.cpp" />
@@ -228,6 +229,8 @@
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileGridScene.cpp" />
+    <ClCompile Include="TownCommand.cpp" />
+    <ClCompile Include="TownBuildMenu.cpp" />
     <ClCompile Include="TownsPerson.cpp" />
     <ClCompile Include="UiElement.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -251,6 +254,7 @@
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingTile.h" />
+    <ClInclude Include="CampCommandCentre.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="ControllerInterface.h" />
@@ -319,6 +323,8 @@
     <ClInclude Include="TextBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileGridScene.h" />
+    <ClInclude Include="TownCommand.h" />
+    <ClInclude Include="TownBuildMenu.h" />
     <ClInclude Include="TownsPerson.h" />
     <ClInclude Include="UiElement.h" />
     <ClInclude Include="Unit.h" />

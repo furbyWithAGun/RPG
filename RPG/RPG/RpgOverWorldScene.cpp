@@ -78,7 +78,7 @@ void RpgOverWorldScene::setUpScene()
     //buildings
     ItemShop* testBuilding;
     testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
-    testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
+    //testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     
     //build menus
@@ -87,7 +87,6 @@ void RpgOverWorldScene::setUpScene()
     menus[ITEM_BUY_MENU] = new ItemBuyMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU, engine->screenWidth * 0.25, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
-
 
     SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
 }
@@ -194,6 +193,12 @@ void RpgOverWorldScene::sceneLogic()
                     actionedUnit->assignedToBuilding->onActionAssignedUnit(actionedUnit);
                 }
             }
+            DooDad* actionedDooDad;
+            actionedDooDad = zones[player->zone]->getDooDadAtLocation(message->x, message->y);
+            if (actionedDooDad != nullptr)
+            {
+                actionedDooDad->actionOn(player);
+            }
             break;
         default:
             break;
@@ -267,6 +272,10 @@ void RpgOverWorldScene::sceneLogic()
 void RpgOverWorldScene::renderScene()
 {
     int tileCoords[2], screenCoords[2];
+    if (!player->cameraFollowPlayer)
+    {
+        scrollCamera();
+    }
     RpgTileGridScene::renderScene();
     renderHUD();
 }

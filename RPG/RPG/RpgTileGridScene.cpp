@@ -7,6 +7,8 @@
 #include "Soldier.h"
 #include "TownsPerson.h"
 
+const int SCROLL_SPEED = 4;
+
 RpgTileGridScene::RpgTileGridScene() : TileGridScene()
 {
     init();
@@ -99,6 +101,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BUILDING_ICON_HEALTH, "images/signHealth.png" });
     texturesToLoad.insert({ BUILDING_ICON_TAVERN, "images/signTavern.png" });
     texturesToLoad.insert({ BUILDING_ICON_BLACKSMITH, "images/signBlacksmith.png" });
+    //doodad textures
+    texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
 }
 
 void RpgTileGridScene::setUpScene()
@@ -238,6 +242,30 @@ void RpgTileGridScene::loadZones()
     yOffset = 0;
 }
 
+void RpgTileGridScene::resizeTiles()
+{
+
+
+    //resize tiles depending on screen size
+    int tilesImpliedWidth = engine->screenWidth / desiredTilesAcross;
+    int tilesImpliedHeight = engine->screenHeight / desiredTilesDown;
+    if (tilesImpliedHeight >= tilesImpliedWidth) {
+        tileHeight = tilesImpliedHeight;
+        tileWidth = tilesImpliedHeight;
+    }
+    else {
+        tileHeight = tilesImpliedWidth;
+        tileWidth = tilesImpliedWidth;
+    }
+
+    for (auto zone : zones)
+    {
+        for (auto unit : zone.second->units) {
+            unit->resize(tileWidth * 3, tileHeight * 3);
+        }
+    }
+}
+
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)
 {
     RpgUnit* createdUnit;
@@ -305,11 +333,18 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
 Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y)
 {
     Building* createdBuilding;
+    TownCommand* newTownCommand;
     switch (buildingType)
     {
     case BUILDING_ITEM_SHOP:
         createdBuilding = createNewBuilding(buildingType, direction);
         createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
+        break;
+    case BUILDING_CAMP_COMMAND_CENTRE:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+        createdBuilding->assignDooDad(newTownCommand);
+        zones[zoneId]->addDooDadToLocation(newTownCommand, x + 2, y + 2);
         break;
     default:
         createdBuilding = nullptr;
@@ -322,11 +357,18 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
 Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y)
 {
     Building* createdBuilding;
+    TownCommand* newTownCommand;
     switch (buildingType)
     {
     case BUILDING_ITEM_SHOP:
         createdBuilding = createNewBuilding(buildingType, direction);
         createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
+        break;
+    case BUILDING_CAMP_COMMAND_CENTRE:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+        createdBuilding->assignDooDad(newTownCommand);
+        zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
         break;
     default:
         createdBuilding = nullptr;
@@ -334,6 +376,16 @@ Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int building
     }
     zone->addBuildingToLocation(createdBuilding, x, y);
     return createdBuilding;
+}
+
+void RpgTileGridScene::removeBuildingFromZone(ZoneMap* zone, Building* building)
+{
+    zone->removeBuildingFromZone(building);
+}
+
+void RpgTileGridScene::removeBuildingFromZone(ZoneMap zone, Building* building)
+{
+    zone.removeBuildingFromZone(building);
 }
 
 void RpgTileGridScene::createTiles()
@@ -350,22 +402,13 @@ void RpgTileGridScene::createTiles()
     mapTiles[CAVE_WALL_TOP] = MapTile(false, CAVE_WALL_TOP);
     mapTiles[CAVE_WALL_BOTTOM] = MapTile(false, CAVE_WALL_BOTTOM);
 
-    //resize tiles depending on screen size
-    int tilesImpliedWidth = engine->screenWidth / desiredTilesAcross;
-    int tilesImpliedHeight = engine->screenHeight / desiredTilesDown;
-    if (tilesImpliedHeight >= tilesImpliedWidth) {
-        tileHeight = tilesImpliedHeight;
-        tileWidth = tilesImpliedHeight;
-    }
-    else {
-        tileHeight = tilesImpliedWidth;
-        tileWidth = tilesImpliedWidth;
-    }
+    resizeTiles();
 }
 
 void RpgTileGridScene::init()
 {
     player = nullptr;
+    placingBuilding = false;
 }
 
 void RpgTileGridScene::drawCombatMessages()
@@ -390,4 +433,23 @@ void RpgTileGridScene::updateCombatMessages() {
         {
             return u.tickCount >= u.duration;
         }), end(combatMessages));
+}
+
+void RpgTileGridScene::scrollCamera() {
+    int x, y;
+    x = controllerInterface->latestXpos;
+    y = controllerInterface->latestYpos;
+
+    if (x < engine->screenWidth * 0.01) {
+        xOffset += SCROLL_SPEED;
+    }
+    if (x > engine->screenWidth * 0.99) {
+        xOffset -= SCROLL_SPEED;
+    }
+    if (y < engine->screenHeight * 0.01) {
+        yOffset += SCROLL_SPEED;
+    }
+    if (y > engine->screenHeight * 0.99) {
+        yOffset -= SCROLL_SPEED;
+    }
 }

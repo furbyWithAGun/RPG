@@ -5,6 +5,7 @@
 #include "ItemShop.h"
 #include "Player.h"
 #include "RpgGameConstants.h"
+#include "TownCommand.h"
 
 class Player;
 
@@ -14,6 +15,8 @@ public:
     //attributes
     Player* player;
     std::unordered_map<int, std::unordered_map<int, int>> teamRelations;
+    Building buildingBeingPlaced;
+    bool placingBuilding;
 
     //constructor
     RpgTileGridScene();
@@ -39,12 +42,16 @@ public:
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
     virtual void loadZones() override;
+    void resizeTiles();
 
 protected:
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);
+    void removeBuildingFromZone(ZoneMap* zone, Building* building);
+    void removeBuildingFromZone(ZoneMap zone, Building* building);
+    void scrollCamera();
 
 private:
     //attributes
@@ -55,6 +62,5 @@ private:
     void init();
     void drawCombatMessages();
     void updateCombatMessages();
-
 };
 

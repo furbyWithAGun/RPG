@@ -4,6 +4,9 @@
 class Prompt : public UiElement
 {
 public:
+    //attributes
+    bool toBeDeleted;
+
     //constructors
     Prompt();
     Prompt(GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight);

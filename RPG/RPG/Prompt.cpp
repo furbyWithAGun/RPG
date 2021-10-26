@@ -41,4 +41,5 @@ Prompt* Prompt::addCallBack(std::function<void()> newCallback)
 void Prompt::init()
 {
 	callback = NULL;
+	toBeDeleted = false;
 }

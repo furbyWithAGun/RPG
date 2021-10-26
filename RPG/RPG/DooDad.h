@@ -5,6 +5,7 @@ enum DOODAD_ATTRIBUTES {
 	DOODAD_TEXTURE_ID,
 	DOODAD_TYPE,
 	DOODAD_TILE_COORDS,
+	DOODAD_PASSABLE
 };
 
 class TileGridScene;
@@ -17,6 +18,7 @@ public:
 	TileGridScene* scene;
 	std::vector <int> tileCoords;
 	int type;
+	bool passable;
 
 	//contructors
 	DooDad();

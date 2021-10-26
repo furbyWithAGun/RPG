@@ -6,6 +6,9 @@ class RpgTileGridScene;
 class Player : public RpgUnit
 {
 public:
+    //attributes
+    bool cameraFollowPlayer;
+
     //constructor
     Player();
     Player(SaveObject saveObject, RpgTileGridScene* gameScene);

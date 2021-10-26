@@ -20,8 +20,6 @@ public:
     ZoneMap* portalExitZone;
     int previousZoneXoffset, previousZoneYoffset;
     ZoneMap sceneToEdit;
-    Building buildingBeingPlaced;
-    bool placingBuilding;
 
 
     //constructor
@@ -40,6 +38,5 @@ public:
 private:
     //methods
     void init();
-    void scrollCamera();
 };
 

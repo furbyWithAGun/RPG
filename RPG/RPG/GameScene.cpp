@@ -29,13 +29,22 @@ void GameScene::handleInput()
     if (openPrompts.size() > 0) {
         controllerInterface->populateMessageQueue();
         while (controllerInterface->getNextMessage(message)) {
+            bool promptsConsumeMessage = false;
             for (auto prompt : openPrompts) {
-                if (!prompt->handleInput(message)) {
-                    messagesToSendBack.push_back(new InputMessage(message->id, message->x, message->y, message->misc));
-                }
-                else {
+                if (prompt->handleInput(message)) {
+                    promptsConsumeMessage = true;
                     break;
                 }
+            }
+            if (!promptsConsumeMessage)
+            {
+                messagesToSendBack.push_back(new InputMessage(message->id, message->x, message->y, message->misc));
+            }
+        }
+        for (auto prompt : openPrompts) {
+            if (prompt->toBeDeleted)
+            {
+                removePrompt(prompt);
             }
         }
         for (auto msg : messagesToSendBack)
@@ -66,10 +75,6 @@ void GameScene::handleInput()
         }
     }
     while (controllerInterface->getNextMessage(message)) {
-        if (message->id == SELECT_ON)
-        {
-            int x = 2453456;
-        }
         if (!sendMessageToMenus(message)) {
             messagesToSendBack.push_back(new InputMessage(message->id, message->x, message->y, message->misc));
         }
@@ -79,7 +84,7 @@ void GameScene::handleInput()
         controllerInterface->addMessage(msg);
         //delete msg;
     }
-    //messagesToSendBack.clear();
+    messagesToSendBack.clear();
     if (message != nullptr)
     {
         delete message;
@@ -159,6 +164,10 @@ bool GameScene::sendMessageToMenus(InputMessage* message)
             if (menu.second->isActive)
             {
                 messageConsumed = menu.second->handleInput(message);
+                if (messageConsumed)
+                {
+                    return true;
+                }
             }
         }
     }

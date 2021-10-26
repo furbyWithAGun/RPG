@@ -21,6 +21,9 @@ Building* createNewBuilding(int newBuildingType, int direction)
 	case BUILDING_ITEM_SHOP:
 		buildingToReturn = new ItemShop(direction);
 		break;
+	case BUILDING_CAMP_COMMAND_CENTRE:
+		buildingToReturn = new CampCommandCentre(direction);
+		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");
 		buildingToReturn = new Building();
@@ -39,6 +42,9 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 	{
 	case BUILDING_ITEM_SHOP:
 		buildingToReturn = new ItemShop(direction);
+		break;
+	case BUILDING_CAMP_COMMAND_CENTRE:
+		buildingToReturn = new CampCommandCentre(direction);
 		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");

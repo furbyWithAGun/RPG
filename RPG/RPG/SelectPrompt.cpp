@@ -54,7 +54,8 @@ bool SelectPrompt::handleInput(InputMessage* message)
             {
             case SELECT_ON:
                 if (closeOnClickMiss && !pointCollision(message->x, message->y)) {
-                    scene->removePrompt(this);
+                    //scene->removePrompt(this);
+                    toBeDeleted = true;
                 }
                 for (auto selectOption : selectOptions) {
                     if (selectOption->displayText->pointCollision(message->x, message->y))

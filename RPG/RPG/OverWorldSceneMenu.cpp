@@ -20,6 +20,7 @@ OverWorldSceneMenu::OverWorldSceneMenu(RpgOverWorldScene* gameScene, int newId, 
 
 void OverWorldSceneMenu::close()
 {
+    GameMenu::close();
 }
 
 bool OverWorldSceneMenu::handleInput(InputMessage* message)

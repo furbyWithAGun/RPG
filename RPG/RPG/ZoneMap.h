@@ -61,6 +61,9 @@ class ZoneMap {
         void addZonePortal(int textureId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
         ZonePortal* getPortalAtLocation(int xpos, int ypos);
         DooDad* getDooDadAtLocation(int xpos, int ypos);
+        void addDooDadToLocation(DooDad* dooDad, int xpos, int ypos);
+        void destroyDooDad(DooDad* dooDad);
+        void destroyBuilding(Building* building);
         std::vector<Item*> getItemsAtLocation(int xpos, int ypos);
         void removePortalAtLocation(int xpos, int ypos);
         std::string toSaveString();
@@ -97,6 +100,7 @@ class ZoneMap {
         std::vector<Location*> constructPath(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit);
         //std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit, Unit* followingUnit);
+        void removeDeadUnits();
 
     private:
         //attributes

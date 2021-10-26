@@ -209,7 +209,7 @@ void ZoneBuilderMenu::buildPageThree()
     scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
     scroller->numElementsToDisplay = 2;
 
-    for (int i = 0; i < NUM_BUILDING_TYES; i++)
+    for (int i = 0; i < NUM_BUILDING_TYPES; i++)
     {
         MenuButton* button;
         buildingTemplates.push_back(*createNewBuildingNoId(i, LEFT));

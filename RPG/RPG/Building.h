@@ -4,6 +4,7 @@
 #include <string>
 
 class RpgUnit;
+class DooDad;
 struct Location;
 
 enum BUILDING_SAVE_ATTRIBUTES {
@@ -29,6 +30,7 @@ public:
     int width, height;
     bool active;
     std::vector<RpgUnit*> assignedUnits;
+    std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;
 
 
@@ -46,8 +48,11 @@ public:
     //methods
     BuildingTile* getTileAtMapLocation(int x, int y);
     virtual int onActionAssignedUnit(RpgUnit* unit);
+    virtual int onActionAssignedDooDad(DooDad* dooDad);
     void assignUnit(RpgUnit* unit);
     void unAssignUnit(RpgUnit* unit);
+    void assignDooDad(DooDad* dooDad);
+    void unAssignDooDad(DooDad* dooDad);
     void setTileMap(std::vector< std::vector<BuildingTile*> > newTileMap);
     std::string toSaveString();
     std::string getBuildingTileMapSaveString();

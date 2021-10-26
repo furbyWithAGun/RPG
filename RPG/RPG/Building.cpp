@@ -1,5 +1,6 @@
 #include "Building.h"
 #include "RpgUnit.h"
+#include "DooDad.h"
 
 int uniqueBuildingId = 0;
 
@@ -100,6 +101,12 @@ int Building::onActionAssignedUnit(RpgUnit* unit)
     return 0;
 }
 
+int Building::onActionAssignedDooDad(DooDad* dooDad)
+{
+    return 0;
+}
+
+
 void Building::assignUnit(RpgUnit* unit)
 {
     assignedUnits.push_back(unit);
@@ -118,6 +125,26 @@ void Building::unAssignUnit(RpgUnit* unit)
         }
         else {
             unitIterator++;
+        }
+    }
+}
+
+void Building::assignDooDad(DooDad* dooDad)
+{
+    assignedDooDads.push_back(dooDad);
+}
+
+void Building::unAssignDooDad(DooDad* dooDad)
+{
+    auto dooDadIterator = assignedDooDads.begin();
+    while (dooDadIterator != assignedDooDads.end())
+    {
+        if ((*dooDadIterator) == dooDad) {
+            dooDadIterator = assignedDooDads.erase(dooDadIterator);
+            break;
+        }
+        else {
+            dooDadIterator++;
         }
     }
 }
@@ -189,7 +216,7 @@ std::vector<std::vector<BuildingTile*>> Building::getBuldingTileMapFromSaveStrin
     for (int x = 0; x < saveObjectsVector.size(); x++)
     {
         std::vector<BuildingTile* > tileVector;
-        for (int y = 0; y < saveObjectsVector.size(); y++)
+        for (int y = 0; y < saveObjectsVector[x].size(); y++)
         {
             BuildingTile* newTile = new BuildingTile(saveObjectsVector[x][y]);
             tileVector.push_back(newTile);

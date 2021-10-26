@@ -8,7 +8,7 @@
 //constants
 const int DEFAULT_DESIRED_TILES_DOWN = 10;
 const int DEFAULT_DESIRED_TILES_ACROSS = 19;
-const int SCROLL_SPEED = 4;
+
 
 //constructor
 RpgWorldBuilderScene::RpgWorldBuilderScene() : RpgTileGridScene(){
@@ -26,7 +26,6 @@ void RpgWorldBuilderScene::init() {
     placingTile = false;
     placingPortal = false;
     pickingPortalCoords = false;
-    placingBuilding = true;
     portalBeingPlaced = -1;
     controllerInterface = new RpgKeysMouseController();
     portalBeingPlacedExitId = 0;
@@ -101,6 +100,10 @@ void RpgWorldBuilderScene::handleInput() {
             {
                 addCommand(InputMessage(OPEN_PLACED_PORTAL_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
             }
+            else if (sceneToEdit.getBuildingAtLocation(tileCoords[0], tileCoords[1]) != nullptr)
+            {
+                addCommand(InputMessage(OPEN_PLACED_BUILDING_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
+            }
             break;
         case SELECT_OFF:
             break;
@@ -125,7 +128,7 @@ void RpgWorldBuilderScene::handleInput() {
 
 void RpgWorldBuilderScene::sceneLogic() {
     //RpgTileGridScene::sceneLogic();
-    //sceneToEdit.update();
+    sceneToEdit.removeDeadUnits();
     //handle commands
     InputMessage* message = new InputMessage();
     while (getNextCommand(message)) {
@@ -142,6 +145,29 @@ void RpgWorldBuilderScene::sceneLogic() {
             {
                 sceneToEdit.addZonePortal(message->misc, { message->x, message->y }, portalBeingPlacedExitId, { portalBeingPlacedExitCoordsX, portalBeingPlacedExitCoordsY });
             }
+            break;
+        case OPEN_PLACED_BUILDING_OPTIONS_MENU:
+            Building* selectedBuilding;
+            selectedBuilding = sceneToEdit.getBuildingAtLocation(message->x, message->y);
+            int buildingCoords[2];
+            coordsFromTileIndex(message->x, message->y, buildingCoords);
+            SelectPrompt* buildingSelectPrompt;
+            buildingSelectPrompt = new SelectPrompt(this, COLOR_BLACK, buildingCoords[0] + tileWidth, buildingCoords[1] + tileHeight, 300, 300);
+            buildingSelectPrompt->addSelectOption("Delete Building", 1);
+            buildingSelectPrompt->addCallBack([this, buildingSelectPrompt, selectedBuilding]() {
+                switch (buildingSelectPrompt->getSelectedOptionValue())
+                {
+                case 1:
+                    sceneToEdit.destroyBuilding(selectedBuilding);
+                    break;
+                default:
+                    break;
+                }
+                removePrompt(buildingSelectPrompt);
+                });
+            buildingSelectPrompt->active = true;
+            buildingSelectPrompt->closeOnClickMiss = true;
+            addPrompt(buildingSelectPrompt);
             break;
         case OPEN_PLACED_PORTAL_OPTIONS_MENU:
             ZonePortal* selectedPortal;
@@ -280,21 +306,3 @@ void RpgWorldBuilderScene::createNewZone()
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
 }
 
-void RpgWorldBuilderScene::scrollCamera() {
-    int x, y;
-    x = controllerInterface->latestXpos;
-    y = controllerInterface->latestYpos;
-
-    if (x < engine->screenWidth * 0.01) {
-        xOffset += SCROLL_SPEED;
-    }
-    if (x > engine->screenWidth * 0.99) {
-        xOffset -= SCROLL_SPEED;
-    }
-    if (y < engine->screenHeight * 0.01) {
-        yOffset += SCROLL_SPEED;
-    }
-    if (y > engine->screenHeight * 0.99) {
-        yOffset -= SCROLL_SPEED;
-    }
-}
