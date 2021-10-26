@@ -13,7 +13,8 @@ enum SAVE_BUILDER_MENU_IDS {
     MOB_SPAWN_SCROLL_BOX,
     MOB_SPAWN_BUTTON_TRUE,
     MOB_SPAWN_BUTTON_FALSE,
-    TXT_DIFFICULTY
+    TXT_DIFFICULTY,
+    BUILDINGS_SCROLL_BOX
 };
 
 //constructors
@@ -40,9 +41,12 @@ bool ZoneBuilderMenu::handleInput(InputMessage* message) {
     case BUTTON_1_ON:
         scene->placingTile = false;
         scene->placingPortal = false;
+        scene->placingBuilding = false;
         scroller = (ScrollBox*)getElementbyId(TILE_SCROLL_BOX);
         scroller->selectedElement = NULL;
         scroller = (ScrollBox*)getElementbyId(PORTAL_SCROLL_BOX);
+        scroller->selectedElement = NULL;
+        scroller = (ScrollBox*)getElementbyId(BUILDINGS_SCROLL_BOX);
         scroller->selectedElement = NULL;
         break;
     default:
@@ -87,6 +91,7 @@ void ZoneBuilderMenu::buildElements() {
     addElement(mainPanel);
     buildPageOne();
     buildPageTwo();
+    buildPageThree();
 }
 
 void ZoneBuilderMenu::buildPageOne()
@@ -195,4 +200,32 @@ void ZoneBuilderMenu::buildPageTwo()
     mainPanel->addElementToPage(1, new MenuText(scene, "Difficulty", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.7));
     TextBox* txtDifficulty = new TextBox(TXT_DIFFICULTY, scene, scene->mainCanvasStartX / 6, engine->screenHeight * 0.75, scene->mainCanvasStartX / 2, engine->screenHeight * 0.04);
     mainPanel->addElementToPage(1, txtDifficulty);
+}
+
+void ZoneBuilderMenu::buildPageThree()
+{
+    mainPanel->addElementToPage(2, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
+    ScrollBox* scroller;
+    scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    scroller->numElementsToDisplay = 2;
+
+    for (int i = 0; i < NUM_BUILDING_TYES; i++)
+    {
+        MenuButton* button;
+        buildingTemplates.push_back(*createNewBuildingNoId(i, LEFT));
+        button = new MenuButton(scene, buildingTemplates[i].iconTextureId);
+        button->xpos = 0;
+        button->ypos = 0;
+        button->width = engine->screenWidth / WIDTH_ADJUSTOR;
+        button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
+        button->addOnClick([this, i]() {
+            scene->buildingBeingPlaced = buildingTemplates[i];
+            scene->placingBuilding = true;
+            scene->placingTile = false;
+            scene->placingPortal = false;
+            });
+        scroller->addElement(button);
+    }
+
+    mainPanel->addElementToPage(2, BUILDINGS_SCROLL_BOX, scroller);
 }

@@ -7,12 +7,14 @@
 #include "ScrollBox.h"
 #include "TextBox.h"
 #include "PagedPanel.h"
+#include "BuildingFactory.h"
 
 class ZoneBuilderMenu : public GameMenu
 {
 public:
     //attributes
     PagedPanel* mainPanel;
+    std::vector<Building> buildingTemplates;
 
     //constructors
     ZoneBuilderMenu();
@@ -33,5 +35,6 @@ private:
     void buildElements();
     void buildPageOne();
     void buildPageTwo();
+    void buildPageThree();
 };
 

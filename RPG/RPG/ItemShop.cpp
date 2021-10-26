@@ -90,4 +90,5 @@ void ItemShop::setItemsForSale(std::vector<Item*> newItemsForSale)
 void ItemShop::init()
 {
     type = BUILDING_ITEM_SHOP;
+    iconTextureId = BUILDING_ICON_WEAPON_SHOP;
 }

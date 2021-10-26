@@ -21,6 +21,7 @@ MapBuilderPortalButton::MapBuilderPortalButton(int elementId, RpgWorldBuilderSce
 void MapBuilderPortalButton::onClick() {
     //scene->openMenu(PORTAL_PROPERTIES_MENU);
     scene->placingTile = false;
+    scene->placingBuilding = false;
     scene->placingPortal = true;
     scene->portalBeingPlaced = portalKey;
 }

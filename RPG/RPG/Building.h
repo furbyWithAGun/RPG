@@ -13,7 +13,8 @@ enum BUILDING_SAVE_ATTRIBUTES {
     BUILDING_ACTIVE,
     BUILDING_ASSIGNED_UNITS,
     BUILDING_UNIT_LOCATIONS,
-    BUILDING_ID
+    BUILDING_ID,
+    BUILDING_ICON_TEXTURE_ID
 };
 
 class Building
@@ -22,6 +23,7 @@ public:
     //attributes
     int type;
     int id;
+    int iconTextureId;
     std::vector< std::vector<BuildingTile*> > tileMap;
     Location* tileLocation;
     int width, height;

@@ -21,6 +21,7 @@ MapBuilderTileButton::MapBuilderTileButton(int elementId, RpgWorldBuilderScene* 
 void MapBuilderTileButton::onClick() {
     scene->placingTile = true;
     scene->placingPortal = false;
+    scene->placingBuilding = false;
     scene->tileBeingPlaced = tile;
 }
 

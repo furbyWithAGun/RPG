@@ -29,3 +29,21 @@ Building* createNewBuilding(int newBuildingType, int direction)
 	buildingToReturn->id = getUniqueBuildingId();
 	return buildingToReturn;
 }
+
+Building* createNewBuildingNoId(int newBuildingType, int direction)
+{
+	Building* buildingToReturn;
+	//BuildingTemplate buildingTemplate = buildingTemplates[newBuildingType];*/
+
+	switch (newBuildingType)
+	{
+	case BUILDING_ITEM_SHOP:
+		buildingToReturn = new ItemShop(direction);
+		break;
+	default:
+		printf("Warning: creating blank Building() from building factory");
+		buildingToReturn = new Building();
+		break;
+	}
+	return buildingToReturn;
+}
