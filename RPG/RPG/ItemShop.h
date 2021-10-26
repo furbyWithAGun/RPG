@@ -11,6 +11,7 @@ public:
 
     //constructors
     ItemShop();
+    ItemShop(SaveObject saveObject);
     ItemShop(int newWidth, int newHeight);
     ItemShop(std::vector< std::vector<BuildingTile*> > newTileMap);
     ItemShop(int entranceDirection);

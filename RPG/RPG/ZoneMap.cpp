@@ -1257,10 +1257,11 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 		for (int j = 0; j < savedBuildings[i].attributes.size(); j++)
 		{
 			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
+			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
 			{
 				switch (stoi(savedBuildings[i].attributes[j].valueString)) {
 				case BUILDING_ITEM_SHOP:
-					returnVector.push_back(new Building(savedBuildings[i].rawString));;
+					returnVector.push_back(new ItemShop(savedBuildings[i].rawString));;
 					break;
 				default:
 					returnVector.push_back(new Building(savedBuildings[i].rawString));

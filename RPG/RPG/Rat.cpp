@@ -78,8 +78,8 @@ void Rat::createAnimations() {
 
 void Rat::setDropTable()
 {
-    //dropChance = 0.03;
-    dropChance = 1.0;
+    dropChance = 0.03;
+    //dropChance = 1.0;
     dropTable.push_back({ 0.15, ITEM_CLUB });
     dropTable.push_back({ 0.02, ITEM_SHORT_SWORD});
     dropTable.push_back({ 0.166, ITEM_RAG_BODY });

@@ -5,8 +5,8 @@
 #include <string>
 #include <algorithm>
 #include "Item.h"
-#include "Building.h"
 #include "Graph.h"
+#include "BuildingFactory.h"
 
 enum ZONE_MAP_ATTRIBUTES{
     ZONE_MAP_ID,

@@ -139,6 +139,9 @@ Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gam
         case UNIT_CAN_GO_THROUGH_PORTAL:
             canGoThroughPortal = stoi(saveObject.attributes[i].valueString);
             break;
+        case UNIT_ZONE:
+            zone = stoi(saveObject.attributes[i].valueString);
+            break;
         case UNIT_TARGET_UNIT:
             savedTargetUnitId = stoi(saveObject.attributes[i].valueString);
             break;
@@ -508,6 +511,7 @@ void Unit::setStartLocation(int x, int y) {
 
 void Unit::draw()
 {
+    updateCoords();
     AnimatedSprite::draw();
 }
 

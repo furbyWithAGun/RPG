@@ -9,6 +9,11 @@ ItemShop::ItemShop() : Building()
     init();
 }
 
+ItemShop::ItemShop(SaveObject saveObject) : Building(saveObject)
+{
+    init();
+}
+
 ItemShop::ItemShop(int newWidth, int newHeight) : Building(newWidth, newHeight)
 {
     init();
