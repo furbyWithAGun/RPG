@@ -6,12 +6,21 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// hover tool tips
+// add costs to buildings
+// design tavern
+// design blacksmith
+// design armoury
+// design granery
+// design storage pit
+// design house
+// make it so buildings can have multiple floors
+// make it so buildings can have roofs that are hidden when inside the building
+// add Art/animations from Tim
+// add ability to recruit soldiers
 //move to database system
-//design how game will track structures
 //make a structure building scene
-//make units savable
 //add ability to place enemy units in world builder scene
-//pathfinding
 //make the game client/server
 //rework asset loading strategy
 //add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes, as are UiElements)

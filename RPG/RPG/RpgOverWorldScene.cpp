@@ -60,9 +60,10 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
+    //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
 
     //createUnitAtLocation(currentZone->id, RAT, 4, 2);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
@@ -215,8 +216,9 @@ void RpgOverWorldScene::sceneLogic()
             }
             break;
         case OVERWORLD_PLACE_BUILDING:
-            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y)) {
+            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && player->gold >= buildingBeingPlaced.goldCost) {
                 createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
+                player->gold -= buildingBeingPlaced.goldCost;
             }
             break;
         case USER_ACTION:
@@ -346,6 +348,7 @@ void RpgOverWorldScene::renderScene()
             }
         }
     }
+    //engine->renderRectangle(700,150,550,650, COLOR_BLUE);
 }
 
 void RpgOverWorldScene::renderHUD()

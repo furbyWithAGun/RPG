@@ -63,4 +63,5 @@ void CampCommandCentre::init()
 {
     type = BUILDING_CAMP_COMMAND_CENTRE;
     iconTextureId = BUILDING_ICON_TAVERN;
+    goldCost = 500;
 }

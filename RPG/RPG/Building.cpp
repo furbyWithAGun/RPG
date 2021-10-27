@@ -36,6 +36,9 @@ Building::Building(SaveObject saveObject)
         case BUILDING_ICON_TEXTURE_ID:
             iconTextureId = stoi(saveObject.attributes[i].valueString);
             break;
+        case BUILDING_GOLD_COST:
+            goldCost = stoi(saveObject.attributes[i].valueString);
+            break;
         case BUILDING_LOCATION:
             tileLocation = getLocationFromSaveObject(SaveObject(saveObject.attributes[i].valueString));
             break;
@@ -169,6 +172,7 @@ std::string Building::toSaveString()
     saveString += getAttributeString(getUniqueId(), BUILDING_TILE_MAP, getBuildingTileMapSaveString());
     saveString += getAttributeString(getUniqueId(), BUILDING_LOCATION, getLocationSaveString(tileLocation));
     saveString += getAttributeString(getUniqueId(), BUILDING_ACTIVE, active);
+    saveString += getAttributeString(getUniqueId(), BUILDING_GOLD_COST, goldCost);
     saveString += getAttributeString(getUniqueId(), BUILDING_ICON_TEXTURE_ID, iconTextureId);
     saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_BUILDING) + "\n";
 
@@ -245,6 +249,7 @@ void Building::init()
     tileLocation = new Location{ -1, -1 };
     active = true;
     iconTextureId = -1;
+    goldCost = 1;
 }
 
 void Building::init(int buildingType)

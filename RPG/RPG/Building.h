@@ -15,7 +15,8 @@ enum BUILDING_SAVE_ATTRIBUTES {
     BUILDING_ASSIGNED_UNITS,
     BUILDING_UNIT_LOCATIONS,
     BUILDING_ID,
-    BUILDING_ICON_TEXTURE_ID
+    BUILDING_ICON_TEXTURE_ID,
+    BUILDING_GOLD_COST
 };
 
 class Building
@@ -29,6 +30,7 @@ public:
     Location* tileLocation;
     int width, height;
     bool active;
+    int goldCost;
     std::vector<RpgUnit*> assignedUnits;
     std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;

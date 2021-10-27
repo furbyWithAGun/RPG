@@ -91,4 +91,5 @@ void ItemShop::init()
 {
     type = BUILDING_ITEM_SHOP;
     iconTextureId = BUILDING_ICON_WEAPON_SHOP;
+    goldCost = 700;
 }
