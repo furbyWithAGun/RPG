@@ -22,6 +22,7 @@ void RpgOverWorldScene::init() {
     controllerInterface = new RpgKeysMouseController();
     new DooDad(this, 3,3,3);
     testUnit = nullptr;
+    displayHud = true;
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -83,6 +84,7 @@ void RpgOverWorldScene::setUpScene()
     
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
+    menus[TOWN_BUILD_MENU] = new TownBuildMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
     menus[ITEM_SELL_MENU] = new ItemSellMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.25, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     menus[ITEM_BUY_MENU] = new ItemBuyMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU, engine->screenWidth * 0.25, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
@@ -99,66 +101,95 @@ void RpgOverWorldScene::handleInput()
     
     controllerInterface->populateMessageQueue();
     while (controllerInterface->getNextMessage(message)) {
-        switch (message->id)
+        if (menus[TOWN_BUILD_MENU]->isActive)
         {
-        case POINTER_MOVEMENT:
-            //player->faceCoords(message->x, message->y);
-            break;
-        case END_SCENE:
-            endScene();
-            break;
-        case SELECT_ON:
-            getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
-            if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
+            switch (message->id)
             {
-                Unit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
-                if (unitAtLocation != nullptr && unitAtLocation != player)
+            case POINTER_MOVEMENT:
+                //player->faceCoords(message->x, message->y);
+                break;
+            case END_SCENE:
+                endScene();
+                break;
+            case SELECT_ON:
+                if (placingBuilding && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
-                    addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
-                    break;
-                }
-                else if (tileCoordsAreDisplayedMapTile(tileCoords[0], tileCoords[1]))
-                {
-                    if (currentZone->itemMap[tileCoords[0]][tileCoords[1]].size() > 0 && (std::abs(tileCoords[0] - player->tileLocation->x) <= 1) && (std::abs(tileCoords[1] - player->tileLocation->y) <= 1))
-                    {
-                        addCommand(InputMessage(PICK_UP_ITEM, tileCoords[0], tileCoords[1]));
-                        break;
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    int buildingXoffset = buildingBeingPlaced.tileMap.size() / 2;
+                    int buildingYoffset = buildingBeingPlaced.tileMap[0].size() / 2;
+                    if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset)) {
+                        addCommand(InputMessage(OVERWORLD_PLACE_BUILDING, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset, buildingBeingPlaced.type));
                     }
                 }
+                break;
+            default:
+                break;
             }
-            addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
-            break;
-        case BUTTON_2_ON:
-            addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
-            break;
-        case BUTTON_3_ON:
-            addCommand(InputMessage(START_MOVE_DOWN, message->x, message->y));
-            break;
-        case BUTTON_4_ON:
-            addCommand(InputMessage(START_MOVE_LEFT, message->x, message->y));
-            break;
-        case BUTTON_5_ON:
-            addCommand(InputMessage(START_MOVE_RIGHT, message->x, message->y));
-            break;
-        case BUTTON_6_ON:
-            player->getLocationUnitIsFacing(tileCoords);
-            addCommand(InputMessage(USER_ACTION, tileCoords[0], tileCoords[1]));
-            break;
-        case BUTTON_2_OFF:
-            addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
-            break;
-        case BUTTON_3_OFF:
-            addCommand(InputMessage(STOP_MOVE_DOWN, message->x, message->y));
-            break;
-        case BUTTON_4_OFF:
-            addCommand(InputMessage(STOP_MOVE_LEFT, message->x, message->y));
-            break;
-        case BUTTON_5_OFF:
-            addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
-            break;
-        default:
-            break;
+        } 
+        else
+        {
+            switch (message->id)
+            {
+            case POINTER_MOVEMENT:
+                //player->faceCoords(message->x, message->y);
+                break;
+            case END_SCENE:
+                endScene();
+                break;
+            case SELECT_ON:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
+                {
+                    Unit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
+                    if (unitAtLocation != nullptr && unitAtLocation != player)
+                    {
+                        addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
+                        break;
+                    }
+                    else if (tileCoordsAreDisplayedMapTile(tileCoords[0], tileCoords[1]))
+                    {
+                        if (currentZone->itemMap[tileCoords[0]][tileCoords[1]].size() > 0 && (std::abs(tileCoords[0] - player->tileLocation->x) <= 1) && (std::abs(tileCoords[1] - player->tileLocation->y) <= 1))
+                        {
+                            addCommand(InputMessage(PICK_UP_ITEM, tileCoords[0], tileCoords[1]));
+                            break;
+                        }
+                    }
+                }
+                addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
+                break;
+            case BUTTON_2_ON:
+                addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
+                break;
+            case BUTTON_3_ON:
+                addCommand(InputMessage(START_MOVE_DOWN, message->x, message->y));
+                break;
+            case BUTTON_4_ON:
+                addCommand(InputMessage(START_MOVE_LEFT, message->x, message->y));
+                break;
+            case BUTTON_5_ON:
+                addCommand(InputMessage(START_MOVE_RIGHT, message->x, message->y));
+                break;
+            case BUTTON_6_ON:
+                player->getLocationUnitIsFacing(tileCoords);
+                addCommand(InputMessage(USER_ACTION, tileCoords[0], tileCoords[1]));
+                break;
+            case BUTTON_2_OFF:
+                addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
+                break;
+            case BUTTON_3_OFF:
+                addCommand(InputMessage(STOP_MOVE_DOWN, message->x, message->y));
+                break;
+            case BUTTON_4_OFF:
+                addCommand(InputMessage(STOP_MOVE_LEFT, message->x, message->y));
+                break;
+            case BUTTON_5_OFF:
+                addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
+                break;
+            default:
+                break;
+            }
         }
+        
     }
     delete message;
 }
@@ -181,6 +212,11 @@ void RpgOverWorldScene::sceneLogic()
         case PICK_UP_ITEM:
             if (currentZone->itemMap[message->x][message->y].size() > 0 && (std::abs(message->x - player->tileLocation->x) <= 1) && (std::abs(message->y - player->tileLocation->y) <= 1)) {
                 pickUpItemAtLocation(player, message->x, message->y);
+            }
+            break;
+        case OVERWORLD_PLACE_BUILDING:
+            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y)) {
+                createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
             }
             break;
         case USER_ACTION:
@@ -277,7 +313,39 @@ void RpgOverWorldScene::renderScene()
         scrollCamera();
     }
     RpgTileGridScene::renderScene();
-    renderHUD();
+    if (displayHud)
+    {
+        renderHUD();
+    }
+
+    if (placingBuilding && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
+    {
+        getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+        int buildingXoffset = buildingBeingPlaced.tileMap.size() / 2;
+        int buildingYoffset = buildingBeingPlaced.tileMap[0].size() / 2;
+        bool buldingCanBePlaced = buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, tileCoords[0] - buildingXoffset, tileCoords[1] - buildingYoffset);
+
+        for (int x = 0; x < buildingBeingPlaced.tileMap.size(); x++)
+        {
+            for (int y = 0; y < buildingBeingPlaced.tileMap[x].size(); y++) {
+                coordsFromTileIndex(tileCoords[0] + x - buildingXoffset, tileCoords[1] + y - buildingYoffset, screenCoords);
+                if (buildingBeingPlaced.tileMap[x][y] != nullptr) {
+                    if (!buldingCanBePlaced)
+                    {
+                        SDL_SetTextureColorMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255, 125, 125);
+                        SDL_SetTextureAlphaMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 195);
+                    }
+                    else {
+                        SDL_SetTextureColorMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255, 255, 255);
+                        SDL_SetTextureAlphaMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255);
+                    }
+                    renderTexture(buildingBeingPlaced.tileMap[x][y]->textureKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
+                    SDL_SetTextureColorMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255, 255, 255);
+                    SDL_SetTextureAlphaMod(engine->textures[buildingBeingPlaced.tileMap[x][y]->textureKey].texture, 255);
+                }
+            }
+        }
+    }
 }
 
 void RpgOverWorldScene::renderHUD()

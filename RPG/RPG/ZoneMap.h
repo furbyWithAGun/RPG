@@ -64,6 +64,7 @@ class ZoneMap {
         void addDooDadToLocation(DooDad* dooDad, int xpos, int ypos);
         void destroyDooDad(DooDad* dooDad);
         void destroyBuilding(Building* building);
+        void destroyBuildingButNotunits(Building* building);
         std::vector<Item*> getItemsAtLocation(int xpos, int ypos);
         void removePortalAtLocation(int xpos, int ypos);
         std::string toSaveString();

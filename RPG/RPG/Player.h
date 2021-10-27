@@ -19,6 +19,7 @@ public:
     //methods
     //void setStartLocation(int x, int y);
     void update();
+    void updateCamera();
     void faceMouseDirection(int x, int y);
     void portalTo(int zoneId, int x, int y) override;
 

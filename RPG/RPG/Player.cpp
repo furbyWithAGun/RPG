@@ -64,19 +64,7 @@ void Player::update() {
     //centre on screen by changing scene x and y offsets
     if (cameraFollowPlayer)
     {
-        int coords[2];
-        int destCoords[2];
-        scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
-        scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
-        int x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
-        int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
-        int desiredCoords[2];
-        scene->desiredPlayerDrawLocation(desiredCoords);
-        int xer = desiredCoords[0] - x;
-        int yer = desiredCoords[1] - y;
-        scene->xOffset += desiredCoords[0] - x;
-        scene->yOffset += desiredCoords[1] - y;
-        updateCoords();
+        updateCamera();
     }
     
     //scene->yOffset = ypos - y;
@@ -84,6 +72,23 @@ void Player::update() {
     //scene->yOffset += ypos - y;
 
 
+}
+
+void Player::updateCamera()
+{
+    int coords[2];
+    int destCoords[2];
+    scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
+    scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
+    int x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
+    int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
+    int desiredCoords[2];
+    scene->desiredPlayerDrawLocation(desiredCoords);
+    int xer = desiredCoords[0] - x;
+    int yer = desiredCoords[1] - y;
+    scene->xOffset += desiredCoords[0] - x;
+    scene->yOffset += desiredCoords[1] - y;
+    updateCoords();
 }
 
 void Player::faceMouseDirection(int x, int y) {

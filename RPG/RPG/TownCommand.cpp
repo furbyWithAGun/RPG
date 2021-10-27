@@ -25,8 +25,8 @@ void TownCommand::actionOn(Unit* unit)
         switch (townCommandPromp->getSelectedOptionValue())
         {
         case 1:
-            //unit->scene->openMenu(TOWN_BUILD_MENU);
-            //unit->scene->closeMenu(RPG_OVERWORLD_MENU);
+            unit->scene->openMenu(TOWN_BUILD_MENU);
+            unit->scene->closeMenu(RPG_OVERWORLD_MENU);
             break;
         default:
             break;

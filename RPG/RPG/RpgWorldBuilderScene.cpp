@@ -6,8 +6,8 @@
 #include "LoadZoneMenu.h"
 
 //constants
-const int DEFAULT_DESIRED_TILES_DOWN = 10;
-const int DEFAULT_DESIRED_TILES_ACROSS = 19;
+//const int DEFAULT_DESIRED_TILES_DOWN = 10;
+//const int DEFAULT_DESIRED_TILES_ACROSS = 19;
 
 
 //constructor

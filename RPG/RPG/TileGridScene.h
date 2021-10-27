@@ -9,6 +9,15 @@ class BaseGameEngine;
 class Unit;
 class DooDad;
 
+//constants
+const int DEFAULT_TILE_HEIGHT = 50;
+const int DEFAULT_TILE_WIDTH = 50;
+const double LEFT_MENU_SIZE = 0.1;
+//const int DEFAULT_DESIRED_TILES_DOWN = 15;
+const int DEFAULT_DESIRED_TILES_DOWN = 12;
+const int DEFAULT_DESIRED_TILES_ACROSS = 20;
+//const int DEFAULT_DESIRED_TILES_ACROSS = 30;
+
 
 class TileGridScene : public GameScene
 {
@@ -24,6 +33,8 @@ public:
     int tileWidth;
     int nextZoneId;
     std::deque<Unit*> unitsNeedingPath;
+    int desiredTilesAcross;
+    int desiredTilesDown;
 
     //constructor
     TileGridScene();
@@ -54,8 +65,6 @@ public:
 
 protected:
     //attributes
-    int desiredTilesAcross;
-    int desiredTilesDown;
     
     //methods
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);

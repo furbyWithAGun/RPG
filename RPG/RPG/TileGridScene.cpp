@@ -2,14 +2,7 @@
 #include "BaseGameEngine.h"
 #include "Unit.h"
 
-//constants
-const int DEFAULT_TILE_HEIGHT = 50;
-const int DEFAULT_TILE_WIDTH = 50;
-const double LEFT_MENU_SIZE = 0.1;
-//const int DEFAULT_DESIRED_TILES_DOWN = 15;
-const int DEFAULT_DESIRED_TILES_DOWN = 12;
-const int DEFAULT_DESIRED_TILES_ACROSS = 20;
-//const int DEFAULT_DESIRED_TILES_ACROSS = 30;
+
 
 //constructors
 TileGridScene::TileGridScene() : GameScene() {

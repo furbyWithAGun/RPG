@@ -28,6 +28,9 @@ DooDad::DooDad(SaveObject saveObject) {
         case DOODAD_PASSABLE:
             passable = stoi(saveObject.attributes[i].valueString);
             break;
+        case DOODAD_ASSIGNED_TO_BUILDING:
+            assignedToBuildingId = stoi(saveObject.attributes[i].valueString);
+            break;
         case DOODAD_TILE_COORDS:
             tileCoords = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
             break;
@@ -54,6 +57,10 @@ std::string DooDad::toSaveString() {
     saveString += getAttributeString(getUniqueId(), DOODAD_TEXTURE_ID, textureKey);
     saveString += getAttributeString(getUniqueId(), DOODAD_TYPE, type);
     saveString += getAttributeString(getUniqueId(), DOODAD_PASSABLE, passable);
+    if (assignedToBuilding != nullptr)
+    {
+        saveString += getAttributeString(getUniqueId(), DOODAD_ASSIGNED_TO_BUILDING, assignedToBuilding->id);
+    }
     saveString += getAttributeString(getUniqueId(), DOODAD_TILE_COORDS, getIntVectorSaveString(tileCoords));
     saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(DOODAD) + "\n";
 
@@ -66,4 +73,6 @@ void DooDad::init()
 	scene = NULL;
     type = -1;
     passable = true;
+    assignedToBuilding = nullptr;
+    assignedToBuildingId = -1;
 }

@@ -236,6 +236,17 @@ void RpgTileGridScene::loadZones()
                 }
             }
         }
+        for (auto* dooDad : newZone->doodads)
+        {
+            if (dooDad->assignedToBuildingId != -1) {
+                for (auto building : newZone->buildings) {
+                    if (building->id == dooDad->assignedToBuildingId)
+                    {
+                        building->assignDooDad(dooDad);
+                    }
+                }
+            }
+        }
     }
     currentZone = zones[0];
     xOffset = 0;

@@ -2,6 +2,7 @@
 #include "RpgTileGridScene.h"
 #include "RpgKeysMouseController.h"
 #include "OverWorldSceneMenu.h"
+#include "TownBuildMenu.h"
 #include "InventoryMenu.h"
 #include "EquippedMenu.h"
 #include "itemSellmenu.h"
@@ -24,6 +25,7 @@ public:
     //attributes
     int frames = 0;
     RpgUnit* testUnit;
+    bool displayHud;
     //Player* player;
 
     //constructors

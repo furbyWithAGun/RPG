@@ -5,6 +5,9 @@
 static const int WIDTH_ADJUSTOR = 38;
 static const int HEIGHT_ADJUSTOR = 20;
 
+const int DEFAULT_DESIRED_TILES_DOWN_BUILDING = 30;
+const int DEFAULT_DESIRED_TILES_ACROSS_BUILDING = 40;
+
 enum INVENTORY_MENU_IDS {
     BUILDINGS_SCROLL_BOX,
     TOWN_BUILD_CANCEL_BUTTON
@@ -25,6 +28,12 @@ TownBuildMenu::TownBuildMenu(RpgOverWorldScene* gameScene, int newId, int newWid
 void TownBuildMenu::open()
 {
     GameMenu::open();
+    scene->displayHud = false;
+    scene->desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS_BUILDING;
+    scene->desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN_BUILDING;
+    scene->resizeTiles();
+    scene->player->updateCamera();
+    scene->player->cameraFollowPlayer = false;
 }
 
 void TownBuildMenu::draw()
@@ -44,6 +53,8 @@ bool TownBuildMenu::handleInput(InputMessage* message)
 
 void TownBuildMenu::buildElements()
 {
+    mainPanel = new PagedPanel(scene, COLOR_BLACK, xpos, ypos, width, height);
+    addElement(mainPanel);
     buildPageOne();
 }
 
@@ -82,7 +93,13 @@ void TownBuildMenu::buildPageOne()
         close();
         scene->placingBuilding = false;
         scene->openMenu(RPG_OVERWORLD_MENU);
+        scene->displayHud = true;
+        scene->player->cameraFollowPlayer = true;
+        scene->desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
+        scene->desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
+        scene->resizeTiles();
         });
     cancelButton->xpos = engine->screenWidth * 0.01;
     cancelButton->ypos = engine->screenHeight * 0.8;
+    mainPanel->addElementToPage(0, TOWN_BUILD_CANCEL_BUTTON, cancelButton);
 }

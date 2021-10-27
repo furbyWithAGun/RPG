@@ -132,6 +132,7 @@ void Building::unAssignUnit(RpgUnit* unit)
 void Building::assignDooDad(DooDad* dooDad)
 {
     assignedDooDads.push_back(dooDad);
+    dooDad->assignedToBuilding = this;
 }
 
 void Building::unAssignDooDad(DooDad* dooDad)
@@ -147,6 +148,7 @@ void Building::unAssignDooDad(DooDad* dooDad)
             dooDadIterator++;
         }
     }
+    dooDad->assignedToBuilding = nullptr;
 }
 
 void Building::setTileMap(std::vector<std::vector<BuildingTile*>> newTileMap)
@@ -223,44 +225,6 @@ std::vector<std::vector<BuildingTile*>> Building::getBuldingTileMapFromSaveStrin
         }
         returnVector.push_back(tileVector);
     }
-
-    /*for (std::string::size_type i = 0; i < saveString.size(); i++)
-    {
-        if (saveString[i] == '\n')
-        {
-            index2 = i;
-            break;
-        }
-    }
-    outerSize = stoi(saveString.substr(index1, index2 - index1));
-    index1 = index2 + 1;
-
-    for (int i = 0; i < outerSize; i++)
-    {
-        for (int j = index1; j < saveString.size(); j++)
-        {
-            if (saveString[j] == '\n')
-            {
-                index2 = j;
-                if (!gotInnerSize)
-                {
-                    innerSize = stoi(saveString.substr(index1, index2 - index1));
-                    gotInnerSize = true;
-                }
-                else if (innerCount < innerSize) {
-                    innerCount += 1;
-                }
-                if (innerCount == innerSize) {
-                    std::string substring = saveString.substr(index1, index2 - index1);
-                    returnVector.push_back(getBuldingTileVectorFromSaveString(saveString.substr(index1, index2 - index1 + 1)));
-                    innerCount = 0;
-                    gotInnerSize = false;
-                    index1 = index2 + 1;
-                    break;
-                }
-            }
-        }
-    }*/
 
 
     return returnVector;

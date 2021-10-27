@@ -216,6 +216,10 @@ void ZoneMap::destroyDooDad(DooDad* dooDad)
 			dooDadIterator++;
 		}
 	}
+	if (dooDad->assignedToBuilding != nullptr)
+	{
+		dooDad->assignedToBuilding->unAssignDooDad(dooDad);
+	}
 	delete dooDad;
 }
 
@@ -236,9 +240,16 @@ void ZoneMap::destroyBuilding(Building* building)
 		}
 		destroyUnit(unit);
 		//unit->toBeDeleted = true;
-		delete building;
 	}
+	delete building;
 }
+
+void ZoneMap::destroyBuildingButNotunits(Building* building)
+{
+	removeBuildingFromZone(building);
+	delete building;
+}
+
 
 std::vector<Item*> ZoneMap::getItemsAtLocation(int xpos, int ypos)
 {
