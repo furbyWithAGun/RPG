@@ -82,6 +82,11 @@ void RpgWorldBuilderScene::handleInput() {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                     addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
                 }
+                if (placingDooDad && coordsAreOnDisplayedMapTile(message->x, message->y))
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    addCommand(InputMessage(WORLD_BUILDER_PLACE_DOODAD, tileCoords[0], tileCoords[1], dooDadgBeingPlaced.type));
+                }
                 if (placingBuilding && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
@@ -118,6 +123,11 @@ void RpgWorldBuilderScene::handleInput() {
                 getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                 addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
             }
+            if (placingDooDad && coordsAreOnDisplayedMapTile(message->x, message->y) && controllerInterface->selectOn)
+            {
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                addCommand(InputMessage(WORLD_BUILDER_PLACE_DOODAD, tileCoords[0], tileCoords[1], dooDadgBeingPlaced.type));
+            }
             break;
         default:
             break;
@@ -144,6 +154,12 @@ void RpgWorldBuilderScene::sceneLogic() {
             if (getPortalAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
             {
                 sceneToEdit.addZonePortal(message->misc, { message->x, message->y }, portalBeingPlacedExitId, { portalBeingPlacedExitCoordsX, portalBeingPlacedExitCoordsY });
+            }
+            break;
+        case WORLD_BUILDER_PLACE_DOODAD:
+            if (getDooDadAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
+            {
+                sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, this), message->x, message->y);
             }
             break;
         case OPEN_PLACED_BUILDING_OPTIONS_MENU:
@@ -253,6 +269,14 @@ void RpgWorldBuilderScene::renderScene() {
             engine->renderText("P", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
         }
 
+        if (placingDooDad && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
+        {
+            getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+            coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
+            renderTexture(dooDadgBeingPlaced.textureKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
+            //engine->renderText("D", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+        }
+
         if (placingBuilding && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
         {
             getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
@@ -282,7 +306,8 @@ void RpgWorldBuilderScene::renderScene() {
 
         for (auto portal : sceneToEdit.portals) {
             engine->renderText("P", (tileWidth * portal->tileCoords[0]) + mainCanvasStartX + xOffset, tileHeight * portal->tileCoords[1] + yOffset, tileWidth, tileHeight);
-        }        
+        }
+
     }
 }
 

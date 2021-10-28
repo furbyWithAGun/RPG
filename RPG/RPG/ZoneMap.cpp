@@ -4,9 +4,7 @@
 #include "RpgGameConstants.h"
 #include "Unit.h"
 #include "TileGridScene.h"
-#include "DooDad.h"
-#include "HealingPad.h"
-#include "TownCommand.h"
+#include "DooDadFactory.h"
 #include <deque>
 #include <queue>
 #include "Player.h"
@@ -52,6 +50,7 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 	init();
 	std::vector< Building* > buildingsToAdd;
 	std::vector< Unit* > unitsToAdd;
+	std::vector< DooDad* > dooDadsToAdd;
 	for (int i = 0; i < saveObject.attributes.size(); i++)
 	{
 		switch (saveObject.attributes[i].attributeType) {
@@ -68,7 +67,7 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 			portals = getPortalVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
 		case DOODADS:
-			doodads = getDooDadVectorFromSaveString(saveObject.attributes[i].valueString);
+			dooDadsToAdd = getDooDadVectorFromSaveString(saveObject.attributes[i].valueString, (TileGridScene*)gameScene);
 			break;
 		case BUILDINGS:
 			buildingsToAdd = getBuildingVectorFromSaveString(saveObject.attributes[i].valueString);
@@ -96,6 +95,10 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 	for (auto unit : unitsToAdd) {
 		addUnitToLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
 	}
+
+	for (auto dooDad : dooDadsToAdd) {
+		addDooDadToLocation(dooDad, dooDad->tileCoords[0], dooDad->tileCoords[1]);
+	}
 }
 
 ZoneMap::ZoneMap(const ZoneMap& oldMap)
@@ -117,6 +120,7 @@ ZoneMap::ZoneMap(const ZoneMap& oldMap)
 	backGroundTile = oldMap.backGroundTile;
 	mobSpawn = oldMap.mobSpawn;
 	graph = oldMap.graph;
+	dooDadMap = oldMap.dooDadMap;
 }
 
 void ZoneMap::init() {
@@ -187,24 +191,36 @@ ZonePortal* ZoneMap::getPortalAtLocation(int xpos, int ypos)
 
 DooDad* ZoneMap::getDooDadAtLocation(int xpos, int ypos)
 {
-	for (auto dooDad : doodads) {
+	if (xpos >= dooDadMap.size()) {
+		return nullptr;
+	}
+	else if (ypos >= dooDadMap[0].size() || xpos < 0 || ypos < 0)
+	{
+		return nullptr;
+	}
+	return dooDadMap[xpos][ypos];
+
+	/*for (auto dooDad : doodads) {
 		if (dooDad->tileCoords[0] == xpos && dooDad->tileCoords[1] == ypos)
 		{
 			return dooDad;
 		}
 	}
-	return nullptr;
+	return nullptr;*/
 }
 
 void ZoneMap::addDooDadToLocation(DooDad* dooDad, int xpos, int ypos)
 {
+	dooDad->zoneId = id;
 	dooDad->tileCoords[0] = xpos;
 	dooDad->tileCoords[1] = ypos;
 	doodads.push_back(dooDad);
+	dooDadMap[xpos][ypos] = dooDad;
 }
 
 void ZoneMap::destroyDooDad(DooDad* dooDad)
 {
+	dooDadMap[dooDad->tileCoords[0]][dooDad->tileCoords[1]] = nullptr;
 	auto dooDadIterator = doodads.begin();
 	while (dooDadIterator != doodads.end())
 	{
@@ -557,6 +573,11 @@ void ZoneMap::update()
 
 	//remove dead units
 	removeDeadUnits();	
+
+	for (auto dooDad : doodads)
+	{
+		dooDad->update();
+	}
 }
 
 void ZoneMap::removeUnitFromLocation(Unit* unit, int x, int y) {
@@ -1320,7 +1341,7 @@ std::vector<ZonePortal*> ZoneMap::getPortalVectorFromSaveString(std::string save
 	return returnVector;
 }
 
-std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveString)
+std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveString, TileGridScene* gameScene)
 {
 	std::vector<DooDad*> returnVector;
 
@@ -1334,13 +1355,16 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 			{
 				switch (stoi(savedDooDads[i].attributes[j].valueString)) {
 				case HEALING_PAD:
-					returnVector.push_back(new HealingPad(savedDooDads[i].rawString));;
+					returnVector.push_back(new HealingPad(savedDooDads[i].rawString, gameScene));;
 					break;
 				case DOODAD_TOWN_COMMAND:
-					returnVector.push_back(new TownCommand(savedDooDads[i].rawString));;
+					returnVector.push_back(new TownCommand(savedDooDads[i].rawString, gameScene));;
+					break;
+				case DOODAD_TREE:
+					returnVector.push_back(new Tree(savedDooDads[i].rawString, gameScene));;
 					break;
 				default:
-					returnVector.push_back(new DooDad(savedDooDads[i].rawString));
+					returnVector.push_back(new DooDad(savedDooDads[i].rawString, gameScene));
 					break;
 				}
 				break;
@@ -1408,6 +1432,17 @@ void ZoneMap::clearItemMap()
 		}
 	}
 }
+void ZoneMap::clearDooDadMap()
+{
+	dooDadMap.clear();
+	for (size_t i = 0; i < tileMap[0].size(); i++)
+	{
+		dooDadMap.push_back({});
+		for (size_t j = 0; j < tileMap.size(); j++) {
+			dooDadMap[i].push_back(nullptr);
+		}
+	}
+}
 void ZoneMap::clearBuildingMap()
 {
 	buildingMap.clear();
@@ -1452,14 +1487,24 @@ void ZoneMap::buildBuildingMap()
 	}
 }
 
+void ZoneMap::buildDooDadMap()
+{
+	for (auto dooDad : doodads)
+	{
+		dooDadMap[dooDad->tileCoords[0]][dooDad->tileCoords[1]] = dooDad;
+	}
+}
+
 void ZoneMap::setUpMaps()
 {
 	clearUnitMap();
 	clearItemMap();
 	clearBuildingMap();
 	clearPortalMap();
+	clearDooDadMap();
 	buildPortalMap();
 	buildBuildingMap();
+	buildDooDadMap();
 }
 
 

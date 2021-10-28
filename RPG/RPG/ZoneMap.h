@@ -36,6 +36,7 @@ class ZoneMap {
         std::vector< std::vector<std::vector<Item*>> > itemMap;
         std::vector< std::vector<ZonePortal*> > portalMap;
         std::vector< std::vector<Building* > > buildingMap;
+        std::vector< std::vector<DooDad* > > dooDadMap;
         std::vector< DooDad* > doodads;
         std::vector< Building* > buildings;
         std::vector<Unit*> units;
@@ -114,14 +115,16 @@ class ZoneMap {
         std::string getDooDadVectorSaveString(std::vector<DooDad*> vector);
         std::string getBuildingVectorSaveString(std::vector<Building*> vector);
         std::vector<ZonePortal*> getPortalVectorFromSaveString(std::string saveString);
-        std::vector<DooDad*> getDooDadVectorFromSaveString(std::string saveString);
+        std::vector<DooDad*> getDooDadVectorFromSaveString(std::string saveString, TileGridScene* gameScene);
         std::vector<Building*> getBuildingVectorFromSaveString(std::string saveString);
         void clearUnitMap();
         void clearItemMap();
+        void clearDooDadMap();
         void clearBuildingMap();
         void clearPortalMap();
         void buildPortalMap();
         void buildBuildingMap();
+        void buildDooDadMap();
         void setUpMaps();
 };
 

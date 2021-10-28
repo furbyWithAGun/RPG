@@ -22,6 +22,7 @@ void MapBuilderTileButton::onClick() {
     scene->placingTile = true;
     scene->placingPortal = false;
     scene->placingBuilding = false;
+    scene->placingDooDad = false;
     scene->tileBeingPlaced = tile;
 }
 

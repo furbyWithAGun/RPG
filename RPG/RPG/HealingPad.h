@@ -6,7 +6,8 @@ public:
 	//contructors
 	HealingPad();
 	HealingPad(TileGridScene* gameScene, int textureKey, int tileX, int tileY);
-	HealingPad(SaveObject saveObject);
+	HealingPad(TileGridScene* gameScene);
+	HealingPad(SaveObject saveObject, TileGridScene* gameScene);
 
 	//methods
 	void walkOn(Unit* unit) override;

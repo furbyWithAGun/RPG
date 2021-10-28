@@ -166,6 +166,7 @@
     <ClCompile Include="CombatText.cpp" />
     <ClCompile Include="ControllerInterface.cpp" />
     <ClCompile Include="DooDad.cpp" />
+    <ClCompile Include="DooDadFactory.cpp" />
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="EquippedMenu.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -232,6 +233,7 @@
     <ClCompile Include="TownCommand.cpp" />
     <ClCompile Include="TownBuildMenu.cpp" />
     <ClCompile Include="TownsPerson.cpp" />
+    <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UiElement.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitState.cpp" />
@@ -259,6 +261,7 @@
     <ClInclude Include="CombatText.h" />
     <ClInclude Include="ControllerInterface.h" />
     <ClInclude Include="DooDad.h" />
+    <ClInclude Include="DooDadFactory.h" />
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="EquippedMenu.h" />
     <ClInclude Include="GameMenu.h" />
@@ -326,6 +329,7 @@
     <ClInclude Include="TownCommand.h" />
     <ClInclude Include="TownBuildMenu.h" />
     <ClInclude Include="TownsPerson.h" />
+    <ClInclude Include="Tree.h" />
     <ClInclude Include="UiElement.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitState.h" />

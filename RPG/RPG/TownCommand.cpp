@@ -11,12 +11,22 @@ TownCommand::TownCommand(TileGridScene* gameScene, int textureKey, int tileX, in
 	init();
 }
 
-TownCommand::TownCommand(SaveObject saveObject) : DooDad(saveObject)
+TownCommand::TownCommand(TileGridScene* gameScene, int tileX, int tileY) : DooDad(gameScene, tileX, tileY)
+{
+    init();
+}
+
+TownCommand::TownCommand(TileGridScene* gameScene) : DooDad(gameScene)
+{
+    init();
+}
+
+TownCommand::TownCommand(SaveObject saveObject, TileGridScene* gameScene) : DooDad(saveObject, gameScene)
 {
 	init();
 }
 
-void TownCommand::actionOn(Unit* unit)
+void TownCommand::actionOn(Unit* unit, int actionType)
 {
 	SelectPrompt* townCommandPromp;
     townCommandPromp = new SelectPrompt(unit->scene, COLOR_BLACK, unit->scene->engine->screenWidth * 0.5, unit->scene->engine->screenHeight * 0.5, unit->scene->engine->screenWidth * 0.1, unit->scene->engine->screenHeight * 0.1);

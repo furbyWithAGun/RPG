@@ -155,6 +155,16 @@ void RpgOverWorldScene::handleInput()
                             break;
                         }
                     }
+                    DooDad* targetDooDad;
+                    targetDooDad = currentZone->getDooDadAtLocation(tileCoords[0], tileCoords[1]);
+                    if (tileCoordsAreDisplayedMapTile(tileCoords[0], tileCoords[1]) && targetDooDad != nullptr)
+                    {
+                        if (targetDooDad->type == DOODAD_TREE && targetDooDad->passable == false && (std::abs(tileCoords[0] - player->tileLocation->x) <= 1) && (std::abs(tileCoords[1] - player->tileLocation->y) <= 1))
+                        {
+                            addCommand(InputMessage(OVERWORLD_STRIKE, tileCoords[0], tileCoords[1]));
+                            break;
+                        }
+                    }
                 }
                 addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
                 break;
@@ -235,7 +245,14 @@ void RpgOverWorldScene::sceneLogic()
             actionedDooDad = zones[player->zone]->getDooDadAtLocation(message->x, message->y);
             if (actionedDooDad != nullptr)
             {
-                actionedDooDad->actionOn(player);
+                actionedDooDad->actionOn(player, OVERWORLD_USE);
+            }
+            break;
+        case OVERWORLD_STRIKE:
+            actionedDooDad = zones[player->zone]->getDooDadAtLocation(message->x, message->y);
+            if (actionedDooDad != nullptr && (std::abs(actionedDooDad->tileCoords[0] - player->tileLocation->x) <= 1) && (std::abs(actionedDooDad->tileCoords[1] - player->tileLocation->y) <= 1))
+            {
+                actionedDooDad->actionOn(player, OVERWORLD_STRIKE);
             }
             break;
         default:

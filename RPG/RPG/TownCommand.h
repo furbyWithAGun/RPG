@@ -8,10 +8,12 @@ public:
 	//contructors
 	TownCommand();
 	TownCommand(TileGridScene* gameScene, int textureKey, int tileX, int tileY);
-	TownCommand(SaveObject saveObject);
+	TownCommand(TileGridScene* gameScene, int tileX, int tileY);
+	TownCommand(TileGridScene* gameScene);
+	TownCommand(SaveObject saveObject, TileGridScene* gameScene);
 
 	//methods
-	void actionOn(Unit* unit) override;
+	void actionOn(Unit* unit, int actionType) override;
 
 private:
 	void init();

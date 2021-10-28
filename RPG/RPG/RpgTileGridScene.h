@@ -16,7 +16,9 @@ public:
     Player* player;
     std::unordered_map<int, std::unordered_map<int, int>> teamRelations;
     Building buildingBeingPlaced;
+    DooDad dooDadgBeingPlaced;
     bool placingBuilding;
+    bool placingDooDad;
 
     //constructor
     RpgTileGridScene();

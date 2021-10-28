@@ -11,7 +11,12 @@ HealingPad::HealingPad(TileGridScene* gameScene, int textureKey, int tileX, int 
 	init();
 }
 
-HealingPad::HealingPad(SaveObject saveObject) : DooDad(saveObject)
+HealingPad::HealingPad(TileGridScene* gameScene) : DooDad(gameScene)
+{
+	init();
+}
+
+HealingPad::HealingPad(SaveObject saveObject, TileGridScene* gameScene) : DooDad(saveObject, gameScene)
 {
 	init();
 }

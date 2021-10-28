@@ -23,6 +23,7 @@ void MapBuilderPortalButton::onClick() {
     scene->placingTile = false;
     scene->placingBuilding = false;
     scene->placingPortal = true;
+    scene->placingDooDad = false;
     scene->portalBeingPlaced = portalKey;
 }
 

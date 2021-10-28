@@ -31,6 +31,7 @@ void RpgTileGridScene::declareSceneAssets()
     //tile textures
     texturesToLoad.insert({ WATER, "images/water2.png" });
     texturesToLoad.insert({ TREE, "images/tree2.png" });
+    texturesToLoad.insert({ TEXTURE_TREE_STUMP, "images/treeStump.png" });
     texturesToLoad.insert({ GRASS, "images/grass2.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });
     texturesToLoad.insert({ PORTAL_CAVE_HILL, "images/caveEntrance.png" });
