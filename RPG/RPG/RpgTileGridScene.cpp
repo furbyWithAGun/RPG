@@ -249,7 +249,7 @@ void RpgTileGridScene::loadZones()
             }
         }
     }
-    currentZone = zones[0];
+    currentZone = zones[4];
     xOffset = 0;
     yOffset = 0;
 }
