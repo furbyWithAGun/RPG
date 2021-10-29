@@ -13,6 +13,7 @@
 #include "BlueRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
+#include "RpgTileGridScene.h"
 
 ZoneMap::ZoneMap() {
 	init();
@@ -394,16 +395,53 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 	}
 
+	int startX = ((RpgTileGridScene*)scene)->player->tileLocation->x - (scene->desiredTilesAcross / 2) - 1;
+	if (startX < 0)
+	{
+		startX = 0;
+	}
+	if (startX >= tileMap[0].size())
+	{
+		startX = tileMap[0].size();
+	}
+	int endX = ((RpgTileGridScene*)scene)->player->tileLocation->x + (scene->desiredTilesAcross / 2) + 1;
+	if (endX < 0)
+	{
+		endX = 0;
+	}
+	if (endX >= tileMap[0].size())
+	{
+		endX = tileMap[0].size();
+	}
+	int startY = ((RpgTileGridScene*)scene)->player->tileLocation->y - (scene->desiredTilesDown / 2) - 1;
+	if (startY < 0)
+	{
+		startY = 0;
+	}
+	if (startY >= tileMap.size())
+	{
+		startY = tileMap.size();
+	}
+	int endY = ((RpgTileGridScene*)scene)->player->tileLocation->y + (scene->desiredTilesDown / 2) + 1;
+	if (endY < 0)
+	{
+		endY = 0;
+	}
+	if (endY >= tileMap.size())
+	{
+		endY = tileMap.size();
+	}
+
 	//draw zone
-	for (int i = 0; i < tileMap.size(); i++) {
-		for (int j = 0; j < tileMap[i].size(); j++) {
+	for (int i = startY; i < endY; i++) {
+		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				//render tiles
 				scene->renderTexture(scene->mapTiles[tileMap[i][j]].textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 			}
 		}
-		for (int j = 0; j < tileMap[i].size(); j++) {
+		for (int j = startX; j < endX; j++) {
 			//render buildings
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
@@ -419,7 +457,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 
 		//render portals
-		for (int j = 0; j < tileMap[i].size(); j++) {
+		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				if (getPortalAtLocation(j, i) != nullptr) {
@@ -429,7 +467,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 
 		//render doodads
-		for (int j = 0; j < tileMap[i].size(); j++) {
+		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				if (getDooDadAtLocation(j, i) != nullptr) {
@@ -439,7 +477,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 
 		//render items
-		for (int j = 0; j < tileMap[i].size(); j++) {
+		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (int k = 0; k < getItemsAtLocation(j, i).size(); k++) {
@@ -448,7 +486,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			}
 		}
 		//render units
-		for (int j = 0; j < tileMap[i].size(); j++) {
+		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (auto unit : unitMap[j][i]) {
