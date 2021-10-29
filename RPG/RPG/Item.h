@@ -11,6 +11,8 @@ enum ITEM_SAVE_ATTRIBUTES {
     ITEM_EQUIPABLE,
     ITEM_TYPE,
     ITEM_VALUE,
+    ITEM_STACKABLE,
+    ITEM_STACK_SIZE,
     NUM_ITEM_ATTRIBUTES
 };
 
@@ -25,6 +27,8 @@ public:
     bool equipable;
     int type;
     int value;
+    bool stackable;
+    int stackSize;
 
     //constructors
     Item();

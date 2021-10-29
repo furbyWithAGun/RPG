@@ -61,13 +61,14 @@ public:
     void addItemsToMap(int zone, int x, int y, std::vector<Item*> items);
     bool coordsAreOnDisplayedMapTile(int x, int y);
     bool tileCoordsAreOnDisplayedMapTile(int x, int y);
+
+    void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
     
 
 protected:
     //attributes
     
     //methods
-    void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
     bool tileCoordsAreDisplayedMapTile(int x, int y);
     //virtual Unit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
     

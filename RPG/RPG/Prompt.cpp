@@ -38,6 +38,17 @@ Prompt* Prompt::addCallBack(std::function<void()> newCallback)
 	return this;
 }
 
+bool Prompt::gettingTextInput()
+{
+	for (auto element : subElements) {
+		if (element->gettingText)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Prompt::init()
 {
 	callback = NULL;

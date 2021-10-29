@@ -13,7 +13,7 @@
 #include "BlueRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
-#include "RpgTileGridScene.h"
+//#include "RpgTileGridScene.h"
 
 ZoneMap::ZoneMap() {
 	init();
@@ -395,7 +395,16 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 	}
 
-	int startX = ((RpgTileGridScene*)scene)->player->tileLocation->x - (scene->desiredTilesAcross / 2) - 1;
+	int startcoords[2];
+	int endcoords[2];
+	scene->getTileIndexFromScreenCoords(0, 0, startcoords);
+	scene->getTileIndexFromScreenCoords(scene->engine->screenWidth + scene->tileWidth * 2, scene->engine->screenHeight + scene->tileHeight * 2, endcoords);
+	int startX = startcoords[0];
+	int startY = startcoords[1];
+	int endX = endcoords[0];
+	int endY = endcoords[1];
+
+	//int startX = ((RpgTileGridScene*)scene)->player->tileLocation->x - (scene->desiredTilesAcross / 2) - 1;
 	if (startX < 0)
 	{
 		startX = 0;
@@ -404,7 +413,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		startX = tileMap[0].size();
 	}
-	int endX = ((RpgTileGridScene*)scene)->player->tileLocation->x + (scene->desiredTilesAcross / 2) + 1;
+	//int endX = ((RpgTileGridScene*)scene)->player->tileLocation->x + (scene->desiredTilesAcross / 2) + 1;
 	if (endX < 0)
 	{
 		endX = 0;
@@ -413,7 +422,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		endX = tileMap[0].size();
 	}
-	int startY = ((RpgTileGridScene*)scene)->player->tileLocation->y - (scene->desiredTilesDown / 2) - 1;
+	//int startY = ((RpgTileGridScene*)scene)->player->tileLocation->y - (scene->desiredTilesDown / 2) - 1;
 	if (startY < 0)
 	{
 		startY = 0;
@@ -422,7 +431,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		startY = tileMap.size();
 	}
-	int endY = ((RpgTileGridScene*)scene)->player->tileLocation->y + (scene->desiredTilesDown / 2) + 1;
+	//int endY = ((RpgTileGridScene*)scene)->player->tileLocation->y + (scene->desiredTilesDown / 2) + 1;
 	if (endY < 0)
 	{
 		endY = 0;

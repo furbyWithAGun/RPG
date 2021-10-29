@@ -96,6 +96,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ ITEM_LINEN_PANTS, "images/LinenPants.png" });
     texturesToLoad.insert({ ITEM_LINEN_GLOVES, "images/LinenGloves.png" });
     texturesToLoad.insert({ ITEM_LINEN_BOOTS, "images/LinenBoots.png" });
+    //resources
+    texturesToLoad.insert({ ITEM_LOGS, "images/logs.png" });
     //building icons
     texturesToLoad.insert({ BUILDING_ICON_WEAPON_SHOP, "images/signWeapons.png" });
     texturesToLoad.insert({ BUILDING_ICON_ARMOUR_SHOP, "images/signArmour.png" });
@@ -249,7 +251,7 @@ void RpgTileGridScene::loadZones()
             }
         }
     }
-    currentZone = zones[4];
+    currentZone = zones[0];
     xOffset = 0;
     yOffset = 0;
 }

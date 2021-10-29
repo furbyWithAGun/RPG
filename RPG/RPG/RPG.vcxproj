@@ -177,6 +177,7 @@
     <ClCompile Include="HealingPad.cpp" />
     <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="InputMessage.cpp" />
+    <ClCompile Include="InputPrompt.cpp" />
     <ClCompile Include="InventoryMenu.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemBuyMenu.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="HealingPad.h" />
     <ClInclude Include="IdleState.h" />
     <ClInclude Include="InputMessage.h" />
+    <ClInclude Include="InputPrompt.h" />
     <ClInclude Include="InventoryMenu.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemBuyMenu.h" />

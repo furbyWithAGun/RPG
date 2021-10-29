@@ -451,7 +451,10 @@
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
     <ClCompile Include="DooDadFactory.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
+    <ClCompile Include="InputPrompt.cpp">
+      <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -735,7 +738,10 @@
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
     <ClInclude Include="DooDadFactory.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="InputPrompt.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

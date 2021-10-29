@@ -23,6 +23,7 @@ ScrollBox::ScrollBox(int elementId, GameScene* gameScene, SDL_Color spriteBackgr
 void ScrollBox::init()
 {
     selectableElements = true;
+    displaySubElements = false;
     selectedElement = nullptr;
     numElementsToDisplay = 1;
     displayIndex = 0;

@@ -27,6 +27,7 @@ public:
     int numElementsToDisplay;
     int displayIndex;
     bool gettingText;
+    bool displaySubElements;
 
     //constructors
     UiElement();

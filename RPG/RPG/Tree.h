@@ -1,5 +1,6 @@
 #pragma once
 #include "DooDad.h"
+#include "ItemFactory.h"
 const int TREE_REGROW_TIME = 100000;
 
 enum TREE_SAVE_ATTRIBUTES {

@@ -84,6 +84,7 @@ void UiElement::init() {
     dynamicPosition = dynamicSize = true;
     layout = FLOW_LAYOUT;
     alignment = VERTICAL;
+    displaySubElements = true;
 }
 
 void UiElement::init(int newId) {
@@ -95,13 +96,17 @@ void UiElement::draw() {
 	if (active)
 	{
 		Sprite::draw();
-        /*for (auto element : subElements)
+        if (displaySubElements)
         {
-            if (element->active) {
-                element->draw();
+            for (auto element : subElements)
+            {
+                if (element->active) {
+                    element->draw();
+                }
             }
-        }*/
-	}
+
+        }
+    }
 }
 
 bool UiElement::handleInput(InputMessage* message)

@@ -6,6 +6,7 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// map rendering layers
 // hover tool tips
 // add costs to buildings
 // design tavern

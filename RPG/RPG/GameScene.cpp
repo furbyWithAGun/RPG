@@ -26,11 +26,16 @@ void GameScene::handleInput()
 {
     InputMessage* message = new InputMessage();
     std::vector<InputMessage*> messagesToSendBack;
+    gettingTextInput = false;
     if (openPrompts.size() > 0) {
         controllerInterface->populateMessageQueue();
         while (controllerInterface->getNextMessage(message)) {
             bool promptsConsumeMessage = false;
             for (auto prompt : openPrompts) {
+                if (prompt->gettingTextInput())
+                {
+                    gettingTextInput = true;
+                }
                 if (prompt->handleInput(message)) {
                     promptsConsumeMessage = true;
                     break;
@@ -67,7 +72,6 @@ void GameScene::handleInput()
     {
         handleTextInput();
     }
-    gettingTextInput = false;
     for (auto menu : menus)
     {
         if (menu.second->isGettingText() && menu.second->isActive) {

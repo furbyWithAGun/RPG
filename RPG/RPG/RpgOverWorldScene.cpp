@@ -33,7 +33,25 @@ void RpgOverWorldScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
 {
     if (currentZone->itemMap[x][y].size() > 0)
     {
-        unit->inventory.push_back(currentZone->itemMap[x][y][0]);
+        if (currentZone->itemMap[x][y][0]->stackable)
+        {
+            bool itemAlreadyInInventory = false;
+            for (auto item : unit->inventory)
+            {
+                if (item->textureKey == currentZone->itemMap[x][y][0]->textureKey)
+                {
+                    itemAlreadyInInventory = true;
+                    item->stackSize += currentZone->itemMap[x][y][0]->stackSize;
+                }
+            }
+            if (!itemAlreadyInInventory)
+            {
+                unit->inventory.push_back(currentZone->itemMap[x][y][0]);
+            }
+        }
+        else {
+            unit->inventory.push_back(currentZone->itemMap[x][y][0]);
+        }
         currentZone->itemMap[x][y].erase(currentZone->itemMap[x][y].begin());
         menus[INVENTORY_MENU]->update();
     }
@@ -61,7 +79,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 

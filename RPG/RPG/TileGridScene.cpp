@@ -140,7 +140,6 @@ void TileGridScene::addItemsToMap(int zone, int x, int y, std::vector<Item*> ite
     }
 }
 
-//protected methods
 void TileGridScene::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
     tileIndices[0] = floor(((x - xOffset - mainCanvasStartX)) / tileWidth);
     tileIndices[1] = floor((y - yOffset) / tileHeight);

@@ -1,3 +1,4 @@
+#pragma once
 #include "UiElement.h"
 #include <functional>
 
@@ -19,6 +20,7 @@ public:
     virtual void draw() override;
     void free();
     Prompt* addCallBack(std::function<void()> newCallback);
+    bool gettingTextInput();
 
 protected:
     //attributes

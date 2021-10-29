@@ -1,6 +1,7 @@
 #include "InventoryMenu.h"
 #include "RpgOverWorldScene.h"
 #include "Player.h"
+#include "inputPrompt.h"
 
 enum INVENTORY_MENU_IDS {
     ITEMS_SCROLL_BOX,
@@ -39,7 +40,13 @@ void InventoryMenu::update()
     items->clear();
     for (int i=0 ; i < scene->player->inventory.size(); i++)
     {
-        items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
+        if (scene->player->inventory[i]->stackSize > 1)
+        {
+            items->addElement(new MenuText(scene, scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize), 0, 0), i);
+        }
+        else {
+            items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
+        }
     }
     items->selectedElement = nullptr;
     if (items->subElements.size() <= items->numElementsToDisplay)
@@ -71,8 +78,21 @@ void InventoryMenu::buildElements()
         int selection = items->getSelectedElementValue();
         if (selection != -1)
         {
-            scene->player->dropItemFromInventory(selection);
-            this->update();
+            if (scene->player->inventory[selection]->stackSize > 1)
+            {
+                InputPrompt* qtyPrompt = new InputPrompt(scene, "Drop How Many?", COLOR_BLACK, width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                qtyPrompt->addCallBack([](std::string enteredText) {
+                    if (true)
+                    {
+
+                    }
+                    });
+                scene->addPrompt(qtyPrompt);
+            }
+            else {
+                scene->player->dropItemFromInventory(selection);
+                this->update();
+            }
         }
         });
     addElement(INVENTORY_DROP_BUTTON, dropBtn);

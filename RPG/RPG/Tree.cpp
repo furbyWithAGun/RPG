@@ -58,6 +58,9 @@ void Tree::actionOn(Unit* unit, int actionType)
             state = TREE_STATE_CUT;
             textureKey = TEXTURE_TREE_STUMP;
             regrowTick = 0;
+            Item* logs = createNewItem(ITEM_LOGS);
+            logs->stackSize = 10;
+            unit->scene->addItemsToMap(unit->zone, tileCoords[0], tileCoords[1], {logs});
         }
         break;
     default:

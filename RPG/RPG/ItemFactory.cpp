@@ -10,9 +10,24 @@ struct ItemTemplate {
 	int value;
 	int armour;
 	bool twoHanded;
+	bool stackable;
+	int stackSize;
 };
 
 std::unordered_map<int, ItemTemplate> itemTemplates = {
+	{ITEM_LOGS, ItemTemplate{
+		"Logs",
+		RESOURCE,
+		ITEM_LOGS,
+		-1,
+		0,
+		0,
+		1,
+		0,
+		false,
+		true,
+		1
+	}},
 	{ITEM_SHORT_SWORD, ItemTemplate{
 		"Short Sword",
 		WEAPON,
@@ -22,7 +37,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		10,
 		200,
 		0,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_LONG_SWORD, ItemTemplate{
 		"Long Sword",
@@ -33,7 +50,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		22,
 		800,
 		0,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_CLUB, ItemTemplate{
 		"Club",
@@ -44,7 +63,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		6,
 		75,
 		0,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_MACE, ItemTemplate{
 		"Mace",
@@ -55,7 +76,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		14,
 		500,
 		0,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_RAG_BODY, ItemTemplate{
 		"Rag Shirt",
@@ -66,7 +89,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		50,
 		1,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_RAG_BOOTS, ItemTemplate{
 		"Rag Boots",
@@ -77,7 +102,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		50,
 		1,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_RAG_GLOVES, ItemTemplate{
 		"Rag Gloves",
@@ -88,7 +115,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		50,
 		1,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_RAG_HAT, ItemTemplate{
 		"Rag Hat",
@@ -99,7 +128,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		50,
 		1,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_RAG_PANTS, ItemTemplate{
 		"Rag Pants",
@@ -110,7 +141,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		50,
 		1,
-		false
+		false,
+		false,
+		1
 	}},
 	{ITEM_LINEN_BODY, ItemTemplate{
 		"Linen Shirt",
@@ -121,7 +154,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		100,
 		2,
-		false
+		false,
+		false,
+		1
 	}},
 	{ ITEM_LINEN_BOOTS, ItemTemplate{
 		"Linen Boots",
@@ -132,7 +167,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		100,
 		2,
-		false
+		false,
+		false,
+		1
 	} },
 	{ ITEM_LINEN_GLOVES, ItemTemplate{
 		"Linen Gloves",
@@ -143,7 +180,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		100,
 		2,
-		false
+		false,
+		false,
+		1
 	} },
 	{ ITEM_LINEN_HAT, ItemTemplate{
 		"Linen Hat",
@@ -154,7 +193,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		100,
 		2,
-		false
+		false,
+		false,
+		1
 	} },
 	{ ITEM_LINEN_PANTS, ItemTemplate{
 		"Linen Pants",
@@ -165,7 +206,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		100,
 		2,
-		false
+		false,
+		false,
+		1
 	} }
 };
 
@@ -192,6 +235,14 @@ Item* createNewItem(int itemType)
 		((Armour*)itemToReturn)->value = itemTemplate.value;
 		((Armour*)itemToReturn)->armour = itemTemplate.armour;
 		((Armour*)itemToReturn)->slot = itemTemplate.slot;
+		break;
+	case RESOURCE:
+		itemToReturn = new Item();
+		itemToReturn->name = itemTemplate.name;
+		itemToReturn->textureKey = itemTemplate.textureKey;
+		itemToReturn->value = itemTemplate.value;
+		itemToReturn->stackable= itemTemplate.stackable;
+		itemToReturn->stackSize= itemTemplate.stackSize;
 		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");

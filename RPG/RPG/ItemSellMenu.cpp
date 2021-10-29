@@ -71,7 +71,7 @@ void ItemSellMenu::buildElements()
         if (items->getSelectedElementValue() != -1)
         {
             Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
-            int goldToAdd = selectedItem->value / 2;
+            int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
             if (goldToAdd < 1)
             {
                 goldToAdd = 1;

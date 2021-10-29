@@ -40,6 +40,12 @@ Item::Item(SaveObject saveObject)
         case ITEM_VALUE:
             value = stoi(saveObject.attributes[i].valueString);
             break;
+        case ITEM_STACKABLE:
+            stackable = stoi(saveObject.attributes[i].valueString);
+            break;
+        case ITEM_STACK_SIZE:
+            stackSize = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -61,6 +67,8 @@ Item::Item(const Item& oldItem)
     equipable = oldItem.equipable;
     type = oldItem.type;
     value = oldItem.value;
+    stackable = oldItem.stackable;
+    stackSize = oldItem.stackSize;
 }
 
 std::string Item::toSaveString(bool withHeaderAndFooter)
@@ -79,6 +87,8 @@ std::string Item::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), ITEM_EQUIPABLE, equipable);
     saveString += getAttributeString(getUniqueId(), ITEM_TYPE, type);
     saveString += getAttributeString(getUniqueId(), ITEM_VALUE, value);
+    saveString += getAttributeString(getUniqueId(), ITEM_STACKABLE, stackable);
+    saveString += getAttributeString(getUniqueId(), ITEM_STACK_SIZE, stackSize);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_ITEM) + "\n";
@@ -95,6 +105,8 @@ void Item::init()
     equipable = false;
     type = ITEM_TYPE_UNKNOWN;
     value = 1;
+    stackSize = 1;
+    stackable = false;
 }
 
 int getUniqueItemId()
