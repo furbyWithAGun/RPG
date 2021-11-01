@@ -104,6 +104,7 @@ class BaseGameEngine
         void setSigmoidFunction(double omega, double alpha);
         double sigmoid(double x);
         double pickElementByProbability(std::vector<ChanceObject> items);
+        void setTicksPerSecond(int newTicksPerScond);
 
     protected:
         

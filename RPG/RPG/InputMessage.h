@@ -1,11 +1,13 @@
 #pragma once
 #include <string>
+#include <vector>
 
 class InputMessage {
 public:
     //attributes
     int id, x, y, misc;
     std::string text;
+    std::vector<int> params;
 
     //constructors
     InputMessage();
@@ -13,6 +15,7 @@ public:
     InputMessage(int messageId, int xVal, int yVal);
     InputMessage(int messageId, int xVal, int yVal, std::string messageText);
     InputMessage(int messageId, int xVal, int yVal, int miscVal);
+    InputMessage(int messageId, int xVal, int yVal, int miscVal, std::vector<int> paramsVal);
 
     //methods
 

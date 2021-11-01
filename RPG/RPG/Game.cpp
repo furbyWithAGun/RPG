@@ -6,8 +6,15 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// map rendering layers
+// fruit trees and berry bushes
+// wood cost to buildings
+// remove starter buildings
 // hover tool tips
+// rework inventory menu
+// add all of tims textures
+// add another cave
+// add more items
+// map rendering layers
 // add costs to buildings
 // design tavern
 // design blacksmith
@@ -38,6 +45,7 @@ int main(int argc, char* args[])
     //local vars
     BaseGameEngine engine = BaseGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
 
+    engine.setTicksPerSecond(RPG_GAME_TICKS_PER_SECOND);
     engine.init();
     engine.addScene(MAIN_MENU_SCENE, new MainMenuScene(&engine));
     engine.setNextScene(MAIN_MENU_SCENE);

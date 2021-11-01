@@ -8,6 +8,7 @@ enum INVENTORY_MENU_IDS {
     INVENTORY_CLOSE_BUTTON,
     INVENTORY_DROP_BUTTON,
     INVENTORY_EQUIP_BUTTON,
+    INVENTORY_EAT_BUTTON,
     OPEN_EQUIPPED_MENU_BUTTON
 };
 
@@ -138,6 +139,26 @@ void InventoryMenu::buildElements()
         }
         });
     addElement(INVENTORY_EQUIP_BUTTON, equipBtn);
+
+    MenuButton* eatBtn = new MenuButton(INVENTORY_EAT_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.55);
+    eatBtn->setText("Eat")->addOnClick([this, items]() {
+        if (items->getSelectedElementValue() != -1)
+        {
+            Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
+            if (selectedItem->type == FOOD)
+            {
+                Food* itemToEat = (Food*)selectedItem;
+                scene->player->eatFood(itemToEat);
+                if (itemToEat->stackSize <= 0)
+                {
+                    scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
+                }
+                scene->menus[EQUIPPED_MENU]->update();
+                update();
+            }
+        }
+        });
+    addElement(INVENTORY_EAT_BUTTON, eatBtn);
 
     MenuButton* equipMenuBtn = new MenuButton(OPEN_EQUIPPED_MENU_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25);
     equipMenuBtn->setText("Equipment")->addOnClick([this]() {

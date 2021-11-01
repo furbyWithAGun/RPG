@@ -18,6 +18,13 @@ InputMessage::InputMessage(int messageId, int xVal, int yVal, int miscVal) {
     misc = miscVal;
 }
 
+InputMessage::InputMessage(int messageId, int xVal, int yVal, int miscVal, std::vector<int> paramsVal)
+{
+    init(messageId, xVal, yVal);
+    misc = miscVal;
+    params = paramsVal;
+}
+
 InputMessage::InputMessage(int messageId, int xVal, int yVal, std::string messageText) {
     init(messageId, xVal, yVal);
     text = messageText;

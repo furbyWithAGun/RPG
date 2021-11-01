@@ -108,7 +108,7 @@ std::string Tree::toSaveString(bool withHeaderAndFooter)
 void Tree::init()
 {
 	type = DOODAD_TREE;
-    textureKey = TREE;
+    //textureKey = TREE;
     passable = false;
     health = 10;
     maxhealth = 10;

@@ -170,6 +170,8 @@
     <ClCompile Include="Equipment.cpp" />
     <ClCompile Include="EquippedMenu.cpp" />
     <ClCompile Include="Food.cpp" />
+    <ClCompile Include="FoodEffect.cpp" />
+    <ClCompile Include="FruitTree.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="BaseGameEngine.cpp" />
     <ClCompile Include="GameMenu.cpp" />
@@ -239,6 +241,7 @@
     <ClCompile Include="UiElement.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UnitState.cpp" />
+    <ClCompile Include="UnitTempEffect.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="ZoneBuilderMenu.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
@@ -267,6 +270,8 @@
     <ClInclude Include="Equipment.h" />
     <ClInclude Include="EquippedMenu.h" />
     <ClInclude Include="Food.h" />
+    <ClInclude Include="FoodEffect.h" />
+    <ClInclude Include="FruitTree.h" />
     <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Graph.h" />
@@ -337,6 +342,7 @@
     <ClInclude Include="UiElement.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UnitState.h" />
+    <ClInclude Include="UnitTempEffect.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="ZoneBuilderMenu.h" />
     <ClInclude Include="ZoneMap.h" />

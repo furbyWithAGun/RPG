@@ -459,6 +459,15 @@
     <ClCompile Include="Food.cpp">
       <Filter>Source Files\RpgGame\Items</Filter>
     </ClCompile>
+    <ClCompile Include="UnitTempEffect.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FruitTree.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -748,6 +757,15 @@
     </ClInclude>
     <ClInclude Include="Food.h">
       <Filter>Header Files\RpgGame\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitTempEffect.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FruitTree.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

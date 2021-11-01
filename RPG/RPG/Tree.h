@@ -7,7 +7,8 @@ enum TREE_SAVE_ATTRIBUTES {
 	TREE_HEALTH = NUM_DOODAD_ATTRIBUTES,
 	TREE_MAX_HEALTH,
 	TREE_STATE,
-	TREE_REGROW_TICK
+	TREE_REGROW_TICK,
+	NUM_TREE_SAVE_ATTRIBUTES
 };
 
 enum TREE_STATES {
@@ -15,6 +16,14 @@ enum TREE_STATES {
 	TREE_STATE_GROWING,
 	TREE_STATE_FULLY_GROWN
 };
+
+enum TREE_VARIATIONS {
+	TREE_TYPE_ONE,
+	TREE_TYPE_TWO,
+	TREE_TYPE_THREE,
+	NUM_TREE_VARIATIONS
+};
+
 
 class Tree : public DooDad
 {
@@ -29,8 +38,8 @@ public:
 	Tree(SaveObject saveObject, TileGridScene* gameScene);
 
 	//methods
-	void actionOn(Unit* unit, int actionType) override;
-	void update() override;
+	virtual void actionOn(Unit* unit, int actionType) override;
+	virtual void update() override;
 	virtual std::string toSaveString(bool withHeaderAndFooter = true);
 
 private:

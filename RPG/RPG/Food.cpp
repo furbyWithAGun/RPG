@@ -18,7 +18,7 @@ Food::Food(SaveObject saveObject) : Item(saveObject)
             healthRegen = stoi(saveObject.attributes[i].valueString);
             break;
         case FOOD_HEALTH_REGEN_DURATION:
-            healthRegenDuration = stoi(saveObject.attributes[i].valueString);
+            healthRegenDurationInSeconds = stoi(saveObject.attributes[i].valueString);
             break;
         default:
             break;
@@ -43,7 +43,7 @@ std::string Food::toSaveString(bool withHeaderAndFooter)
     saveString += Item::toSaveString(false);
     saveString += getAttributeString(getUniqueId(), FOOD_HUNGER_GAIN, hungerGain);
     saveString += getAttributeString(getUniqueId(), FOOD_HEALTH_REGEN, healthRegen);
-    saveString += getAttributeString(getUniqueId(), FOOD_HEALTH_REGEN_DURATION, healthRegenDuration);
+    saveString += getAttributeString(getUniqueId(), FOOD_HEALTH_REGEN_DURATION, healthRegenDurationInSeconds);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_EQUIPMENT) + "\n";
@@ -53,4 +53,8 @@ std::string Food::toSaveString(bool withHeaderAndFooter)
 
 void Food::init()
 {
+    hungerGain = 1;
+    healthRegen = 1;
+    healthRegenDurationInSeconds = 10;
+    stackable = true;
 }

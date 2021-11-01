@@ -109,6 +109,12 @@ RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(save
         case UNIT_COMBAT_LEVEL:
             combatLevel = stoi(saveObject.attributes[i].valueString);
             break;
+        case UNIT_HUNGER_LEVEL:
+            hungerLevel = stoi(saveObject.attributes[i].valueString);
+            break;
+        case UNIT_MAX_HUNGER_LEVEL:
+            maxHungerLevel = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -361,12 +367,52 @@ void RpgUnit::update()
             getPathTick++;
         }
     }
+    updateFoodEffects();
 }
 
 void RpgUnit::setScene(RpgTileGridScene* gameScene)
 {
     scene = gameScene;
     Unit::setScene(gameScene);
+}
+
+void RpgUnit::eatFood(Food* foodToEat)
+{
+    foodToEat->stackSize -= 1;
+    hungerLevel += foodToEat->hungerGain;
+    FoodEffect* foodEffect = new FoodEffect(foodToEat);
+    for (auto effect : foodEffects) {
+        if (effect->name == foodEffect->name)
+        {
+            effect->tick = 0;
+            return;
+        }
+    }
+    if (foodEffects.size() < 3)
+    {
+        foodEffects.push_back(foodEffect);
+        return;
+    }
+
+    foodEffects.pop_front();
+    foodEffects.push_back(foodEffect);
+}
+
+void RpgUnit::updateFoodEffects()
+{
+    auto effectIterator = foodEffects.begin();
+    while (effectIterator != foodEffects.end())
+    {
+        (*effectIterator)->onUpdate(this);
+        if ((*effectIterator)->tick >= (*effectIterator)->duration) {
+            
+            delete (*effectIterator);
+            effectIterator = foodEffects.erase(effectIterator);
+        }
+        else {
+            effectIterator++;
+        }
+    }
 }
 
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
@@ -407,6 +453,8 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL, combatExperienceNextLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_LAST_LEVEL, combatExperienceLastLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_LEVEL, combatLevel);
+    saveString += getAttributeString(getUniqueId(), UNIT_HUNGER_LEVEL, hungerLevel);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_HUNGER_LEVEL, maxHungerLevel);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_UNIT) + "\n";
@@ -417,6 +465,8 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 void RpgUnit::init()
 {
     scene = nullptr;
+    maxHungerLevel = 500;
+    hungerLevel = maxHungerLevel;
     maxMana = 1;
     mana = 1;
     dex = 1;

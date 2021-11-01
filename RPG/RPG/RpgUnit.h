@@ -1,7 +1,7 @@
 #pragma once
 #include "Unit.h"
 #include "ItemFactory.h"
-
+#include "FoodEffect.h"
 #include "Attack.h"
 #include "RpgGameConstants.h"
 
@@ -33,6 +33,8 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL,
     UNIT_COMBAT_EXPERIENCE_LAST_LEVEL,
     UNIT_COMBAT_LEVEL,
+    UNIT_HUNGER_LEVEL,
+    UNIT_MAX_HUNGER_LEVEL,
     NUM_RPG_UNIT_ATTRIBUTES
 };
 
@@ -44,7 +46,9 @@ class RpgUnit : public Unit
 {
 public:
     //attributes
-    
+    std::deque<FoodEffect*> foodEffects;
+    int hungerLevel;
+    int maxHungerLevel;
     int team;
     int gold;
     int goldValue;
@@ -114,6 +118,8 @@ public:
     void updateAggro();
     virtual void update() override;
     void setScene(RpgTileGridScene* gameScene);
+    void eatFood(Food* foodToEat);
+    void updateFoodEffects();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

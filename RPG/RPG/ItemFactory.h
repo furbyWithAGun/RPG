@@ -14,6 +14,7 @@
 #include "Club.h"
 #include "Mace.h"
 #include <unordered_map>
+#include "Food.h";
 
 Item* createNewItem(int itemType);
 Item* createNewItemBlankId(int itemType);

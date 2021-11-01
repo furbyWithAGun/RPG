@@ -85,7 +85,7 @@ void RpgWorldBuilderScene::handleInput() {
                 if (placingDooDad && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
-                    addCommand(InputMessage(WORLD_BUILDER_PLACE_DOODAD, tileCoords[0], tileCoords[1], dooDadgBeingPlaced.type));
+                    addCommand(InputMessage(WORLD_BUILDER_PLACE_DOODAD, tileCoords[0], tileCoords[1], dooDadgBeingPlaced.type, {dooDadgBeingPlaced.textureKey}));
                 }
                 if (placingBuilding && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
@@ -108,6 +108,10 @@ void RpgWorldBuilderScene::handleInput() {
             else if (sceneToEdit.getBuildingAtLocation(tileCoords[0], tileCoords[1]) != nullptr)
             {
                 addCommand(InputMessage(OPEN_PLACED_BUILDING_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
+            }
+            else if (sceneToEdit.getDooDadAtLocation(tileCoords[0], tileCoords[1]) != nullptr)
+            {
+                addCommand(InputMessage(OPEN_PLACED_DOODAD_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
             }
             break;
         case SELECT_OFF:
@@ -160,6 +164,7 @@ void RpgWorldBuilderScene::sceneLogic() {
             if (getDooDadAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
             {
                 sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, this), message->x, message->y);
+                //sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, message->params[0], this), message->x, message->y);
             }
             break;
         case OPEN_PLACED_BUILDING_OPTIONS_MENU:
@@ -184,6 +189,29 @@ void RpgWorldBuilderScene::sceneLogic() {
             buildingSelectPrompt->active = true;
             buildingSelectPrompt->closeOnClickMiss = true;
             addPrompt(buildingSelectPrompt);
+            break;
+        case OPEN_PLACED_DOODAD_OPTIONS_MENU:
+            DooDad* selectedDooDad;
+            selectedDooDad = sceneToEdit.getDooDadAtLocation(message->x, message->y);
+            int dooDadCoords[2];
+            coordsFromTileIndex(message->x, message->y, dooDadCoords);
+            SelectPrompt* dooDadSelectPrompt;
+            dooDadSelectPrompt = new SelectPrompt(this, COLOR_BLACK, dooDadCoords[0] + tileWidth, dooDadCoords[1] + tileHeight, 300, 300);
+            dooDadSelectPrompt->addSelectOption("Delete DooDad", 1);
+            dooDadSelectPrompt->addCallBack([this, dooDadSelectPrompt, selectedDooDad]() {
+                switch (dooDadSelectPrompt->getSelectedOptionValue())
+                {
+                case 1:
+                    sceneToEdit.destroyDooDad(selectedDooDad);
+                    break;
+                default:
+                    break;
+                }
+                removePrompt(dooDadSelectPrompt);
+                });
+            dooDadSelectPrompt->active = true;
+            dooDadSelectPrompt->closeOnClickMiss = true;
+            addPrompt(dooDadSelectPrompt);
             break;
         case OPEN_PLACED_PORTAL_OPTIONS_MENU:
             ZonePortal* selectedPortal;

@@ -16,7 +16,7 @@ public:
     //attributes
     int hungerGain;
     int healthRegen;
-    int healthRegenDuration;
+    int healthRegenDurationInSeconds;
 
     //constructors
     Food();

@@ -34,7 +34,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TREE_2, "images/treeTim2.png" });
     texturesToLoad.insert({ TREE_3, "images/treeTim3.png" });
     //texturesToLoad.insert({ TREE, "images/tree2.png" });
-    texturesToLoad.insert({ TEXTURE_TREE_STUMP, "images/treeStump.png" });
+    texturesToLoad.insert({ TEXTURE_TREE_STUMP, "images/treeStumpTim.png" });
     //texturesToLoad.insert({ GRASS, "images/tallGrass.png" });
     texturesToLoad.insert({ GRASS, "images/grass2.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });

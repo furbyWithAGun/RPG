@@ -14,8 +14,34 @@ struct ItemTemplate {
 	int stackSize;
 };
 
+struct FoodTemplate {
+	int hungerGain;
+	int healthRegen;
+	int healthRegenDurationInSeconds;
+};
+
+std::unordered_map<int, FoodTemplate> foodTemplates = {
+	{ITEM_APPLE, FoodTemplate{
+		10,
+		1,
+		120
+}}
+};
+
 std::unordered_map<int, ItemTemplate> itemTemplates = {
-	{ITEM_LOGS, ItemTemplate{
+	{ITEM_APPLE, ItemTemplate{
+		"Apple",
+		FOOD,
+		ITEM_APPLE,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_LOGS, ItemTemplate{
 		"Logs",
 		RESOURCE,
 		ITEM_LOGS,
@@ -244,6 +270,17 @@ Item* createNewItem(int itemType)
 		itemToReturn->stackable= itemTemplate.stackable;
 		itemToReturn->stackSize= itemTemplate.stackSize;
 		break;
+	case FOOD:
+		itemToReturn = new Food();
+		itemToReturn->name = itemTemplate.name;
+		itemToReturn->textureKey = itemTemplate.textureKey;
+		itemToReturn->value = itemTemplate.value;
+		itemToReturn->stackable = itemTemplate.stackable;
+		itemToReturn->stackSize = itemTemplate.stackSize;
+		((Food*)itemToReturn)->hungerGain = foodTemplates[itemType].hungerGain;
+		((Food*)itemToReturn)->healthRegen = foodTemplates[itemType].healthRegen;
+		((Food*)itemToReturn)->healthRegenDurationInSeconds = foodTemplates[itemType].healthRegenDurationInSeconds;
+		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");
 		itemToReturn = new Item();
@@ -278,6 +315,25 @@ Item* createNewItemBlankId(int itemType)
 		((Armour*)itemToReturn)->armour = itemTemplate.armour;
 		((Armour*)itemToReturn)->slot = itemTemplate.slot;
 		return itemToReturn;
+		break;
+	case RESOURCE:
+		itemToReturn = new Item();
+		itemToReturn->name = itemTemplate.name;
+		itemToReturn->textureKey = itemTemplate.textureKey;
+		itemToReturn->value = itemTemplate.value;
+		itemToReturn->stackable = itemTemplate.stackable;
+		itemToReturn->stackSize = itemTemplate.stackSize;
+		break;
+	case FOOD:
+		itemToReturn = new Food();
+		itemToReturn->name = itemTemplate.name;
+		itemToReturn->textureKey = itemTemplate.textureKey;
+		itemToReturn->value = itemTemplate.value;
+		itemToReturn->stackable = itemTemplate.stackable;
+		itemToReturn->stackSize = itemTemplate.stackSize;
+		((Food*)itemToReturn)->hungerGain = foodTemplates[itemType].hungerGain;
+		((Food*)itemToReturn)->healthRegen = foodTemplates[itemType].healthRegen;
+		((Food*)itemToReturn)->healthRegenDurationInSeconds = foodTemplates[itemType].healthRegenDurationInSeconds;
 		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");
