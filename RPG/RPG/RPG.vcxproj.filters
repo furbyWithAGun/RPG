@@ -456,6 +456,9 @@
     <ClCompile Include="InputPrompt.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Food.cpp">
+      <Filter>Source Files\RpgGame\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -742,6 +745,9 @@
     </ClInclude>
     <ClInclude Include="InputPrompt.h">
       <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Food.h">
+      <Filter>Header Files\RpgGame\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

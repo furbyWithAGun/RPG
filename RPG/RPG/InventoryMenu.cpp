@@ -80,11 +80,32 @@ void InventoryMenu::buildElements()
         {
             if (scene->player->inventory[selection]->stackSize > 1)
             {
-                InputPrompt* qtyPrompt = new InputPrompt(scene, "Drop How Many?", COLOR_BLACK, width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
-                qtyPrompt->addCallBack([](std::string enteredText) {
+                InputPrompt* qtyPrompt = new InputPrompt(scene, "Drop How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                qtyPrompt->addCallBack([selection, this](std::string enteredText) {
                     if (true)
                     {
-
+                        int numToDrop;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToDrop = std::stoi(enteredText);
+                        }
+                        else {
+                            numToDrop = 0;
+                        }
+                        
+                        if (numToDrop >= scene->player->inventory[selection]->stackSize)
+                        {
+                            scene->player->dropItemFromInventory(selection);
+                            update();
+                        }
+                        else if (numToDrop > 0){
+                            Item* itemToDrop = createNewItem(scene->player->inventory[selection]->textureKey);
+                            itemToDrop->stackSize = numToDrop;
+                            scene->addItemsToMap(scene->player->zone, scene->player->tileLocation->x, scene->player->tileLocation->y, {itemToDrop});
+                            scene->player->inventory[selection]->stackSize -= numToDrop;
+                            update();
+                        }
                     }
                     });
                 scene->addPrompt(qtyPrompt);

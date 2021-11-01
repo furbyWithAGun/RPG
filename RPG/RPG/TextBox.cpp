@@ -44,6 +44,10 @@ bool TextBox::handleInput(InputMessage* message) {
     bool messageConsumed = false;
     if (active)
     {
+        if (message->id != 7 && message->id != 23 && message->id != 4 && message->id != 5)
+        {
+            int x = 78;
+        }
         switch (message->id)
         {
         case SELECT_ON:

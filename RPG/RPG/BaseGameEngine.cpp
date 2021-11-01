@@ -11,7 +11,8 @@ const int KEY_R_VALUE = 255;
 const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
-const double DEFAULT_TICK_DELAY = 6;
+const double DEFAULT_TICKS_PER_SECOND = 150;
+const double DEFAULT_TICK_DELAY = 1000 / DEFAULT_TICKS_PER_SECOND;
 const std::string DEFAULT_BUTTON_TEXTURE_PATH = "images/buttonBackground.png";
 const double DEFAULT_SIGMOID_OMEGA = 1;
 const double DEFAULT_SIGMOID_ALPHA = 1.1;
@@ -31,6 +32,7 @@ BaseGameEngine::BaseGameEngine(std::string title, int width, int height) {
     sceneRunning = false;
     gameRunning = false;
     sceneLock = 0;
+    ticksPerSecond = DEFAULT_TICKS_PER_SECOND;
     tickDelay = DEFAULT_TICK_DELAY;
     auto_texturekey = AUTO_TEXTURE_KEY_START;
 }
@@ -613,4 +615,14 @@ std::string getChancObjectVectorSaveString(std::vector<ChanceObject> vector) {
         returnString += getChanceObjectSaveString(vector[i]) + "\n";
     }
     return returnString;
+}
+
+bool stringIsAnInt(std::string string)
+{
+    for (char& c : string) {
+        if(!std::isdigit(c)){
+            return false;
+        }
+    }
+    return true;
 }

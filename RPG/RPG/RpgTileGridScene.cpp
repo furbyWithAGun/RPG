@@ -30,8 +30,12 @@ void RpgTileGridScene::declareSceneAssets()
     TileGridScene::declareSceneAssets();
     //tile textures
     texturesToLoad.insert({ WATER, "images/water2.png" });
-    texturesToLoad.insert({ TREE, "images/tree2.png" });
+    texturesToLoad.insert({ TREE, "images/treeTim.png" });
+    texturesToLoad.insert({ TREE_2, "images/treeTim2.png" });
+    texturesToLoad.insert({ TREE_3, "images/treeTim3.png" });
+    //texturesToLoad.insert({ TREE, "images/tree2.png" });
     texturesToLoad.insert({ TEXTURE_TREE_STUMP, "images/treeStump.png" });
+    //texturesToLoad.insert({ GRASS, "images/tallGrass.png" });
     texturesToLoad.insert({ GRASS, "images/grass2.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });
     texturesToLoad.insert({ PORTAL_CAVE_HILL, "images/caveEntrance.png" });
@@ -44,6 +48,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ CAVE_WALL_TOP, "images/caveWallTop.png" });
     texturesToLoad.insert({ CAVE_WALL_BOTTOM, "images/caveWallBottom.png" });
     texturesToLoad.insert({ CAVE_STAIRS_UP, "images/caveStairsUp.png" });
+    texturesToLoad.insert({ TILE_DIRT_ROAD, "images/DirtRoadFilled.png" });
 
     //UI textures
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
@@ -415,6 +420,7 @@ void RpgTileGridScene::createTiles()
     mapTiles[CAVE_PATH] = MapTile(true, CAVE_PATH);
     mapTiles[CAVE_WALL_TOP] = MapTile(false, CAVE_WALL_TOP);
     mapTiles[CAVE_WALL_BOTTOM] = MapTile(false, CAVE_WALL_BOTTOM);
+    mapTiles[TILE_DIRT_ROAD] = MapTile(true , TILE_DIRT_ROAD);
 
     resizeTiles();
 }

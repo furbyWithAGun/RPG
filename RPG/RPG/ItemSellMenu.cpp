@@ -2,6 +2,7 @@
 #include "RpgOverWorldScene.h"
 #include "ItemShop.h"
 #include "Player.h"
+#include "InputPrompt.h"
 
 enum ITEM_SELL_MENU_IDS {
     ITEMS_SCROLL_BOX,
@@ -36,9 +37,17 @@ void ItemSellMenu::update()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
+
     for (int i = 0; i < scene->player->inventory.size(); i++)
     {
-        items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
+        if (scene->player->inventory[i]->stackSize > 1)
+        {
+            items->addElement(new MenuText(scene, scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize), 0, 0), i);
+        }
+        else {
+            items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
+        }
+        //items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
     }
     items->selectedElement = nullptr;
 }
@@ -71,15 +80,59 @@ void ItemSellMenu::buildElements()
         if (items->getSelectedElementValue() != -1)
         {
             Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
-            int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
-            if (goldToAdd < 1)
+            if (selectedItem->stackSize > 1)
             {
-                goldToAdd = 1;
+                InputPrompt* qtyPrompt = new InputPrompt(scene, "Sell How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                qtyPrompt->setInputText(std::to_string(selectedItem->stackSize));
+                qtyPrompt->addCallBack([selectedItem, this, items](std::string enteredText) {
+                    if (true)
+                    {
+                        int numToSell;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToSell = std::stoi(enteredText);
+                        }
+                        else {
+                            numToSell = 0;
+                        }
+                        if (numToSell >= selectedItem->stackSize)
+                        {
+                            int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
+                            if (goldToAdd < 1)
+                            {
+                                goldToAdd = 1;
+                            }
+                            scene->player->gold += goldToAdd;
+                            scene->player->deleteItemFromInventory(items->getSelectedElementValue());
+                            scene->menus[EQUIPPED_MENU]->update();
+                            update();
+                        }
+                        else if (numToSell > 0){
+                            int goldToAdd = (selectedItem->value * numToSell) / 2;
+                            if (goldToAdd < 1)
+                            {
+                                goldToAdd = 1;
+                            }
+                            scene->player->gold += goldToAdd;
+                            selectedItem->stackSize -= numToSell;
+                            scene->menus[EQUIPPED_MENU]->update();
+                            update();
+                        }
+                    }
+                    });
+                scene->addPrompt(qtyPrompt);
             }
-            scene->player->gold += goldToAdd;
-            scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-            scene->menus[EQUIPPED_MENU]->update();
-            update();
+            else {
+                int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
+                if (goldToAdd < 1)
+                {
+                    goldToAdd = 1;
+                }
+                scene->player->gold += goldToAdd;
+                scene->player->deleteItemFromInventory(items->getSelectedElementValue());
+                scene->menus[EQUIPPED_MENU]->update();
+                update();
+            }
         }
         });
     addElement(ITEM_SELL_BUTTON, equipBtn);

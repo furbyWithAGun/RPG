@@ -79,7 +79,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 

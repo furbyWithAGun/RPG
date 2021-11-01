@@ -54,6 +54,7 @@ class BaseGameEngine
         SDL_SpinLock sceneRunningLock;
         SDL_SpinLock sceneLock;
         double tickDelay;
+        double ticksPerSecond;
         std::unordered_map<int, GameScene*> scenes;
 
         //constructor
@@ -134,3 +135,4 @@ std::string getChanceObjectSaveString(ChanceObject chanceObject);
 ChanceObject getChanceObjectFromSaveObject(SaveObject saveObject);
 std::vector<ChanceObject> getChanceObjectVectorFromSaveObject(std::string saveString);
 std::string getChancObjectVectorSaveString(std::vector<ChanceObject> vector);
+bool stringIsAnInt(std::string string);

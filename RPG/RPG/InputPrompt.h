@@ -2,7 +2,8 @@
 #include "Prompt.h"
 
 enum INPUT_PROMPT_ELEMENT_IDS {
-    TXT_INPUT
+    TXT_INPUT,
+    TXT_PROMPT
 };
 
 
@@ -28,6 +29,7 @@ public:
     void draw() override;
     void free();
     InputPrompt* addCallBack(std::function<void(std::string text)> newCallback);
+    void setInputText(std::string newInputText);
 
 
 private:

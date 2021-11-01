@@ -26,16 +26,15 @@ void GameScene::handleInput()
 {
     InputMessage* message = new InputMessage();
     std::vector<InputMessage*> messagesToSendBack;
-    gettingTextInput = false;
     if (openPrompts.size() > 0) {
+        if (gettingTextInput)
+        {
+            handleTextInput();
+        }
         controllerInterface->populateMessageQueue();
         while (controllerInterface->getNextMessage(message)) {
             bool promptsConsumeMessage = false;
             for (auto prompt : openPrompts) {
-                if (prompt->gettingTextInput())
-                {
-                    gettingTextInput = true;
-                }
                 if (prompt->handleInput(message)) {
                     promptsConsumeMessage = true;
                     break;
@@ -72,12 +71,24 @@ void GameScene::handleInput()
     {
         handleTextInput();
     }
+
+    gettingTextInput = false;
+
     for (auto menu : menus)
     {
         if (menu.second->isGettingText() && menu.second->isActive) {
             gettingTextInput = true;
         }
     }
+    if (!gettingTextInput) {
+        for (auto prompt : openPrompts) {
+            if (prompt->gettingTextInput())
+            {
+                gettingTextInput = true;
+            }
+        }
+    }
+
     while (controllerInterface->getNextMessage(message)) {
         if (!sendMessageToMenus(message)) {
             messagesToSendBack.push_back(new InputMessage(message->id, message->x, message->y, message->misc));
@@ -261,6 +272,8 @@ void GameScene::addCommand(InputMessage newMessage) {
 
 void GameScene::handleTextInput()
 {
+
+    bool messageConsumed = false;
     if (controllerInterface != NULL && gettingTextInput)
     {
         controllerInterface->populateTextInputQueue();
@@ -280,7 +293,16 @@ void GameScene::handleTextInput()
             case SELECT_OFF:
             case SCROLL_UP:
             case SCROLL_DOWN:
-                sendMessageToMenus(message);
+                for (auto prompt : openPrompts)
+                {
+                    if (prompt->handleInput(message)) {
+                        messageConsumed = true;
+                    }
+                }
+                if (!messageConsumed)
+                {
+                    sendMessageToMenus(message);
+                }
                 break;
             default:
                 break;

@@ -1,2 +1,17 @@
-﻿  GameScene.cpp
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
+﻿  InventoryMenu.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(66,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(66,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(66,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(66,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(70,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(70,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(76,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(76,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(83,178): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(83,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(121,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(121,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(142,125): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(142,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
