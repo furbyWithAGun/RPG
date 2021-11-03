@@ -29,33 +29,44 @@ void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
 {
 }
 
+
 void RpgOverWorldScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
 {
     if (currentZone->itemMap[x][y].size() > 0)
     {
-        if (currentZone->itemMap[x][y][0]->stackable)
-        {
-            bool itemAlreadyInInventory = false;
-            for (auto item : unit->inventory)
-            {
-                if (item->textureKey == currentZone->itemMap[x][y][0]->textureKey)
-                {
-                    itemAlreadyInInventory = true;
-                    item->stackSize += currentZone->itemMap[x][y][0]->stackSize;
-                }
-            }
-            if (!itemAlreadyInInventory)
-            {
-                unit->inventory.push_back(currentZone->itemMap[x][y][0]);
-            }
-        }
-        else {
-            unit->inventory.push_back(currentZone->itemMap[x][y][0]);
-        }
+        unit->addToInventory(currentZone->itemMap[x][y][0]);
         currentZone->itemMap[x][y].erase(currentZone->itemMap[x][y].begin());
-        menus[INVENTORY_MENU]->update();
     }
 }
+//
+//void RpgOverWorldScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
+//{
+//    if (currentZone->itemMap[x][y].size() > 0)
+//    {
+//        if (currentZone->itemMap[x][y][0]->stackable)
+//        {
+//            bool itemAlreadyInInventory = false;
+//            for (auto item : unit->inventory)
+//            {
+//                if (item->textureKey == currentZone->itemMap[x][y][0]->textureKey)
+//                {
+//                    itemAlreadyInInventory = true;
+//                    item->stackSize += currentZone->itemMap[x][y][0]->stackSize;
+//                    break;
+//                }
+//            }
+//            if (!itemAlreadyInInventory)
+//            {
+//                unit->inventory.push_back(currentZone->itemMap[x][y][0]);
+//            }
+//        }
+//        else {
+//            unit->inventory.push_back(currentZone->itemMap[x][y][0]);
+//        }
+//        currentZone->itemMap[x][y].erase(currentZone->itemMap[x][y].begin());
+//        menus[INVENTORY_MENU]->update();
+//    }
+//}
 
 void RpgOverWorldScene::loadZone(int zoneId)
 {

@@ -21,7 +21,11 @@ struct FoodTemplate {
 };
 
 std::unordered_map<int, FoodTemplate> foodTemplates = {
-	{ITEM_APPLE, FoodTemplate{
+	{ITEM_RASPBERRY, FoodTemplate{
+		10,
+		2,
+		50
+}},{ITEM_APPLE, FoodTemplate{
 		10,
 		1,
 		120
@@ -29,7 +33,19 @@ std::unordered_map<int, FoodTemplate> foodTemplates = {
 };
 
 std::unordered_map<int, ItemTemplate> itemTemplates = {
-	{ITEM_APPLE, ItemTemplate{
+	{ITEM_RASPBERRY, ItemTemplate{
+		"Raspberry",
+		FOOD,
+		ITEM_RASPBERRY,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_APPLE, ItemTemplate{
 		"Apple",
 		FOOD,
 		ITEM_APPLE,

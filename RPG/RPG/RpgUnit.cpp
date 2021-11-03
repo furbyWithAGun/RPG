@@ -415,6 +415,31 @@ void RpgUnit::updateFoodEffects()
     }
 }
 
+void RpgUnit::addToInventory(Item* itemToAdd)
+{
+    if (itemToAdd->stackable)
+    {
+        bool itemAlreadyInInventory = false;
+        for (auto item : inventory)
+        {
+            if (item->name == itemToAdd->name)
+            {
+                itemAlreadyInInventory = true;
+                item->stackSize += itemToAdd->stackSize;
+                break;
+            }
+        }
+        if (!itemAlreadyInInventory)
+        {
+            inventory.push_back(itemToAdd);
+        }
+    }
+    else {
+        inventory.push_back(itemToAdd);
+    }
+    scene->menus[INVENTORY_MENU]->update();
+}
+
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;

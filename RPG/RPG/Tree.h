@@ -1,7 +1,7 @@
 #pragma once
 #include "DooDad.h"
 #include "ItemFactory.h"
-const int TREE_REGROW_TIME = 100000;
+const int TREE_REGROW_TIME = 10000;
 
 enum TREE_SAVE_ATTRIBUTES {
 	TREE_HEALTH = NUM_DOODAD_ATTRIBUTES,

@@ -22,6 +22,20 @@ DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene)
 	case HEALING_PAD:
 		dooDadToReturn = new HealingPad(gameScene);
 		break;
+	case DOODAD_APPLE_TREE:
+		dooDadToReturn = new FruitTree(gameScene, ITEM_APPLE);
+		dooDadToReturn->textureKey = TEXTURE_APPLE_TREE_WITH_FRUIT;
+		dooDadToReturn->type = DOODAD_APPLE_TREE;
+		((FruitTree*)dooDadToReturn)->grownFruitTextureKey = TEXTURE_APPLE_TREE_WITH_FRUIT;
+		((FruitTree*)dooDadToReturn)->noFruitTextureKey = TEXTURE_APPLE_TREE_NO_FRUIT;
+		break;
+	case DOODAD_RASPBERRY_BUSH:
+		dooDadToReturn = new BerryBush(gameScene, ITEM_RASPBERRY);
+		dooDadToReturn->textureKey = TEXTURE_RASPBERRY_BUSH_WITH_BERRIES;
+		dooDadToReturn->type = DOODAD_RASPBERRY_BUSH;
+		((BerryBush*)dooDadToReturn)->grownBerryTextureKey = TEXTURE_RASPBERRY_BUSH_WITH_BERRIES;
+		((BerryBush*)dooDadToReturn)->noBerryTextureKey = TEXTURE_RASPBERRY_BUSH_NO_BERRIES;
+		break;
 	default:
 		printf("Warning: creating blank DooDad() from DooDad factory");
 		dooDadToReturn = new DooDad(gameScene);

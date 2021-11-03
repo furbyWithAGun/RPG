@@ -120,6 +120,7 @@ public:
     void setScene(RpgTileGridScene* gameScene);
     void eatFood(Food* foodToEat);
     void updateFoodEffects();
+    void addToInventory(Item* itemToAdd);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

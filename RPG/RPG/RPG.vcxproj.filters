@@ -468,6 +468,9 @@
     <ClCompile Include="FruitTree.cpp">
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
+    <ClCompile Include="BerryBush.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -765,6 +768,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FruitTree.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="BerryBush.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>

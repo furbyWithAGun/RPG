@@ -111,6 +111,11 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BUILDING_ICON_BLACKSMITH, "images/signBlacksmith.png" });
     //doodad textures
     texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
+    texturesToLoad.insert({ TEXTURE_APPLE_TREE_WITH_FRUIT, "images/appleTreeWithFruit.png" });
+    texturesToLoad.insert({ TEXTURE_APPLE_TREE_NO_FRUIT, "images/appleTreeNoFruit.png" });
+    texturesToLoad.insert({ TEXTURE_RASPBERRY_BUSH_WITH_BERRIES, "images/raspberryBushWithBerries.png" });
+    texturesToLoad.insert({ TEXTURE_RASPBERRY_BUSH_NO_BERRIES, "images/raspberryBushNoBerries.png" });
+    texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
 }
 
 void RpgTileGridScene::setUpScene()

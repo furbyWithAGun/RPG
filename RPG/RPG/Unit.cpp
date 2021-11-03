@@ -602,17 +602,16 @@ void Unit::getLocationUnitDestinationIsFacing(int tileXY[2])
     tileXY;
 }
 
-
 void Unit::handleInput(InputMessage* message) {
     setUnitState(currentState->handleInput(message));
 }
+
 void Unit::setUnitState(int newState) {
     if (unitStates.find(newState) != unitStates.end())
     {
         currentState = unitStates[newState];
     }
 }
-
 
 void Unit::faceCoords(int x, int y) {
     if (x < xpos + scene->tileWidth && y < ypos + scene->tileHeight)

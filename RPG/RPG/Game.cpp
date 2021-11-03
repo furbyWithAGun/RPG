@@ -6,7 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// fruit trees and berry bushes
 // wood cost to buildings
 // remove starter buildings
 // hover tool tips
@@ -14,8 +13,10 @@
 // add all of tims textures
 // add another cave
 // add more items
+// unit spawners
+// town quests
+// town attacks
 // map rendering layers
-// add costs to buildings
 // design tavern
 // design blacksmith
 // design armoury
@@ -39,6 +40,7 @@
 //ranged combat
 //improve attack functionality
 //attack animation
+//ability to select stats on level up
 
 int main(int argc, char* args[])
 {

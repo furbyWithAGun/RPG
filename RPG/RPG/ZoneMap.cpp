@@ -1410,6 +1410,12 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 				case DOODAD_TREE:
 					returnVector.push_back(new Tree(savedDooDads[i].rawString, gameScene));;
 					break;
+				case DOODAD_APPLE_TREE:
+					returnVector.push_back(new FruitTree(savedDooDads[i].rawString, gameScene));;
+					break;
+				case DOODAD_RASPBERRY_BUSH:
+					returnVector.push_back(new BerryBush(savedDooDads[i].rawString, gameScene));;
+					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString, gameScene));
 					break;

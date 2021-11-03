@@ -161,6 +161,7 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingTile.cpp" />
+    <ClCompile Include="BerryBush.cpp" />
     <ClCompile Include="CampCommandCentre.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="CombatText.cpp" />
@@ -261,6 +262,7 @@
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingTile.h" />
+    <ClInclude Include="BerryBush.h" />
     <ClInclude Include="CampCommandCentre.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="CombatText.h" />
