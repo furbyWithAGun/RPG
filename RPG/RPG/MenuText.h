@@ -21,7 +21,8 @@ public:
     MenuText(int elementId, GameScene* newScene, std::string newText, SDL_Color textColour, int xpos, int ypos, int newWidth, int newHeight);
 
     //methods
-    void draw();
+    void draw() override;
+    void draw(int x, int y) override;
     void setPos(int newX, int newY);
     void setBackground(SDL_Color newColour);
     void disableBackground();

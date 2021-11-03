@@ -106,6 +106,17 @@ void GameScene::handleInput()
     }
 }
 
+void GameScene::sceneLogic()
+{
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->update();
+        }
+    }
+}
+
 void GameScene::renderTexture(Texture* texture, int x, int y)
 {
     engine->renderTexture(texture, x, y);

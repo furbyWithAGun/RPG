@@ -108,6 +108,28 @@ void Sprite::draw() {
     }
 }
 
+void Sprite::draw(int x, int y)
+{
+    if (active) {
+        if (drawBackground)
+        {
+            scene->engine->renderRectangle(x, y, width, height, backgroundColour.r, backgroundColour.g, backgroundColour.b);
+        }
+
+        if (textureKey != -1)
+        {
+            if (width != -1 && height != -1)
+            {
+                scene->renderTexture(textureKey, x, y, width, height);
+            }
+            else {
+                scene->renderTexture(textureKey, x, y);
+            }
+
+        }
+    }
+}
+
 void Sprite::addTextureKey(int newTextureKey)
 {
     textureKey = newTextureKey;

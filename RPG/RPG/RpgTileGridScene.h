@@ -43,6 +43,8 @@ public:
     RpgUnit* getUnitAtLocation(int zoneId, int x, int y);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
+    void payBuildingCosts(Building* building);
+    bool canAffordBuilding(Building* building);
     virtual void loadZones() override;
     void resizeTiles();
 

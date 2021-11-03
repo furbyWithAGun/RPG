@@ -1,6 +1,7 @@
 #pragma once
 #include "GameMenu.h"
 #include "MenuButton.h"
+#include "HoverToolTip.h"
 
 class RpgOverWorldScene;
 

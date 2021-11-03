@@ -10,6 +10,7 @@ class Prompt;
 class GameScene
 {
     friend class BaseGameEngine;
+    friend class HoverToolTip;
 public:
     //attributes
     BaseGameEngine* engine;
@@ -24,7 +25,7 @@ public:
 
     //methods
     virtual void handleInput();
-    virtual void sceneLogic() {};
+    virtual void sceneLogic();
     virtual void renderScene() {};
     void renderTexture(Texture* texture, int x, int y);
     void renderTexture(Texture* texture, int x, int y, int width, int height);

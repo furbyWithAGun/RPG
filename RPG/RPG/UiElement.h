@@ -15,6 +15,8 @@ enum ALIGNMENTS
 
 const int ALL_ELEMENTS = -1;
 
+class HoverToolTip;
+
 class UiElement : public Sprite
 {
 public:
@@ -28,6 +30,7 @@ public:
     int displayIndex;
     bool gettingText;
     bool displaySubElements;
+    void addToolTip(HoverToolTip* newToolTip);
 
     //constructors
     UiElement();
@@ -47,7 +50,8 @@ public:
     UiElement(int elementId, GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight);
 
     //methods
-    virtual void draw();
+    virtual void draw() override;
+    virtual void draw(int x, int y) override;
     virtual bool handleInput(InputMessage* message);
     virtual std::string getText() { return text; };
     virtual std::string getText(int subElementId);
@@ -58,8 +62,13 @@ public:
     virtual UiElement* getElementbyId(int elementId);
     virtual void deactivate();
     virtual bool isGettingText();
+    virtual void update();
 
 private:
+    //attributes
+
+    //methods
+    HoverToolTip* toolTip;
     void init();
     void init(int newId);
 };

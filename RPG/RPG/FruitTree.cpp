@@ -37,6 +37,9 @@ FruitTree::FruitTree(SaveObject saveObject, TileGridScene* gameScene) : Tree(sav
         case DOODAD_TEXTURE_ID:
             textureKey = stoi(saveObject.attributes[i].valueString);
             break;
+        case DOODAD_TYPE:
+            type = stoi(saveObject.attributes[i].valueString);
+            break;
         case FRUIT_TREE_FRUIT_GROWN:
             fruitGrown = stoi(saveObject.attributes[i].valueString);
             break;

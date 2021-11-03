@@ -35,7 +35,7 @@ void InventoryMenu::draw()
     GameMenu::draw();
 }
 
-void InventoryMenu::update()
+void InventoryMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
@@ -84,36 +84,31 @@ void InventoryMenu::buildElements()
                 InputPrompt* qtyPrompt = new InputPrompt(scene, "Drop How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
                 qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
                 qtyPrompt->addCallBack([selection, this](std::string enteredText) {
-                    if (true)
+                    int numToDrop;
+                    if (stringIsAnInt(enteredText))
                     {
-                        int numToDrop;
-                        if (stringIsAnInt(enteredText))
-                        {
-                            numToDrop = std::stoi(enteredText);
-                        }
-                        else {
-                            numToDrop = 0;
-                        }
+                        numToDrop = std::stoi(enteredText);
+                    }
+                    else {
+                        numToDrop = 0;
+                    }
                         
-                        if (numToDrop >= scene->player->inventory[selection]->stackSize)
-                        {
-                            scene->player->dropItemFromInventory(selection);
-                            update();
-                        }
-                        else if (numToDrop > 0){
-                            Item* itemToDrop = createNewItem(scene->player->inventory[selection]->textureKey);
-                            itemToDrop->stackSize = numToDrop;
-                            scene->addItemsToMap(scene->player->zone, scene->player->tileLocation->x, scene->player->tileLocation->y, {itemToDrop});
-                            scene->player->inventory[selection]->stackSize -= numToDrop;
-                            update();
-                        }
+                    if (numToDrop >= scene->player->inventory[selection]->stackSize)
+                    {
+                        scene->player->dropItemFromInventory(selection);
+                    }
+                    else if (numToDrop > 0){
+                        Item* itemToDrop = createNewItem(scene->player->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
+                        itemToDrop->stackSize = numToDrop;
+                        scene->addItemsToMap(scene->player->zone, scene->player->tileLocation->x, scene->player->tileLocation->y, {itemToDrop});
+                        scene->player->inventory[selection]->stackSize -= numToDrop;
+                        rebuildElements();
                     }
                     });
                 scene->addPrompt(qtyPrompt);
             }
             else {
                 scene->player->dropItemFromInventory(selection);
-                this->update();
             }
         }
         });
@@ -133,8 +128,8 @@ void InventoryMenu::buildElements()
                 }
                 scene->player->equippedItems[itemToEquip->slot] = itemToEquip;
                 scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
-                scene->menus[EQUIPPED_MENU]->update();
-                update();
+                scene->menus[EQUIPPED_MENU]->rebuildElements();
+                rebuildElements();
             }
         }
         });
@@ -153,18 +148,16 @@ void InventoryMenu::buildElements()
                 {
                     scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
                 }
-                scene->menus[EQUIPPED_MENU]->update();
-                update();
+                rebuildElements();
             }
         }
         });
     addElement(INVENTORY_EAT_BUTTON, eatBtn);
 
-    MenuButton* equipMenuBtn = new MenuButton(OPEN_EQUIPPED_MENU_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25);
-    equipMenuBtn->setText("Equipment")->addOnClick([this]() {
+    //MenuButton* equipMenuBtn = new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25);
+    addElement(OPEN_EQUIPPED_MENU_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25))->setText("Equipment")->addOnClick([this]() {
         scene->openMenu(EQUIPPED_MENU);
-        });
-    addElement(OPEN_EQUIPPED_MENU_BUTTON, equipMenuBtn);
+        }));
 }
 
 void InventoryMenu::init()

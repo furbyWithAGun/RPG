@@ -27,6 +27,7 @@ public:
     //methods
     bool pointCollision(int x, int y);
     virtual void draw();
+    virtual void draw(int x, int y);
     void addTextureKey(int newTextureKey);
     void setdimensions(int newWidth, int newHeight);
     void setPos(int x, int y);

@@ -24,7 +24,7 @@ ItemShop::ItemShop(std::vector<std::vector<BuildingTile*>> newTileMap) : Buildin
     init();
 }
 
-ItemShop::ItemShop(int entranceDirection)
+ItemShop::ItemShop(int entranceDirection) : Building()
 {
     init();
     switch (entranceDirection)
@@ -92,4 +92,6 @@ void ItemShop::init()
     type = BUILDING_ITEM_SHOP;
     iconTextureId = BUILDING_ICON_WEAPON_SHOP;
     goldCost = 700;
+    woodCost = 300;
+    setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants() });
 }

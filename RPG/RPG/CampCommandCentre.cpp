@@ -23,7 +23,7 @@ CampCommandCentre::CampCommandCentre(std::vector<std::vector<BuildingTile*>> new
     init();
 }
 
-CampCommandCentre::CampCommandCentre(int entranceDirection)
+CampCommandCentre::CampCommandCentre(int entranceDirection) : Building()
 {
     init();
     switch (entranceDirection)
@@ -64,4 +64,5 @@ void CampCommandCentre::init()
     type = BUILDING_CAMP_COMMAND_CENTRE;
     iconTextureId = BUILDING_ICON_TAVERN;
     goldCost = 500;
+    woodCost = 300;
 }

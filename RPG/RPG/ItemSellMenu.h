@@ -15,7 +15,7 @@ public:
     ItemSellMenu(RpgOverWorldScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
     void open() override;
     void draw() override;
-    void update() override;
+    void rebuildElements() override;
 
     //methods
     bool handleInput(InputMessage* message);

@@ -99,3 +99,18 @@ void MenuText::draw()
         }
     }
 }
+
+void MenuText::draw(int x, int y)
+{
+    if (active)
+    {
+        UiElement::draw(x, y);
+        if (width != -1 && height != -1)
+        {
+            scene->engine->renderText(text, x, y, width, height, colour);
+        }
+        else {
+            scene->engine->renderText(text, x, y, colour);
+        }
+    }
+}

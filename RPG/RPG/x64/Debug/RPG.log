@@ -1,16 +1,6 @@
-﻿  ZoneMap.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(286,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(394,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(414,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(423,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(432,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(441,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1008,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1009,60): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1068,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1069,74): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1164,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1165,96): warning C4804: '>': unsafe use of type 'bool' in operation
-  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
+﻿  OverWorldSceneMenu.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

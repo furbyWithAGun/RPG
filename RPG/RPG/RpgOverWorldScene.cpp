@@ -89,7 +89,8 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_APPLE)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_APPLE)});
+    
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
@@ -105,13 +106,13 @@ void RpgOverWorldScene::setUpScene()
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
     //testUnit->setTargetLocation(testLocation);
     createUnitAtLocation(2, RAT_KING, 26, 12);
-    createUnitAtLocation(1, TOWNSPERSON, 11, 2);
+    //createUnitAtLocation(1, TOWNSPERSON, 11, 2);
 
     //buildings
     ItemShop* testBuilding;
-    testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
+    //testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
     //testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
-    testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
+    //testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
@@ -256,9 +257,9 @@ void RpgOverWorldScene::sceneLogic()
             }
             break;
         case OVERWORLD_PLACE_BUILDING:
-            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && player->gold >= buildingBeingPlaced.goldCost) {
+            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && canAffordBuilding(&buildingBeingPlaced)) {
                 createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
-                player->gold -= buildingBeingPlaced.goldCost;
+                payBuildingCosts(&buildingBeingPlaced);
             }
             break;
         case USER_ACTION:

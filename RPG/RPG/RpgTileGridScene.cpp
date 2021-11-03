@@ -225,6 +225,43 @@ bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap
     return buildingCanBePlacedAtLocation(building, zoneMap, location->x, location->y);
 }
 
+void RpgTileGridScene::payBuildingCosts(Building* building) {
+    player->gold -= buildingBeingPlaced.goldCost;
+    for (auto item : player->inventory) {
+        if (item->name == "Logs")
+        {
+            item->stackSize -= building->woodCost;
+            if (item->stackSize <= 0)
+            {
+                player->deleteItemFromInventory(item);
+            }
+        }
+    }
+    menus[INVENTORY_MENU]->update();
+}
+
+bool RpgTileGridScene::canAffordBuilding(Building* building)
+{
+    if (player->gold < building->goldCost)
+    {
+        return false;
+    }
+
+    Item* woodInInventory = nullptr;
+    for (auto item : player->inventory) {
+        if (item->name == "Logs")
+        {
+            woodInInventory = item;
+        }
+    }
+    if (woodInInventory == nullptr || woodInInventory->stackSize < building->woodCost)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 void RpgTileGridScene::loadZones()
 {
     //load zones from file

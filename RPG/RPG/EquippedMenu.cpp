@@ -86,7 +86,7 @@ void EquippedMenu::draw()
     GameMenu::draw();
 }
 
-void EquippedMenu::update()
+void EquippedMenu::rebuildElements()
 {
     ScrollBox* slots = (ScrollBox*) getElementbyId(SLOTS_SCROLL_BOX);
     slots->clear();

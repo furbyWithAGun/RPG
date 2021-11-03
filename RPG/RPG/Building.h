@@ -16,7 +16,8 @@ enum BUILDING_SAVE_ATTRIBUTES {
     BUILDING_UNIT_LOCATIONS,
     BUILDING_ID,
     BUILDING_ICON_TEXTURE_ID,
-    BUILDING_GOLD_COST
+    BUILDING_GOLD_COST,
+    BUILDING_WOOD_COST
 };
 
 class Building
@@ -31,6 +32,7 @@ public:
     int width, height;
     bool active;
     int goldCost;
+    int woodCost;
     std::vector<RpgUnit*> assignedUnits;
     std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;

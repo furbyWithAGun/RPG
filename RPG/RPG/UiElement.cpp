@@ -1,6 +1,13 @@
 #include "UiElement.h"
+#include "HoverToolTip.h"
 
 const SDL_Color DEFAULT_UI_ELEMENT_COLOUR = { 0, 0, 0 };
+
+void UiElement::addToolTip(HoverToolTip* newToolTip)
+{
+    toolTip = newToolTip;
+    newToolTip->parentElement = this;
+}
 
 UiElement::UiElement() : Sprite()
 {
@@ -85,6 +92,7 @@ void UiElement::init() {
     layout = FLOW_LAYOUT;
     alignment = VERTICAL;
     displaySubElements = true;
+    toolTip = nullptr;
 }
 
 void UiElement::init(int newId) {
@@ -105,6 +113,32 @@ void UiElement::draw() {
                 }
             }
 
+        }
+        if (toolTip != nullptr && toolTip->active)
+        {
+            toolTip->draw();
+        }
+    }
+}
+
+void UiElement::draw(int x, int y)
+{
+    if (active)
+    {
+        Sprite::draw(x, y);
+        if (displaySubElements)
+        {
+            for (auto element : subElements)
+            {
+                if (element->active) {
+                    element->draw(x, y);
+                }
+            }
+
+        }
+        if (toolTip != nullptr && toolTip->active)
+        {
+            toolTip->draw();
         }
     }
 }
@@ -155,6 +189,10 @@ UiElement* UiElement::getElementbyId(int elementId) {
 void UiElement::deactivate()
 {
     active = false;
+    if (toolTip != nullptr)
+    {
+        toolTip->active = false;
+    }
 }
 
 bool UiElement::isGettingText()
@@ -171,6 +209,18 @@ bool UiElement::isGettingText()
         }
     }
     return false;
+}
+
+void UiElement::update()
+{
+    if (toolTip != nullptr)
+    {
+        toolTip->update();
+    }
+    for (auto element : subElements)
+    {
+        element->update();
+    }
 }
 
 std::string UiElement::getText(int subElementId) {

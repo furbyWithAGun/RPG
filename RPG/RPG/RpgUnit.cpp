@@ -278,17 +278,54 @@ Weapon* RpgUnit::getEquippedWeapon()
 void RpgUnit::dropItemFromInventory(int inventoryIndex)
 {
     scene->currentZone->itemMap[tileLocation->x][tileLocation->y].push_back(inventory[inventoryIndex]);
-    inventory.erase(inventory.begin() + inventoryIndex);
+    removeItemFromInventory(inventoryIndex);
 }
 
 void RpgUnit::deleteItemFromInventory(int inventoryIndex)
 {
     delete inventory[inventoryIndex];
     inventory.erase(inventory.begin() + inventoryIndex);
+    scene->menus[INVENTORY_MENU]->rebuildElements();
 }
 
 void RpgUnit::deleteItemFromInventory(Item* itemToDelete)
 {
+    int delIndex = -1;
+    for (size_t i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i] == itemToDelete) {
+            delIndex = i;
+            break;
+        }
+    }
+    if (delIndex == -1)
+    {
+        return;
+    }
+    deleteItemFromInventory(delIndex);
+}
+
+void RpgUnit::removeItemFromInventory(int inventoryIndex)
+{
+    inventory.erase(inventory.begin() + inventoryIndex);
+    scene->menus[INVENTORY_MENU]->rebuildElements();
+}
+
+void RpgUnit::removeItemFromInventory(Item* itemToDelete)
+{
+    int delIndex = -1;
+    for (size_t i = 0; i < inventory.size(); i++)
+    {
+        if (inventory[i] == itemToDelete) {
+            delIndex = i;
+            break;
+        }
+    }
+    if (delIndex == -1)
+    {
+        return;
+    }
+    removeItemFromInventory(delIndex);
 }
 
 std::vector<Item*> RpgUnit::getDrops()
@@ -437,7 +474,7 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     else {
         inventory.push_back(itemToAdd);
     }
-    scene->menus[INVENTORY_MENU]->update();
+    scene->menus[INVENTORY_MENU]->rebuildElements();
 }
 
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)

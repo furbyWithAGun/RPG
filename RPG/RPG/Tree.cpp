@@ -59,7 +59,7 @@ void Tree::actionOn(Unit* unit, int actionType)
             textureKey = TEXTURE_TREE_STUMP;
             regrowTick = 0;
             Item* logs = createNewItem(ITEM_LOGS);
-            logs->stackSize = 10;
+            logs->stackSize = 5;
             unit->scene->addItemsToMap(unit->zone, tileCoords[0], tileCoords[1], {logs});
         }
         break;

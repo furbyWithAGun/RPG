@@ -471,6 +471,9 @@
     <ClCompile Include="BerryBush.cpp">
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
+    <ClCompile Include="HoverToolTip.cpp">
+      <Filter>Header Files\gameEngine\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -772,6 +775,9 @@
     </ClInclude>
     <ClInclude Include="BerryBush.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="HoverToolTip.h">
+      <Filter>Header Files\gameEngine\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

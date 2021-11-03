@@ -92,10 +92,12 @@ void TileGridScene::handleInput()
 
 void TileGridScene::sceneLogic()
 {
+    GameScene::sceneLogic();
     for (auto zone : zones)
     {
         zone.second->update();
     }
+
 }
 
 void TileGridScene::renderScene()

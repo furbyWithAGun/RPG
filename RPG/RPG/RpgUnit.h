@@ -113,6 +113,8 @@ public:
     void dropItemFromInventory(int inventoryIndex);
     void deleteItemFromInventory(int inventoryIndex);
     void deleteItemFromInventory(Item* itemToDelete);
+    void removeItemFromInventory(int inventoryIndex);
+    void removeItemFromInventory(Item* itemToDelete);
     std::vector<Item*> getDrops();
     virtual void setDropTable() {};
     void updateAggro();

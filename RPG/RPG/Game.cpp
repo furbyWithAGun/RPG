@@ -6,8 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// wood cost to buildings
-// remove starter buildings
 // hover tool tips
 // rework inventory menu
 // add all of tims textures
@@ -16,6 +14,8 @@
 // unit spawners
 // town quests
 // town attacks
+// fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
+// move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers
 // design tavern
 // design blacksmith

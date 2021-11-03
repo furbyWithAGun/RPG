@@ -39,6 +39,7 @@ public:
     virtual void close();
     virtual void draw();
     virtual void update();
+    virtual void rebuildElements() {};
     virtual bool handleInput(InputMessage* message);
     bool isGettingText();
 

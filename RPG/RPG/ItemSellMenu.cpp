@@ -33,7 +33,7 @@ void ItemSellMenu::draw()
     GameMenu::draw();
 }
 
-void ItemSellMenu::update()
+void ItemSellMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
@@ -47,7 +47,6 @@ void ItemSellMenu::update()
         else {
             items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
         }
-        //items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
     }
     items->selectedElement = nullptr;
 }
@@ -104,8 +103,8 @@ void ItemSellMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                            scene->menus[EQUIPPED_MENU]->update();
-                            update();
+                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            rebuildElements();
                         }
                         else if (numToSell > 0){
                             int goldToAdd = (selectedItem->value * numToSell) / 2;
@@ -115,8 +114,8 @@ void ItemSellMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             selectedItem->stackSize -= numToSell;
-                            scene->menus[EQUIPPED_MENU]->update();
-                            update();
+                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            rebuildElements();
                         }
                     }
                     });
@@ -130,8 +129,8 @@ void ItemSellMenu::buildElements()
                 }
                 scene->player->gold += goldToAdd;
                 scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                scene->menus[EQUIPPED_MENU]->update();
-                update();
+                scene->menus[EQUIPPED_MENU]->rebuildElements();
+                rebuildElements();
             }
         }
         });

@@ -77,13 +77,22 @@ void GameMenu::draw() {
 
     for (auto element : elements)
     {
-        element.second->draw();
+        if (element.second->active)
+        {
+            element.second->draw();
+        }
     }
 }
 
 void GameMenu::update()
 {
-
+    for (auto element : elements)
+    {
+        if (element.second->active)
+        {
+            element.second->update();
+        }
+    }
 }
 
 bool GameMenu::handleInput(InputMessage* message) {

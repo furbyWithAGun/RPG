@@ -80,8 +80,11 @@ void TownBuildMenu::buildPageOne()
         button->width = engine->screenWidth / WIDTH_ADJUSTOR;
         button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
         button->addOnClick([this, i]() {
-            scene->buildingBeingPlaced = buildingTemplates[i];
-            scene->placingBuilding = true;
+            if (scene->canAffordBuilding(&buildingTemplates[i]))
+            {
+                scene->buildingBeingPlaced = buildingTemplates[i];
+                scene->placingBuilding = true;
+            }
             });
         scroller->addElement(button);
     }
