@@ -52,6 +52,8 @@ void RpgTileGridScene::declareSceneAssets()
 
     //UI textures
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
+    //texturesToLoad.insert({ TEXTURE_EQUIPPED_MENU_SILHOUETTE, "images/silhouetteGrey.png" });
+    texturesToLoad.insert({ TEXTURE_EQUIPPED_MENU_SILHOUETTE, "images/silhouette.png" });
     //player textures
     //movement
     texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });

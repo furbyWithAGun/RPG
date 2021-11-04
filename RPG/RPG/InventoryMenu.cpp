@@ -27,6 +27,7 @@ InventoryMenu::InventoryMenu(RpgOverWorldScene* gameScene, int newId, int newWid
 void InventoryMenu::open()
 {
     GameMenu::open();
+    rebuildElements();
     ((ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX))->displayIndex = 0;
 }
 
@@ -44,7 +45,6 @@ void InventoryMenu::rebuildElements()
     {
         MenuText* txtInvItem = new MenuText(scene, scene->player->inventory[i]->name, 0, 0);
         HoverToolTip* toolTip = createItemToolTip(scene->player->inventory[i], scene);
-        toolTip->setScene(scene);
         registerToolTip(txtInvItem, toolTip);
         if (scene->player->inventory[i]->stackSize > 1)
         {
@@ -127,14 +127,15 @@ void InventoryMenu::buildElements()
             if (selectedItem->equipable)
             {   
                 Equipment* itemToEquip = (Equipment*)selectedItem;
-                if (scene->player->equippedItems[itemToEquip->slot] != nullptr)
+                scene->player->equipItem(itemToEquip);
+                /*if (scene->player->equippedItems[itemToEquip->slot] != nullptr)
                 {
                     scene->player->inventory.push_back(scene->player->equippedItems[itemToEquip->slot]);
                 }
                 scene->player->equippedItems[itemToEquip->slot] = itemToEquip;
                 scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
                 scene->menus[EQUIPPED_MENU]->rebuildElements();
-                rebuildElements();
+                rebuildElements();*/
             }
         }
         });

@@ -258,10 +258,34 @@ bool RpgUnit::equipItem(Equipment* item)
 {
     if (item->slot != -1)
     {
+        if (equippedItems[item->slot] != nullptr)
+        {
+            addToInventory(equippedItems[item->slot]);
+        }
         equippedItems[item->slot] = item;
+        removeItemFromInventory(item);
+        if (scene->menus[INVENTORY_MENU]->isActive)
+        {
+            scene->menus[INVENTORY_MENU]->rebuildElements();
+        }
+        if (scene->menus[EQUIPPED_MENU]->isActive)
+        {
+            scene->menus[EQUIPPED_MENU]->rebuildElements();
+        }
         return true;
     }
     return false;
+}
+
+bool RpgUnit::unEquipItem(int slot)
+{
+    addToInventory(equippedItems[slot]);
+    equippedItems[slot] = nullptr;
+    if (scene->menus[EQUIPPED_MENU]->isActive)
+    {
+        scene->menus[EQUIPPED_MENU]->rebuildElements();
+    }
+    return true;
 }
 
 Weapon* RpgUnit::getEquippedWeapon()
@@ -285,7 +309,10 @@ void RpgUnit::deleteItemFromInventory(int inventoryIndex)
 {
     delete inventory[inventoryIndex];
     inventory.erase(inventory.begin() + inventoryIndex);
-    scene->menus[INVENTORY_MENU]->rebuildElements();
+    if (scene->menus[INVENTORY_MENU]->isActive)
+    {
+        scene->menus[INVENTORY_MENU]->rebuildElements();
+    }
 }
 
 void RpgUnit::deleteItemFromInventory(Item* itemToDelete)
@@ -308,7 +335,10 @@ void RpgUnit::deleteItemFromInventory(Item* itemToDelete)
 void RpgUnit::removeItemFromInventory(int inventoryIndex)
 {
     inventory.erase(inventory.begin() + inventoryIndex);
-    scene->menus[INVENTORY_MENU]->rebuildElements();
+    if (scene->menus[INVENTORY_MENU]->isActive)
+    {
+        scene->menus[INVENTORY_MENU]->rebuildElements();
+    }
 }
 
 void RpgUnit::removeItemFromInventory(Item* itemToDelete)
@@ -474,7 +504,10 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     else {
         inventory.push_back(itemToAdd);
     }
-    scene->menus[INVENTORY_MENU]->rebuildElements();
+    if (scene->menus[INVENTORY_MENU]->isActive)
+    {
+        scene->menus[INVENTORY_MENU]->rebuildElements();
+    }
 }
 
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)

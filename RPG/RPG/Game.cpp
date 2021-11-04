@@ -6,7 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// hover tool tips
 // rework inventory menu
 // add all of tims textures
 // add another cave

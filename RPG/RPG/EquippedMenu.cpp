@@ -63,12 +63,16 @@ void EquippedMenu::buildElements()
 
     MenuButton* unequipBtn = new MenuButton(UNEQUIP_GEAR_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.45);
     unequipBtn->setText("Unequip")->addOnClick([this, slots]() {
-        scene->player->inventory.push_back(scene->player->equippedItems[slots->getSelectedElementValue()]);
-        scene->player->equippedItems[slots->getSelectedElementValue()] = nullptr;
-        rebuildElements();
-        scene->menus[INVENTORY_MENU]->rebuildElements();
+        scene->player->unEquipItem(slots->getSelectedElementValue());
+        //scene->player->equippedItems[slots->getSelectedElementValue()] = nullptr;
+        //rebuildElements();
+        //scene->menus[INVENTORY_MENU]->rebuildElements();
         });
     addElement(UNEQUIP_GEAR_BUTTON, unequipBtn);
+
+    UiElement* silh = new UiElement(scene, TEXTURE_EQUIPPED_MENU_SILHOUETTE, 300, 300, 300, 300);
+    silh->backgroundColour = COLOR_LIGHT_GREY;
+    addElement(silh);
 }
 
 void EquippedMenu::init()
@@ -79,6 +83,7 @@ void EquippedMenu::init()
 void EquippedMenu::open()
 {
     GameMenu::open();
+    rebuildElements();
 }
 
 void EquippedMenu::draw()
@@ -90,14 +95,20 @@ void EquippedMenu::rebuildElements()
 {
     ScrollBox* slots = (ScrollBox*) getElementbyId(SLOTS_SCROLL_BOX);
     slots->clear();
+    toolTips.clear();
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
+        MenuText* txtEqpItem ;
         if (scene->player->equippedItems[i] != nullptr)
         {
-            slots->addElement(new MenuText(this->scene, equipSlotDisplayText[i] + ": " + scene->player->equippedItems[i]->name, COLOR_WHITE, xpos + width * 0.1, ypos + height * i * 0.1), i);
+            txtEqpItem = new MenuText(this->scene, equipSlotDisplayText[i] + ": " + scene->player->equippedItems[i]->name, COLOR_WHITE, xpos + width * 0.1, ypos + height * i * 0.1);
+            HoverToolTip* toolTip = createItemToolTip(scene->player->equippedItems[i], scene);
+            registerToolTip(txtEqpItem, toolTip);
+            slots->addElement(txtEqpItem, i);
         }
         else {
-            slots->addElement(new MenuText(INV_EQUIP_ID_START + i, this->scene, equipSlotDisplayText[i] + ": Nothing", COLOR_DARK_GREY, xpos + width * 0.1, ypos + height * i * 0.1), i);
+            txtEqpItem = new MenuText(INV_EQUIP_ID_START + i, this->scene, equipSlotDisplayText[i] + ": Nothing", COLOR_DARK_GREY, xpos + width * 0.1, ypos + height * i * 0.1);
+            slots->addElement(txtEqpItem, i);
         }
     }
     slots->selectedElement = nullptr;

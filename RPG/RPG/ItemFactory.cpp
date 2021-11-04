@@ -376,12 +376,16 @@ HoverToolTip* createItemToolTip(Item* item, GameScene* scene)
 		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Armour*)item)->value), COLOR_WHITE, 10, 40));
 		break;
 	case FOOD:
-		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);
+		returnToolTip->setdimensions(scene->engine->screenWidth * 0.21, scene->engine->screenHeight * 0.15);
 		returnToolTip->subElements.push_back(new MenuText(scene, "Heals " + std::to_string(((Food*)item)->healthRegen * ((Food*)item)->healthRegenDurationInSeconds) + " over " + std::to_string(((Food*)item)->healthRegenDurationInSeconds) + " seconds", COLOR_WHITE, 10, 10));
 		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Food*)item)->value), COLOR_WHITE, 10, 40));
 		break;
 	default:
+		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);
+		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Food*)item)->value), COLOR_WHITE, 10, 10));
 		break;
 	}
+
+	returnToolTip->setScene(scene);
 	return returnToolTip;
 }

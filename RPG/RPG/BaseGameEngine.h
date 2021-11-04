@@ -32,6 +32,7 @@ const SDL_Color COLOR_BLACK = { 0, 0, 0 };
 const SDL_Color COLOR_WHITE = { 255, 255, 255 };
 const SDL_Color COLOR_GREY = { 125, 125, 125 };
 const SDL_Color COLOR_DARK_GREY = { 80, 80, 80 };
+const SDL_Color COLOR_LIGHT_GREY = { 200, 200, 200 };
 const SDL_Color COLOR_RED = { 255, 0, 0 };
 const SDL_Color COLOR_GREEN = { 0, 255, 0 };
 const SDL_Color COLOR_BLUE = { 0, 0, 255 };

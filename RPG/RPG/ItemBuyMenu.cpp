@@ -37,9 +37,14 @@ void ItemBuyMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
+    toolTips.clear();
     for (int i = 0; i < itemShop->itemsForSale.size(); i++)
     {
-        items->addElement(new MenuText(scene, itemShop->itemsForSale[i]->name + " Cost: " + std::to_string(itemShop->itemsForSale[i]->value * 2), 0, 0), i);
+        MenuText* txtInvItem = new MenuText(scene, itemShop->itemsForSale[i]->name + " Cost: " + std::to_string(itemShop->itemsForSale[i]->value * 2), 0, 0);
+        HoverToolTip* toolTip = createItemToolTip(itemShop->itemsForSale[i], scene);
+        toolTip->setScene(scene);
+        registerToolTip(txtInvItem, toolTip);
+        items->addElement(txtInvItem, i);
     }
     items->selectedElement = nullptr;
 }
@@ -78,18 +83,18 @@ void ItemBuyMenu::buildElements()
                 switch (selectedItem->type)
                 {
                 case WEAPON:
-                    scene->player->inventory.push_back(new Weapon(*(Weapon*)selectedItem));
+                    scene->player->addToInventory(new Weapon(*(Weapon*)selectedItem));
                     break;
                 case ARMOUR:
-                    scene->player->inventory.push_back(new Armour(*(Armour*)selectedItem));
+                    scene->player->addToInventory(new Armour(*(Armour*)selectedItem));
                     break;
                 default:
                     if (selectedItem->equipable)
                     {
-                        scene->player->inventory.push_back(new Equipment(*(Equipment*)selectedItem));
+                        scene->player->addToInventory(new Equipment(*(Equipment*)selectedItem));
                     }
                     else {
-                        scene->player->inventory.push_back(new Item(*(Item*)selectedItem));
+                        scene->player->addToInventory(new Item(*(Item*)selectedItem));
                     }
                     break;
                 }

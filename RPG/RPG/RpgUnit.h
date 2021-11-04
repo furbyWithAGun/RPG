@@ -109,6 +109,7 @@ public:
     void death();
     void death(RpgUnit* attackingUnit);
     bool equipItem(Equipment* item);
+    bool unEquipItem(int slot);
     Weapon* getEquippedWeapon();
     void dropItemFromInventory(int inventoryIndex);
     void deleteItemFromInventory(int inventoryIndex);
