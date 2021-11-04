@@ -15,6 +15,11 @@
 #include "Mace.h"
 #include <unordered_map>
 #include "Food.h";
+#include "HoverToolTip.h"
+
+class GameScene;
 
 Item* createNewItem(int itemType);
 Item* createNewItemBlankId(int itemType);
+
+HoverToolTip* createItemToolTip(Item* item, GameScene* scene);

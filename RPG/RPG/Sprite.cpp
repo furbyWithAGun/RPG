@@ -147,3 +147,8 @@ void Sprite::setPos(int x, int y) {
     xpos = x;
     ypos = y;
 }
+
+void Sprite::setScene(GameScene* newScene)
+{
+    scene = newScene;
+}

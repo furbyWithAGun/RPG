@@ -1,6 +1,64 @@
-﻿  OverWorldSceneMenu.cpp
-D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
+﻿  RpgOverWorldScene.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(121,144): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(121,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(122,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(122,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(124,190): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(124,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(124,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(124,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(125,193): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(125,142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(125,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(125,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(126,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(126,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(126,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(126,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(115,15): warning C4101: 'testBuilding': unreferenced local variable
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(153,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(154,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(321,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(322,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(377,69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(378,72): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(407,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(407,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(408,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(408,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(408,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(408,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(409,298): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(409,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(409,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(409,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(410,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(410,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(411,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(411,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(411,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(411,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(412,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(412,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(412,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(412,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(413,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(413,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(414,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(414,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(414,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(414,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,188): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(422,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

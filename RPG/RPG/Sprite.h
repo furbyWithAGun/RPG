@@ -31,6 +31,7 @@ public:
     void addTextureKey(int newTextureKey);
     void setdimensions(int newWidth, int newHeight);
     void setPos(int x, int y);
+    void setScene(GameScene* newScene);
 
 protected:
     GameScene* scene;

@@ -38,7 +38,7 @@ void OverWorldSceneMenu::buildElements()
 
     HoverToolTip* toolTip = new HoverToolTip(scene, openInvBtn->xpos + openInvBtn->width, openInvBtn->ypos + openInvBtn->height, 100, 100);
     toolTip->subElements.push_back(new MenuText(scene, "test", COLOR_WHITE, 10, 10));
-    openInvBtn->addToolTip(toolTip);
+    registerToolTip(openInvBtn, toolTip);
 }
 
 void OverWorldSceneMenu::init()

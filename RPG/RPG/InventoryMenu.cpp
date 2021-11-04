@@ -39,14 +39,19 @@ void InventoryMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
+    toolTips.clear();
     for (int i=0 ; i < scene->player->inventory.size(); i++)
     {
+        MenuText* txtInvItem = new MenuText(scene, scene->player->inventory[i]->name, 0, 0);
+        HoverToolTip* toolTip = createItemToolTip(scene->player->inventory[i], scene);
+        toolTip->setScene(scene);
+        registerToolTip(txtInvItem, toolTip);
         if (scene->player->inventory[i]->stackSize > 1)
         {
-            items->addElement(new MenuText(scene, scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize), 0, 0), i);
+            items->addElement(txtInvItem->setText(scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize)), i);
         }
         else {
-            items->addElement(new MenuText(scene, scene->player->inventory[i]->name, 0, 0), i);
+            items->addElement(txtInvItem->setText(scene->player->inventory[i]->name), i);
         }
     }
     items->selectedElement = nullptr;

@@ -25,6 +25,7 @@ void ItemBuyMenu::open()
 {
     GameMenu::open();
     scene->closeMenu(INVENTORY_MENU);
+    rebuildElements();
 }
 
 void ItemBuyMenu::draw()
@@ -32,7 +33,7 @@ void ItemBuyMenu::draw()
     GameMenu::draw();
 }
 
-void ItemBuyMenu::update()
+void ItemBuyMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();

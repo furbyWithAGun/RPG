@@ -15,7 +15,6 @@ enum ALIGNMENTS
 
 const int ALL_ELEMENTS = -1;
 
-class HoverToolTip;
 
 class UiElement : public Sprite
 {
@@ -30,7 +29,6 @@ public:
     int displayIndex;
     bool gettingText;
     bool displaySubElements;
-    void addToolTip(HoverToolTip* newToolTip);
 
     //constructors
     UiElement();
@@ -68,7 +66,6 @@ private:
     //attributes
 
     //methods
-    HoverToolTip* toolTip;
     void init();
     void init(int newId);
 };

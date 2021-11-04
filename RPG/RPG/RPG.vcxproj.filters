@@ -472,7 +472,7 @@
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
     <ClCompile Include="HoverToolTip.cpp">
-      <Filter>Header Files\gameEngine\UI</Filter>
+      <Filter>Source Files\gameEngine\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

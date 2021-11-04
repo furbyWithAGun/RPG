@@ -26,6 +26,7 @@ void ItemSellMenu::open()
 {
     GameMenu::open();
     scene->closeMenu(INVENTORY_MENU);
+    rebuildElements();
 }
 
 void ItemSellMenu::draw()

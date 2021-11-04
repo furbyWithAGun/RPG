@@ -1,4 +1,6 @@
 #include "ItemFactory.h"
+#include "GameScene.h"
+#include "MenuText.h"
 
 struct ItemTemplate {
 	std::string name;
@@ -356,4 +358,30 @@ Item* createNewItemBlankId(int itemType)
 		return new Item();
 		break;
 	}
+}
+
+HoverToolTip* createItemToolTip(Item* item, GameScene* scene)
+{
+	HoverToolTip* returnToolTip = new HoverToolTip();
+	switch (item->type)
+	{
+	case WEAPON:
+		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);
+		returnToolTip->subElements.push_back(new MenuText(scene, "Damage: " + std::to_string(((Weapon*)item)->minDamage) + "-" + std::to_string(((Weapon*)item)->maxDamage), COLOR_WHITE, 10, 10));
+		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Weapon*)item)->value), COLOR_WHITE, 10, 40));
+		break;
+	case ARMOUR:
+		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);
+		returnToolTip->subElements.push_back(new MenuText(scene, "Armour: " + std::to_string(((Armour*)item)->armour), COLOR_WHITE, 10, 10));
+		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Armour*)item)->value), COLOR_WHITE, 10, 40));
+		break;
+	case FOOD:
+		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);
+		returnToolTip->subElements.push_back(new MenuText(scene, "Heals " + std::to_string(((Food*)item)->healthRegen * ((Food*)item)->healthRegenDurationInSeconds) + " over " + std::to_string(((Food*)item)->healthRegenDurationInSeconds) + " seconds", COLOR_WHITE, 10, 10));
+		returnToolTip->subElements.push_back(new MenuText(scene, "Value: " + std::to_string(((Food*)item)->value), COLOR_WHITE, 10, 40));
+		break;
+	default:
+		break;
+	}
+	return returnToolTip;
 }

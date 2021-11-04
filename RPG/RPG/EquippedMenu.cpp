@@ -65,8 +65,8 @@ void EquippedMenu::buildElements()
     unequipBtn->setText("Unequip")->addOnClick([this, slots]() {
         scene->player->inventory.push_back(scene->player->equippedItems[slots->getSelectedElementValue()]);
         scene->player->equippedItems[slots->getSelectedElementValue()] = nullptr;
-        update();
-        scene->menus[INVENTORY_MENU]->update();
+        rebuildElements();
+        scene->menus[INVENTORY_MENU]->rebuildElements();
         });
     addElement(UNEQUIP_GEAR_BUTTON, unequipBtn);
 }

@@ -2,6 +2,7 @@
 #include "MenuButton.h"
 #include "BaseGameEngine.h"
 #include "MenuText.h"
+#include "HoverToolTip.h"
 
 const int NEXT_ELEMENT_ID_DEFAULT = 50000;
 
@@ -82,6 +83,22 @@ void GameMenu::draw() {
             element.second->draw();
         }
     }
+    for (auto toolTip : toolTips)
+    {
+        if (toolTip->active) {
+            toolTip->draw();
+        }
+    }
+}
+
+void GameMenu::drawToolTips()
+{
+}
+
+void GameMenu::registerToolTip(UiElement* parentElement, HoverToolTip* toolTip)
+{
+    toolTip->parentElement = parentElement;
+    toolTips.push_back(toolTip);
 }
 
 void GameMenu::update()
@@ -91,6 +108,13 @@ void GameMenu::update()
         if (element.second->active)
         {
             element.second->update();
+        }
+    }
+
+    for (auto toolTip : toolTips)
+    {
+        if (toolTip->parentElement->active) {
+            toolTip->update();
         }
     }
 }

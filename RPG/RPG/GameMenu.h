@@ -9,7 +9,7 @@ class InputMessage;
 class UiElement;
 class GameScene;
 class GameEngine;
-
+class HoverToolTip;
 class GameMenu
 {
 public:
@@ -38,6 +38,8 @@ public:
     virtual void open();
     virtual void close();
     virtual void draw();
+    virtual void drawToolTips();
+    void registerToolTip(UiElement* parentElement, HoverToolTip* toolTip);
     virtual void update();
     virtual void rebuildElements() {};
     virtual bool handleInput(InputMessage* message);
@@ -46,6 +48,7 @@ public:
 protected:
     //attributes
     BaseGameEngine* engine;
+    std::vector<HoverToolTip*> toolTips;
     int width;
     int height;
     int xpos;
