@@ -22,6 +22,7 @@ public:
     void updateCamera();
     void faceMouseDirection(int x, int y);
     void portalTo(int zoneId, int x, int y) override;
+    void death() override;
 
 private:
     //methods

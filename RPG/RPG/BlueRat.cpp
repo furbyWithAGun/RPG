@@ -78,18 +78,18 @@ void BlueRat::createAnimations() {
 
 void BlueRat::setDropTable()
 {
-    dropChance = 0.10;
-    dropTable.push_back({ 0.14, ITEM_SHORT_SWORD });
-    dropTable.push_back({ 0.05, ITEM_MACE});
-    dropTable.push_back({ 0.01, ITEM_LONG_SWORD });
-    dropTable.push_back({ 0.15, ITEM_RAG_BODY });
-    dropTable.push_back({ 0.15, ITEM_RAG_BOOTS });
-    dropTable.push_back({ 0.15, ITEM_RAG_GLOVES });
-    dropTable.push_back({ 0.15, ITEM_RAG_HAT });
-    dropTable.push_back({ 0.15, ITEM_RAG_PANTS });
-    dropTable.push_back({ 0.01, ITEM_LINEN_BODY });
-    dropTable.push_back({ 0.01, ITEM_LINEN_BOOTS });
-    dropTable.push_back({ 0.01, ITEM_LINEN_GLOVES });
-    dropTable.push_back({ 0.01, ITEM_LINEN_HAT });
-    dropTable.push_back({ 0.01, ITEM_LINEN_PANTS });
+    dropChance = 0.2;
+    dropTable.push_back({ 0.15, ITEM_SHORT_SWORD });
+    dropTable.push_back({ 0.06, ITEM_MACE});
+    dropTable.push_back({ 0.04, ITEM_LONG_SWORD });
+    dropTable.push_back({ 0.13, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.13, ITEM_RAG_BOOTS });
+    dropTable.push_back({ 0.13, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.13, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.13, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.02, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.02, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.02, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.02, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.02, ITEM_LINEN_PANTS });
 }

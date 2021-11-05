@@ -1,5 +1,6 @@
 #include "RatKing.h"
 #include "BasicMeleeAttack.h"
+#include "RpgTileGridScene.h"
 
 const int RAT_KING_MAX_HEALTH = 250;
 const int RAT_KING_SPEED = 4;
@@ -79,4 +80,10 @@ void RatKing::setDropTable()
 {
     dropChance = 1.0;
     dropTable.push_back({ 1.0, ITEM_LONG_SWORD });
+}
+
+void RatKing::death()
+{
+    RpgUnit::death();
+    scene->addDelayedCombatMessage(20, "YOU HAVE BEATEN THE GAME! (Such that it is)", COLOR_GREEN, tileLocation->x, tileLocation->y, 1400);
 }

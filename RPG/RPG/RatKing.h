@@ -18,6 +18,7 @@ public:
     //methods
     void createAnimations() override;
     void setDropTable() override;
+    void death() override;
 
 private:
     void init();

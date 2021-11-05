@@ -78,13 +78,13 @@ void Rat::createAnimations() {
 
 void Rat::setDropTable()
 {
-    dropChance = 0.03;
+    dropChance = 0.055;
     //dropChance = 1.0;
-    dropTable.push_back({ 0.15, ITEM_CLUB });
-    dropTable.push_back({ 0.02, ITEM_SHORT_SWORD});
-    dropTable.push_back({ 0.166, ITEM_RAG_BODY });
-    dropTable.push_back({ 0.166, ITEM_RAG_BOOTS});
-    dropTable.push_back({ 0.166, ITEM_RAG_GLOVES });
-    dropTable.push_back({ 0.166, ITEM_RAG_HAT });
-    dropTable.push_back({ 0.166, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.17, ITEM_CLUB });
+    dropTable.push_back({ 0.05, ITEM_SHORT_SWORD});
+    dropTable.push_back({ 0.156, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.156, ITEM_RAG_BOOTS});
+    dropTable.push_back({ 0.156, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.156, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.156, ITEM_RAG_PANTS });
 }

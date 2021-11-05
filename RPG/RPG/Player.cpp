@@ -4,8 +4,8 @@
 
 //stat constants
 const int PLAYER_SPEED = 4;
-const int PLAYER_DEX = 3;
-const int PLAYER_AGI = 2;
+const int PLAYER_DEX = 4;
+const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
 
 //animation constants
@@ -123,6 +123,13 @@ void Player::portalTo(int zoneId, int x, int y)
 {
     Unit::portalTo(zoneId, x, y);
     scene->loadZone(zone);
+}
+
+void Player::death()
+{
+    RpgUnit::death();
+    scene->engine->setNextScene(MAIN_MENU_SCENE);
+    scene->endScene();
 }
 
 //private methods

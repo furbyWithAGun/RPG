@@ -89,13 +89,13 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
     Item* itemToDrop = createNewItem(ITEM_LOGS);
     itemToDrop->stackSize = 1000;
-    addItemsToMap(0, 5, 6, { itemToDrop });
+    //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 
@@ -104,7 +104,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     testUnit = createUnitAtLocation(currentZone->id, BLUE_RAT, 19, 5);
-    testUnit->toSaveString();
+    //testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
     //testUnit->setTargetLocation(testLocation);

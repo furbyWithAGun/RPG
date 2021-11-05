@@ -69,10 +69,6 @@ void EquippedMenu::buildElements()
         //scene->menus[INVENTORY_MENU]->rebuildElements();
         });
     addElement(UNEQUIP_GEAR_BUTTON, unequipBtn);
-
-    UiElement* silh = new UiElement(scene, TEXTURE_EQUIPPED_MENU_SILHOUETTE, 300, 300, 300, 300);
-    silh->backgroundColour = COLOR_LIGHT_GREY;
-    addElement(silh);
 }
 
 void EquippedMenu::init()

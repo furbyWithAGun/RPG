@@ -106,7 +106,7 @@ public:
     void levelUp();
     void updateStats();
     int getTeamStatus(RpgUnit* otherUnit);
-    void death();
+    virtual void death();
     void death(RpgUnit* attackingUnit);
     bool equipItem(Equipment* item);
     bool unEquipItem(int slot);
