@@ -12,6 +12,7 @@ public:
     //constructors
     InventoryMenu();
     InventoryMenu(RpgOverWorldScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
+    InventoryMenu(RpgOverWorldScene* gameScene, int newId);
     void open() override;
     void draw() override;
     void rebuildElements() override;

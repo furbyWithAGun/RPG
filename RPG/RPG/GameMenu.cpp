@@ -21,6 +21,14 @@ GameMenu::GameMenu(GameScene* gameScene, int newId, int newWidth, int newHeight,
     id = newId;
 }
 
+GameMenu::GameMenu(GameScene* gameScene, int newId)
+{
+    init();
+    scene = gameScene;
+    engine = gameScene->engine;
+    id = newId;
+}
+
 void GameMenu::init() {
     scene = NULL;
     engine = NULL;

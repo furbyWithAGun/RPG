@@ -24,6 +24,17 @@ InventoryMenu::InventoryMenu(RpgOverWorldScene* gameScene, int newId, int newWid
     buildElements();
 }
 
+InventoryMenu::InventoryMenu(RpgOverWorldScene* gameScene, int newId) : GameMenu(gameScene, newId)
+{
+    init();
+    scene = gameScene;
+    width = engine->screenWidth * 0.25;
+    height = engine->screenHeight * 0.7;
+    xpos = scene->mainCanvasStartX + engine->screenWidth * 0.02;
+    ypos = engine->screenHeight * 0.15;
+    buildElements();
+}
+
 void InventoryMenu::open()
 {
     GameMenu::open();
@@ -68,8 +79,12 @@ bool InventoryMenu::handleInput(InputMessage* message)
 
 void InventoryMenu::buildElements()
 {
+    UiElement* silh = new UiElement(scene, TEXTURE_EQUIPPED_MENU_SILHOUETTE, xpos + width * 0.1, ypos + height * 0.05, width * 0.55, height * 0.4);
+    silh->backgroundColour = COLOR_LIGHT_GREY;
+    addElement(silh);
+
     ScrollBox* items;
-    items = new ScrollBox(ITEMS_SCROLL_BOX, scene, COLOR_GREY, xpos + width * 0.1, ypos + height * 0.1, width * 0.55, height * 0.7);
+    items = new ScrollBox(ITEMS_SCROLL_BOX, scene, COLOR_GREY, xpos + width * 0.1, ypos + height * 0.4, width * 0.55, height * 0.4);
     items->numElementsToDisplay = 5;
     addElement(ITEMS_SCROLL_BOX, items);
 

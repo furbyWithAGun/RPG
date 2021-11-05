@@ -25,6 +25,7 @@ public:
     //constructors
     GameMenu();
     GameMenu(GameScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
+    GameMenu(GameScene* gameScene, int newId);
 
     //destructor
     ~GameMenu();
