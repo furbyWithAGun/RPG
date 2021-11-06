@@ -244,6 +244,11 @@ std::vector<BuildingTile*> Building::getBuldingTileVectorFromSaveString(std::str
     return returnVector;
 }
 
+void Building::resetUid()
+{
+    uniqueBuildingId = 0;
+}
+
 
 void Building::init()
 {

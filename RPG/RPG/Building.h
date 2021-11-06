@@ -62,6 +62,7 @@ public:
     std::string getBuildingTileMapSaveString();
     std::vector<std::vector<BuildingTile*>> getBuldingTileMapFromSaveString(std::string saveString);
     std::vector<BuildingTile*> getBuldingTileVectorFromSaveString(std::string saveString);
+    static void resetUid();
 
 private:
     //methods

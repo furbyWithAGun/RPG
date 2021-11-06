@@ -45,6 +45,13 @@ void InventoryMenu::open()
 void InventoryMenu::draw()
 {
     GameMenu::draw();
+    for (auto displaySlot : displaySlots)
+    {
+        if (displaySlot.second.icon.textureKey != -1)
+        {
+            displaySlot.second.icon.draw(xpos + displaySlot.second.x, ypos + displaySlot.second.y);
+        }
+    }
 }
 
 void InventoryMenu::rebuildElements()
@@ -69,6 +76,13 @@ void InventoryMenu::rebuildElements()
     if (items->subElements.size() <= items->numElementsToDisplay)
     {
         items->displayIndex = 0;
+    }
+    
+    if (scene->player->equippedItems[HEAD_SLOT] != nullptr)
+    {
+        displaySlots[HEAD_SLOT].icon = UiElement(scene, scene->player->equippedItems[HEAD_SLOT]->textureKey, xpos + displaySlots[HEAD_SLOT].x, ypos + displaySlots[HEAD_SLOT].y);
+        HoverToolTip* toolTip = createItemToolTip(scene->player->equippedItems[HEAD_SLOT], scene);
+        registerToolTip(&displaySlots[HEAD_SLOT].icon, toolTip);
     }
 }
 
@@ -179,7 +193,15 @@ void InventoryMenu::buildElements()
     addElement(OPEN_EQUIPPED_MENU_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25))->setText("Equipment")->addOnClick([this]() {
         scene->openMenu(EQUIPPED_MENU);
         }));
+
+    defineEquipmentSlots();
 }
+
+void InventoryMenu::defineEquipmentSlots()
+{
+    displaySlots[HEAD_SLOT] = EquipmentDisplaySlot{150,50,100,100, UiElement(scene, -1)};
+}
+
 
 void InventoryMenu::init()
 {

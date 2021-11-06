@@ -6,9 +6,17 @@
 
 class RpgOverWorldScene;
 
+struct EquipmentDisplaySlot {
+    int x, y, width, height;
+    UiElement icon;
+};
+
 class InventoryMenu : public GameMenu
 {
 public:
+    //attributes
+    std::unordered_map<int, EquipmentDisplaySlot> displaySlots;
+
     //constructors
     InventoryMenu();
     InventoryMenu(RpgOverWorldScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
@@ -26,6 +34,7 @@ private:
 
     //methods
     void buildElements();
+    void defineEquipmentSlots();
     void init();
 };
 

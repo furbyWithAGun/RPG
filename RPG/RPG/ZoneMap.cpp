@@ -441,12 +441,15 @@ void ZoneMap::draw(TileGridScene* scene)
 		endY = tileMap.size();
 	}
 
+	int xz = 0;
+
 	//draw zone
 	for (int i = startY; i < endY; i++) {
 		for (int j = startX; j < endX; j++) {
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				//render tiles
+				xz++;
 				scene->renderTexture(scene->mapTiles[tileMap[i][j]].textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 			}
 		}
@@ -459,6 +462,7 @@ void ZoneMap::draw(TileGridScene* scene)
 					if (buildingMap[j][i]->getTileAtMapLocation(j, i) != nullptr) {
 						SDL_SetTextureColorMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255, 255, 255);
 						SDL_SetTextureAlphaMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255);
+						xz++;
 						scene->renderTexture(buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 					}
 				}
@@ -470,6 +474,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				if (getPortalAtLocation(j, i) != nullptr) {
+					xz++;
 					scene->renderTexture(portalMap[j][i]->textureId, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 				}
 			}
@@ -480,6 +485,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				if (getDooDadAtLocation(j, i) != nullptr) {
+					xz++;
 					scene->renderTexture(getDooDadAtLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 				}
 			}
@@ -490,6 +496,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (int k = 0; k < getItemsAtLocation(j, i).size(); k++) {
+					xz++;
 					scene->renderTexture(itemMap[j][i][k]->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset, scene->tileHeight * i + scene->yOffset, scene->tileWidth, scene->tileHeight);
 				}
 			}
@@ -499,6 +506,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (auto unit : unitMap[j][i]) {
+					xz++;
 					unit->draw();
 				}
 			}

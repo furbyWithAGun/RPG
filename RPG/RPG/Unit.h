@@ -107,6 +107,7 @@ public:
     void setScene(TileGridScene* gameScene);
     
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
+    static void resetUid();
 
 
 

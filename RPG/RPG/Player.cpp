@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "RpgTileGridScene.h"
 #include "BasicMeleeAttack.h"
+#include "RpgOverWorldScene.h"
 
 //stat constants
 const int PLAYER_SPEED = 4;
@@ -128,6 +129,7 @@ void Player::portalTo(int zoneId, int x, int y)
 void Player::death()
 {
     RpgUnit::death();
+    scene->engine->addScene(OVERWORLD, new RpgOverWorldScene(scene->engine));
     scene->engine->setNextScene(MAIN_MENU_SCENE);
     scene->endScene();
 }

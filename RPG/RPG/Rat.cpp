@@ -3,9 +3,9 @@
 
 const int RAT_MAX_HEALTH = 10;
 const int RAT_SPEED = 2;
-const int RAT_DEX = 4;
-const int RAT_AGI = 2;
-const int RAT_STR = 5;
+const int RAT_DEX = 3;
+const int RAT_AGI = 1;
+const int RAT_STR = 4;
 const int RAT_EXP_VALUE = 3;
 
 Rat::Rat() : AiUnit() {

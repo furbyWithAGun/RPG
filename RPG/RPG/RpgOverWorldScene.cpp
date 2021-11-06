@@ -82,6 +82,8 @@ void RpgOverWorldScene::setUpScene()
 {
     RpgTileGridScene::setUpScene();
     //set up teams
+    Building::resetUid();
+    Unit::resetUid();
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
     teamRelations[MONSTER_TEAM][PLAYER_TEAM] = ENEMY;
 
@@ -90,12 +92,13 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
     Item* itemToDrop = createNewItem(ITEM_LOGS);
     itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 

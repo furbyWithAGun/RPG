@@ -73,6 +73,11 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
     return saveString;
 }
 
+void Unit::resetUid()
+{
+    uniqueUnitId = 0;
+}
+
 //constructors
 Unit::Unit() : AnimatedSprite() {
     init();
