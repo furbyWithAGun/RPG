@@ -93,6 +93,11 @@ void RpgOverWorldScene::setUpScene()
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
     addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
+    addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
     Item* itemToDrop = createNewItem(ITEM_LOGS);
     itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 5, 6, { itemToDrop });

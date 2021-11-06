@@ -51,6 +51,12 @@ void InventoryMenu::draw()
         {
             displaySlot.second.icon.draw(xpos + displaySlot.second.x, ypos + displaySlot.second.y);
         }
+        for (auto toolTip : toolTips)
+        {
+            if (toolTip->active) {
+                toolTip->draw();
+            }
+        }
     }
 }
 
@@ -77,12 +83,18 @@ void InventoryMenu::rebuildElements()
     {
         items->displayIndex = 0;
     }
-    
-    if (scene->player->equippedItems[HEAD_SLOT] != nullptr)
+
+    for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
-        displaySlots[HEAD_SLOT].icon = UiElement(scene, scene->player->equippedItems[HEAD_SLOT]->textureKey, xpos + displaySlots[HEAD_SLOT].x, ypos + displaySlots[HEAD_SLOT].y);
-        HoverToolTip* toolTip = createItemToolTip(scene->player->equippedItems[HEAD_SLOT], scene);
-        registerToolTip(&displaySlots[HEAD_SLOT].icon, toolTip);
+        if (scene->player->equippedItems[i] != nullptr)
+        {
+            displaySlots[i].icon = UiElement(scene, scene->player->equippedItems[i]->textureKey, xpos + displaySlots[i].x, ypos + displaySlots[i].y);
+            HoverToolTip* toolTip = createItemToolTip(scene->player->equippedItems[i], scene);
+            registerToolTip(&displaySlots[i].icon, toolTip);
+        }
+        else {
+            displaySlots[i].icon = UiElement(scene, -1);
+        }
     }
 }
 
@@ -199,7 +211,19 @@ void InventoryMenu::buildElements()
 
 void InventoryMenu::defineEquipmentSlots()
 {
-    displaySlots[HEAD_SLOT] = EquipmentDisplaySlot{150,50,100,100, UiElement(scene, -1)};
+    displaySlots[HEAD_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[NECK_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[SHOULDERS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[BODY_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.096), 0, 0, UiElement(scene, -1)};
+    displaySlots[ARMS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[HANDS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.14), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEFT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.2), 0, 0, UiElement(scene, -1)};
+    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEFT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.2), 0, 0, UiElement(scene, -1)};
+    displaySlots[RIGHT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[BELT_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEGS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.18), 0, 0, UiElement(scene, -1)};
+    displaySlots[FEET_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.23), 0, 0, UiElement(scene, -1)};
 }
 
 

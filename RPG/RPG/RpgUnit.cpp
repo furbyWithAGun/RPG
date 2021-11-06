@@ -285,6 +285,10 @@ bool RpgUnit::unEquipItem(int slot)
     {
         scene->menus[EQUIPPED_MENU]->rebuildElements();
     }
+    if (scene->menus[INVENTORY_MENU]->isActive)
+    {
+        scene->menus[INVENTORY_MENU]->rebuildElements();
+    }
     return true;
 }
 

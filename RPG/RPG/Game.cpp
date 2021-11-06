@@ -13,6 +13,7 @@
 // unit spawners
 // town quests
 // town attacks
+// overworld towers / walls
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
 // move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers
