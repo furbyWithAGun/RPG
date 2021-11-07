@@ -61,7 +61,7 @@ void Rat::createAnimations() {
     addAnimation(IDLE_DOWN_LEFT,RAT_IDLE_DOWN, 1, 10);
     addAnimation(IDLE_LEFT,RAT_IDLE_LEFT, 1, 10);
 
-    addAnimation(MOVE_DOWN,RAT_IDLE_DOWN, 1, 20);
+    addAnimation(MOVE_DOWN, RAT_MOVE_DOWN, 4, 40);
     addAnimation(MOVE_UP,RAT_IDLE_UP, 1, 20);
     addAnimation(MOVE_RIGHT,RAT_IDLE_RIGHT, 1, 20);
     addAnimation(MOVE_LEFT,RAT_IDLE_LEFT, 1, 20);

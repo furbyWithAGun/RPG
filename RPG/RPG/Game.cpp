@@ -6,7 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// rework inventory menu
 // add all of tims textures
 // add another cave
 // add more items

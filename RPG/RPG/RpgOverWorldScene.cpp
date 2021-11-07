@@ -103,7 +103,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 
