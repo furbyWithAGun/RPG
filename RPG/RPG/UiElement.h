@@ -30,6 +30,7 @@ public:
     int displayIndex;
     bool gettingText;
     bool displaySubElements;
+    int textTextureKey;
 
     //constructors
     UiElement();
@@ -54,7 +55,6 @@ public:
     virtual bool handleInput(InputMessage* message);
     virtual std::string getText() { return text; };
     virtual std::string getText(int subElementId);
-    virtual UiElement* setText(std::string newText);
     virtual UiElement* setText(std::string newText, SDL_Color colour = COLOR_BLACK);
     virtual void setText(int subElementId, std::string newText);
     virtual void addElement(UiElement* element);

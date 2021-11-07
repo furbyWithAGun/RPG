@@ -51,11 +51,11 @@ void InventoryMenu::draw()
         {
             displaySlot.second.icon.draw(xpos + displaySlot.second.x, ypos + displaySlot.second.y);
         }
-        for (auto toolTip : toolTips)
-        {
-            if (toolTip->active) {
-                toolTip->draw();
-            }
+    }
+    for (auto toolTip : toolTips)
+    {
+        if (toolTip->active) {
+            toolTip->draw();
         }
     }
 }
@@ -89,6 +89,9 @@ void InventoryMenu::rebuildElements()
         if (scene->player->equippedItems[i] != nullptr)
         {
             displaySlots[i].icon = UiElement(scene, scene->player->equippedItems[i]->textureKey, xpos + displaySlots[i].x, ypos + displaySlots[i].y);
+            displaySlots[i].icon.addOnClick([this, i]() {
+                scene->player->unEquipItem(i);
+                });
             HoverToolTip* toolTip = createItemToolTip(scene->player->equippedItems[i], scene);
             registerToolTip(&displaySlots[i].icon, toolTip);
         }
@@ -100,6 +103,15 @@ void InventoryMenu::rebuildElements()
 
 bool InventoryMenu::handleInput(InputMessage* message)
 {
+    for (auto displaySlot : displaySlots)
+    {
+        if (displaySlot.second.icon.textureKey != -1)
+        {
+            if (displaySlot.second.icon.handleInput(message)) {
+                return true;
+            }
+        }
+    }
     return GameMenu::handleInput(message);
 }
 
@@ -160,7 +172,7 @@ void InventoryMenu::buildElements()
         });
     addElement(INVENTORY_DROP_BUTTON, dropBtn);
 
-    MenuButton* equipBtn = new MenuButton(INVENTORY_EQUIP_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.15);
+    MenuButton* equipBtn = new MenuButton(INVENTORY_EQUIP_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.35);
     equipBtn->setText("Equip")->addOnClick([this, items]() {
         if (items->getSelectedElementValue() != -1)
         {
@@ -202,9 +214,9 @@ void InventoryMenu::buildElements()
     addElement(INVENTORY_EAT_BUTTON, eatBtn);
 
     //MenuButton* equipMenuBtn = new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25);
-    addElement(OPEN_EQUIPPED_MENU_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25))->setText("Equipment")->addOnClick([this]() {
-        scene->openMenu(EQUIPPED_MENU);
-        }));
+    //addElement(OPEN_EQUIPPED_MENU_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25))->setText("Equipment")->addOnClick([this]() {
+    //    scene->openMenu(EQUIPPED_MENU);
+    //    }));
 
     defineEquipmentSlots();
 }

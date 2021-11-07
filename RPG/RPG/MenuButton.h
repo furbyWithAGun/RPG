@@ -9,7 +9,6 @@ class MenuButton: public UiElement
 public:
     //attributes
     GameScene* scene;
-    int textTextureKey;
     int textXoffset, textYoffset, textWidth, textHeight;
 
     //constructors

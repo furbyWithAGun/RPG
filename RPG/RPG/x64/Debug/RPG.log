@@ -1,498 +1,60 @@
-﻿  AiUnit.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(113,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  Attack.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  AttackingState.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  BasicMeleeAttack.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\BasicMeleeAttack.cpp(26,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  BerryBush.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  BlueRat.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Building.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\Building.cpp(163,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\Building.cpp(164,34): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\Building.cpp(220,9): warning C4101: 'outerSize': unreferenced local variable
-C:\coding\c++\rpgGame\RPG\RPG\Building.cpp(220,20): warning C4101: 'innerSize': unreferenced local variable
-  CampCommandCentre.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  DooDadFactory.cpp
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  EquippedMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(43,125): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(43,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(43,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(43,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(50,167): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(50,147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(53,162): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(53,142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(58,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(58,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(64,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(64,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(100,162): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(100,142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(106,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(106,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  FoodEffect.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  FruitTree.cpp
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Game.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  GameMenu.cpp
-  GameScene.cpp
-  HoverToolTip.cpp
-  IdleState.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  InputPrompt.cpp
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(103,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(114,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(114,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(114,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(114,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(117,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(117,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(125,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InputPrompt.cpp(125,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  InventoryMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(31,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(32,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(33,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(34,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(108,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(108,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(108,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(108,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(113,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(113,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(113,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(113,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(117,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(117,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(123,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(123,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(130,178): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(130,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(163,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(163,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(185,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(185,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(205,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\InventoryMenu.cpp(205,90): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ItemBuyMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(65,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(65,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(65,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(65,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(69,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(69,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(75,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemBuyMenu.cpp(75,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-  Compiling...
-  ItemFactory.cpp
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(369,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(369,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(374,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(374,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(379,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(379,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(384,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(384,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ItemSellMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(73,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(73,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(73,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(73,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(77,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(77,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(83,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(83,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(90,178): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemSellMenu.cpp(90,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ItemShop.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ItemShop.cpp(60,222): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemShop.cpp(60,181): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemShop.cpp(60,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemShop.cpp(60,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  LoadZoneMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(31,150): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(31,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(31,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(31,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(46,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(46,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(50,151): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(50,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(50,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(50,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(63,134): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(63,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(72,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(72,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(79,129): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(79,109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  MainMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\MainMenu.cpp(20,190): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MainMenu.cpp(20,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MainMenu.cpp(20,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MainMenu.cpp(20,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  MainMenuScene.cpp
-  MapBuilderPortalButton.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  MapBuilderTileButton.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  MenuButton.cpp
-C:\coding\c++\rpgGame\RPG\RPG\MenuButton.cpp(52,33): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
-C:\coding\c++\rpgGame\RPG\RPG\MenuButton.cpp(62,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MenuButton.cpp(63,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MenuButton.cpp(64,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\MenuButton.cpp(65,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  MenuText.cpp
-  MovingState.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  OverWorldSceneMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\OverWorldSceneMenu.cpp(33,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  PagedPanel.cpp
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(23,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(23,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(24,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(24,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(27,161): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(27,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(28,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PagedPanel.cpp(28,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Player.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(84,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(85,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  PortalPropertiesMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(34,88): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(34,88): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(35,96): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(35,96): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(36,96): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(36,96): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(43,96): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(43,96): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(44,96): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(44,96): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(77,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(77,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(78,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(78,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(79,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(79,145): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(79,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(79,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(80,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(80,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(81,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(81,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(81,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(81,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(82,174): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(82,146): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(82,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(82,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(83,120): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(83,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(84,119): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(84,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(87,29): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(87,29): message : while trying to match the argument list '(const char [7])'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(91,129): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(91,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(100,1): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(100,1): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(105,38): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(105,38): message : while trying to match the argument list '(const char [12])'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(109,133): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(109,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(115,42): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\PortalPropertiesMenu.cpp(115,42): message : while trying to match the argument list '(const char [16])'
-  PortalPropertiesOkButton.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Prompt.cpp
-  Rat.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  RatKing.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  RpgOverWorldScene.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(129,144): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(129,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(130,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(130,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,190): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,15): warning C4101: 'testBuilding': unreferenced local variable
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(161,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(162,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(329,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(330,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(385,69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(386,72): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(415,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(416,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(417,298): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(417,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(417,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(417,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(418,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(418,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(419,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(419,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(419,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(419,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(420,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(420,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(420,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(420,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(421,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(421,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(422,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(422,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(422,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(422,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(423,188): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(423,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(423,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(423,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(424,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(424,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(430,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.cpp(361): warning C4715: 'createNewItemBlankId': not all control paths return a value
-  Compiling...
-  RpgTileGridScene.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  RpgUnit.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(187,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(187,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(328,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(354,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(375,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  RpgWorldBuilderScene.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(93,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(94,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(311,73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(312,76): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  SaveMapBuilderButton.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  ScrollBox.cpp
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(33,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(33,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(33,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(34,175): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(34,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(34,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(35,221): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(35,185): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(35,120): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(35,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(36,223): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(36,187): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(36,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(36,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(168,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ScrollBox.cpp(169,112): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  SelectPrompt.cpp
-C:\coding\c++\rpgGame\RPG\RPG\SelectPrompt.cpp(88,220): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  Soldier.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  TextBox.cpp
-  TownBuildMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(68,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(70,188): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(70,159): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(70,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(70,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(105,46): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownBuildMenu.cpp(106,47): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  TownCommand.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(32,222): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(32,181): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(32,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(32,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  TownsPerson.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Tree.cpp
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  UiElement.cpp
-  ZoneBuilderMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(81,108): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(81,108): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(103,134): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(104,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(106,183): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(106,154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(106,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(106,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(122,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(122,160): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(122,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(122,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(131,88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(139,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(140,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(144,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(144,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(150,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(150,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(160,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(162,194): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(162,165): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(162,133): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(162,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(181,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(183,196): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(183,167): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(183,135): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(183,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(204,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(205,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(205,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(211,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(213,196): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(213,167): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(213,135): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(213,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(237,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(239,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(239,163): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(239,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(239,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ZoneMap.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(286,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(394,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(414,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(423,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(432,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(441,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1016,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1017,60): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1076,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1077,74): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1172,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1173,96): warning C4804: '>': unsafe use of type 'bool' in operation
-  saveZoneMenu.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(27,76): error C2668: 'UiElement::setText': ambiguous call to overloaded function
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(58,24): message : could be 'UiElement *UiElement::setText(std::string,SDL_Color)'
-C:\coding\c++\rpgGame\RPG\RPG\UiElement.h(57,24): message : or       'UiElement *UiElement::setText(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(27,76): message : while trying to match the argument list '(std::string)'
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(33,124): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(33,90): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(34,130): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(34,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(34,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(34,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(37,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(37,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(56,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\saveZoneMenu.cpp(56,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Generating Code...
-C:\coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(157): warning C4715: 'RpgUnit::assignDamage': not all control paths return a value
+﻿  RpgOverWorldScene.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(129,144): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(129,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(130,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(130,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(131,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,190): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(132,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(134,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(123,15): warning C4101: 'testBuilding': unreferenced local variable
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(161,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(162,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(341,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(342,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(397,69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(398,72): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(427,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(427,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(428,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(428,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(428,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(428,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(429,298): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(429,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(429,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(429,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(430,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(430,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(431,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(431,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(431,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(431,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(432,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(432,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(432,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(432,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(433,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(433,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(434,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(434,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(434,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(434,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(435,188): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(435,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(435,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(435,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(436,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(436,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(442,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

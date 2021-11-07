@@ -92,14 +92,14 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
-    Item* itemToDrop = createNewItem(ITEM_LOGS);
-    itemToDrop->stackSize = 1000;
+   // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
+    //Item* itemToDrop = createNewItem(ITEM_LOGS);
+    //itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
@@ -243,6 +243,18 @@ void RpgOverWorldScene::handleInput()
             }
         }
         
+    }
+    if (controllerInterface->selectOn)
+    {
+        getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+        if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
+        {
+            Unit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
+            if (unitAtLocation != nullptr && unitAtLocation != player)
+            {
+                addCommand(InputMessage(PERFORM_MAIN_ATTACK, controllerInterface->latestXpos, controllerInterface->latestYpos));
+            }
+        }
     }
     delete message;
 }

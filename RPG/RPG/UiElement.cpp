@@ -229,14 +229,11 @@ std::string UiElement::getText(int subElementId) {
     return "";
 }
 
-UiElement* UiElement::setText(std::string newText) {
-    text = newText;
-    return this;
-}
 
 UiElement* UiElement::setText(std::string newText, SDL_Color colour)
 {
     text = newText;
+    textTextureKey = scene->engine->createTextTexture(newText, colour);
     return this;
 }
 

@@ -28,6 +28,10 @@ SelectPrompt* SelectPrompt::addSelectOption(std::string newDisplayTest, int newR
     newOption->returnValue = newReturnValue;
     newOption->displayText = new MenuText(scene, newDisplayTest, COLOR_WHITE, xpos, ypos);
     selectOptions.push_back(newOption);
+    int newHeight = newOption->displayText->height * selectOptions.size() + scene->engine->screenHeight * 0.01;
+    if (newHeight > height) {
+        height = newHeight;
+    }
     return this;
 }
 
