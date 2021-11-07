@@ -44,6 +44,11 @@ void PortalPropertiesMenu::setExitZoneCoords(int newCoords[2])
     getElementbyId(EXIT_COORDS_Y_TEXT)->setText(std::to_string(portalToEdit->exitTileCoords[1]));
 }
 
+void PortalPropertiesMenu::draw()
+{
+    GameMenu::draw();
+}
+
 bool PortalPropertiesMenu::handleInput(InputMessage* message)
 {
     bool messageConsumed = false;

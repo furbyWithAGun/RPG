@@ -86,6 +86,7 @@ void UiElement::init() {
     layout = FLOW_LAYOUT;
     alignment = VERTICAL;
     displaySubElements = true;
+    callback = []() {};
 }
 
 void UiElement::init(int newId) {
@@ -130,15 +131,34 @@ void UiElement::draw(int x, int y)
 
 bool UiElement::handleInput(InputMessage* message)
 {
-    switch (message->id)
+
+    bool messageConsumed = false;
+    if (active)
     {
-    case SELECT_ON:
-    case SELECT_OFF:
-        return pointCollision(message->x, message->y);
-        break;
-    default:
-        return false;
+        switch (message->id)
+        {
+        case SELECT_ON:
+            if (pointCollision(message->x, message->y))
+            {
+                messageConsumed = true;
+                onClick();
+            }
+            break;
+        case BUTTON_1_OFF:
+            if (pointCollision(message->x, message->y))
+            {
+                messageConsumed = true;
+                onClick();
+            }
+            break;
+        case SELECT_OFF:
+            return pointCollision(message->x, message->y);
+            break;
+        default:
+            return false;
+        }
     }
+    return messageConsumed;
 }
 
 
@@ -214,10 +234,33 @@ UiElement* UiElement::setText(std::string newText) {
     return this;
 }
 
+UiElement* UiElement::setText(std::string newText, SDL_Color colour)
+{
+    text = newText;
+    return this;
+}
+
 void UiElement::setText(int subElementId, std::string newText) {
     UiElement* element = getElementbyId(subElementId);
     if (element != NULL)
     {
-        element->setText(newText);
+        element->setText(newText, COLOR_BLACK);
     }
+}
+
+void UiElement::onClick()
+{
+    callback();
+}
+
+UiElement* UiElement::addOnClick(std::function<void()> newCallback)
+{
+    callback = newCallback;
+    return this;
+}
+
+UiElement* UiElement::addBtnOneCallback(std::function<void()> newCallback)
+{
+    btnOneCallback = newCallback;
+    return this;
 }

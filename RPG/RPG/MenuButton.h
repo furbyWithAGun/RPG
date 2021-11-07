@@ -1,7 +1,6 @@
 #pragma once
 #include "UiElement.h"
 #include "GameScene.h"
-#include <functional>
 
 //class BaseGameEngine;
 
@@ -25,15 +24,10 @@ public:
     //~MenuButton();
 
     //methods
-    bool handleInput(InputMessage* message);
-    virtual void onClick();
-    MenuButton* addOnClick(std::function<void()> newCallback);
     void draw();
-    MenuButton* setText(std::string newText, SDL_Color colour = COLOR_BLACK);
+    MenuButton* setText(std::string newText, SDL_Color colour = COLOR_BLACK) override;
 
 private:
-    //attributes
-    std::function<void()> callback;
 
     //methods
     void init();

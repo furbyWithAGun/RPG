@@ -26,6 +26,7 @@ public:
     void open();
     void open(ZonePortal* newPortal);
     void setExitZoneCoords(int newCoords[2]);
+    void draw() override;
 
 private:
     //methods

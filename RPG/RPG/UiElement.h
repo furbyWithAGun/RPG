@@ -1,6 +1,7 @@
 #pragma once
 #include "InputMessage.h"
 #include "Sprite.h"
+#include <functional>
 
 enum LAYOUTS {
     FLOW_LAYOUT,
@@ -54,6 +55,7 @@ public:
     virtual std::string getText() { return text; };
     virtual std::string getText(int subElementId);
     virtual UiElement* setText(std::string newText);
+    virtual UiElement* setText(std::string newText, SDL_Color colour = COLOR_BLACK);
     virtual void setText(int subElementId, std::string newText);
     virtual void addElement(UiElement* element);
     virtual void addElement(int elementId, UiElement* element);
@@ -61,6 +63,15 @@ public:
     virtual void deactivate();
     virtual bool isGettingText();
     virtual void update();
+    virtual void onClick();
+    UiElement* addOnClick(std::function<void()> newCallback);
+    UiElement* addBtnOneCallback(std::function<void()> newCallback);
+
+protected:
+
+    //attributes
+    std::function<void()> callback;
+    std::function<void()> btnOneCallback;
 
 private:
     //attributes

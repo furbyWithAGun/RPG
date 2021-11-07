@@ -45,31 +45,6 @@ void MenuButton::init(GameScene* gameScene) {
     }
 }
 
-//public methods
-bool MenuButton::handleInput(InputMessage* message) {
-    bool messageConsumed = false;
-    if (active)
-    {
-        if (message->id == SELECT_ON && pointCollision(message->x, message->y))
-        {
-            messageConsumed = true;
-            onClick();
-        }
-    }
-    return messageConsumed;
-}
-
-void MenuButton::onClick()
-{
-    callback();
-}
-
-MenuButton* MenuButton::addOnClick(std::function<void()> newCallback)
-{
-    callback = newCallback;
-    return this;
-}
-
 void MenuButton::draw() {
     if (active)
     {
