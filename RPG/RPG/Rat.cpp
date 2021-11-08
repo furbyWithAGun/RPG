@@ -62,18 +62,18 @@ void Rat::createAnimations() {
     addAnimation(IDLE_LEFT,RAT_IDLE_LEFT, 1, 10);
 
     addAnimation(MOVE_DOWN, RAT_MOVE_DOWN, 4, 40);
-    addAnimation(MOVE_UP,RAT_IDLE_UP, 1, 20);
-    addAnimation(MOVE_RIGHT,RAT_IDLE_RIGHT, 1, 20);
-    addAnimation(MOVE_LEFT,RAT_IDLE_LEFT, 1, 20);
+    addAnimation(MOVE_UP, RAT_MOVE_UP, 4, 40);
+    addAnimation(MOVE_RIGHT, RAT_MOVE_RIGHT, 4, 40);
+    addAnimation(MOVE_LEFT, RAT_MOVE_LEFT, 4, 40);
 
-    addAnimation(ATTACK_UP_LEFT, RAT_IDLE_UP, 1, 10, false);
-    addAnimation(ATTACK_UP, RAT_IDLE_UP, 1, 10, false);
-    addAnimation(ATTACK_UP_RIGHT, RAT_IDLE_UP, 1, 10, false);
-    addAnimation(ATTACK_RIGHT, RAT_IDLE_RIGHT, 1, 10, false);
-    addAnimation(ATTACK_DOWN_RIGHT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN_LEFT,RAT_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_LEFT, RAT_IDLE_LEFT, 1, 10, false);
+    addAnimation(ATTACK_UP_LEFT, RAT_ATTACK_UP, 2, 20, false);
+    addAnimation(ATTACK_UP, RAT_ATTACK_UP, 2, 20, false);
+    addAnimation(ATTACK_UP_RIGHT, RAT_ATTACK_UP, 2, 20, false);
+    addAnimation(ATTACK_RIGHT, RAT_ATTACK_RIGHT, 2, 20, false);
+    addAnimation(ATTACK_DOWN_RIGHT, RAT_ATTACK_DOWN, 2, 20, false);
+    addAnimation(ATTACK_DOWN, RAT_ATTACK_DOWN, 2, 20, false);
+    addAnimation(ATTACK_DOWN_LEFT, RAT_ATTACK_DOWN, 2, 20, false);
+    addAnimation(ATTACK_LEFT, RAT_ATTACK_LEFT, 2, 20, false);
 }
 
 void Rat::setDropTable()
