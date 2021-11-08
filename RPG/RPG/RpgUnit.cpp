@@ -177,6 +177,7 @@ int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
 
 void RpgUnit::draw()
 {
+    currentState->updateAnimation();
     Unit::draw();
     drawHealth();
 }

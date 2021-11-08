@@ -79,6 +79,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_LEFT_SHEET, "images/basicMeleeAttackDown2.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/basicMeleeAttackDown2.png" });
     //enemy textures
+    //Rat
     texturesToLoad.insert({ RAT_IDLE_DOWN, "images/ratIdleDown.png" });
     texturesToLoad.insert({ RAT_IDLE_LEFT, "images/ratIdleLeft.png" });
     texturesToLoad.insert({ RAT_IDLE_RIGHT, "images/ratIdleRight.png" });
@@ -92,8 +93,19 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ RAT_ATTACK_LEFT, "images/ratAttackLeft.png" });
     texturesToLoad.insert({ RAT_ATTACK_RIGHT, "images/ratAttackRight.png" });
     texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });
-    //texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/RatKing2.png" });
-    texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/skeletonKing.png" });
+    //ratKing
+    texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/ratKingIdleDown.png" });
+    texturesToLoad.insert({ RAT_KING_IDLE_UP, "images/ratKingIdleUp.png" });
+    texturesToLoad.insert({ RAT_KING_IDLE_LEFT, "images/ratKingIdleLeft.png" });
+    texturesToLoad.insert({ RAT_KING_IDLE_RIGHT, "images/ratKingIdleRight.png" });
+    texturesToLoad.insert({ RAT_KING_MOVE_UP, "images/ratKingMoveUp.png" });
+    texturesToLoad.insert({ RAT_KING_MOVE_DOWN, "images/ratKingMoveDown.png" });
+    texturesToLoad.insert({ RAT_KING_MOVE_LEFT, "images/ratKingMoveLeft.png" });
+    texturesToLoad.insert({ RAT_KING_MOVE_RIGHT, "images/ratKingMoveRight.png" });
+    texturesToLoad.insert({ RAT_KING_ATTACK_UP, "images/ratKingAttackUp.png" });
+    texturesToLoad.insert({ RAT_KING_ATTACK_DOWN, "images/ratKingAttackDown.png" });
+    texturesToLoad.insert({ RAT_KING_ATTACK_LEFT, "images/ratKingAttackLeft.png" });
+    texturesToLoad.insert({ RAT_KING_ATTACK_RIGHT, "images/ratKingAttackRight.png" });
     //townsperson textures
     texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
     //item textures

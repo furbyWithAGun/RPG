@@ -6,7 +6,7 @@
 
 //constructors
 AttackingState::AttackingState() : UnitState() {
-
+    
 }
 
 AttackingState::AttackingState(int newId, RpgUnit* controlledUnit) : UnitState(newId, controlledUnit) {
@@ -84,4 +84,46 @@ int AttackingState::handleInput(InputMessage* message) {
         break;
     }
     return id;
+}
+
+void AttackingState::updateAnimation()
+{
+    switch (unit->directionFacing) {
+    case UP:
+        //unit->playAnimation(ATTACK_UP);
+        unit->setAnimation(IDLE_UP);
+        break;
+    case DOWN:
+        //unit->playAnimation(ATTACK_DOWN);
+        unit->setAnimation(IDLE_DOWN);
+        break;
+    case RIGHT:
+        //unit->playAnimation(ATTACK_RIGHT);
+        unit->setAnimation(IDLE_RIGHT);
+        break;
+    case LEFT:
+        //unit->playAnimation(ATTACK_LEFT);
+        unit->setAnimation(IDLE_LEFT);
+        break;
+    case UP_RIGHT:
+        //unit->playAnimation(ATTACK_UP_RIGHT);
+        unit->setAnimation(IDLE_UP_RIGHT);
+        break;
+    case UP_LEFT:
+        //unit->playAnimation(ATTACK_UP_LEFT);
+        unit->setAnimation(IDLE_UP_LEFT);
+        break;
+    case DOWN_RIGHT:
+        //unit->playAnimation(ATTACK_DOWN_RIGHT);
+        unit->setAnimation(IDLE_DOWN_RIGHT);
+        break;
+    case DOWN_LEFT:
+        //unit->playAnimation(ATTACK_DOWN_LEFT);
+        unit->setAnimation(IDLE_DOWN_LEFT);
+        break;
+    default:
+        //unit->playAnimation(ATTACK_DOWN);
+        unit->setAnimation(IDLE_DOWN);
+        break;
+    }
 }

@@ -52,28 +52,28 @@ void RatKing::init(RpgTileGridScene* gameScene) {
 
 
 void RatKing::createAnimations() {
-    addAnimation(IDLE_UP_LEFT, RAT_KING_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_UP, RAT_KING_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_UP_RIGHT, RAT_KING_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_RIGHT, RAT_KING_IDLE_DOWN, 1, 10);
+    addAnimation(IDLE_UP_LEFT, RAT_KING_IDLE_UP, 1, 10);
+    addAnimation(IDLE_UP, RAT_KING_IDLE_UP, 1, 10);
+    addAnimation(IDLE_UP_RIGHT, RAT_KING_IDLE_UP, 1, 10);
+    addAnimation(IDLE_RIGHT, RAT_KING_IDLE_RIGHT, 1, 10);
     addAnimation(IDLE_DOWN_RIGHT, RAT_KING_IDLE_DOWN, 1, 10);
     addAnimation(IDLE_DOWN, RAT_KING_IDLE_DOWN, 1, 10);
     addAnimation(IDLE_DOWN_LEFT, RAT_KING_IDLE_DOWN, 1, 10);
-    addAnimation(IDLE_LEFT, RAT_KING_IDLE_DOWN, 1, 10);
+    addAnimation(IDLE_LEFT, RAT_KING_IDLE_LEFT, 1, 10);
 
-    addAnimation(MOVE_DOWN, RAT_KING_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_UP, RAT_KING_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_RIGHT, RAT_KING_IDLE_DOWN, 1, 20);
-    addAnimation(MOVE_LEFT, RAT_KING_IDLE_DOWN, 1, 20);
+    addAnimation(MOVE_DOWN, RAT_KING_MOVE_DOWN, 4, 40);
+    addAnimation(MOVE_UP, RAT_KING_MOVE_UP, 4, 40);
+    addAnimation(MOVE_RIGHT, RAT_KING_MOVE_RIGHT, 4, 40);
+    addAnimation(MOVE_LEFT, RAT_KING_MOVE_LEFT, 4, 40);
 
-    addAnimation(ATTACK_UP_LEFT, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_UP, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_UP_RIGHT, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_RIGHT, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN_RIGHT, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_DOWN_LEFT, RAT_KING_IDLE_DOWN, 1, 10, false);
-    addAnimation(ATTACK_LEFT, RAT_KING_IDLE_DOWN, 1, 10, false);
+    addAnimation(ATTACK_UP_LEFT, RAT_KING_ATTACK_UP, 4, 5, false);
+    addAnimation(ATTACK_UP, RAT_KING_ATTACK_UP, 4, 5, false);
+    addAnimation(ATTACK_UP_RIGHT, RAT_KING_ATTACK_UP, 4, 5, false);
+    addAnimation(ATTACK_RIGHT, RAT_KING_ATTACK_RIGHT, 2, 5, false);
+    addAnimation(ATTACK_DOWN_RIGHT, RAT_KING_ATTACK_DOWN, 4, 5, false);
+    addAnimation(ATTACK_DOWN, RAT_KING_ATTACK_DOWN, 4, 5, false);
+    addAnimation(ATTACK_DOWN_LEFT, RAT_KING_ATTACK_DOWN, 4, 5, false);
+    addAnimation(ATTACK_LEFT, RAT_KING_ATTACK_LEFT, 2, 5, false);
 }
 
 void RatKing::setDropTable()

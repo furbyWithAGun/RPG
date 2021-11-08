@@ -20,7 +20,6 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\armour.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\animation.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\animatedsprite.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\aiunit.obj
-d:\coding\c++\rpggame\rpg\rpg\x64\debug\linenbody.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\itemshop.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\itemsellmenu.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\itemfactory.obj
@@ -30,6 +29,7 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\inventorymenu.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\inputprompt.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\inputmessage.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\idlestate.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\debug\hovertooltip.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\healingpad.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\graph.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\gamescene.obj
@@ -40,7 +40,6 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\fruittree.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\foodeffect.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\food.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\equippedmenu.obj
-d:\coding\c++\rpggame\rpg\rpg\x64\debug\portalpropertiesokbutton.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\portalpropertiesmenu.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\player.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\pagedpanel.obj
@@ -60,7 +59,7 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\linenpants.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\linenhat.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\linengloves.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\linenboots.obj
-d:\coding\c++\rpggame\rpg\rpg\x64\debug\selectprompt.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\debug\linenbody.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\scrollbox.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\savezonemenu.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\savefile.obj
@@ -80,6 +79,7 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\raggloves.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\ragboots.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\ragbody.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\prompt.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\debug\portalpropertiesokbutton.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\zoneportal.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\zonemap.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\zonebuildermenu.obj
@@ -98,7 +98,7 @@ d:\coding\c++\rpggame\rpg\rpg\x64\debug\textbox.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\sprite.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\soldier.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\shortsword.obj
-d:\coding\c++\rpggame\rpg\rpg\x64\debug\hovertooltip.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\debug\selectprompt.obj
 d:\coding\c++\rpggame\rpg\x64\debug\rpg.exe
 d:\coding\c++\rpggame\rpg\rpg\x64\debug\rpg.ilk
 d:\coding\c++\rpggame\rpg\x64\debug\rpg.pdb

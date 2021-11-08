@@ -14,6 +14,7 @@ public:
     //methods
     virtual int update();
     virtual int handleInput(InputMessage* message);
+    void updateAnimation() override;
 
 protected:
     //attributes
