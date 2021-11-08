@@ -32,27 +32,35 @@ bool BasicMeleeAttack::startAttack() {
         {
         case UP_LEFT:
             owningUnit->playAnimation(ATTACK_UP_LEFT, attackTime);
-                break;
+            owningUnit->setAnimation(IDLE_UP_LEFT);
+            break;
         case UP:
             owningUnit->playAnimation(ATTACK_UP, attackTime);
-                break;
+            owningUnit->setAnimation(IDLE_UP);
+            break;
         case UP_RIGHT:
             owningUnit->playAnimation(ATTACK_UP_RIGHT, attackTime);
-                break;
+            owningUnit->setAnimation(IDLE_UP_RIGHT);
+            break;
         case RIGHT:
             owningUnit->playAnimation(ATTACK_RIGHT, attackTime);
+            owningUnit->setAnimation(IDLE_RIGHT);
             break;
         case DOWN_RIGHT:
             owningUnit->playAnimation(ATTACK_DOWN_RIGHT, attackTime);
+            owningUnit->setAnimation(IDLE_DOWN_RIGHT);
             break;
         case DOWN:
             owningUnit->playAnimation(ATTACK_DOWN, attackTime);
+            owningUnit->setAnimation(IDLE_DOWN);
             break;
         case DOWN_LEFT:
             owningUnit->playAnimation(ATTACK_DOWN_LEFT, attackTime);
+            owningUnit->setAnimation(IDLE_DOWN_LEFT);
             break;
         case LEFT:
             owningUnit->playAnimation(ATTACK_LEFT, attackTime);
+            owningUnit->setAnimation(IDLE_LEFT);
             break;
         default:
             break;

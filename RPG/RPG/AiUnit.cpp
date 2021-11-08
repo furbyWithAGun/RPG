@@ -50,6 +50,7 @@ void AiUnit::init() {
 }
 
 void AiUnit::update() {
+    updateCoords();
     updateAggro();
     if (!attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
     {

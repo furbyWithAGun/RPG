@@ -107,9 +107,9 @@ void RpgOverWorldScene::setUpScene()
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
 
-    //createUnitAtLocation(currentZone->id, RAT, 4, 2);
+    //createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
-    //createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
+    createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     testUnit = createUnitAtLocation(currentZone->id, BLUE_RAT, 19, 5);
     //testUnit->toSaveString();

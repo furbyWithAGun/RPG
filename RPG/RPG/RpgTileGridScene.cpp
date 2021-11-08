@@ -87,8 +87,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ RAT_MOVE_UP, "images/ratMoveUp.png" });
     texturesToLoad.insert({ RAT_MOVE_LEFT, "images/ratMoveLeft.png" });
     texturesToLoad.insert({ RAT_MOVE_RIGHT, "images/ratMoveRight.png" });
-    texturesToLoad.insert({ RAT_ATTACK_UP, "images/ratAttackDown.png" });
-    texturesToLoad.insert({ RAT_ATTACK_DOWN, "images/ratAttackUp.png" });
+    texturesToLoad.insert({ RAT_ATTACK_UP, "images/ratAttackUp.png" });
+    texturesToLoad.insert({ RAT_ATTACK_DOWN, "images/ratAttackDown.png" });
     texturesToLoad.insert({ RAT_ATTACK_LEFT, "images/ratAttackLeft.png" });
     texturesToLoad.insert({ RAT_ATTACK_RIGHT, "images/ratAttackRight.png" });
     texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });

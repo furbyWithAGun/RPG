@@ -346,9 +346,9 @@ bool Unit::processPath()
             {
                 getNewPath();
                 adjustPathTick = 0;
-                return true;
             }
             adjustPathTick++;
+            return true;
         }
         else {
             processPathFailTick++;
@@ -369,9 +369,9 @@ bool Unit::processPath()
             {
                 getNewPath();
                 adjustPathTick = 0;
-                return true;
             }
             adjustPathTick++;
+            return true;
         }
         else {
             processPathFailTick++;
@@ -392,9 +392,9 @@ bool Unit::processPath()
             {
                 getNewPath();
                 adjustPathTick = 0;
-                return true;
             }
             adjustPathTick++;
+            return true;
         }
         else {
             processPathFailTick++;
@@ -415,9 +415,9 @@ bool Unit::processPath()
             {
                 getNewPath();
                 adjustPathTick = 0;
-                return true;
             }
             adjustPathTick++;
+            return true;
         }
         else {
             processPathFailTick++;
@@ -431,7 +431,7 @@ bool Unit::processPath()
     default:
         break;
     }
-    return true;
+    return false;
 }
 
 void Unit::setTargetLocation(Location* newTargetLocation)

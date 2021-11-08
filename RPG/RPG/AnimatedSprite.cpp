@@ -72,6 +72,10 @@ void AnimatedSprite::update()
         tempAnimation->tick();
     }
     else {
+        if (true)
+        {
+
+        }
         currentAnimation->tick();
     }
 }

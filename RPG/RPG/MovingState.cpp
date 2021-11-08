@@ -19,8 +19,12 @@ int MovingState::update() {
         return id;
     }
     else if (unit->leftToMove <= 0 && unit->pathDirections.size() > 0) {
-        unit->processPath();
-        return id;
+        if (unit->processPath()) {
+            return id;
+        }
+        else {
+            return UNIT_IDLE;
+        }
     }
     else {
         return UNIT_IDLE;
