@@ -4,7 +4,7 @@
 #include "Player.h"
 #include "Rat.h"
 #include "RatKing.h"
-#include "BlueRat.h"
+#include "WhiteRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
 
@@ -105,15 +105,15 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(COMBAT_EXPERIENCE, 999999999);
-    player->health = 9999999;
-    player->maxHealth = 9999999;
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->health = 9999999;
+    //player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
     createUnitAtLocation(1, SOLDIER, 3, 8);
-    testUnit = createUnitAtLocation(currentZone->id, BLUE_RAT, 19, 5);
+    testUnit = createUnitAtLocation(currentZone->id, WHITE_RAT, 19, 5);
     //testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
@@ -349,7 +349,7 @@ void RpgOverWorldScene::sceneLogic()
             }
             if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
             {
-                createUnitAtLocation(zone.second->id, BLUE_RAT, targetCoords[0], targetCoords[1]);
+                createUnitAtLocation(zone.second->id, WHITE_RAT, targetCoords[0], targetCoords[1]);
             }
         }
 

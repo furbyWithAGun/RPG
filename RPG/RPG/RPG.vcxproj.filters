@@ -151,12 +151,6 @@
     <Filter Include="Header Files\RpgGame\Items\Weapons">
       <UniqueIdentifier>{0506ae00-5f4c-4648-938c-db1d4560cdb1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\RpgGame\units\BlueRat">
-      <UniqueIdentifier>{51e45fb6-9057-42ed-8a81-ffc1c6f2ec61}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\RpgGame\units\BlueRat">
-      <UniqueIdentifier>{7cd0878d-48a5-4297-bf30-811709efa238}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\RpgGame\Items\Armours">
       <UniqueIdentifier>{2091fb7b-7a8c-43dd-8308-adbda29c5394}</UniqueIdentifier>
     </Filter>
@@ -174,6 +168,12 @@
     </Filter>
     <Filter Include="Header Files\RpgGame\scenes\overWorldScene\menus">
       <UniqueIdentifier>{5cfcb032-05ab-41fd-a01b-7d2b4324bcfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RpgGame\units\WhiteRat">
+      <UniqueIdentifier>{51e45fb6-9057-42ed-8a81-ffc1c6f2ec61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\WhiteRat">
+      <UniqueIdentifier>{7cd0878d-48a5-4297-bf30-811709efa238}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -354,8 +354,8 @@
     <ClCompile Include="RagHat.cpp">
       <Filter>Source Files\RpgGame\Items\Armours</Filter>
     </ClCompile>
-    <ClCompile Include="BlueRat.cpp">
-      <Filter>Source Files\RpgGame\units\BlueRat</Filter>
+    <ClCompile Include="WhiteRat.cpp">
+      <Filter>Source Files\RpgGame\units\WhiteRat</Filter>
     </ClCompile>
     <ClCompile Include="RagBody.cpp">
       <Filter>Source Files\RpgGame\Items\Armours</Filter>
@@ -656,8 +656,8 @@
     <ClInclude Include="Armour.h">
       <Filter>Header Files\RpgGame\Items\Armours</Filter>
     </ClInclude>
-    <ClInclude Include="BlueRat.h">
-      <Filter>Header Files\RpgGame\units\BlueRat</Filter>
+    <ClInclude Include="WhiteRat.h">
+      <Filter>Header Files\RpgGame\units\WhiteRat</Filter>
     </ClInclude>
     <ClInclude Include="RagHat.h">
       <Filter>Header Files\RpgGame\Items\Armours</Filter>

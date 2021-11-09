@@ -157,7 +157,7 @@
     <ClCompile Include="AttackingState.cpp" />
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
-    <ClCompile Include="BlueRat.cpp" />
+    <ClCompile Include="WhiteRat.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingTile.cpp" />
@@ -259,7 +259,7 @@
     <ClInclude Include="BareHands.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
-    <ClInclude Include="BlueRat.h" />
+    <ClInclude Include="WhiteRat.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingTile.h" />

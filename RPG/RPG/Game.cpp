@@ -10,6 +10,9 @@
 // add another cave
 // add more items
 // unit spawners
+// visual tracker for food effects
+// easy switchh between buy/sell
+// show inventory when at shop
 // town quests
 // town attacks
 // overworld towers / walls

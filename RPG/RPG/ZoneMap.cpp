@@ -10,7 +10,7 @@
 #include "Player.h"
 #include "Rat.h"
 #include "RatKing.h"
-#include "BlueRat.h"
+#include "WhiteRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
 //#include "RpgTileGridScene.h"
@@ -1636,8 +1636,8 @@ std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGr
 				case TOWNSPERSON:
 					returnVector.push_back(new TownsPerson(savedItems[i].rawString, gameScene));;
 					break;
-				case BLUE_RAT:
-					returnVector.push_back(new BlueRat(savedItems[i].rawString, gameScene));;
+				case WHITE_RAT:
+					returnVector.push_back(new WhiteRat(savedItems[i].rawString, gameScene));;
 					break;
 				case RAT_KING:
 					returnVector.push_back(new RatKing(savedItems[i].rawString, gameScene));;

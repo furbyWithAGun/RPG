@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "Rat.h"
 #include "RatKing.h"
-#include "BlueRat.h"
+#include "WhiteRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
 
@@ -92,7 +92,21 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ RAT_ATTACK_DOWN, "images/ratAttackDown.png" });
     texturesToLoad.insert({ RAT_ATTACK_LEFT, "images/ratAttackLeft.png" });
     texturesToLoad.insert({ RAT_ATTACK_RIGHT, "images/ratAttackRight.png" });
-    texturesToLoad.insert({ BLUE_RAT_IDLE_DOWN, "images/SkeletonDown.png" });
+    //White Rat
+    texturesToLoad.insert({ WHITE_RAT_IDLE_DOWN, "images/whiteRatIdleDown.png" });
+    texturesToLoad.insert({ WHITE_RAT_IDLE_LEFT, "images/whiteRatIdleLeft.png" });
+    texturesToLoad.insert({ WHITE_RAT_IDLE_RIGHT, "images/whiteRatIdleRight.png" });
+    texturesToLoad.insert({ WHITE_RAT_IDLE_UP, "images/whiteRatIdleUp.png" });
+    texturesToLoad.insert({ WHITE_RAT_MOVE_DOWN, "images/whiteRatMoveDown.png" });
+    texturesToLoad.insert({ WHITE_RAT_MOVE_UP, "images/whiteRatMoveUp.png" });
+    texturesToLoad.insert({ WHITE_RAT_MOVE_LEFT, "images/whiteRatMoveLeft.png" });
+    texturesToLoad.insert({ WHITE_RAT_MOVE_RIGHT, "images/whiteRatMoveRight.png" });
+    texturesToLoad.insert({ WHITE_RAT_ATTACK_UP, "images/whiteRatAttackUp.png" });
+    texturesToLoad.insert({ WHITE_RAT_ATTACK_DOWN, "images/whiteRatAttackDown.png" });
+    texturesToLoad.insert({ WHITE_RAT_ATTACK_LEFT, "images/whiteRatAttackLeft.png" });
+    texturesToLoad.insert({ WHITE_RAT_ATTACK_RIGHT, "images/whiteRatAttackRight.png" });
+    //Blue rat
+    // 
     //ratKing
     texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/ratKingIdleDown.png" });
     texturesToLoad.insert({ RAT_KING_IDLE_UP, "images/ratKingIdleUp.png" });
@@ -363,8 +377,8 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
     case RAT_KING:
         createdUnit = new RatKing(zoneId, RAT_KING, this, x, y);
         break;
-    case BLUE_RAT:
-        createdUnit = new BlueRat(zoneId, BLUE_RAT, this, x, y);
+    case WHITE_RAT:
+        createdUnit = new WhiteRat(zoneId, WHITE_RAT, this, x, y);
         break;
     case SOLDIER:
         createdUnit = new Soldier(zoneId, SOLDIER, this, x, y);
@@ -395,8 +409,8 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
     case RAT_KING:
         createdUnit = new RatKing(zone->id, RAT_KING, this, x, y);
         break;
-    case BLUE_RAT:
-        createdUnit = new BlueRat(zone->id, BLUE_RAT, this, x, y);
+    case WHITE_RAT:
+        createdUnit = new WhiteRat(zone->id, WHITE_RAT, this, x, y);
         break;
     case SOLDIER:
         createdUnit = new Soldier(zone->id, SOLDIER, this, x, y);
