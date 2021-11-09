@@ -1,12 +1,12 @@
 #include "WhiteRat.h"
 #include "BasicMeleeAttack.h"
 
-const int WHITE_RAT_MAX_HEALTH = 70;
-const int WHITE_RAT_SPEED = 1;
-const int WHITE_RAT_DEX = 12;
-const int WHITE_RAT_AGI = 8;
-const int WHITE_RAT_STR = 10;
-const int WHITE_RAT_EXP_VALUE = 50;
+const int MAX_HEALTH = 70;
+const int SPEED = 1;
+const int DEX = 12;
+const int AGI = 8;
+const int STR = 10;
+const int EXP_VALUE = 50;
 
 WhiteRat::WhiteRat() : AiUnit() {
     init();
@@ -29,13 +29,13 @@ WhiteRat::WhiteRat(int zoneId, int unitType, RpgTileGridScene* gameScene, int st
 }
 
 void WhiteRat::init() {
-    speed = WHITE_RAT_SPEED;
-    health = WHITE_RAT_MAX_HEALTH;
-    maxHealth = WHITE_RAT_MAX_HEALTH;
-    expValue = WHITE_RAT_EXP_VALUE;
-    dex = WHITE_RAT_DEX;
-    agi = WHITE_RAT_AGI;
-    str = WHITE_RAT_STR;
+    speed = SPEED;
+    health = MAX_HEALTH;
+    maxHealth = MAX_HEALTH;
+    expValue = EXP_VALUE;
+    dex = DEX;
+    agi = AGI;
+    str = STR;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;

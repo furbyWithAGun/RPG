@@ -7,15 +7,19 @@
 
 //TODO:
 // add all of tims textures
+// add getZoneByName() method
 // add another cave
 // add more items
 // unit spawners
 // visual tracker for food effects
+// open inventory by pressing 'i' key
 // easy switchh between buy/sell
 // show inventory when at shop
 // town quests
 // town attacks
+// crafting
 // overworld towers / walls
+// unit factory
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
 // move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers

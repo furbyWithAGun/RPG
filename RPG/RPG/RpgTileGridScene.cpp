@@ -6,6 +6,7 @@
 #include "WhiteRat.h"
 #include "Soldier.h"
 #include "TownsPerson.h"
+#include "Skeleton.h"
 
 const int SCROLL_SPEED = 4;
 
@@ -105,8 +106,19 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ WHITE_RAT_ATTACK_DOWN, "images/whiteRatAttackDown.png" });
     texturesToLoad.insert({ WHITE_RAT_ATTACK_LEFT, "images/whiteRatAttackLeft.png" });
     texturesToLoad.insert({ WHITE_RAT_ATTACK_RIGHT, "images/whiteRatAttackRight.png" });
-    //Blue rat
-    // 
+    //Skeleton
+    texturesToLoad.insert({ SKELETON_IDLE_DOWN, "images/skeletonIdleDown.png" });
+    texturesToLoad.insert({ SKELETON_IDLE_LEFT, "images/skeletonIdleLeft.png" });
+    texturesToLoad.insert({ SKELETON_IDLE_RIGHT, "images/skeletonIdleRight.png" });
+    texturesToLoad.insert({ SKELETON_IDLE_UP, "images/skeletonIdleUp.png" });
+    texturesToLoad.insert({ SKELETON_MOVE_DOWN, "images/skeletonMoveDown.png" });
+    texturesToLoad.insert({ SKELETON_MOVE_UP, "images/skeletonMoveUp.png" });
+    texturesToLoad.insert({ SKELETON_MOVE_LEFT, "images/skeletonMoveLeft.png" });
+    texturesToLoad.insert({ SKELETON_MOVE_RIGHT, "images/skeletonMoveRight.png" });
+    texturesToLoad.insert({ SKELETON_ATTACK_UP, "images/skeletonAttackUp.png" });
+    texturesToLoad.insert({ SKELETON_ATTACK_DOWN, "images/skeletonAttackDown.png" });
+    texturesToLoad.insert({ SKELETON_ATTACK_LEFT, "images/skeletonAttackLeft.png" });
+    texturesToLoad.insert({ SKELETON_ATTACK_RIGHT, "images/skeletonAttackRight.png" });
     //ratKing
     texturesToLoad.insert({ RAT_KING_IDLE_DOWN, "images/ratKingIdleDown.png" });
     texturesToLoad.insert({ RAT_KING_IDLE_UP, "images/ratKingIdleUp.png" });
@@ -385,6 +397,9 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
         break;
     case TOWNSPERSON:
         createdUnit = new TownsPerson(zoneId, TOWNSPERSON, this, x, y);
+        break;
+    case SKELETON:
+        createdUnit = new Skeleton(zoneId, TOWNSPERSON, this, x, y);
         break;
     default:
         createdUnit = NULL;

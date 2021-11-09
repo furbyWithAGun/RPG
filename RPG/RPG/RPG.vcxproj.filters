@@ -175,6 +175,12 @@
     <Filter Include="Header Files\RpgGame\units\WhiteRat">
       <UniqueIdentifier>{7cd0878d-48a5-4297-bf30-811709efa238}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RpgGame\units\Skeleton">
+      <UniqueIdentifier>{a08c1183-8949-411b-827e-2d9b17bd8eb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\Skeleton">
+      <UniqueIdentifier>{270dc4a1-8b9c-4f38-b2b0-17c37c9433cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -473,6 +479,9 @@
     </ClCompile>
     <ClCompile Include="HoverToolTip.cpp">
       <Filter>Source Files\gameEngine\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeleton.cpp">
+      <Filter>Source Files\RpgGame\units\Skeleton</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -778,6 +787,9 @@
     </ClInclude>
     <ClInclude Include="HoverToolTip.h">
       <Filter>Header Files\gameEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeleton.h">
+      <Filter>Header Files\RpgGame\units\Skeleton</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

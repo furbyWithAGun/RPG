@@ -81,9 +81,9 @@ void RpgOverWorldScene::declareSceneAssets()
 void RpgOverWorldScene::setUpScene()
 {
     RpgTileGridScene::setUpScene();
-    //set up teams
     Building::resetUid();
     Unit::resetUid();
+    //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
     teamRelations[MONSTER_TEAM][PLAYER_TEAM] = ENEMY;
 
@@ -106,14 +106,14 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
-    //player->health = 9999999;
-    //player->maxHealth = 9999999;
+    player->health = 9999999;
+    player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
     createUnitAtLocation(1, SOLDIER, 3, 8);
-    testUnit = createUnitAtLocation(currentZone->id, WHITE_RAT, 19, 5);
+    testUnit = createUnitAtLocation(currentZone->id, SKELETON, 19, 5);
     //testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
@@ -122,7 +122,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(1, TOWNSPERSON, 11, 2);
 
     //buildings
-    ItemShop* testBuilding;
+    //ItemShop* testBuilding;
     //testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
     //testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
     //testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
