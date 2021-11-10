@@ -263,11 +263,10 @@ bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap
         for (int y = 0; y < building->tileMap[x].size(); y++) {
             int xToCheck = xpos + x;
             int yToCheck = ypos + y;
-            if (xToCheck < 0 || xToCheck >= zoneMap->tileMap[y].size() || yToCheck < 0 || yToCheck >= zoneMap->tileMap.size())
+            if (xToCheck < 0 || xToCheck >= zoneMap->tileMap.size() || yToCheck < 0 || yToCheck >= zoneMap->tileMap[x].size())
             {
                 return false;
             }
-            //if (!mapTiles[zoneMap->tileMap[yToCheck][xToCheck]].passable)
             if (!zoneMap->isTilePassable(this, xToCheck, yToCheck))
             {
                 return false;

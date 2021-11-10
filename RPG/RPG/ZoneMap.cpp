@@ -18,10 +18,10 @@
 
 ZoneMap::ZoneMap() {
 	init();
-	for (size_t i = 0; i < MAX_ZONE_HEIGHT; i++)
+	for (size_t i = 0; i < MAX_ZONE_WIDTH; i++)
 	{
 		std::vector <int> zoneRow;
-		for (size_t j = 0; j < MAX_ZONE_WIDTH; j++) {
+		for (size_t j = 0; j < MAX_ZONE_HEIGHT; j++) {
 			zoneRow.push_back(0);
 		}
 		tileMap.push_back(zoneRow);
@@ -31,10 +31,10 @@ ZoneMap::ZoneMap() {
 
 ZoneMap::ZoneMap(int newId) {
 	init(newId);
-	for (size_t i = 0; i < MAX_ZONE_HEIGHT; i++)
+	for (size_t i = 0; i < MAX_ZONE_WIDTH; i++)
 	{
 		std::vector <int> zoneRow;
-		for (size_t j = 0; j < MAX_ZONE_WIDTH; j++) {
+		for (size_t j = 0; j < MAX_ZONE_HEIGHT; j++) {
 			zoneRow.push_back(0);
 		}
 		tileMap.push_back(zoneRow);
@@ -410,104 +410,96 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		startX = 0;
 	}
-	if (startX >= tileMap[0].size())
+	if (startX >= tileMap.size())
 	{
-		startX = tileMap[0].size();
+		startX = tileMap.size();
 	}
 	//int endX = ((RpgTileGridScene*)scene)->player->tileLocation->x + (scene->desiredTilesAcross / 2) + 1;
 	if (endX < 0)
 	{
 		endX = 0;
 	}
-	if (endX >= tileMap[0].size())
+	if (endX >= tileMap.size())
 	{
-		endX = tileMap[0].size();
+		endX = tileMap.size();
 	}
 	//int startY = ((RpgTileGridScene*)scene)->player->tileLocation->y - (scene->desiredTilesDown / 2) - 1;
 	if (startY < 0)
 	{
 		startY = 0;
 	}
-	if (startY >= tileMap.size())
+	if (startY >= tileMap[0].size())
 	{
-		startY = tileMap.size();
+		startY = tileMap[0].size();
 	}
 	//int endY = ((RpgTileGridScene*)scene)->player->tileLocation->y + (scene->desiredTilesDown / 2) + 1;
 	if (endY < 0)
 	{
 		endY = 0;
 	}
-	if (endY >= tileMap.size())
+	if (endY >= tileMap[0].size())
 	{
-		endY = tileMap.size();
+		endY = tileMap[0].size();
 	}
 
-	int xz = 0;
-
 	//draw zone
-	for (int i = startY; i < endY; i++) {
-		for (int j = startX; j < endX; j++) {
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+	for (int x = startX; x < endX; x++) {
+		for (int y = startY; y < endY; y++) {
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				//render tiles
-				xz++;
-				scene->renderTexture(scene->mapTiles[tileMap[i][j]].textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+				scene->renderTexture(scene->mapTiles[tileMap[x][y]].textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 			}
 		}
-		for (int j = startX; j < endX; j++) {
+		for (int y = startY; y < endY; y++) {
 			//render buildings
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				if (buildingMap[j][i] != nullptr)
+				if (buildingMap[x][y] != nullptr)
 				{
-					if (buildingMap[j][i]->getTileAtMapLocation(j, i) != nullptr) {
-						SDL_SetTextureColorMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255, 255, 255);
-						SDL_SetTextureAlphaMod(scene->engine->textures[buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey].texture, 255);
-						xz++;
-						scene->renderTexture(buildingMap[j][i]->getTileAtMapLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+					if (buildingMap[x][y]->getTileAtMapLocation(x, y) != nullptr) {
+						SDL_SetTextureColorMod(scene->engine->textures[buildingMap[x][y]->getTileAtMapLocation(x, y)->textureKey].texture, 255, 255, 255);
+						SDL_SetTextureAlphaMod(scene->engine->textures[buildingMap[x][y]->getTileAtMapLocation(x, y)->textureKey].texture, 255);
+						scene->renderTexture(buildingMap[x][y]->getTileAtMapLocation(x, y)->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 					}
 				}
 			}
 		}
 
 		//render portals
-		for (int j = startX; j < endX; j++) {
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+		for (int y = startY; y < endY; y++) {
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				if (getPortalAtLocation(j, i) != nullptr) {
-					xz++;
-					scene->renderTexture(portalMap[j][i]->textureId, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+				if (getPortalAtLocation(x, y) != nullptr) {
+					scene->renderTexture(portalMap[x][y]->textureId, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 				}
 			}
 		}
 
 		//render doodads
-		for (int j = startX; j < endX; j++) {
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+		for (int y = startY; y < endY; y++) {
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				if (getDooDadAtLocation(j, i) != nullptr) {
-					xz++;
-					scene->renderTexture(getDooDadAtLocation(j, i)->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * i + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+				if (getDooDadAtLocation(x, y) != nullptr) {
+					scene->renderTexture(getDooDadAtLocation(x, y)->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 				}
 			}
 		}
 
 		//render items
-		for (int j = startX; j < endX; j++) {
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+		for (int y = startY; y < endY; y++) {
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				for (int k = 0; k < getItemsAtLocation(j, i).size(); k++) {
-					xz++;
-					scene->renderTexture(itemMap[j][i][k]->textureKey, (scene->tileWidth * j) + scene->mainCanvasStartX + scene->xOffset, scene->tileHeight * i + scene->yOffset, scene->tileWidth, scene->tileHeight);
+				for (int k = 0; k < getItemsAtLocation(x, y).size(); k++) {
+					scene->renderTexture(itemMap[x][y][k]->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset, scene->tileHeight * y + scene->yOffset, scene->tileWidth, scene->tileHeight);
 				}
 			}
 		}
 		//render units
-		for (int j = startX; j < endX; j++) {
-			if ((((scene->tileWidth * (j + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (j - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (i + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (i - 1) + scene->yOffset <= SCREEN_HEIGHT)))
+		for (int y = startY; y < endY; y++) {
+			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				for (auto unit : unitMap[j][i]) {
-					xz++;
+				for (auto unit : unitMap[x][y]) {
 					unit->draw();
 				}
 			}
@@ -661,7 +653,7 @@ void ZoneMap::updateUnitMap()
 
 bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 {
-	if (x < 0 || y < 0 || y >= tileMap.size() || x >= tileMap[y].size())
+	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
 	{
 		return false;
 	}
@@ -684,12 +676,12 @@ bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 		return false;
 	}
 
-	return scene->mapTiles[tileMap[y][x]].passable && getUnitAtLocation(x, y) == nullptr ;
+	return scene->mapTiles[tileMap[x][y]].passable && getUnitAtLocation(x, y) == nullptr ;
 }
 
 bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 {
-	if (x < 0 || y < 0 || y >= tileMap.size() || x >= tileMap[y].size())
+	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
 	{
 		return false;
 	}
@@ -712,12 +704,12 @@ bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 		return false;
 	}
 
-	return scene->mapTiles[tileMap[y][x]].passable;
+	return scene->mapTiles[tileMap[x][y]].passable;
 }
 
 bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit* unitToIgnore)
 {
-	if (x < 0 || y < 0 || y >= tileMap.size() || x >= tileMap[y].size())
+	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
 	{
 		return false;
 	}
@@ -749,12 +741,12 @@ bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit*
 		}
 	}
 
-	return scene->mapTiles[tileMap[y][x]].passable && (getUnitAtLocation(x, y) == nullptr || ignoreUnitPresent);
+	return scene->mapTiles[tileMap[x][y]].passable && (getUnitAtLocation(x, y) == nullptr || ignoreUnitPresent);
 }
 
 bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std::vector<Unit*> unitsToIgnore)
 {
-	if (x < 0 || y < 0 || y >= tileMap.size() || x >= tileMap[y].size())
+	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
 	{
 		return false;
 	}
@@ -789,7 +781,7 @@ bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std:
 
 	}
 endOfLoop:
-	return scene->mapTiles[tileMap[y][x]].passable && (ignoreUnitPresent || getUnitAtLocation(x, y) == nullptr);
+	return scene->mapTiles[tileMap[x][y]].passable && (ignoreUnitPresent || getUnitAtLocation(x, y) == nullptr);
 }
 
 void ZoneMap::unitEntersTile(Unit* unit, int x, int y)
@@ -1260,35 +1252,35 @@ void ZoneMap::removeDeadUnits()
 void ZoneMap::setupGraph(TileGridScene* scene)
 {
 	int directions[4] = { UP, DOWN, RIGHT, LEFT };
-	for (int y = 0; y < tileMap.size(); y++)
+	for (int x = 0; x < tileMap.size(); x++)
 	{
-		for (int x = 0; x < tileMap[0].size(); x++) 
+		for (int y = 0; y < tileMap[x].size(); y++) 
 		{
-			if (scene->mapTiles[tileMap[y][x]].passable)
+			if (scene->mapTiles[tileMap[x][y]].passable)
 			{
 				std::vector<Location*> neighbors = std::vector<Location*>();
 				for (int direction : directions) {
 					switch (direction)
 					{
 					case UP:
-						if (y > 0 && scene->mapTiles[tileMap[y - 1][x]].passable)
+						if (y > 0 && scene->mapTiles[tileMap[x][y - 1]].passable)
 						{
 							neighbors.push_back(new Location{ x, y - 1 });
 						}
 						break;
 					case DOWN:
-						if (y + 1 < tileMap.size() && scene->mapTiles[tileMap[y + 1][x]].passable)
+						if (y + 1 < tileMap[x].size() && scene->mapTiles[tileMap[x][y + 1]].passable)
 						{
 							neighbors.push_back(new Location{ x, y + 1 });
 						}
 						break;
 					case LEFT:
-						if (x > 0 && scene->mapTiles[tileMap[y][x - 1]].passable)
+						if (x > 0 && scene->mapTiles[tileMap[x - 1][y]].passable)
 						{
 							neighbors.push_back(new Location{ x - 1, y });
 						}
 					case RIGHT:
-						if (x + 1 < tileMap[y].size() && scene->mapTiles[tileMap[y][x + 1]].passable)
+						if (x + 1 < tileMap.size() && scene->mapTiles[tileMap[x + 1][y]].passable)
 						{
 							neighbors.push_back(new Location{ x + 1, y });
 						}
@@ -1313,17 +1305,17 @@ void ZoneMap::setupGraph(TileGridScene* scene)
 void ZoneMap::calculateDirectPaths(TileGridScene* scene)
 {
 	
-	for (int y = 0; y < tileMap.size(); y++)
+	for (int x = 0; x < tileMap.size(); x++)
 	{
-		for (int x = 0; x < tileMap[0].size(); x++)
+		for (int y = 0; y < tileMap[x].size(); y++)
 		{
-			if (scene->mapTiles[tileMap[y][x]].passable)
+			if (scene->mapTiles[tileMap[x][y]].passable)
 			{
-				for (int yto = 0; yto < tileMap.size(); yto++)
+				for (int xto = 0; xto < tileMap.size(); xto++)
 				{
-					for (int xto = 0; xto < tileMap[0].size(); xto++)
+					for (int yto = 0; yto < tileMap[0].size(); yto++)
 					{
-						if (scene->mapTiles[tileMap[yto][xto]].passable)
+						if (scene->mapTiles[tileMap[xto][yto]].passable)
 						{
 							PathKey key = {};
 							Location* from = new Location{ 0,0 };
@@ -1474,11 +1466,11 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 void ZoneMap::clearUnitMap()
 {
 	unitMap.clear();
-	for (size_t i = 0; i < tileMap[0].size(); i++)
+	for (size_t x = 0; x < tileMap.size(); x++)
 	{
 		unitMap.push_back({});
-		for (size_t j = 0; j < tileMap.size(); j++) {
-			unitMap[i].push_back(std::vector<Unit*>());
+		for (size_t y = 0; y < tileMap[x].size(); y++) {
+			unitMap[x].push_back(std::vector<Unit*>());
 		}
 	}
 }
@@ -1486,33 +1478,33 @@ void ZoneMap::clearUnitMap()
 void ZoneMap::clearItemMap()
 {
 	itemMap.clear();
-	for (size_t i = 0; i < tileMap[0].size(); i++)
+	for (size_t x = 0; x < tileMap.size(); x++)
 	{
 		itemMap.push_back({});
-		for (size_t j = 0; j < tileMap.size(); j++) {
-			itemMap[i].push_back(std::vector<Item*>());
+		for (size_t y = 0; y < tileMap[x].size(); y++) {
+			itemMap[x].push_back(std::vector<Item*>());
 		}
 	}
 }
 void ZoneMap::clearDooDadMap()
 {
 	dooDadMap.clear();
-	for (size_t i = 0; i < tileMap[0].size(); i++)
+	for (size_t x = 0; x < tileMap.size(); x++)
 	{
 		dooDadMap.push_back({});
-		for (size_t j = 0; j < tileMap.size(); j++) {
-			dooDadMap[i].push_back(nullptr);
+		for (size_t y = 0; y < tileMap[x].size(); y++) {
+			dooDadMap[x].push_back(nullptr);
 		}
 	}
 }
 void ZoneMap::clearBuildingMap()
 {
 	buildingMap.clear();
-	for (size_t i = 0; i < tileMap[0].size(); i++)
+	for (size_t x = 0; x < tileMap.size(); x++)
 	{
 		buildingMap.push_back({});
-		for (size_t j = 0; j < tileMap.size(); j++) {
-			buildingMap[i].push_back(nullptr);
+		for (size_t y = 0; y < tileMap[x].size(); y++) {
+			buildingMap[x].push_back(nullptr);
 		}
 	}
 }
@@ -1520,11 +1512,11 @@ void ZoneMap::clearBuildingMap()
 void ZoneMap::clearPortalMap()
 {
 	portalMap.clear();
-	for (size_t i = 0; i < tileMap[0].size(); i++)
+	for (size_t x = 0; x < tileMap.size(); x++)
 	{
 		portalMap.push_back({});
-		for (size_t j = 0; j < tileMap.size(); j++) {
-			portalMap[i].push_back(nullptr);
+		for (size_t y = 0; y < tileMap[x].size(); y++) {
+			portalMap[x].push_back(nullptr);
 		}
 	}
 }

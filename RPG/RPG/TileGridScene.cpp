@@ -151,15 +151,15 @@ void TileGridScene::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2
 bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
     int k[2];
     getTileIndexFromScreenCoords(x, y, k);
-    return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone->tileMap[0].size()) && (k[1] >= 0) && (k[1] < currentZone->tileMap.size()));
+    return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone->tileMap.size()) && (k[1] >= 0) && (k[1] < currentZone->tileMap[0].size()));
 }
 
 bool TileGridScene::tileCoordsAreOnDisplayedMapTile(int x, int y) {
-    return ((x >= 0) && (x < currentZone->tileMap[0].size()) && (y >= 0) && (y < currentZone->tileMap.size()));
+    return ((x >= 0) && (x < currentZone->tileMap.size()) && (y >= 0) && (y < currentZone->tileMap[0].size()));
 }
 
 bool TileGridScene::tileCoordsAreDisplayedMapTile(int x, int y) {
-    return ((x >= 0) && (x < currentZone->tileMap[0].size()) && (y >= 0) && (y < currentZone->tileMap.size()));
+    return ((x >= 0) && (x < currentZone->tileMap.size()) && (y >= 0) && (y < currentZone->tileMap[0].size()));
 }
 
 Unit* TileGridScene::getUnitAtLocation(int zoneId, int x, int y)

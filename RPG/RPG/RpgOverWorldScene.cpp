@@ -340,9 +340,9 @@ void RpgOverWorldScene::sceneLogic()
             int targetCoords[2] = { 0, 0 };
             while (true)
             {
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                if (mapTiles[zone.second->tileMap[targetCoords[1]][targetCoords[0]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
+                targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
+                targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
+                if (mapTiles[zone.second->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
                 {
                     break;
                 }

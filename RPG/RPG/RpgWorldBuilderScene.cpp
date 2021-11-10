@@ -42,7 +42,15 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 
 void RpgWorldBuilderScene::setUpScene() {
     RpgTileGridScene::setUpScene();
-    sceneToEdit = ZoneMap(*zones[0]);
+    if (zones[0] != nullptr)
+    {
+        sceneToEdit = ZoneMap(*zones[0]);
+    } else{
+        zones[0] = new ZoneMap();
+        zones[0]->zoneName = "First Zone";
+        zones[0]->id = 0;
+        sceneToEdit = ZoneMap(*zones[0]);
+    }
     currentZone = &sceneToEdit;
     ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
     zoneBuildMenu->isActive = true;
@@ -152,7 +160,7 @@ void RpgWorldBuilderScene::sceneLogic() {
             if (gettingTextInput) {
                 int x = 1;
             }
-            sceneToEdit.tileMap[message->y][message->x] = message->misc;
+            sceneToEdit.tileMap[message->x][message->y] = message->misc;
             break;
         case PLACE_PORTAL:
             if (getPortalAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
