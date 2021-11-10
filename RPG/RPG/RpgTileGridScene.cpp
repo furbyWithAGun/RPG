@@ -41,7 +41,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });
     texturesToLoad.insert({ PORTAL_CAVE_HILL, "images/caveEntrance.png" });
     texturesToLoad.insert({ ENCAMPMENT, "images/encampment2.png" });
-    texturesToLoad.insert({ BLANK_PORTAL, "images/blank2.png" });
+    texturesToLoad.insert({ BLANK_PORTAL, "images/blank.png" });
     texturesToLoad.insert({ WOOD_WALL_ONE, "images/woodWallOne2.png" });
     texturesToLoad.insert({ WOOD_WALL_TWO, "images/woodWallTwo2.png" });
     texturesToLoad.insert({ CAVE_FILL, "images/caveFill.png" });
@@ -57,28 +57,37 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_EQUIPPED_MENU_SILHOUETTE, "images/silhouette.png" });
     //player textures
     //movement
-    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUpLeft.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUp2.png" });
     texturesToLoad.insert({ PLAYER_IDLE_UP_SHEET, "images/playerIdleUp2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUpRight.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_UP_RIGHT_SHEET, "images/playerIdleUp2.png" });
     texturesToLoad.insert({ PLAYER_IDLE_RIGHT_SHEET, "images/playerIdleRight2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/playerIdleDownRight.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_RIGHT_SHEET, "images/playerIdleDown2.png" });
     texturesToLoad.insert({ PLAYER_IDLE_DOWN_SHEET, "images/playerIdleDown2.png" });
-    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDownLeft.png" });
+    texturesToLoad.insert({ PLAYER_IDLE_DOWN_LEFT_SHEET, "images/playerIdleDown2.png" });
     texturesToLoad.insert({ PLAYER_IDLE_LEFT_SHEET, "images/playerIdleLeft2.png" });
     texturesToLoad.insert({ PLAYER_MOVE_DOWN_SHEET, "images/playerMoveDown2.png" });
     texturesToLoad.insert({ PLAYER_MOVE_UP_SHEET, "images/playerMoveUp2.png" });
     texturesToLoad.insert({ PLAYER_MOVE_RIGHT_SHEET, "images/playerMoveRight2.png" });
     texturesToLoad.insert({ PLAYER_MOVE_LEFT_SHEET, "images/playerMoveLeft2.png" });
     //attack
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack2.png" });
+    //texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/playerAttack2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/playerAttackDown2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_SHEET, "images/playerAttackUp2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_LEFT_SHEET, "images/playerAttackLeft2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_RIGHT_SHEET, "images/playerAttackRight2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_LEFT_SHEET, "images/playerAttackUp2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_RIGHT_SHEET, "images/playerAttackUp2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_LEFT_SHEET, "images/playerAttackDown2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/playerAttackDown2.png" });
+    /*texturesToLoad.insert({ BASIC_MELEE_ATTACK_SHEET, "images/basicMeleeAttack2.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_SHEET, "images/basicMeleeAttackDown2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_SHEET, "images/basicMeleeAttackUp.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_SHEET, "images/basicMeleeAttackUp2.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_LEFT_SHEET, "images/baiscMeleeAttackLeft.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_RIGHT_SHEET, "images/basicMeleeAttackRight2.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_LEFT_SHEET, "images/basicMeleeAttackUp.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_UP_RIGHT_SHEET, "images/basicMeleeAttackUp.png" });
     texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_LEFT_SHEET, "images/basicMeleeAttackDown2.png" });
-    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/basicMeleeAttackDown2.png" });
+    texturesToLoad.insert({ BASIC_MELEE_ATTACK_DOWN_RIGHT_SHEET, "images/basicMeleeAttackDown2.png" });*/
     //enemy textures
     //Rat
     texturesToLoad.insert({ RAT_IDLE_DOWN, "images/ratIdleDown.png" });

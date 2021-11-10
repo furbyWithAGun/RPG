@@ -106,8 +106,8 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
-    player->health = 9999999;
-    player->maxHealth = 9999999;
+    //player->health = 9999999;
+    //player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);

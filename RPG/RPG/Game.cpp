@@ -6,7 +6,7 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// add all of tims textures
+// change unit//portal//building maps to unordered_map
 // add getZoneByName() method
 // add another cave
 // add more items

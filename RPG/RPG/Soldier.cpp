@@ -11,9 +11,9 @@ const int SOLDIER_EXP_VALUE = 3;
 //animation constants
 const int NUM_PLAYER_IDLE_FRAMES = 1;
 const int PLAYER_IDLE_ANIMATION_FRAME_LENGTH = 10;
-const int NUM_PLAYER_MOVE_FRAMES = 2;
+const int NUM_PLAYER_MOVE_FRAMES = 4;
 const int PLAYER_MOVE_ANIMATION_FRAME_LENGTH = 20;
-const int NUM_PLAYER_ATTACK_FRAMES = 2;
+const int NUM_PLAYER_ATTACK_FRAMES = 4;
 const int PLAYER_ATTCK_ANIMATION_FRAME_LENGTH = 20;
 
 Soldier::Soldier() : AiUnit() {
