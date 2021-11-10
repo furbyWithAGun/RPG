@@ -38,6 +38,7 @@ class Unit : public AnimatedSprite
 {
 public:
     int id;
+    bool gettingPath;
     std::vector<Unit*> beingTargetedBy;
     bool toBeDeleted;
     int type;
@@ -56,12 +57,8 @@ public:
     //std::vector<std::vector<int>> directions = { {0, -1},{0, 1},{-1, 0},{1, 0},{1, -1},{1, 1},{-1, -1},{-1, 1} }; // UP, DOWN, LEFT, RIGHT, UP RIGHT, DOWN RIGHT, UP LEFT, DOWN LEFT
     std::vector<int> pathDirections;
     int getPathTick;
-    int getPathRate;
     int adjustPathTick;
-    int adjustPathRate;
-    int getNewPathFailLimit;
     int getNewPathFailTick;
-    int processPathFailLimit;
     int processPathFailTick;
     UnitState* currentState;
     //attributes

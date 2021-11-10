@@ -34,6 +34,7 @@ public:
     void renderScene() override;
     void loadZone(int zoneId) override;
     void createNewZone() override;
+    void createFirstZone();
 
 private:
     //methods

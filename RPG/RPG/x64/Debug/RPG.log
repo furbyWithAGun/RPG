@@ -1,8 +1,17 @@
-﻿  RpgWorldBuilderScene.cpp
-C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(101,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(102,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(319,73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(320,76): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
+﻿  ZoneMap.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(413,16): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(521,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(541,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(550,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(559,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(568,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1120,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1121,60): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1184,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1185,74): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1280,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1281,96): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1690,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

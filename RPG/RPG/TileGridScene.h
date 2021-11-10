@@ -25,7 +25,6 @@ public:
     //attributes
     int mainCanvasStartX;
     int xOffset, yOffset;
-    std::unordered_map<int, ZoneMap*> zones;
     ZoneMap* currentZone;
     std::unordered_map<int, MapTile> mapTiles;
     std::vector<int> zonePortalImages;
@@ -33,8 +32,15 @@ public:
     int tileWidth;
     int nextZoneId;
     std::deque<Unit*> unitsNeedingPath;
+    std::deque<Unit*> unitsNeedingPath2;
+    int getPathThreadFlag;
     int desiredTilesAcross;
     int desiredTilesDown;
+    //pathfinding rates
+    int getPathRate;
+    int adjustPathRate;
+    int getNewPathFailLimit;
+    int processPathFailLimit;
 
     //constructor
     TileGridScene();
@@ -63,6 +69,11 @@ public:
     bool tileCoordsAreOnDisplayedMapTile(int x, int y);
 
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
+
+    void addZone(ZoneMap* newZone);
+    void addZone(int zoneId, ZoneMap* newZone);
+    std::unordered_map<int, ZoneMap*> getZones();
+    ZoneMap* getZone(int zoneId);
     
 
 protected:
@@ -74,6 +85,8 @@ protected:
     
 
 private:
+    //attributes
+    std::unordered_map<int, ZoneMap*> zones;
     //methods
     virtual void createTiles();
     void init();

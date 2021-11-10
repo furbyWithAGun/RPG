@@ -61,7 +61,6 @@ public:
     int minNumDrops;
     int maxNumDrops;
     double dropChance;
-    int aggroUpdateRate;
     int aggroUpdateTick;
     int aggroTriggerDistance, aggroMaintainDistance;
 

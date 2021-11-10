@@ -57,3 +57,4 @@ private:
 
 
 int getPathThread(void* scene);
+int getPathThread2(void* scene);

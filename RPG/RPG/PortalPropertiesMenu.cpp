@@ -92,7 +92,7 @@ void PortalPropertiesMenu::buildElements()
         selectExitIdButton->addOnClick([this]() {
             SelectPrompt* zoneSelectPrompt;
             zoneSelectPrompt = new SelectPrompt(this->scene, COLOR_BLACK, this->xpos + this->width, this->ypos, 300, 300);
-            for (auto zone : this->scene->zones)
+            for (auto zone : this->scene->getZones())
             {
                 zoneSelectPrompt->addSelectOption(zone.second->zoneName, zone.second->id);
             }
@@ -110,7 +110,7 @@ void PortalPropertiesMenu::buildElements()
         selectExitCoordsButton->addOnClick([this]() {
             this->scene->pickingPortalCoords = true;
             //scene->portalExitZone = scene->zones[portalToEdit->exitZoneId];
-            scene->portalExitZone = scene->zones[stoi(getElementbyId(EXIT_ZONE_ID_TEXT)->getText())];
+            scene->portalExitZone = scene->getZones()[stoi(getElementbyId(EXIT_ZONE_ID_TEXT)->getText())];
             close();
             })->setText("Select Location");
         addElement(SELECT_PORTAL_EXIT_COORDS_BUTTON, selectExitCoordsButton);

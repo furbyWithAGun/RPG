@@ -32,15 +32,10 @@ class ZoneMap {
         int id;
         std::string zoneName;
         std::vector< std::vector<int> > tileMap;
-        std::vector< std::vector< std::vector<Unit*> > > unitMap;
-        std::vector< std::vector<std::vector<Item*>> > itemMap;
-        std::vector< std::vector<ZonePortal*> > portalMap;
         std::vector< std::vector<Building* > > buildingMap;
         std::vector< std::vector<DooDad* > > dooDadMap;
         std::vector< DooDad* > doodads;
         std::vector< Building* > buildings;
-        std::vector<Unit*> units;
-        std::vector<ZonePortal*> portals;
         Graph graph;
         int playerPresence;
         int difficulty;
@@ -58,6 +53,9 @@ class ZoneMap {
         ~ZoneMap();
 
         //methods
+        //handle the maps
+        
+        std::vector<Unit*> getUnits();
         void assignNewTileMap(std::vector< std::vector<int> > tiles);
         void addZonePortal(int textureId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
         ZonePortal* getPortalAtLocation(int xpos, int ypos);
@@ -67,6 +65,8 @@ class ZoneMap {
         void destroyBuilding(Building* building);
         void destroyBuildingButNotunits(Building* building);
         std::vector<Item*> getItemsAtLocation(int xpos, int ypos);
+        void removeItemAtLocation(Item* item, int xpos, int ypos);
+        void addItemToLocation(Item* item, int xpos, int ypos);
         void removePortalAtLocation(int xpos, int ypos);
         std::string toSaveString();
         int getDevelopmentLevel();
@@ -78,6 +78,8 @@ class ZoneMap {
         bool removeBuildingFromMap(Building* building);
         Unit* getUnitAtLocation(int x, int y);
         bool addUnitToLocation(Unit* unit, int x, int y);
+        bool addUnitToDestinationLocation(Unit* unit);
+        bool removeUnitFromZone(Unit* unit);
         std::vector<Unit*> getUnitsAtLocation(int x, int y);
         void update();
         void removeUnitFromLocation(Unit* unit, int x, int y);
@@ -107,6 +109,13 @@ class ZoneMap {
     private:
         //attributes
         std::unordered_map<std::string, std::vector<int>> directPaths;
+        //object vectors
+        std::vector<Unit*> units;
+        std::vector<ZonePortal*> portals2;
+        //object maps
+        std::unordered_map<int, std::vector<Unit*>> unitMap;
+        std::unordered_map< int, std::vector<Item*> > itemMap2;
+        std::unordered_map< int, ZonePortal* > portalMap2;
 
         //methods
         void init();
@@ -126,6 +135,35 @@ class ZoneMap {
         void buildBuildingMap();
         void buildDooDadMap();
         void setUpMaps();
+
+        //handle object vectors
+        //unit vector
+        void addToUnitVector(Unit* unitToAdd);
+        void removeFromUnitVector(Unit* unitToRemove);
+        //portal vector
+        void addToPortalVector(ZonePortal* portalToAdd);
+        void removeFromPortalVector(ZonePortal* portalToRemove);
+
+        //handle maps
+        int getMapKey(int x, int y);
+        //unit map
+        void addToUnitMap(Unit* unit);
+        void addToUnitMap(int x, int y, Unit* unit);
+        Unit* getUnitFromMap(int x, int y);
+        std::vector<Unit*> getUnitsFromMap(int x, int y);
+        void removeUnitFromMap(Unit* unit);
+        void removeUnitFromMap(int x, int y, Unit* unit);
+        //portal map
+        void addToPortalMap(ZonePortal* portal);
+        void addToPortalMap(int x, int y, ZonePortal* portal);
+        ZonePortal* getPortalFromMap(int x, int y);
+        void removePortalFromMap(ZonePortal* portal);
+        void removePortalFromMap(int x, int y, ZonePortal* portal);
+        //item map
+        void addToItemMap(int x, int y, Item* item);
+        Item* getItemFromMap(int x, int y);
+        std::vector<Item*> getItemsFromMap(int x, int y);
+        void removeItemFromMap(int x, int y, Item* item);
 };
 
 

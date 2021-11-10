@@ -14,7 +14,10 @@
 #include "Soldier.h"
 #include "TownsPerson.h"
 #include "Skeleton.h"
+#include <algorithm>
 //#include "RpgTileGridScene.h"
+
+const int PATH_FINDING_BREAK_LIMIT = 1000;
 
 ZoneMap::ZoneMap() {
 	init();
@@ -66,7 +69,7 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 			tileMap = get2dIntVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
 		case PORTALS:
-			portals = getPortalVectorFromSaveString(saveObject.attributes[i].valueString);
+			portals2 = getPortalVectorFromSaveString(saveObject.attributes[i].valueString);
 			break;
 		case DOODADS:
 			dooDadsToAdd = getDooDadVectorFromSaveString(saveObject.attributes[i].valueString, (TileGridScene*)gameScene);
@@ -111,11 +114,11 @@ ZoneMap::ZoneMap(const ZoneMap& oldMap)
 	tileMap = oldMap.tileMap;
 	buildingMap = oldMap.buildingMap;
 	unitMap = oldMap.unitMap;
-	itemMap = oldMap.itemMap;
-	portalMap = oldMap.portalMap;
+	itemMap2 = oldMap.itemMap2;
+	portalMap2 = oldMap.portalMap2;
 	doodads = oldMap.doodads;
 	buildings = oldMap.buildings;
-	portals = oldMap.portals;
+	portals2 = oldMap.portals2;
 	units = oldMap.units;
 	playerPresence = oldMap.playerPresence;
 	difficulty = oldMap.difficulty;
@@ -140,7 +143,152 @@ void ZoneMap::init(int newId) {
 ZoneMap::~ZoneMap() {
 	id = 0;
 	tileMap.clear();
-	portals.clear();
+	portals2.clear();
+}
+
+void ZoneMap::addToUnitMap(Unit* unit)
+{
+	addToUnitMap(unit->tileLocation->x, unit->tileLocation->x, unit);
+	addToUnitMap(unit->tileDestination->x, unit->tileDestination->x, unit);
+}
+
+void ZoneMap::addToUnitMap(int x, int y, Unit* unit)
+{
+	int key = getMapKey(x, y);
+	if (unitMap.find(key) == unitMap.end())
+	{
+		unitMap[key] = { unit };
+	}
+	else {
+		if (std::find(unitMap[key].begin(), unitMap[key].end(), unit) == unitMap[key].end())
+		{
+			unitMap[key].push_back(unit);
+		}
+	}
+}
+
+Unit* ZoneMap::getUnitFromMap(int x, int y)
+{
+	std::vector<Unit*> unitsAtLocation = getUnitsFromMap(x, y);
+	if (unitsAtLocation.size() <= 0)
+	{
+		return nullptr;
+	}
+	return unitsAtLocation[0];
+}
+
+std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
+{
+	int key = getMapKey(x, y);
+	if (unitMap.find(key) == unitMap.end())
+	{
+		return std::vector<Unit*>();
+	}
+	return unitMap[key];
+}
+
+void ZoneMap::removeUnitFromMap(Unit* unit)
+{
+	removeUnitFromMap(unit->tileLocation->x, unit->tileLocation->y, unit);
+	removeUnitFromMap(unit->tileDestination->x, unit->tileDestination->y, unit);
+}
+
+void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
+{
+	int key = getMapKey(x, y);
+	auto unitIterator = unitMap[key].begin();
+	while (unitIterator != unitMap[key].end())
+	{
+		if ((*unitIterator) == unit) {
+			unitIterator = unitMap[key].erase(unitIterator);
+		}
+		else {
+			unitIterator++;
+		}
+	}
+}
+
+void ZoneMap::addToPortalMap(ZonePortal* portal)
+{
+	addToPortalMap(portal->tileCoords[0], portal->tileCoords[0], portal);
+}
+
+void ZoneMap::addToPortalMap(int x, int y, ZonePortal* portal)
+{
+	int key = getMapKey(x, y);
+	if (portalMap2.find(key) == portalMap2.end())
+	{
+		portalMap2[key] = portal;
+	}
+	else {
+		delete portalMap2[key];
+		portalMap2[key] = portal;
+	}
+}
+
+ZonePortal* ZoneMap::getPortalFromMap(int x, int y)
+{
+	int key = getMapKey(x, y);
+	if (portalMap2.find(key) == portalMap2.end())
+	{
+		return nullptr;
+	}
+	return portalMap2[key];
+}
+
+std::vector<Unit*> ZoneMap::getUnits()
+{
+	return units;
+}
+
+void ZoneMap::addToItemMap(int x, int y, Item* item)
+{
+	int key = getMapKey(x, y);
+	if (itemMap2.find(key) == itemMap2.end())
+	{
+		itemMap2[key] = { item };
+	}
+	else {
+		if (std::find(itemMap2[key].begin(), itemMap2[key].end(), item) == itemMap2[key].end())
+		{
+			itemMap2[key].push_back(item);
+		}
+	}
+}
+
+Item* ZoneMap::getItemFromMap(int x, int y)
+{
+	std::vector<Item*> itemsAtLocation = getItemsFromMap(x, y);
+	if (itemsAtLocation.size() <= 0)
+	{
+		return nullptr;
+	}
+	return itemsAtLocation[0];
+}
+
+std::vector<Item*> ZoneMap::getItemsFromMap(int x, int y)
+{
+	int key = getMapKey(x, y);
+	if (itemMap2.find(key) == itemMap2.end())
+	{
+		return std::vector<Item*>();
+	}
+	return itemMap2[key];
+}
+
+void ZoneMap::removeItemFromMap(int x, int y, Item* item)
+{
+	int key = getMapKey(x, y);
+	auto itemIterator = itemMap2[key].begin();
+	while (itemIterator != itemMap2[key].end())
+	{
+		if ((*itemIterator) == item) {
+			itemIterator = itemMap2[key].erase(itemIterator);
+		}
+		else {
+			itemIterator++;
+		}
+	}
 }
 
 void ZoneMap::assignNewTileMap(std::vector< std::vector<int> > tiles) {
@@ -271,11 +419,17 @@ void ZoneMap::destroyBuildingButNotunits(Building* building)
 
 std::vector<Item*> ZoneMap::getItemsAtLocation(int xpos, int ypos)
 {
-	if (xpos < 0 || ypos < 0 || xpos >= itemMap.size() || ypos >= itemMap[0].size())
-	{
-		return std::vector<Item*>();
-	}
-	return itemMap[xpos][ypos];
+	return getItemsFromMap(xpos, ypos);
+}
+
+void ZoneMap::removeItemAtLocation(Item* item, int xpos, int ypos)
+{
+	removeItemFromMap(xpos, ypos, item);
+}
+
+void ZoneMap::addItemToLocation(Item* item, int xpos, int ypos)
+{
+	addToItemMap(xpos, ypos, item);
 }
 
 void ZoneMap::removePortalAtLocation(int xpos, int ypos)
@@ -491,7 +645,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (int k = 0; k < getItemsAtLocation(x, y).size(); k++) {
-					scene->renderTexture(itemMap[x][y][k]->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset, scene->tileHeight * y + scene->yOffset, scene->tileWidth, scene->tileHeight);
+					scene->renderTexture(getItemsAtLocation(x, y)[k]->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset, scene->tileHeight * y + scene->yOffset, scene->tileWidth, scene->tileHeight);
 				}
 			}
 		}
@@ -499,7 +653,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		for (int y = startY; y < endY; y++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				for (auto unit : unitMap[x][y]) {
+				for (auto unit : getUnitsFromMap(x, y)) {
 					unit->draw();
 				}
 			}
@@ -509,15 +663,12 @@ void ZoneMap::draw(TileGridScene* scene)
 
 Unit* ZoneMap::getUnitAtLocation(int x, int y)
 {
-	if (x < 0 || y < 0 || x >= unitMap.size() || y >= unitMap[0].size())
-	{
-		return nullptr;
-	}
-	if (unitMap[x][y].size() > 0)
+	std::vector<Unit*> unitsAtLocation = getUnitsFromMap(x, y);
+	if (unitsAtLocation.size() > 0)
 	{
 		try {
 
-			return unitMap[x][y].at(0);
+			return unitsAtLocation.at(0);
 		}
 		catch (...) {
 			return nullptr;
@@ -530,8 +681,26 @@ Unit* ZoneMap::getUnitAtLocation(int x, int y)
 
 bool ZoneMap::addUnitToLocation(Unit* unit, int x, int y)
 {
-	units.push_back(unit);
-	unitMap[x][y].push_back(unit);
+	unit->zone = id;
+	unit->setTileLocation(x, y);
+	addToUnitVector(unit);
+	addToUnitMap(x, y, unit);
+	return true;
+}
+
+bool ZoneMap::addUnitToDestinationLocation(Unit* unit)
+{
+	unit->zone = id;
+	addToUnitVector(unit);
+	addToUnitMap(unit->tileDestination->x, unit->tileDestination->y, unit);
+	return true;
+}
+
+bool ZoneMap::removeUnitFromZone(Unit* unit)
+{
+	unit->zone = -1;
+	removeUnitFromMap(unit);
+	removeFromUnitVector(unit);
 	return true;
 }
 
@@ -597,22 +766,12 @@ bool ZoneMap::removeBuildingFromMap(Building* building)
 
 std::vector<Unit*> ZoneMap::getUnitsAtLocation(int x, int y)
 {
-	if (x < 0 || y < 0 || x >= unitMap.size() || y >= unitMap[0].size())
-	{
-		std::vector<Unit*>();
-	}
-	if (unitMap[x][y].size() > 0)
-	{
-		return unitMap[x][y];
-	}
-	else {
-		return std::vector<Unit*>();
-	}
+	return getUnitsFromMap(x, y);
 }
 
 void ZoneMap::update()
 {
-	for (auto unit : units) {
+	for (auto unit : getUnits()) {
 		if (unit->active)
 		{
 			unit->update();
@@ -629,25 +788,15 @@ void ZoneMap::update()
 }
 
 void ZoneMap::removeUnitFromLocation(Unit* unit, int x, int y) {
-	auto unitIterator = unitMap[x][y].begin();
-	while (unitIterator != unitMap[x][y].end())
-	{
-		if ((*unitIterator) == unit) {
-			unitIterator = unitMap[x][y].erase(unitIterator);
-		}
-		else {
-			unitIterator++;
-		}
-	}
+	removeUnitFromMap(x, y, unit);
 }
 
 void ZoneMap::updateUnitMap()
 {
 	clearUnitMap();
-	for (auto unit : units)
+	for (auto unit : getUnits())
 	{
-		unitMap[unit->tileLocation->x][unit->tileLocation->y].push_back(unit);
-		unitMap[unit->tileDestination->x][unit->tileDestination->y].push_back(unit);
+		addToUnitMap(unit);
 	}
 }
 
@@ -807,17 +956,7 @@ void ZoneMap::destroyUnit(Unit* unit)
 {
 	removeUnitFromLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
 	removeUnitFromLocation(unit, unit->tileDestination->x, unit->tileDestination->y);
-	auto unitIterator = units.begin();
-	while (unitIterator != units.end())
-	{
-		if ((*unitIterator) == unit) {
-			unitIterator = units.erase(unitIterator);
-			break;
-		}
-		else {
-			unitIterator++;
-		}
-	}
+	removeFromUnitVector(unit);
 	if (unit->beingTargetedBy.size() > 0)
 	{
 		for (auto targetingUnit : unit->beingTargetedBy) {
@@ -1014,6 +1153,10 @@ std::vector<Location*> ZoneMap::getPath(TileGridScene* scene, Location* startLoc
 				priority = new_cost + Hvalue;
 				frontier.emplace(priority, neighbor);
 				cameFrom[*neighbor] = current;
+				if (cameFrom.size() > PATH_FINDING_BREAK_LIMIT)
+				{
+					return std::vector<Location*>();
+				}
 				//if (lowestH > Hvalue)
 				//{
 				//	lowestH = Hvalue;
@@ -1241,7 +1384,8 @@ void ZoneMap::removeDeadUnits()
 				unit->targetUnit = nullptr;
 			}
 			delete (*unitIterator);
-			unitIterator = units.erase(unitIterator);
+			removeFromUnitVector(*unitIterator);
+			unitIterator = units.begin();
 		}
 		else {
 			unitIterator++;
@@ -1466,25 +1610,11 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 void ZoneMap::clearUnitMap()
 {
 	unitMap.clear();
-	for (size_t x = 0; x < tileMap.size(); x++)
-	{
-		unitMap.push_back({});
-		for (size_t y = 0; y < tileMap[x].size(); y++) {
-			unitMap[x].push_back(std::vector<Unit*>());
-		}
-	}
 }
 
 void ZoneMap::clearItemMap()
 {
-	itemMap.clear();
-	for (size_t x = 0; x < tileMap.size(); x++)
-	{
-		itemMap.push_back({});
-		for (size_t y = 0; y < tileMap[x].size(); y++) {
-			itemMap[x].push_back(std::vector<Item*>());
-		}
-	}
+	itemMap2.clear();
 }
 void ZoneMap::clearDooDadMap()
 {
@@ -1559,6 +1689,55 @@ void ZoneMap::setUpMaps()
 	buildPortalMap();
 	buildBuildingMap();
 	buildDooDadMap();
+}
+
+void ZoneMap::addToUnitVector(Unit* unitToAdd)
+{
+	if (std::find(units.begin(), units.end(), unitToAdd) == units.end())
+	{
+		units.push_back(unitToAdd);
+	}
+}
+
+void ZoneMap::removeFromUnitVector(Unit* unitToRemove)
+{
+	auto unitIterator = units.begin();
+	while (unitIterator != units.end())
+	{
+		if ((*unitIterator) == unitToRemove) {
+			unitIterator = units.erase(unitIterator);
+		}
+		else {
+			unitIterator++;
+		}
+	}
+}
+
+void ZoneMap::addToPortalVector(ZonePortal* portalToAdd)
+{
+	if (std::find(portals2.begin(), portals2.end(), portalToAdd) == portals2.end())
+	{
+		portals2.push_back(portalToAdd);
+	}
+}
+
+void ZoneMap::removeFromPortalVector(ZonePortal* portalToRemove)
+{
+	auto portalIterator = portals2.begin();
+	while (portalIterator != portals2.end())
+	{
+		if ((*portalIterator) == portalToRemove) {
+			portalIterator = portals2.erase(portalIterator);
+		}
+		else {
+			portalIterator++;
+		}
+	}
+}
+
+int ZoneMap::getMapKey(int x, int y)
+{
+	return x * tileMap.size() + y;
 }
 
 

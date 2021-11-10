@@ -31,7 +31,7 @@ void LoadZoneMenu::open()
     scroller = new ScrollBox(ZONES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.15, width * 0.5, height * 0.6);
     scroller->numElementsToDisplay = 4;
 
-    for (auto zone : scene->zones)
+    for (auto zone : scene->getZones())
     {
         MenuText* zoneName = new MenuText(scene, zone.second->zoneName, 0, 0);
         zoneName->setBackground({ 100, 100, 100 });
@@ -50,7 +50,7 @@ void LoadZoneMenu::buildElements()
     scroller = new ScrollBox(ZONES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.15, width * 0.5 , height * 0.6);
     scroller->numElementsToDisplay = 4;
 
-    for (auto zone : scene->zones)
+    for (auto zone : scene->getZones())
     {
         MenuText* zoneName = new MenuText(scene, zone.second->zoneName, 0, 0);
         zoneName->setBackground({ 100, 100, 100 });
@@ -87,7 +87,7 @@ void LoadZoneMenu::buildElements()
         scroller = new ScrollBox(ZONES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.15, width * 0.5, height * 0.6);
         scroller->numElementsToDisplay = 4;
 
-        for (auto zone : scene->zones)
+        for (auto zone : scene->getZones())
         {
             MenuText* zoneName = new MenuText(scene, zone.second->zoneName, 0, 0);
             zoneName->setBackground({ 100, 100, 100 });

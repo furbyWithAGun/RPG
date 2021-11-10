@@ -6,8 +6,25 @@ int uniqueUnitId = 0;
 void Unit::getNewPath()
 {
     //SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
-    scene->unitsNeedingPath.push_back(this);
+    if (!gettingPath)
+    {
+        if (scene->getPathThreadFlag == 0)
+        {
+            gettingPath = true;
+            scene->unitsNeedingPath.push_back(this);
+            scene->getPathThreadFlag = 1;
+        }
+        else {
+            gettingPath = true;
+            scene->unitsNeedingPath2.push_back(this);
+            scene->getPathThreadFlag = 0;
+        }
+    }
+    else {
+        int fdgdfg = 345345;
+    }
 }
+
 void Unit::setScene(TileGridScene* gameScene)
 {
     scene = gameScene;
@@ -190,6 +207,7 @@ Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int s
 }
 
 void Unit::init() {
+    gettingPath = false;
     type = -1;
     name = "";
     tileLocation = new Location{ 0, 0 };
@@ -210,12 +228,8 @@ void Unit::init() {
     targetUnit = nullptr;
     toBeDeleted = false;
     getPathTick = 0;
-    getPathRate = 30;
     adjustPathTick = 0;
-    adjustPathRate = 3;
-    getNewPathFailLimit = 2;
     getNewPathFailTick = 0;
-    processPathFailLimit = 20;
     processPathFailTick = 0;
     currentState = nullptr;
     //special attributes for loading saved units
@@ -289,8 +303,7 @@ void Unit::startMovement(int direction) {
     default:
         break;
     }
-    //scene->zones[zone]->removeUnitFromLocation(this, tileLocation->x, tileLocation->y); //causes graphic glitch
-    scene->zones[zone]->unitMap[tileDestination->x][tileDestination->y].push_back(this);
+    scene->getZone(zone)->addUnitToDestinationLocation(this);
 }
 
 void Unit::update() {
@@ -338,11 +351,11 @@ bool Unit::processPath()
     {
     case UP:
         //movingUp = true;
-        if (scene->zones[zone]->isTilePassable(scene, tileLocation->x, tileLocation->y - 1))
+        if (scene->getZone(zone)->isTilePassable(scene, tileLocation->x, tileLocation->y - 1))
         {
             pathDirections.pop_back();
             startMovement(UP);
-            if (adjustPathRate == adjustPathTick)
+            if (scene->adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -352,7 +365,7 @@ bool Unit::processPath()
         }
         else {
             processPathFailTick++;
-            if (processPathFailLimit <= processPathFailTick)
+            if (scene->processPathFailLimit <= processPathFailTick)
             {
                 processPathFailTick = 0;
                 getNewPath();
@@ -361,11 +374,11 @@ bool Unit::processPath()
         break;
     case DOWN:
         //movingDown = true;
-        if (scene->zones[zone]->isTilePassable(scene, tileLocation->x, tileLocation->y + 1))
+        if (scene->getZone(zone)->isTilePassable(scene, tileLocation->x, tileLocation->y + 1))
         {
             pathDirections.pop_back();
             startMovement(DOWN);
-            if (adjustPathRate == adjustPathTick)
+            if (scene->adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -375,7 +388,7 @@ bool Unit::processPath()
         }
         else {
             processPathFailTick++;
-            if (processPathFailLimit <= processPathFailTick)
+            if (scene->processPathFailLimit <= processPathFailTick)
             {
                 processPathFailTick = 0;
                 getNewPath();
@@ -384,11 +397,11 @@ bool Unit::processPath()
         break;
     case LEFT:
         //movingLeft = true;
-        if (scene->zones[zone]->isTilePassable(scene, tileLocation->x - 1, tileLocation->y))
+        if (scene->getZone(zone)->isTilePassable(scene, tileLocation->x - 1, tileLocation->y))
         {
             pathDirections.pop_back();
             startMovement(LEFT);
-            if (adjustPathRate == adjustPathTick)
+            if (scene->adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -398,7 +411,7 @@ bool Unit::processPath()
         }
         else {
             processPathFailTick++;
-            if (processPathFailLimit <= processPathFailTick)
+            if (scene->processPathFailLimit <= processPathFailTick)
             {
                 processPathFailTick = 0;
                 getNewPath();
@@ -407,11 +420,11 @@ bool Unit::processPath()
         break;
     case RIGHT:
         //movingRight = true;
-        if (scene->zones[zone]->isTilePassable(scene, tileLocation->x + 1, tileLocation->y))
+        if (scene->getZone(zone)->isTilePassable(scene, tileLocation->x + 1, tileLocation->y))
         {
             pathDirections.pop_back();
             startMovement(RIGHT);
-            if (adjustPathRate == adjustPathTick)
+            if (scene->adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -421,7 +434,7 @@ bool Unit::processPath()
         }
         else {
             processPathFailTick++;
-            if (processPathFailLimit <= processPathFailTick)
+            if (scene->processPathFailLimit <= processPathFailTick)
             {
                 processPathFailTick = 0;
                 getNewPath();
@@ -456,11 +469,11 @@ void Unit::setTileLocation(int x, int y) {
 
 void Unit::moveTo(int x, int y)
 {
-    scene->zones[zone]->removeUnitFromLocation(this, tileLocation->x, tileLocation->y);
-    scene->zones[zone]->removeUnitFromLocation(this, tileDestination->x, tileDestination->y);
+    scene->getZone(zone)->removeUnitFromLocation(this, tileLocation->x, tileLocation->y);
+    scene->getZone(zone)->removeUnitFromLocation(this, tileDestination->x, tileDestination->y);
     setTileLocation(x, y);
-    scene->zones[zone]->unitMap[tileLocation->x][tileLocation->y].push_back(this);
-    scene->zones[zone]->unitEntersTile(this, tileLocation->x, tileLocation->y);
+    scene->getZone(zone)->addUnitToLocation(this, tileDestination->x, tileDestination->y);
+    scene->getZone(zone)->unitEntersTile(this, tileLocation->x, tileLocation->y);
     if (targetLocation != nullptr && x == targetLocation->x && y == targetLocation->y)
     {
         pathDirections.clear();
@@ -471,27 +484,9 @@ void Unit::moveTo(int x, int y)
 void Unit::portalTo(int zoneId, int x, int y)
 {
     //remove unit from current zone
-    scene->zones[zone]->removeUnitFromLocation(this, tileLocation->x, tileLocation->y);
-    scene->zones[zone]->removeUnitFromLocation(this, tileDestination->x, tileDestination->y);
-    auto unitIterator = scene->zones[zone]->units.begin();
-    while (unitIterator != scene->zones[zone]->units.end())
-    {
-        if ((*unitIterator) == this) {
-            unitIterator = scene->zones[zone]->units.erase(unitIterator);
-            break;
-        }
-        else {
-            unitIterator++;
-        }
-    }
+    scene->getZone(zone)->removeUnitFromZone(this);
     //add unit to new zone
-    scene->zones[zoneId]->units.push_back(this);
-
-    //set units location
-    zone = zoneId;
-    setTileLocation(x, y);
-    scene->zones[zone]->unitMap[tileLocation->x][tileLocation->y].push_back(this);
-    scene->zones[zone]->unitMap[tileDestination->x][tileDestination->y].push_back(this);
+    scene->getZone(zoneId)->addUnitToLocation(this, x, y);
 }
 
 void Unit::updateCoords() {

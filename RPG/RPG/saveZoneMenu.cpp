@@ -45,7 +45,7 @@ void saveZoneMenu::buildElements()
             //scene->sceneToEdit.mobSpawn = false;
             //scene->sceneToEdit.doodads.push_back(new HealingPad(scene, BLANK_PORTAL, 11, 3));
             ZoneMap* newZone = &scene->sceneToEdit;
-            scene->zones[newZone->id] = new ZoneMap(*newZone);
+            scene->addZone(newZone->id, new ZoneMap(*newZone));
             scene->saveZones();
             close();
         }

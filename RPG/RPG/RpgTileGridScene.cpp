@@ -326,12 +326,12 @@ void RpgTileGridScene::loadZones()
     for (auto zone : zonesFile.objects) {
         ZoneMap* newZone = new ZoneMap(zone.rawString, this);
         newZone->setupGraph(this);
-        zones[newZone->id] = newZone;
+        addZone(newZone);
         if (newZone->id >= nextZoneId)
         {
             nextZoneId = newZone->id + 1;
         }
-        for (auto* unit : newZone->units)
+        for (auto* unit : newZone->getUnits())
         {
             if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
                 for (auto building : newZone->buildings) {
@@ -354,7 +354,7 @@ void RpgTileGridScene::loadZones()
             }
         }
     }
-    currentZone = zones[0];
+    currentZone = getZones()[0];
     xOffset = 0;
     yOffset = 0;
 }
@@ -375,9 +375,9 @@ void RpgTileGridScene::resizeTiles()
         tileWidth = tilesImpliedWidth;
     }
 
-    for (auto zone : zones)
+    for (auto zone : getZones())
     {
-        for (auto unit : zone.second->units) {
+        for (auto unit : zone.second->getUnits()) {
             unit->resize(tileWidth * 3, tileHeight * 3);
         }
     }
@@ -414,7 +414,7 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
         break;
     }
 
-    zones[zoneId]->addUnitToLocation(createdUnit, x, y);
+    getZones()[zoneId]->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
 }
 
@@ -464,13 +464,13 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         createdBuilding = createNewBuilding(buildingType, direction);
         newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
         createdBuilding->assignDooDad(newTownCommand);
-        zones[zoneId]->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+        getZone(zoneId)->addDooDadToLocation(newTownCommand, x + 2, y + 2);
         break;
     default:
         createdBuilding = nullptr;
         break;
     }
-    zones[zoneId]->addBuildingToLocation(createdBuilding, x, y);
+    getZone(zoneId)->addBuildingToLocation(createdBuilding, x, y);
     return createdBuilding;
 }
 
@@ -530,6 +530,7 @@ void RpgTileGridScene::init()
 {
     player = nullptr;
     placingBuilding = false;
+    aggroUpdateRate = 30;
 }
 
 void RpgTileGridScene::drawCombatMessages()

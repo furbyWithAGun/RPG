@@ -223,7 +223,7 @@ void RpgUnit::levelUp()
     intl += 1;
     maxHealth += 10;
     health += 10;
-    if (scene->zones[zone] == scene->currentZone)
+    if (scene->getZone(zone) == scene->currentZone)
     {
         scene->addCombatMessage("***LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
     }
@@ -306,7 +306,7 @@ Weapon* RpgUnit::getEquippedWeapon()
 
 void RpgUnit::dropItemFromInventory(int inventoryIndex)
 {
-    scene->currentZone->itemMap[tileLocation->x][tileLocation->y].push_back(inventory[inventoryIndex]);
+    scene->currentZone->addItemToLocation(inventory[inventoryIndex], tileLocation->x, tileLocation->y);
     removeItemFromInventory(inventoryIndex);
 }
 
@@ -382,7 +382,7 @@ std::vector<Item*> RpgUnit::getDrops()
 
 void RpgUnit::updateAggro()
 {
-    if (aggroUpdateTick != aggroUpdateRate)
+    if (aggroUpdateTick != scene->aggroUpdateRate)
     {
         aggroUpdateTick++;
         return;
@@ -430,7 +430,7 @@ void RpgUnit::update()
     updateAttacks();
     if ((targetLocation != nullptr || targetUnit != nullptr) && pathDirections.size() <= 0)
     {
-        if (getPathRate == getPathTick)
+        if (scene->getPathRate == getPathTick)
         {
             getPathTick = 0;
             getNewPath();
@@ -600,7 +600,6 @@ void RpgUnit::init()
     dropChance = 0.0;
     aggroTriggerDistance = 4;
     aggroMaintainDistance = 6;
-    aggroUpdateRate = 70;
     aggroUpdateTick = 0;
     //special attributes for loading saved units
     assignedToBuildingId = -1;

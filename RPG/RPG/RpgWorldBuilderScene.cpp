@@ -42,14 +42,15 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 
 void RpgWorldBuilderScene::setUpScene() {
     RpgTileGridScene::setUpScene();
-    if (zones[0] != nullptr)
+    if (getZone(0) != nullptr)
     {
-        sceneToEdit = ZoneMap(*zones[0]);
+        sceneToEdit = ZoneMap(*getZone(0));
     } else{
-        zones[0] = new ZoneMap();
-        zones[0]->zoneName = "First Zone";
+        createFirstZone();
+        addZone(0, &sceneToEdit);
+        /*zones[0]->zoneName = "First Zone";
         zones[0]->id = 0;
-        sceneToEdit = ZoneMap(*zones[0]);
+        sceneToEdit = ZoneMap(*zones[0]);*/
     }
     currentZone = &sceneToEdit;
     ZoneBuilderMenu* zoneBuildMenu = new ZoneBuilderMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight, 0, 0);
@@ -280,7 +281,7 @@ void RpgWorldBuilderScene::renderScene() {
         portalExitZone->draw(this);
     }
     else {
-        for (auto unit: sceneToEdit.units)
+        for (auto unit: sceneToEdit.getUnits())
         {
             unit->updateCoords();
             unit->currentState->updateAnimation();
@@ -349,7 +350,7 @@ void RpgWorldBuilderScene::renderScene() {
 
 void RpgWorldBuilderScene::loadZone(int zoneId)
 {
-    sceneToEdit = *zones[zoneId];
+    sceneToEdit = *getZone(zoneId);
     currentZone = &sceneToEdit;
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
@@ -365,5 +366,15 @@ void RpgWorldBuilderScene::createNewZone()
     nextZoneId++;
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
+}
+
+void RpgWorldBuilderScene::createFirstZone()
+{
+    //loadZones();
+    sceneToEdit = ZoneMap();
+    sceneToEdit.id = nextZoneId;
+    sceneToEdit.zoneName = std::to_string(sceneToEdit.id);
+    currentZone = &sceneToEdit;
+    nextZoneId++;
 }
 

@@ -20,6 +20,9 @@ public:
     bool placingBuilding;
     bool placingDooDad;
 
+    //pathing rates
+    int aggroUpdateRate;
+
     //constructor
     RpgTileGridScene();
     RpgTileGridScene(BaseGameEngine* gameEngine);

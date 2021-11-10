@@ -22,6 +22,12 @@ void TileGridScene::init() {
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
     nextZoneId = 0;
+    getPathThreadFlag = 0;
+
+    getPathRate = 50;
+    adjustPathRate = 4;
+    getNewPathFailLimit = 3;
+    processPathFailLimit = 30;
 }
 
 void TileGridScene::declareSceneAssets()
@@ -138,13 +144,34 @@ void TileGridScene::addItemsToMap(int zone, int x, int y, std::vector<Item*> ite
 {
     for (auto item : items)
     {
-        zones[zone]->itemMap[x][y].push_back(item);
+        zones[zone]->addItemToLocation(item, x, y);
     }
 }
 
 void TileGridScene::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
     tileIndices[0] = floor(((x - xOffset - mainCanvasStartX)) / tileWidth);
     tileIndices[1] = floor((y - yOffset) / tileHeight);
+}
+
+void TileGridScene::addZone(ZoneMap* newZone)
+{
+    zones[newZone->id] = newZone;
+}
+
+void TileGridScene::addZone(int zoneId, ZoneMap* newZone)
+{
+    newZone->id = zoneId;
+    addZone(newZone);
+}
+
+std::unordered_map<int, ZoneMap*> TileGridScene::getZones()
+{
+    return zones;
+}
+
+ZoneMap* TileGridScene::getZone(int zoneId)
+{
+    return zones[zoneId];
 }
 
 
