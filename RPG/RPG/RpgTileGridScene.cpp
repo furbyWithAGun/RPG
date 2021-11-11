@@ -334,7 +334,7 @@ void RpgTileGridScene::loadZones()
         for (auto* unit : newZone->getUnits())
         {
             if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
-                for (auto building : newZone->buildings) {
+                for (auto building : newZone->getBuildings()) {
                     if (building->id == ((RpgUnit*)unit)->assignedToBuildingId)
                     {
                         building->assignUnit((RpgUnit*)unit);
@@ -342,10 +342,10 @@ void RpgTileGridScene::loadZones()
                 }
             }
         }
-        for (auto* dooDad : newZone->doodads)
+        for (auto* dooDad : newZone->getDooDads())
         {
             if (dooDad->assignedToBuildingId != -1) {
-                for (auto building : newZone->buildings) {
+                for (auto building : newZone->getBuildings()) {
                     if (building->id == dooDad->assignedToBuildingId)
                     {
                         building->assignDooDad(dooDad);

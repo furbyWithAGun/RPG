@@ -32,10 +32,6 @@ class ZoneMap {
         int id;
         std::string zoneName;
         std::vector< std::vector<int> > tileMap;
-        std::vector< std::vector<Building* > > buildingMap;
-        std::vector< std::vector<DooDad* > > dooDadMap;
-        std::vector< DooDad* > doodads;
-        std::vector< Building* > buildings;
         Graph graph;
         int playerPresence;
         int difficulty;
@@ -56,6 +52,10 @@ class ZoneMap {
         //handle the maps
         
         std::vector<Unit*> getUnits();
+        std::vector<ZonePortal*> getPortals();
+        std::vector<DooDad*> getDooDads();
+        std::vector<Building*> getBuildings();
+        void addPortalToLocation(ZonePortal* portal, int x, int y);
         void assignNewTileMap(std::vector< std::vector<int> > tiles);
         void addZonePortal(int textureId, std::vector <int> newTileCoords, int newExitZoneId, std::vector <int> newExitTileCoords);
         ZonePortal* getPortalAtLocation(int xpos, int ypos);
@@ -75,7 +75,7 @@ class ZoneMap {
         Building* getBuildingAtLocation(int x, int y);
         bool addBuildingToLocation(Building* building, int x, int y);
         bool removeBuildingFromZone(Building* building);
-        bool removeBuildingFromMap(Building* building);
+        bool removeAllBuildingTilesFromMap(Building* building);
         Unit* getUnitAtLocation(int x, int y);
         bool addUnitToLocation(Unit* unit, int x, int y);
         bool addUnitToDestinationLocation(Unit* unit);
@@ -111,11 +111,15 @@ class ZoneMap {
         std::unordered_map<std::string, std::vector<int>> directPaths;
         //object vectors
         std::vector<Unit*> units;
-        std::vector<ZonePortal*> portals2;
+        std::vector<ZonePortal*> portals;
+        std::vector< DooDad* > dooDads;
+        std::vector< Building* > buildings2;
         //object maps
         std::unordered_map<int, std::vector<Unit*>> unitMap;
-        std::unordered_map< int, std::vector<Item*> > itemMap2;
-        std::unordered_map< int, ZonePortal* > portalMap2;
+        std::unordered_map< int, std::vector<Item*> > itemMap;
+        std::unordered_map< int, ZonePortal* > portalMap;
+        std::unordered_map< int, DooDad* > dooDadMap;
+        std::unordered_map< int, Building* > buildingMap2;
 
         //methods
         void init();
@@ -131,9 +135,6 @@ class ZoneMap {
         void clearDooDadMap();
         void clearBuildingMap();
         void clearPortalMap();
-        void buildPortalMap();
-        void buildBuildingMap();
-        void buildDooDadMap();
         void setUpMaps();
 
         //handle object vectors
@@ -143,6 +144,12 @@ class ZoneMap {
         //portal vector
         void addToPortalVector(ZonePortal* portalToAdd);
         void removeFromPortalVector(ZonePortal* portalToRemove);
+        //doodad vector
+        void addToDooDadVector(DooDad* dooDadToAdd);
+        void removeFromDooDadVector(DooDad* dooDadToRemove);
+        //building vector
+        void addToBuildingVector(Building* buildingToAdd);
+        void removeFromBuildingVector(Building* buildingToRemove);
 
         //handle maps
         int getMapKey(int x, int y);
@@ -159,6 +166,14 @@ class ZoneMap {
         ZonePortal* getPortalFromMap(int x, int y);
         void removePortalFromMap(ZonePortal* portal);
         void removePortalFromMap(int x, int y, ZonePortal* portal);
+        //dooDad map
+        void addToDooDadMap(DooDad* dooDad, int x, int y);
+        DooDad* getDooDadFromMap(int x, int y);
+        void removeDooDadFromMap(DooDad* dooDad, int x, int y);
+        //building map
+        void addToBuildingMap(Building* building, int x, int y);
+        Building* getBuildingFromMap(int x, int y);
+        void removeBuildingFromMap(Building* building, int x, int y);
         //item map
         void addToItemMap(int x, int y, Item* item);
         Item* getItemFromMap(int x, int y);

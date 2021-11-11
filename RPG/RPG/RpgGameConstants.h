@@ -6,8 +6,8 @@
 const std::string GAME_TITLE = "RPG";
 const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
-const int MAX_ZONE_WIDTH = 100;
-const int MAX_ZONE_HEIGHT = 100;
+const int MAX_ZONE_WIDTH = 10000;
+const int MAX_ZONE_HEIGHT = 10000;
 const int RPG_GAME_TICKS_PER_SECOND = 150;
 
 

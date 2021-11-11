@@ -341,7 +341,7 @@ void RpgWorldBuilderScene::renderScene() {
             }
         }
 
-        for (auto portal : sceneToEdit.portals) {
+        for (auto portal : sceneToEdit.getPortals()) {
             engine->renderText("P", (tileWidth * portal->tileCoords[0]) + mainCanvasStartX + xOffset, tileHeight * portal->tileCoords[1] + yOffset, tileWidth, tileHeight);
         }
 
