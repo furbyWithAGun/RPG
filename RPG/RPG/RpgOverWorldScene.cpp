@@ -93,9 +93,9 @@ void RpgOverWorldScene::setUpScene()
     player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
    // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
-    addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
     //Item* itemToDrop = createNewItem(ITEM_LOGS);
@@ -106,19 +106,19 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     player->addExp(COMBAT_EXPERIENCE, 999999999);
-    player->health = 9999999;
-    player->maxHealth = 9999999;
+    //player->health = 9999999;
+    //player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
-    createUnitAtLocation(currentZone->id, SOLDIER, 10, 10);
+    createUnitAtLocation(currentZone->id, SOLDIER, 10, 11);
     createUnitAtLocation(1, SOLDIER, 3, 8);
-    testUnit = createUnitAtLocation(currentZone->id, SKELETON, 19, 5);
+    testUnit = createUnitAtLocation(currentZone->id, SKELETON, 25, 8);
     //testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
     //testUnit->setTargetLocation(testLocation);
-    createUnitAtLocation(2, RAT_KING, 26, 12);
+    createUnitAtLocation(2, RAT_KING, 26, 1);
     //createUnitAtLocation(1, TOWNSPERSON, 11, 2);
 
     //buildings
@@ -266,9 +266,9 @@ void RpgOverWorldScene::sceneLogic()
 {
     //call base class logic
     RpgTileGridScene::sceneLogic();
-    Location* soldierSpawn = new Location{ 4, 4 };
-    Location* ratSpawn = new Location{32, 19};
-    Location* ratSpawn2 = new Location{32, 2};
+    Location* soldierSpawn = new Location{ 7, 7 };
+    Location* ratSpawn = new Location{32, 11};
+    Location* ratSpawn2 = new Location{7, 34};
 
 
     //handle commands
@@ -336,7 +336,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn BlueRats
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 4000) > engine->randomDouble() && zone.second->zoneName == "CaveOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3000) > engine->randomDouble() && zone.second->zoneName == "caveOne")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)
@@ -354,8 +354,27 @@ void RpgOverWorldScene::sceneLogic()
             }
         }
 
+        //spawn skeletons
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
+        {
+            int targetCoords[2] = { 0, 0 };
+            while (true)
+            {
+                targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
+                targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
+                if (mapTiles[zone.second->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
+                {
+                    break;
+                }
+            }
+            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
+            {
+                createUnitAtLocation(zone.second->id, SKELETON, targetCoords[0], targetCoords[1]);
+            }
+        }
+
         //spawn troops
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 1200) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 12000) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
         {
             /*int targetCoords[2] = { 0, 0 };
             while (true)

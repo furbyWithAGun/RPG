@@ -174,6 +174,17 @@ ZoneMap* TileGridScene::getZone(int zoneId)
     return zones[zoneId];
 }
 
+ZoneMap* TileGridScene::getZoneByName(std::string zoneName)
+{
+    for (auto zone : zones)
+    {
+        if (zone.second->zoneName == zoneName) {
+            return zone.second;
+        }
+    }
+    return nullptr;
+}
+
 
 bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
     int k[2];

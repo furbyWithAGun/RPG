@@ -2,13 +2,13 @@
 
 #include "BasicMeleeAttack.h"
 
-const int MAX_HEALTH = 70;
-const int SPEED = 1;
-const int DEX = 12;
+const int MAX_HEALTH = 80;
+const int SPEED = 2;
+const int DEX = 20;
 const int AGI = 8;
-const int STR = 10;
-const int EXP_VALUE = 50;
-const int GOLD_VALUE = 45;
+const int STR = 20;
+const int EXP_VALUE = 15;
+const int GOLD_VALUE = 65;
 
 Skeleton::Skeleton() : AiUnit() {
     init();
@@ -80,18 +80,18 @@ void Skeleton::createAnimations() {
 
 void Skeleton::setDropTable()
 {
-    dropChance = 0.2;
-    dropTable.push_back({ 0.15, ITEM_SHORT_SWORD });
-    dropTable.push_back({ 0.06, ITEM_MACE });
-    dropTable.push_back({ 0.04, ITEM_LONG_SWORD });
-    dropTable.push_back({ 0.13, ITEM_RAG_BODY });
-    dropTable.push_back({ 0.13, ITEM_RAG_BOOTS });
-    dropTable.push_back({ 0.13, ITEM_RAG_GLOVES });
-    dropTable.push_back({ 0.13, ITEM_RAG_HAT });
-    dropTable.push_back({ 0.13, ITEM_RAG_PANTS });
-    dropTable.push_back({ 0.02, ITEM_LINEN_BODY });
-    dropTable.push_back({ 0.02, ITEM_LINEN_BOOTS });
-    dropTable.push_back({ 0.02, ITEM_LINEN_GLOVES });
-    dropTable.push_back({ 0.02, ITEM_LINEN_HAT });
-    dropTable.push_back({ 0.02, ITEM_LINEN_PANTS });
+    dropChance = 0.25;
+    dropTable.push_back({ 0.10, ITEM_SHORT_SWORD });
+    dropTable.push_back({ 0.09, ITEM_MACE });
+    dropTable.push_back({ 0.06, ITEM_LONG_SWORD });
+    dropTable.push_back({ 0.10, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.10, ITEM_RAG_BOOTS });
+    dropTable.push_back({ 0.10, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.10, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.10, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.05, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.05, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.05, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.05, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.05, ITEM_LINEN_PANTS });
 }

@@ -6,14 +6,15 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// change unit//portal//building maps to unordered_map
-// add getZoneByName() method
-// add another cave
+// add quit button
+// put locks around unit and object deletion / rendering
+// add skeleton king to second cave
 // add more items
-// unit spawners
 // visual tracker for food effects
+// unit spawners
+// unit spawn table by difficulty
 // open inventory by pressing 'i' key
-// easy switchh between buy/sell
+// easy switch between buy/sell
 // show inventory when at shop
 // town quests
 // town attacks

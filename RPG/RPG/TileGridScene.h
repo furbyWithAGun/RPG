@@ -74,6 +74,7 @@ public:
     void addZone(int zoneId, ZoneMap* newZone);
     std::unordered_map<int, ZoneMap*> getZones();
     ZoneMap* getZone(int zoneId);
+    ZoneMap* getZoneByName(std::string zoneName);
     
 
 protected:

@@ -1,12 +1,13 @@
 #include "WhiteRat.h"
 #include "BasicMeleeAttack.h"
 
-const int MAX_HEALTH = 70;
-const int SPEED = 1;
-const int DEX = 12;
+const int MAX_HEALTH = 50;
+const int SPEED = 2;
+const int DEX = 15;
 const int AGI = 8;
-const int STR = 10;
-const int EXP_VALUE = 50;
+const int STR = 15;
+const int EXP_VALUE = 10;
+const int GOLD_VALUE = 45;
 
 WhiteRat::WhiteRat() : AiUnit() {
     init();
@@ -39,7 +40,7 @@ void WhiteRat::init() {
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;
-    goldValue = 45;
+    goldValue = GOLD_VALUE;
     setDropTable();
     createAnimations();
 }
@@ -78,18 +79,18 @@ void WhiteRat::createAnimations() {
 
 void WhiteRat::setDropTable()
 {
-    dropChance = 0.2;
+    dropChance = 0.22;
     dropTable.push_back({ 0.15, ITEM_SHORT_SWORD });
     dropTable.push_back({ 0.06, ITEM_MACE});
     dropTable.push_back({ 0.04, ITEM_LONG_SWORD });
-    dropTable.push_back({ 0.13, ITEM_RAG_BODY });
-    dropTable.push_back({ 0.13, ITEM_RAG_BOOTS });
-    dropTable.push_back({ 0.13, ITEM_RAG_GLOVES });
-    dropTable.push_back({ 0.13, ITEM_RAG_HAT });
-    dropTable.push_back({ 0.13, ITEM_RAG_PANTS });
-    dropTable.push_back({ 0.02, ITEM_LINEN_BODY });
-    dropTable.push_back({ 0.02, ITEM_LINEN_BOOTS });
-    dropTable.push_back({ 0.02, ITEM_LINEN_GLOVES });
-    dropTable.push_back({ 0.02, ITEM_LINEN_HAT });
-    dropTable.push_back({ 0.02, ITEM_LINEN_PANTS });
+    dropTable.push_back({ 0.12, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.12, ITEM_RAG_BOOTS });
+    dropTable.push_back({ 0.12, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.12, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.12, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.03, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.03, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.03, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.03, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.03, ITEM_LINEN_PANTS });
 }

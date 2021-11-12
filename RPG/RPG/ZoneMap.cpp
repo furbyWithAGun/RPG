@@ -655,15 +655,15 @@ void ZoneMap::draw(TileGridScene* scene)
 
 	//draw zone
 	Building* buildingToRender;
-	for (int x = startX; x < endX; x++) {
-		for (int y = startY; y < endY; y++) {
+	for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				//render tiles
 				scene->renderTexture(scene->mapTiles[tileMap[x][y]].textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
 			}
 		}
-		for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			//render buildings
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
@@ -681,7 +681,7 @@ void ZoneMap::draw(TileGridScene* scene)
 
 		//render portals
 		ZonePortal* portalToRender;
-		for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				portalToRender = getPortalAtLocation(x, y);
@@ -692,7 +692,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 
 		//render doodads
-		for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				if (getDooDadAtLocation(x, y) != nullptr) {
@@ -702,7 +702,7 @@ void ZoneMap::draw(TileGridScene* scene)
 		}
 
 		//render items
-		for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (int k = 0; k < getItemsAtLocation(x, y).size(); k++) {
@@ -711,7 +711,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			}
 		}
 		//render units
-		for (int y = startY; y < endY; y++) {
+		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
 				for (auto unit : getUnitsFromMap(x, y)) {
@@ -851,7 +851,7 @@ void ZoneMap::updateUnitMap()
 
 bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 {
-	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() )
 	{
 		return false;
 	}

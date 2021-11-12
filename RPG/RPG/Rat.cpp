@@ -1,12 +1,13 @@
 #include "Rat.h"
 #include "BasicMeleeAttack.h"
 
-const int RAT_MAX_HEALTH = 10;
-const int RAT_SPEED = 2;
-const int RAT_DEX = 3;
-const int RAT_AGI = 1;
-const int RAT_STR = 4;
-const int RAT_EXP_VALUE = 3;
+const int MAX_HEALTH = 9;
+const int SPEED = 2;
+const int DEX = 3;
+const int AGI = 1;
+const int STR = 5;
+const int EXP_VALUE = 3;
+const int GOLD_VALUE = 15;
 
 Rat::Rat() : AiUnit() {
     init();
@@ -29,14 +30,14 @@ Rat::Rat(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int 
 }
 
 void Rat::init() {
-    speed = RAT_SPEED;
-    health = RAT_MAX_HEALTH;
-    maxHealth = RAT_MAX_HEALTH;
-    expValue = RAT_EXP_VALUE;
-    dex = RAT_DEX;
-    agi = RAT_AGI;
-    str = RAT_STR;
-    goldValue = 15;
+    speed = SPEED;
+    health = MAX_HEALTH;
+    maxHealth = MAX_HEALTH;
+    expValue = EXP_VALUE;
+    dex = DEX;
+    agi = AGI;
+    str = STR;
+    goldValue = GOLD_VALUE;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;
