@@ -89,22 +89,17 @@ class ZoneMap {
         bool isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit* unitToIgnore);
         bool isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std::vector<Unit*> unitsToIgnore);
         void unitEntersTile(Unit* unit, int x, int y);
-        void destroyUnit(Unit* unit);
         std::vector<Location*> getPath(TileGridScene* scene, Location* startLocation, Location* destinationLocation);
         std::vector<Location*> getPathIgnoreAllUnits(TileGridScene* scene, Location* startLocation, Location* destinationLocation);
-        //std::vector<Location*> getPathToUnit(TileGridScene* scene, Location* startLocation, Unit* unit);
         std::vector<Location*> getPathToUnit(TileGridScene* scene, Location* startLocation, Unit* unit, Unit* followingUnit);
         std::vector<int> getPathDirections(TileGridScene* scene, Location* startLocation, Location* destinationLocation);
         std::vector<int> getPathDirectionsIgnoreAllunits(TileGridScene* scene, Location* startLocation, Location* destinationLocation);
-        //std::vector<int> getPathDirectionsToUnit(TileGridScene* scene, Location* startLocation, Unit* unit);
         std::vector<int> getPathDirectionsToUnit(TileGridScene* scene, Location* startLocation, Unit* unit, Unit* followingUnit);
         void setupGraph(TileGridScene* scene);
         void calculateDirectPaths(TileGridScene* scene);
         int manhattenDistance(Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPath(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit);
-        //std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit, Unit* followingUnit);
-        void removeDeadUnits();
 
     private:
         //attributes

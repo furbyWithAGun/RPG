@@ -185,6 +185,22 @@ ZoneMap* TileGridScene::getZoneByName(std::string zoneName)
     return nullptr;
 }
 
+bool TileGridScene::isUnitToBeDestroyed(Unit* unit)
+{
+    for (auto unitToDestroy : unitsToDestroy) {
+        if (unitToDestroy == unit)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void TileGridScene::addUnitToDestroy(Unit* unit)
+{
+    unitsToDestroy.push_back(unit);
+}
+
 
 bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
     int k[2];

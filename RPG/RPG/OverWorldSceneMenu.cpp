@@ -2,7 +2,8 @@
 #include "RpgOverWorldScene.h"
 
 enum RPG_OVERWORLD_MENU_IDS {
-    OPEN_INVENTORY_BUTTON
+    OPEN_INVENTORY_BUTTON,
+    QUIT_BUTTON
 };
 
 OverWorldSceneMenu::OverWorldSceneMenu() : GameMenu()
@@ -35,6 +36,13 @@ void OverWorldSceneMenu::buildElements()
         scene->openMenu(INVENTORY_MENU);
         });
     addElement(OPEN_INVENTORY_BUTTON, openInvBtn);
+
+    MenuButton* quitButton = new MenuButton(QUIT_BUTTON, this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.9);
+    quitButton->setText("Quit")->addOnClick([this] {
+        scene->engine->setNextScene(MAIN_MENU_SCENE);
+        scene->endScene();
+        });
+    addElement(QUIT_BUTTON, quitButton);
 }
 
 void OverWorldSceneMenu::init()

@@ -468,8 +468,7 @@ void ZoneMap::destroyBuilding(Building* building)
 				unitIterator++;
 			}
 		}
-		destroyUnit(unit);
-		//unit->toBeDeleted = true;
+		((TileGridScene*)unit->scene)->addUnitToDestroy(unit);
 	}
 	delete building;
 }
@@ -827,9 +826,6 @@ void ZoneMap::update()
 		}
 	}
 
-	//remove dead units
-	removeDeadUnits();	
-
 	for (auto dooDad : getDooDads())
 	{
 		dooDad->update();
@@ -999,21 +995,6 @@ void ZoneMap::unitEntersTile(Unit* unit, int x, int y)
 			currentDooDad->walkOn(unit);
 		}
 	}
-}
-
-void ZoneMap::destroyUnit(Unit* unit)
-{
-	removeUnitFromLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
-	removeUnitFromLocation(unit, unit->tileDestination->x, unit->tileDestination->y);
-	removeFromUnitVector(unit);
-	if (unit->beingTargetedBy.size() > 0)
-	{
-		for (auto targetingUnit : unit->beingTargetedBy) {
-			targetingUnit->targetUnit = nullptr;
-		}
-	}
-
-	delete (unit);
 }
 
 
@@ -1326,7 +1307,7 @@ std::vector<Location*> ZoneMap::getPathIgnoreAllUnits(TileGridScene* scene, Loca
 
 std::vector<Location*> ZoneMap::getPathToUnit(TileGridScene* scene, Location* startLocation, Unit* unit, Unit* followingUnit)
 {
-	if (unit->toBeDeleted)
+	if (unit->scene->isUnitToBeDestroyed(unit))
 	{
 		return std::vector<Location*>();
 	}
@@ -1419,27 +1400,6 @@ std::vector<Location*> ZoneMap::constructPathToUnit(std::unordered_map<Location,
 	}
 	std::reverse(path.begin(), path.end());
 	return path;
-}
-
-void ZoneMap::removeDeadUnits()
-{
-	auto unitIterator = units.begin();
-	while (unitIterator != units.end())
-	{
-		if ((*unitIterator)->toBeDeleted) {
-			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileLocation->x, (*unitIterator)->tileLocation->y);
-			removeUnitFromLocation(*unitIterator, (*unitIterator)->tileDestination->x, (*unitIterator)->tileDestination->y);
-			for (auto unit : (*unitIterator)->beingTargetedBy) {
-				unit->targetUnit = nullptr;
-			}
-			delete (*unitIterator);
-			removeFromUnitVector(*unitIterator);
-			unitIterator = units.begin();
-		}
-		else {
-			unitIterator++;
-		}
-	}
 }
 
 void ZoneMap::setupGraph(TileGridScene* scene)

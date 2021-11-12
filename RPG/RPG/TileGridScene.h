@@ -67,19 +67,20 @@ public:
     void addItemsToMap(int zone, int x, int y, std::vector<Item*> items);
     bool coordsAreOnDisplayedMapTile(int x, int y);
     bool tileCoordsAreOnDisplayedMapTile(int x, int y);
-
     void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
-
     void addZone(ZoneMap* newZone);
     void addZone(int zoneId, ZoneMap* newZone);
     std::unordered_map<int, ZoneMap*> getZones();
     ZoneMap* getZone(int zoneId);
     ZoneMap* getZoneByName(std::string zoneName);
+    bool isUnitToBeDestroyed(Unit* unit);
+    void addUnitToDestroy(Unit* unit);
     
 
 protected:
     //attributes
-    
+    std::vector<Unit*> unitsToDestroy;
+
     //methods
     bool tileCoordsAreDisplayedMapTile(int x, int y);
     //virtual Unit* createUnitAtLocation(int zoneId, int unitType, int x, int y);

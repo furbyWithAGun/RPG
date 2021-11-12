@@ -192,6 +192,9 @@ void RpgTileGridScene::handleInput()
 
 void RpgTileGridScene::sceneLogic()
 {
+    SDL_AtomicLock(&unitDestroyLock);
+    destroyFlaggedUnits();
+    SDL_AtomicUnlock(&unitDestroyLock);
     TileGridScene::sceneLogic();
     updateCombatMessages();
 }
@@ -381,6 +384,62 @@ void RpgTileGridScene::resizeTiles()
             unit->resize(tileWidth * 3, tileHeight * 3);
         }
     }
+}
+
+void RpgTileGridScene::destroyUnit(RpgUnit* unit)
+{
+    //remove unit from zones
+    for (auto zone : getZones())
+    {
+        zone.second->removeUnitFromZone(unit);
+    }
+
+    //clear unit from units that are targetting it
+    if (unit->beingTargetedBy.size() > 0)
+    {
+        for (auto targetingUnit : unit->beingTargetedBy) {
+            targetingUnit->targetUnit = nullptr;
+        }
+    }
+
+    //clear unit from pathfinding queue
+    auto unitIterator = unitsNeedingPath.begin();
+    while (unitIterator != unitsNeedingPath.end())
+    {
+        if ((*unitIterator) == unit) {
+            unitIterator = unitsNeedingPath.erase(unitIterator);
+        }
+        else {
+            unitIterator++;
+        }
+    }
+
+    auto unitIterator2 = unitsNeedingPath2.begin();
+    while (unitIterator2 != unitsNeedingPath2.end())
+    {
+        if ((*unitIterator2) == unit) {
+            unitIterator2 = unitsNeedingPath2.erase(unitIterator2);
+        }
+        else {
+            unitIterator2++;
+        }
+    }
+
+    //unassign unit from building
+    if (((RpgUnit*)unit)->assignedToBuilding != nullptr)
+    {
+        ((RpgUnit*)unit)->assignedToBuilding->unAssignUnit(((RpgUnit*)unit));
+    }
+
+    delete (unit);
+}
+
+void RpgTileGridScene::destroyFlaggedUnits()
+{
+    for (auto unit : unitsToDestroy) {
+        destroyUnit((RpgUnit*)unit);
+    }
+    unitsToDestroy.clear();
 }
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)

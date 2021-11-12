@@ -40,7 +40,6 @@ public:
     int id;
     bool gettingPath;
     std::vector<Unit*> beingTargetedBy;
-    bool toBeDeleted;
     int type;
     TileGridScene* scene;
     Location* tileLocation;

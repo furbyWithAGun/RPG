@@ -184,7 +184,15 @@ void RpgUnit::draw()
 
 void RpgUnit::drawHealth()
 {
-    double healthPercent = (double)health / (double)maxHealth;
+    int healthToDisplay;
+    if (health < 0 )
+    {
+        healthToDisplay = 0;
+    }
+    else {
+        healthToDisplay = health;
+    }
+    double healthPercent = (double)healthToDisplay / (double)maxHealth;
     scene->engine->renderRectangle(xpos + scene->tileWidth, ypos + scene->tileHeight, (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0xff, 0, 0);
 }
 
@@ -407,7 +415,7 @@ void RpgUnit::updateAggro()
         }
     }
     else {
-        if (targetUnit->toBeDeleted || (std::abs(targetUnit->tileLocation->x - tileLocation->x) > aggroMaintainDistance) || (std::abs(targetUnit->tileLocation->y - tileLocation->y) > aggroMaintainDistance))
+        if (targetUnit->scene->isUnitToBeDestroyed(targetUnit) || (std::abs(targetUnit->tileLocation->x - tileLocation->x) > aggroMaintainDistance) || (std::abs(targetUnit->tileLocation->y - tileLocation->y) > aggroMaintainDistance))
         {
             auto unitIterator = targetUnit->beingTargetedBy.begin();
             while (unitIterator != targetUnit->beingTargetedBy.end())
@@ -641,10 +649,7 @@ void RpgUnit::death()
 {
     scene->addItemsToMap(zone, tileLocation->x, tileLocation->y, getDrops());
     active = false;
-    toBeDeleted = true;
-    for (auto unit : beingTargetedBy) {
-        unit->targetUnit = nullptr;
-    }
+    scene->addUnitToDestroy(this);
 }
 
 void RpgUnit::death(RpgUnit* attackingUnit)

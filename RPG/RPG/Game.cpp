@@ -7,7 +7,6 @@
 
 //TODO:
 // add quit button
-// put locks around unit and object deletion / rendering
 // add skeleton king to second cave
 // add more items
 // visual tracker for food effects

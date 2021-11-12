@@ -105,7 +105,7 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
 
@@ -319,7 +319,7 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
         {
             if (getUnitAtLocation(zone.second->id, ratSpawn->x, ratSpawn->y) == nullptr)
             {
@@ -327,7 +327,7 @@ void RpgOverWorldScene::sceneLogic()
             }
         }
 
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn)
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
         {
             if (getUnitAtLocation(zone.second->id, ratSpawn2->x, ratSpawn2->y) == nullptr)
             {
@@ -533,7 +533,6 @@ int getPathThread2(void* scene) {
             rpgScene->unitsNeedingPath2.pop_front();
             try {
                 std::vector<int> tempDirections;
-
                 if (unit->targetUnit != nullptr)
                 {
                     tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
@@ -575,7 +574,6 @@ int getPathThread2(void* scene) {
                 unit->gettingPath = false;
                 continue;
             }
-            unit->gettingPath = false;
             continue;
         }
     }

@@ -49,7 +49,6 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
         }
         saveString += getAttributeString(getUniqueId(), UNIT_BEING_TARGETED_BY, getIntVectorSaveString(beingTargetedByIds));
     }
-    saveString += getAttributeString(getUniqueId(), UNIT_TO_BE_DELETED, toBeDeleted);
     saveString += getAttributeString(getUniqueId(), UNIT_TYPE, type);
     saveString += getAttributeString(getUniqueId(), UNIT_TILE_LOCATION, getLocationSaveString(tileLocation));
     saveString += getAttributeString(getUniqueId(), UNIT_TILE_DESTINATION, getLocationSaveString(tileDestination));
@@ -120,7 +119,6 @@ Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gam
             savedBeingTargetedByIds = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
             break;
         case UNIT_TO_BE_DELETED:
-            toBeDeleted = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_TYPE:
             type = stoi(saveObject.attributes[i].valueString);
@@ -226,7 +224,6 @@ void Unit::init() {
     //setUnitState(UNIT_IDLE);
     zone = 0;
     targetUnit = nullptr;
-    toBeDeleted = false;
     getPathTick = 0;
     adjustPathTick = 0;
     getNewPathFailTick = 0;

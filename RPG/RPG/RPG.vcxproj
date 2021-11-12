@@ -86,8 +86,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\coding\c++\vclib\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\coding\c++\vclib\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\coding\c++\vclib\include;D:\Coding\c++\rpgGame\libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\coding\c++\vclib\lib\x64;D:\Coding\c++\rpgGame\libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

@@ -15,7 +15,8 @@ enum SAVE_BUILDER_MENU_IDS {
     MOB_SPAWN_BUTTON_FALSE,
     TXT_DIFFICULTY,
     BUILDINGS_SCROLL_BOX,
-    DOODADS_SCROLL_BOX
+    DOODADS_SCROLL_BOX,
+    QUIT_BUTTON
 };
 
 //constructors
@@ -137,21 +138,28 @@ void ZoneBuilderMenu::buildPageOne()
 
     SaveMapBuilderButton* button = new SaveMapBuilderButton(scene, BUTTON_BACKGROUND);
     button->xpos = width * 0.2;
-    button->ypos = height * 0.7;
+    button->ypos = height * 0.69;
     button->setText("Save Map");
     mainPanel->addElementToPage(0, button);
 
-    MenuButton* loadButton = new MenuButton(LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.8);
+    MenuButton* loadButton = new MenuButton(LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.76);
     loadButton->setText("Load Map")->addOnClick([this] {
         scene->openMenu(LOAD_ZONE_MENU);
         });
     mainPanel->addElementToPage(0, LOAD_BUTTON, loadButton);
 
-    MenuButton* newZoneButton = new MenuButton(NEW_ZONE_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.9);
+    MenuButton* newZoneButton = new MenuButton(NEW_ZONE_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.83);
     newZoneButton->setText("New Map")->addOnClick([this] {
         scene->createNewZone();
         });
     mainPanel->addElementToPage(0, NEW_ZONE_BUTTON, newZoneButton);
+
+    MenuButton* quitButton = new MenuButton(QUIT_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.9);
+    quitButton->setText("Quit")->addOnClick([this] {
+        scene->engine->setNextScene(MAIN_MENU_SCENE);
+        scene->endScene();
+        });
+    mainPanel->addElementToPage(0, QUIT_BUTTON, quitButton);
 
 }
 

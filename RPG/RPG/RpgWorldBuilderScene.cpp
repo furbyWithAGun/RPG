@@ -151,7 +151,7 @@ void RpgWorldBuilderScene::handleInput() {
 
 void RpgWorldBuilderScene::sceneLogic() {
     //RpgTileGridScene::sceneLogic();
-    sceneToEdit.removeDeadUnits();
+    destroyFlaggedUnits();
     //handle commands
     InputMessage* message = new InputMessage();
     while (getNextCommand(message)) {

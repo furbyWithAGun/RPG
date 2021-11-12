@@ -19,6 +19,7 @@ public:
     DooDad dooDadgBeingPlaced;
     bool placingBuilding;
     bool placingDooDad;
+    SDL_SpinLock unitDestroyLock;
 
     //pathing rates
     int aggroUpdateRate;
@@ -50,6 +51,8 @@ public:
     bool canAffordBuilding(Building* building);
     virtual void loadZones() override;
     void resizeTiles();
+    void destroyUnit(RpgUnit* unit);
+    void destroyFlaggedUnits();
 
 protected:
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
