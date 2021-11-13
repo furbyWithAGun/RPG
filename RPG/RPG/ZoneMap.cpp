@@ -14,6 +14,7 @@
 #include "Soldier.h"
 #include "TownsPerson.h"
 #include "Skeleton.h"
+#include "SkeletonKing.h"
 #include <algorithm>
 //#include "RpgTileGridScene.h"
 
@@ -1817,6 +1818,9 @@ std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGr
 					break;
 				case SKELETON:
 					returnVector.push_back(new Skeleton(savedItems[i].rawString, gameScene));;
+					break;
+				case SKELETON_KING:
+					returnVector.push_back(new SkeletonKing(savedItems[i].rawString, gameScene));;
 					break;
 				default:
 					returnVector.push_back(new RpgUnit(savedItems[i].rawString, gameScene));

@@ -103,9 +103,9 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
 
@@ -119,6 +119,7 @@ void RpgOverWorldScene::setUpScene()
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
     //testUnit->setTargetLocation(testLocation);
     createUnitAtLocation(2, RAT_KING, 26, 1);
+    createUnitAtLocation(3, SKELETON_KING, 0, 29);
     //createUnitAtLocation(1, TOWNSPERSON, 11, 2);
 
     //buildings

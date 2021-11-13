@@ -181,6 +181,12 @@
     <Filter Include="Header Files\RpgGame\units\Skeleton">
       <UniqueIdentifier>{270dc4a1-8b9c-4f38-b2b0-17c37c9433cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RpgGame\units\SkeletonKing">
+      <UniqueIdentifier>{531e7f40-6fce-4052-bfd3-94dffd712418}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RpgGame\units\SkeletonKing">
+      <UniqueIdentifier>{b5e0a613-e4ed-4601-89bd-7aa16677c5a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimatedSprite.cpp">
@@ -482,6 +488,9 @@
     </ClCompile>
     <ClCompile Include="Skeleton.cpp">
       <Filter>Source Files\RpgGame\units\Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="SkeletonKing.cpp">
+      <Filter>Source Files\RpgGame\units\SkeletonKing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -790,6 +799,9 @@
     </ClInclude>
     <ClInclude Include="Skeleton.h">
       <Filter>Header Files\RpgGame\units\Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="SkeletonKing.h">
+      <Filter>Header Files\RpgGame\units\SkeletonKing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

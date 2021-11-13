@@ -2,12 +2,13 @@
 #include "BasicMeleeAttack.h"
 #include "RpgTileGridScene.h"
 
-const int RAT_KING_MAX_HEALTH = 250;
-const int RAT_KING_SPEED = 4;
-const int RAT_KING_DEX = 15;
-const int RAT_KING_AGI = 15;
-const int RAT_KING_STR = 20;
-const int RAT_KING_EXP_VALUE = 300;
+const int MAX_HEALTH = 175;
+const int SPEED = 4;
+const int DEX = 25;
+const int AGI = 15;
+const int STR = 25;
+const int EXP_VALUE = 300;
+const int GOLD_VALUE = 1000;
 
 RatKing::RatKing() : AiUnit() {
     init();
@@ -30,13 +31,14 @@ RatKing::RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
 }
 
 void RatKing::init() {
-    speed = RAT_KING_SPEED;
-    health = RAT_KING_MAX_HEALTH;
-    maxHealth = RAT_KING_MAX_HEALTH;
-    expValue = RAT_KING_EXP_VALUE;
-    dex = RAT_KING_DEX;
-    agi = RAT_KING_AGI;
-    str = RAT_KING_STR;
+    speed = SPEED;
+    health = MAX_HEALTH;
+    maxHealth = MAX_HEALTH;
+    expValue = EXP_VALUE;
+    goldValue = GOLD_VALUE;
+    dex = DEX;
+    agi = AGI;
+    str = STR;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;
@@ -85,5 +87,4 @@ void RatKing::setDropTable()
 void RatKing::death()
 {
     RpgUnit::death();
-    scene->addDelayedCombatMessage(20, "YOU HAVE BEATEN THE GAME! (Such that it is)", COLOR_GREEN, tileLocation->x, tileLocation->y, 1400);
 }

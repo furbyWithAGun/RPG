@@ -6,8 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// add quit button
-// add skeleton king to second cave
 // add more items
 // visual tracker for food effects
 // unit spawners
@@ -20,6 +18,9 @@
 // crafting
 // overworld towers / walls
 // unit factory
+// Town class
+// followers
+// commands to followers
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
 // move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers
@@ -41,7 +42,6 @@
 //add a cleanup method to GameScene and have the engine call it when scene is over (units are a memory leak when changing scenes, as are UiElements)
 // will need destructors for menus as well.
 //create destructors for units (Attack pointers are a memory leak, as are the unit states)
-//make semi-not-terrible player animations ***DO IT YOU SLACKER***
 //game message system
 //ranged combat
 //improve attack functionality

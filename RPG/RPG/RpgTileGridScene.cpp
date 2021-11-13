@@ -7,6 +7,7 @@
 #include "Soldier.h"
 #include "TownsPerson.h"
 #include "Skeleton.h"
+#include "SkeletonKing.h"
 
 const int SCROLL_SPEED = 4;
 
@@ -141,6 +142,19 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ RAT_KING_ATTACK_DOWN, "images/ratKingAttackDown.png" });
     texturesToLoad.insert({ RAT_KING_ATTACK_LEFT, "images/ratKingAttackLeft.png" });
     texturesToLoad.insert({ RAT_KING_ATTACK_RIGHT, "images/ratKingAttackRight.png" });
+    //Skeleton King
+    texturesToLoad.insert({ SKELETON_KING_IDLE_DOWN, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_IDLE_LEFT, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_IDLE_RIGHT, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_IDLE_UP, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_MOVE_DOWN, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_MOVE_UP, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_MOVE_LEFT, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_MOVE_RIGHT, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_ATTACK_UP, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_ATTACK_DOWN, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_ATTACK_LEFT, "images/skeletonKing.png" });
+    texturesToLoad.insert({ SKELETON_KING_ATTACK_RIGHT, "images/skeletonKing.png" });
     //townsperson textures
     texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
     //item textures
@@ -466,7 +480,10 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
         createdUnit = new TownsPerson(zoneId, TOWNSPERSON, this, x, y);
         break;
     case SKELETON:
-        createdUnit = new Skeleton(zoneId, TOWNSPERSON, this, x, y);
+        createdUnit = new Skeleton(zoneId, SKELETON, this, x, y);
+        break;
+    case SKELETON_KING:
+        createdUnit = new SkeletonKing(zoneId, SKELETON_KING, this, x, y);
         break;
     default:
         createdUnit = NULL;
@@ -499,6 +516,12 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
         break;
     case TOWNSPERSON:
         createdUnit = new TownsPerson(zone->id, TOWNSPERSON, this, x, y);
+        break;
+    case SKELETON:
+        createdUnit = new Skeleton(zone->id, SKELETON, this, x, y);
+        break;
+    case SKELETON_KING:
+        createdUnit = new SkeletonKing(zone->id, SKELETON_KING, this, x, y);
         break;
     default:
         createdUnit = new RpgUnit();
