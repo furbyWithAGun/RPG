@@ -97,15 +97,15 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BOOTS)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
-    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
+    //addItemsToMap(0, 5, 6, {createNewItem(ITEM_LEATHER_BODY)});
     //Item* itemToDrop = createNewItem(ITEM_LOGS);
     //itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
 

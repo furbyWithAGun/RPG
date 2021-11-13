@@ -172,6 +172,11 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ ITEM_LINEN_PANTS, "images/LinenPants.png" });
     texturesToLoad.insert({ ITEM_LINEN_GLOVES, "images/LinenGloves.png" });
     texturesToLoad.insert({ ITEM_LINEN_BOOTS, "images/LinenBoots.png" });
+    texturesToLoad.insert({ ITEM_LEATHER_HAT, "images/leatherHat.png" });
+    texturesToLoad.insert({ ITEM_LEATHER_BODY, "images/leatherBody.png" });
+    texturesToLoad.insert({ ITEM_LEATHER_PANTS, "images/leatherPants.png" });
+    texturesToLoad.insert({ ITEM_LEATHER_GLOVES, "images/leatherGloves.png" });
+    texturesToLoad.insert({ ITEM_LEATHER_BOOTS, "images/leatherBoots.png" });
     //resources
     texturesToLoad.insert({ ITEM_LOGS, "images/logs.png" });
     //building icons

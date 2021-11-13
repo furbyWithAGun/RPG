@@ -89,9 +89,14 @@ void Skeleton::setDropTable()
     dropTable.push_back({ 0.10, ITEM_RAG_GLOVES });
     dropTable.push_back({ 0.10, ITEM_RAG_HAT });
     dropTable.push_back({ 0.10, ITEM_RAG_PANTS });
-    dropTable.push_back({ 0.05, ITEM_LINEN_BODY });
-    dropTable.push_back({ 0.05, ITEM_LINEN_BOOTS });
-    dropTable.push_back({ 0.05, ITEM_LINEN_GLOVES });
-    dropTable.push_back({ 0.05, ITEM_LINEN_HAT });
-    dropTable.push_back({ 0.05, ITEM_LINEN_PANTS });
+    dropTable.push_back({ 0.04, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.04, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.04, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.04, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.04, ITEM_LINEN_PANTS });
+    dropTable.push_back({ 0.01, ITEM_LEATHER_BODY });
+    dropTable.push_back({ 0.01, ITEM_LEATHER_BOOTS });
+    dropTable.push_back({ 0.01, ITEM_LEATHER_GLOVES });
+    dropTable.push_back({ 0.01, ITEM_LEATHER_HAT });
+    dropTable.push_back({ 0.01, ITEM_LEATHER_PANTS });
 }

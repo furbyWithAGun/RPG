@@ -253,13 +253,78 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		false,
 		1
+	} },
+	{ITEM_LEATHER_BODY, ItemTemplate{
+		"Leather Armour",
+		ARMOUR,
+		ITEM_LEATHER_BODY,
+		BODY_SLOT,
+		0,
+		0,
+		250,
+		3,
+		false,
+		false,
+		1
+	}},
+	{ ITEM_LEATHER_BOOTS, ItemTemplate{
+		"Leather Boots",
+		ARMOUR,
+		ITEM_LEATHER_BOOTS,
+		FEET_SLOT,
+		0,
+		0,
+		250,
+		3,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_LEATHER_GLOVES, ItemTemplate{
+		"leather Gloves",
+		ARMOUR,
+		ITEM_LEATHER_GLOVES,
+		HANDS_SLOT,
+		0,
+		0,
+		250,
+		3,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_LEATHER_HAT, ItemTemplate{
+		"Leather Helm",
+		ARMOUR,
+		ITEM_LEATHER_HAT,
+		HEAD_SLOT,
+		0,
+		0,
+		250,
+		3,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_LEATHER_PANTS, ItemTemplate{
+		"Leather Leggings",
+		ARMOUR,
+		ITEM_LEATHER_PANTS,
+		LEGS_SLOT,
+		0,
+		0,
+		250,
+		3,
+		false,
+		false,
+		1
 	} }
 };
 
 Item* createNewItem(int itemType)
 {
 	Item* itemToReturn;
-	ItemTemplate itemTemplate = itemTemplates[itemType];
+	/*ItemTemplate itemTemplate = itemTemplates[itemType];
 	switch (itemTemplate.itemType)
 	{
 	case WEAPON:
@@ -304,6 +369,8 @@ Item* createNewItem(int itemType)
 		itemToReturn = new Item();
 		break;
 	}
+	itemToReturn->id = getUniqueItemId();*/
+	itemToReturn = createNewItemBlankId(itemType);
 	itemToReturn->id = getUniqueItemId();
 	return itemToReturn;
 }
@@ -352,6 +419,7 @@ Item* createNewItemBlankId(int itemType)
 		((Food*)itemToReturn)->hungerGain = foodTemplates[itemType].hungerGain;
 		((Food*)itemToReturn)->healthRegen = foodTemplates[itemType].healthRegen;
 		((Food*)itemToReturn)->healthRegenDurationInSeconds = foodTemplates[itemType].healthRegenDurationInSeconds;
+		return itemToReturn;
 		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");
