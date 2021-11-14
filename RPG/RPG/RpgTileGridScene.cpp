@@ -421,6 +421,21 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
         }
     }
 
+    //clear unit from units that are being targeted by it
+    if (unit->targetUnit != nullptr)
+    {
+        auto targetingUnitIterator = unit->targetUnit->beingTargetedBy.begin();
+        while (targetingUnitIterator != unit->targetUnit->beingTargetedBy.end())
+        {
+            if ((*targetingUnitIterator) == unit) {
+                targetingUnitIterator = unit->targetUnit->beingTargetedBy.erase(targetingUnitIterator);
+            }
+            else {
+                targetingUnitIterator++;
+            }
+        }
+    }
+
     //clear unit from pathfinding queue
     auto unitIterator = unitsNeedingPath.begin();
     while (unitIterator != unitsNeedingPath.end())
