@@ -408,6 +408,7 @@ Item* createNewItemBlankId(int itemType)
 		itemToReturn->value = itemTemplate.value;
 		itemToReturn->stackable = itemTemplate.stackable;
 		itemToReturn->stackSize = itemTemplate.stackSize;
+		return itemToReturn;
 		break;
 	case FOOD:
 		itemToReturn = new Food();
@@ -426,6 +427,7 @@ Item* createNewItemBlankId(int itemType)
 		return new Item();
 		break;
 	}
+	return itemToReturn;
 }
 
 HoverToolTip* createItemToolTip(Item* item, GameScene* scene)

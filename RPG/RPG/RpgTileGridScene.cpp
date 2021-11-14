@@ -455,10 +455,12 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 
 void RpgTileGridScene::destroyFlaggedUnits()
 {
+    updatingUnits = true;
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);
     }
     unitsToDestroy.clear();
+    updatingUnits = false;
 }
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)

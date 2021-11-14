@@ -41,6 +41,7 @@ public:
     int adjustPathRate;
     int getNewPathFailLimit;
     int processPathFailLimit;
+    bool updatingUnits;
 
     //constructor
     TileGridScene();

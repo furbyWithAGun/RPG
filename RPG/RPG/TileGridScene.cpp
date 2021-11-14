@@ -28,6 +28,8 @@ void TileGridScene::init() {
     adjustPathRate = 4;
     getNewPathFailLimit = 3;
     processPathFailLimit = 30;
+
+    updatingUnits = false;
 }
 
 void TileGridScene::declareSceneAssets()
@@ -198,6 +200,10 @@ bool TileGridScene::isUnitToBeDestroyed(Unit* unit)
 
 void TileGridScene::addUnitToDestroy(Unit* unit)
 {
+    if (isUnitToBeDestroyed(unit))
+    {
+        return;
+    }
     unitsToDestroy.push_back(unit);
 }
 

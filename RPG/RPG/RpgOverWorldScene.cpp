@@ -113,7 +113,7 @@ void RpgOverWorldScene::setUpScene()
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 11);
     createUnitAtLocation(1, SOLDIER, 3, 8);
-    testUnit = createUnitAtLocation(currentZone->id, SKELETON, 25, 8);
+    //testUnit = createUnitAtLocation(currentZone->id, SKELETON, 25, 8);
     //testUnit->toSaveString();
     //Location* testLocation = new Location{ 2, 0 };
     //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);

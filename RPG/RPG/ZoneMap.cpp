@@ -823,7 +823,9 @@ void ZoneMap::update()
 	for (auto unit : getUnits()) {
 		if (unit->active)
 		{
+			unit->scene->updatingUnits = true;
 			unit->update();
+			unit->scene->updatingUnits = false;
 		}
 	}
 
