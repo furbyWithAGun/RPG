@@ -458,6 +458,11 @@ void RpgOverWorldScene::renderHUD()
     renderRectangle(engine->screenWidth * 0.01, engine->screenHeight * 0.15, (engine->screenWidth * 0.05) * (double)((double)player->mana / (double)player->maxMana), engine->screenHeight * 0.01, COLOR_BLUE);
     engine->renderText("Gold: " + std::to_string(player->gold), engine->screenWidth * 0.01, engine->screenHeight * 0.16, COLOR_GOLD);
 
+    for (size_t i = 0; i < player->foodEffects.size(); i++)
+    {
+        engine->renderTexture(player->foodEffects[i]->texture, mainCanvasStartX + engine->screenWidth * 0.02 * i, engine->screenHeight * 0.95);
+        renderRectangle(mainCanvasStartX + engine->screenWidth * 0.02 * i + engine->screenWidth * 0.02, engine->screenHeight * 0.99, engine->screenWidth * 0.004, (engine->screenHeight * 0.05) * ((double)((double)player->foodEffects[i]->tick - (double)player->foodEffects[i]->duration) / (double)player->foodEffects[i]->duration), COLOR_WHITE);
+    }
 }
 
 //functions

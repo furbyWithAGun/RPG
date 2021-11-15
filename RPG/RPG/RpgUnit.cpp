@@ -23,6 +23,7 @@ std::unordered_map<int, int> nextLevelExp = {
     {15, 700}
 };
 
+
 RpgUnit::RpgUnit() : Unit() {
     init();
 }
@@ -468,7 +469,7 @@ void RpgUnit::eatFood(Food* foodToEat)
             return;
         }
     }
-    if (foodEffects.size() < 3)
+    if (foodEffects.size() < MAX_NUM_FOOD_EFFECTS)
     {
         foodEffects.push_back(foodEffect);
         return;

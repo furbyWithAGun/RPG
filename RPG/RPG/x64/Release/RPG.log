@@ -1,22 +1,24 @@
 ﻿  BaseGameEngine.cpp
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(117,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(551,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(552,31): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(117,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(551,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(552,31): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(556,74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(561,142): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(556,74): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(561,142): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
+  Game.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating code
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(427): warning C4715: 'BaseGameEngine::pickElementByProbability': not all control paths return a value
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(272): warning C4715: 'BaseGameEngine::createTextTexture': not all control paths return a value
-  All 9765 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  2 of 9769 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    10 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Release\RPG.exe

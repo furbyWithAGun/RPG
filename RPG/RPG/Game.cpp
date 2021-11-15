@@ -6,8 +6,6 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// add more items
-// visual tracker for food effects
 // unit spawners
 // unit spawn table by difficulty
 // open inventory by pressing 'i' key

@@ -7,6 +7,8 @@
 
 class RpgTileGridScene;
 
+const int MAX_NUM_FOOD_EFFECTS = 3;
+
 enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_TEAM = NUM_UNIT_ATTRIBUTES,
     UNIT_GOLD,

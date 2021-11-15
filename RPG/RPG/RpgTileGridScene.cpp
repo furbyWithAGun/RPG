@@ -156,7 +156,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ SKELETON_KING_ATTACK_LEFT, "images/skeletonKing.png" });
     texturesToLoad.insert({ SKELETON_KING_ATTACK_RIGHT, "images/skeletonKing.png" });
     //townsperson textures
-    texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/MacWiz2.png" });
+    texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/shopKeeper.png" });
     //item textures
     texturesToLoad.insert({ ITEM_SHORT_SWORD, "images/itemSword.png" });
     texturesToLoad.insert({ ITEM_CLUB, "images/club.png" });
@@ -179,6 +179,9 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ ITEM_LEATHER_BOOTS, "images/leatherBoots.png" });
     //resources
     texturesToLoad.insert({ ITEM_LOGS, "images/logs.png" });
+    //food
+    texturesToLoad.insert({ ITEM_APPLE, "images/apple.png" });
+    texturesToLoad.insert({ ITEM_RASPBERRY, "images/raspberries.png" });
     //building icons
     texturesToLoad.insert({ BUILDING_ICON_WEAPON_SHOP, "images/signWeapons.png" });
     texturesToLoad.insert({ BUILDING_ICON_ARMOUR_SHOP, "images/signArmour.png" });

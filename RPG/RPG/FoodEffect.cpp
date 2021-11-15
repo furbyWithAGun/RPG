@@ -12,6 +12,7 @@ FoodEffect::FoodEffect(Food* foodEaten) : UnitTempEffect()
     healthRegen = foodEaten->healthRegen;
     duration = foodEaten->healthRegenDurationInSeconds * RPG_GAME_TICKS_PER_SECOND;
     name = foodEaten->name;
+    texture = foodEaten->textureKey;
 }
 
 FoodEffect::FoodEffect(SaveObject saveObject) : UnitTempEffect(saveObject)
@@ -22,6 +23,9 @@ FoodEffect::FoodEffect(SaveObject saveObject) : UnitTempEffect(saveObject)
         switch (saveObject.attributes[i].attributeType) {
         case FOOD_EFFECT_HEALTH_REGEN:
             healthRegen = stoi(saveObject.attributes[i].valueString);
+            break;
+        case FOOD_EFFECT_TEXTURE_KEY:
+            texture = stoi(saveObject.attributes[i].valueString);
             break;
         default:
             break;
@@ -40,6 +44,7 @@ std::string FoodEffect::toSaveString(bool withHeaderAndFooter)
     }
     saveString += UnitTempEffect::toSaveString(false);
     saveString += getAttributeString(getUniqueId(), FOOD_EFFECT_HEALTH_REGEN, healthRegen);
+    saveString += getAttributeString(getUniqueId(), FOOD_EFFECT_TEXTURE_KEY, texture);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_FOOD_EFFECT) + "\n";
@@ -51,6 +56,7 @@ void FoodEffect::init()
 {
     healthRegen = 1;
     updateOnTick = RPG_GAME_TICKS_PER_SECOND;
+    texture = -1;
 
     onUpdate = [this](RpgUnit* affectedUnit) {
         tick++;
