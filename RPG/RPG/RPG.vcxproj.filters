@@ -492,6 +492,9 @@
     <ClCompile Include="SkeletonKing.cpp">
       <Filter>Source Files\RpgGame\units\SkeletonKing</Filter>
     </ClCompile>
+    <ClCompile Include="UnitSpawner.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -802,6 +805,9 @@
     </ClInclude>
     <ClInclude Include="SkeletonKing.h">
       <Filter>Header Files\RpgGame\units\SkeletonKing</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitSpawner.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -70,6 +70,14 @@ void BerryBush::actionOn(Unit* unit, int actionType)
             textureKey = noBerryTextureKey;
         }
         break;
+    case OVERWORLD_STRIKE:
+        if (berryState == BERRY_BUSH_AVAILABLE_BERRIES)
+        {
+            ((RpgUnit*)unit)->addToInventory(createNewItem(berryGrown));
+            berryState = BERRY_BUSH_NO_BERRIES;
+            textureKey = noBerryTextureKey;
+        }
+        break;
     default:
         break;
     }

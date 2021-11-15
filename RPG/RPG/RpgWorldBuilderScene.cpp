@@ -152,6 +152,7 @@ void RpgWorldBuilderScene::handleInput() {
 void RpgWorldBuilderScene::sceneLogic() {
     //RpgTileGridScene::sceneLogic();
     destroyFlaggedUnits();
+    destroyFlaggedDooDads();
     //handle commands
     InputMessage* message = new InputMessage();
     while (getNextCommand(message)) {
@@ -172,7 +173,7 @@ void RpgWorldBuilderScene::sceneLogic() {
         case WORLD_BUILDER_PLACE_DOODAD:
             if (getDooDadAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
             {
-                sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, this), message->x, message->y);
+                sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, this, sceneToEdit.id), message->x, message->y);
                 //sceneToEdit.addDooDadToLocation(createNewDooDad(message->misc, message->params[0], this), message->x, message->y);
             }
             break;
@@ -378,3 +379,61 @@ void RpgWorldBuilderScene::createFirstZone()
     nextZoneId++;
 }
 
+void RpgWorldBuilderScene::destroyUnit(RpgUnit* unit)
+{
+    //remove unit from zones
+    /*for (auto zone : getZones())
+    {
+        zone.second->removeUnitFromZone(unit);
+    }*/
+    sceneToEdit.removeUnitFromZone(unit);
+
+    //clear unit from units that are targetting it
+    if (unit->beingTargetedBy.size() > 0)
+    {
+        for (auto targetingUnit : unit->beingTargetedBy) {
+            targetingUnit->targetUnit = nullptr;
+        }
+    }
+
+    //clear unit from units that are being targeted by it
+    if (unit->targetUnit != nullptr)
+    {
+        auto targetingUnitIterator = unit->targetUnit->beingTargetedBy.begin();
+        while (targetingUnitIterator != unit->targetUnit->beingTargetedBy.end())
+        {
+            if ((*targetingUnitIterator) == unit) {
+                targetingUnitIterator = unit->targetUnit->beingTargetedBy.erase(targetingUnitIterator);
+            }
+            else {
+                targetingUnitIterator++;
+            }
+        }
+    }
+
+    //clear unit from pathfinding queue
+    auto unitIterator = unitsNeedingPath.begin();
+    while (unitIterator != unitsNeedingPath.end())
+    {
+        if ((*unitIterator) == unit) {
+            unitIterator = unitsNeedingPath.erase(unitIterator);
+        }
+        else {
+            unitIterator++;
+        }
+    }
+
+
+    //unassign unit from building
+    if (((RpgUnit*)unit)->assignedToBuilding != nullptr)
+    {
+        ((RpgUnit*)unit)->assignedToBuilding->unAssignUnit(((RpgUnit*)unit));
+    }
+
+    delete (unit);
+}
+
+void RpgWorldBuilderScene::destroyDooDad(DooDad* dooDad)
+{
+    sceneToEdit.destroyDooDad(dooDad);
+}

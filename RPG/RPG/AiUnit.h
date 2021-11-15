@@ -32,6 +32,8 @@ public:
 private:
     //attribues
     double chanceToMoveEachTick;
+    int checkToAttackTick;
+    int checkToAttackRate;
 
     //methods
     void randomMovement();

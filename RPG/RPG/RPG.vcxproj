@@ -164,6 +164,7 @@
     <ClCompile Include="BasicMeleeAttack.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
+    <ClCompile Include="UnitSpawner.cpp" />
     <ClCompile Include="WhiteRat.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
@@ -268,6 +269,7 @@
     <ClInclude Include="BasicMeleeAttack.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
+    <ClInclude Include="UnitSpawner.h" />
     <ClInclude Include="WhiteRat.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />

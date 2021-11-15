@@ -41,7 +41,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ GRASS, "images/grass2.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });
     texturesToLoad.insert({ PORTAL_CAVE_HILL, "images/caveEntrance.png" });
-    texturesToLoad.insert({ ENCAMPMENT, "images/encampment2.png" });
+    texturesToLoad.insert({ ENCAMPMENT, "images/encampmentTile.png" });
     texturesToLoad.insert({ BLANK_PORTAL, "images/blank.png" });
     texturesToLoad.insert({ WOOD_WALL_ONE, "images/woodWallOne2.png" });
     texturesToLoad.insert({ WOOD_WALL_TWO, "images/woodWallTwo2.png" });
@@ -195,6 +195,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_RASPBERRY_BUSH_WITH_BERRIES, "images/raspberryBushWithBerries.png" });
     texturesToLoad.insert({ TEXTURE_RASPBERRY_BUSH_NO_BERRIES, "images/raspberryBushNoBerries.png" });
     texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
+    texturesToLoad.insert({ TEXTURE_RAT_SPAWNER, "images/ratSpawner.png" });
 }
 
 void RpgTileGridScene::setUpScene()
@@ -214,9 +215,10 @@ void RpgTileGridScene::handleInput()
 
 void RpgTileGridScene::sceneLogic()
 {
-    SDL_AtomicLock(&unitDestroyLock);
+    //SDL_AtomicLock(&unitDestroyLock);
     destroyFlaggedUnits();
-    SDL_AtomicUnlock(&unitDestroyLock);
+    destroyFlaggedDooDads();
+    //SDL_AtomicUnlock(&unitDestroyLock);
     TileGridScene::sceneLogic();
     updateCombatMessages();
 }
@@ -408,6 +410,23 @@ void RpgTileGridScene::resizeTiles()
     }
 }
 
+void RpgTileGridScene::destroyFlaggedDooDads()
+{
+    for (auto dooDad : dooDadsToDestroy) {
+        destroyDooDad(dooDad);
+    }
+    dooDadsToDestroy.clear();
+}
+
+void RpgTileGridScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
+{
+    if (currentZone->getItemsAtLocation(x, y).size() > 0)
+    {
+        unit->addToInventory(currentZone->getItemsAtLocation(x, y)[0]);
+        currentZone->removeItemAtLocation(currentZone->getItemsAtLocation(x, y)[0], x, y);
+    }
+}
+
 void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 {
     //remove unit from zones
@@ -451,17 +470,6 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
         }
     }
 
-    auto unitIterator2 = unitsNeedingPath2.begin();
-    while (unitIterator2 != unitsNeedingPath2.end())
-    {
-        if ((*unitIterator2) == unit) {
-            unitIterator2 = unitsNeedingPath2.erase(unitIterator2);
-        }
-        else {
-            unitIterator2++;
-        }
-    }
-
     //unassign unit from building
     if (((RpgUnit*)unit)->assignedToBuilding != nullptr)
     {
@@ -473,12 +481,15 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 
 void RpgTileGridScene::destroyFlaggedUnits()
 {
-    updatingUnits = true;
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);
     }
     unitsToDestroy.clear();
-    updatingUnits = false;
+}
+
+void RpgTileGridScene::destroyDooDad(DooDad* dooDad)
+{
+    getZone(dooDad->zoneId)->destroyDooDad(dooDad);
 }
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)

@@ -82,6 +82,18 @@ void BasicMeleeAttack::processHit(RpgUnit* targetUnit) {
     }
 }
 
+void BasicMeleeAttack::processHit(DooDad* targetDooDad) {
+    if (targetDooDad->canBeDamaged)
+    {
+        int damage = this->damageDealt();
+        targetDooDad->assignDamage(owningUnit, damage);
+        if (owningUnit->zone == owningUnit->scene->currentZone->id)
+        {
+            owningUnit->scene->addCombatMessage(std::to_string(damage), SDL_Color{ 255, 0, 0, 0 }, targetDooDad->tileCoords[0], targetDooDad->tileCoords[1]);
+        }
+    }
+}
+
 void BasicMeleeAttack::processAttack() {
     int attackTargetLocation[2];
     RpgUnit* targetUnit;
@@ -89,5 +101,11 @@ void BasicMeleeAttack::processAttack() {
     targetUnit = (RpgUnit*)owningUnit->scene->getUnitAtLocation(owningUnit->zone, attackTargetLocation[0], attackTargetLocation[1]);
     if (targetUnit != nullptr && targetUnit != owningUnit) {
         processHit(targetUnit);
+        return;
+    }
+    DooDad* targetDooDad;
+    targetDooDad = (DooDad*)owningUnit->scene->getDooDadAtLocation(owningUnit->scene->getZone(owningUnit->zone), attackTargetLocation[0], attackTargetLocation[1]);
+    if (targetDooDad != nullptr) {
+        processHit(targetDooDad);
     }
 }

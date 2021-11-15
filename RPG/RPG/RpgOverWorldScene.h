@@ -51,10 +51,8 @@ private:
     //methods
     void init();
     void pickUpItem(RpgUnit* unit, Item* item);
-    void pickUpItemAtLocation(RpgUnit* unit, int x, int y);
 };
 
 
 
 int getPathThread(void* scene);
-int getPathThread2(void* scene);

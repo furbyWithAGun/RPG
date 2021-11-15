@@ -18,8 +18,9 @@ public:
 
     //methods
     bool startAttack() override;
-    void processHit(RpgUnit* targetUnit);
-    void processAttack();
+    void processHit(RpgUnit* targetUnit) override;
+    void processHit(DooDad* targetDooDad) override;
+    void processAttack() override;
 
 private:
     //methods

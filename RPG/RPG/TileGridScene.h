@@ -32,8 +32,6 @@ public:
     int tileWidth;
     int nextZoneId;
     std::deque<Unit*> unitsNeedingPath;
-    std::deque<Unit*> unitsNeedingPath2;
-    int getPathThreadFlag;
     int desiredTilesAcross;
     int desiredTilesDown;
     //pathfinding rates
@@ -75,12 +73,15 @@ public:
     ZoneMap* getZone(int zoneId);
     ZoneMap* getZoneByName(std::string zoneName);
     bool isUnitToBeDestroyed(Unit* unit);
+    bool isDooDadToBeDestroyed(DooDad* dooDad);
     void addUnitToDestroy(Unit* unit);
+    void addDooDadToDestroy(DooDad* dooDad);
     
 
 protected:
     //attributes
     std::vector<Unit*> unitsToDestroy;
+    std::vector<DooDad*> dooDadsToDestroy;
 
     //methods
     bool tileCoordsAreDisplayedMapTile(int x, int y);

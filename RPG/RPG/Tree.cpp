@@ -50,17 +50,20 @@ void Tree::actionOn(Unit* unit, int actionType)
     switch (actionType)
     {
     case OVERWORLD_STRIKE:
-        health -= 1;
-        if (health <= 0)
+        if (state == TREE_STATE_FULLY_GROWN)
         {
-            health = 0;
-            passable = true;
-            state = TREE_STATE_CUT;
-            textureKey = TEXTURE_TREE_STUMP;
-            regrowTick = 0;
-            Item* logs = createNewItem(ITEM_LOGS);
-            logs->stackSize = 5;
-            unit->scene->addItemsToMap(unit->zone, tileCoords[0], tileCoords[1], {logs});
+            health -= 1;
+            if (health <= 0)
+            {
+                health = 0;
+                passable = true;
+                state = TREE_STATE_CUT;
+                textureKey = TEXTURE_TREE_STUMP;
+                regrowTick = 0;
+                Item* logs = createNewItem(ITEM_LOGS);
+                logs->stackSize = 5;
+                unit->scene->addItemsToMap(unit->zone, tileCoords[0], tileCoords[1], { logs });
+            }
         }
         break;
     default:

@@ -51,11 +51,14 @@ public:
     bool canAffordBuilding(Building* building);
     virtual void loadZones() override;
     void resizeTiles();
-    void destroyUnit(RpgUnit* unit);
-    void destroyFlaggedUnits();
+    void virtual destroyUnit(RpgUnit* unit);
+    void virtual destroyFlaggedUnits();
+    void virtual destroyDooDad(DooDad* dooDad);
+    void virtual destroyFlaggedDooDads();
+    void pickUpItemAtLocation(RpgUnit* unit, int x, int y);
+    virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
 
 protected:
-    virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);

@@ -35,6 +35,8 @@ public:
     void loadZone(int zoneId) override;
     void createNewZone() override;
     void createFirstZone();
+    void virtual destroyUnit(RpgUnit* unit) override;
+    void virtual destroyDooDad(DooDad* dooDad) override;
 
 private:
     //methods

@@ -49,6 +49,15 @@ DooDad::DooDad(SaveObject saveObject, TileGridScene* gameScene) : Sprite(gameSce
         case DOODAD_ZONE_ID:
             zoneId = stoi(saveObject.attributes[i].valueString);
             break;
+        case DOODAD_HEALTH:
+            health = stoi(saveObject.attributes[i].valueString);
+            break;
+        case DOODAD_MAX_HEALTH:
+            maxHealth = stoi(saveObject.attributes[i].valueString);
+            break;
+        case DOODAD_CAN_BE_DAMAGED:
+            canBeDamaged = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -76,6 +85,9 @@ std::string DooDad::toSaveString(bool withHeaderAndFooter) {
     saveString += getAttributeString(getUniqueId(), DOODAD_TYPE, type);
     saveString += getAttributeString(getUniqueId(), DOODAD_PASSABLE, passable);
     saveString += getAttributeString(getUniqueId(), DOODAD_ZONE_ID, zoneId);
+    saveString += getAttributeString(getUniqueId(), DOODAD_HEALTH, health);
+    saveString += getAttributeString(getUniqueId(), DOODAD_MAX_HEALTH, maxHealth);
+    saveString += getAttributeString(getUniqueId(), DOODAD_CAN_BE_DAMAGED, canBeDamaged);
     if (assignedToBuilding != nullptr)
     {
         saveString += getAttributeString(getUniqueId(), DOODAD_ASSIGNED_TO_BUILDING, assignedToBuilding->id);
@@ -89,6 +101,42 @@ std::string DooDad::toSaveString(bool withHeaderAndFooter) {
     return saveString;
 }
 
+void DooDad::assignDamage(int damage)
+{
+    health -= damage;
+    if (health <= 0) {
+        active = false;
+    }
+}
+
+void DooDad::assignDamage(Unit* unit, int damage)
+{
+    if (canBeDamaged)
+    {
+        health -= damage;
+        if (health <= 0) {
+            active = false;
+            scene->addDooDadToDestroy(this);
+        }
+    }
+}
+
+void DooDad::drawHealth()
+{
+    int healthToDisplay;
+    if (health < 0)
+    {
+        healthToDisplay = 0;
+    }
+    else {
+        healthToDisplay = health;
+    }
+    double healthPercent = (double)healthToDisplay / (double)maxHealth;
+    int drawCoords[2];
+    scene->coordsFromTileIndex(tileCoords[0], tileCoords[1], drawCoords);
+    scene->engine->renderRectangle(drawCoords[0], drawCoords[1], (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0, 0, 0xff);
+}
+
 void DooDad::init()
 {
 	tileCoords = { 0, 0 };
@@ -97,6 +145,9 @@ void DooDad::init()
     passable = true;
     assignedToBuilding = nullptr;
     assignedToBuildingId = -1;
+    canBeDamaged = false;
+    health = 1;
+    maxHealth = 1;
 }
 
 void DooDad::init(TileGridScene* gameScene)

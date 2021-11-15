@@ -14,11 +14,14 @@
 // town quests
 // town attacks
 // crafting
+// ranged combat
 // overworld towers / walls
 // unit factory
 // Town class
+// allied units aggro and attack spawners
 // followers
 // commands to followers
+// magic
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
 // move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers

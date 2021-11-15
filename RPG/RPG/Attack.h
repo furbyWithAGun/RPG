@@ -2,6 +2,7 @@
 #include "RpgGameConstants.h"
 
 class RpgUnit;
+class DooDad;
 
 class Attack
 {
@@ -17,6 +18,7 @@ public:
     //methods
     virtual bool startAttack();
     virtual void processHit(RpgUnit* targetUnit) {};
+    virtual void processHit(DooDad* targetUnit) {};
     virtual void update();
     virtual void processAttack() {};
 

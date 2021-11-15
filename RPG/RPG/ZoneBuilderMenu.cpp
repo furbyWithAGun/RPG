@@ -249,21 +249,24 @@ void ZoneBuilderMenu::buildPageThree()
 
     for (int i = 0; i < NUM_DOODAD_TYPES; i++)
     {
-        MenuButton* button;
-        DooDadTemplates.push_back(*createNewDooDad(i, scene));
-        button = new MenuButton(scene, DooDadTemplates[i].textureKey);
-        button->xpos = 0;
-        button->ypos = 0;
-        button->width = engine->screenWidth / WIDTH_ADJUSTOR;
-        button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
-        button->addOnClick([this, i]() {
-            scene->dooDadgBeingPlaced = DooDadTemplates[i];
-            scene->placingDooDad = true;
-            scene->placingBuilding = false;
-            scene->placingTile = false;
-            scene->placingPortal = false;
-            });
-        dooDadScroller->addElement(button);
+        if (i != DOODAD_UNIT_SPAWNER)
+        {
+            MenuButton* button;
+            DooDadTemplates.push_back(*createNewDooDad(i, scene, scene->sceneToEdit.id));
+            button = new MenuButton(scene, DooDadTemplates[i].textureKey);
+            button->xpos = 0;
+            button->ypos = 0;
+            button->width = engine->screenWidth / WIDTH_ADJUSTOR;
+            button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
+            button->addOnClick([this, i]() {
+                scene->dooDadgBeingPlaced = DooDadTemplates[i];
+                scene->placingDooDad = true;
+                scene->placingBuilding = false;
+                scene->placingTile = false;
+                scene->placingPortal = false;
+                });
+            dooDadScroller->addElement(button);
+        }
     }
 
     mainPanel->addElementToPage(2, DOODADS_SCROLL_BOX, dooDadScroller);

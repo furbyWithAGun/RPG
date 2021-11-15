@@ -1,7 +1,7 @@
 #include "DooDadFactory.h"
 #include "TileGridScene.h"
 
-DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene)
+DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId)
 {
 	std::unordered_map<int, int> treeTextureMap = { {TREE_TYPE_ONE, TREE},
 												{TREE_TYPE_TWO, TREE_2},
@@ -41,12 +41,24 @@ DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene)
 		dooDadToReturn = new DooDad(gameScene);
 		break;
 	}
+	dooDadToReturn->zoneId = zoneId;
 	return dooDadToReturn;
 }
 
-DooDad* createNewDooDad(int dooDadType, int newTextureKey, TileGridScene* gameScene)
+DooDad* createNewDooDad(int dooDadType, int newTextureKey, TileGridScene* gameScene, int zoneId)
 {
-	DooDad* dooDadToReturn = createNewDooDad(dooDadType, gameScene);
+	DooDad* dooDadToReturn = createNewDooDad(dooDadType, gameScene, zoneId);
 	dooDadToReturn->addTextureKey(newTextureKey);
 	return dooDadToReturn;
+}
+
+UnitSpawner* createNewUnitSpawner(TileGridScene* gameScene, int newUnitToSpawn, int zoneId)
+{
+	std::unordered_map<int, int> spawnerTextureMap = { {RAT, TEXTURE_RAT_SPAWNER},
+												{WHITE_RAT, TEXTURE_RAT_SPAWNER},
+												{SKELETON, TEXTURE_RAT_SPAWNER},
+	};
+	UnitSpawner* spawnerToReturn = new UnitSpawner(gameScene, newUnitToSpawn, zoneId);
+	spawnerToReturn->addTextureKey(spawnerTextureMap[newUnitToSpawn]);
+	return spawnerToReturn;
 }

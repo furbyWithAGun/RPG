@@ -261,7 +261,10 @@ void ZoneMap::addToDooDadMap(DooDad* dooDad, int x, int y)
 		dooDadMap[key] = dooDad;
 	}
 	else {
-		delete dooDadMap[key];
+		if (dooDadMap[key] != nullptr)
+		{
+			destroyDooDad(dooDadMap[key]);
+		}
 		dooDadMap[key] = dooDad;
 	}
 }
@@ -469,6 +472,7 @@ void ZoneMap::destroyBuilding(Building* building)
 				unitIterator++;
 			}
 		}
+		unit->assignedToBuilding = nullptr;
 		((TileGridScene*)unit->scene)->addUnitToDestroy(unit);
 	}
 	delete building;
@@ -695,8 +699,12 @@ void ZoneMap::draw(TileGridScene* scene)
 		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
-				if (getDooDadAtLocation(x, y) != nullptr) {
-					scene->renderTexture(getDooDadAtLocation(x, y)->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+				DooDad* dooDadAtLocation = getDooDadAtLocation(x, y);
+				if (dooDadAtLocation != nullptr) {
+					scene->renderTexture(dooDadAtLocation->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+					if (dooDadAtLocation->canBeDamaged) {
+						dooDadAtLocation->drawHealth();
+					}
 				}
 			}
 		}
@@ -794,7 +802,7 @@ bool ZoneMap::removeBuildingFromZone(Building* building)
 	{
 		DooDad* dooDad = building->assignedDooDads[0];
 		building->unAssignDooDad(dooDad);
-		destroyDooDad(dooDad);
+		dooDad->scene->addDooDadToDestroy(dooDad);
 	}
 	return true;
 }
@@ -1572,6 +1580,9 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 					break;
 				case DOODAD_RASPBERRY_BUSH:
 					returnVector.push_back(new BerryBush(savedDooDads[i].rawString, gameScene));;
+					break;
+				case DOODAD_UNIT_SPAWNER:
+					returnVector.push_back(new UnitSpawner(savedDooDads[i].rawString, gameScene));;
 					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString, gameScene));

@@ -5,23 +5,10 @@ int uniqueUnitId = 0;
 
 void Unit::getNewPath()
 {
-    //SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
     if (!gettingPath)
     {
-        if (scene->getPathThreadFlag == 0)
-        {
-            gettingPath = true;
-            scene->unitsNeedingPath.push_back(this);
-            scene->getPathThreadFlag = 1;
-        }
-        else {
-            gettingPath = true;
-            scene->unitsNeedingPath2.push_back(this);
-            scene->getPathThreadFlag = 0;
-        }
-    }
-    else {
-        int fdgdfg = 345345;
+        gettingPath = true;
+        scene->unitsNeedingPath.push_back(this);
     }
 }
 

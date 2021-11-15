@@ -39,6 +39,46 @@ int IdleState::handleInput(InputMessage* message) {
             return UNIT_ATTACKING;
         }
         break;
+    case USER_ACTION:
+        RpgUnit* actionedUnit;
+        actionedUnit = unit->scene->getUnitAtLocation(unit->zone, message->x, message->y);
+        if (actionedUnit != nullptr)
+        {
+            if (actionedUnit->assignedToBuilding != nullptr)
+            {
+                actionedUnit->assignedToBuilding->onActionAssignedUnit(actionedUnit);
+            }
+        }
+        DooDad* actionedDooDad;
+        actionedDooDad = unit->scene->getZones()[unit->zone]->getDooDadAtLocation(message->x, message->y);
+        if (actionedDooDad != nullptr)
+        {
+            actionedDooDad->actionOn(unit, OVERWORLD_USE);
+        }
+        break;
+    case OVERWORLD_STRIKE:
+        actionedDooDad = unit->scene->getZones()[unit->zone]->getDooDadAtLocation(message->x, message->y);
+        if (actionedDooDad != nullptr && (std::abs(actionedDooDad->tileCoords[0] - unit->tileLocation->x) <= 1) && (std::abs(actionedDooDad->tileCoords[1] - unit->tileLocation->y) <= 1))
+        {
+            if (actionedDooDad->canBeDamaged)
+            {
+                int tileCoords[2];
+                unit->scene->coordsFromTileIndex(message->x, message->y, tileCoords);
+                unit->faceCoords(tileCoords[0], tileCoords[1]);
+                if (unit->performAttack(MAIN_ATTACK))
+                {
+                    return UNIT_ATTACKING;
+                }
+                break;
+            }
+            actionedDooDad->actionOn(unit, OVERWORLD_STRIKE);
+        }
+        break;
+    case PICK_UP_ITEM:
+        if (unit->scene->currentZone->getItemsAtLocation(message->x, message->y).size() > 0 && (std::abs(message->x - unit->tileLocation->x) <= 1) && (std::abs(message->y - unit->tileLocation->y) <= 1)) {
+            unit->scene->pickUpItemAtLocation(unit, message->x, message->y);
+        }
+        break;
     case START_MOVE_UP:
         unit->movingUp = true;
         unit->startMovement(UP);

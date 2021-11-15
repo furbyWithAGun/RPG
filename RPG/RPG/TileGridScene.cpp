@@ -22,7 +22,6 @@ void TileGridScene::init() {
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
     nextZoneId = 0;
-    getPathThreadFlag = 0;
 
     getPathRate = 50;
     adjustPathRate = 4;
@@ -198,6 +197,17 @@ bool TileGridScene::isUnitToBeDestroyed(Unit* unit)
     return false;
 }
 
+bool TileGridScene::isDooDadToBeDestroyed(DooDad* dooDad)
+{
+    for (auto dooDadToDestroy : dooDadsToDestroy) {
+        if (dooDadToDestroy == dooDad)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void TileGridScene::addUnitToDestroy(Unit* unit)
 {
     if (isUnitToBeDestroyed(unit))
@@ -205,6 +215,15 @@ void TileGridScene::addUnitToDestroy(Unit* unit)
         return;
     }
     unitsToDestroy.push_back(unit);
+}
+
+void TileGridScene::addDooDadToDestroy(DooDad* dooDad)
+{
+    if (isDooDadToBeDestroyed(dooDad))
+    {
+        return;
+    }
+    dooDadsToDestroy.push_back(dooDad);
 }
 
 

@@ -47,12 +47,14 @@ void AiUnit::init() {
     isHostile = false;
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;
+    checkToAttackTick = 0;
+    checkToAttackRate = 10;
 }
 
 void AiUnit::update() {
     updateCoords();
     updateAggro();
-    if (!attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
+    if (currentState->id == UNIT_IDLE && !attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
     {
         randomMovement();
     }
@@ -109,10 +111,15 @@ void AiUnit::randomMovement() {
 }
 
 bool AiUnit::attackNearbyUnit() {
-    for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+    checkToAttackTick++;
+    if (checkToAttackTick >= checkToAttackRate)
     {
-        if (meleeAttackUnitInDirection(i)) {
-            return true;
+        checkToAttackTick = 0;
+        for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+        {
+            if (meleeAttackUnitInDirection(i)) {
+                return true;
+            }
         }
     }
     return false;
