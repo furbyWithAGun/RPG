@@ -100,11 +100,14 @@ void TileGridScene::handleInput()
 void TileGridScene::sceneLogic()
 {
     GameScene::sceneLogic();
+    int numUnits = 0;
     for (auto zone : zones)
     {
         zone.second->update();
+        numUnits += zone.second->units.size();
     }
-
+    printf(std::to_string(numUnits).c_str());
+    printf("\n");
 }
 
 void TileGridScene::renderScene()

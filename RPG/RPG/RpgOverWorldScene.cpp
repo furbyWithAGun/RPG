@@ -302,16 +302,24 @@ void RpgOverWorldScene::sceneLogic()
         if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 30) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
         {
             int targetCoords[2] = { 0, 0 };
+            int attempts = 0;
+            bool foundLocation = false;
             while (true)
             {
+                attempts++;
                 targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
                 targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
                 if (isTilePassable(zone.second->id, targetCoords[0], targetCoords[1]))
                 {
+                    foundLocation = true;
+                    break;
+                }
+                if (attempts > 50)
+                {
                     break;
                 }
             }
-            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
+            if (foundLocation && getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
             {
                 getZones()[zone.second->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, zone.second->id), targetCoords[0], targetCoords[1]);
             }

@@ -22,6 +22,7 @@
 // followers
 // commands to followers
 // magic
+// make thread for unit aggro
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private
 // move includes for Menu Ui elements (buttons text etc to the base menu class)
 // map rendering layers

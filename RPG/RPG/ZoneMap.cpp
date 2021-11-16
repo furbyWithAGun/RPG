@@ -658,6 +658,8 @@ void ZoneMap::draw(TileGridScene* scene)
 	}
 
 	//draw zone
+
+	int numUnits = 0;
 	Building* buildingToRender;
 	for (int y = startY; y < endY; y++) {
 		for (int x = startX; x < endX; x++) {
@@ -724,10 +726,14 @@ void ZoneMap::draw(TileGridScene* scene)
 			{
 				for (auto unit : getUnitsFromMap(x, y)) {
 					unit->draw();
+					numUnits++;
 				}
 			}
 		}
 	}
+	std::string strtoprnt = "drawn: " + std::to_string(numUnits);
+	printf(strtoprnt.c_str());
+	printf("\n");
 }
 
 Unit* ZoneMap::getUnitAtLocation(int x, int y)

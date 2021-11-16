@@ -38,6 +38,8 @@ class ZoneMap {
         int backGroundTile;
         bool mobSpawn;
 
+        std::vector<Unit*> units;
+
         //constructors
         ZoneMap(int newId, std::vector< std::vector<int> > tiles);
         ZoneMap(int newId);
@@ -105,7 +107,6 @@ class ZoneMap {
         //attributes
         std::unordered_map<std::string, std::vector<int>> directPaths;
         //object vectors
-        std::vector<Unit*> units;
         std::vector<ZonePortal*> portals;
         std::vector< DooDad* > dooDads;
         std::vector< Building* > buildings2;

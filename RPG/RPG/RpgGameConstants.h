@@ -8,7 +8,7 @@ const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
 const int MAX_ZONE_WIDTH = 30;
 const int MAX_ZONE_HEIGHT = 30;
-const int RPG_GAME_TICKS_PER_SECOND = 150;
+const int RPG_GAME_TICKS_PER_SECOND = 140;
 
 
 //enums
