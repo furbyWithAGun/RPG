@@ -432,6 +432,13 @@ void BaseGameEngine::setTicksPerSecond(int newTicksPerScond)
     tickDelay = 1000 / newTicksPerScond;
 }
 
+int BaseGameEngine::getScreenRefreshRate()
+{
+    SDL_DisplayMode mode = { SDL_PIXELFORMAT_UNKNOWN, 0, 0, 0, 0 };
+    SDL_GetDisplayMode(0, 0, &mode);
+    return mode.refresh_rate;
+}
+
 void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
 {
     scenes[sceneId] = sceneToAdd;
@@ -557,6 +564,9 @@ int logicThread(void* scene) {
         if (timeToWait > 0)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(timeToWait));
+        }
+        else {
+            int x = 345345;
         }
         lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);

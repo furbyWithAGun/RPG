@@ -45,10 +45,9 @@
 // will need destructors for menus as well.
 //create destructors for units (Attack pointers are a memory leak, as are the unit states)
 //game message system
-//ranged combat
 //improve attack functionality
-//attack animation
 //ability to select stats on level up
+//clean up magic numbers
 
 int main(int argc, char* args[])
 {
@@ -56,6 +55,7 @@ int main(int argc, char* args[])
     BaseGameEngine engine = BaseGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     engine.setTicksPerSecond(RPG_GAME_TICKS_PER_SECOND);
+    //engine.setTicksPerSecond(60);
     engine.init();
     engine.addScene(MAIN_MENU_SCENE, new MainMenuScene(&engine));
     engine.setNextScene(MAIN_MENU_SCENE);

@@ -1,5 +1,6 @@
 #include "Unit.h"
 #include"GameScene.h"
+#include "RpgTileGridScene.h"
 
 int uniqueUnitId = 0;
 
@@ -301,27 +302,44 @@ bool Unit::updateMovement() {
         leftToMove = leftToMove - (double)speed / 100;
     }
     if (leftToMove <= 0) {
-        leftToMove = 0;
         if (tileDestination->x != tileLocation->x || tileDestination->y != tileLocation->y) {
             moveTo(tileDestination->x, tileDestination->y);
         }
-        
+        double leftToMoveRemainder = leftToMove;
         if (movingUp && !movingDown && (currentState == unitStates[UNIT_MOVING] || currentState == unitStates[UNIT_IDLE])) {
             startMovement(UP);
+            if (leftToMove > 0)
+            {
+                leftToMove += leftToMoveRemainder;
+            }
             return true;
         }
         if (movingDown && !movingUp && (currentState == unitStates[UNIT_MOVING] || currentState == unitStates[UNIT_IDLE])) {
             startMovement(DOWN);
+            if (leftToMove > 0)
+            {
+                leftToMove += leftToMoveRemainder;
+            }
             return true;
         }
         if (movingRight && !movingLeft && (currentState == unitStates[UNIT_MOVING] || currentState == unitStates[UNIT_IDLE])) {
             startMovement(RIGHT);
+            if (leftToMove > 0)
+            {
+                leftToMove += leftToMoveRemainder;
+            }
             return true;
         }
         if (movingLeft && !movingRight && (currentState == unitStates[UNIT_MOVING] || currentState == unitStates[UNIT_IDLE])) {
             startMovement(LEFT);
+            if (leftToMove > 0)
+            {
+                leftToMove += leftToMoveRemainder;
+            }
             return true;
         }
+
+        leftToMove = 0;
         return false;
     }
     return true;
@@ -496,6 +514,11 @@ void Unit::setStartLocation(int x, int y) {
 void Unit::draw()
 {
     updateCoords();
+    AnimatedSprite::draw();
+}
+
+void Unit::drawNoCoordUpdate()
+{
     AnimatedSprite::draw();
 }
 

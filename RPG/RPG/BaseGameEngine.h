@@ -106,6 +106,7 @@ class BaseGameEngine
         double sigmoid(double x);
         double pickElementByProbability(std::vector<ChanceObject> items);
         void setTicksPerSecond(int newTicksPerScond);
+        int getScreenRefreshRate();
 
     protected:
         

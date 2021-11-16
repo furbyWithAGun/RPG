@@ -11,12 +11,6 @@
 #include <deque>
 
 class AiUnit;
-class AiUnit;
-class AiUnit;
-class AiUnit;
-class AiUnit;
-class AiUnit;
-class AiUnit;
 class RpgUnit;
 
 class RpgOverWorldScene : public RpgTileGridScene
@@ -44,13 +38,13 @@ public:
 
 private:
     //attributes
-    class AiUnit;
-    //AiUnit enemy;
-    //AiUnit enemy2;
+    std::unordered_map<int, std::vector<ChanceObject>> monsterTable;
 
     //methods
     void init();
     void pickUpItem(RpgUnit* unit, Item* item);
+    int getUnitTypeByDifficulty(int difficulty);
+    void setUpMonsterTable();
 };
 
 

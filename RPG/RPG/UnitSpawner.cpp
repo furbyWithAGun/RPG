@@ -61,7 +61,10 @@ void UnitSpawner::update()
     if (spawnTick >= spawnDelay)
     {
         spawnTick = 0;
-        ((RpgTileGridScene*)scene)->createUnitAtLocation(zoneId, unitToSpawn, tileCoords[0], tileCoords[1]);
+        if (scene->getUnitAtLocation(zoneId, tileCoords[0], tileCoords[1]) == nullptr)
+        {
+            ((RpgTileGridScene*)scene)->createUnitAtLocation(zoneId, unitToSpawn, tileCoords[0], tileCoords[1]);
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 #include "Skeleton.h"
 #include "SkeletonKing.h"
 
-const int SCROLL_SPEED = 4;
+const int SCROLL_SPEED = 12;
 
 RpgTileGridScene::RpgTileGridScene() : TileGridScene()
 {
@@ -676,20 +676,25 @@ void RpgTileGridScene::updateCombatMessages() {
 }
 
 void RpgTileGridScene::scrollCamera() {
-    int x, y;
+    int x, y, scrollSpeed;
+    scrollSpeed = SCROLL_SPEED;
+    if (controllerInterface->shiftOn)
+    {
+        scrollSpeed = scrollSpeed * 3;
+    }
     x = controllerInterface->latestXpos;
     y = controllerInterface->latestYpos;
 
     if (x < engine->screenWidth * 0.01) {
-        xOffset += SCROLL_SPEED;
+        xOffset += scrollSpeed;
     }
     if (x > engine->screenWidth * 0.99) {
-        xOffset -= SCROLL_SPEED;
+        xOffset -= scrollSpeed;
     }
     if (y < engine->screenHeight * 0.01) {
-        yOffset += SCROLL_SPEED;
+        yOffset += scrollSpeed;
     }
     if (y > engine->screenHeight * 0.99) {
-        yOffset -= SCROLL_SPEED;
+        yOffset -= scrollSpeed;
     }
 }

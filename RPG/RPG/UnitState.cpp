@@ -19,8 +19,9 @@ void UnitState::init() {
 }
 
 int UnitState::update() {
-    unit->updateCoords();
+    //unit->updateCoords();
     updateAnimation();
     unit->updateMovement();
+    //unit->updateCoords();
     return id;
 }

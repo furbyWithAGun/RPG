@@ -80,6 +80,9 @@ void RpgKeysMouseController::populateMessageQueue() {
             case SDLK_e:
                 addMessage(InputMessage(BUTTON_6_ON, x, y));
                 break;
+            case SDLK_LSHIFT:
+            case SDLK_RSHIFT:
+                shiftOn = true;
             }
             break;
         case SDL_KEYUP:
@@ -99,6 +102,9 @@ void RpgKeysMouseController::populateMessageQueue() {
             case SDLK_e:
                 addMessage(InputMessage(BUTTON_6_OFF, x, y));
                 break;
+            case SDLK_LSHIFT:
+            case SDLK_RSHIFT:
+                shiftOn = false;
             }
             break;
         default:

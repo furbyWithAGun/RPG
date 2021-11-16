@@ -30,6 +30,21 @@ void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
 {
 }
 
+int RpgOverWorldScene::getUnitTypeByDifficulty(int difficulty)
+{
+    return engine->pickElementByProbability(monsterTable[difficulty]);
+}
+
+void RpgOverWorldScene::setUpMonsterTable()
+{
+    monsterTable[1] = { {1.0, RAT} };
+    monsterTable[2] = { {0.5, RAT}, {0.5, WHITE_RAT} };
+    monsterTable[3] = { {0.2, RAT}, {0.5, WHITE_RAT}, {0.3, SKELETON} };
+    monsterTable[4] = { {0.05, RAT}, {0.3, WHITE_RAT}, {0.65, SKELETON} };
+    monsterTable[5] = { {0.2, WHITE_RAT}, {0.8, SKELETON} };
+    monsterTable[6] = { {1.0, SKELETON} };
+}
+
 
 
 //
@@ -77,6 +92,7 @@ void RpgOverWorldScene::setUpScene()
     RpgTileGridScene::setUpScene();
     Building::resetUid();
     Unit::resetUid();
+    setUpMonsterTable();
     //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
     teamRelations[MONSTER_TEAM][PLAYER_TEAM] = ENEMY;
@@ -84,7 +100,7 @@ void RpgOverWorldScene::setUpScene()
     //make units
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    player = (Player*)createUnitAtLocation(currentZone->id, PLAYER, 5, 6);
+    player = (Player*)createUnitAtLocation(0, PLAYER, 5, 6);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
    // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
@@ -99,30 +115,18 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(COMBAT_EXPERIENCE, 999999999);
-    player->health = 9999999;
-    player->maxHealth = 9999999;
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->health = 9999999;
+    //player->maxHealth = 9999999;
 
-    //createUnitAtLocation(currentZone->id, RAT, 6, 6);
+    createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 11);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
-    //testUnit = createUnitAtLocation(currentZone->id, SKELETON, 25, 8);
-    //testUnit->toSaveString();
-    //Location* testLocation = new Location{ 2, 0 };
-    //testUnit->pathDirections = currentZone->getPathDirections(this, testUnit->tileLocation, testLocation);
-    //testUnit->setTargetLocation(testLocation);
-    createUnitAtLocation(2, RAT_KING, 26, 1);
+    createUnitAtLocation(2, RAT_KING, 29, 1);
     createUnitAtLocation(3, SKELETON_KING, 0, 29);
-    //createUnitAtLocation(1, TOWNSPERSON, 11, 2);
 
-    //buildings
-    //ItemShop* testBuilding;
-    //testBuilding = (ItemShop*)createBuildingAtLocation(1, BUILDING_ITEM_SHOP, LEFT, 10, 10);
-    //testBuilding->setItemsForSale({new Club(), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
-    //testBuilding->setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants()});
-    
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
     menus[TOWN_BUILD_MENU] = new TownBuildMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
@@ -299,7 +303,7 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 30) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 12000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
         {
             int targetCoords[2] = { 0, 0 };
             int attempts = 0;
@@ -321,27 +325,11 @@ void RpgOverWorldScene::sceneLogic()
             }
             if (foundLocation && getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
             {
-                getZones()[zone.second->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, zone.second->id), targetCoords[0], targetCoords[1]);
+                getZones()[zone.second->id]->addDooDadToLocation(createNewUnitSpawner(this, getUnitTypeByDifficulty(zone.second->difficulty), zone.second->id), targetCoords[0], targetCoords[1]);
             }
         }
 
-        /*if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        {
-            if (getUnitAtLocation(zone.second->id, ratSpawn->x, ratSpawn->y) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, RAT, ratSpawn->x, ratSpawn->y);
-            }
-        }
-
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 300) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        {
-            if (getUnitAtLocation(zone.second->id, ratSpawn2->x, ratSpawn2->y) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, RAT, ratSpawn2->x, ratSpawn2->y);
-            }
-        }*/
-
-        //spawn BlueRats
+        //spawn WhiteRats
         if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3000) > engine->randomDouble() && zone.second->zoneName == "caveOne")
         {
             int targetCoords[2] = { 0, 0 };
@@ -382,20 +370,6 @@ void RpgOverWorldScene::sceneLogic()
         //spawn troops
         if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 24000) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
         {
-            /*int targetCoords[2] = { 0, 0 };
-            while (true)
-            {
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                if (mapTiles[zone.second->tileMap[targetCoords[1]][targetCoords[0]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
-                {
-                    break;
-                }
-            }
-            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, SOLDIER, targetCoords[0], targetCoords[1]);
-            }*/
             if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
             {
                 createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 19, 5 });
@@ -412,6 +386,9 @@ void RpgOverWorldScene::renderScene()
     if (!player->cameraFollowPlayer)
     {
         scrollCamera();
+    }
+    else {
+        player->updateCamera();
     }
     RpgTileGridScene::renderScene();
     if (displayHud)

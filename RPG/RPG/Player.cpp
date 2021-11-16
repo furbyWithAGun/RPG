@@ -51,6 +51,12 @@ void Player::init() {
     team = PLAYER_TEAM;
     cameraFollowPlayer = true;
     createAnimations();
+    lastXDelta = 0;
+    lastXDelta2 = 0;
+    lastXDelta3 = 0;
+    lastYDelta = 0;
+    lastYDelta2 = 0;
+    lastYDelta3 = 0;
 }
 
 void Player::init(RpgTileGridScene* gameScene) {
@@ -65,7 +71,7 @@ void Player::update() {
     //centre on screen by changing scene x and y offsets
     if (cameraFollowPlayer)
     {
-        updateCamera();
+        //updateCamera();
     }
     
     //scene->yOffset = ypos - y;
@@ -85,10 +91,64 @@ void Player::updateCamera()
     int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
     int desiredCoords[2];
     scene->desiredPlayerDrawLocation(desiredCoords);
-    int xer = desiredCoords[0] - x;
-    int yer = desiredCoords[1] - y;
-    scene->xOffset += desiredCoords[0] - x;
-    scene->yOffset += desiredCoords[1] - y;
+    if (leftToMove > 0)
+    {
+        double deltaEstimate = (double((double)speed / 100));
+        deltaEstimate = deltaEstimate * scene->tileHeight;
+        deltaEstimate = deltaEstimate * RPG_GAME_TICKS_PER_SECOND;
+        //deltaEstimate = deltaEstimate * 60;
+        deltaEstimate = deltaEstimate / scene->engine->getScreenRefreshRate();
+        deltaEstimate = deltaEstimate * 0.55;
+
+        if (leftToMove < 0.75)
+        {
+            int dfgdf = 23432;
+        }
+        if (tileDestination->y > tileLocation->y && desiredCoords[1] - y == 0)
+        {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset -= deltaEstimate;
+        }
+        else if (tileDestination->y > tileLocation->y) {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+        if (tileDestination->y < tileLocation->y && desiredCoords[1] - y == 0)
+        {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset += deltaEstimate;
+        }
+        else if (tileDestination->y < tileLocation->y) {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+        if (tileDestination->x > tileLocation->x && desiredCoords[0] - x == 0)
+        {
+            scene->xOffset -= deltaEstimate;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+        else if (tileDestination->x > tileLocation->x) {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+        if (tileDestination->x < tileLocation->x && desiredCoords[0] - x == 0)
+        {
+            scene->xOffset += deltaEstimate;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+        else if (tileDestination->x < tileLocation->x) {
+            scene->xOffset += desiredCoords[0] - x;
+            scene->yOffset += desiredCoords[1] - y;
+        }
+    }
+    else {
+        scene->xOffset += desiredCoords[0] - x;
+        scene->yOffset += desiredCoords[1] - y;
+    }
+    //scene->xOffset += desiredCoords[0] - x;
+    //scene->yOffset += desiredCoords[1] - y;
+    //xpos = desiredCoords[0];
+    //ypos = desiredCoords[1];
     updateCoords();
 }
 
@@ -132,6 +192,17 @@ void Player::death()
     scene->engine->addScene(OVERWORLD, new RpgOverWorldScene(scene->engine));
     scene->engine->setNextScene(MAIN_MENU_SCENE);
     scene->endScene();
+}
+
+void Player::draw()
+{
+    int desiredCoords[2];
+    scene->desiredPlayerDrawLocation(desiredCoords);
+    xpos = desiredCoords[0] - scene->tileWidth;
+    ypos = desiredCoords[1] - scene->tileHeight;
+    currentState->updateAnimation();
+    Unit::drawNoCoordUpdate();
+    drawHealth();
 }
 
 //private methods

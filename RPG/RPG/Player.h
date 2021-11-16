@@ -23,8 +23,16 @@ public:
     void faceMouseDirection(int x, int y);
     void portalTo(int zoneId, int x, int y) override;
     void death() override;
+    void draw() override;
 
 private:
+    //attributes
+    int lastXDelta;
+    int lastXDelta2;
+    int lastXDelta3;
+    int lastYDelta;
+    int lastYDelta2;
+    int lastYDelta3;
     //methods
     void createAnimations() override;
     void init();

@@ -94,6 +94,7 @@ public:
     void setStartLocation(int x, int y);
     virtual void createAnimations() {};
     virtual void draw();
+    virtual void drawNoCoordUpdate();
     virtual void update();
     void getLocationUnitIsFacing(int tileXY[2]);
     void getLocationUnitDestinationIsFacing(int tileXY[2]);
