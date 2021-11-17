@@ -303,7 +303,7 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 12000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
         {
             int targetCoords[2] = { 0, 0 };
             int attempts = 0;

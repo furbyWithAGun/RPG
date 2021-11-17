@@ -49,6 +49,13 @@
 //ability to select stats on level up
 //clean up magic numbers
 
+//ally controls
+// ctrl + <num> + pointer = assign
+// <num> + point = command (on release)
+//  -> on hold num -> show path
+// rmb + <num> + point = options
+// num
+
 int main(int argc, char* args[])
 {
     //local vars
