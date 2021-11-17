@@ -236,6 +236,15 @@ void RpgOverWorldScene::handleInput()
                 player->getLocationUnitIsFacing(tileCoords);
                 addCommand(InputMessage(USER_ACTION, tileCoords[0], tileCoords[1]));
                 break;
+            case BUTTON_7_ON:
+                if (!menus[INVENTORY_MENU]->isActive)
+                {
+                    openMenu(INVENTORY_MENU);
+                }
+                else {
+                    closeMenu(INVENTORY_MENU);
+                }
+                break;
             case BUTTON_2_OFF:
                 addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
                 break;

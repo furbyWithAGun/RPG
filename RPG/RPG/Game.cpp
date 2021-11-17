@@ -6,21 +6,19 @@
 #include "MainMenuScene.h"
 
 //TODO:
-// unit spawners
-// unit spawn table by difficulty
-// open inventory by pressing 'i' key
+// unit spawner limits and spawn logic
 // easy switch between buy/sell
 // show inventory when at shop
-// town quests
+// Town class
 // town attacks
 // crafting
 // ranged combat
 // overworld towers / walls
 // unit factory
-// Town class
 // allied units aggro and attack spawners
 // followers
 // commands to followers
+// town quests
 // magic
 // make thread for unit aggro
 // fix the item menus update and rebuildElements methods - all alterations to unit inventories should be behind methods. No direct access to that vector - make the inventory vector private

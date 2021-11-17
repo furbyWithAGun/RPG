@@ -53,33 +53,21 @@ bool ScrollBox::handleInput(InputMessage* message)
     bool messageConsumed = false;
     if (active)
     {
-        if (message->id == SELECT_ON)
-        {
-            int x = 2453456;
-        }
         for (auto i = displayIndex ; i < numElementsToDisplay + displayIndex; i++)
         {
             if (subElements.size() > i)
             {
-                messageConsumed = subElements[i]->handleInput(message);
                 if (subElements[i]->pointCollision(message->x, message->y) && selectableElements && message->id == SELECT_ON && subElements[i]->active)
                 {
                     selectedElement = subElements[i];
                     messageConsumed = true;
                 }
-            }
-        }
-        /*for (auto element : subElements) {
-            if (!messageConsumed)
-            {
-                messageConsumed = element->handleInput(message);
-                if (element->pointCollision(message->x, message->y) && selectableElements && message->id == SELECT_ON && element->active)
-                {
-                    selectedElement = element;
+                if (messageConsumed = subElements[i]->handleInput(message)) {
                     messageConsumed = true;
+                    break;
                 }
             }
-        }*/
+        }
         if (!messageConsumed)
         {
             switch (message->id)

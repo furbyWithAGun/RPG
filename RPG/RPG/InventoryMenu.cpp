@@ -44,6 +44,33 @@ void InventoryMenu::open()
 
 void InventoryMenu::draw()
 {
+    ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
+    int itemIndex = items->getSelectedElementValue();
+    Item* item;
+
+    MenuButton* btnEat = (MenuButton*)getElementbyId(INVENTORY_EAT_BUTTON);
+    btnEat->active = false;
+
+    MenuButton* btnEquip = (MenuButton*)getElementbyId(INVENTORY_EQUIP_BUTTON);
+    btnEquip->active = false;
+
+    MenuButton* btnDrop = (MenuButton*)getElementbyId(INVENTORY_DROP_BUTTON);
+    btnDrop->active = false;
+
+    if (itemIndex != -1)
+    {
+        btnDrop->active = true;;
+        item = scene->player->inventory[items->getSelectedElementValue()];
+        if (item->type == FOOD)
+        {
+            btnEat->active = true;
+        }
+        else if (item->equipable) {
+            btnEquip->active = true;
+        }
+    }
+
+    
     GameMenu::draw();
     for (auto displaySlot : displaySlots)
     {
@@ -70,6 +97,23 @@ void InventoryMenu::rebuildElements()
         MenuText* txtInvItem = new MenuText(scene, scene->player->inventory[i]->name, 0, 0);
         HoverToolTip* toolTip = createItemToolTip(scene->player->inventory[i], scene);
         registerToolTip(txtInvItem, toolTip);
+
+        if (scene->player->inventory[i]->type == FOOD) {
+            txtInvItem->addBtnOneCallback([this, i]() {
+                Item* selectedItem = scene->player->inventory[i];
+                if (selectedItem->type == FOOD)
+                {
+                    Food* itemToEat = (Food*)selectedItem;
+                    scene->player->eatFood(itemToEat);
+                    if (itemToEat->stackSize <= 0)
+                    {
+                        scene->player->inventory.erase(scene->player->inventory.begin() + i);
+                    }
+                    rebuildElements();
+                }
+                });
+        }
+
         if (scene->player->inventory[i]->stackSize > 1)
         {
             items->addElement(txtInvItem->setText(scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize)), i);

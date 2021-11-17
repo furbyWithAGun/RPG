@@ -64,6 +64,7 @@ public:
     virtual bool isGettingText();
     virtual void update();
     virtual void onClick();
+    virtual void onRightClick();
     UiElement* addOnClick(std::function<void()> newCallback);
     UiElement* addBtnOneCallback(std::function<void()> newCallback);
 

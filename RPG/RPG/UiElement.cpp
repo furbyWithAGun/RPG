@@ -87,6 +87,7 @@ void UiElement::init() {
     alignment = VERTICAL;
     displaySubElements = true;
     callback = []() {};
+    btnOneCallback = []() {};
 }
 
 void UiElement::init(int newId) {
@@ -148,7 +149,7 @@ bool UiElement::handleInput(InputMessage* message)
             if (pointCollision(message->x, message->y))
             {
                 messageConsumed = true;
-                onClick();
+                onRightClick();
             }
             break;
         case SELECT_OFF:
@@ -248,6 +249,11 @@ void UiElement::setText(int subElementId, std::string newText) {
 void UiElement::onClick()
 {
     callback();
+}
+
+void UiElement::onRightClick()
+{
+    btnOneCallback();
 }
 
 UiElement* UiElement::addOnClick(std::function<void()> newCallback)
