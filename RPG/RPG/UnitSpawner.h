@@ -22,6 +22,7 @@ public:
     void actionOn(Unit* unit, int actionType) override;
     void update() override;
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
+    void assignDamage(Unit* unit, int damage) override;
 
 private:
     //attributes

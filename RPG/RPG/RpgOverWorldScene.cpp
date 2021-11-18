@@ -97,7 +97,7 @@ void RpgOverWorldScene::setUpScene()
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
     createUnitAtLocation(2, RAT_KING, 29, 1);
-    createUnitAtLocation(3, SKELETON_KING, 0, 29);
+    createUnitAtLocation(3, SKELETON_KING, 28, 28);
 
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
@@ -311,7 +311,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn WhiteRats
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3000) > engine->randomDouble() && zone.second->zoneName == "caveOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3500) > engine->randomDouble() && zone.second->zoneName == "caveOne")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)
@@ -330,7 +330,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn skeletons
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)

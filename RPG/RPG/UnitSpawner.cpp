@@ -88,6 +88,20 @@ std::string UnitSpawner::toSaveString(bool withHeaderAndFooter)
     return saveString;
 }
 
+void UnitSpawner::assignDamage(Unit* unit, int damage)
+{
+    DooDad::assignDamage(unit, damage);
+    if (health <= 0)
+    {
+        int goldGiven = scene->engine->randomInt(1, 300);
+        if (zoneId == scene->currentZone->id)
+        {
+            ((RpgTileGridScene*)scene)->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, tileCoords[0], tileCoords[1], 140);
+        }
+        ((RpgUnit*)unit)->gold += goldGiven;
+    }
+}
+
 void UnitSpawner::init()
 {
     unitToSpawn = -1;

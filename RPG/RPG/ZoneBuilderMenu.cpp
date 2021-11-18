@@ -105,7 +105,7 @@ void ZoneBuilderMenu::buildPageOne()
     mainPanel->addElementToPage(0, new MenuText(scene, "Portals", { 255, 255, 255 }, scene->mainCanvasStartX / 4, engine->screenHeight * 0.4));
     ScrollBox* scroller;
     scroller = new ScrollBox(TILE_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
-    scroller->numElementsToDisplay = 2;
+    scroller->numElementsToDisplay = 3;
 
     for (auto i = scene->mapTiles.begin(); i != scene->mapTiles.end(); i++)
     {

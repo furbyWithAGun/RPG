@@ -31,7 +31,12 @@ void RpgTileGridScene::declareSceneAssets()
 {
     TileGridScene::declareSceneAssets();
     //tile textures
-    texturesToLoad.insert({ WATER, "images/water2.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_LEFT, "images/coastLeft.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_RIGHT, "images/coastRight.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_TOP, "images/coastTop.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_BOTTOM, "images/coastBottom.png" });
+    texturesToLoad.insert({ WATER, "images/water.png" });
+    //texturesToLoad.insert({ WATER, "images/water2.png" });
     texturesToLoad.insert({ TREE, "images/treeTim.png" });
     texturesToLoad.insert({ TREE_2, "images/treeTim2.png" });
     texturesToLoad.insert({ TREE_3, "images/treeTim3.png" });
@@ -39,6 +44,11 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_TREE_STUMP, "images/treeStumpTim.png" });
     //texturesToLoad.insert({ GRASS, "images/tallGrass.png" });
     texturesToLoad.insert({ GRASS, "images/grass2.png" });
+    texturesToLoad.insert({ TEXTURE_GRASS_2, "images/grass.png" });
+    texturesToLoad.insert({ TEXTURE_GRASS_3, "images/grass3.png" });
+    texturesToLoad.insert({ TEXTURE_GRASS_4, "images/grass4.png" });
+    texturesToLoad.insert({ TEXTURE_GRASS_5, "images/grass5.png" });
+    //texturesToLoad.insert({ GRASS, "images/grass2.png" });
     texturesToLoad.insert({ MOUNTAIN, "images/mountain2.png" });
     texturesToLoad.insert({ PORTAL_CAVE_HILL, "images/caveEntrance.png" });
     texturesToLoad.insert({ ENCAMPMENT, "images/encampmentTile.png" });
@@ -402,6 +412,7 @@ void RpgTileGridScene::resizeTiles()
         tileWidth = tilesImpliedWidth;
     }
 
+
     for (auto zone : getZones())
     {
         for (auto unit : zone.second->getUnits()) {
@@ -630,6 +641,10 @@ void RpgTileGridScene::createTiles()
 {
     //create the different tiles
     mapTiles[GRASS] = MapTile(true, GRASS);
+    mapTiles[TEXTURE_GRASS_2] = MapTile(true, TEXTURE_GRASS_2);
+    mapTiles[TEXTURE_GRASS_3] = MapTile(true, TEXTURE_GRASS_3);
+    mapTiles[TEXTURE_GRASS_4] = MapTile(true, TEXTURE_GRASS_4);
+    mapTiles[TEXTURE_GRASS_5] = MapTile(true, TEXTURE_GRASS_5);
     mapTiles[TREE] = MapTile(false, TREE);
     mapTiles[WATER] = MapTile(false, WATER);
     mapTiles[MOUNTAIN] = MapTile(false, MOUNTAIN);
@@ -640,7 +655,10 @@ void RpgTileGridScene::createTiles()
     mapTiles[CAVE_WALL_TOP] = MapTile(false, CAVE_WALL_TOP);
     mapTiles[CAVE_WALL_BOTTOM] = MapTile(false, CAVE_WALL_BOTTOM);
     mapTiles[TILE_DIRT_ROAD] = MapTile(true , TILE_DIRT_ROAD);
-
+    mapTiles[TEXTURE_COAST_LEFT] = MapTile(true , TEXTURE_COAST_LEFT);
+    mapTiles[TEXTURE_COAST_RIGHT] = MapTile(true , TEXTURE_COAST_RIGHT);
+    mapTiles[TEXTURE_COAST_TOP] = MapTile(false , TEXTURE_COAST_TOP);
+    mapTiles[TEXTURE_COAST_BOTTOM] = MapTile(true , TEXTURE_COAST_BOTTOM);
     resizeTiles();
 }
 
