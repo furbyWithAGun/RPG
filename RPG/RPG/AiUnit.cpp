@@ -56,7 +56,7 @@ void AiUnit::update() {
     updateAggro();
     if (currentState->id == UNIT_IDLE && !attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
     {
-        if (targetUnit == nullptr || !(std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1) && (std::abs(targetUnit->tileDestination->y - tileDestination->y <= 1)))
+        if (targetUnit == nullptr || !((std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1) && (std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1)))
         {
             randomMovement();
         }
