@@ -18,7 +18,8 @@
 #include <algorithm>
 //#include "RpgTileGridScene.h"
 
-const int PATH_FINDING_BREAK_LIMIT = 1000;
+const int PATH_FINDING_BREAK_LIMIT = 1500;
+const int DEFAULT_MAX_UNITS = 400;
 
 ZoneMap::ZoneMap() {
 	init();
@@ -139,6 +140,10 @@ void ZoneMap::init() {
 	zoneName = "";
 	backGroundTile = WATER;
 	mobSpawn = true;
+	maxUnits = DEFAULT_MAX_UNITS;
+	numUnitSpawners = 0;
+	updateSpawnerNumRate = 400;
+	updateSpawnerNumTick = 0;
 }
 
 void ZoneMap::init(int newId) {
@@ -842,6 +847,13 @@ void ZoneMap::update()
 	{
 		dooDad->update();
 	}
+
+	updateSpawnerNumTick++;
+	if (updateSpawnerNumRate <= updateSpawnerNumTick)
+	{
+		updateSpawnerNum();
+		updateSpawnerNumTick = 0;
+	}
 }
 
 void ZoneMap::removeUnitFromLocation(Unit* unit, int x, int y) {
@@ -1328,6 +1340,7 @@ std::vector<Location*> ZoneMap::getPathToUnit(TileGridScene* scene, Location* st
 	typedef std::pair<int, Location*> PQElement;
 	std::priority_queue<PQElement, std::vector<PQElement>, std::greater<PQElement>> frontier;
 	Location* current;
+	Location* target = unit->tileDestination;
 	std::unordered_map< Location, Location*> cameFrom;
 	std::unordered_map<Location, double> cost_so_far;
 	Location* lowestCostLocation = startLocation;
@@ -1340,8 +1353,10 @@ std::vector<Location*> ZoneMap::getPathToUnit(TileGridScene* scene, Location* st
 	{
 		current = frontier.top().second;
 		frontier.pop();
-		if (current->x == unit->tileDestination->x && current->y == unit->tileDestination->y)
+		//if (current->x == unit->tileDestination->x && current->y == unit->tileDestination->y)
+		if ((std::abs(current->x - unit->tileLocation->x) <= 1) && (std::abs(current->y - unit->tileLocation->y) <= 1))
 		{
+			target = current;
 			break;
 		}
 		for (auto neighbor : graph.getNeighbors(current))
@@ -1365,7 +1380,8 @@ std::vector<Location*> ZoneMap::getPathToUnit(TileGridScene* scene, Location* st
 		}
 
 	}
-	std::vector<Location*> potentialPath = constructPath(cameFrom, startLocation, unit->tileDestination);
+	//std::vector<Location*> potentialPath = constructPath(cameFrom, startLocation, unit->tileDestination);
+	std::vector<Location*> potentialPath = constructPath(cameFrom, startLocation, target);
 	if (potentialPath.size() > 0)
 	{
 		return potentialPath;
@@ -1412,6 +1428,11 @@ std::vector<Location*> ZoneMap::constructPathToUnit(std::unordered_map<Location,
 	}
 	std::reverse(path.begin(), path.end());
 	return path;
+}
+
+int ZoneMap::getNumUnits()
+{
+	return getUnits().size();
 }
 
 void ZoneMap::setupGraph(TileGridScene* scene)
@@ -1661,6 +1682,18 @@ void ZoneMap::setUpMaps()
 	clearBuildingMap();
 	clearPortalMap();
 	clearDooDadMap();
+}
+
+void ZoneMap::updateSpawnerNum()
+{
+	numUnitSpawners = 0;
+	for (auto dooDad : dooDads)
+	{
+		if (dooDad->type == DOODAD_UNIT_SPAWNER)
+		{
+			numUnitSpawners++;
+		}
+	}
 }
 
 void ZoneMap::addToUnitVector(Unit* unitToAdd)

@@ -38,7 +38,11 @@ class ZoneMap {
         int backGroundTile;
         bool mobSpawn;
 
-        std::vector<Unit*> units;
+        //need to setup save attributes:
+        int maxUnits;
+        int numUnitSpawners;
+        int updateSpawnerNumRate;
+        int updateSpawnerNumTick;
 
         //constructors
         ZoneMap(int newId, std::vector< std::vector<int> > tiles);
@@ -102,11 +106,13 @@ class ZoneMap {
         int manhattenDistance(Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPath(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit);
+        int getNumUnits();
 
     private:
         //attributes
         std::unordered_map<std::string, std::vector<int>> directPaths;
         //object vectors
+        std::vector<Unit*> units;
         std::vector<ZonePortal*> portals;
         std::vector< DooDad* > dooDads;
         std::vector< Building* > buildings2;
@@ -132,6 +138,7 @@ class ZoneMap {
         void clearBuildingMap();
         void clearPortalMap();
         void setUpMaps();
+        void updateSpawnerNum();
 
         //handle object vectors
         //unit vector

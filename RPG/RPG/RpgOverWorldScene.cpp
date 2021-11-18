@@ -47,36 +47,6 @@ void RpgOverWorldScene::setUpMonsterTable()
 
 
 
-//
-//void RpgOverWorldScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
-//{
-//    if (currentZone->itemMap[x][y].size() > 0)
-//    {
-//        if (currentZone->itemMap[x][y][0]->stackable)
-//        {
-//            bool itemAlreadyInInventory = false;
-//            for (auto item : unit->inventory)
-//            {
-//                if (item->textureKey == currentZone->itemMap[x][y][0]->textureKey)
-//                {
-//                    itemAlreadyInInventory = true;
-//                    item->stackSize += currentZone->itemMap[x][y][0]->stackSize;
-//                    break;
-//                }
-//            }
-//            if (!itemAlreadyInInventory)
-//            {
-//                unit->inventory.push_back(currentZone->itemMap[x][y][0]);
-//            }
-//        }
-//        else {
-//            unit->inventory.push_back(currentZone->itemMap[x][y][0]);
-//        }
-//        currentZone->itemMap[x][y].erase(currentZone->itemMap[x][y].begin());
-//        menus[INVENTORY_MENU]->update();
-//    }
-//}
-
 void RpgOverWorldScene::loadZone(int zoneId)
 {
     RpgTileGridScene::loadZone(zoneId);
@@ -115,15 +85,17 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(COMBAT_EXPERIENCE, 999999999);
-    //player->health = 9999999;
-    //player->maxHealth = 9999999;
+    player->addExp(COMBAT_EXPERIENCE, 999999999);
+    player->health = 9999999;
+    player->maxHealth = 9999999;
 
     createUnitAtLocation(currentZone->id, RAT, 6, 6);
     createUnitAtLocation(currentZone->id, SOLDIER, 6, 8);
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 11);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
+    getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
+    getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
     createUnitAtLocation(2, RAT_KING, 29, 1);
     createUnitAtLocation(3, SKELETON_KING, 0, 29);
 
@@ -312,7 +284,7 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000 + zone.second->numUnitSpawners * 2000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
         {
             int targetCoords[2] = { 0, 0 };
             int attempts = 0;
@@ -472,6 +444,11 @@ int getPathThread(void* scene) {
 
                 if (unit->targetUnit != nullptr)
                 {
+                    if ((std::abs(unit->targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(unit->targetUnit->tileDestination->y - unit->tileDestination->y <= 1))) {
+                        unit->pathDirections = tempDirections;
+                        unit->gettingPath = false;
+                        continue;
+                    }
                     tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
                     if (tempDirections.size() > 0)
                     {
