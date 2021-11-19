@@ -7,8 +7,8 @@ const int SPEED = 2;
 const int DEX = 20;
 const int AGI = 8;
 const int STR = 20;
-const int EXP_VALUE = 15;
-const int GOLD_VALUE = 65;
+const int EXP_VALUE = 25;
+const int GOLD_VALUE = 75;
 
 Skeleton::Skeleton() : AiUnit() {
     init();

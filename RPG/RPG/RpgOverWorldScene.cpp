@@ -21,7 +21,6 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : RpgTileGridSc
 
 void RpgOverWorldScene::init() {
     controllerInterface = new RpgKeysMouseController();
-    new DooDad(this, 3,3,3);
     testUnit = nullptr;
     displayHud = true;
 }
@@ -284,7 +283,7 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zone : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000 + zone.second->numUnitSpawners * 2000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 10000 + zone.second->numUnitSpawners * 4000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
         {
             int targetCoords[2] = { 0, 0 };
             int attempts = 0;
@@ -311,7 +310,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn WhiteRats
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 3500) > engine->randomDouble() && zone.second->zoneName == "caveOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName == "caveOne")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)
@@ -330,7 +329,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn skeletons
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)

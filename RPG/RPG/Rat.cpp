@@ -1,11 +1,11 @@
 #include "Rat.h"
 #include "BasicMeleeAttack.h"
 
-const int MAX_HEALTH = 9;
+const int MAX_HEALTH = 12;
 const int SPEED = 2;
-const int DEX = 3;
-const int AGI = 1;
-const int STR = 5;
+const int DEX = 4;
+const int AGI = 2;
+const int STR = 6;
 const int EXP_VALUE = 3;
 const int GOLD_VALUE = 15;
 
