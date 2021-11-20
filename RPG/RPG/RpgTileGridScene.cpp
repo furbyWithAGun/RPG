@@ -225,11 +225,11 @@ void RpgTileGridScene::handleInput()
 
 void RpgTileGridScene::sceneLogic()
 {
+    TileGridScene::sceneLogic();
     //SDL_AtomicLock(&unitDestroyLock);
     destroyFlaggedUnits();
     destroyFlaggedDooDads();
     //SDL_AtomicUnlock(&unitDestroyLock);
-    TileGridScene::sceneLogic();
     updateCombatMessages();
 }
 
@@ -655,10 +655,10 @@ void RpgTileGridScene::createTiles()
     mapTiles[CAVE_WALL_TOP] = MapTile(false, CAVE_WALL_TOP);
     mapTiles[CAVE_WALL_BOTTOM] = MapTile(false, CAVE_WALL_BOTTOM);
     mapTiles[TILE_DIRT_ROAD] = MapTile(true , TILE_DIRT_ROAD);
-    mapTiles[TEXTURE_COAST_LEFT] = MapTile(true , TEXTURE_COAST_LEFT);
-    mapTiles[TEXTURE_COAST_RIGHT] = MapTile(true , TEXTURE_COAST_RIGHT);
+    mapTiles[TEXTURE_COAST_LEFT] = MapTile(false, TEXTURE_COAST_LEFT);
+    mapTiles[TEXTURE_COAST_RIGHT] = MapTile(false, TEXTURE_COAST_RIGHT);
     mapTiles[TEXTURE_COAST_TOP] = MapTile(false , TEXTURE_COAST_TOP);
-    mapTiles[TEXTURE_COAST_BOTTOM] = MapTile(true , TEXTURE_COAST_BOTTOM);
+    mapTiles[TEXTURE_COAST_BOTTOM] = MapTile(false, TEXTURE_COAST_BOTTOM);
     resizeTiles();
 }
 

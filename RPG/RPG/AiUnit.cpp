@@ -130,7 +130,7 @@ bool AiUnit::attackNearbyUnit() {
 
 bool AiUnit::meleeAttackUnitInDirection(int direction)
 {
-    Unit* targetUnit;
+    Unit* targetedUnit;
     int x, y, coords[2];
     switch (direction)
     {
@@ -169,10 +169,11 @@ bool AiUnit::meleeAttackUnitInDirection(int direction)
     default:
         break;
     }
-    targetUnit = scene->getUnitAtLocation(zone, x, y);
+    targetedUnit = scene->getUnitAtLocation(zone, x, y);
     //if (targetUnit != NULL && targetUnit->type == PLAYER)
-    if (targetUnit != NULL && getTeamStatus((RpgUnit*)targetUnit) == ENEMY)
+    if (targetedUnit != NULL && getTeamStatus((RpgUnit*)targetedUnit) == ENEMY)
     {
+        setTargetUnit(targetedUnit);
         scene->coordsFromTileIndex(x, y, coords);
         handleInput(&InputMessage(PERFORM_MAIN_ATTACK, coords[0], coords[1]));
         return true;

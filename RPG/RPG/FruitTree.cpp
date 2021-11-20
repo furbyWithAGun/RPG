@@ -63,7 +63,6 @@ FruitTree::FruitTree(SaveObject saveObject, TileGridScene* gameScene) : Tree(sav
 
 void FruitTree::actionOn(Unit* unit, int actionType)
 {
-    Tree::actionOn(unit, actionType);
     switch (actionType)
     {
     case OVERWORLD_USE:
@@ -72,6 +71,9 @@ void FruitTree::actionOn(Unit* unit, int actionType)
             ((RpgUnit*)unit)->addToInventory(createNewItem(fruitGrown));
             fruitState = FRUIT_TREE_NO_FRUIT;
             textureKey = noFruitTextureKey;
+        }
+        else {
+            Tree::actionOn(unit, actionType);
         }
         break;
     case OVERWORLD_STRIKE:

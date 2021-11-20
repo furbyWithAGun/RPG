@@ -259,7 +259,7 @@ void RpgOverWorldScene::sceneLogic()
 {
     //call base class logic
     RpgTileGridScene::sceneLogic();
-    Location* soldierSpawn = new Location{ 7, 7 };
+    Location* soldierSpawn = new Location{ 22, 27 };
     //Location* ratSpawn = new Location{32, 11};
     //Location* ratSpawn2 = new Location{7, 34};
 
@@ -349,12 +349,31 @@ void RpgOverWorldScene::sceneLogic()
 
         //spawn troops
         if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 24000) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
+        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 400) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
         {
             if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
             {
-                createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 11, 26 });
+                createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 9, 54 });
             }
         }
+
+        ////spawn enemy troops
+        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 700) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
+        //{
+        //    if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
+        //    {
+        //        createUnitAtLocation(zone.second->id, WHITE_RAT, 21, 26)->setTargetLocation(new Location{ 7, 7 });
+        //    }
+        //}
+
+        ////spawn enemy troops
+        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 400) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
+        //{
+        //    if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
+        //    {
+        //        createUnitAtLocation(zone.second->id, RAT, 22, 24)->setTargetLocation(new Location{ 7, 7 });
+        //    }
+        //}
     }
     
     delete message;
