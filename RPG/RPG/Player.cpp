@@ -188,10 +188,22 @@ void Player::portalTo(int zoneId, int x, int y)
 
 void Player::death()
 {
-    RpgUnit::death();
+    /*RpgUnit::death();
     scene->engine->addScene(OVERWORLD, new RpgOverWorldScene(scene->engine));
     scene->engine->setNextScene(MAIN_MENU_SCENE);
-    scene->endScene();
+    scene->endScene();*/
+    combatExperience = combatExperienceLastLevel;
+    inventory.clear();
+    for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
+    {
+        scene->player->equippedItems[i] = nullptr;
+    }
+    health = maxHealth;
+    gold = 0;
+    foodEffects.clear();
+    scene->menus[INVENTORY_MENU]->rebuildElements();
+    scene->menus[INVENTORY_MENU]->update();
+    portalTo(1, 6, 6);
 }
 
 void Player::draw()

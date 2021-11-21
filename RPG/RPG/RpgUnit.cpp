@@ -663,7 +663,7 @@ void RpgUnit::death(RpgUnit* attackingUnit)
     death();
     attackingUnit->addExp(COMBAT_EXPERIENCE, expValue);
     int goldGiven = scene->engine->randomInt(1, goldValue);
-    if (zone == scene->currentZone->id)
+    if (zone == scene->currentZone->id && attackingUnit == scene->player)
     {
         scene->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, tileLocation->x, tileLocation->y, 140);
     }
