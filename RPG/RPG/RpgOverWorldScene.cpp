@@ -23,6 +23,10 @@ void RpgOverWorldScene::init() {
     controllerInterface = new RpgKeysMouseController();
     testUnit = nullptr;
     displayHud = true;
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        squadUnits[i] = nullptr;
+    }
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -70,6 +74,7 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
+    squadUnits[1] = createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
    // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
@@ -89,7 +94,7 @@ void RpgOverWorldScene::setUpScene()
     //player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 8, 8);
-    createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
+    
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
@@ -216,6 +221,10 @@ void RpgOverWorldScene::handleInput()
                     closeMenu(INVENTORY_MENU);
                 }
                 break;
+            case BUTTON_8_ON:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                addCommand(InputMessage(OVERWORLD_COMMAND_UNIT_ONE, tileCoords[0], tileCoords[1]));
+                break;
             case BUTTON_2_OFF:
                 addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
                 break;
@@ -274,6 +283,12 @@ void RpgOverWorldScene::sceneLogic()
             if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && canAffordBuilding(&buildingBeingPlaced)) {
                 createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
                 payBuildingCosts(&buildingBeingPlaced);
+            }
+            break;
+        case OVERWORLD_COMMAND_UNIT_ONE:
+            if (squadUnits[1] != nullptr)
+            {
+                squadUnits[1]->setTargetLocation(new Location{ message->x, message->y });
             }
             break;
         default:

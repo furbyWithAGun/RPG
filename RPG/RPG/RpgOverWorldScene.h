@@ -13,6 +13,8 @@
 class AiUnit;
 class RpgUnit;
 
+const int MAX_NUM_SQUAD_UNITS = 8;
+
 class RpgOverWorldScene : public RpgTileGridScene
 {
 public:
@@ -39,6 +41,7 @@ public:
 private:
     //attributes
     std::unordered_map<int, std::vector<ChanceObject>> monsterTable;
+    std::unordered_map<int, Unit*> squadUnits;
 
     //methods
     void init();
