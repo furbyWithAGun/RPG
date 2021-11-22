@@ -231,6 +231,36 @@ void RpgOverWorldScene::handleInput()
                     addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 1));
                 }
                 break;
+            case BUTTON_9_ON:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                if (controllerInterface->ctrlOn)
+                {
+                    addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 2));
+                }
+                else if (squadUnits[1] != nullptr) {
+                    addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 2));
+                }
+                break;
+            case BUTTON_10_ON:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                if (controllerInterface->ctrlOn)
+                {
+                    addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 3));
+                }
+                else if (squadUnits[1] != nullptr) {
+                    addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 3));
+                }
+                break;
+            case BUTTON_11_ON:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                if (controllerInterface->ctrlOn)
+                {
+                    addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 4));
+                }
+                else if (squadUnits[1] != nullptr) {
+                    addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 4));
+                }
+                break;
             case BUTTON_2_OFF:
                 addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
                 break;
@@ -300,9 +330,13 @@ void RpgOverWorldScene::sceneLogic()
         case OVERWORLD_ASSIGN_UNIT:
             RpgUnit* unitAtLocation;
             unitAtLocation = getUnitAtLocation(currentZone->id, message->x, message->y);
-            if (unitAtLocation != nullptr && unitAtLocation->team == player->team)
+            if (unitAtLocation != nullptr && unitAtLocation->team == player->team && unitAtLocation != player)
             {
+                if (squadUnits[message->misc] != nullptr) {
+                    ((AiUnit*)squadUnits[message->misc])->doesRandomMovement = true;
+                }
                 squadUnits[message->misc] = unitAtLocation;
+                ((AiUnit*)unitAtLocation)->doesRandomMovement = false;
             }
             break;
         default:
@@ -422,6 +456,19 @@ void RpgOverWorldScene::renderScene()
     if (displayHud)
     {
         renderHUD();
+    }
+
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        if (squadUnits[i] != nullptr) {
+            int coords[2];
+            int destCoords[2];
+            coordsFromTileIndex(squadUnits[i]->tileLocation->x, squadUnits[i]->tileLocation->y, coords);
+            coordsFromTileIndex(squadUnits[i]->tileDestination->x, squadUnits[i]->tileDestination->y, destCoords);
+            int xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - squadUnits[i]->leftToMove);
+            int ypos = coords[1] + (destCoords[1] - coords[1]) * (1 - squadUnits[i]->leftToMove);
+            engine->renderText(std::to_string(i), xpos, ypos, tileWidth, tileHeight);
+        }
     }
 
     if (placingBuilding && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())

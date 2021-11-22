@@ -162,6 +162,7 @@
     <ClCompile Include="AttackingState.cpp" />
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
     <ClCompile Include="UnitSpawner.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="BareHands.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="RpgTown.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
     <ClInclude Include="UnitSpawner.h" />

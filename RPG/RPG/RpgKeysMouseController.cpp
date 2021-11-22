@@ -86,6 +86,15 @@ void RpgKeysMouseController::populateMessageQueue() {
             case SDLK_1:
                 addMessage(InputMessage(BUTTON_8_ON, x, y));
                 break;
+            case SDLK_2:
+                addMessage(InputMessage(BUTTON_9_ON, x, y));
+                break;
+            case SDLK_3:
+                addMessage(InputMessage(BUTTON_10_ON, x, y));
+                break;
+            case SDLK_4:
+                addMessage(InputMessage(BUTTON_11_ON, x, y));
+                break;
             case SDLK_LSHIFT:
             case SDLK_RSHIFT:
                 shiftOn = true;
@@ -118,6 +127,15 @@ void RpgKeysMouseController::populateMessageQueue() {
                 break;
             case SDLK_1:
                 addMessage(InputMessage(BUTTON_8_OFF, x, y));
+                break;
+            case SDLK_2:
+                addMessage(InputMessage(BUTTON_9_OFF, x, y));
+                break;
+            case SDLK_3:
+                addMessage(InputMessage(BUTTON_10_OFF, x, y));
+                break;
+            case SDLK_4:
+                addMessage(InputMessage(BUTTON_11_OFF, x, y));
                 break;
             case SDLK_LSHIFT:
             case SDLK_RSHIFT:
