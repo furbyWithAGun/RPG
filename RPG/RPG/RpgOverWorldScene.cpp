@@ -223,7 +223,13 @@ void RpgOverWorldScene::handleInput()
                 break;
             case BUTTON_8_ON:
                 getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
-                addCommand(InputMessage(OVERWORLD_COMMAND_UNIT_ONE, tileCoords[0], tileCoords[1]));
+                if (controllerInterface->ctrlOn)
+                {
+                    addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 1));
+                }
+                else if (squadUnits[1] != nullptr) {
+                    addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 1));
+                }
                 break;
             case BUTTON_2_OFF:
                 addCommand(InputMessage(STOP_MOVE_UP, message->x, message->y));
@@ -285,10 +291,18 @@ void RpgOverWorldScene::sceneLogic()
                 payBuildingCosts(&buildingBeingPlaced);
             }
             break;
-        case OVERWORLD_COMMAND_UNIT_ONE:
-            if (squadUnits[1] != nullptr)
+        case OVERWORLD_COMMAND_UNIT:
+            if (squadUnits[message->misc] != nullptr)
             {
-                squadUnits[1]->setTargetLocation(new Location{ message->x, message->y });
+                squadUnits[message->misc]->setTargetLocation(new Location{ message->x, message->y });
+            }
+            break;
+        case OVERWORLD_ASSIGN_UNIT:
+            RpgUnit* unitAtLocation;
+            unitAtLocation = getUnitAtLocation(currentZone->id, message->x, message->y);
+            if (unitAtLocation != nullptr && unitAtLocation->team == player->team)
+            {
+                squadUnits[message->misc] = unitAtLocation;
             }
             break;
         default:
@@ -459,6 +473,20 @@ void RpgOverWorldScene::renderHUD()
         engine->renderTexture(player->foodEffects[i]->texture, mainCanvasStartX + engine->screenWidth * 0.02 * i, engine->screenHeight * 0.95);
         renderRectangle(mainCanvasStartX + engine->screenWidth * 0.02 * i + engine->screenWidth * 0.02, engine->screenHeight * 0.99, engine->screenWidth * 0.004, (engine->screenHeight * 0.05) * ((double)((double)player->foodEffects[i]->tick - (double)player->foodEffects[i]->duration) / (double)player->foodEffects[i]->duration), COLOR_WHITE);
     }
+}
+
+void RpgOverWorldScene::destroyUnit(RpgUnit* unit)
+{
+    //remove unit from squad
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        if (squadUnits[i] == unit)
+        {
+            squadUnits[i] = nullptr;
+        }
+    }
+
+    RpgTileGridScene::destroyUnit(unit);
 }
 
 //functions

@@ -486,7 +486,7 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     {
         ((RpgUnit*)unit)->assignedToBuilding->unAssignUnit(((RpgUnit*)unit));
     }
-
+    
     delete (unit);
 }
 

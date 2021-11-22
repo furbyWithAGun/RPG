@@ -27,6 +27,7 @@ public:
     int latestXpos, latestYpos;
     bool selectOn;
     bool shiftOn;
+    bool ctrlOn;
     bool capsLockOn;
 
     //constructors

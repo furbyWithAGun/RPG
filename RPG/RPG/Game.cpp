@@ -36,6 +36,7 @@
 // add ability to recruit soldiers
 //move to database system
 //make a structure building scene
+// unit target location is likely a memory leak
 //add ability to place enemy units in world builder scene
 //make the game client/server
 //rework asset loading strategy

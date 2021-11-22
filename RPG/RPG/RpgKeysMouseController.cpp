@@ -89,6 +89,11 @@ void RpgKeysMouseController::populateMessageQueue() {
             case SDLK_LSHIFT:
             case SDLK_RSHIFT:
                 shiftOn = true;
+                break;
+            case SDLK_LCTRL:
+            case SDLK_RCTRL:
+                ctrlOn = true;
+                break;
             }
             break;
         case SDL_KEYUP:
@@ -117,6 +122,11 @@ void RpgKeysMouseController::populateMessageQueue() {
             case SDLK_LSHIFT:
             case SDLK_RSHIFT:
                 shiftOn = false;
+                break;
+            case SDLK_LCTRL:
+            case SDLK_RCTRL:
+                ctrlOn = false;
+                break;
             }
             break;
         default:

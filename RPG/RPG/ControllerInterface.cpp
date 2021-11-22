@@ -4,7 +4,7 @@
 //constructors
 ControllerInterface::ControllerInterface() {
     latestXpos = latestYpos = 0;
-    selectOn = shiftOn = capsLockOn = false;
+    selectOn = shiftOn = capsLockOn = ctrlOn = false;
 }
 
 //public methods

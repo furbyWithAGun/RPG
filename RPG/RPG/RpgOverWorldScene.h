@@ -36,7 +36,7 @@ public:
     void sceneLogic() override;
     void renderScene() override;
     void renderHUD();
-    //void unitEntersTile(Unit* unit, int x, int y) override;
+    void virtual destroyUnit(RpgUnit* unit) override;
 
 private:
     //attributes
