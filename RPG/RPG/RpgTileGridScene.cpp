@@ -35,6 +35,10 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_COAST_RIGHT, "images/coastRight.png" });
     texturesToLoad.insert({ TEXTURE_COAST_TOP, "images/coastTop.png" });
     texturesToLoad.insert({ TEXTURE_COAST_BOTTOM, "images/coastBottom.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_TOP_RIGHT, "images/coastTopRight.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_TOP_LEFT, "images/coastTopLeft.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_BOTTOM_LEFT, "images/coastBottomLeft.png" });
+    texturesToLoad.insert({ TEXTURE_COAST_BOTTOM_RIGHT, "images/coastBottomRight.png" });
     texturesToLoad.insert({ WATER, "images/water.png" });
     //texturesToLoad.insert({ WATER, "images/water2.png" });
     texturesToLoad.insert({ TREE, "images/treeTim.png" });
@@ -659,6 +663,10 @@ void RpgTileGridScene::createTiles()
     mapTiles[TEXTURE_COAST_RIGHT] = MapTile(false, TEXTURE_COAST_RIGHT);
     mapTiles[TEXTURE_COAST_TOP] = MapTile(false , TEXTURE_COAST_TOP);
     mapTiles[TEXTURE_COAST_BOTTOM] = MapTile(false, TEXTURE_COAST_BOTTOM);
+    mapTiles[TEXTURE_COAST_TOP_LEFT] = MapTile(false, TEXTURE_COAST_TOP_LEFT);
+    mapTiles[TEXTURE_COAST_TOP_RIGHT] = MapTile(false, TEXTURE_COAST_TOP_RIGHT);
+    mapTiles[TEXTURE_COAST_BOTTOM_LEFT] = MapTile(false, TEXTURE_COAST_BOTTOM_LEFT);
+    mapTiles[TEXTURE_COAST_BOTTOM_RIGHT] = MapTile(false, TEXTURE_COAST_BOTTOM_RIGHT);
     resizeTiles();
 }
 

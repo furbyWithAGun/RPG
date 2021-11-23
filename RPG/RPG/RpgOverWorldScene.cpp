@@ -237,7 +237,7 @@ void RpgOverWorldScene::handleInput()
                 {
                     addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 2));
                 }
-                else if (squadUnits[1] != nullptr) {
+                else if (squadUnits[2] != nullptr) {
                     addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 2));
                 }
                 break;
@@ -247,7 +247,7 @@ void RpgOverWorldScene::handleInput()
                 {
                     addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 3));
                 }
-                else if (squadUnits[1] != nullptr) {
+                else if (squadUnits[3] != nullptr) {
                     addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 3));
                 }
                 break;
@@ -257,7 +257,7 @@ void RpgOverWorldScene::handleInput()
                 {
                     addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 4));
                 }
-                else if (squadUnits[1] != nullptr) {
+                else if (squadUnits[4] != nullptr) {
                     addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 4));
                 }
                 break;
