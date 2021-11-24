@@ -399,12 +399,6 @@
     <ClCompile Include="OverWorldSceneMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClCompile>
-    <ClCompile Include="ItemSellMenu.cpp">
-      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemBuyMenu.cpp">
-      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
-    </ClCompile>
     <ClCompile Include="LongSword.cpp">
       <Filter>Source Files\RpgGame\Items\Weapons</Filter>
     </ClCompile>
@@ -474,9 +468,6 @@
     <ClCompile Include="UnitTempEffect.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
-    <ClCompile Include="FoodEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FruitTree.cpp">
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
@@ -496,7 +487,16 @@
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
     <ClCompile Include="RpgTown.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemShopMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodEffect.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
+    <ClCompile Include="TransferItemsMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -719,12 +719,6 @@
     <ClInclude Include="OverWorldSceneMenu.h">
       <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClInclude>
-    <ClInclude Include="ItemSellMenu.h">
-      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemBuyMenu.h">
-      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
-    </ClInclude>
     <ClInclude Include="LongSword.h">
       <Filter>Header Files\RpgGame\Items\Weapons</Filter>
     </ClInclude>
@@ -791,9 +785,6 @@
     <ClInclude Include="UnitTempEffect.h">
       <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
-    <ClInclude Include="FoodEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FruitTree.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
@@ -812,8 +803,17 @@
     <ClInclude Include="UnitSpawner.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
+    <ClInclude Include="FoodEffect.h">
+      <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
     <ClInclude Include="RpgTown.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemShopMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="TransferItemsMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

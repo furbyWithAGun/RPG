@@ -144,6 +144,7 @@
       <ConformanceMode>false</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,9 +163,11 @@
     <ClCompile Include="AttackingState.cpp" />
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
+    <ClCompile Include="TransferItemsMenu.cpp" />
     <ClCompile Include="UnitSpawner.cpp" />
     <ClCompile Include="WhiteRat.cpp" />
     <ClCompile Include="Building.cpp" />
@@ -194,9 +197,7 @@
     <ClCompile Include="InputPrompt.cpp" />
     <ClCompile Include="InventoryMenu.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="ItemBuyMenu.cpp" />
     <ClCompile Include="ItemFactory.cpp" />
-    <ClCompile Include="ItemSellMenu.cpp" />
     <ClCompile Include="ItemShop.cpp" />
     <ClCompile Include="LinenBody.cpp" />
     <ClCompile Include="LinenBoots.cpp" />
@@ -268,9 +269,11 @@
     <ClInclude Include="BareHands.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
+    <ClInclude Include="TransferItemsMenu.h" />
     <ClInclude Include="UnitSpawner.h" />
     <ClInclude Include="WhiteRat.h" />
     <ClInclude Include="Building.h" />
@@ -298,9 +301,7 @@
     <ClInclude Include="InputPrompt.h" />
     <ClInclude Include="InventoryMenu.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="ItemBuyMenu.h" />
     <ClInclude Include="ItemFactory.h" />
-    <ClInclude Include="ItemSellMenu.h" />
     <ClInclude Include="ItemShop.h" />
     <ClInclude Include="LinenBody.h" />
     <ClInclude Include="LinenBoots.h" />

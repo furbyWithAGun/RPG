@@ -1,6 +1,6 @@
 #include "ItemShop.h"
 #include "RpgUnit.h"
-#include "ItemSellMenu.h"
+#include "ItemShopMenu.h"
 #include "SelectPrompt.h"
 #include "RpgTileGridScene.h"
 
@@ -58,18 +58,14 @@ int ItemShop::onActionAssignedUnit(RpgUnit* unit)
 {
     SelectPrompt* shopSelectPrompt;
     shopSelectPrompt = new SelectPrompt(unit->scene, COLOR_BLACK, unit->scene->engine->screenWidth * 0.5, unit->scene->engine->screenHeight * 0.5, unit->scene->engine->screenWidth * 0.1, unit->scene->engine->screenHeight * 0.1);
-    shopSelectPrompt->addSelectOption("Buy Items", 1);
-    shopSelectPrompt->addSelectOption("Sell Items", 2);
+    shopSelectPrompt->addSelectOption("Buy/Sell Items", 1);
     shopSelectPrompt->addCallBack([this, shopSelectPrompt, unit]() {
         switch (shopSelectPrompt->getSelectedOptionValue())
         {
         case 1:
-            ((ItemSellMenu*)unit->scene->menus[ITEM_BUY_MENU])->setItemShop(this);
-            unit->scene->menus[ITEM_BUY_MENU]->open();
-            break;
-        case 2:
-            ((ItemSellMenu*)unit->scene->menus[ITEM_SELL_MENU])->setItemShop(this);
-            unit->scene->menus[ITEM_SELL_MENU]->open();
+            ((ItemShopMenu*)unit->scene->menus[ITEM_SHOP_MENU])->setItemShop(this);
+            unit->scene->menus[ITEM_SHOP_MENU]->open();
+            unit->scene->menus[INVENTORY_MENU]->open();
             break;
         default:
             break;

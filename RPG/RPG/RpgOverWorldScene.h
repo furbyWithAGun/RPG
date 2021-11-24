@@ -5,8 +5,8 @@
 #include "TownBuildMenu.h"
 #include "InventoryMenu.h"
 #include "EquippedMenu.h"
-#include "itemSellmenu.h"
-#include "ItemBuyMenu.h"
+#include "ItemShopMenu.h"
+#include "TransferItemsMenu.h"
 #include <cmath>
 #include <deque>
 
@@ -29,7 +29,7 @@ public:
     RpgOverWorldScene(BaseGameEngine* gameEngine);
 
     //methods
-    void loadZone(int zoneId) override;
+    void setCurrentZone(int zoneId) override;
     void declareSceneAssets();
     void setUpScene() override;
     void handleInput() override;

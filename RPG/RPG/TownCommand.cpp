@@ -1,5 +1,7 @@
 #include "TownCommand.h"
 #include "Unit.h"
+#include "TransferItemsMenu.h"
+#include "RpgTileGridScene.h"
 
 TownCommand::TownCommand() : DooDad()
 {
@@ -31,12 +33,16 @@ void TownCommand::actionOn(Unit* unit, int actionType)
 	SelectPrompt* townCommandPromp;
     townCommandPromp = new SelectPrompt(unit->scene, COLOR_BLACK, unit->scene->engine->screenWidth * 0.5, unit->scene->engine->screenHeight * 0.5, unit->scene->engine->screenWidth * 0.1, unit->scene->engine->screenHeight * 0.1);
     townCommandPromp->addSelectOption("Build Menu", 1);
+    townCommandPromp->addSelectOption("Town Storage", 2);
     townCommandPromp->addCallBack([this, townCommandPromp, unit]() {
         switch (townCommandPromp->getSelectedOptionValue())
         {
         case 1:
             unit->scene->openMenu(TOWN_BUILD_MENU);
             unit->scene->closeMenu(RPG_OVERWORLD_MENU);
+            break;
+        case 2:
+            ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->townInventory);
             break;
         default:
             break;

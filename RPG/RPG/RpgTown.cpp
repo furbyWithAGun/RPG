@@ -19,8 +19,30 @@ RpgTown::RpgTown(RpgTileGridScene* gameScene, int zoneMapId)
     townZoneMap = scene->getZone(zoneMapId);
 }
 
+void RpgTown::update()
+{
+    ticksSinceTownProduction++;
+    if (ticksSinceTownProduction > TICKS_PER_TOWN_PRODUCTION)
+    {
+        processTownCycle();
+        ticksSinceTownProduction = 0;
+    }
+}
+
+ZoneMap* RpgTown::getZoneMap()
+{
+    return townZoneMap;
+}
+
 void RpgTown::init()
 {
+    ticksSinceTownProduction = 0;
+    population = 0;
     scene = nullptr;
     townZoneMap = nullptr;
+}
+
+void RpgTown::processTownCycle()
+{
+    population++;
 }

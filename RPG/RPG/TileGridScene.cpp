@@ -60,7 +60,7 @@ void TileGridScene::loadZones()
     //yOffset = 0;
 }
 
-void TileGridScene::loadZone(int zoneId)
+void TileGridScene::setCurrentZone(int zoneId)
 {
     currentZone = zones[zoneId];
     clearCommandQueue();

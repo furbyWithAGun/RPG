@@ -326,9 +326,10 @@ void RpgUnit::dropItemFromInventory(int inventoryIndex)
 
 void RpgUnit::deleteItemFromInventory(int inventoryIndex)
 {
-    delete inventory[inventoryIndex];
-    inventory.erase(inventory.begin() + inventoryIndex);
-    if (scene->menus[INVENTORY_MENU]->isActive)
+    /*delete inventory[inventoryIndex];
+    inventory.erase(inventory.begin() + inventoryIndex);*/
+    deleteItemFromContainer(inventoryIndex, inventory);
+    if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
         scene->menus[INVENTORY_MENU]->rebuildElements();
     }
@@ -336,7 +337,7 @@ void RpgUnit::deleteItemFromInventory(int inventoryIndex)
 
 void RpgUnit::deleteItemFromInventory(Item* itemToDelete)
 {
-    int delIndex = -1;
+    /*int delIndex = -1;
     for (size_t i = 0; i < inventory.size(); i++)
     {
         if (inventory[i] == itemToDelete) {
@@ -348,13 +349,15 @@ void RpgUnit::deleteItemFromInventory(Item* itemToDelete)
     {
         return;
     }
-    deleteItemFromInventory(delIndex);
+    deleteItemFromInventory(delIndex);*/
+    deleteItemFromContainer(itemToDelete, inventory);
 }
 
 void RpgUnit::removeItemFromInventory(int inventoryIndex)
 {
-    inventory.erase(inventory.begin() + inventoryIndex);
-    if (scene->menus[INVENTORY_MENU]->isActive)
+    //inventory.erase(inventory.begin() + inventoryIndex);
+    removeItemFromContainer(inventoryIndex, inventory);
+    if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
         scene->menus[INVENTORY_MENU]->rebuildElements();
     }
@@ -362,7 +365,7 @@ void RpgUnit::removeItemFromInventory(int inventoryIndex)
 
 void RpgUnit::removeItemFromInventory(Item* itemToDelete)
 {
-    int delIndex = -1;
+    /*int delIndex = -1;
     for (size_t i = 0; i < inventory.size(); i++)
     {
         if (inventory[i] == itemToDelete) {
@@ -374,7 +377,8 @@ void RpgUnit::removeItemFromInventory(Item* itemToDelete)
     {
         return;
     }
-    removeItemFromInventory(delIndex);
+    removeItemFromInventory(delIndex);*/
+    removeItemFromContainer(itemToDelete, inventory);
 }
 
 std::vector<Item*> RpgUnit::getDrops()
@@ -503,27 +507,8 @@ void RpgUnit::updateFoodEffects()
 
 void RpgUnit::addToInventory(Item* itemToAdd)
 {
-    if (itemToAdd->stackable)
-    {
-        bool itemAlreadyInInventory = false;
-        for (auto item : inventory)
-        {
-            if (item->name == itemToAdd->name)
-            {
-                itemAlreadyInInventory = true;
-                item->stackSize += itemToAdd->stackSize;
-                break;
-            }
-        }
-        if (!itemAlreadyInInventory)
-        {
-            inventory.push_back(itemToAdd);
-        }
-    }
-    else {
-        inventory.push_back(itemToAdd);
-    }
-    if (scene->menus[INVENTORY_MENU]->isActive)
+    addItemToContainer(itemToAdd, inventory);
+    if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
         scene->menus[INVENTORY_MENU]->rebuildElements();
     }

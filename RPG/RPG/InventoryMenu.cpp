@@ -9,7 +9,8 @@ enum INVENTORY_MENU_IDS {
     INVENTORY_DROP_BUTTON,
     INVENTORY_EQUIP_BUTTON,
     INVENTORY_EAT_BUTTON,
-    OPEN_EQUIPPED_MENU_BUTTON
+    ITEM_SELL_BUTTON,
+    IVENTORY_TRANSFER_BUTTON
 };
 
 InventoryMenu::InventoryMenu() : GameMenu()
@@ -57,6 +58,12 @@ void InventoryMenu::draw()
     MenuButton* btnDrop = (MenuButton*)getElementbyId(INVENTORY_DROP_BUTTON);
     btnDrop->active = false;
 
+    MenuButton* btnSell = (MenuButton*)getElementbyId(ITEM_SELL_BUTTON);
+    btnSell->active = false;
+
+    MenuButton* btnXfer = (MenuButton*)getElementbyId(IVENTORY_TRANSFER_BUTTON);
+    btnXfer->active = false;
+
     if (itemIndex != -1)
     {
         btnDrop->active = true;;
@@ -67,6 +74,14 @@ void InventoryMenu::draw()
         }
         else if (item->equipable) {
             btnEquip->active = true;
+        }
+        if (scene->menus[ITEM_SHOP_MENU]->isActive)
+        {
+            btnSell->active = true;
+        }
+        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        {
+            btnXfer->active = true;
         }
     }
 
@@ -214,6 +229,7 @@ void InventoryMenu::buildElements()
             }
         }
         });
+
     addElement(INVENTORY_DROP_BUTTON, dropBtn);
 
     MenuButton* equipBtn = new MenuButton(INVENTORY_EQUIP_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.35);
@@ -257,10 +273,117 @@ void InventoryMenu::buildElements()
         });
     addElement(INVENTORY_EAT_BUTTON, eatBtn);
 
-    //MenuButton* equipMenuBtn = new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25);
-    //addElement(OPEN_EQUIPPED_MENU_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.25))->setText("Equipment")->addOnClick([this]() {
-    //    scene->openMenu(EQUIPPED_MENU);
-    //    }));
+    MenuButton* sellBtn = new MenuButton(ITEM_SELL_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.15);
+    sellBtn->setText("Sell")->addOnClick([this, items]() {
+        if (items->getSelectedElementValue() != -1)
+        {
+            Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
+            if (selectedItem->stackSize > 1)
+            {
+                InputPrompt* qtyPrompt = new InputPrompt(scene, "Sell How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                qtyPrompt->setInputText(std::to_string(selectedItem->stackSize));
+                qtyPrompt->addCallBack([selectedItem, this, items](std::string enteredText) {
+                    if (true)
+                    {
+                        int numToSell;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToSell = std::stoi(enteredText);
+                        }
+                        else {
+                            numToSell = 0;
+                        }
+                        if (numToSell >= selectedItem->stackSize)
+                        {
+                            int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
+                            if (goldToAdd < 1)
+                            {
+                                goldToAdd = 1;
+                            }
+                            scene->player->gold += goldToAdd;
+                            scene->player->deleteItemFromInventory(items->getSelectedElementValue());
+                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            rebuildElements();
+                        }
+                        else if (numToSell > 0) {
+                            int goldToAdd = (selectedItem->value * numToSell) / 2;
+                            if (goldToAdd < 1)
+                            {
+                                goldToAdd = 1;
+                            }
+                            scene->player->gold += goldToAdd;
+                            selectedItem->stackSize -= numToSell;
+                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            rebuildElements();
+                        }
+                    }
+                    });
+                scene->addPrompt(qtyPrompt);
+            }
+            else {
+                int goldToAdd = (selectedItem->value * selectedItem->stackSize) / 2;
+                if (goldToAdd < 1)
+                {
+                    goldToAdd = 1;
+                }
+                scene->player->gold += goldToAdd;
+                scene->player->deleteItemFromInventory(items->getSelectedElementValue());
+                scene->menus[EQUIPPED_MENU]->rebuildElements();
+                rebuildElements();
+            }
+        }
+        });
+    addElement(ITEM_SELL_BUTTON, sellBtn);
+
+    MenuButton* xferBtn = new MenuButton(IVENTORY_TRANSFER_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.85);
+    xferBtn->setText("Transfer")->addOnClick([this, items]() {
+        if (!scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        {
+            return;
+        }
+        int selection = items->getSelectedElementValue();
+        if (selection != -1)
+        {
+            if (scene->player->inventory[selection]->stackSize > 1)
+            {
+                InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                qtyPrompt->addCallBack([selection, this](std::string enteredText) {
+                    int numToXfer;
+                    if (stringIsAnInt(enteredText))
+                    {
+                        numToXfer = std::stoi(enteredText);
+                    }
+                    else {
+                        numToXfer = 0;
+                    }
+
+                    if (numToXfer >= scene->player->inventory[selection]->stackSize)
+                    {
+                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                        scene->player->removeItemFromInventory(selection);
+                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+                    }
+                    else if (numToXfer > 0) {
+                        Item* itemToXfer = createNewItem(scene->player->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
+                        itemToXfer->stackSize = numToXfer;
+                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
+                        scene->player->inventory[selection]->stackSize -= numToXfer;
+                        rebuildElements();
+                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+                    }
+                    });
+                scene->addPrompt(qtyPrompt);
+            }
+            else {
+                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                scene->player->removeItemFromInventory(selection);
+                scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+            }
+        }
+        });
+
+    addElement(IVENTORY_TRANSFER_BUTTON, xferBtn);
 
     defineEquipmentSlots();
 }

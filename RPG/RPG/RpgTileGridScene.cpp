@@ -545,6 +545,27 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
     return createdUnit;
 }
 
+RpgTown* RpgTileGridScene::getTownForZone(int zoneId)
+{
+    for (auto town : towns)
+    {
+        if (town->getZoneMap()->id == zoneId) {
+            return town;
+        }
+    }
+    return nullptr;
+}
+
+std::vector<RpgTown*> RpgTileGridScene::getTowns()
+{
+    return towns;
+}
+
+void RpgTileGridScene::addTown(RpgTown* newTown)
+{
+    towns.push_back(newTown);
+}
+
 RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y)
 {
     RpgUnit* createdUnit;
@@ -723,4 +744,73 @@ void RpgTileGridScene::scrollCamera() {
     if (y > engine->screenHeight * 0.99) {
         yOffset -= scrollSpeed;
     }
+}
+
+void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)
+{
+    if (itemToAdd->stackable)
+    {
+        bool itemAlreadyInInventory = false;
+        for (auto item : container)
+        {
+            if (item->name == itemToAdd->name)
+            {
+                itemAlreadyInInventory = true;
+                item->stackSize += itemToAdd->stackSize;
+                break;
+            }
+        }
+        if (!itemAlreadyInInventory)
+        {
+            container.push_back(itemToAdd);
+        }
+    }
+    else {
+        container.push_back(itemToAdd);
+    }
+}
+
+void removeItemFromContainer(int index, std::vector<Item*>& container)
+{
+    container.erase(container.begin() + index);
+}
+
+void removeItemFromContainer(Item* item, std::vector<Item*>& container)
+{
+    int remIndex = -1;
+    for (size_t i = 0; i < container.size(); i++)
+    {
+        if (container[i] == item) {
+            remIndex = i;
+            break;
+        }
+    }
+    if (remIndex == -1)
+    {
+        return;
+    }
+    removeItemFromContainer(remIndex, container);
+}
+
+void deleteItemFromContainer(int index, std::vector<Item*>& container)
+{
+    delete container[index];
+    container.erase(container.begin() + index);
+}
+
+void deleteItemFromContainer(Item* item, std::vector<Item*>& container)
+{
+    int delIndex = -1;
+    for (size_t i = 0; i < container.size(); i++)
+    {
+        if (container[i] == item) {
+            delIndex = i;
+            break;
+        }
+    }
+    if (delIndex == -1)
+    {
+        return;
+    }
+    deleteItemFromContainer(delIndex, container);
 }

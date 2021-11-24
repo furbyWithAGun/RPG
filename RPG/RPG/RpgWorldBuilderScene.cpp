@@ -349,7 +349,7 @@ void RpgWorldBuilderScene::renderScene() {
     }
 }
 
-void RpgWorldBuilderScene::loadZone(int zoneId)
+void RpgWorldBuilderScene::setCurrentZone(int zoneId)
 {
     sceneToEdit = *getZone(zoneId);
     currentZone = &sceneToEdit;

@@ -50,7 +50,7 @@ public:
     virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
     virtual void loadZones();
-    virtual void loadZone(int zoneId);
+    virtual void setCurrentZone(int zoneId);
     virtual void createNewZone();
     void deleteZone(int zoneId);
     void saveZones();

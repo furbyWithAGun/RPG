@@ -183,7 +183,7 @@ void Player::faceMouseDirection(int x, int y) {
 void Player::portalTo(int zoneId, int x, int y)
 {
     Unit::portalTo(zoneId, x, y);
-    scene->loadZone(zone);
+    scene->setCurrentZone(zone);
 }
 
 void Player::death()

@@ -32,7 +32,7 @@ public:
     void handleInput() override;
     void sceneLogic() override;
     void renderScene() override;
-    void loadZone(int zoneId) override;
+    void setCurrentZone(int zoneId) override;
     void createNewZone() override;
     void createFirstZone();
     void virtual destroyUnit(RpgUnit* unit) override;

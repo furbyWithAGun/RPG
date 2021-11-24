@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "RpgGameConstants.h"
 #include "TownCommand.h"
+#include "RpgTown.h"
 
 class Player;
 
@@ -57,6 +58,9 @@ public:
     void virtual destroyFlaggedDooDads();
     void pickUpItemAtLocation(RpgUnit* unit, int x, int y);
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
+    RpgTown* getTownForZone(int zoneId);
+    std::vector<RpgTown*> getTowns();
+    void addTown(RpgTown* newTown);
 
 protected:
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
@@ -69,11 +73,19 @@ protected:
 private:
     //attributes
     std::vector<CombatText> combatMessages;
-    
+    std::vector<RpgTown*> towns;
+
     //methods
     void createTiles();
     void init();
     void drawCombatMessages();
     void updateCombatMessages();
 };
+
+void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container);
+void removeItemFromContainer(int index, std::vector<Item*>& container);
+void removeItemFromContainer(Item* item, std::vector<Item*>& container);
+void deleteItemFromContainer(int index, std::vector<Item*>& container);
+void deleteItemFromContainer(Item* item, std::vector<Item*>& container);
+
 

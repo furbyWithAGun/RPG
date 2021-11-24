@@ -63,7 +63,7 @@ void LoadZoneMenu::buildElements()
     MenuButton* loadButton = new MenuButton(ZONE_LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + (width - width * 0.8) / 2, ypos + height * 0.8);
     loadButton->setText("Load")->addOnClick([this]() {
         ScrollBox* scroller = (ScrollBox*) getElementbyId(ZONES_SCROLL_BOX);
-        scene->loadZone(scroller->getSelectedElementValue());
+        scene->setCurrentZone(scroller->getSelectedElementValue());
         close();
         });
     addElement(ZONE_LOAD_BUTTON, loadButton);
