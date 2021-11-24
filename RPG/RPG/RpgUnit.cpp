@@ -255,7 +255,7 @@ void RpgUnit::updateStats()
     {
         if (equippedItems[i] != nullptr)
         {
-            if (equippedItems[i]->type == ARMOUR)
+            if (equippedItems[i]->generalType == ARMOUR)
             {
                 armour += ((Armour*)equippedItems[i])->armour;
             }
@@ -674,7 +674,7 @@ std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
     {
         for (int j = 0; j < savedItems[i].attributes.size(); j++)
         {
-            if (savedItems[i].attributes[j].attributeType == ITEM_TYPE)
+            if (savedItems[i].attributes[j].attributeType == ITEM_GENERAL_TYPE)
             {
                 switch (stoi(savedItems[i].attributes[j].valueString)) {
                 case WEAPON:

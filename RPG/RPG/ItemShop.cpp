@@ -88,6 +88,6 @@ void ItemShop::init()
     type = BUILDING_ITEM_SHOP;
     iconTextureId = BUILDING_ICON_WEAPON_SHOP;
     goldCost = 700;
-    woodCost = 300;
+    woodCost = 10;
     setItemsForSale({ createNewItem(ITEM_CLUB), new ShortSword(), new Mace(), new LongSword(), new RagBody(), new RagBoots(), new RagGloves(), new RagHat(), new RagPants(), new LinenBody(), new LinenBoots(), new LinenGloves(), new LinenHat(), new LinenPants(), createNewItem(ITEM_LEATHER_HAT) });
 }

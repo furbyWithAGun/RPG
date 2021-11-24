@@ -39,6 +39,7 @@ BerryBush::BerryBush(SaveObject saveObject, TileGridScene* gameScene) : DooDad(s
             break;
         case BERRY_BUSH_BERRY_GROWN:
             berryGrown = stoi(saveObject.attributes[i].valueString);
+            //berryGrown = ITEM_RASPBERRY;
             break;
         case BERRY_BUSH_BERRY_REGROW_TICK:
             berryRegrowTick = stoi(saveObject.attributes[i].valueString);

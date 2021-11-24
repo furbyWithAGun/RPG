@@ -53,6 +53,7 @@ void RpgOverWorldScene::setUpMonsterTable()
 void RpgOverWorldScene::setCurrentZone(int zoneId)
 {
     RpgTileGridScene::setCurrentZone(zoneId);
+    currentTown = getTownForZone(zoneId);
 }
 
 void RpgOverWorldScene::declareSceneAssets()
@@ -87,7 +88,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -105,6 +106,19 @@ void RpgOverWorldScene::setUpScene()
 
     //setUp towns
     addTown(new RpgTown(this, 1));
+
+    //assignStart buildings to Towns
+    RpgTown* tempTown;
+    for (auto map: getZones())
+    {
+        tempTown = getTownForZone(map.second->id);
+        if (tempTown != nullptr)
+        {
+            for (auto building : map.second->getBuildings()) {
+                tempTown->addBuilding(building);
+            }
+        }
+    }
 
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);

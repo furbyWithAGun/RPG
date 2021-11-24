@@ -21,6 +21,7 @@ public:
     bool placingBuilding;
     bool placingDooDad;
     SDL_SpinLock unitDestroyLock;
+    RpgTown* currentTown;
 
     //pathing rates
     int aggroUpdateRate;
@@ -83,6 +84,7 @@ private:
 };
 
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container);
+void removeQtyFromContainer(int itemType, int qty);
 void removeItemFromContainer(int index, std::vector<Item*>& container);
 void removeItemFromContainer(Item* item, std::vector<Item*>& container);
 void deleteItemFromContainer(int index, std::vector<Item*>& container);

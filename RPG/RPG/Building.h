@@ -7,6 +7,11 @@ class RpgUnit;
 class DooDad;
 struct Location;
 
+struct ProductionInputOutput {
+    int itemType;
+    int qty;
+};
+
 enum BUILDING_SAVE_ATTRIBUTES {
     BULDING_TYPE,
     BUILDING_TILE_MAP,
@@ -63,6 +68,7 @@ public:
     std::vector<std::vector<BuildingTile*>> getBuldingTileMapFromSaveString(std::string saveString);
     std::vector<BuildingTile*> getBuldingTileVectorFromSaveString(std::string saveString);
     static void resetUid();
+    virtual void production() {};
 
 private:
     //methods

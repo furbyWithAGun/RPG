@@ -72,7 +72,7 @@ bool BasicMeleeAttack::startAttack() {
 
 
 void BasicMeleeAttack::processHit(RpgUnit* targetUnit) {
-    if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
+    if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex * 2, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
     {
         int damage = this->damageDealt();
         targetUnit->assignDamage(owningUnit,damage);

@@ -68,7 +68,7 @@ void InventoryMenu::draw()
     {
         btnDrop->active = true;;
         item = scene->player->inventory[items->getSelectedElementValue()];
-        if (item->type == FOOD)
+        if (item->generalType == FOOD)
         {
             btnEat->active = true;
         }
@@ -113,10 +113,10 @@ void InventoryMenu::rebuildElements()
         HoverToolTip* toolTip = createItemToolTip(scene->player->inventory[i], scene);
         registerToolTip(txtInvItem, toolTip);
 
-        if (scene->player->inventory[i]->type == FOOD) {
+        if (scene->player->inventory[i]->generalType == FOOD) {
             txtInvItem->addBtnOneCallback([this, i]() {
                 Item* selectedItem = scene->player->inventory[i];
-                if (selectedItem->type == FOOD)
+                if (selectedItem->generalType == FOOD)
                 {
                     Food* itemToEat = (Food*)selectedItem;
                     scene->player->eatFood(itemToEat);
@@ -259,7 +259,7 @@ void InventoryMenu::buildElements()
         if (items->getSelectedElementValue() != -1)
         {
             Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
-            if (selectedItem->type == FOOD)
+            if (selectedItem->generalType == FOOD)
             {
                 Food* itemToEat = (Food*)selectedItem;
                 scene->player->eatFood(itemToEat);

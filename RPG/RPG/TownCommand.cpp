@@ -42,7 +42,12 @@ void TownCommand::actionOn(Unit* unit, int actionType)
             unit->scene->closeMenu(RPG_OVERWORLD_MENU);
             break;
         case 2:
-            ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->townInventory);
+            if (((RpgTileGridScene*)scene)->currentTown != nullptr) {
+                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->currentTown->townInventory);
+            }
+            else if (((RpgTileGridScene*)scene)->getTownForZone(zoneId) != nullptr) {
+                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->townInventory);
+            }
             break;
         default:
             break;

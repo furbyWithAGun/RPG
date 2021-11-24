@@ -213,8 +213,16 @@ void Player::draw()
     xpos = desiredCoords[0] - scene->tileWidth;
     ypos = desiredCoords[1] - scene->tileHeight;
     currentState->updateAnimation();
-    Unit::drawNoCoordUpdate();
-    drawHealth();
+    if (cameraFollowPlayer)
+    {
+        Unit::drawNoCoordUpdate();
+        drawHealth();
+    }
+    else {
+
+        Unit::draw();
+        drawHealth();
+    }
 }
 
 //private methods

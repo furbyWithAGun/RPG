@@ -34,8 +34,8 @@ Item::Item(SaveObject saveObject)
         case ITEM_EQUIPABLE:
             equipable = stoi(saveObject.attributes[i].valueString);
             break;
-        case ITEM_TYPE:
-            type = stoi(saveObject.attributes[i].valueString);
+        case ITEM_GENERAL_TYPE:
+            generalType = stoi(saveObject.attributes[i].valueString);
             break;
         case ITEM_VALUE:
             value = stoi(saveObject.attributes[i].valueString);
@@ -46,16 +46,19 @@ Item::Item(SaveObject saveObject)
         case ITEM_STACK_SIZE:
             stackSize = stoi(saveObject.attributes[i].valueString);
             break;
+        case ITEM_SPECIFIC_TYPE:
+            specificType = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
     }
 }
 
-Item::Item(int itemType)
+Item::Item(int newGeneralType)
 {
     init();
-    type = itemType;
+    generalType = newGeneralType;
 }
 
 Item::Item(const Item& oldItem)
@@ -65,7 +68,8 @@ Item::Item(const Item& oldItem)
     textureKey = oldItem.textureKey;
     name = oldItem.name;
     equipable = oldItem.equipable;
-    type = oldItem.type;
+    generalType = oldItem.generalType;
+    specificType = oldItem.specificType;
     value = oldItem.value;
     stackable = oldItem.stackable;
     stackSize = oldItem.stackSize;
@@ -85,10 +89,11 @@ std::string Item::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), ITEM_TEXTURE_KEY, textureKey);
     saveString += getAttributeString(getUniqueId(), ITEM_NAME, name);
     saveString += getAttributeString(getUniqueId(), ITEM_EQUIPABLE, equipable);
-    saveString += getAttributeString(getUniqueId(), ITEM_TYPE, type);
+    saveString += getAttributeString(getUniqueId(), ITEM_GENERAL_TYPE, generalType);
     saveString += getAttributeString(getUniqueId(), ITEM_VALUE, value);
     saveString += getAttributeString(getUniqueId(), ITEM_STACKABLE, stackable);
     saveString += getAttributeString(getUniqueId(), ITEM_STACK_SIZE, stackSize);
+    saveString += getAttributeString(getUniqueId(), ITEM_SPECIFIC_TYPE, specificType);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_ITEM) + "\n";
@@ -99,11 +104,12 @@ std::string Item::toSaveString(bool withHeaderAndFooter)
 void Item::init()
 {
     id = -1;
+    specificType = -1;
     weight = 0;
     name = "";
     textureKey = -1;
     equipable = false;
-    type = ITEM_TYPE_UNKNOWN;
+    generalType = ITEM_TYPE_UNKNOWN;
     value = 1;
     stackSize = 1;
     stackable = false;

@@ -7,6 +7,7 @@
 #include "Item.h"
 #include "Graph.h"
 #include "BuildingFactory.h"
+#include "RpgTown.h"
 
 enum ZONE_MAP_ATTRIBUTES{
     ZONE_MAP_ID,

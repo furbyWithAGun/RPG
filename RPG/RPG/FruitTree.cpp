@@ -42,6 +42,7 @@ FruitTree::FruitTree(SaveObject saveObject, TileGridScene* gameScene) : Tree(sav
             break;
         case FRUIT_TREE_FRUIT_GROWN:
             fruitGrown = stoi(saveObject.attributes[i].valueString);
+            //fruitGrown = ITEM_APPLE;
             break;
         case FRUIT_TREE_FRUIT_REGROW_TICK:
             fruitRegrowTick = stoi(saveObject.attributes[i].valueString);

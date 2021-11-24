@@ -85,7 +85,7 @@ void ItemShopMenu::buildElements()
             if (scene->player->gold >= selectedItem->value * 2)
             {
                 scene->player->gold -= selectedItem->value * 2;
-                switch (selectedItem->type)
+                switch (selectedItem->generalType)
                 {
                 case WEAPON:
                     scene->player->addToInventory(new Weapon(*(Weapon*)selectedItem));

@@ -172,27 +172,27 @@ void RpgTileGridScene::declareSceneAssets()
     //townsperson textures
     texturesToLoad.insert({ MAC_WIZ_IDLE_DOWN, "images/shopKeeper.png" });
     //item textures
-    texturesToLoad.insert({ ITEM_SHORT_SWORD, "images/itemSword.png" });
-    texturesToLoad.insert({ ITEM_CLUB, "images/club.png" });
-    texturesToLoad.insert({ ITEM_MACE, "images/mace.png" });
-    texturesToLoad.insert({ ITEM_RAG_HAT, "images/RagHat.png" });
-    texturesToLoad.insert({ ITEM_RAG_BODY, "images/RagBody.png" });
-    texturesToLoad.insert({ ITEM_RAG_PANTS, "images/RagPants.png" });
-    texturesToLoad.insert({ ITEM_RAG_GLOVES, "images/RagGloves.png" });
-    texturesToLoad.insert({ ITEM_RAG_BOOTS, "images/RagBoots.png" });
-    texturesToLoad.insert({ ITEM_LONG_SWORD, "images/longSword.png" });
-    texturesToLoad.insert({ ITEM_LINEN_HAT, "images/LinenHat.png" });
-    texturesToLoad.insert({ ITEM_LINEN_BODY, "images/LinenBody.png" });
-    texturesToLoad.insert({ ITEM_LINEN_PANTS, "images/LinenPants.png" });
-    texturesToLoad.insert({ ITEM_LINEN_GLOVES, "images/LinenGloves.png" });
-    texturesToLoad.insert({ ITEM_LINEN_BOOTS, "images/LinenBoots.png" });
-    texturesToLoad.insert({ ITEM_LEATHER_HAT, "images/leatherHat.png" });
-    texturesToLoad.insert({ ITEM_LEATHER_BODY, "images/leatherBody.png" });
-    texturesToLoad.insert({ ITEM_LEATHER_PANTS, "images/leatherPants.png" });
-    texturesToLoad.insert({ ITEM_LEATHER_GLOVES, "images/leatherGloves.png" });
-    texturesToLoad.insert({ ITEM_LEATHER_BOOTS, "images/leatherBoots.png" });
+    texturesToLoad.insert({ TEXTURE_SHORT_SWORD, "images/itemSword.png" });
+    texturesToLoad.insert({ TEXTURE_CLUB, "images/club.png" });
+    texturesToLoad.insert({ TEXTURE_MACE, "images/mace.png" });
+    texturesToLoad.insert({ TEXTURE_RAG_HAT, "images/RagHat.png" });
+    texturesToLoad.insert({ TEXTURE_RAG_BODY, "images/RagBody.png" });
+    texturesToLoad.insert({ TEXTURE_RAG_PANTS, "images/RagPants.png" });
+    texturesToLoad.insert({ TEXTURE_RAG_GLOVES, "images/RagGloves.png" });
+    texturesToLoad.insert({ TEXTURE_RAG_BOOTS, "images/RagBoots.png" });
+    texturesToLoad.insert({ TEXTURE_LONG_SWORD, "images/longSword.png" });
+    texturesToLoad.insert({ TEXTURE_LINEN_HAT, "images/LinenHat.png" });
+    texturesToLoad.insert({ TEXTURE_LINEN_BODY, "images/LinenBody.png" });
+    texturesToLoad.insert({ TEXTURE_LINEN_PANTS, "images/LinenPants.png" });
+    texturesToLoad.insert({ TEXTURE_LINEN_GLOVES, "images/LinenGloves.png" });
+    texturesToLoad.insert({ TEXTURE_LINEN_BOOTS, "images/LinenBoots.png" });
+    texturesToLoad.insert({ TEXTURE_LEATHER_HAT, "images/leatherHat.png" });
+    texturesToLoad.insert({ TEXTURE_LEATHER_BODY, "images/leatherBody.png" });
+    texturesToLoad.insert({ TEXTURE_LEATHER_PANTS, "images/leatherPants.png" });
+    texturesToLoad.insert({ TEXTURE_LEATHER_GLOVES, "images/leatherGloves.png" });
+    texturesToLoad.insert({ TEXTURE_LEATHER_BOOTS, "images/leatherBoots.png" });
     //resources
-    texturesToLoad.insert({ ITEM_LOGS, "images/logs.png" });
+    texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     //food
     texturesToLoad.insert({ ITEM_APPLE, "images/apple.png" });
     texturesToLoad.insert({ ITEM_RASPBERRY, "images/raspberries.png" });
@@ -324,16 +324,42 @@ bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap
 
 void RpgTileGridScene::payBuildingCosts(Building* building) {
     player->gold -= buildingBeingPlaced.goldCost;
+    int woodCostRemaining = buildingBeingPlaced.woodCost;
     for (auto item : player->inventory) {
         if (item->name == "Logs")
         {
-            item->stackSize -= building->woodCost;
-            if (item->stackSize <= 0)
+            if (item->stackSize > woodCostRemaining)
             {
+                item->stackSize -= woodCostRemaining;
+                woodCostRemaining = 0;
+            }
+            else {
+                woodCostRemaining -= item->stackSize;
                 player->deleteItemFromInventory(item);
+            }
+
+        }
+    }
+
+    if (woodCostRemaining > 0)
+    {
+        for (auto item : currentTown->townInventory) {
+            if (item->name == "Logs")
+            {
+                if (item->stackSize > woodCostRemaining)
+                {
+                    item->stackSize -= woodCostRemaining;
+                    woodCostRemaining = 0;
+                }
+                else {
+                    woodCostRemaining -= item->stackSize;
+                    removeItemFromContainer(item, currentTown->townInventory);
+                }
+
             }
         }
     }
+
     menus[INVENTORY_MENU]->update();
 }
 
@@ -343,15 +369,22 @@ bool RpgTileGridScene::canAffordBuilding(Building* building)
     {
         return false;
     }
-
-    Item* woodInInventory = nullptr;
+    int totalWood = 0;
     for (auto item : player->inventory) {
         if (item->name == "Logs")
         {
-            woodInInventory = item;
+            totalWood += item->stackSize;
         }
     }
-    if (woodInInventory == nullptr || woodInInventory->stackSize < building->woodCost)
+
+    for (auto item : currentTown->townInventory) {
+        if (item->name == "Logs")
+        {
+            totalWood += item->stackSize;
+        }
+    }
+
+    if (totalWood < building->woodCost)
     {
         return false;
     }
@@ -625,41 +658,31 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         break;
     }
     getZone(zoneId)->addBuildingToLocation(createdBuilding, x, y);
+    
+    if (getTownForZone(zoneId) != nullptr)
+    {
+        getTownForZone(zoneId)->addBuilding(createdBuilding);
+    }
     return createdBuilding;
 }
 
 Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y)
 {
-    Building* createdBuilding;
-    TownCommand* newTownCommand;
-    switch (buildingType)
-    {
-    case BUILDING_ITEM_SHOP:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
-        break;
-    case BUILDING_CAMP_COMMAND_CENTRE:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
-        createdBuilding->assignDooDad(newTownCommand);
-        zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
-        break;
-    default:
-        createdBuilding = nullptr;
-        break;
-    }
-    zone->addBuildingToLocation(createdBuilding, x, y);
-    return createdBuilding;
+    return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
 }
 
 void RpgTileGridScene::removeBuildingFromZone(ZoneMap* zone, Building* building)
 {
     zone->removeBuildingFromZone(building);
+    if (getTownForZone(zone->id) != nullptr)
+    {
+        getTownForZone(zone->id)->removeBuilding(building);
+    }
 }
 
 void RpgTileGridScene::removeBuildingFromZone(ZoneMap zone, Building* building)
 {
-    zone.removeBuildingFromZone(building);
+    removeBuildingFromZone(&zone, building);
 }
 
 void RpgTileGridScene::createTiles()
@@ -696,6 +719,7 @@ void RpgTileGridScene::init()
     player = nullptr;
     placingBuilding = false;
     aggroUpdateRate = 40;
+    currentTown = nullptr;
 }
 
 void RpgTileGridScene::drawCombatMessages()

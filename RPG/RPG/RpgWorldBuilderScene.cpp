@@ -6,8 +6,8 @@
 #include "LoadZoneMenu.h"
 
 //constants
-//const int DEFAULT_DESIRED_TILES_DOWN = 10;
-//const int DEFAULT_DESIRED_TILES_ACROSS = 19;
+const int WORLD_BUILDER_DESIRED_TILES_DOWN = 15;
+const int WORLD_BUILDER_DESIRED_TILES_ACROSS = 30;
 
 
 //constructor
@@ -42,6 +42,11 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 
 void RpgWorldBuilderScene::setUpScene() {
     RpgTileGridScene::setUpScene();
+
+    desiredTilesAcross = WORLD_BUILDER_DESIRED_TILES_ACROSS;
+    desiredTilesDown = WORLD_BUILDER_DESIRED_TILES_DOWN;
+    resizeTiles();
+
     if (getZone(0) != nullptr)
     {
         sceneToEdit = ZoneMap(*getZone(0));
@@ -353,6 +358,7 @@ void RpgWorldBuilderScene::setCurrentZone(int zoneId)
 {
     sceneToEdit = *getZone(zoneId);
     currentZone = &sceneToEdit;
+    currentTown = getTownForZone(zoneId);
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
 }

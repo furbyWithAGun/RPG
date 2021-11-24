@@ -34,6 +34,16 @@ ZoneMap* RpgTown::getZoneMap()
     return townZoneMap;
 }
 
+void RpgTown::addBuilding(Building* newBuilding)
+{
+    addToBuildingVector(newBuilding);
+}
+
+void RpgTown::removeBuilding(Building* building)
+{
+    removeFromBuildingVector(building);
+}
+
 void RpgTown::init()
 {
     ticksSinceTownProduction = 0;
@@ -45,4 +55,29 @@ void RpgTown::init()
 void RpgTown::processTownCycle()
 {
     population++;
+    for (auto building : buildings){
+
+    }
+}
+
+void RpgTown::addToBuildingVector(Building* buildingToAdd)
+{
+    if (std::find(buildings.begin(), buildings.end(), buildingToAdd) == buildings.end())
+    {
+        buildings.push_back(buildingToAdd);
+    }
+}
+
+void RpgTown::removeFromBuildingVector(Building* buildingToRemove)
+{
+    auto buildingIterator = buildings.begin();
+    while (buildingIterator != buildings.end())
+    {
+        if ((*buildingIterator) == buildingToRemove) {
+            buildingIterator = buildings.erase(buildingIterator);
+        }
+        else {
+            buildingIterator++;
+        }
+    }
 }

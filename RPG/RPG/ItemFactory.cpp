@@ -4,7 +4,8 @@
 
 struct ItemTemplate {
 	std::string name;
-	int itemType;
+	int specificType;
+	int generalType;
 	int textureKey;
 	int slot;
 	int minDamage;
@@ -37,8 +38,9 @@ std::unordered_map<int, FoodTemplate> foodTemplates = {
 std::unordered_map<int, ItemTemplate> itemTemplates = {
 	{ITEM_RASPBERRY, ItemTemplate{
 		"Raspberry",
-		FOOD,
 		ITEM_RASPBERRY,
+		FOOD,
+		TEXTURE_RASPBERRY,
 		-1,
 		0,
 		0,
@@ -49,8 +51,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1
 	}},{ITEM_APPLE, ItemTemplate{
 		"Apple",
-		FOOD,
 		ITEM_APPLE,
+		FOOD,
+		TEXTURE_APPLE,
 		-1,
 		0,
 		0,
@@ -59,10 +62,11 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		true,
 		1
-	}},{ITEM_LOGS, ItemTemplate{
-		"Logs",
+	}},{ITEM_WOOD, ItemTemplate{
+		"Wood",
+		ITEM_WOOD,
 		RESOURCE,
-		ITEM_LOGS,
+		TEXTURE_LOGS,
 		-1,
 		0,
 		0,
@@ -74,8 +78,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_SHORT_SWORD, ItemTemplate{
 		"Short Sword",
-		WEAPON,
 		ITEM_SHORT_SWORD,
+		WEAPON,
+		TEXTURE_SHORT_SWORD,
 		LEFT_HAND,
 		4,
 		10,
@@ -87,8 +92,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_LONG_SWORD, ItemTemplate{
 		"Long Sword",
-		WEAPON,
 		ITEM_LONG_SWORD,
+		WEAPON,
+		TEXTURE_LONG_SWORD,
 		LEFT_HAND,
 		3,
 		22,
@@ -100,8 +106,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_CLUB, ItemTemplate{
 		"Club",
-		WEAPON,
 		ITEM_CLUB,
+		WEAPON,
+		TEXTURE_CLUB,
 		LEFT_HAND,
 		2,
 		6,
@@ -113,8 +120,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_MACE, ItemTemplate{
 		"Mace",
-		WEAPON,
 		ITEM_MACE,
+		WEAPON,
+		TEXTURE_MACE,
 		LEFT_HAND,
 		4,
 		14,
@@ -126,8 +134,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_RAG_BODY, ItemTemplate{
 		"Rag Shirt",
-		ARMOUR,
 		ITEM_RAG_BODY,
+		ARMOUR,
+		TEXTURE_RAG_BODY,
 		BODY_SLOT,
 		0,
 		0,
@@ -139,8 +148,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_RAG_BOOTS, ItemTemplate{
 		"Rag Boots",
-		ARMOUR,
 		ITEM_RAG_BOOTS,
+		ARMOUR,
+		TEXTURE_RAG_BOOTS,
 		FEET_SLOT,
 		0,
 		0,
@@ -152,8 +162,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_RAG_GLOVES, ItemTemplate{
 		"Rag Gloves",
-		ARMOUR,
 		ITEM_RAG_GLOVES,
+		ARMOUR,
+		TEXTURE_RAG_GLOVES,
 		HANDS_SLOT,
 		0,
 		0,
@@ -165,8 +176,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_RAG_HAT, ItemTemplate{
 		"Rag Hat",
-		ARMOUR,
 		ITEM_RAG_HAT,
+		ARMOUR,
+		TEXTURE_RAG_HAT,
 		HEAD_SLOT,
 		0,
 		0,
@@ -178,8 +190,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_RAG_PANTS, ItemTemplate{
 		"Rag Pants",
-		ARMOUR,
 		ITEM_RAG_PANTS,
+		ARMOUR,
+		TEXTURE_RAG_PANTS,
 		LEGS_SLOT,
 		0,
 		0,
@@ -191,8 +204,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ITEM_LINEN_BODY, ItemTemplate{
 		"Linen Shirt",
-		ARMOUR,
 		ITEM_LINEN_BODY,
+		ARMOUR,
+		TEXTURE_LINEN_BODY,
 		BODY_SLOT,
 		0,
 		0,
@@ -204,8 +218,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ ITEM_LINEN_BOOTS, ItemTemplate{
 		"Linen Boots",
-		ARMOUR,
 		ITEM_LINEN_BOOTS,
+		ARMOUR,
+		TEXTURE_LINEN_BOOTS,
 		FEET_SLOT,
 		0,
 		0,
@@ -217,8 +232,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LINEN_GLOVES, ItemTemplate{
 		"Linen Gloves",
-		ARMOUR,
 		ITEM_LINEN_GLOVES,
+		ARMOUR,
+		TEXTURE_LINEN_GLOVES,
 		HANDS_SLOT,
 		0,
 		0,
@@ -230,8 +246,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LINEN_HAT, ItemTemplate{
 		"Linen Hat",
-		ARMOUR,
 		ITEM_LINEN_HAT,
+		ARMOUR,
+		TEXTURE_LINEN_HAT,
 		HEAD_SLOT,
 		0,
 		0,
@@ -243,8 +260,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LINEN_PANTS, ItemTemplate{
 		"Linen Pants",
-		ARMOUR,
 		ITEM_LINEN_PANTS,
+		ARMOUR,
+		TEXTURE_LINEN_PANTS,
 		LEGS_SLOT,
 		0,
 		0,
@@ -256,8 +274,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ITEM_LEATHER_BODY, ItemTemplate{
 		"Leather Armour",
-		ARMOUR,
 		ITEM_LEATHER_BODY,
+		ARMOUR,
+		TEXTURE_LEATHER_BODY,
 		BODY_SLOT,
 		0,
 		0,
@@ -269,8 +288,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	}},
 	{ ITEM_LEATHER_BOOTS, ItemTemplate{
 		"Leather Boots",
-		ARMOUR,
 		ITEM_LEATHER_BOOTS,
+		ARMOUR,
+		TEXTURE_LEATHER_BOOTS,
 		FEET_SLOT,
 		0,
 		0,
@@ -282,8 +302,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LEATHER_GLOVES, ItemTemplate{
 		"leather Gloves",
-		ARMOUR,
 		ITEM_LEATHER_GLOVES,
+		ARMOUR,
+		TEXTURE_LEATHER_GLOVES,
 		HANDS_SLOT,
 		0,
 		0,
@@ -295,8 +316,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LEATHER_HAT, ItemTemplate{
 		"Leather Helm",
-		ARMOUR,
 		ITEM_LEATHER_HAT,
+		ARMOUR,
+		TEXTURE_LEATHER_HAT,
 		HEAD_SLOT,
 		0,
 		0,
@@ -308,8 +330,9 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 	} },
 	{ ITEM_LEATHER_PANTS, ItemTemplate{
 		"Leather Leggings",
-		ARMOUR,
 		ITEM_LEATHER_PANTS,
+		ARMOUR,
+		TEXTURE_LEATHER_PANTS,
 		LEGS_SLOT,
 		0,
 		0,
@@ -379,7 +402,7 @@ Item* createNewItemBlankId(int itemType)
 {
 	Item* itemToReturn;
 	ItemTemplate itemTemplate = itemTemplates[itemType];
-	switch (itemTemplate.itemType)
+	switch (itemTemplate.generalType)
 	{
 	case WEAPON:
 		itemToReturn = new Weapon();
@@ -427,13 +450,14 @@ Item* createNewItemBlankId(int itemType)
 		return new Item();
 		break;
 	}
+	itemToReturn->specificType = itemTemplate.specificType;
 	return itemToReturn;
 }
 
 HoverToolTip* createItemToolTip(Item* item, GameScene* scene)
 {
 	HoverToolTip* returnToolTip = new HoverToolTip();
-	switch (item->type)
+	switch (item->generalType)
 	{
 	case WEAPON:
 		returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.15);

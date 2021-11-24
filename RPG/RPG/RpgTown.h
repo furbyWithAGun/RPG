@@ -24,6 +24,8 @@ public:
     //methods
     void update();
     ZoneMap* getZoneMap();
+    void addBuilding(Building* newBuilding);
+    void removeBuilding(Building* building);
 
 private:
     //attributes
@@ -38,5 +40,8 @@ private:
     //methods
     void init();
     void processTownCycle();
+    //building vector
+    void addToBuildingVector(Building* buildingToAdd);
+    void removeFromBuildingVector(Building* buildingToRemove);
 };
 

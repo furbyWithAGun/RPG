@@ -16,7 +16,7 @@
 #include "Skeleton.h"
 #include "SkeletonKing.h"
 #include <algorithm>
-//#include "RpgTileGridScene.h"
+#include "RpgTileGridScene.h"
 
 const int PATH_FINDING_BREAK_LIMIT = 1500;
 const int DEFAULT_MAX_UNITS = 400;
@@ -99,6 +99,10 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 	setUpMaps();
 	for (auto building : buildingsToAdd) {
 		addBuildingToLocation(building, building->tileLocation->x, building->tileLocation->y);
+		if (gameScene->getTownForZone(id) != nullptr)
+		{
+			gameScene->getTownForZone(id)->addBuilding(building);
+		}
 	}
 	for (auto unit : unitsToAdd) {
 		addUnitToLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
@@ -797,6 +801,7 @@ bool ZoneMap::addBuildingToLocation(Building* building, int x, int y)
 		}
 	}
 	addToBuildingVector(building);
+	
 	return true;
 }
 
