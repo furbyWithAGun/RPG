@@ -85,6 +85,8 @@ void ItemShop::setItemsForSale(std::vector<Item*> newItemsForSale)
 
 void ItemShop::init()
 {
+    productionOutputs.push_back({ITEM_SHORT_SWORD, 1});
+    productionInputs.push_back({ITEM_WOOD, 1});
     type = BUILDING_ITEM_SHOP;
     iconTextureId = BUILDING_ICON_WEAPON_SHOP;
     goldCost = 700;

@@ -44,8 +44,40 @@ void RpgTown::removeBuilding(Building* building)
     removeFromBuildingVector(building);
 }
 
+std::vector<Item*>& RpgTown::getTownInventory()
+{
+    return townInventory;
+}
+
+int RpgTown::getTownGold()
+{
+    return townGold;
+}
+
+void RpgTown::setTownGold(int goldAmount)
+{
+    townGold = goldAmount;
+}
+
+bool RpgTown::subtractFromTownGold(int goldAmount)
+{
+    townGold -= goldAmount;
+    if (townGold < 0)
+    {
+        townGold = 0;
+        return false;
+    }
+    return true;
+}
+
+void RpgTown::addToTownGold(int goldAmount)
+{
+    townGold += goldAmount;
+}
+
 void RpgTown::init()
 {
+    townGold = 0;
     ticksSinceTownProduction = 0;
     population = 0;
     scene = nullptr;
@@ -55,9 +87,17 @@ void RpgTown::init()
 void RpgTown::processTownCycle()
 {
     population++;
+    std::vector<Item*> producedItems;
     for (auto building : buildings){
-
+        for (auto item : building->production(this)) {
+            producedItems.push_back(item);
+        }
     }
+    for (auto item : producedItems)
+    {
+        addItemToContainer(item, getTownInventory());
+    }
+    scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
 }
 
 void RpgTown::addToBuildingVector(Building* buildingToAdd)

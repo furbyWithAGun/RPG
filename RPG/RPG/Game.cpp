@@ -6,6 +6,7 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// items that are added to an existing stack may leak memory
 // unit spawner limits and spawn logic
 // easy switch between buy/sell
 // show inventory when at shop

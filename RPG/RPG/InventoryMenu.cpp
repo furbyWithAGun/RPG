@@ -365,7 +365,7 @@ void InventoryMenu::buildElements()
                         scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
                     }
                     else if (numToXfer > 0) {
-                        Item* itemToXfer = createNewItem(scene->player->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
+                        Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
                         itemToXfer->stackSize = numToXfer;
                         ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
                         scene->player->inventory[selection]->stackSize -= numToXfer;

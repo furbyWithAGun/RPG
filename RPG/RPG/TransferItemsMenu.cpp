@@ -82,20 +82,24 @@ void TransferItemsMenu::rebuildElements()
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
     toolTips.clear();
-    for (int i = 0; i < (*container).size(); i++)
+    if (container != nullptr)
     {
-        MenuText* txtInvItem = new MenuText(scene, (*container)[i]->name, 0, 0);
-        HoverToolTip* toolTip = createItemToolTip((*container)[i], scene);
-        registerToolTip(txtInvItem, toolTip);
-
-        if ((*container)[i]->stackSize > 1)
+        for (int i = 0; i < (*container).size(); i++)
         {
-            items->addElement(txtInvItem->setText((*container)[i]->name + " X " + std::to_string((*container)[i]->stackSize)), i);
-        }
-        else {
-            items->addElement(txtInvItem->setText((*container)[i]->name), i);
+            MenuText* txtInvItem = new MenuText(scene, (*container)[i]->name, 0, 0);
+            HoverToolTip* toolTip = createItemToolTip((*container)[i], scene);
+            registerToolTip(txtInvItem, toolTip);
+
+            if ((*container)[i]->stackSize > 1)
+            {
+                items->addElement(txtInvItem->setText((*container)[i]->name + " X " + std::to_string((*container)[i]->stackSize)), i);
+            }
+            else {
+                items->addElement(txtInvItem->setText((*container)[i]->name), i);
+            }
         }
     }
+    
     items->selectedElement = nullptr;
     if (items->subElements.size() <= items->numElementsToDisplay)
     {

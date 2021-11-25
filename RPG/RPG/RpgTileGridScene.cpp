@@ -326,7 +326,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
     player->gold -= buildingBeingPlaced.goldCost;
     int woodCostRemaining = buildingBeingPlaced.woodCost;
     for (auto item : player->inventory) {
-        if (item->name == "Logs")
+        if (item->specificType == ITEM_WOOD)
         {
             if (item->stackSize > woodCostRemaining)
             {
@@ -343,8 +343,8 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
 
     if (woodCostRemaining > 0)
     {
-        for (auto item : currentTown->townInventory) {
-            if (item->name == "Logs")
+        for (auto item : currentTown->getTownInventory()) {
+            if (item->specificType == ITEM_WOOD)
             {
                 if (item->stackSize > woodCostRemaining)
                 {
@@ -353,7 +353,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
                 }
                 else {
                     woodCostRemaining -= item->stackSize;
-                    removeItemFromContainer(item, currentTown->townInventory);
+                    removeItemFromContainer(item, currentTown->getTownInventory());
                 }
 
             }
@@ -369,20 +369,7 @@ bool RpgTileGridScene::canAffordBuilding(Building* building)
     {
         return false;
     }
-    int totalWood = 0;
-    for (auto item : player->inventory) {
-        if (item->name == "Logs")
-        {
-            totalWood += item->stackSize;
-        }
-    }
-
-    for (auto item : currentTown->townInventory) {
-        if (item->name == "Logs")
-        {
-            totalWood += item->stackSize;
-        }
-    }
+    int totalWood = qtyInContainer(ITEM_WOOD, player->inventory) + qtyInContainer(ITEM_WOOD, currentTown->getTownInventory());
 
     if (totalWood < building->woodCost)
     {
@@ -835,6 +822,18 @@ bool containerContainsAmount(int itemType, int qty, std::vector<Item*>& containe
     }
 
     return false;
+}
+
+int qtyInContainer(int itemType, std::vector<Item*>& container)
+{
+    int qtyInContainer = 0;
+    for (auto item : container) {
+        if (item->specificType == itemType)
+        {
+            qtyInContainer += item->stackSize;
+        }
+    }
+    return qtyInContainer;
 }
 
 void removeItemFromContainer(int index, std::vector<Item*>& container)

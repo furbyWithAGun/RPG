@@ -400,7 +400,7 @@ Item* createNewItem(int itemType)
 
 Item* createNewItemBlankId(int itemType)
 {
-	Item* itemToReturn;
+	Item* itemToReturn = nullptr;
 	ItemTemplate itemTemplate = itemTemplates[itemType];
 	switch (itemTemplate.generalType)
 	{
@@ -413,7 +413,6 @@ Item* createNewItemBlankId(int itemType)
 		((Weapon*)itemToReturn)->value = itemTemplate.value;
 		((Weapon*)itemToReturn)->twoHanded = itemTemplate.twoHanded;
 		((Weapon*)itemToReturn)->slot = itemTemplate.slot;
-		return itemToReturn;
 		break;
 	case ARMOUR:
 		itemToReturn = new Armour();
@@ -422,7 +421,6 @@ Item* createNewItemBlankId(int itemType)
 		((Armour*)itemToReturn)->value = itemTemplate.value;
 		((Armour*)itemToReturn)->armour = itemTemplate.armour;
 		((Armour*)itemToReturn)->slot = itemTemplate.slot;
-		return itemToReturn;
 		break;
 	case RESOURCE:
 		itemToReturn = new Item();
@@ -431,7 +429,6 @@ Item* createNewItemBlankId(int itemType)
 		itemToReturn->value = itemTemplate.value;
 		itemToReturn->stackable = itemTemplate.stackable;
 		itemToReturn->stackSize = itemTemplate.stackSize;
-		return itemToReturn;
 		break;
 	case FOOD:
 		itemToReturn = new Food();
@@ -443,11 +440,9 @@ Item* createNewItemBlankId(int itemType)
 		((Food*)itemToReturn)->hungerGain = foodTemplates[itemType].hungerGain;
 		((Food*)itemToReturn)->healthRegen = foodTemplates[itemType].healthRegen;
 		((Food*)itemToReturn)->healthRegenDurationInSeconds = foodTemplates[itemType].healthRegenDurationInSeconds;
-		return itemToReturn;
 		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");
-		return new Item();
 		break;
 	}
 	itemToReturn->specificType = itemTemplate.specificType;

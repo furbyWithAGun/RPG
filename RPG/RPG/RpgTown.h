@@ -13,9 +13,6 @@ const int TICKS_PER_TOWN_PRODUCTION = 1000;
 class RpgTown
 {
 public:
-    //attributes
-    std::vector<Item*> townInventory;
-
     //constructors
     RpgTown();
     RpgTown(RpgTileGridScene* gameScene);
@@ -26,13 +23,20 @@ public:
     ZoneMap* getZoneMap();
     void addBuilding(Building* newBuilding);
     void removeBuilding(Building* building);
+    std::vector<Item*>& getTownInventory();
+    int getTownGold();
+    void setTownGold(int goldAmount);
+    bool subtractFromTownGold(int goldAmount);
+    void addToTownGold(int goldAmount);
 
 private:
     //attributes
     int population;
     int ticksSinceTownProduction;
+    int townGold;
     RpgTileGridScene* scene;
     ZoneMap* townZoneMap;
+    std::vector<Item*> townInventory;
     std::vector<Equipment*> townArmoury;
     std::vector<Food*> townGranary;
     std::vector<Building*> buildings;

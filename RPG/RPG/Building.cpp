@@ -1,6 +1,7 @@
 #include "Building.h"
 #include "RpgUnit.h"
 #include "DooDad.h"
+#include "RpgTileGridScene.h"
 
 int uniqueBuildingId = 0;
 
@@ -249,6 +250,14 @@ void Building::resetUid()
     uniqueBuildingId = 0;
 }
 
+std::vector<Item*> Building::production(RpgTown* town)
+{
+    if (townCanAfffordProduction(town))
+    {
+        return createOutputs(town);
+    }
+    return std::vector<Item*>();
+}
 
 void Building::init()
 {
@@ -260,6 +269,9 @@ void Building::init()
     iconTextureId = -1;
     goldCost = 1;
     woodCost = 1;
+    productionGoldCost = 0;
+    productionInputs = {};
+    productionOutputs = {};
 }
 
 void Building::init(int buildingType)
@@ -267,6 +279,52 @@ void Building::init(int buildingType)
     init();
     type = buildingType;
 }
+
+bool Building::townCanAfffordProduction(RpgTown* town)
+{
+    if (town->getTownGold() < productionGoldCost)
+    {
+        return false;
+    }
+
+    for (auto item : productionInputs) {
+        if (qtyInContainer(item.itemType, town->getTownInventory()) < item.qty) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+std::vector<Item*> Building::createOutputs(RpgTown* town)
+{
+    std::vector<Item*> returnItems;
+    Item* newItem;
+    
+    for (auto item : productionInputs) {
+        removeQtyFromContainer(item.itemType, item.qty, town->getTownInventory());
+    }
+
+    town->subtractFromTownGold(productionGoldCost);
+
+    for (auto item : productionOutputs) {
+        newItem = createNewItem(item.itemType);
+        if (newItem->stackable)
+        {
+            newItem->stackSize = item.qty;
+            returnItems.push_back(newItem);
+        }
+        else {
+            for (size_t i = 0; i < (item.qty); i++)
+            {
+                returnItems.push_back(createNewItem(item.itemType));
+            }
+        }
+    }
+    return returnItems;
+}
+
+
 
 int getUniqueBuildingId()
 {

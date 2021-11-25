@@ -43,10 +43,10 @@ void TownCommand::actionOn(Unit* unit, int actionType)
             break;
         case 2:
             if (((RpgTileGridScene*)scene)->currentTown != nullptr) {
-                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->currentTown->townInventory);
+                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->currentTown->getTownInventory());
             }
             else if (((RpgTileGridScene*)scene)->getTownForZone(zoneId) != nullptr) {
-                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->townInventory);
+                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->getTownInventory());
             }
             break;
         default:

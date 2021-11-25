@@ -2,10 +2,12 @@
 #include <vector>
 #include "BuildingTile.h"
 #include <string>
+#include "ItemFactory.h"
 
 class RpgUnit;
 class DooDad;
 struct Location;
+class RpgTown;
 
 struct ProductionInputOutput {
     int itemType;
@@ -22,7 +24,8 @@ enum BUILDING_SAVE_ATTRIBUTES {
     BUILDING_ID,
     BUILDING_ICON_TEXTURE_ID,
     BUILDING_GOLD_COST,
-    BUILDING_WOOD_COST
+    BUILDING_WOOD_COST,
+    BUILDING_PRODUCTION_GOLD_COST
 };
 
 class Building
@@ -68,12 +71,21 @@ public:
     std::vector<std::vector<BuildingTile*>> getBuldingTileMapFromSaveString(std::string saveString);
     std::vector<BuildingTile*> getBuldingTileVectorFromSaveString(std::string saveString);
     static void resetUid();
-    virtual void production() {};
+    virtual std::vector<Item*> production(RpgTown* town);
+
+protected:
+    //attributes
+    std::vector<ProductionInputOutput> productionInputs;
+    std::vector<ProductionInputOutput> productionOutputs;
 
 private:
+    //attributes
+    int productionGoldCost;
     //methods
     void init();
     void init(int buildingType);
+    bool townCanAfffordProduction(RpgTown* town);
+    virtual std::vector<Item*> createOutputs(RpgTown* town);
 };
 
 int getUniqueBuildingId();
