@@ -194,8 +194,8 @@ void RpgTileGridScene::declareSceneAssets()
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     //food
-    texturesToLoad.insert({ ITEM_APPLE, "images/apple.png" });
-    texturesToLoad.insert({ ITEM_RASPBERRY, "images/raspberries.png" });
+    texturesToLoad.insert({ TEXTURE_APPLE, "images/apple.png" });
+    texturesToLoad.insert({ TEXTURE_RASPBERRY, "images/raspberries.png" });
     //building icons
     texturesToLoad.insert({ BUILDING_ICON_WEAPON_SHOP, "images/signWeapons.png" });
     texturesToLoad.insert({ BUILDING_ICON_ARMOUR_SHOP, "images/signArmour.png" });
@@ -792,6 +792,49 @@ void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)
     else {
         container.push_back(itemToAdd);
     }
+}
+
+
+
+void removeQtyFromContainer(int itemType, int qty, std::vector<Item*>& container)
+{
+    int qtyRemoved = 0;
+    std::vector<Item*> itemsTodelete;
+    for (auto item : container) {
+        if (item->specificType == itemType)
+        {
+            item->stackSize -= (qty - qtyRemoved);
+            if (item->stackSize > 0)
+            {
+                qtyRemoved += (qty - qtyRemoved);
+                break;
+            }
+            else {
+                itemsTodelete.push_back(item);
+                qtyRemoved += (qty - qtyRemoved) + item->stackSize;
+            }
+        }
+    }
+    for (auto itemToDelete : itemsTodelete) {
+        removeItemFromContainer(itemToDelete, container);
+    }
+}
+
+bool containerContainsAmount(int itemType, int qty, std::vector<Item*>& container)
+{
+    int qtyInContainer = 0;
+
+    for (auto item : container) {
+        if (item->specificType == itemType) {
+            qtyInContainer += item->stackSize;
+            if (qtyInContainer >= qty)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 void removeItemFromContainer(int index, std::vector<Item*>& container)

@@ -88,7 +88,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -435,7 +435,8 @@ void RpgOverWorldScene::sceneLogic()
         {
             if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
             {
-                createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 9, 54 });
+                createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y);
+                //createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 9, 54 });
             }
         }
 
