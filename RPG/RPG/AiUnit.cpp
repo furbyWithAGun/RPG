@@ -48,7 +48,7 @@ void AiUnit::init() {
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;
     checkToAttackTick = 0;
-    checkToAttackRate = 10;
+    checkToAttackRate = 2;
 }
 
 void AiUnit::update() {

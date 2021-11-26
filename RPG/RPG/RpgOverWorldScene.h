@@ -41,7 +41,7 @@ public:
 private:
     //attributes
     std::unordered_map<int, std::vector<ChanceObject>> monsterTable;
-    std::unordered_map<int, Unit*> squadUnits;
+    std::unordered_map<int, AiUnit*> squadUnits;
 
     //methods
     void init();

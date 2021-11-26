@@ -216,6 +216,11 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 	{
 		if ((*unitIterator) == unit) {
 			unitIterator = unitMap[key].erase(unitIterator);
+			if (unitMap[key].size() <= 0)
+			{
+				unitMap.erase(key);
+				break;
+			}
 		}
 		else {
 			unitIterator++;
@@ -259,7 +264,8 @@ void ZoneMap::removePortalFromMap(ZonePortal* portal)
 void ZoneMap::removePortalFromMap(int x, int y, ZonePortal* portal)
 {
 	int key = getMapKey(x, y);
-	portalMap[key] = nullptr;	
+	portalMap[key] = nullptr;
+	portalMap.erase(key);
 }
 
 void ZoneMap::addToDooDadMap(DooDad* dooDad, int x, int y)
@@ -292,6 +298,7 @@ void ZoneMap::removeDooDadFromMap(DooDad* dooDad, int x, int y)
 {
 	int key = getMapKey(x, y);
 	dooDadMap[key] = nullptr;
+	dooDadMap.erase(key);
 }
 
 void ZoneMap::addToBuildingMap(Building* building, int x, int y)
@@ -321,6 +328,7 @@ void ZoneMap::removeBuildingFromMap(Building* building, int x, int y)
 {
 	int key = getMapKey(x, y);
 	buildingMap2[key] = nullptr;
+	buildingMap2.erase(key);
 }
 
 std::vector<Unit*> ZoneMap::getUnits()
@@ -392,6 +400,11 @@ void ZoneMap::removeItemFromMap(int x, int y, Item* item)
 	{
 		if ((*itemIterator) == item) {
 			itemIterator = itemMap[key].erase(itemIterator);
+			if (itemMap[key].size() <= 0)
+			{
+				itemMap.erase(key);
+				break;
+			}
 		}
 		else {
 			itemIterator++;

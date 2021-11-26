@@ -75,7 +75,8 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
-    squadUnits[1] = createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
+    squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
+    squadUnits[1]->doesRandomMovement = false;
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
    // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
@@ -88,7 +89,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -97,6 +98,8 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, 8, 8);
     
     createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
+    createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
+    createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
     createUnitAtLocation(1, SOLDIER, 3, 8);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
     getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
@@ -180,9 +183,14 @@ void RpgOverWorldScene::handleInput()
                 getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                 if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
                 {
-                    Unit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
+                    RpgUnit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
                     if (unitAtLocation != nullptr && unitAtLocation != player)
                     {
+                        if (getTeamStatus(player->team, unitAtLocation->team) == ALLY)
+                        {
+                            //logic for clicking on allied units
+                            break;
+                        }
                         addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
                         break;
                     }
@@ -303,10 +311,17 @@ void RpgOverWorldScene::handleInput()
         getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
         if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
         {
-            Unit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
+            RpgUnit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
             if (unitAtLocation != nullptr && unitAtLocation != player)
             {
-                addCommand(InputMessage(PERFORM_MAIN_ATTACK, controllerInterface->latestXpos, controllerInterface->latestYpos));
+                if (getTeamStatus(player->team, unitAtLocation->team) == ALLY)
+                {
+                    //logic for allied unit hold LMB
+                }
+                else {
+                    addCommand(InputMessage(PERFORM_MAIN_ATTACK, controllerInterface->latestXpos, controllerInterface->latestYpos));
+                }
+                
             }
 
             DooDad* dooDadAtLocation = currentZone->getDooDadAtLocation(tileCoords[0], tileCoords[1]);
@@ -353,9 +368,11 @@ void RpgOverWorldScene::sceneLogic()
             {
                 if (squadUnits[message->misc] != nullptr) {
                     ((AiUnit*)squadUnits[message->misc])->doesRandomMovement = true;
+                    ((AiUnit*)squadUnits[message->misc])->adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
                 }
-                squadUnits[message->misc] = unitAtLocation;
+                squadUnits[message->misc] = (AiUnit*)unitAtLocation;
                 ((AiUnit*)unitAtLocation)->doesRandomMovement = false;
+                ((AiUnit*)squadUnits[message->misc])->adjustPathRate = 0;
             }
             break;
         default:
@@ -485,7 +502,7 @@ void RpgOverWorldScene::renderScene()
 
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
-        if (squadUnits[i] != nullptr) {
+        if (squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
             int coords[2];
             int destCoords[2];
             coordsFromTileIndex(squadUnits[i]->tileLocation->x, squadUnits[i]->tileLocation->y, coords);

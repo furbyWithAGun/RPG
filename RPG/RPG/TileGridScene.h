@@ -34,8 +34,6 @@ public:
     int desiredTilesAcross;
     int desiredTilesDown;
     //pathfinding rates
-    int getPathRate;
-    int adjustPathRate;
     int getNewPathFailLimit;
     int processPathFailLimit;
     bool updatingUnits;

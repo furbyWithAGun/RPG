@@ -22,9 +22,6 @@ void TileGridScene::init() {
     desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS;
     desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN;
     nextZoneId = 0;
-
-    getPathRate = 50;
-    adjustPathRate = 4;
     getNewPathFailLimit = 3;
     processPathFailLimit = 30;
 

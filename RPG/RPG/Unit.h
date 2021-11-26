@@ -69,6 +69,9 @@ public:
     int savedTargetUnitId;
     int savedCurrentStateId;
     std::vector<int> savedBeingTargetedByIds;
+    //pathfinding rates
+    int getPathRate;
+    int adjustPathRate;
     
     //constructors
     Unit();

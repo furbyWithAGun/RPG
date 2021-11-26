@@ -448,7 +448,7 @@ void RpgUnit::update()
     updateAttacks();
     if ((targetLocation != nullptr || targetUnit != nullptr) && pathDirections.size() <= 0)
     {
-        if (scene->getPathRate == getPathTick)
+        if (getPathRate == getPathTick)
         {
             getPathTick = 0;
             getNewPath();

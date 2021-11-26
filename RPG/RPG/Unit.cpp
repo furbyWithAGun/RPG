@@ -220,7 +220,9 @@ void Unit::init() {
     //special attributes for loading saved units
     savedSceneId = -1;
     savedTargetUnitId = -1;
-    
+    //pathfinding vars
+    getPathRate = DEFAULT_GET_PATH_RATE;
+    adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
 }
 
 void Unit::init(int zoneId, int unitType) {
@@ -357,7 +359,7 @@ bool Unit::processPath()
         {
             pathDirections.pop_back();
             startMovement(UP);
-            if (scene->adjustPathRate == adjustPathTick)
+            if (adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -380,7 +382,7 @@ bool Unit::processPath()
         {
             pathDirections.pop_back();
             startMovement(DOWN);
-            if (scene->adjustPathRate == adjustPathTick)
+            if (adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -403,7 +405,7 @@ bool Unit::processPath()
         {
             pathDirections.pop_back();
             startMovement(LEFT);
-            if (scene->adjustPathRate == adjustPathTick)
+            if (adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
@@ -426,7 +428,7 @@ bool Unit::processPath()
         {
             pathDirections.pop_back();
             startMovement(RIGHT);
-            if (scene->adjustPathRate == adjustPathTick)
+            if (adjustPathRate == adjustPathTick)
             {
                 getNewPath();
                 adjustPathTick = 0;
