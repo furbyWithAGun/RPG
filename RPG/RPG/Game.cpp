@@ -6,6 +6,7 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// army spawn rate during war will be determined by ratio of army size. If your army outnumbers the other 2:1 your troops will spawn twice as fast
 // items that are added to an existing stack may leak memory
 // unit spawner limits and spawn logic
 // easy switch between buy/sell

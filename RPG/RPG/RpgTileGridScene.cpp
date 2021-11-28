@@ -565,27 +565,6 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
     return createdUnit;
 }
 
-RpgTown* RpgTileGridScene::getTownForZone(int zoneId)
-{
-    for (auto town : towns)
-    {
-        if (town->getZoneMap()->id == zoneId) {
-            return town;
-        }
-    }
-    return nullptr;
-}
-
-std::vector<RpgTown*> RpgTileGridScene::getTowns()
-{
-    return towns;
-}
-
-void RpgTileGridScene::addTown(RpgTown* newTown)
-{
-    towns.push_back(newTown);
-}
-
 RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y)
 {
     RpgUnit* createdUnit;

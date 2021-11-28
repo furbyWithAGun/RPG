@@ -5,7 +5,7 @@
 #include "Building.h"
 
 class RpgTileGridScene;
-class ZoneMap;
+class RpgZone;
 
 const int TICKS_PER_TOWN_PRODUCTION = 1000;
 
@@ -13,6 +13,9 @@ const int TICKS_PER_TOWN_PRODUCTION = 1000;
 class RpgTown
 {
 public:
+    //attributes
+    int id;
+
     //constructors
     RpgTown();
     RpgTown(RpgTileGridScene* gameScene);
@@ -20,7 +23,8 @@ public:
 
     //methods
     void update();
-    ZoneMap* getZoneMap();
+    RpgZone* getZoneMap();
+    void setTownZoneMap(RpgZone* newTownZoneMap);
     void addBuilding(Building* newBuilding);
     void removeBuilding(Building* building);
     std::vector<Item*>& getTownInventory();
@@ -35,7 +39,7 @@ private:
     int ticksSinceTownProduction;
     int townGold;
     RpgTileGridScene* scene;
-    ZoneMap* townZoneMap;
+    RpgZone* townZoneMap;
     std::vector<Item*> townInventory;
     std::vector<Equipment*> townArmoury;
     std::vector<Food*> townGranary;

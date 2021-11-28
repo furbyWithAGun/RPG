@@ -16,7 +16,7 @@ RpgTown::RpgTown(RpgTileGridScene* gameScene, int zoneMapId)
 {
     init();
     scene = gameScene;
-    townZoneMap = scene->getZone(zoneMapId);
+    townZoneMap = (RpgZone*)scene->getZone(zoneMapId);
 }
 
 void RpgTown::update()
@@ -29,9 +29,14 @@ void RpgTown::update()
     }
 }
 
-ZoneMap* RpgTown::getZoneMap()
+RpgZone* RpgTown::getZoneMap()
 {
     return townZoneMap;
+}
+
+void RpgTown::setTownZoneMap(RpgZone* newTownZoneMap)
+{
+    townZoneMap = newTownZoneMap;
 }
 
 void RpgTown::addBuilding(Building* newBuilding)

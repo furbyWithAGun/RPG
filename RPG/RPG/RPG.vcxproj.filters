@@ -498,6 +498,9 @@
     <ClCompile Include="TransferItemsMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClCompile>
+    <ClCompile Include="RpgProvinceZone.cpp">
+      <Filter>Source Files\RpgGame\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -814,6 +817,9 @@
     </ClInclude>
     <ClInclude Include="TransferItemsMenu.h">
       <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="RpgProvinceZone.h">
+      <Filter>Header Files\RpgGame\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
