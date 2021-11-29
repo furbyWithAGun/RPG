@@ -820,7 +820,7 @@ bool ZoneMap::addBuildingToLocation(Building* building, int x, int y)
 		}
 	}
 	addToBuildingVector(building);
-	
+	building->setZone(this);
 	return true;
 }
 

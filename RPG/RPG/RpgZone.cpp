@@ -1,4 +1,5 @@
 #include "RpgZone.h"
+#include "RpgUnit.h"
 
 RpgZone::RpgZone(int newId, std::vector<std::vector<int>> tiles, RpgTileGridScene* gameScene) : ZoneMap(newId, tiles)
 {
@@ -46,11 +47,32 @@ std::string RpgZone::toSaveString(bool withHeaderAndFooter)
     {
         saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_ZONE) + "\n";
     }
+    saveString += ZoneMap::toSaveString(false);
     saveString += getAttributeString(getUniqueId(), RPG_ZONE_TYPE, zoneType);
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_ZONE) + "\n";
     }
     return saveString;
+}
+
+
+int RpgZone::getNumUnits()
+{
+    return getUnits().size();
+}
+
+int RpgZone::getNumUnitsOnTeam(int team)
+{
+    int numUnitsOnTeam = 0;
+
+    for (auto* unit : getUnits()) {
+        if (((RpgUnit*)unit)->team == team)
+        {
+            numUnitsOnTeam++;
+        }
+    }
+
+    return numUnitsOnTeam;
 }
 
 void RpgZone::init()

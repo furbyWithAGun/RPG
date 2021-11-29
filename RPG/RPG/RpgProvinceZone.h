@@ -1,12 +1,6 @@
 #pragma once
 #include "RpgZone.h"
 
-enum RPG_ZONE_TYPES {
-    ZONE_PROVINCE,
-    ZONE_TOWN,
-    ZONE_CAVE
-};
-
 class RpgProvinceZone : public RpgZone
 {
 public:
@@ -18,12 +12,15 @@ public:
     RpgProvinceZone(const RpgProvinceZone& oldZone);
 
     //methods
-    int getNumUnits();
-    int getNumUnitsOnTeam(int team);
     void addTownToZone(RpgTown* townToAdd);
+
+    virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 private:
     //attributes
     std::vector<RpgTown*> towns;
+
+    //methods
+    void init();
 };
 

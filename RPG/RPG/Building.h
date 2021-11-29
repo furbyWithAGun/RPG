@@ -8,6 +8,8 @@ class RpgUnit;
 class DooDad;
 struct Location;
 class RpgTown;
+class ZoneMap;
+class RpgTileGridScene;
 
 struct ProductionInputOutput {
     int itemType;
@@ -58,6 +60,7 @@ public:
     int getY();
 
     //methods
+    virtual void update(RpgTileGridScene* scene) {};
     BuildingTile* getTileAtMapLocation(int x, int y);
     virtual int onActionAssignedUnit(RpgUnit* unit);
     virtual int onActionAssignedDooDad(DooDad* dooDad);
@@ -72,11 +75,13 @@ public:
     std::vector<BuildingTile*> getBuldingTileVectorFromSaveString(std::string saveString);
     static void resetUid();
     virtual std::vector<Item*> production(RpgTown* town);
+    void setZone(ZoneMap* newZone);
 
 protected:
     //attributes
     std::vector<ProductionInputOutput> productionInputs;
     std::vector<ProductionInputOutput> productionOutputs;
+    ZoneMap* zone;
 
 private:
     //attributes

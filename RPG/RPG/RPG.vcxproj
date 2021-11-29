@@ -162,6 +162,7 @@
     <ClCompile Include="Attack.cpp" />
     <ClCompile Include="AttackingState.cpp" />
     <ClCompile Include="BareHands.cpp" />
+    <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="RpgTown.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="Attack.h" />
     <ClInclude Include="AttackingState.h" />
     <ClInclude Include="BareHands.h" />
+    <ClInclude Include="Barracks.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
     <ClInclude Include="ItemShopMenu.h" />

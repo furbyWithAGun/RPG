@@ -28,6 +28,8 @@ public:
     void updateMobSpawnButton();
     void updateDifficultyText();
     void setZoneDifficulty();
+    void updateZoneTypeText();
+    void setZoneType();
 
 private:
     //attributes

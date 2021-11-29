@@ -1,13 +1,21 @@
 #pragma once
 #include "TileGridScene.h"
+#include "RpgGameConstants.h"
+#include "BaseGameEngine.h"
+#include "Player.h"
+#include "Rat.h"
+#include "RatKing.h"
+#include "WhiteRat.h"
+#include "Soldier.h"
+#include "TownsPerson.h"
+#include "Skeleton.h"
+#include "SkeletonKing.h"
+#include "RpgTown.h"
+#include "RpgProvinceZone.h"
+#include "TownCommand.h"
 #include "BuildingFactory.h"
 #include "CombatText.h"
 #include "ItemShop.h"
-#include "Player.h"
-#include "RpgGameConstants.h"
-#include "TownCommand.h"
-#include "RpgTown.h"
-#include "RpgZone.h"
 
 class Player;
 
@@ -22,7 +30,6 @@ public:
     bool placingBuilding;
     bool placingDooDad;
     SDL_SpinLock unitDestroyLock;
-    RpgTown* currentTown;
 
     //pathing rates
     int aggroUpdateRate;
@@ -50,8 +57,8 @@ public:
     RpgUnit* getUnitAtLocation(int zoneId, int x, int y);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
-    void payBuildingCosts(Building* building);
-    bool canAffordBuilding(Building* building);
+    void payBuildingCosts(Building* building, RpgTown* town);
+    bool canAffordBuilding(Building* building, RpgTown* town);
     virtual void loadZones() override;
     void resizeTiles();
     void virtual destroyUnit(RpgUnit* unit);

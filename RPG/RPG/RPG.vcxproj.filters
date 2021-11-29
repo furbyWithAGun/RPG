@@ -504,6 +504,9 @@
     <ClCompile Include="RpgZone.cpp">
       <Filter>Source Files\RpgGame\map</Filter>
     </ClCompile>
+    <ClCompile Include="Barracks.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -826,6 +829,9 @@
     </ClInclude>
     <ClInclude Include="RpgZone.h">
       <Filter>Header Files\RpgGame\map</Filter>
+    </ClInclude>
+    <ClInclude Include="Barracks.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

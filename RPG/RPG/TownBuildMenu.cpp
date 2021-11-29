@@ -80,7 +80,7 @@ void TownBuildMenu::buildPageOne()
         button->width = engine->screenWidth / WIDTH_ADJUSTOR;
         button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
         button->addOnClick([this, i]() {
-            if (scene->canAffordBuilding(&buildingTemplates[i]))
+            if (scene->canAffordBuilding(&buildingTemplates[i], (RpgTown*)scene->currentZone))
             {
                 scene->buildingBeingPlaced = buildingTemplates[i];
                 scene->placingBuilding = true;

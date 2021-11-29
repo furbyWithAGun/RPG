@@ -74,7 +74,7 @@ class ZoneMap {
         void removeItemAtLocation(Item* item, int xpos, int ypos);
         void addItemToLocation(Item* item, int xpos, int ypos);
         void removePortalAtLocation(int xpos, int ypos);
-        std::string toSaveString(bool withHeaderAndFooter = true);
+        virtual std::string toSaveString(bool withHeaderAndFooter = true);
         int getDevelopmentLevel();
         int getDifficulty();
         void draw(TileGridScene* scene);
@@ -87,7 +87,7 @@ class ZoneMap {
         bool addUnitToDestinationLocation(Unit* unit);
         bool removeUnitFromZone(Unit* unit);
         std::vector<Unit*> getUnitsAtLocation(int x, int y);
-        void update();
+        virtual void update();
         void removeUnitFromLocation(Unit* unit, int x, int y);
         void updateUnitMap();
         bool isTilePassable(TileGridScene* scene, int x, int y);

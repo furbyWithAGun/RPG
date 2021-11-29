@@ -2,6 +2,7 @@
 #include "RpgUnit.h"
 #include "DooDad.h"
 #include "RpgTileGridScene.h"
+#include "RpgTown.h"
 
 int uniqueBuildingId = 0;
 
@@ -259,6 +260,11 @@ std::vector<Item*> Building::production(RpgTown* town)
     return std::vector<Item*>();
 }
 
+void Building::setZone(ZoneMap* newZone)
+{
+    zone = newZone;
+}
+
 void Building::init()
 {
     id = -1;
@@ -272,6 +278,7 @@ void Building::init()
     productionGoldCost = 0;
     productionInputs = {};
     productionOutputs = {};
+    zone = nullptr;
 }
 
 void Building::init(int buildingType)

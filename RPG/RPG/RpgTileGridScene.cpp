@@ -1,13 +1,4 @@
 #include "RpgTileGridScene.h"
-#include "BaseGameEngine.h"
-#include "Player.h"
-#include "Rat.h"
-#include "RatKing.h"
-#include "WhiteRat.h"
-#include "Soldier.h"
-#include "TownsPerson.h"
-#include "Skeleton.h"
-#include "SkeletonKing.h"
 
 const int SCROLL_SPEED = 12;
 
@@ -322,7 +313,7 @@ bool RpgTileGridScene::buildingCanBePlacedAtLocation(Building* building, ZoneMap
     return buildingCanBePlacedAtLocation(building, zoneMap, location->x, location->y);
 }
 
-void RpgTileGridScene::payBuildingCosts(Building* building) {
+void RpgTileGridScene::payBuildingCosts(Building* building, RpgTown* town) {
     player->gold -= buildingBeingPlaced.goldCost;
     int woodCostRemaining = buildingBeingPlaced.woodCost;
     for (auto item : player->inventory) {
@@ -343,7 +334,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
 
     if (woodCostRemaining > 0)
     {
-        for (auto item : currentTown->getTownInventory()) {
+        for (auto item : town->getTownInventory()) {
             if (item->specificType == ITEM_WOOD)
             {
                 if (item->stackSize > woodCostRemaining)
@@ -353,7 +344,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
                 }
                 else {
                     woodCostRemaining -= item->stackSize;
-                    removeItemFromContainer(item, currentTown->getTownInventory());
+                    removeItemFromContainer(item, town->getTownInventory());
                 }
 
             }
@@ -363,13 +354,13 @@ void RpgTileGridScene::payBuildingCosts(Building* building) {
     menus[INVENTORY_MENU]->update();
 }
 
-bool RpgTileGridScene::canAffordBuilding(Building* building)
+bool RpgTileGridScene::canAffordBuilding(Building* building, RpgTown* town)
 {
     if (player->gold < building->goldCost)
     {
         return false;
     }
-    int totalWood = qtyInContainer(ITEM_WOOD, player->inventory) + qtyInContainer(ITEM_WOOD, currentTown->getTownInventory());
+    int totalWood = qtyInContainer(ITEM_WOOD, player->inventory) + qtyInContainer(ITEM_WOOD, town->getTownInventory());
 
     if (totalWood < building->woodCost)
     {
@@ -385,7 +376,29 @@ void RpgTileGridScene::loadZones()
     SaveFile zonesFile = SaveFile("zones.txt");
     zonesFile.loadFile();
     for (auto zone : zonesFile.objects) {
-        ZoneMap* newZone = new ZoneMap(zone.rawString, this);
+        RpgZone* newZone = nullptr;
+        for (int i = 0; i < zone.attributes.size(); i++)
+        {
+            if (zone.attributes[i].attributeType == RPG_ZONE_TYPE) {
+                switch (std::stoi(zone.attributes[i].valueString))
+                {
+                case ZONE_RPG_TOWN:
+                    newZone = new RpgTown(zone.rawString, this);
+                    break;
+                case ZONE_RPG_PROVINCE:
+                    newZone = new RpgProvinceZone(zone.rawString, this);
+                    break;
+                default:
+                    newZone = new RpgZone(zone.rawString, this);
+                    break;
+                }
+            }
+        }
+        //RpgZone* newZone = new RpgZone(zone.rawString, this);
+        if (newZone == nullptr)
+        {
+            newZone = new RpgZone(zone.rawString, this);
+        }
         newZone->setupGraph(this);
         addZone(newZone);
         if (newZone->id >= nextZoneId)
@@ -419,6 +432,7 @@ void RpgTileGridScene::loadZones()
     xOffset = 0;
     yOffset = 0;
 }
+
 
 void RpgTileGridScene::resizeTiles()
 {
@@ -619,31 +633,27 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         createdBuilding->assignDooDad(newTownCommand);
         getZone(zoneId)->addDooDadToLocation(newTownCommand, x + 2, y + 2);
         break;
+    case BUILDING_BARRACKS:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
+        break;
     default:
         createdBuilding = nullptr;
         break;
     }
     getZone(zoneId)->addBuildingToLocation(createdBuilding, x, y);
-    
-    if (getTownForZone(zoneId) != nullptr)
-    {
-        getTownForZone(zoneId)->addBuilding(createdBuilding);
-    }
+
     return createdBuilding;
 }
 
-Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y)
-{
-    return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
-}
+    Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap * zone, int buildingType, int direction, int x, int y)
+    {
+        return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
+    }
 
 void RpgTileGridScene::removeBuildingFromZone(ZoneMap* zone, Building* building)
 {
     zone->removeBuildingFromZone(building);
-    if (getTownForZone(zone->id) != nullptr)
-    {
-        getTownForZone(zone->id)->removeBuilding(building);
-    }
 }
 
 void RpgTileGridScene::removeBuildingFromZone(ZoneMap zone, Building* building)
@@ -685,7 +695,6 @@ void RpgTileGridScene::init()
     player = nullptr;
     placingBuilding = false;
     aggroUpdateRate = 40;
-    currentTown = nullptr;
 }
 
 void RpgTileGridScene::drawCombatMessages()

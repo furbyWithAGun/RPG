@@ -53,7 +53,6 @@ void RpgOverWorldScene::setUpMonsterTable()
 void RpgOverWorldScene::setCurrentZone(int zoneId)
 {
     RpgTileGridScene::setCurrentZone(zoneId);
-    currentTown = getTownForZone(zoneId);
 }
 
 void RpgOverWorldScene::declareSceneAssets()
@@ -89,7 +88,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, { itemToDrop });
     
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -107,21 +106,6 @@ void RpgOverWorldScene::setUpScene()
     createUnitAtLocation(2, RAT_KING, 29, 1);
     createUnitAtLocation(3, SKELETON_KING, 28, 28);
 
-    //setUp towns
-    addTown(new RpgTown(this, 1));
-
-    //assignStart buildings to Towns
-    RpgTown* tempTown;
-    for (auto map: getZones())
-    {
-        tempTown = getTownForZone(map.second->id);
-        if (tempTown != nullptr)
-        {
-            for (auto building : map.second->getBuildings()) {
-                tempTown->addBuilding(building);
-            }
-        }
-    }
 
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
@@ -132,6 +116,9 @@ void RpgOverWorldScene::setUpScene()
     menus[TRANSFER_ITEMS_MENU] = new TransferItemsMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU);
     menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
+
+    //setup town
+    ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
 
     SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
 }
@@ -350,9 +337,9 @@ void RpgOverWorldScene::sceneLogic()
         switch (message->id)
         {
         case OVERWORLD_PLACE_BUILDING:
-            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && canAffordBuilding(&buildingBeingPlaced)) {
+            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && canAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone)) {
                 createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
-                payBuildingCosts(&buildingBeingPlaced);
+                payBuildingCosts(&buildingBeingPlaced, (RpgTown*)currentZone);
             }
             break;
         case OVERWORLD_COMMAND_UNIT:
@@ -477,11 +464,6 @@ void RpgOverWorldScene::sceneLogic()
     }
     
     delete message;
-
-    for (auto town : getTowns())
-    {
-        town->update();
-    }
 }
 
 void RpgOverWorldScene::renderScene()

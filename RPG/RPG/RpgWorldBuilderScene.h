@@ -17,9 +17,9 @@ public:
     int portalBeingPlacedExitId;
     int portalBeingPlacedExitCoordsX;
     int portalBeingPlacedExitCoordsY;
-    ZoneMap* portalExitZone;
+    RpgZone* portalExitZone;
     int previousZoneXoffset, previousZoneYoffset;
-    ZoneMap sceneToEdit;
+    RpgZone sceneToEdit;
 
 
     //constructor

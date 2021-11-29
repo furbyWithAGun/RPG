@@ -2,6 +2,7 @@
 #include "Unit.h"
 #include "TransferItemsMenu.h"
 #include "RpgTileGridScene.h"
+#include "RpgTown.h"
 
 TownCommand::TownCommand() : DooDad()
 {
@@ -38,15 +39,16 @@ void TownCommand::actionOn(Unit* unit, int actionType)
         switch (townCommandPromp->getSelectedOptionValue())
         {
         case 1:
-            unit->scene->openMenu(TOWN_BUILD_MENU);
-            unit->scene->closeMenu(RPG_OVERWORLD_MENU);
+            if (((RpgZone*)scene->getZone(zoneId))->zoneType == ZONE_RPG_TOWN)
+            {
+                scene->openMenu(TOWN_BUILD_MENU);
+                scene->closeMenu(RPG_OVERWORLD_MENU);
+            }
             break;
         case 2:
-            if (((RpgTileGridScene*)scene)->currentTown != nullptr) {
-                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->currentTown->getTownInventory());
-            }
-            else if (((RpgTileGridScene*)scene)->getTownForZone(zoneId) != nullptr) {
-                ((TransferItemsMenu*)unit->scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTileGridScene*)scene)->getTownForZone(zoneId)->getTownInventory());
+            if (((RpgZone*)scene->getZone(zoneId))->zoneType == ZONE_RPG_TOWN)
+            {
+                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->open(&((RpgTown*)scene->currentZone)->getTownInventory());
             }
             break;
         default:
@@ -56,7 +58,7 @@ void TownCommand::actionOn(Unit* unit, int actionType)
         });
     townCommandPromp->active = true;
     townCommandPromp->closeOnClickMiss = true;
-    unit->scene->addPrompt(townCommandPromp);
+    scene->addPrompt(townCommandPromp);
 }
 
 void TownCommand::init()

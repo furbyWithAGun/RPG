@@ -21,7 +21,10 @@ public:
     RpgZone();
 
     //methods
-    std::string toSaveString(bool withHeaderAndFooter = true);
+    int getNumUnits();
+    int getNumUnitsOnTeam(int team);
+
+    virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 protected:
     //attributes

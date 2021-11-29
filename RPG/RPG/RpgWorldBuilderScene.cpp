@@ -49,7 +49,7 @@ void RpgWorldBuilderScene::setUpScene() {
 
     if (getZone(0) != nullptr)
     {
-        sceneToEdit = ZoneMap(*getZone(0));
+        sceneToEdit = RpgZone(*((RpgZone*)getZone(0)));
     } else{
         createFirstZone();
         addZone(0, &sceneToEdit);
@@ -356,29 +356,30 @@ void RpgWorldBuilderScene::renderScene() {
 
 void RpgWorldBuilderScene::setCurrentZone(int zoneId)
 {
-    sceneToEdit = *getZone(zoneId);
+    sceneToEdit = *((RpgZone*)getZone(zoneId));
     currentZone = &sceneToEdit;
-    currentTown = getTownForZone(zoneId);
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
+    ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateZoneTypeText();
 }
 
 void RpgWorldBuilderScene::createNewZone()
 {
     //loadZones();
-    sceneToEdit = ZoneMap();
+    sceneToEdit = RpgZone();
     sceneToEdit.id = nextZoneId;
     sceneToEdit.zoneName = std::to_string(sceneToEdit.id);
     currentZone = &sceneToEdit;
     nextZoneId++;
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
+    ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateZoneTypeText();
 }
 
 void RpgWorldBuilderScene::createFirstZone()
 {
     //loadZones();
-    sceneToEdit = ZoneMap();
+    sceneToEdit = RpgZone();
     sceneToEdit.id = nextZoneId;
     sceneToEdit.zoneName = std::to_string(sceneToEdit.id);
     currentZone = &sceneToEdit;

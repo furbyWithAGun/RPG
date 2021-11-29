@@ -40,12 +40,13 @@ void saveZoneMenu::buildElements()
         {
             scene->sceneToEdit.zoneName = getElementbyId(ZONE_NAME_TEXT_BOX)->getText();
             ((ZoneBuilderMenu*)scene->menus[BUILD_MENU])->setZoneDifficulty();
+            ((ZoneBuilderMenu*)scene->menus[BUILD_MENU])->setZoneType();
             //scene->sceneToEdit.doodads.clear();
             //scene->sceneToEdit.backGroundTile = MOUNTAIN;
             //scene->sceneToEdit.mobSpawn = false;
             //scene->sceneToEdit.doodads.push_back(new HealingPad(scene, BLANK_PORTAL, 11, 3));
-            ZoneMap* newZone = &scene->sceneToEdit;
-            scene->addZone(newZone->id, new ZoneMap(*newZone));
+            RpgZone* newZone = &scene->sceneToEdit;
+            scene->addZone(newZone->id, new RpgZone(*newZone));
             scene->saveZones();
             close();
         }

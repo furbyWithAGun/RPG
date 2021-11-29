@@ -13,22 +13,7 @@ std::unordered_map<int, BuildingTemplate> buildingTemplates = {
 
 Building* createNewBuilding(int newBuildingType, int direction)
 {
-	Building* buildingToReturn;
-	//BuildingTemplate buildingTemplate = buildingTemplates[newBuildingType];*/
-
-	switch (newBuildingType)
-	{
-	case BUILDING_ITEM_SHOP:
-		buildingToReturn = new ItemShop(direction);
-		break;
-	case BUILDING_CAMP_COMMAND_CENTRE:
-		buildingToReturn = new CampCommandCentre(direction);
-		break;
-	default:
-		printf("Warning: creating blank Building() from building factory");
-		buildingToReturn = new Building();
-		break;
-	}
+	Building* buildingToReturn = createNewBuildingNoId(newBuildingType, direction);
 	buildingToReturn->id = getUniqueBuildingId();
 	return buildingToReturn;
 }
@@ -36,7 +21,6 @@ Building* createNewBuilding(int newBuildingType, int direction)
 Building* createNewBuildingNoId(int newBuildingType, int direction)
 {
 	Building* buildingToReturn;
-	//BuildingTemplate buildingTemplate = buildingTemplates[newBuildingType];*/
 
 	switch (newBuildingType)
 	{
@@ -45,6 +29,9 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 		break;
 	case BUILDING_CAMP_COMMAND_CENTRE:
 		buildingToReturn = new CampCommandCentre(direction);
+		break;
+	case BUILDING_BARRACKS:
+		buildingToReturn = new Barracks(direction);
 		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");

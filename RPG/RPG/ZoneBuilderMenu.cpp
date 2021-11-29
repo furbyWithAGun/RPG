@@ -14,6 +14,7 @@ enum SAVE_BUILDER_MENU_IDS {
     MOB_SPAWN_BUTTON_TRUE,
     MOB_SPAWN_BUTTON_FALSE,
     TXT_DIFFICULTY,
+    TXT_ZONE_TYPE,
     BUILDINGS_SCROLL_BOX,
     DOODADS_SCROLL_BOX,
     QUIT_BUTTON
@@ -29,6 +30,7 @@ ZoneBuilderMenu::ZoneBuilderMenu(RpgWorldBuilderScene* gameScene, int newId, int
     buildElements();
     updateMobSpawnButton();
     updateDifficultyText();
+    updateZoneTypeText();
 }
 
 void ZoneBuilderMenu::close()
@@ -86,6 +88,19 @@ void ZoneBuilderMenu::updateDifficultyText()
 void ZoneBuilderMenu::setZoneDifficulty()
 {
     scene->sceneToEdit.difficulty = std::stoi(getElementbyId(TXT_DIFFICULTY)->getText());
+}
+
+void ZoneBuilderMenu::updateZoneTypeText()
+{
+    if (&scene->sceneToEdit != nullptr)
+    {
+        ((TextBox*)getElementbyId(TXT_ZONE_TYPE))->setText(std::to_string(scene->sceneToEdit.zoneType));
+    }
+}
+
+void ZoneBuilderMenu::setZoneType()
+{
+    scene->sceneToEdit.zoneType = std::stoi(getElementbyId(TXT_ZONE_TYPE)->getText());
 }
 
 
@@ -212,6 +227,10 @@ void ZoneBuilderMenu::buildPageTwo()
     mainPanel->addElementToPage(1, new MenuText(scene, "Difficulty", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.7));
     TextBox* txtDifficulty = new TextBox(TXT_DIFFICULTY, scene, scene->mainCanvasStartX / 6, engine->screenHeight * 0.75, scene->mainCanvasStartX / 2, engine->screenHeight * 0.04);
     mainPanel->addElementToPage(1, txtDifficulty);
+
+    mainPanel->addElementToPage(1, new MenuText(scene, "Zone Type", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.8));
+    TextBox* txtZoneType = new TextBox(TXT_ZONE_TYPE, scene, scene->mainCanvasStartX / 6, engine->screenHeight * 0.85, scene->mainCanvasStartX / 2, engine->screenHeight * 0.04);
+    mainPanel->addElementToPage(1, txtZoneType);
 }
 
 void ZoneBuilderMenu::buildPageThree()
