@@ -23,6 +23,10 @@ C:\coding\c++\rpgGame\RPG\RPG\ItemShopMenu.cpp(80,91): warning C4244: 'argument'
   RpgTown.cpp
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  RpgProvinceZone.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\rpgGame\RPG\RPG\RpgProvinceZone.cpp(27,29): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   SkeletonKing.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -79,6 +83,9 @@ C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(100,162): warning C4244: 'argumen
 C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(100,142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(106,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\EquippedMenu.cpp(106,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  FoodEffect.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   FruitTree.cpp
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -151,6 +158,7 @@ C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,154): warning C4244: 'argument
 C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\LoadZoneMenu.cpp(87,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Compiling...
   MainMenu.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -161,7 +169,6 @@ C:\coding\c++\rpgGame\RPG\RPG\MainMenu.cpp(21,86): warning C4244: 'argument': co
   MapBuilderPortalButton.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Compiling...
   MapBuilderTileButton.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -224,6 +231,11 @@ C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conv
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(28,21): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(38,44): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(56,19): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(111,5): error C3861: 'addTown': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(117,20): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(121,27): error C2039: 'addBuilding': is not a member of 'RpgTown'
+C:\coding\c++\rpgGame\RPG\RPG\RpgTown.h(14): message : see declaration of 'RpgTown'
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(127,144): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(127,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(128,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
@@ -248,6 +260,24 @@ C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(417,87): warning C4267: 'arg
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(418,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(436,87): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(437,90): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(481,22): error C3861: 'getTowns': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(481,30): error C2672: 'begin': no matching overloaded function found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C2893: Failed to specialize function template 'unknown-type std::begin(_Container &)'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xutility(1916): message : see declaration of 'std::begin'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): message : With the following template arguments:
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): message : '_Container=unknown-type'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C2784: 'const _Elem *std::begin(std::initializer_list<_Elem>) noexcept': could not deduce template argument for 'std::initializer_list<_Elem>' from 'unknown-type'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\initializer_list(57): message : see declaration of 'std::begin'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(481,30): error C2672: 'end': no matching overloaded function found
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C2893: Failed to specialize function template 'unknown-type std::end(_Container &)'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\xutility(1926): message : see declaration of 'std::end'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): message : With the following template arguments:
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): message : '_Container=unknown-type'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C2784: 'const _Elem *std::end(std::initializer_list<_Elem>) noexcept': could not deduce template argument for 'std::initializer_list<_Elem>' from 'unknown-type'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include\initializer_list(63): message : see declaration of 'std::end'
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C3536: '<begin>$L1': cannot be used before it is initialized
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(482,5): error C3536: '<end>$L1': cannot be used before it is initialized
+C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(481,32): error C2100: illegal indirection
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(505,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(508,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(508,77): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
@@ -303,8 +333,12 @@ C:\coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(583,15): warning C4244: 'arg
   RpgTileGridScene.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(850,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(873,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(628,9): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(630,9): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(643,9): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(645,9): error C3861: 'getTownForZone': identifier not found
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(829,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(852,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   RpgUnit.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -318,6 +352,7 @@ C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(107,81): warning C4267: '
 C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(108,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(326,73): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(327,76): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\RpgWorldBuilderScene.cpp(361,19): error C3861: 'getTownForZone': identifier not found
   SaveMapBuilderButton.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -341,6 +376,14 @@ C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(34,222): warning C4244: 'argument'
 C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(34,181): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(34,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(34,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(48,50): error C2039: 'getTownForZone': is not a member of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.h(14): message : see declaration of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(48,1): error C2039: '__this': is not a member of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.h(14): message : see declaration of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(49,114): error C2039: 'getTownForZone': is not a member of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.h(14): message : see declaration of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\TownCommand.cpp(49,1): error C2039: '__this': is not a member of 'RpgTileGridScene'
+C:\coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.h(14): message : see declaration of 'RpgTileGridScene'
   TownBuildMenu.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -404,24 +447,18 @@ C:\coding\c++\rpgGame\RPG\RPG\ZoneBuilderMenu.cpp(247,102): warning C4244: 'argu
   ZoneMap.cpp
 C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(632,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(652,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(661,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(670,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(679,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(812,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(840,96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1220,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1221,60): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1284,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1285,74): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1383,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1384,96): warning C4804: '>': unsafe use of type 'bool' in operation
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1453,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1807,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Generating code
-  1129 of 10412 functions (10.8%) were compiled, the rest were copied from previous compilation.
-    1 functions were new in current compilation
-    158 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Release\RPG.exe
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(638,283): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(658,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(667,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(676,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(685,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(818,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(846,96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1226,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1227,60): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1290,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1291,74): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1389,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1390,96): warning C4804: '>': unsafe use of type 'bool' in operation
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1459,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1813,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data

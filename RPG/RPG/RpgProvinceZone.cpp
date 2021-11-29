@@ -1,24 +1,24 @@
 #include "RpgProvinceZone.h"
 #include "RpgUnit.h"
 
-RpgProvinceZone::RpgProvinceZone() : ZoneMap() {
+RpgProvinceZone::RpgProvinceZone() : RpgZone() {
     
 }
 
 
-RpgProvinceZone::RpgProvinceZone(int newId, std::vector< std::vector<int> > tiles) : ZoneMap(newId, tiles) {
+RpgProvinceZone::RpgProvinceZone(int newId, std::vector< std::vector<int> > tiles, RpgTileGridScene* gameScene) : RpgZone(newId, tiles, gameScene) {
 
 }
 
-RpgProvinceZone::RpgProvinceZone(int newId) : ZoneMap(newId)
+RpgProvinceZone::RpgProvinceZone(int newId, RpgTileGridScene* gameScene) : RpgZone(newId, gameScene)
 {
 }
 
-RpgProvinceZone::RpgProvinceZone(SaveObject saveObject, RpgTileGridScene* gameScene) : ZoneMap(saveObject, gameScene)
+RpgProvinceZone::RpgProvinceZone(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgZone(saveObject, gameScene)
 {
 }
 
-RpgProvinceZone::RpgProvinceZone(const RpgProvinceZone& oldZone) : ZoneMap(oldZone)
+RpgProvinceZone::RpgProvinceZone(const RpgProvinceZone& oldZone) : RpgZone(oldZone)
 {
 }
 

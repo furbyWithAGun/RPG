@@ -9,14 +9,11 @@ RpgTown::RpgTown()
 RpgTown::RpgTown(RpgTileGridScene* gameScene)
 {
     init();
-    scene = gameScene;
 }
 
 RpgTown::RpgTown(RpgTileGridScene* gameScene, int zoneMapId)
 {
     init();
-    scene = gameScene;
-    townZoneMap = (RpgZone*)scene->getZone(zoneMapId);
 }
 
 void RpgTown::update()
@@ -27,26 +24,6 @@ void RpgTown::update()
         processTownCycle();
         ticksSinceTownProduction = 0;
     }
-}
-
-RpgZone* RpgTown::getZoneMap()
-{
-    return townZoneMap;
-}
-
-void RpgTown::setTownZoneMap(RpgZone* newTownZoneMap)
-{
-    townZoneMap = newTownZoneMap;
-}
-
-void RpgTown::addBuilding(Building* newBuilding)
-{
-    addToBuildingVector(newBuilding);
-}
-
-void RpgTown::removeBuilding(Building* building)
-{
-    removeFromBuildingVector(building);
 }
 
 std::vector<Item*>& RpgTown::getTownInventory()
@@ -85,15 +62,13 @@ void RpgTown::init()
     townGold = 0;
     ticksSinceTownProduction = 0;
     population = 0;
-    scene = nullptr;
-    townZoneMap = nullptr;
 }
 
 void RpgTown::processTownCycle()
 {
     population++;
     std::vector<Item*> producedItems;
-    for (auto building : buildings){
+    for (auto building : getBuildings()){
         for (auto item : building->production(this)) {
             producedItems.push_back(item);
         }
@@ -103,26 +78,4 @@ void RpgTown::processTownCycle()
         addItemToContainer(item, getTownInventory());
     }
     scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
-}
-
-void RpgTown::addToBuildingVector(Building* buildingToAdd)
-{
-    if (std::find(buildings.begin(), buildings.end(), buildingToAdd) == buildings.end())
-    {
-        buildings.push_back(buildingToAdd);
-    }
-}
-
-void RpgTown::removeFromBuildingVector(Building* buildingToRemove)
-{
-    auto buildingIterator = buildings.begin();
-    while (buildingIterator != buildings.end())
-    {
-        if ((*buildingIterator) == buildingToRemove) {
-            buildingIterator = buildings.erase(buildingIterator);
-        }
-        else {
-            buildingIterator++;
-        }
-    }
 }

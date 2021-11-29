@@ -1,5 +1,5 @@
 #pragma once
-#include "ZoneMap.h"
+#include "RpgZone.h"
 
 enum RPG_ZONE_TYPES {
     ZONE_PROVINCE,
@@ -7,13 +7,13 @@ enum RPG_ZONE_TYPES {
     ZONE_CAVE
 };
 
-class RpgProvinceZone : public ZoneMap
+class RpgProvinceZone : public RpgZone
 {
 public:
     //constructors
     RpgProvinceZone();
-    RpgProvinceZone(int newId, std::vector< std::vector<int> > tiles);
-    RpgProvinceZone(int newId);
+    RpgProvinceZone(int newId, std::vector< std::vector<int> > tiles, RpgTileGridScene* gameScene);
+    RpgProvinceZone(int newId, RpgTileGridScene* gameScene);
     RpgProvinceZone(SaveObject saveObject, RpgTileGridScene* gameScene);
     RpgProvinceZone(const RpgProvinceZone& oldZone);
 

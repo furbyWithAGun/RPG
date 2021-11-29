@@ -7,7 +7,6 @@
 #include "Item.h"
 #include "Graph.h"
 #include "BuildingFactory.h"
-#include "RpgTown.h"
 
 enum ZONE_MAP_ATTRIBUTES{
     ZONE_MAP_ID,
@@ -75,7 +74,7 @@ class ZoneMap {
         void removeItemAtLocation(Item* item, int xpos, int ypos);
         void addItemToLocation(Item* item, int xpos, int ypos);
         void removePortalAtLocation(int xpos, int ypos);
-        std::string toSaveString();
+        std::string toSaveString(bool withHeaderAndFooter = true);
         int getDevelopmentLevel();
         int getDifficulty();
         void draw(TileGridScene* scene);

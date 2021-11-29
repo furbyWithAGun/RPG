@@ -166,6 +166,7 @@
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="RpgProvinceZone.cpp" />
+    <ClCompile Include="RpgZone.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
     <ClCompile Include="TransferItemsMenu.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="RpgProvinceZone.h" />
+    <ClInclude Include="RpgZone.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
     <ClInclude Include="TransferItemsMenu.h" />

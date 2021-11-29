@@ -99,10 +99,6 @@ ZoneMap::ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene) {
 	setUpMaps();
 	for (auto building : buildingsToAdd) {
 		addBuildingToLocation(building, building->tileLocation->x, building->tileLocation->y);
-		if (gameScene->getTownForZone(id) != nullptr)
-		{
-			gameScene->getTownForZone(id)->addBuilding(building);
-		}
 	}
 	for (auto unit : unitsToAdd) {
 		addUnitToLocation(unit, unit->tileLocation->x, unit->tileLocation->y);
@@ -533,11 +529,16 @@ void ZoneMap::removePortalAtLocation(int xpos, int ypos)
 	}
 }
 
-std::string ZoneMap::toSaveString() {
+std::string ZoneMap::toSaveString(bool withHeaderAndFooter) {
 	std::string saveString;
 	int uniqueObjectId = getUniqueId();
 
-	saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_MAP) + "\n";
+	if (withHeaderAndFooter)
+	{
+		saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_MAP) + "\n";
+	}
+
+	
 	saveString += getAttributeString(getUniqueId(), ZONE_MAP_ID, id);
 	saveString += getAttributeString(getUniqueId(), ZONE_NAME, zoneName);
 	saveString += getAttributeString(getUniqueId(), TILE_MAP, get2DIntVectorSaveString(tileMap));
@@ -548,7 +549,12 @@ std::string ZoneMap::toSaveString() {
 	saveString += getAttributeString(getUniqueId(), ZONE_BACKGROUND, backGroundTile);
 	saveString += getAttributeString(getUniqueId(), MOB_SPAWN, mobSpawn);
 	saveString += getAttributeString(getUniqueId(), DIFFICULTY, difficulty);
-	saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_MAP) + "\n";
+	
+
+	if (withHeaderAndFooter)
+	{
+		saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(ZONE_MAP) + "\n";
+	}
 
 	return saveString;
 }
