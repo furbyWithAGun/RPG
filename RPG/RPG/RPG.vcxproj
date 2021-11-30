@@ -258,6 +258,7 @@
     <ClCompile Include="UnitState.cpp" />
     <ClCompile Include="UnitTempEffect.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="WoodCutter.cpp" />
     <ClCompile Include="ZoneBuilderMenu.cpp" />
     <ClCompile Include="ZoneMap.cpp" />
     <ClCompile Include="ZonePortal.cpp" />
@@ -368,6 +369,7 @@
     <ClInclude Include="UnitState.h" />
     <ClInclude Include="UnitTempEffect.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="WoodCutter.h" />
     <ClInclude Include="ZoneBuilderMenu.h" />
     <ClInclude Include="ZoneMap.h" />
     <ClInclude Include="ZonePortal.h" />
