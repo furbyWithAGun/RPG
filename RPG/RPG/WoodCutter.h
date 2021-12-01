@@ -21,8 +21,6 @@ public:
 
 private:
     //attributed
-    int troopSpawnTick;
-    int troopSpawnRate;
 
     void init();
 };
