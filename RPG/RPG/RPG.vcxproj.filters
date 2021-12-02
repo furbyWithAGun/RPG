@@ -510,6 +510,9 @@
     <ClCompile Include="WoodCutter.cpp">
       <Filter>Source Files\RpgGame\map\buildings</Filter>
     </ClCompile>
+    <ClCompile Include="House.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -838,6 +841,9 @@
     </ClInclude>
     <ClInclude Include="WoodCutter.h">
       <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

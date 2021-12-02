@@ -6,6 +6,7 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// better encapsulate building placement/creation. Have buildings have a spawnOtherStuff() type method that the scene calls when placing (for placing doodads/units)
 // barracks building
 // ability to train troops
 // ability to equip troops

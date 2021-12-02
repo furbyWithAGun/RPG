@@ -30,6 +30,9 @@ RpgTown::RpgTown(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgZone(s
         case RPG_TOWN_TRAINED_SOLDIERS:
             trainedSoldiers = stoi(saveObject.attributes[i].valueString);
             break;
+        case RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP:
+            ticksSinceTownUpdatePopCap = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -57,6 +60,7 @@ void RpgTown::update()
 {
     RpgZone::update();
     ticksSinceTownProduction++;
+    ticksSinceTownUpdatePopCap++;
     if (ticksSinceTownProduction > TICKS_PER_TOWN_PRODUCTION)
     {
         processTownCycle();
@@ -130,6 +134,7 @@ std::string RpgTown::toSaveString(bool withHeaderAndFooter)
     saveString += RpgZone::toSaveString(false);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_POPULATION, population);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_PRODUCTION, ticksSinceTownProduction);
+    saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP, ticksSinceTownUpdatePopCap);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_GOLD, townGold);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TRAINED_SOLDIERS, trainedSoldiers);
     {
@@ -143,6 +148,7 @@ void RpgTown::init()
     zoneType = ZONE_RPG_TOWN;
     townGold = 0;
     ticksSinceTownProduction = 0;
+    ticksSinceTownUpdatePopCap = 0;
     population = 0;
     trainedSoldiers = 0;
 }

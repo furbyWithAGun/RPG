@@ -30,12 +30,12 @@ WoodCutter::WoodCutter(int entranceDirection) : Building()
     {
     case LEFT:
         setTileMap({
-        {new BuildingTile(false, TEXTURE_WOODCUTTER_BUILDING)
+        {new BuildingTile(false, TEXTURE_BUILDING_WOODCUTTER)
             } });
         break;
     case RIGHT:
         setTileMap({
-        {new BuildingTile(false, TEXTURE_WOODCUTTER_BUILDING)
+        {new BuildingTile(false, TEXTURE_BUILDING_WOODCUTTER)
             } });
         break;
     default:

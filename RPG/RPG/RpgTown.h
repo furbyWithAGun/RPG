@@ -15,10 +15,12 @@ enum RPG_TOWN_SAVE_ATTRIBUTES {
     RPG_TOWN_INVENTORY,
     RPG_TOWN_ARMOURY,
     RPG_TOWN_GRANARY,
-    RPG_TOWN_TRAINED_SOLDIERS
+    RPG_TOWN_TRAINED_SOLDIERS,
+    RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP
 };
 
 const int TICKS_PER_TOWN_PRODUCTION = 1000;
+const int TICKS_PER_TOWN_UPDATE_POP_CAP = 1000;
 
 
 class RpgTown : public RpgZone
@@ -48,6 +50,7 @@ private:
     //attributes
     int population;
     int ticksSinceTownProduction;
+    int ticksSinceTownUpdatePopCap;
     int townGold;
     int trainedSoldiers;
     std::vector<Item*> townInventory;

@@ -164,6 +164,7 @@
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="RpgProvinceZone.cpp" />
@@ -274,6 +275,7 @@
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="RpgProvinceZone.h" />

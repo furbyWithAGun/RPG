@@ -188,7 +188,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_APPLE, "images/apple.png" });
     texturesToLoad.insert({ TEXTURE_RASPBERRY, "images/raspberries.png" });
     //building
-    texturesToLoad.insert({ TEXTURE_WOODCUTTER_BUILDING, "images/woodCutter.png" });
+    texturesToLoad.insert({ TEXTURE_BUILDING_WOODCUTTER, "images/woodCutter.png" });
+    texturesToLoad.insert({ TEXTURE_BUILDING_HOUSE, "images/house.png" });
     //building icons
     texturesToLoad.insert({ BUILDING_ICON_WEAPON_SHOP, "images/signWeapons.png" });
     texturesToLoad.insert({ BUILDING_ICON_ARMOUR_SHOP, "images/signArmour.png" });
@@ -196,6 +197,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BUILDING_ICON_TAVERN, "images/signTavern.png" });
     texturesToLoad.insert({ BUILDING_ICON_BLACKSMITH, "images/signBlacksmith.png" });
     texturesToLoad.insert({ BUILDING_ICON_WOODCUTTER, "images/signTreeCutter.png" });
+    texturesToLoad.insert({ BUILDING_ICON_HOUSE, "images/signHouse.png" });
     //doodad textures
     texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
     texturesToLoad.insert({ TEXTURE_APPLE_TREE_WITH_FRUIT, "images/appleTreeWithFruit.png" });
@@ -641,6 +643,9 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
         break;
     case BUILDING_WOODCUTTER:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        break;
+    case BUILDING_HOUSE:
         createdBuilding = createNewBuilding(buildingType, direction);
         break;
     default:
