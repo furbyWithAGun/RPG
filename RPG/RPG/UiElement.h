@@ -24,6 +24,7 @@ public:
     int id;
     std::vector<UiElement*> subElements;
     std::string text;
+    SDL_Color textColour;
     bool dynamicPosition, dynamicSize;
     int layout, alignment;
     int numElementsToDisplay;
@@ -76,9 +77,11 @@ protected:
 
 private:
     //attributes
+    bool needToUpdateTextImage;
 
     //methods
     void init();
     void init(int newId);
+    void updateTextImage();
 };
 

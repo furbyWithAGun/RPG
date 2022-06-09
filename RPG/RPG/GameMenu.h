@@ -42,7 +42,7 @@ public:
     virtual void drawToolTips();
     void registerToolTip(UiElement* parentElement, HoverToolTip* toolTip);
     virtual void update();
-    virtual void rebuildElements() {};
+    void rebuildMenuElements();
     virtual bool handleInput(InputMessage* message);
     bool isGettingText();
 
@@ -55,6 +55,7 @@ protected:
     int xpos;
     int ypos;
     int id, r, g, b, a;
+    bool needToRebuildElements;
 
 private:
     //attributes
@@ -63,5 +64,7 @@ private:
     //methods
     void init();
     void deactivate();
+    virtual void rebuildElements() {};
 };
+
 

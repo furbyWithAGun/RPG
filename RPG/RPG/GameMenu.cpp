@@ -29,6 +29,7 @@ GameMenu::GameMenu(GameScene* gameScene, int newId)
     id = newId;
 }
 
+
 void GameMenu::init() {
     scene = NULL;
     engine = NULL;
@@ -41,6 +42,7 @@ void GameMenu::init() {
     r = g = b = 0x00;
     a = 0xFF;
     nextElementId = NEXT_ELEMENT_ID_DEFAULT;
+    needToRebuildElements = false;
 }
 
 void GameMenu::deactivate()
@@ -82,6 +84,11 @@ void GameMenu::setRGBA(int newR, int newG, int newB, int newA) {
 }
 
 void GameMenu::draw() {
+    if (needToRebuildElements)
+    {
+        rebuildElements();
+        needToRebuildElements = false;
+    }
     scene->renderRectangle(xpos, ypos, width, height, r, g, b);
 
     for (auto element : elements)
@@ -125,6 +132,11 @@ void GameMenu::update()
             toolTip->update();
         }
     }
+}
+
+void GameMenu::rebuildMenuElements()
+{
+    needToRebuildElements = true;
 }
 
 bool GameMenu::handleInput(InputMessage* message) {

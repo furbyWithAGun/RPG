@@ -201,7 +201,7 @@ void Player::death()
     health = maxHealth;
     gold = 0;
     foodEffects.clear();
-    scene->menus[INVENTORY_MENU]->rebuildElements();
+    scene->menus[INVENTORY_MENU]->rebuildMenuElements();
     scene->menus[INVENTORY_MENU]->update();
     portalTo(1, 6, 6);
 }

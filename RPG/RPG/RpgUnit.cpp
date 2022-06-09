@@ -281,11 +281,11 @@ bool RpgUnit::equipItem(Equipment* item)
         removeItemFromInventory(item);
         if (scene->menus[INVENTORY_MENU]->isActive)
         {
-            scene->menus[INVENTORY_MENU]->rebuildElements();
+            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
         }
         if (scene->menus[EQUIPPED_MENU]->isActive)
         {
-            scene->menus[EQUIPPED_MENU]->rebuildElements();
+            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
         }
         return true;
     }
@@ -298,11 +298,11 @@ bool RpgUnit::unEquipItem(int slot)
     equippedItems[slot] = nullptr;
     if (scene->menus[EQUIPPED_MENU]->isActive)
     {
-        scene->menus[EQUIPPED_MENU]->rebuildElements();
+        scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
     }
     if (scene->menus[INVENTORY_MENU]->isActive)
     {
-        scene->menus[INVENTORY_MENU]->rebuildElements();
+        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
     }
     return true;
 }
@@ -331,7 +331,7 @@ void RpgUnit::deleteItemFromInventory(int inventoryIndex)
     deleteItemFromContainer(inventoryIndex, inventory);
     if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
-        scene->menus[INVENTORY_MENU]->rebuildElements();
+        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
     }
 }
 
@@ -359,7 +359,7 @@ void RpgUnit::removeItemFromInventory(int inventoryIndex)
     removeItemFromContainer(inventoryIndex, inventory);
     if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
-        scene->menus[INVENTORY_MENU]->rebuildElements();
+        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
     }
 }
 
@@ -510,7 +510,7 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     addItemToContainer(itemToAdd, inventory);
     if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
-        scene->menus[INVENTORY_MENU]->rebuildElements();
+        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
     }
 }
 

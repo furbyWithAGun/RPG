@@ -78,10 +78,11 @@ void MenuText::disableBackground()
 
 MenuText* MenuText::setText(std::string newText)
 {
-    int textureKey = scene->engine->createTextTexture(newText, colour);
-    text = newText;
-    height = scene->engine->getTextureHeight(textureKey);
-    width = scene->engine->getTextureWidth(textureKey);
+    //int textureKey = scene->engine->createTextTexture(newText, colour);
+    //text = newText;
+    //height = scene->engine->getTextureHeight(textureKey);
+    //width = scene->engine->getTextureWidth(textureKey);
+    UiElement::setText(newText);
     return this;
 }
 

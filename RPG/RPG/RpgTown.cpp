@@ -166,5 +166,5 @@ void RpgTown::processTownCycle()
     {
         addItemToContainer(item, getTownInventory());
     }
-    scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+    scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
 }

@@ -88,6 +88,7 @@ void UiElement::init() {
     displaySubElements = true;
     callback = []() {};
     btnOneCallback = []() {};
+    needToUpdateTextImage = false;
 }
 
 void UiElement::init(int newId) {
@@ -95,9 +96,21 @@ void UiElement::init(int newId) {
     id = newId;
 }
 
+void UiElement::updateTextImage()
+{
+    textTextureKey = scene->engine->createTextTexture(text, textColour);
+    height = scene->engine->getTextureHeight(textTextureKey);
+    width = scene->engine->getTextureWidth(textTextureKey);
+}
+
 void UiElement::draw() {
 	if (active)
 	{
+        if (needToUpdateTextImage)
+        {
+            updateTextImage();
+            needToUpdateTextImage = false;
+        }
 		Sprite::draw();
         if (displaySubElements)
         {
@@ -234,7 +247,8 @@ std::string UiElement::getText(int subElementId) {
 UiElement* UiElement::setText(std::string newText, SDL_Color colour)
 {
     text = newText;
-    textTextureKey = scene->engine->createTextTexture(newText, colour);
+    textColour = colour;
+    needToUpdateTextImage = true;
     return this;
 }
 

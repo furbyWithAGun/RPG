@@ -45,6 +45,11 @@ void InventoryMenu::open()
 
 void InventoryMenu::draw()
 {
+    if (needToRebuildElements)
+    {
+        rebuildElements();
+        needToRebuildElements = false;
+    }
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     int itemIndex = items->getSelectedElementValue();
     Item* item;
@@ -302,7 +307,7 @@ void InventoryMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                             rebuildElements();
                         }
                         else if (numToSell > 0) {
@@ -313,7 +318,7 @@ void InventoryMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             selectedItem->stackSize -= numToSell;
-                            scene->menus[EQUIPPED_MENU]->rebuildElements();
+                            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                             rebuildElements();
                         }
                     }
@@ -328,7 +333,7 @@ void InventoryMenu::buildElements()
                 }
                 scene->player->gold += goldToAdd;
                 scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                scene->menus[EQUIPPED_MENU]->rebuildElements();
+                scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                 rebuildElements();
             }
         }
@@ -362,7 +367,7 @@ void InventoryMenu::buildElements()
                     {
                         ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
                         scene->player->removeItemFromInventory(selection);
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
                     }
                     else if (numToXfer > 0) {
                         Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
@@ -370,7 +375,7 @@ void InventoryMenu::buildElements()
                         ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
                         scene->player->inventory[selection]->stackSize -= numToXfer;
                         rebuildElements();
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
                     }
                     });
                 scene->addPrompt(qtyPrompt);
@@ -378,7 +383,7 @@ void InventoryMenu::buildElements()
             else {
                 ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
                 scene->player->removeItemFromInventory(selection);
-                scene->menus[TRANSFER_ITEMS_MENU]->rebuildElements();
+                scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
             }
         }
         });
