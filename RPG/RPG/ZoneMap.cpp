@@ -361,10 +361,12 @@ void ZoneMap::addToItemMap(int x, int y, Item* item)
 		itemMap[key] = { item };
 	}
 	else {
-		if (std::find(itemMap[key].begin(), itemMap[key].end(), item) == itemMap[key].end())
-		{
-			itemMap[key].push_back(item);
-		}
+		itemMap[key].push_back(item);
+		//not sure why I have below check :/
+		//if (std::find(itemMap[key].begin(), itemMap[key].end(), item) == itemMap[key].end())
+		//{
+			//itemMap[key].push_back(item);
+		//}
 	}
 }
 

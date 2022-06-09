@@ -6,6 +6,8 @@
 #include "MainMenuScene.h"
 
 //TODO:
+// shop inventory dependant on town buildings
+// town shops max gold for buying player items (dependant on town wealth / buildings)
 // better encapsulate building placement/creation. Have buildings have a spawnOtherStuff() type method that the scene calls when placing (for placing doodads/units)
 // barracks building
 // ability to train troops
