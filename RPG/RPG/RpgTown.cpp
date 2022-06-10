@@ -155,7 +155,10 @@ void RpgTown::init()
 
 void RpgTown::processTownCycle()
 {
-    population++;
+    if (population < getTownPopLimit())
+    {
+        population++;
+    }
     std::vector<Item*> producedItems;
     for (auto building : getBuildings()){
         for (auto item : building->production(this)) {
@@ -167,4 +170,13 @@ void RpgTown::processTownCycle()
         addItemToContainer(item, getTownInventory());
     }
     scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+}
+
+int RpgTown::getTownPopLimit()
+{
+    int popLimit = 0;
+    for (auto building : getBuildings()) {
+        popLimit += building->getPopSupported();
+    }
+    return popLimit;
 }

@@ -76,9 +76,13 @@ public:
     static void resetUid();
     virtual std::vector<Item*> production(RpgTown* town);
     void setZone(ZoneMap* newZone);
+    int getPopSupported();
+    std::string getBuildingName();
 
 protected:
     //attributes
+    int popSupported;
+    std::string buildingName;
     std::vector<ProductionInputOutput> productionInputs;
     std::vector<ProductionInputOutput> productionOutputs;
     ZoneMap* zone;

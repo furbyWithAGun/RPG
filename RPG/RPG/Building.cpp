@@ -265,6 +265,16 @@ void Building::setZone(ZoneMap* newZone)
     zone = newZone;
 }
 
+int Building::getPopSupported()
+{
+    return popSupported;
+}
+
+std::string Building::getBuildingName()
+{
+    return buildingName;
+}
+
 void Building::init()
 {
     id = -1;
@@ -276,9 +286,11 @@ void Building::init()
     goldCost = 1;
     woodCost = 1;
     productionGoldCost = 0;
+    popSupported = 0;
     productionInputs = {};
     productionOutputs = {};
     zone = nullptr;
+    buildingName = "";
 }
 
 void Building::init(int buildingType)

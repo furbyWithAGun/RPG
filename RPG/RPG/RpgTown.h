@@ -60,5 +60,6 @@ private:
     //methods
     void init();
     void processTownCycle();
+    int getTownPopLimit();
 };
 
