@@ -50,6 +50,12 @@ void RpgOverWorldScene::setUpMonsterTable()
 
 
 
+void RpgOverWorldScene::saveGame()
+{
+    player->toSaveString();
+    getZones();
+}
+
 void RpgOverWorldScene::setCurrentZone(int zoneId)
 {
     RpgTileGridScene::setCurrentZone(zoneId);

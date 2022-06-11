@@ -29,6 +29,7 @@ public:
     RpgOverWorldScene(BaseGameEngine* gameEngine);
 
     //methods
+    void saveGame();
     void setCurrentZone(int zoneId) override;
     void declareSceneAssets();
     void setUpScene() override;
