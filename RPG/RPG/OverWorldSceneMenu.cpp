@@ -40,7 +40,7 @@ void OverWorldSceneMenu::buildElements()
 
     MenuButton* saveGameButton = new MenuButton(SAVE_GAME_BUTTON, this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.8);
     saveGameButton->setText("Save Game")->addOnClick([this] {
-        scene->saveGame();
+        scene->openMenu(SAVE_GAME_MENU);
         });
     addElement(SAVE_GAME_BUTTON, saveGameButton);
 
@@ -50,7 +50,6 @@ void OverWorldSceneMenu::buildElements()
         scene->endScene();
         });
     addElement(QUIT_BUTTON, quitButton);
-
 }
 
 void OverWorldSceneMenu::init()

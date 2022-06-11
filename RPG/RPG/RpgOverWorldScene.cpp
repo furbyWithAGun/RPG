@@ -27,6 +27,7 @@ void RpgOverWorldScene::init() {
     {
         squadUnits[i] = nullptr;
     }
+    saveGameName = "";
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -122,6 +123,8 @@ void RpgOverWorldScene::setUpScene()
     menus[TRANSFER_ITEMS_MENU] = new TransferItemsMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU);
     menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
+    menus[SAVE_GAME_MENU] = new SaveGameMenu(this, SAVE_GAME_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
+
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
@@ -564,6 +567,16 @@ void RpgOverWorldScene::destroyUnit(RpgUnit* unit)
     }
 
     RpgTileGridScene::destroyUnit(unit);
+}
+
+void RpgOverWorldScene::setSaveGameName(std::string newSaveGameName)
+{
+    saveGameName = newSaveGameName;
+}
+
+std::string RpgOverWorldScene::getSaveGameName()
+{
+    return saveGameName;
 }
 
 //functions

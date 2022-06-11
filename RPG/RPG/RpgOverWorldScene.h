@@ -7,6 +7,7 @@
 #include "EquippedMenu.h"
 #include "ItemShopMenu.h"
 #include "TransferItemsMenu.h"
+#include "SaveGameMenu.h"
 #include <cmath>
 #include <deque>
 
@@ -38,11 +39,14 @@ public:
     void renderScene() override;
     void renderHUD();
     void virtual destroyUnit(RpgUnit* unit) override;
+    void setSaveGameName(std::string newSaveGameName);
+    std::string getSaveGameName();
 
 private:
     //attributes
     std::unordered_map<int, std::vector<ChanceObject>> monsterTable;
     std::unordered_map<int, AiUnit*> squadUnits;
+    std::string saveGameName;
 
     //methods
     void init();
