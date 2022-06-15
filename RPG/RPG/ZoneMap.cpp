@@ -305,7 +305,9 @@ void ZoneMap::addToBuildingMap(Building* building, int x, int y)
 		buildingMap2[key] = building;
 	}
 	else {
-		delete buildingMap2[key];
+		//delete buildingMap2[key];
+		//buildingMap2.erase(buildingMap2.find(key));
+		destroyBuilding(buildingMap2[key]);
 		buildingMap2[key] = building;
 	}
 }
@@ -807,6 +809,18 @@ bool ZoneMap::removeUnitFromZone(Unit* unit)
 Building* ZoneMap::getBuildingAtLocation(int x, int y)
 {
 	return getBuildingFromMap(x, y);
+}
+
+Building* ZoneMap::getBuildingById(int buildingId)
+{
+	Building* returnBuilding = nullptr;
+	for (auto building : buildings2) {
+		if (building->id == buildingId)
+		{
+			returnBuilding = building;
+		}
+	}
+	return returnBuilding;
 }
 
 bool ZoneMap::addBuildingToLocation(Building* building, int x, int y)
@@ -1664,6 +1678,15 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 					break;
 				case BUILDING_CAMP_COMMAND_CENTRE:
 					returnVector.push_back(new CampCommandCentre(savedBuildings[i].rawString));;
+					break;
+				case BUILDING_BARRACKS:
+					returnVector.push_back(new Barracks(savedBuildings[i].rawString));;
+					break;
+				case BUILDING_WOODCUTTER:
+					returnVector.push_back(new WoodCutter(savedBuildings[i].rawString));;
+					break;
+				case BUILDING_HOUSE:
+					returnVector.push_back(new House(savedBuildings[i].rawString));;
 					break;
 				default:
 					returnVector.push_back(new Building(savedBuildings[i].rawString));

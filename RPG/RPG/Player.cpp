@@ -24,6 +24,9 @@ Player::Player() : RpgUnit() {
 Player::Player(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgUnit(saveObject, gameScene)
 {
     createAnimations();
+    isStatic = true;
+    isPlayer = true;
+    cameraFollowPlayer = true;
 }
 
 Player::Player(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {
@@ -41,6 +44,7 @@ Player::Player(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX
 
 void Player::init() {
     isStatic = true;
+    isPlayer = true;
     speed = PLAYER_SPEED;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];

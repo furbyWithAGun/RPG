@@ -80,7 +80,7 @@ void LoadZoneMenu::buildElements()
     deleteButton->setText("Delete")->addOnClick([this]() {
         ScrollBox* oldScroller = (ScrollBox*)getElementbyId(ZONES_SCROLL_BOX);
         scene->deleteZone(oldScroller->getSelectedElementValue());
-        scene->saveZones();
+        scene->saveZones("zones.txt");
         delete elements[ZONES_SCROLL_BOX];
         elements.erase(ZONES_SCROLL_BOX);
         ScrollBox* scroller;

@@ -60,6 +60,7 @@ public:
     void payBuildingCosts(Building* building, RpgTown* town);
     bool canAffordBuilding(Building* building, RpgTown* town);
     virtual void loadZones() override;
+    virtual void loadZone(SaveObject saveObject);
     void resizeTiles();
     void virtual destroyUnit(RpgUnit* unit);
     void virtual destroyFlaggedUnits();

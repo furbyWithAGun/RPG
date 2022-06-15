@@ -121,6 +121,9 @@ RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(save
         case UNIT_MAX_HUNGER_LEVEL:
             maxHungerLevel = stoi(saveObject.attributes[i].valueString);
             break;
+        case UNIT_IS_PLAYER:
+            isPlayer = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -554,6 +557,7 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_LEVEL, combatLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_HUNGER_LEVEL, hungerLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_MAX_HUNGER_LEVEL, maxHungerLevel);
+    saveString += getAttributeString(getUniqueId(), UNIT_IS_PLAYER, isPlayer);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_UNIT) + "\n";
@@ -602,6 +606,7 @@ void RpgUnit::init()
     aggroUpdateTick = 0;
     //special attributes for loading saved units
     assignedToBuildingId = -1;
+    isPlayer = false;
     
     for (int i = BARE_HANDS; i != NUM_EQUIPMENT_SLOTS; i++)
     {
@@ -682,6 +687,9 @@ std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
                     break;
                 case ARMOUR:
                     returnVector.push_back(new Armour(savedItems[i].rawString));;
+                    break;
+                case FOOD:
+                    returnVector.push_back(new Food(savedItems[i].rawString));;
                     break;
                 default:
                     returnVector.push_back(new Item(savedItems[i].rawString));

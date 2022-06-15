@@ -375,63 +375,124 @@ bool RpgTileGridScene::canAffordBuilding(Building* building, RpgTown* town)
     return true;
 }
 
+void RpgTileGridScene::loadZone(SaveObject saveObject)
+{
+    RpgZone* newZone = nullptr;
+    for (int i = 0; i < saveObject.attributes.size(); i++)
+    {
+        if (saveObject.attributes[i].attributeType == RPG_ZONE_TYPE) {
+            switch (std::stoi(saveObject.attributes[i].valueString))
+            {
+            case ZONE_RPG_TOWN:
+                newZone = new RpgTown(saveObject.rawString, this);
+                break;
+            case ZONE_RPG_PROVINCE:
+                newZone = new RpgProvinceZone(saveObject.rawString, this);
+                break;
+            default:
+                newZone = new RpgZone(saveObject.rawString, this);
+                break;
+            }
+        }
+    }
+
+    if (newZone == nullptr) //if the RPG_ZONE_TYPE was not recognized or not present create a basic RpgZoneObject
+    {
+        newZone = new RpgZone(saveObject.rawString, this);
+    }
+    newZone->setupGraph(this);
+    addZone(newZone);
+    if (newZone->id >= nextZoneId)
+    {
+        nextZoneId = newZone->id + 1;
+    }
+    for (auto* unit : newZone->getUnits())
+    {
+        if (((RpgUnit*)unit)->isPlayer)
+        {
+            player = (Player*)unit;
+        }
+        Building* assignedBuilding = newZone->getBuildingById(((RpgUnit*)unit)->assignedToBuildingId);
+        if (assignedBuilding != nullptr)
+        {
+            assignedBuilding->assignUnit((RpgUnit*)unit);
+        }
+        else {
+            ((RpgUnit*)unit)->assignedToBuildingId = -1;
+        }
+    }
+    for (auto* dooDad : newZone->getDooDads())
+    {
+        Building* assignedBuilding = newZone->getBuildingById(dooDad->assignedToBuildingId);
+        if (assignedBuilding != nullptr)
+        {
+            assignedBuilding->assignDooDad(dooDad);
+        }
+        else {
+            dooDad->assignedToBuildingId = -1;
+        }
+    }
+}
+
 void RpgTileGridScene::loadZones()
 {
     //load zones from file
-    SaveFile zonesFile = SaveFile("zones.txt");
+    //SaveFile zonesFile = SaveFile("zones.txt");
+    SaveFile zonesFile = SaveFile("test");
     zonesFile.loadFile();
     for (auto zone : zonesFile.objects) {
-        RpgZone* newZone = nullptr;
-        for (int i = 0; i < zone.attributes.size(); i++)
-        {
-            if (zone.attributes[i].attributeType == RPG_ZONE_TYPE) {
-                switch (std::stoi(zone.attributes[i].valueString))
-                {
-                case ZONE_RPG_TOWN:
-                    newZone = new RpgTown(zone.rawString, this);
-                    break;
-                case ZONE_RPG_PROVINCE:
-                    newZone = new RpgProvinceZone(zone.rawString, this);
-                    break;
-                default:
-                    newZone = new RpgZone(zone.rawString, this);
-                    break;
-                }
-            }
-        }
-        //RpgZone* newZone = new RpgZone(zone.rawString, this);
-        if (newZone == nullptr)
-        {
-            newZone = new RpgZone(zone.rawString, this);
-        }
-        newZone->setupGraph(this);
-        addZone(newZone);
-        if (newZone->id >= nextZoneId)
-        {
-            nextZoneId = newZone->id + 1;
-        }
-        for (auto* unit : newZone->getUnits())
-        {
-            if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
-                for (auto building : newZone->getBuildings()) {
-                    if (building->id == ((RpgUnit*)unit)->assignedToBuildingId)
-                    {
-                        building->assignUnit((RpgUnit*)unit);
-                    }
-                }
-            }
-        }
-        for (auto* dooDad : newZone->getDooDads())
-        {
-            if (dooDad->assignedToBuildingId != -1) {
-                for (auto building : newZone->getBuildings()) {
-                    if (building->id == dooDad->assignedToBuildingId)
-                    {
-                        building->assignDooDad(dooDad);
-                    }
-                }
-            }
-        }
+        loadZone(zone);
+        //RpgZone* newZone = nullptr;
+        //for (int i = 0; i < zone.attributes.size(); i++)
+        //{
+        //    if (zone.attributes[i].attributeType == RPG_ZONE_TYPE) {
+        //        switch (std::stoi(zone.attributes[i].valueString))
+        //        {
+        //        case ZONE_RPG_TOWN:
+        //            newZone = new RpgTown(zone.rawString, this);
+        //            break;
+        //        case ZONE_RPG_PROVINCE:
+        //            newZone = new RpgProvinceZone(zone.rawString, this);
+        //            break;
+        //        default:
+        //            newZone = new RpgZone(zone.rawString, this);
+        //            break;
+        //        }
+        //    }
+        //}
+        ////RpgZone* newZone = new RpgZone(zone.rawString, this);
+        //if (newZone == nullptr)
+        //{
+        //    newZone = new RpgZone(zone.rawString, this);
+        //}
+        //newZone->setupGraph(this);
+        //addZone(newZone);
+        //if (newZone->id >= nextZoneId)
+        //{
+        //    nextZoneId = newZone->id + 1;
+        //}
+        //for (auto* unit : newZone->getUnits())
+        //{
+        //    if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
+        //        for (auto building : newZone->getBuildings()) {
+        //            if (building->id == ((RpgUnit*)unit)->assignedToBuildingId)
+        //            {
+        //                building->assignUnit((RpgUnit*)unit);
+        //            }
+        //        }
+        //    }
+        //}
+        //for (auto* dooDad : newZone->getDooDads())
+        //{
+        //    if (dooDad->assignedToBuildingId != -1) {
+        //        for (auto building : newZone->getBuildings()) {
+        //            if (building->id == dooDad->assignedToBuildingId)
+        //            {
+        //                building->assignDooDad(dooDad);
+        //            }
+        //        }
+        //    }
+        //}
     }
     currentZone = getZones()[0];
     xOffset = 0;
@@ -659,7 +720,38 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
 
     Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap * zone, int buildingType, int direction, int x, int y)
     {
-        return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
+        //return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
+        Building* createdBuilding;
+        TownCommand* newTownCommand;
+        switch (buildingType)
+        {
+        case BUILDING_ITEM_SHOP:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
+            break;
+        case BUILDING_CAMP_COMMAND_CENTRE:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+            createdBuilding->assignDooDad(newTownCommand);
+            zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+            break;
+        case BUILDING_BARRACKS:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
+            break;
+        case BUILDING_WOODCUTTER:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            break;
+        case BUILDING_HOUSE:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            break;
+        default:
+            createdBuilding = nullptr;
+            break;
+        }
+        zone->addBuildingToLocation(createdBuilding, x, y);
+
+        return createdBuilding;
     }
 
 void RpgTileGridScene::removeBuildingFromZone(ZoneMap* zone, Building* building)

@@ -79,6 +79,7 @@ class ZoneMap {
         int getDifficulty();
         void draw(TileGridScene* scene);
         Building* getBuildingAtLocation(int x, int y);
+        Building* getBuildingById(int buildingId);
         bool addBuildingToLocation(Building* building, int x, int y);
         bool removeBuildingFromZone(Building* building);
         bool removeAllBuildingTilesFromMap(Building* building);

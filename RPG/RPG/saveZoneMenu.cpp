@@ -47,7 +47,7 @@ void saveZoneMenu::buildElements()
             //scene->sceneToEdit.doodads.push_back(new HealingPad(scene, BLANK_PORTAL, 11, 3));
             RpgZone* newZone = &scene->sceneToEdit;
             scene->addZone(newZone->id, new RpgZone(*newZone));
-            scene->saveZones();
+            scene->saveZones("zones.txt");
             close();
         }
         });

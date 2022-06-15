@@ -53,8 +53,7 @@ void RpgOverWorldScene::setUpMonsterTable()
 
 void RpgOverWorldScene::saveGame()
 {
-    player->toSaveString();
-    getZones();
+    saveZones(saveGameName);
 }
 
 void RpgOverWorldScene::setCurrentZone(int zoneId)
@@ -80,7 +79,8 @@ void RpgOverWorldScene::setUpScene()
     //make units
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
-    player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
+    
+    //player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
     squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
     squadUnits[1]->doesRandomMovement = false;
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});

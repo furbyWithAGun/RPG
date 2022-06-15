@@ -10,7 +10,7 @@ class RpgTileGridScene;
 const int MAX_NUM_FOOD_EFFECTS = 3;
 
 enum RPG_UNIT_SAVE_ATTRIBUTES {
-    UNIT_TEAM = NUM_UNIT_ATTRIBUTES,
+    UNIT_TEAM = 1000,
     UNIT_GOLD,
     UNIT_GOLD_VALUE,
     UNIT_EXP_VALUE,
@@ -37,6 +37,7 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_COMBAT_LEVEL,
     UNIT_HUNGER_LEVEL,
     UNIT_MAX_HUNGER_LEVEL,
+    UNIT_IS_PLAYER,
     NUM_RPG_UNIT_ATTRIBUTES
 };
 
@@ -65,7 +66,7 @@ public:
     double dropChance;
     int aggroUpdateTick;
     int aggroTriggerDistance, aggroMaintainDistance;
-
+    bool isPlayer;
 
     //character stats
     int maxMana;

@@ -50,7 +50,7 @@ public:
     virtual void setCurrentZone(int zoneId);
     virtual void createNewZone();
     void deleteZone(int zoneId);
-    void saveZones();
+    void saveZones(std::string saveName);
     void handleInput() override;
     void sceneLogic() override;
     void renderScene() override;
