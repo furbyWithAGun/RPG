@@ -1,7 +1,12 @@
 #include "MainMenu.h"
 #include "RpgWorldBuilderScene.h"
 #include "RpgOverWorldScene.h"
-const int EXIT_OPTION = NUM_SCENES + 1;
+//const int EXIT_OPTION = NUM_SCENES + 1;
+
+enum MAIN_MENU_OPTIONS {
+    EXIT_OPTION = NUM_SCENES + 1,
+    LOAD_GAME_OPTION
+};
 
 MainMenu::MainMenu() : GameMenu() {
 }
@@ -20,6 +25,7 @@ void MainMenu::buildElements()
     SelectPrompt* mainMenuPrompt;
     mainMenuPrompt = new SelectPrompt(scene, COLOR_BLACK, scene->engine->screenWidth * 0.1, scene->engine->screenHeight * 0.1, scene->engine->screenWidth * 0.8, scene->engine->screenHeight * 0.8);
     mainMenuPrompt->addSelectOption("New Game", OVERWORLD);
+    mainMenuPrompt->addSelectOption("Load Game", LOAD_GAME_OPTION);
     mainMenuPrompt->addSelectOption("World Builder", WORLD_BUILDER);
     mainMenuPrompt->addSelectOption("Exit", EXIT_OPTION);
     mainMenuPrompt->addCallBack([this, mainMenuPrompt] () {
@@ -29,8 +35,13 @@ void MainMenu::buildElements()
                 scene->endScene();
                 return;
             }
-            scene->engine->setNextScene(mainMenuPrompt->getSelectedOptionValue());
-            scene->endScene();
+            else if (selectedOption == LOAD_GAME_OPTION) {
+                scene->openMenu(LOAD_GAME_MENU);
+            }
+            else {
+                scene->engine->setNextScene(mainMenuPrompt->getSelectedOptionValue());
+                scene->endScene();
+            }
         });
     mainMenuPrompt->active = true;
     scene->addPrompt(mainMenuPrompt);

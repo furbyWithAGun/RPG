@@ -3,6 +3,7 @@
 #include "RpgGameConstants.h"
 #include "MainMenu.h"
 #include "RpgKeysMouseController.h"
+#include "LoadSaveGameMenu.h"
 
 class BaseGameEngine;
 

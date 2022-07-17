@@ -516,6 +516,9 @@
     <ClCompile Include="SaveGameMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClCompile>
+    <ClCompile Include="LoadSaveGameMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\MainMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -850,6 +853,9 @@
     </ClInclude>
     <ClInclude Include="SaveGameMenu.h">
       <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadSaveGameMenu.h">
+      <Filter>Header Files\RpgGame\scenes\MainMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
