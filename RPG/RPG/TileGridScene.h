@@ -46,7 +46,8 @@ public:
     void coordsFromTileIndex(int x, int y, int returnCoords[2]);
     virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
-    virtual void loadZones();
+    virtual void setUpScene(std::string saveFile = NEW_GAME_SAVE_FILE);
+    virtual void loadZones(std::string saveFile);
     virtual void setCurrentZone(int zoneId);
     virtual void createNewZone();
     void deleteZone(int zoneId);

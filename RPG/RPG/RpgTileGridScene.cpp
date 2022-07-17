@@ -211,7 +211,17 @@ void RpgTileGridScene::declareSceneAssets()
 void RpgTileGridScene::setUpScene()
 {
     createTiles();
-    TileGridScene::setUpScene();
+    TileGridScene::setUpScene(NEW_GAME_SAVE_FILE);
+    zonePortalImages.push_back(ENCAMPMENT);
+    zonePortalImages.push_back(BLANK_PORTAL);
+    zonePortalImages.push_back(PORTAL_CAVE_HILL);
+    zonePortalImages.push_back(CAVE_STAIRS_UP);
+}
+
+void RpgTileGridScene::setUpScene(std::string saveFile)
+{
+    createTiles();
+    TileGridScene::setUpScene(saveFile);
     zonePortalImages.push_back(ENCAMPMENT);
     zonePortalImages.push_back(BLANK_PORTAL);
     zonePortalImages.push_back(PORTAL_CAVE_HILL);
@@ -434,11 +444,11 @@ void RpgTileGridScene::loadZone(SaveObject saveObject)
     }
 }
 
-void RpgTileGridScene::loadZones()
+void RpgTileGridScene::loadZones(std::string saveFile)
 {
     //load zones from file
     //SaveFile zonesFile = SaveFile("zones.txt");
-    SaveFile zonesFile = SaveFile("test");
+    SaveFile zonesFile = SaveFile(saveFile);
     zonesFile.loadFile();
     for (auto zone : zonesFile.objects) {
         loadZone(zone);

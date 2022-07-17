@@ -42,6 +42,7 @@ public:
     void desiredPlayerDrawLocation(int desiredCoords[2]);
     virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
+    virtual void setUpScene(std::string saveFile);
     void handleInput() override;
     void sceneLogic() override;
     void renderScene() override;
@@ -59,7 +60,7 @@ public:
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
     void payBuildingCosts(Building* building, RpgTown* town);
     bool canAffordBuilding(Building* building, RpgTown* town);
-    virtual void loadZones() override;
+    virtual void loadZones(std::string saveFile) override;
     virtual void loadZone(SaveObject saveObject);
     void resizeTiles();
     void virtual destroyUnit(RpgUnit* unit);

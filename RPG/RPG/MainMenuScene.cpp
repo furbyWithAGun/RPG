@@ -15,7 +15,7 @@ MainMenuScene::MainMenuScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEn
 void MainMenuScene::setUpScene()
 {
     menus[MAIN_MENU] = new MainMenu(this, MAIN_MENU, engine->screenWidth, engine->screenHeight, 0, 0);
-    menus[LOAD_GAME_MENU] = new LoadSaveGameMenu(this, MAIN_MENU, engine->screenWidth, engine->screenHeight, 0, 0);
+    menus[LOAD_GAME_MENU] = new LoadSaveGameMenu(this, (RpgOverWorldScene*) engine->scenes[OVERWORLD], MAIN_MENU, engine->screenWidth, engine->screenHeight, 0, 0);
 }
 
 void MainMenuScene::handleInput()

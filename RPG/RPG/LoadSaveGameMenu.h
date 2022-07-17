@@ -3,6 +3,9 @@
 #include "MenuText.h"
 #include "MenuButton.h"
 #include "ScrollBox.h"
+#include <filesystem>
+
+class RpgOverWorldScene;
 
 class LoadSaveGameMenu : public GameMenu
 {
@@ -13,7 +16,7 @@ public:
 
     //constructors
     LoadSaveGameMenu();
-    LoadSaveGameMenu(GameScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
+    LoadSaveGameMenu(GameScene* gameScene, RpgOverWorldScene* overWorldScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
 
     //methods
     //bool handleInput(InputMessage* message);
@@ -21,7 +24,7 @@ public:
 
 private:
     //methods
-    void buildElements();
+    void buildElements(RpgOverWorldScene* overWorldScene);
     void init();
 };
 

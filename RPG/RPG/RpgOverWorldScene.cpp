@@ -27,7 +27,7 @@ void RpgOverWorldScene::init() {
     {
         squadUnits[i] = nullptr;
     }
-    saveGameName = "";
+    saveGameName = NEW_GAME_SAVE_FILE;
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -68,9 +68,25 @@ void RpgOverWorldScene::declareSceneAssets()
 
 void RpgOverWorldScene::setUpScene()
 {
-    RpgTileGridScene::setUpScene();
-    Building::resetUid();
-    Unit::resetUid();
+    RpgTileGridScene::setUpScene(saveGameName);
+    if (saveGameName == NEW_GAME_SAVE_FILE)
+    {
+        player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
+        Building::resetUid();
+        Unit::resetUid();
+        squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
+        squadUnits[1]->doesRandomMovement = false;
+        createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
+        createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
+        createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
+        createUnitAtLocation(1, SOLDIER, 3, 8);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
+        createUnitAtLocation(2, RAT_KING, 29, 1);
+        createUnitAtLocation(3, SKELETON_KING, 28, 28);
+    }
+    
     setUpMonsterTable();
     //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
@@ -80,9 +96,8 @@ void RpgOverWorldScene::setUpScene()
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 3, desiredTilesDown / 2);
     //createUnitAtLocation(currentZone->id, RAT, desiredTilesAcross / 2 - 4, desiredTilesDown / 2);
     
-    //player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
-    squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
-    squadUnits[1]->doesRandomMovement = false;
+    //
+    
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_SHORT_SWORD)});
    // addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_HAT)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_BODY)});
@@ -103,17 +118,7 @@ void RpgOverWorldScene::setUpScene()
 
     //createUnitAtLocation(currentZone->id, RAT, 8, 8);
     
-    createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
-    createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
-    createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
-    createUnitAtLocation(1, SOLDIER, 3, 8);
-    getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
-    getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
-    getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
-    createUnitAtLocation(2, RAT_KING, 29, 1);
-    createUnitAtLocation(3, SKELETON_KING, 28, 28);
-
-
+    
     //build menus
     menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
     menus[TOWN_BUILD_MENU] = new TownBuildMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);

@@ -35,10 +35,15 @@ void TileGridScene::declareSceneAssets()
 
 void TileGridScene::setUpScene()
 {
-    loadZones();
+    loadZones(NEW_GAME_SAVE_FILE);
 }
 
-void TileGridScene::loadZones()
+void TileGridScene::setUpScene(std::string saveFile)
+{
+    loadZones(saveFile);
+}
+
+void TileGridScene::loadZones(std::string saveFile)
 {
     
 }
