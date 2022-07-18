@@ -2,7 +2,7 @@
 #include "BasicMeleeAttack.h"
 
 const int MAX_HEALTH = 50;
-const int SPEED = 2;
+const int SPEED = 4;
 const int DEX = 15;
 const int AGI = 8;
 const int STR = 15;

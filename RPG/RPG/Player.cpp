@@ -4,7 +4,7 @@
 #include "RpgOverWorldScene.h"
 
 //stat constants
-const int PLAYER_SPEED = 4;
+const int PLAYER_SPEED = 30;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
@@ -95,62 +95,62 @@ void Player::updateCamera()
     int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
     int desiredCoords[2];
     scene->desiredPlayerDrawLocation(desiredCoords);
-    if (leftToMove > 0)
-    {
-        double deltaEstimate = (double((double)speed / 100));
-        deltaEstimate = deltaEstimate * scene->tileHeight;
-        deltaEstimate = deltaEstimate * RPG_GAME_TICKS_PER_SECOND;
-        //deltaEstimate = deltaEstimate * 60;
-        deltaEstimate = deltaEstimate / scene->engine->getScreenRefreshRate();
-        deltaEstimate = deltaEstimate * 0.55;
+    //if (leftToMove > 0)
+    //{
+    //    double deltaEstimate = (double((double)speed / 100));
+    //    deltaEstimate = deltaEstimate * scene->tileHeight;
+    //    deltaEstimate = deltaEstimate * RPG_GAME_TICKS_PER_SECOND;
+    //    //deltaEstimate = deltaEstimate * 60;
+    //    deltaEstimate = deltaEstimate / scene->engine->getScreenRefreshRate();
+    //    deltaEstimate = deltaEstimate * 0.55;
 
-        if (leftToMove < 0.75)
-        {
-            int dfgdf = 23432;
-        }
-        if (tileDestination->y > tileLocation->y && desiredCoords[1] - y == 0)
-        {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset -= deltaEstimate;
-        }
-        else if (tileDestination->y > tileLocation->y) {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-        if (tileDestination->y < tileLocation->y && desiredCoords[1] - y == 0)
-        {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset += deltaEstimate;
-        }
-        else if (tileDestination->y < tileLocation->y) {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-        if (tileDestination->x > tileLocation->x && desiredCoords[0] - x == 0)
-        {
-            scene->xOffset -= deltaEstimate;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-        else if (tileDestination->x > tileLocation->x) {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-        if (tileDestination->x < tileLocation->x && desiredCoords[0] - x == 0)
-        {
-            scene->xOffset += deltaEstimate;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-        else if (tileDestination->x < tileLocation->x) {
-            scene->xOffset += desiredCoords[0] - x;
-            scene->yOffset += desiredCoords[1] - y;
-        }
-    }
-    else {
-        scene->xOffset += desiredCoords[0] - x;
-        scene->yOffset += desiredCoords[1] - y;
-    }
-    //scene->xOffset += desiredCoords[0] - x;
-    //scene->yOffset += desiredCoords[1] - y;
+    //    if (leftToMove < 0.75)
+    //    {
+    //        int dfgdf = 23432;
+    //    }
+    //    if (tileDestination->y > tileLocation->y && desiredCoords[1] - y == 0)
+    //    {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset -= deltaEstimate;
+    //    }
+    //    else if (tileDestination->y > tileLocation->y) {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //    if (tileDestination->y < tileLocation->y && desiredCoords[1] - y == 0)
+    //    {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset += deltaEstimate;
+    //    }
+    //    else if (tileDestination->y < tileLocation->y) {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //    if (tileDestination->x > tileLocation->x && desiredCoords[0] - x == 0)
+    //    {
+    //        scene->xOffset -= deltaEstimate;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //    else if (tileDestination->x > tileLocation->x) {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //    if (tileDestination->x < tileLocation->x && desiredCoords[0] - x == 0)
+    //    {
+    //        scene->xOffset += deltaEstimate;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //    else if (tileDestination->x < tileLocation->x) {
+    //        scene->xOffset += desiredCoords[0] - x;
+    //        scene->yOffset += desiredCoords[1] - y;
+    //    }
+    //}
+    //else {
+    //    scene->xOffset += desiredCoords[0] - x;
+    //    scene->yOffset += desiredCoords[1] - y;
+    //}
+    scene->xOffset += desiredCoords[0] - x;
+    scene->yOffset += desiredCoords[1] - y;
     //xpos = desiredCoords[0];
     //ypos = desiredCoords[1];
     updateCoords();

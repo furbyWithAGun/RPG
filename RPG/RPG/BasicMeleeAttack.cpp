@@ -13,8 +13,8 @@ BasicMeleeAttack::BasicMeleeAttack(int newType, RpgUnit* newOwningUnit) : Attack
 }
 
 void BasicMeleeAttack::init() {
-    cooldown = 50;
-    attackTime = 50;
+    cooldown = 30;
+    attackTime = 30;
     cooldownTimeLeft = 0;
     attackDelay = 0;
 }
