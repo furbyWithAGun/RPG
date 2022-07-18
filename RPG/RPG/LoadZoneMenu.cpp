@@ -69,7 +69,7 @@ void LoadZoneMenu::buildElements()
     addElement(ZONE_LOAD_BUTTON, loadButton);
 
     //Cancel button
-    MenuButton* cancelButton = new MenuButton(ZONE_LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.5, ypos + height * 0.8);
+    MenuButton* cancelButton = new MenuButton(LOAD_ZONE_CANCEL_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.5, ypos + height * 0.8);
     cancelButton->setText("Cancel")->addOnClick([this]() {
         close();
         });

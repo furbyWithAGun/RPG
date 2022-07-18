@@ -807,7 +807,7 @@ void RpgTileGridScene::init()
 {
     player = nullptr;
     placingBuilding = false;
-    aggroUpdateRate = 40;
+    aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.75;
 }
 
 void RpgTileGridScene::drawCombatMessages()

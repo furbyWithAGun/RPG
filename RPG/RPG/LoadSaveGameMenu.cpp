@@ -20,68 +20,72 @@ LoadSaveGameMenu::LoadSaveGameMenu(GameScene* gameScene, RpgOverWorldScene* over
     buildElements(overWorldScene);
 }
 
+void LoadSaveGameMenu::open()
+{
+    scene->closeAllMenus();
+    GameMenu::open();
+    delete elements[SAVES_SCROLL_BOX];
+    elements.erase(SAVES_SCROLL_BOX);
+    buildScrollBox();
+}
+
 void LoadSaveGameMenu::buildElements(RpgOverWorldScene* overWorldScene)
 {
     //label
-    addElement(LOAD_GAME_LABEL, new MenuText(LOAD_GAME_LABEL, scene, "Load Game", { 255, 255, 255 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.015));
+    addElement(LOAD_GAME_LABEL, new MenuText(LOAD_GAME_LABEL, scene, "Load Game", { 255, 255, 255 }, xpos + width * 0.465, ypos + height * 0.2));
+    MenuText* label = (MenuText * )getElementbyId(LOAD_GAME_LABEL);
 
-    //Zones scrollbox
-    ScrollBox* scroller;
-    scroller = new ScrollBox(SAVES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.15, width * 0.5, height * 0.6);
-    scroller->numElementsToDisplay = 4;
-
-    std::string path = "/path/to/directory";
-    for (const auto& entry : std::filesystem::directory_iterator(path)) {
-        MenuText* saveName = new MenuText(scene, entry.path().string(), 0, 0);
-        saveName->setBackground({ 100, 100, 100 });
-        scroller->addElement(saveName);
-    }
-
-    addElement(SAVES_SCROLL_BOX, scroller);
+    buildScrollBox();
 
     //load button
-    MenuButton* loadButton = new MenuButton(GAME_LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + (width - width * 0.8) / 2, ypos + height * 0.8);
+    MenuButton* loadButton = new MenuButton(GAME_LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.65, ypos + height * 0.3);
     loadButton->setText("Load")->addOnClick([this, overWorldScene]() {
         ScrollBox* scroller = (ScrollBox*)getElementbyId(SAVES_SCROLL_BOX);
-        overWorldScene->setSaveGameName(scroller->selectedElement->getText());
+        overWorldScene->setSaveGameName(SAVES_FILE_PATH + scroller->selectedElement->getText());
         scene->engine->setNextScene(OVERWORLD);
-        scene->endScene();
         close();
+        scene->endScene();
         });
     addElement(GAME_LOAD_BUTTON, loadButton);
 
     //Cancel button
-    MenuButton* cancelButton = new MenuButton(ZONE_LOAD_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.5, ypos + height * 0.8);
+    MenuButton* cancelButton = new MenuButton(LOAD_GAME_CANCEL_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.65, ypos + height * 0.4);
     cancelButton->setText("Cancel")->addOnClick([this]() {
         close();
         });
-    addElement(LOAD_ZONE_CANCEL_BUTTON, cancelButton);
+    addElement(LOAD_GAME_CANCEL_BUTTON, cancelButton);
 
     //Delete button
-    MenuButton* deleteButton = new MenuButton(LOAD_ZONE_DELETE_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.4);
+    MenuButton* deleteButton = new MenuButton(LOAD_GAME_DELETE_BUTTON, this->scene, BUTTON_BACKGROUND, xpos + width * 0.65, ypos + height * 0.5);
     deleteButton->setText("Delete")->addOnClick([this]() {
-        ScrollBox* oldScroller = (ScrollBox*)getElementbyId(ZONES_SCROLL_BOX);
-        scene->deleteZone(oldScroller->getSelectedElementValue());
-        scene->saveZones("zones.txt");
-        delete elements[ZONES_SCROLL_BOX];
-        elements.erase(ZONES_SCROLL_BOX);
-        ScrollBox* scroller;
-        scroller = new ScrollBox(ZONES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + (width - width * 0.8) / 2, ypos + height * 0.15, width * 0.5, height * 0.6);
-        scroller->numElementsToDisplay = 4;
-
-        for (auto zone : scene->getZones())
-        {
-            MenuText* zoneName = new MenuText(scene, zone.second->zoneName, 0, 0);
-            zoneName->setBackground({ 100, 100, 100 });
-            scroller->addElement(zoneName, zone.second->id);
-        }
-        addElement(ZONES_SCROLL_BOX, scroller);
+        ScrollBox* oldScroller = (ScrollBox*)getElementbyId(SAVES_SCROLL_BOX);
+        std::remove((SAVES_FILE_PATH +  oldScroller->selectedElement->getText()).c_str());
+        delete elements[SAVES_SCROLL_BOX];
+        elements.erase(SAVES_SCROLL_BOX);
+        buildScrollBox();
         });
-    addElement(LOAD_ZONE_DELETE_BUTTON, deleteButton);
+    addElement(LOAD_GAME_DELETE_BUTTON, deleteButton);
 }
 
 void LoadSaveGameMenu::init()
 {
     scene = nullptr;
     savesDisplay = nullptr;
+}
+
+void LoadSaveGameMenu::buildScrollBox()
+{
+    //Zones scrollbox
+    ScrollBox* scroller;
+    scroller = new ScrollBox(SAVES_SCROLL_BOX, scene, { 100, 100, 100 }, xpos + width * 0.5 - (width * 0.2)/2, ypos + height * 0.50 - (height * 0.4)/2, width * 0.2, height * 0.4);
+    scroller->numElementsToDisplay = 4;
+
+    std::string path = SAVES_FILE_PATH;
+    for (const auto& entry : std::filesystem::directory_iterator(path)) {
+        MenuText* saveName = new MenuText(scene, entry.path().stem().string(), 0, 0);
+        saveName->setBackground({ 100, 100, 100 });
+        scroller->addElement(saveName);
+    }
+
+    addElement(SAVES_SCROLL_BOX, scroller);
 }

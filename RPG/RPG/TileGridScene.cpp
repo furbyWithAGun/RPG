@@ -71,7 +71,7 @@ void TileGridScene::deleteZone(int zoneId)
 void TileGridScene::saveZones(std::string saveName)
 {
     //SaveFile zonesFile = SaveFile("zones.txt");
-    SaveFile zonesFile = SaveFile(saveName);
+    SaveFile zonesFile = SaveFile(SAVES_FILE_PATH + saveName);
     for (auto zone : zones) {
         if (zone.second->zoneName.length() > 0)
         {

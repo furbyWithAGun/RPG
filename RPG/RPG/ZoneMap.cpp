@@ -1670,7 +1670,6 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 		for (int j = 0; j < savedBuildings[i].attributes.size(); j++)
 		{
 			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
-			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
 			{
 				switch (stoi(savedBuildings[i].attributes[j].valueString)) {
 				case BUILDING_ITEM_SHOP:

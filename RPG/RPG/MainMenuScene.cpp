@@ -12,6 +12,12 @@ MainMenuScene::MainMenuScene(BaseGameEngine* gameEngine) : GameScene((BaseGameEn
     init();
 }
 
+void MainMenuScene::declareSceneAssets()
+{
+    //UI textures
+    texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
+}
+
 void MainMenuScene::setUpScene()
 {
     menus[MAIN_MENU] = new MainMenu(this, MAIN_MENU, engine->screenWidth, engine->screenHeight, 0, 0);
@@ -32,6 +38,18 @@ void MainMenuScene::handleInput()
             break;
         }
     }
+}
+
+void MainMenuScene::sceneLogic()
+{
+    bool openMenu = false;
+    for (auto menu : menus)
+    {
+        if (menu.second->isActive) {
+            return;
+        }
+    }
+    menus[MAIN_MENU]->open();
 }
 
 //methods

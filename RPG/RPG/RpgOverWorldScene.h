@@ -24,6 +24,7 @@ public:
     RpgUnit* testUnit;
     bool displayHud;
     //Player* player;
+    bool pathfindThreadActive;
 
     //constructors
     RpgOverWorldScene();

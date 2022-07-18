@@ -26,5 +26,6 @@ private:
     //methods
     void buildElements(RpgOverWorldScene* overWorldScene);
     void init();
+    void buildScrollBox();
 };
 

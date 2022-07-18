@@ -616,10 +616,10 @@ void Unit::handleInput(InputMessage* message) {
 }
 
 void Unit::setUnitState(int newState) {
-    if (unitStates.find(newState) != unitStates.end())
-    {
-        currentState = unitStates[newState];
-    }
+    //if (unitStates.find(newState) != unitStates.end())
+    //{
+    currentState = unitStates[newState];
+    //}
 }
 
 void Unit::faceCoords(int x, int y) {

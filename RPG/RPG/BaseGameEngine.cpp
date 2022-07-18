@@ -79,9 +79,10 @@ SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int widt
         printf("Warning: Linear texture filtering not enabled!");
     }
 
-    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
-    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
-    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP); //********************DO NOT USE THIS ONE******************************************
+    
     if (newWindow == NULL)
     {
         printf("Window could not be created! SDL Error: %s\n", SDL_GetError());
@@ -521,6 +522,7 @@ bool BaseGameEngine::initNextScene() {
         nextScene = NULL;
         loadSceneTextures(currentScene);
         currentScene->setUpScene();
+        currentScene->sceneRunning = true;
         SDL_CreateThread(logicThread, "logicThread", (void*)currentScene);
         return true;
     }
@@ -558,15 +560,17 @@ int logicThread(void* scene) {
     srand(time(NULL));
     double lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     int timeToWait = 0;
+    int timeToWaitDiscount = 0;
     while (static_cast <GameScene*> (scene)->sceneRunning)
     {
-        timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastLogicTickStamp);
-        if (timeToWait > 0)
+        timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastLogicTickStamp) + timeToWaitDiscount;
+        if (timeToWait >= 0)
         {
             std::this_thread::sleep_for(std::chrono::milliseconds(timeToWait));
+            timeToWaitDiscount = 0;
         }
         else {
-            int x = 345345;
+            timeToWaitDiscount = timeToWait;
         }
         lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);

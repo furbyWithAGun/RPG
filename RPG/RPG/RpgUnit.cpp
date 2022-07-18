@@ -493,17 +493,20 @@ void RpgUnit::eatFood(Food* foodToEat)
 
 void RpgUnit::updateFoodEffects()
 {
-    auto effectIterator = foodEffects.begin();
-    while (effectIterator != foodEffects.end())
+    if (foodEffects.size() > 0)
     {
-        (*effectIterator)->onUpdate(this);
-        if ((*effectIterator)->tick >= (*effectIterator)->duration) {
-            
-            delete (*effectIterator);
-            effectIterator = foodEffects.erase(effectIterator);
-        }
-        else {
-            effectIterator++;
+        auto effectIterator = foodEffects.begin();
+        while (effectIterator != foodEffects.end())
+        {
+            (*effectIterator)->onUpdate(this);
+            if ((*effectIterator)->tick >= (*effectIterator)->duration) {
+
+                delete (*effectIterator);
+                effectIterator = foodEffects.erase(effectIterator);
+            }
+            else {
+                effectIterator++;
+            }
         }
     }
 }

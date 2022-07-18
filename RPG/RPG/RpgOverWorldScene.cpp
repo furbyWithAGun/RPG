@@ -28,6 +28,7 @@ void RpgOverWorldScene::init() {
         squadUnits[i] = nullptr;
     }
     saveGameName = NEW_GAME_SAVE_FILE;
+    pathfindThreadActive = false;
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -68,12 +69,12 @@ void RpgOverWorldScene::declareSceneAssets()
 
 void RpgOverWorldScene::setUpScene()
 {
+    Building::resetUid();
+    Unit::resetUid();
     RpgTileGridScene::setUpScene(saveGameName);
     if (saveGameName == NEW_GAME_SAVE_FILE)
     {
         player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
-        Building::resetUid();
-        Unit::resetUid();
         squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
         squadUnits[1]->doesRandomMovement = false;
         createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
@@ -86,7 +87,8 @@ void RpgOverWorldScene::setUpScene()
         createUnitAtLocation(2, RAT_KING, 29, 1);
         createUnitAtLocation(3, SKELETON_KING, 28, 28);
     }
-    
+
+    currentZone = getZone(player->zone);
     setUpMonsterTable();
     //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
@@ -133,8 +135,6 @@ void RpgOverWorldScene::setUpScene()
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
-
-    SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -337,6 +337,11 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
+    if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
+    {
+        SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
+        pathfindThreadActive = true;
+    }
     //call base class logic
     RpgTileGridScene::sceneLogic();
     Location* soldierSpawn = new Location{ 22, 27 };
@@ -647,6 +652,11 @@ int getPathThread(void* scene) {
             unit->gettingPath = false;
             continue;
         }
+        else {
+            rpgScene->pathfindThreadActive = false;
+            return 0;
+        }
     }
+    rpgScene->pathfindThreadActive = false;
     return 0;
 }

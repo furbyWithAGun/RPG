@@ -151,6 +151,10 @@ void GameScene::renderRectangle(int x, int y, int width, int height, int r, int 
 
 void GameScene::endScene() {
     sceneRunning = false;
+    for (auto prompt : openPrompts) {
+        delete prompt;
+    }
+    openPrompts.clear();
     SDL_AtomicUnlock(&engine->sceneRunningLock);
 }
 
