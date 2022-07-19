@@ -71,7 +71,7 @@ void RpgWorldBuilderScene::setUpScene() {
 
 void RpgWorldBuilderScene::handleInput() {
     RpgTileGridScene::handleInput();
-    int tileCoords[2];
+    double tileCoords[2];
     InputMessage* message = new InputMessage();
     while (controllerInterface->getNextMessage(message)) {
         switch (message->id)
@@ -185,7 +185,7 @@ void RpgWorldBuilderScene::sceneLogic() {
         case OPEN_PLACED_BUILDING_OPTIONS_MENU:
             Building* selectedBuilding;
             selectedBuilding = sceneToEdit.getBuildingAtLocation(message->x, message->y);
-            int buildingCoords[2];
+            double buildingCoords[2];
             coordsFromTileIndex(message->x, message->y, buildingCoords);
             SelectPrompt* buildingSelectPrompt;
             buildingSelectPrompt = new SelectPrompt(this, COLOR_BLACK, buildingCoords[0] + tileWidth, buildingCoords[1] + tileHeight, 300, 300);
@@ -208,7 +208,7 @@ void RpgWorldBuilderScene::sceneLogic() {
         case OPEN_PLACED_DOODAD_OPTIONS_MENU:
             DooDad* selectedDooDad;
             selectedDooDad = sceneToEdit.getDooDadAtLocation(message->x, message->y);
-            int dooDadCoords[2];
+            double dooDadCoords[2];
             coordsFromTileIndex(message->x, message->y, dooDadCoords);
             SelectPrompt* dooDadSelectPrompt;
             dooDadSelectPrompt = new SelectPrompt(this, COLOR_BLACK, dooDadCoords[0] + tileWidth, dooDadCoords[1] + tileHeight, 300, 300);
@@ -231,7 +231,7 @@ void RpgWorldBuilderScene::sceneLogic() {
         case OPEN_PLACED_PORTAL_OPTIONS_MENU:
             ZonePortal* selectedPortal;
             selectedPortal = getPortalAtLocation(&sceneToEdit, message->x, message->y);
-            int portalCoords[2];
+            double portalCoords[2];
             coordsFromTileIndex(selectedPortal->tileCoords[0], selectedPortal->tileCoords[1], portalCoords);
             SelectPrompt* portalSelectPrompt;
             portalSelectPrompt = new SelectPrompt(this, COLOR_BLACK, portalCoords[0] + tileWidth, portalCoords[1] + tileHeight, 300, 300);
@@ -281,7 +281,7 @@ void RpgWorldBuilderScene::sceneLogic() {
 
 void RpgWorldBuilderScene::renderScene() {
     scrollCamera();
-    int tileCoords[2], screenCoords[2];
+    double tileCoords[2], screenCoords[2];
     if (pickingPortalCoords)
     {
         portalExitZone->draw(this);

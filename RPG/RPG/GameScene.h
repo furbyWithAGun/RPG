@@ -3,6 +3,7 @@
 #include "ControllerInterface.h"
 #include <unordered_map>
 #include "GameMenu.h"
+#include <chrono>
 
 class BaseGameEngine;
 class Prompt;
@@ -45,6 +46,8 @@ public:
     void endScene();
     void removePrompt(Prompt* promptToDelete);
     void clearInputMessages();
+    double getLastTickTimeStamp();
+    void setLastTickTimeStamp();
 
 protected:
     //attributes
@@ -62,6 +65,7 @@ protected:
 
 private:
     //attributes
+    double lastTickTimeStamp;
     
     //methods
     void init();

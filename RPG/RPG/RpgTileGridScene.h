@@ -39,7 +39,7 @@ public:
     RpgTileGridScene(BaseGameEngine* gameEngine);
 
     //methods
-    void desiredPlayerDrawLocation(int desiredCoords[2]);
+    void desiredPlayerDrawLocation(double desiredCoords[2]);
     virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
     virtual void setUpScene(std::string saveFile);

@@ -43,7 +43,7 @@ public:
     TileGridScene(BaseGameEngine* gameEngine);
 
     //methods
-    void coordsFromTileIndex(int x, int y, int returnCoords[2]);
+    void coordsFromTileIndex(int x, int y, double returnCoords[2]);
     virtual void declareSceneAssets() override;
     virtual void setUpScene() override;
     virtual void setUpScene(std::string saveFile = NEW_GAME_SAVE_FILE);
@@ -64,7 +64,7 @@ public:
     void addItemsToMap(int zone, int x, int y, std::vector<Item*> items);
     bool coordsAreOnDisplayedMapTile(int x, int y);
     bool tileCoordsAreOnDisplayedMapTile(int x, int y);
-    void getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]);
+    void getTileIndexFromScreenCoords(int x, int y, double tileIndices[2]);
     void addZone(ZoneMap* newZone);
     void addZone(int zoneId, ZoneMap* newZone);
     std::unordered_map<int, ZoneMap*> getZones();

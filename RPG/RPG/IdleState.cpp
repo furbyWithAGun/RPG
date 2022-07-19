@@ -62,7 +62,7 @@ int IdleState::handleInput(InputMessage* message) {
         {
             if (actionedDooDad->canBeDamaged)
             {
-                int tileCoords[2];
+                double tileCoords[2];
                 unit->scene->coordsFromTileIndex(message->x, message->y, tileCoords);
                 unit->faceCoords(tileCoords[0], tileCoords[1]);
                 if (unit->performAttack(MAIN_ATTACK))

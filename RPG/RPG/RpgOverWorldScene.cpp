@@ -141,7 +141,7 @@ void RpgOverWorldScene::handleInput()
 {
     RpgTileGridScene::handleInput();
     InputMessage* message = new InputMessage();
-    int tileCoords[2];
+    double tileCoords[2];
     
     controllerInterface->populateMessageQueue();
     while (controllerInterface->getNextMessage(message)) {
@@ -487,7 +487,7 @@ void RpgOverWorldScene::sceneLogic()
 
 void RpgOverWorldScene::renderScene()
 {
-    int tileCoords[2], screenCoords[2];
+    double tileCoords[2], screenCoords[2];
     if (!player->cameraFollowPlayer)
     {
         scrollCamera();
@@ -504,8 +504,8 @@ void RpgOverWorldScene::renderScene()
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
         if (squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
-            int coords[2];
-            int destCoords[2];
+            double coords[2];
+            double destCoords[2];
             coordsFromTileIndex(squadUnits[i]->tileLocation->x, squadUnits[i]->tileLocation->y, coords);
             coordsFromTileIndex(squadUnits[i]->tileDestination->x, squadUnits[i]->tileDestination->y, destCoords);
             int xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - squadUnits[i]->leftToMove);
@@ -653,10 +653,10 @@ int getPathThread(void* scene) {
             continue;
         }
         else {
-            rpgScene->pathfindThreadActive = false;
-            return 0;
+            //rpgScene->pathfindThreadActive = false;
+            //return 0;
         }
     }
-    rpgScene->pathfindThreadActive = false;
+    //rpgScene->pathfindThreadActive = false;
     return 0;
 }

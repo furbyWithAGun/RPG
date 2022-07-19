@@ -10,7 +10,7 @@ const int SCREEN_WIDTH = 1900;
 const int SCREEN_HEIGHT = 1000;
 const int MAX_ZONE_WIDTH = 1000;
 const int MAX_ZONE_HEIGHT = 1000;
-const int RPG_GAME_TICKS_PER_SECOND = 12;
+const int RPG_GAME_TICKS_PER_SECOND = 40;
 const int DEFAULT_GET_PATH_RATE = 50;
 const int DEFAULT_ADJUST_PATH_RATE = 3;
 

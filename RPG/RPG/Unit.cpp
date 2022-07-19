@@ -494,8 +494,8 @@ void Unit::portalTo(int zoneId, int x, int y)
 }
 
 void Unit::updateCoords() {
-    int coords[2];
-    int destCoords[2];
+    double coords[2];
+    double destCoords[2];
     scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
     scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
     xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - leftToMove) - scene->tileWidth;
@@ -507,7 +507,7 @@ void Unit::setStartLocation(int x, int y) {
     tileLocation->y = y;
     tileDestination->x = x;
     tileDestination->y = y;
-    int screenCoords[2];
+    double screenCoords[2];
     scene->coordsFromTileIndex(x, y, screenCoords);
     xpos = screenCoords[0];
     ypos = screenCoords[1];
@@ -524,7 +524,7 @@ void Unit::drawNoCoordUpdate()
     AnimatedSprite::draw();
 }
 
-void Unit::getLocationUnitIsFacing(int tileXY[2]) {
+void Unit::getLocationUnitIsFacing(double tileXY[2]) {
     switch (directionFacing)
     {
     case UP_LEFT:

@@ -639,12 +639,12 @@ void ZoneMap::draw(TileGridScene* scene)
 	for (size_t i = 0; i * scene->tileHeight <= (scene->engine->screenHeight + scene->tileHeight) + scene->tileHeight; i++)
 	{
 		for (size_t j = 0; j * scene->tileWidth <= scene->engine->screenWidth + scene->tileWidth; j++) {
-			scene->renderTexture(backGroundTile, ((scene->tileWidth * j) + scene->mainCanvasStartX) + (scene->xOffset % scene->tileWidth) - scene->tileWidth * 2, scene->tileHeight * i + (scene->yOffset % scene->tileHeight) - scene->tileHeight * 2, scene->tileWidth * 3, scene->tileHeight * 3);
+			scene->renderTexture(backGroundTile, ((scene->tileWidth * j) + scene->mainCanvasStartX) + ((int) scene->xOffset % scene->tileWidth) - scene->tileWidth * 2, scene->tileHeight * i + ((int)scene->yOffset % scene->tileHeight) - scene->tileHeight * 2, scene->tileWidth * 3, scene->tileHeight * 3);
 		}
 	}
 
-	int startcoords[2];
-	int endcoords[2];
+	double startcoords[2];
+	double endcoords[2];
 	scene->getTileIndexFromScreenCoords(0, 0, startcoords);
 	scene->getTileIndexFromScreenCoords(scene->engine->screenWidth + scene->tileWidth * 2, scene->engine->screenHeight + scene->tileHeight * 2, endcoords);
 	int startX = startcoords[0];

@@ -12,7 +12,7 @@ RpgTileGridScene::RpgTileGridScene(BaseGameEngine* gameEngine) : TileGridScene((
     init();
 }
 
-void RpgTileGridScene::desiredPlayerDrawLocation(int desiredCoords[2])
+void RpgTileGridScene::desiredPlayerDrawLocation(double desiredCoords[2])
 {
     desiredCoords[0] = (engine->screenWidth - mainCanvasStartX) / 2 + mainCanvasStartX;
     desiredCoords[1] = (engine->screenHeight / 2);
@@ -812,7 +812,7 @@ void RpgTileGridScene::init()
 
 void RpgTileGridScene::drawCombatMessages()
 {
-    int displayCoords[2];
+    double displayCoords[2];
     for (CombatText combatText : combatMessages)
     {
         if (combatText.tickCount >= combatText.delay)

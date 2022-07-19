@@ -132,7 +132,7 @@ void DooDad::drawHealth()
         healthToDisplay = health;
     }
     double healthPercent = (double)healthToDisplay / (double)maxHealth;
-    int drawCoords[2];
+    double drawCoords[2];
     scene->coordsFromTileIndex(tileCoords[0], tileCoords[1], drawCoords);
     scene->engine->renderRectangle(drawCoords[0], drawCoords[1], (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0, 0, 0xff);
 }

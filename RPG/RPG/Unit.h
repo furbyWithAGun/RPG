@@ -99,7 +99,7 @@ public:
     virtual void draw();
     virtual void drawNoCoordUpdate();
     virtual void update();
-    void getLocationUnitIsFacing(int tileXY[2]);
+    void getLocationUnitIsFacing(double tileXY[2]);
     void getLocationUnitDestinationIsFacing(int tileXY[2]);
     void handleInput(InputMessage* message);
     void faceCoords(int x, int y);

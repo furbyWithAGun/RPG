@@ -103,7 +103,7 @@ void TileGridScene::renderScene()
 }
 
 
-void TileGridScene::coordsFromTileIndex(int x, int y, int returnCoords[2]) {
+void TileGridScene::coordsFromTileIndex(int x, int y, double returnCoords[2]) {
     returnCoords[0] = x * tileWidth + mainCanvasStartX + xOffset;
     returnCoords[1] = y * tileHeight + yOffset;
 }
@@ -137,7 +137,7 @@ void TileGridScene::addItemsToMap(int zone, int x, int y, std::vector<Item*> ite
     }
 }
 
-void TileGridScene::getTileIndexFromScreenCoords(int x, int y, int tileIndices[2]) {
+void TileGridScene::getTileIndexFromScreenCoords(int x, int y, double tileIndices[2]) {
     tileIndices[0] = floor(((x - xOffset - mainCanvasStartX)) / tileWidth);
     tileIndices[1] = floor((y - yOffset) / tileHeight);
 }
@@ -216,7 +216,7 @@ void TileGridScene::addDooDadToDestroy(DooDad* dooDad)
 
 
 bool TileGridScene::coordsAreOnDisplayedMapTile(int x, int y) {
-    int k[2];
+    double k[2];
     getTileIndexFromScreenCoords(x, y, k);
     return ((mainCanvasStartX <= x) && (k[0] >= 0) && (k[0] < currentZone->tileMap.size()) && (k[1] >= 0) && (k[1] < currentZone->tileMap[0].size()));
 }

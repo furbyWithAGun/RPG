@@ -87,13 +87,13 @@ void Player::update() {
 
 void Player::updateCamera()
 {
-    int coords[2];
-    int destCoords[2];
+    double coords[2];
+    double destCoords[2];
     scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
     scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
-    int x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
-    int y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
-    int desiredCoords[2];
+    double x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
+    double y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
+    double desiredCoords[2];
     scene->desiredPlayerDrawLocation(desiredCoords);
     //if (leftToMove > 0)
     //{
@@ -163,7 +163,71 @@ void Player::updateCamera()
     }
     //xpos = desiredCoords[0];
     //ypos = desiredCoords[1];
-    updateCoords();
+    if (leftToMove > 0)
+    {
+        double movementPerTick = ((double)speed / 100);
+        double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStamp();
+        double timeRatioSinceLastTick = timeSinceLastTick / scene->engine->tickDelay;
+        double impliedMovement = movementPerTick * timeRatioSinceLastTick;
+        double remainderMovement = 0;
+        
+        //impliedMovement = 0;
+        if (impliedMovement > 0)
+        {
+            int f = 45757567;
+        }
+
+        if (tileDestination->x > tileLocation->x) //moving right
+        {
+            if (impliedMovement > leftToMove && !movingRight)
+            {
+                remainderMovement = impliedMovement - leftToMove;
+                impliedMovement = leftToMove;
+            }
+            scene->xOffset -= impliedMovement * scene->tileWidth;
+        }
+        else if (tileDestination->x < tileLocation->x) { // moving left
+            if (impliedMovement > leftToMove && !movingLeft)
+            {
+                remainderMovement = impliedMovement - leftToMove;
+                impliedMovement = leftToMove;
+            }
+            scene->xOffset += impliedMovement * scene->tileWidth;
+        }
+        else if (tileDestination->y > tileLocation->y) { // moving down
+            if (impliedMovement > leftToMove && !movingDown)
+            {
+                remainderMovement = impliedMovement - leftToMove;
+                impliedMovement = leftToMove;
+            }
+            scene->yOffset -= impliedMovement * scene->tileHeight;
+        }
+        else if (tileDestination->y < tileLocation->y) { //moving up
+            if (impliedMovement > leftToMove && !movingUp)
+            {
+                remainderMovement = impliedMovement - leftToMove;
+                impliedMovement = leftToMove;
+            }
+            scene->yOffset += impliedMovement * scene->tileHeight;
+        }
+        if (remainderMovement > 0)
+        {
+            if (movingDown) {
+                scene->yOffset -= remainderMovement * scene->tileHeight;
+            }
+            else if (movingUp) {
+                scene->yOffset += remainderMovement * scene->tileHeight;
+            }
+            else if (movingRight) {
+                scene->xOffset -= remainderMovement * scene->tileWidth;
+            }
+            else if (movingLeft) {
+                scene->xOffset += remainderMovement * scene->tileWidth;
+            }
+        }
+    }
+    
+    //updateCoords();
 }
 
 void Player::faceMouseDirection(int x, int y) {
@@ -222,7 +286,7 @@ void Player::death()
 
 void Player::draw()
 {
-    int desiredCoords[2];
+    double desiredCoords[2];
     scene->desiredPlayerDrawLocation(desiredCoords);
     xpos = desiredCoords[0] - scene->tileWidth;
     ypos = desiredCoords[1] - scene->tileHeight;

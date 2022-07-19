@@ -131,7 +131,7 @@ bool AiUnit::attackNearbyUnit() {
 bool AiUnit::meleeAttackUnitInDirection(int direction)
 {
     Unit* targetedUnit;
-    int x, y, coords[2];
+    double x, y, coords[2];
     switch (direction)
     {
     case UP_LEFT:
