@@ -2,7 +2,7 @@
 #include "BasicMeleeAttack.h"
 
 const int RAT_MAX_HEALTH = 10;
-const int RAT_SPEED = 4;
+const int RAT_SPEED = 10;
 const int RAT_DEX = 1;
 const int RAT_AGI = 2;
 const int RAT_EXP_VALUE = 3;

@@ -4,7 +4,7 @@
 #include "RpgOverWorldScene.h"
 
 //stat constants
-const int PLAYER_SPEED = 30;
+const int PLAYER_SPEED = 15;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
@@ -149,8 +149,18 @@ void Player::updateCamera()
     //    scene->xOffset += desiredCoords[0] - x;
     //    scene->yOffset += desiredCoords[1] - y;
     //}
+    if (leftToMove < 0.75 && leftToMove > 0)
+    {
+        int dfgdf = 23432;
+    }
+    int prevxoffset = scene->xOffset;
     scene->xOffset += desiredCoords[0] - x;
     scene->yOffset += desiredCoords[1] - y;
+    if (prevxoffset != scene->xOffset)
+    {
+        int x = scene->xOffset - prevxoffset;
+        int c = 23436;
+    }
     //xpos = desiredCoords[0];
     //ypos = desiredCoords[1];
     updateCoords();

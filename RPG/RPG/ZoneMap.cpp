@@ -690,7 +690,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	}
 
 	//draw zone
-
+	
 	Building* buildingToRender;
 	for (int y = startY; y < endY; y++) {
 		for (int x = startX; x < endX; x++) {
