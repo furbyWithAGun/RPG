@@ -4,6 +4,7 @@
 #include "RpgOverWorldScene.h"
 
 //stat constants
+//const int PLAYER_SPEED = 4;
 const int PLAYER_SPEED = 15;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
@@ -212,16 +213,16 @@ void Player::updateCamera()
         }
         if (remainderMovement > 0)
         {
-            if (movingDown) {
+            if (movingDown && scene->isTilePassable(zone, tileLocation->x, tileLocation->y + 1)) {
                 scene->yOffset -= remainderMovement * scene->tileHeight;
             }
-            else if (movingUp) {
+            else if (movingUp && scene->isTilePassable(zone, tileLocation->x, tileLocation->y -1)) {
                 scene->yOffset += remainderMovement * scene->tileHeight;
             }
-            else if (movingRight) {
+            else if (movingRight && scene->isTilePassable(zone, tileLocation->x + 1, tileLocation->y)) {
                 scene->xOffset -= remainderMovement * scene->tileWidth;
             }
-            else if (movingLeft) {
+            else if (movingLeft && scene->isTilePassable(zone, tileLocation->x - 1, tileLocation->y)) {
                 scene->xOffset += remainderMovement * scene->tileWidth;
             }
         }
