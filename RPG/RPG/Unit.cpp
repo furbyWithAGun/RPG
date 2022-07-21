@@ -308,6 +308,7 @@ bool Unit::updateMovement() {
             moveTo(tileDestination->x, tileDestination->y);
         }
         double leftToMoveRemainder = leftToMove;
+        leftToMove = 0;
         if (movingUp && !movingDown && (currentState == unitStates[UNIT_MOVING] || currentState == unitStates[UNIT_IDLE])) {
             startMovement(UP);
             if (leftToMove > 0)

@@ -18,6 +18,8 @@ void GameScene::init() {
     gettingTextInput = false;
     controllerInterface = NULL;
     lastTickTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    timeToWaitDiscount = 0;
+    lastTickDuration = 0;
 }
 
 

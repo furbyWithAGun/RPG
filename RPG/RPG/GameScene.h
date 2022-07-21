@@ -15,6 +15,8 @@ class GameScene
 public:
     //attributes
     BaseGameEngine* engine;
+    int timeToWaitDiscount;
+    int lastTickDuration;
     bool sceneRunning;
     bool gettingTextInput;
     std::vector<Prompt*> openPrompts;
