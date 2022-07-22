@@ -269,7 +269,7 @@ double GameScene::getLastTickTimeStamp()
 
 void GameScene::setLastTickTimeStamp()
 {
-    lastTickTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    lastTickTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
 }
 
 bool GameScene::getNextCommand(InputMessage* message) {

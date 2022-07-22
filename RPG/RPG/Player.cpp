@@ -114,7 +114,9 @@ void Player::updateCamera()
         }
 
         double movementPerTick = ((double)speed / 100);
-        double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStamp();
+        double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStamp();
+        double lastLogictick = scene->getLastTickTimeStamp();
+        double newtick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
         double timeRatioSinceLastTick = timeSinceLastTick / scene->engine->tickDelay;
         double impliedMovement = movementPerTick * timeRatioSinceLastTick;
         double remainderMovement = 0;
@@ -286,19 +288,20 @@ void Player::updateCamera()
     }
     int xdelta = scene->xOffset - prevxoffset;
     int ydelta = scene->yOffset - prevyoffset;
-    if (xdelta > 3 && leftToMove > 0) 
+    int deltaMax = 9;
+    if (xdelta > deltaMax && leftToMove > 0)
     {
-        scene->xOffset = prevxoffset + 3;
+        scene->xOffset = prevxoffset + deltaMax;
     }
-    else if (xdelta < -3 && leftToMove > 0) {
-        scene->xOffset = prevxoffset - 3;
+    else if (xdelta < -deltaMax && leftToMove > 0) {
+        scene->xOffset = prevxoffset - deltaMax;
     }
-    if (ydelta > 3 && leftToMove > 0)
+    if (ydelta > deltaMax && leftToMove > 0)
     {
-        scene->yOffset = prevyoffset + 3;
-    } else if (ydelta < -3 && leftToMove > 0)
+        scene->yOffset = prevyoffset + deltaMax;
+    } else if (ydelta < -deltaMax && leftToMove > 0)
     {
-        scene->yOffset = prevyoffset - 3;
+        scene->yOffset = prevyoffset - deltaMax;
     }
     if (xdelta == 0)
     {
