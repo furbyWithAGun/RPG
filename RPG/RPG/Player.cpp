@@ -288,7 +288,7 @@ void Player::updateCamera()
     }
     int xdelta = scene->xOffset - prevxoffset;
     int ydelta = scene->yOffset - prevyoffset;
-    int deltaMax = 9;
+    int deltaMax = 2000;
     if (xdelta > deltaMax && leftToMove > 0)
     {
         scene->xOffset = prevxoffset + deltaMax;
@@ -303,7 +303,7 @@ void Player::updateCamera()
     {
         scene->yOffset = prevyoffset - deltaMax;
     }
-    if (xdelta == 0)
+    /*if (xdelta == 0 && leftToMove > 0)
     {
         if (movingLeft) {
             scene->xOffset += 1;
@@ -313,7 +313,7 @@ void Player::updateCamera()
         }
     }
 
-    if (ydelta == 0)
+    if (ydelta == 0 && leftToMove > 0)
     {
         if (movingUp) {
             scene->yOffset += 1;
@@ -321,7 +321,7 @@ void Player::updateCamera()
         else if (movingDown) {
             scene->xOffset -= 1;
         }
-    }
+    }*/
     xdelta = scene->xOffset - prevxoffset;
     ydelta = scene->yOffset - prevyoffset;
 

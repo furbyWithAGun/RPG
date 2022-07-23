@@ -484,14 +484,20 @@ void BaseGameEngine::gameRendering() {
 }
 
 void BaseGameEngine::startMainGameLoop() {
-
+    //double lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+    
+    //int tickCount = 0;
     gameRunning = true;
-
+    SDL_SetThreadPriority(SDL_THREAD_PRIORITY_HIGH);
     while (gameRunning)
     {
         gameRunning = currentScene->sceneRunning =  initNextScene();
+        //double initialLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
         while (currentScene->sceneRunning)
         {
+            //tickCount++;
+            //std::cout << (tickCount / ((std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count()) - initialLogicTickStamp)) * 1000;
+            //std::cout << "\n";
             //handle input
             SDL_AtomicLock(&sceneLock);
             currentScene->handleInput();
@@ -573,7 +579,11 @@ int logicThread(void* scene) {
         timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastLogicTickStamp) + static_cast <GameScene*> (scene)->timeToWaitDiscount;
         if (timeToWait >= 0)
         {
-            std::this_thread::sleep_for(std::chrono::milliseconds(timeToWait));
+            while ((std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() < lastLogicTickStamp + timeToWait))
+            {
+
+            }
+            //std::this_thread::sleep_for(std::chrono::milliseconds(timeToWait));
             static_cast <GameScene*> (scene)->timeToWaitDiscount = 0;
         }
         else {
@@ -585,12 +595,13 @@ int logicThread(void* scene) {
         //std::cout << "\nlast tick duration: ";
         //std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count() - lastLogicTickStamp;
         //std::cout << "\n";
-        lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
         //lastLogicTickStamp = std::chrono::steady_clock::now();
         SDL_AtomicLock(&static_cast <GameScene*> (scene)->engine->sceneLock);
         static_cast <GameScene*> (scene)->sceneLogic();
         static_cast <GameScene*> (scene)->setLastTickTimeStamp();
+        lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
         SDL_AtomicUnlock(&static_cast <GameScene*> (scene)->engine->sceneLock);
+        
     }
     return 0;
 }
