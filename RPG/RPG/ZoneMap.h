@@ -111,6 +111,7 @@ class ZoneMap {
 
     private:
         //attributes
+        int lastx;
         std::unordered_map<std::string, std::vector<int>> directPaths;
         //object vectors
         std::vector<Unit*> units;

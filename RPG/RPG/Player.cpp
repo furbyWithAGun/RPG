@@ -288,7 +288,7 @@ void Player::updateCamera()
     }
     int xdelta = scene->xOffset - prevxoffset;
     int ydelta = scene->yOffset - prevyoffset;
-    int deltaMax = 2000;
+    int deltaMax = 20000;
     if (xdelta > deltaMax && leftToMove > 0)
     {
         scene->xOffset = prevxoffset + deltaMax;

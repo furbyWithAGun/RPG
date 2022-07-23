@@ -640,6 +640,22 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		for (size_t j = 0; j * scene->tileWidth <= scene->engine->screenWidth + scene->tileWidth; j++) {
 			scene->renderTexture(backGroundTile, ((scene->tileWidth * j) + scene->mainCanvasStartX) + ((int) scene->xOffset % scene->tileWidth) - scene->tileWidth * 2, scene->tileHeight * i + ((int)scene->yOffset % scene->tileHeight) - scene->tileHeight * 2, scene->tileWidth * 3, scene->tileHeight * 3);
+			if (i == 2 && j == 5)
+			{	
+				int newx = ((scene->tileWidth * j) + scene->mainCanvasStartX) + ((int)scene->xOffset % scene->tileWidth) - scene->tileWidth * 2;
+				std::cout << "\ntile x: ";
+				std::cout << newx;
+				std::cout << "\ndelta: ";
+				std::cout << newx - lastx;
+				std::cout << "\nxoffset: ";
+				std::cout << scene->xOffset;
+				std::cout << "\n";
+				if (newx - lastx >= 60 )
+				{
+					int dfgdfg = 34334;
+				}
+				lastx = newx;
+			}
 		}
 	}
 
