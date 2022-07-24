@@ -7,6 +7,7 @@ class Player : public RpgUnit
 {
 public:
     //attributes
+    int lastRenderTimeStamp;
     bool cameraFollowPlayer;
 
     //constructor

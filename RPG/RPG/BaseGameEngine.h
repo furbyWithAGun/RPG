@@ -121,6 +121,7 @@ class BaseGameEngine
         GameScene* nextScene;
         int auto_texturekey;
         double sigmoidOmega, sigmoidAlpha;
+        bool lockRender;
         
 
         //methods

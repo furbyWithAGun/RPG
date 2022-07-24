@@ -640,22 +640,6 @@ void ZoneMap::draw(TileGridScene* scene)
 	{
 		for (size_t j = 0; j * scene->tileWidth <= scene->engine->screenWidth + scene->tileWidth; j++) {
 			scene->renderTexture(backGroundTile, ((scene->tileWidth * j) + scene->mainCanvasStartX) + ((int) scene->xOffset % scene->tileWidth) - scene->tileWidth * 2, scene->tileHeight * i + ((int)scene->yOffset % scene->tileHeight) - scene->tileHeight * 2, scene->tileWidth * 3, scene->tileHeight * 3);
-			if (i == 2 && j == 5)
-			{	
-				int newx = ((scene->tileWidth * j) + scene->mainCanvasStartX) + ((int)scene->xOffset % scene->tileWidth) - scene->tileWidth * 2;
-				std::cout << "\ntile x: ";
-				std::cout << newx;
-				std::cout << "\ndelta: ";
-				std::cout << newx - lastx;
-				std::cout << "\nxoffset: ";
-				std::cout << scene->xOffset;
-				std::cout << "\n";
-				if (newx - lastx >= 60 )
-				{
-					int dfgdfg = 34334;
-				}
-				lastx = newx;
-			}
 		}
 	}
 
@@ -706,7 +690,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	}
 
 	//draw zone
-	
+	bool logstuff = true;
 	Building* buildingToRender;
 	for (int y = startY; y < endY; y++) {
 		for (int x = startX; x < endX; x++) {
@@ -727,6 +711,23 @@ void ZoneMap::draw(TileGridScene* scene)
 						SDL_SetTextureColorMod(scene->engine->textures[buildingToRender->getTileAtMapLocation(x, y)->textureKey].texture, 255, 255, 255);
 						SDL_SetTextureAlphaMod(scene->engine->textures[buildingToRender->getTileAtMapLocation(x, y)->textureKey].texture, 255);
 						scene->renderTexture(buildingToRender->getTileAtMapLocation(x, y)->textureKey, (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth, scene->tileHeight * y + scene->yOffset - scene->tileHeight, scene->tileWidth * 3, scene->tileHeight * 3);
+						if (logstuff)
+						{
+							int newx = (scene->tileWidth * x) + scene->mainCanvasStartX + scene->xOffset - scene->tileWidth;
+							std::cout << "\ntile x: ";
+							std::cout << newx;
+							std::cout << "\ndelta: ";
+							std::cout << newx - lastx;
+							std::cout << "\nxoffset: ";
+							std::cout << scene->xOffset;
+							std::cout << "\n";
+							if (newx - lastx >= 60)
+							{
+								int dfgdfg = 34334;
+							}
+							lastx = newx;
+							logstuff = false;
+						}
 					}
 				}
 			}
@@ -893,9 +894,7 @@ void ZoneMap::update()
 	for (auto unit : getUnits()) {
 		if (unit->active)
 		{
-			unit->scene->updatingUnits = true;
 			unit->update();
-			unit->scene->updatingUnits = false;
 		}
 	}
 

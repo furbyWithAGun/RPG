@@ -44,8 +44,11 @@ public:
     TileGridScene* scene;
     Location* tileLocation;
     Location* tileDestination;
+    Location* tileLocationBuffer;
+    Location* tileDestinationBuffer;
     std::string name;
     double leftToMove;
+    double leftToMoveBuffer;
     bool isStatic, isPlayerControlled;
     bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;

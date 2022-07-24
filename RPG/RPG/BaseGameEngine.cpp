@@ -111,6 +111,7 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
+    lockRender = true;
     //init sigmoid function
     setSigmoidFunction(DEFAULT_SIGMOID_OMEGA, DEFAULT_SIGMOID_ALPHA);
 
@@ -486,9 +487,9 @@ void BaseGameEngine::gameRendering() {
 void BaseGameEngine::startMainGameLoop() {
     //double lastLogicTickStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
 
-    int lastRenderTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-    int newTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-    int timeToWait = 0;
+    //int lastRenderTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+    //int newTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+    //int timeToWait = 0;
     //int tickCount = 0;
     gameRunning = true;
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_HIGH);
@@ -507,29 +508,35 @@ void BaseGameEngine::startMainGameLoop() {
             currentScene->clearInputMessages();
             SDL_AtomicUnlock(&sceneLock);
 
-            timeToWait = 20 - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp);
-            int currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+            //timeToWait = 20 - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp);
+            //int currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
             //delay
-            while ((currentStamp < lastRenderTimeStamp + timeToWait))
-            {
-                currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-            }
+            //while ((currentStamp < lastRenderTimeStamp + timeToWait))
+            //{
+                //currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+            //}
             //clear screen
             SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
             SDL_RenderClear(getMainRenderer());
             //call scene rendering
-            SDL_AtomicLock(&sceneLock);
+            if (lockRender)
+            {
+                SDL_AtomicLock(&sceneLock);
+            }
             currentScene->renderScene();
             currentScene->drawMenus();
             currentScene->drawPrompts();
-            SDL_AtomicUnlock(&sceneLock);
+            if (lockRender)
+            {
+                SDL_AtomicUnlock(&sceneLock);
+            }
             //Update screen
             SDL_RenderPresent(getMainRenderer());
-            newTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+            //newTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
             //std::cout << "\ntime per render frame:";
             //std::cout << newTimeStamp - lastRenderTimeStamp;
             //std::cout << "\n";
-            lastRenderTimeStamp = newTimeStamp;
+            //lastRenderTimeStamp = newTimeStamp;
         }
     }
 }

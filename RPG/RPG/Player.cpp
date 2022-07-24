@@ -276,6 +276,8 @@ void Player::updateCamera()
         std::cout << impliedMovement;
         std::cout << " time since last tick: ";
         std::cout << timeSinceLastTick;
+        std::cout << "\nlast render time: ";
+        std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp;
         std::cout << "\n";
         if (scene->xOffset - prevxoffset > 5 || scene->xOffset - prevxoffset < -5)
         {
@@ -284,7 +286,7 @@ void Player::updateCamera()
         // TESTING END
     }
      else {
-     std::cout << "\nnot moving\n";
+     //std::cout << "\nnot moving\n";
     }
     int xdelta = scene->xOffset - prevxoffset;
     int ydelta = scene->yOffset - prevyoffset;
@@ -328,6 +330,7 @@ void Player::updateCamera()
     //std::cout <<  "\n delta: ";
     //std::cout <<  scene->xOffset - prevxoffset;
     //std::cout << "\n";
+    lastRenderTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     updateCoords();
 }
 
