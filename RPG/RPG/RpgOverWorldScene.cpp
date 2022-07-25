@@ -488,6 +488,7 @@ void RpgOverWorldScene::sceneLogic()
 void RpgOverWorldScene::renderScene()
 {
     double tileCoords[2], screenCoords[2];
+    SDL_AtomicLock(&TileGridUnitLock);
     if (!player->cameraFollowPlayer)
     {
         scrollCamera();
@@ -496,6 +497,7 @@ void RpgOverWorldScene::renderScene()
         player->updateCamera();
     }
     RpgTileGridScene::renderScene();
+    SDL_AtomicUnlock(&TileGridUnitLock);
     if (displayHud)
     {
         renderHUD();

@@ -111,7 +111,7 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
-    lockRender = true;
+    lockRender = false;
     //init sigmoid function
     setSigmoidFunction(DEFAULT_SIGMOID_OMEGA, DEFAULT_SIGMOID_ALPHA);
 
@@ -503,10 +503,10 @@ void BaseGameEngine::startMainGameLoop() {
             //std::cout << (tickCount / ((std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count()) - initialLogicTickStamp)) * 1000;
             //std::cout << "\n";
             //handle input
-            SDL_AtomicLock(&sceneLock);
+            //SDL_AtomicLock(&sceneLock);
             currentScene->handleInput();
             currentScene->clearInputMessages();
-            SDL_AtomicUnlock(&sceneLock);
+            //SDL_AtomicUnlock(&sceneLock);
 
             //timeToWait = 20 - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp);
             //int currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();

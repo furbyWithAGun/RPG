@@ -24,7 +24,7 @@ void TileGridScene::init() {
     nextZoneId = 0;
     getNewPathFailLimit = 3;
     processPathFailLimit = 30;
-
+    TileGridUnitLock = 0;
     updatingUnits = false;
 }
 
@@ -93,6 +93,17 @@ void TileGridScene::sceneLogic()
     {
         zone.second->update();
     }
+
+    SDL_AtomicLock(&TileGridUnitLock);
+    for (Unit* unit : currentZone->getUnits()) {
+        unit->leftToMoveBuffer = unit->leftToMove;
+        unit->tileLocationBuffer->x = unit->tileLocation->x;
+        unit->tileLocationBuffer->y = unit->tileLocation->y;
+        unit->tileDestinationBuffer->x = unit->tileDestination->x;
+        unit->tileDestinationBuffer->y = unit->tileDestination->y;
+    }
+    setLastTickTimeStampBuffer();
+    SDL_AtomicUnlock(&TileGridUnitLock);
 }
 
 void TileGridScene::renderScene()
@@ -103,6 +114,7 @@ void TileGridScene::renderScene()
 }
 
 
+ 
 void TileGridScene::coordsFromTileIndex(int x, int y, double returnCoords[2]) {
     returnCoords[0] = x * tileWidth + mainCanvasStartX + xOffset;
     returnCoords[1] = y * tileHeight + yOffset;
@@ -203,6 +215,16 @@ void TileGridScene::addUnitToDestroy(Unit* unit)
         return;
     }
     unitsToDestroy.push_back(unit);
+}
+
+double TileGridScene::getLastTickTimeStampBuffer()
+{
+    return lastTickTimeStampBuffer;
+}
+
+void TileGridScene::setLastTickTimeStampBuffer()
+{
+    lastTickTimeStampBuffer = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
 }
 
 void TileGridScene::addDooDadToDestroy(DooDad* dooDad)

@@ -190,6 +190,10 @@ Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene) : AnimatedSprite(
 Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int startY) : AnimatedSprite(gameScene) {
     init(zoneId, unitType, gameScene);
     setStartLocation(startX, startY);
+    tileLocationBuffer->x = startX;
+    tileLocationBuffer->y = startY;
+    tileDestinationBuffer->x = startX;
+    tileDestinationBuffer->y = startY;
 }
 
 void Unit::init() {
@@ -198,10 +202,13 @@ void Unit::init() {
     name = "";
     tileLocation = new Location{ 0, 0 };
     tileDestination = new Location{ 0, 0 };
+    tileLocationBuffer = new Location{ 0, 0 };
+    tileDestinationBuffer = new Location{ 0, 0 };
     maxHealth = 1;
     health = 1;
     speed = 1;
     leftToMove = 0;
+    leftToMoveBuffer = 0;
     isStatic = false;
     isPlayerControlled = false;
     canGoThroughPortal = true;
@@ -497,10 +504,10 @@ void Unit::portalTo(int zoneId, int x, int y)
 void Unit::updateCoords() {
     double coords[2];
     double destCoords[2];
-    scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
-    scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
-    xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - leftToMove) - scene->tileWidth;
-    ypos = coords[1] + (destCoords[1] - coords[1]) * (1 - leftToMove) - scene->tileHeight;
+    scene->coordsFromTileIndex(tileLocationBuffer->x, tileLocationBuffer->y, coords);
+    scene->coordsFromTileIndex(tileDestinationBuffer->x, tileDestinationBuffer->y, destCoords);
+    xpos = coords[0] + (destCoords[0] - coords[0]) * (1 - leftToMoveBuffer) - scene->tileWidth;
+    ypos = coords[1] + (destCoords[1] - coords[1]) * (1 - leftToMoveBuffer) - scene->tileHeight;
 }
 
 void Unit::setStartLocation(int x, int y) {

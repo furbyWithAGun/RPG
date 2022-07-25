@@ -90,22 +90,25 @@ void Player::updateCamera()
 {
     double coords[2];
     double destCoords[2];
-    scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
-    scene->coordsFromTileIndex(tileDestination->x, tileDestination->y, destCoords);
-    double x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMove);
-    double y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMove);
+    scene->coordsFromTileIndex(tileLocationBuffer->x, tileLocationBuffer->y, coords);
+    scene->coordsFromTileIndex(tileDestinationBuffer->x, tileDestinationBuffer->y, destCoords);
+    double x = coords[0] + ((double)destCoords[0] - (double)coords[0]) * (1 - leftToMoveBuffer);
+    double y = coords[1] + ((double)destCoords[1] - (double)coords[1]) * (1 - leftToMoveBuffer);
     double desiredCoords[2];
     scene->desiredPlayerDrawLocation(desiredCoords);
     
-    int destXOffset = desiredCoords[0] - scene->mainCanvasStartX - tileDestination->x * scene->tileWidth;
-    int destYOffset = desiredCoords[1] - tileDestination->y * scene->tileHeight;
+    int destXOffset = desiredCoords[0] - scene->mainCanvasStartX - tileDestinationBuffer->x * scene->tileWidth;
+    int destYOffset = desiredCoords[1] - tileDestinationBuffer->y * scene->tileHeight;
 
     int prevxoffset = scene->xOffset;
     int prevyoffset = scene->yOffset;
     scene->xOffset += desiredCoords[0] - x;
     scene->yOffset += desiredCoords[1] - y;
 
-    if (leftToMove > 0)
+    int basexoff = scene->xOffset;
+    int baseyoff = scene->yOffset;
+
+    if (leftToMoveBuffer > 0)
     {
         if (prevxoffset > scene->xOffset)
         {
@@ -114,8 +117,12 @@ void Player::updateCamera()
         }
 
         double movementPerTick = ((double)speed / 100);
-        double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStamp();
-        double lastLogictick = scene->getLastTickTimeStamp();
+        double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStampBuffer();
+        if (timeSinceLastTick > scene->engine->tickDelay)
+        {
+            timeSinceLastTick = scene->engine->tickDelay;
+        }
+        double lastLogictick = scene->getLastTickTimeStampBuffer();
         double newtick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
         double timeRatioSinceLastTick = timeSinceLastTick / scene->engine->tickDelay;
         double impliedMovement = movementPerTick * timeRatioSinceLastTick;
@@ -126,16 +133,16 @@ void Player::updateCamera()
         {
             int f = 45757567;
         }
-        if (impliedMovement > leftToMove) {
+        if (impliedMovement > leftToMoveBuffer) {
             int dfgdgdf = 234234;
         }
 
-        if (tileDestination->x > tileLocation->x) //moving right
+        if (tileDestinationBuffer->x > tileLocationBuffer->x) //moving right
         {
-            if (impliedMovement > leftToMove && (!movingRight || !scene->isTilePassable(zone, tileDestination->x + 1, tileDestination->y)))
+            if (impliedMovement > leftToMoveBuffer && (!movingRight || !scene->isTilePassable(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y)))
             {
-                remainderMovement = impliedMovement - leftToMove;
-                impliedMovement = leftToMove;
+                remainderMovement = impliedMovement - leftToMoveBuffer;
+                impliedMovement = leftToMoveBuffer;
                 scene->xOffset = destXOffset;
                 // TESTING START
                 if (prevxoffset > scene->xOffset)
@@ -145,7 +152,7 @@ void Player::updateCamera()
                 }
                 //std::cout << scene->xOffset - prevxoffset;
                 //std::cout << " left to move: ";
-                //std::cout << leftToMove;
+                //std::cout << leftToMoveBuffer;
                 //std::cout << " implied movement: ";
                 //std::cout << impliedMovement;
                 //std::cout << " time since last tick: ";
@@ -167,7 +174,7 @@ void Player::updateCamera()
                 }
                 //std::cout << scene->xOffset - prevxoffset;
                 //std::cout << " left to move: ";
-                //std::cout << leftToMove;
+                //std::cout << leftToMoveBuffer;
                 //std::cout << " implied movement: ";
                 //std::cout << impliedMovement;
                 //std::cout << " time since last tick: ";
@@ -178,7 +185,7 @@ void Player::updateCamera()
                     int dfgdfg = 4564;
                 }
                 // TESTING END
-                if (scene->xOffset < destXOffset && (!movingRight || !scene->isTilePassable(zone, tileDestination->x + 1, tileDestination->y)))
+                if (scene->xOffset < destXOffset && (!movingRight || !scene->isTilePassable(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y)))
                 {
                     scene->xOffset = destXOffset;
                     // TESTING START
@@ -189,7 +196,7 @@ void Player::updateCamera()
                     }
                     /*std::cout << scene->xOffset - prevxoffset;
                     std::cout << " left to move: ";
-                    std::cout << leftToMove;
+                    std::cout << leftToMoveBuffer;
                     std::cout << " implied movement: ";
                     std::cout << impliedMovement;
                     std::cout << " time since last tick: ";
@@ -203,46 +210,46 @@ void Player::updateCamera()
                 }
             }
         }
-        else if (tileDestination->x < tileLocation->x) { // moving left
-            if (impliedMovement > leftToMove && (!movingLeft || !scene->isTilePassable(zone, tileDestination->x - 1, tileDestination->y)))
+        else if (tileDestinationBuffer->x < tileLocationBuffer->x) { // moving left
+            if (impliedMovement > leftToMoveBuffer && (!movingLeft || !scene->isTilePassable(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y)))
             {
-                remainderMovement = impliedMovement - leftToMove;
-                impliedMovement = leftToMove;
+                remainderMovement = impliedMovement - leftToMoveBuffer;
+                impliedMovement = leftToMoveBuffer;
                 scene->xOffset = destXOffset;
             }
             else {
                 scene->xOffset += impliedMovement * scene->tileWidth;
-                if (scene->xOffset > destXOffset && (!movingLeft || !scene->isTilePassable(zone, tileDestination->x - 1, tileDestination->y)))
+                if (scene->xOffset > destXOffset && (!movingLeft || !scene->isTilePassable(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y)))
                 {
                     scene->xOffset = destXOffset;
                 }
             }
         }
-        else if (tileDestination->y > tileLocation->y) { // moving down
-            if (impliedMovement > leftToMove && (!movingDown || !scene->isTilePassable(zone, tileDestination->x, tileDestination->y + 1)))
+        else if (tileDestinationBuffer->y > tileLocationBuffer->y) { // moving down
+            if (impliedMovement > leftToMoveBuffer && (!movingDown || !scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1)))
             {
-                remainderMovement = impliedMovement - leftToMove;
-                impliedMovement = leftToMove;
+                remainderMovement = impliedMovement - leftToMoveBuffer;
+                impliedMovement = leftToMoveBuffer;
                 scene->yOffset = destYOffset;
             }
             else {
                 scene->yOffset -= impliedMovement * scene->tileHeight;
-                if (scene->yOffset < destYOffset && (!movingDown || !scene->isTilePassable(zone, tileDestination->x, tileDestination->y + 1)))
+                if (scene->yOffset < destYOffset && (!movingDown || !scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1)))
                 {
                     scene->yOffset = destYOffset;
                 }
             }
         }
-        else if (tileDestination->y < tileLocation->y) { //moving up
-            if (impliedMovement > leftToMove && (!movingUp || !scene->isTilePassable(zone, tileDestination->x, tileDestination->y - 1)))
+        else if (tileDestinationBuffer->y < tileLocationBuffer->y) { //moving up
+            if (impliedMovement > leftToMoveBuffer && (!movingUp || !scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1)))
             {
-                remainderMovement = impliedMovement - leftToMove;
-                impliedMovement = leftToMove;
+                remainderMovement = impliedMovement - leftToMoveBuffer;
+                impliedMovement = leftToMoveBuffer;
                 scene->yOffset = destYOffset;
             }
             else {
                 scene->yOffset += impliedMovement * scene->tileHeight;
-                if (scene->yOffset > destYOffset && (!movingUp || !scene->isTilePassable(zone, tileDestination->x, tileDestination->y - 1)))
+                if (scene->yOffset > destYOffset && (!movingUp || !scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1)))
                 {
                     scene->yOffset = destYOffset;
                 }
@@ -250,16 +257,16 @@ void Player::updateCamera()
         }
         if (remainderMovement > 0)
         {
-            if (movingDown && scene->isTilePassable(zone, tileDestination->x, tileDestination->y + 1)) {
+            if (movingDown && scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1)) {
                 scene->yOffset -= remainderMovement * scene->tileHeight;
             }
-            else if (movingUp && scene->isTilePassable(zone, tileDestination->x, tileDestination->y -1)) {
+            else if (movingUp && scene->isTilePassable(zone, tileDestinationBuffer->x, tileDestinationBuffer->y -1)) {
                 scene->yOffset += remainderMovement * scene->tileHeight;
             }
-            else if (movingRight && scene->isTilePassable(zone, tileDestination->x + 1, tileLocation->y)) {
+            else if (movingRight && scene->isTilePassable(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y)) {
                 scene->xOffset -= remainderMovement * scene->tileWidth;
             }
-            else if (movingLeft && scene->isTilePassable(zone, tileDestination->x - 1, tileLocation->y)) {
+            else if (movingLeft && scene->isTilePassable(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y)) {
                 scene->xOffset += remainderMovement * scene->tileWidth;
             }
         }
@@ -269,16 +276,19 @@ void Player::updateCamera()
             int hh = scene->xOffset - prevxoffset;
             int c = 23436;
         }
+        std::cout << "\ndelta: ";
         std::cout << scene->xOffset - prevxoffset;
+        std::cout << " base delta: ";
+        std::cout << basexoff - prevxoffset;
         std::cout << " left to move: ";
-        std::cout << leftToMove;
+        std::cout << leftToMoveBuffer;
         std::cout << " implied movement: ";
         std::cout << impliedMovement;
         std::cout << " time since last tick: ";
         std::cout << timeSinceLastTick;
         std::cout << "\nlast render time: ";
         std::cout << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp;
-        std::cout << "\n";
+        //std::cout << "\n";
         if (scene->xOffset - prevxoffset > 5 || scene->xOffset - prevxoffset < -5)
         {
             int dfgdfg = 4564;
@@ -291,21 +301,21 @@ void Player::updateCamera()
     int xdelta = scene->xOffset - prevxoffset;
     int ydelta = scene->yOffset - prevyoffset;
     int deltaMax = 20000;
-    if (xdelta > deltaMax && leftToMove > 0)
+    if (xdelta > deltaMax && leftToMoveBuffer > 0)
     {
         scene->xOffset = prevxoffset + deltaMax;
     }
-    else if (xdelta < -deltaMax && leftToMove > 0) {
+    else if (xdelta < -deltaMax && leftToMoveBuffer > 0) {
         scene->xOffset = prevxoffset - deltaMax;
     }
-    if (ydelta > deltaMax && leftToMove > 0)
+    if (ydelta > deltaMax && leftToMoveBuffer > 0)
     {
         scene->yOffset = prevyoffset + deltaMax;
-    } else if (ydelta < -deltaMax && leftToMove > 0)
+    } else if (ydelta < -deltaMax && leftToMoveBuffer > 0)
     {
         scene->yOffset = prevyoffset - deltaMax;
     }
-    /*if (xdelta == 0 && leftToMove > 0)
+    /*if (xdelta == 0 && leftToMoveBuffer > 0)
     {
         if (movingLeft) {
             scene->xOffset += 1;
@@ -315,7 +325,7 @@ void Player::updateCamera()
         }
     }
 
-    if (ydelta == 0 && leftToMove > 0)
+    if (ydelta == 0 && leftToMoveBuffer > 0)
     {
         if (movingUp) {
             scene->yOffset += 1;
@@ -331,6 +341,10 @@ void Player::updateCamera()
     //std::cout <<  scene->xOffset - prevxoffset;
     //std::cout << "\n";
     lastRenderTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+    if (movingRight && xdelta > 0)
+    {
+        scene->xOffset = prevxoffset - 1;
+    }
     updateCoords();
 }
 

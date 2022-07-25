@@ -22,6 +22,7 @@ class TileGridScene : public GameScene
 {
 public:
     //attributes
+    SDL_SpinLock TileGridUnitLock;
     int mainCanvasStartX;
     int xOffset, yOffset;
     ZoneMap* currentZone;
@@ -73,6 +74,8 @@ public:
     bool isUnitToBeDestroyed(Unit* unit);
     bool isDooDadToBeDestroyed(DooDad* dooDad);
     void addUnitToDestroy(Unit* unit);
+    double getLastTickTimeStampBuffer();
+    void setLastTickTimeStampBuffer();
     void addDooDadToDestroy(DooDad* dooDad);
     
 
@@ -88,6 +91,7 @@ protected:
 
 private:
     //attributes
+    double lastTickTimeStampBuffer;
     std::unordered_map<int, ZoneMap*> zones;
     //methods
     virtual void createTiles();
