@@ -135,6 +135,7 @@ void RpgOverWorldScene::setUpScene()
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
+    //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -337,11 +338,13 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
-    if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
-    {
-        SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
-        pathfindThreadActive = true;
-    }
+    SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
+    pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
+    //if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
+    //{
+    //    pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
+    //    pathfindThreadActive = true;
+    //}
     //call base class logic
     RpgTileGridScene::sceneLogic();
     Location* soldierSpawn = new Location{ 22, 27 };
@@ -592,71 +595,168 @@ std::string RpgOverWorldScene::getSaveGameName()
 }
 
 //functions
+//int getPathThread(void* scene) {
+//    srand(time(NULL));
+//    SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
+//    RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
+//    while (rpgScene->sceneRunning)
+//    {
+//        if(rpgScene->unitsNeedingPath.size() > 0)
+//        {
+//            Unit* unit = rpgScene->unitsNeedingPath.front();
+//            rpgScene->unitsNeedingPath.pop_front();
+//            try {
+//                std::vector<int> tempDirections;
+//
+//                if (unit->targetUnit != nullptr)
+//                {
+//                    if ((std::abs(unit->targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(unit->targetUnit->tileDestination->y - unit->tileDestination->y) <= 1)) {
+//                        unit->pathDirections = tempDirections;
+//                        unit->gettingPath = false;
+//                        continue;
+//                    }
+//                    tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
+//                    if (tempDirections.size() > 0)
+//                    {
+//                        unit->pathDirections = tempDirections;
+//                        unit->gettingPath = false;
+//                        continue;
+//                    }
+//                    unit->getNewPathFailTick++;
+//                    if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+//                    {
+//                        unit->getNewPathFailTick = 0;
+//                        unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetUnit->tileDestination);
+//                    }
+//                    unit->gettingPath = false;
+//                    continue;
+//                }
+//                else if (unit->targetLocation != nullptr) {
+//                    tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->targetLocation);
+//                    if (tempDirections.size() > 0)
+//                    {
+//                        unit->pathDirections = tempDirections;
+//                        unit->gettingPath = false;
+//                        continue;
+//                    }
+//                    unit->getNewPathFailTick++;
+//                    if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+//                    {
+//                        unit->getNewPathFailTick = 0;
+//                        unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetLocation);
+//                    }
+//                    unit->gettingPath = false;
+//                    continue;
+//                }
+//                unit->gettingPath = false;
+//            }
+//            catch (...) {
+//                unit->gettingPath = false;
+//                continue;
+//            }
+//            unit->gettingPath = false;
+//            continue;
+//        }
+//        else {
+//            //rpgScene->pathfindThreadActive = false;
+//            //return 0;
+//        }
+//    }
+//    //rpgScene->pathfindThreadActive = false;
+//    return 0;
+//}
+
 int getPathThread(void* scene) {
     srand(time(NULL));
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
-    while (rpgScene->sceneRunning)
+    
+    while (rpgScene->unitsNeedingPath.size() > 0)
     {
-        if(rpgScene->unitsNeedingPath.size() > 0)
-        {
-            Unit* unit = rpgScene->unitsNeedingPath.front();
-            rpgScene->unitsNeedingPath.pop_front();
-            try {
-                std::vector<int> tempDirections;
 
-                if (unit->targetUnit != nullptr)
-                {
-                    if ((std::abs(unit->targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(unit->targetUnit->tileDestination->y - unit->tileDestination->y) <= 1)) {
-                        unit->pathDirections = tempDirections;
-                        unit->gettingPath = false;
-                        continue;
-                    }
-                    tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
-                    if (tempDirections.size() > 0)
-                    {
-                        unit->pathDirections = tempDirections;
-                        unit->gettingPath = false;
-                        continue;
-                    }
-                    unit->getNewPathFailTick++;
-                    if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
-                    {
-                        unit->getNewPathFailTick = 0;
-                        unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetUnit->tileDestination);
-                    }
+        Unit* unit = rpgScene->unitsNeedingPath.front();
+        rpgScene->unitsNeedingPath.pop_front();
+        try {
+            std::vector<int> tempDirections;
+
+            if (unit->targetUnit != nullptr)
+            {
+                if ((std::abs(unit->targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(unit->targetUnit->tileDestination->y - unit->tileDestination->y) <= 1)) {
+                    unit->pathDirections = tempDirections;
                     unit->gettingPath = false;
                     continue;
                 }
-                else if (unit->targetLocation != nullptr) {
-                    tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->targetLocation);
-                    if (tempDirections.size() > 0)
-                    {
-                        unit->pathDirections = tempDirections;
-                        unit->gettingPath = false;
-                        continue;
-                    }
-                    unit->getNewPathFailTick++;
-                    if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
-                    {
-                        unit->getNewPathFailTick = 0;
-                        unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetLocation);
-                    }
+                tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
+                if (tempDirections.size() > 0)
+                {
+                    unit->pathDirections = tempDirections;
                     unit->gettingPath = false;
                     continue;
+                }
+                unit->getNewPathFailTick++;
+                if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+                {
+                    unit->getNewPathFailTick = 0;
+                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetUnit->tileDestination);
                 }
                 unit->gettingPath = false;
+                continue;
             }
-            catch (...) {
+            else if (unit->targetLocation != nullptr) {
+                tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->targetLocation);
+                if (tempDirections.size() > 0)
+                {
+                    unit->pathDirections = tempDirections;
+                    unit->gettingPath = false;
+                    continue;
+                }
+                unit->getNewPathFailTick++;
+                if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+                {
+                    unit->getNewPathFailTick = 0;
+                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetLocation);
+                }
                 unit->gettingPath = false;
                 continue;
             }
             unit->gettingPath = false;
+        }
+        catch (...) {
+            unit->gettingPath = false;
             continue;
         }
-        else {
-            //rpgScene->pathfindThreadActive = false;
-            //return 0;
+        unit->gettingPath = false;
+        continue;
+    }
+    
+    //rpgScene->pathfindThreadActive = false;
+    return 0;
+}
+
+int updateAggroThread(void* scene) {
+    srand(time(NULL));
+    SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
+    RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
+    for (auto zone : rpgScene->getZones())
+    {
+        for (Unit* unit : zone.second->getUnits()) {
+            try {
+                if (unit != rpgScene->player)
+                {
+                    AiUnit* aiUnit = (AiUnit*)unit;
+                    ((RpgUnit*)unit)->updateAggro();
+                    if (aiUnit->currentState->id == UNIT_IDLE && !aiUnit->attackNearbyUnit() && aiUnit->doesRandomMovement && aiUnit->pathDirections.size() <= 0)
+                    {
+                        if (aiUnit->targetUnit == nullptr || !((std::abs(aiUnit->targetUnit->tileDestination->x - aiUnit->tileDestination->x) <= 1) && (std::abs(aiUnit->targetUnit->tileDestination->y - aiUnit->tileDestination->y) <= 1)))
+                        {
+                            aiUnit->randomMovement();
+                        }
+                    }
+                }
+            }
+            catch (...) {
+                continue;
+            }
         }
     }
     //rpgScene->pathfindThreadActive = false;

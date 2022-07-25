@@ -25,6 +25,8 @@ public:
     bool displayHud;
     //Player* player;
     bool pathfindThreadActive;
+    SDL_Thread* pathFindingThread;
+    SDL_Thread* aggroThread;
 
     //constructors
     RpgOverWorldScene();
@@ -59,3 +61,4 @@ private:
 
 
 int getPathThread(void* scene);
+int updateAggroThread(void* scene);

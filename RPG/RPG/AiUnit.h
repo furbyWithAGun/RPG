@@ -28,6 +28,8 @@ public:
     //methods
     void update() override;
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
+    void randomMovement();
+    bool attackNearbyUnit();
 
 private:
     //attribues
@@ -36,8 +38,6 @@ private:
     int checkToAttackRate;
 
     //methods
-    void randomMovement();
-    bool attackNearbyUnit();
     bool meleeAttackUnitInDirection(int direction);
     void init();
 };

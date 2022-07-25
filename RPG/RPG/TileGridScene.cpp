@@ -88,12 +88,6 @@ void TileGridScene::handleInput()
 
 void TileGridScene::sceneLogic()
 {
-    GameScene::sceneLogic();
-    for (auto zone : zones)
-    {
-        zone.second->update();
-    }
-
     SDL_AtomicLock(&TileGridUnitLock);
     for (Unit* unit : currentZone->getUnits()) {
         unit->leftToMoveBuffer = unit->leftToMove;
@@ -104,6 +98,11 @@ void TileGridScene::sceneLogic()
     }
     setLastTickTimeStampBuffer();
     SDL_AtomicUnlock(&TileGridUnitLock);
+    GameScene::sceneLogic();
+    for (auto zone : zones)
+    {
+        zone.second->update();
+    }
 }
 
 void TileGridScene::renderScene()
@@ -263,6 +262,10 @@ Unit* TileGridScene::getUnitAtLocation(int zoneId, int x, int y)
 
 bool TileGridScene::isTilePassable(int zoneId, int x, int y) {
     return zones[zoneId]->isTilePassable(this, x, y);
+}
+
+bool TileGridScene::isTilePassableIgnoreUnit(int zoneId, int x, int y, Unit* unitToIgnore) {
+    return zones[zoneId]->isTilePassableIgnoreUnit(this, x, y, unitToIgnore);
 }
 
 //private methods

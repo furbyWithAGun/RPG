@@ -58,6 +58,7 @@ public:
     void renderScene() override;
     Unit* getUnitAtLocation(int zoneId, int x, int y);
     bool isTilePassable(int zoneId, int x, int y);
+    bool isTilePassableIgnoreUnit(int zoneId, int x, int y, Unit* unitToIgnore);
     ZonePortal* getPortalAtLocation(ZoneMap* zoneMap, int xpos, int ypos);
     DooDad* getDooDadAtLocation(ZoneMap* zoneMap, int xpos, int ypos);
     void removePortalAtLocation(int zoneId, int xpos, int ypos);
