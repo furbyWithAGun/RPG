@@ -88,7 +88,7 @@ void TileGridScene::handleInput()
 
 void TileGridScene::sceneLogic()
 {
-    SDL_AtomicLock(&TileGridUnitLock);
+    //SDL_AtomicLock(&TileGridUnitLock);
     for (Unit* unit : currentZone->getUnits()) {
         unit->leftToMoveBuffer = unit->leftToMove;
         unit->tileLocationBuffer->x = unit->tileLocation->x;
@@ -97,7 +97,7 @@ void TileGridScene::sceneLogic()
         unit->tileDestinationBuffer->y = unit->tileDestination->y;
     }
     setLastTickTimeStampBuffer();
-    SDL_AtomicUnlock(&TileGridUnitLock);
+    //SDL_AtomicUnlock(&TileGridUnitLock);
     GameScene::sceneLogic();
     for (auto zone : zones)
     {

@@ -690,7 +690,7 @@ void ZoneMap::draw(TileGridScene* scene)
 	}
 
 	//draw zone
-	bool logstuff = true;
+	bool logstuff = false;
 	Building* buildingToRender;
 	for (int y = startY; y < endY; y++) {
 		for (int x = startX; x < endX; x++) {
@@ -926,7 +926,7 @@ void ZoneMap::updateUnitMap()
 
 bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 {
-	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() )
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
 	{
 		return false;
 	}
@@ -949,12 +949,12 @@ bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 		return false;
 	}
 
-	return scene->mapTiles[tileMap[x][y]].passable && getUnitAtLocation(x, y) == nullptr ;
+	return getUnitAtLocation(x, y) == nullptr ;
 }
 
 bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 {
-	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
+	if(x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
 	{
 		return false;
 	}
@@ -977,12 +977,12 @@ bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 		return false;
 	}
 
-	return scene->mapTiles[tileMap[x][y]].passable;
+	return true;
 }
 
 bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit* unitToIgnore)
 {
-	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
 	{
 		return false;
 	}
@@ -1014,12 +1014,12 @@ bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit*
 		}
 	}
 
-	return scene->mapTiles[tileMap[x][y]].passable && (getUnitAtLocation(x, y) == nullptr || ignoreUnitPresent);
+	return (getUnitAtLocation(x, y) == nullptr || ignoreUnitPresent);
 }
 
 bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std::vector<Unit*> unitsToIgnore)
 {
-	if (x < 0 || y < 0 || y >= tileMap[x].size() || x >= tileMap.size())
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
 	{
 		return false;
 	}
@@ -1054,7 +1054,7 @@ bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std:
 
 	}
 endOfLoop:
-	return scene->mapTiles[tileMap[x][y]].passable && (ignoreUnitPresent || getUnitAtLocation(x, y) == nullptr);
+	return (ignoreUnitPresent || getUnitAtLocation(x, y) == nullptr);
 }
 
 void ZoneMap::unitEntersTile(Unit* unit, int x, int y)

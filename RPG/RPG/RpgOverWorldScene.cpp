@@ -338,7 +338,7 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
-    SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
+    //SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
     pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
     //if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
     //{
@@ -491,7 +491,7 @@ void RpgOverWorldScene::sceneLogic()
 void RpgOverWorldScene::renderScene()
 {
     double tileCoords[2], screenCoords[2];
-    SDL_AtomicLock(&TileGridUnitLock);
+    //SDL_AtomicLock(&TileGridUnitLock);
     if (!player->cameraFollowPlayer)
     {
         scrollCamera();
@@ -500,7 +500,7 @@ void RpgOverWorldScene::renderScene()
         player->updateCamera();
     }
     RpgTileGridScene::renderScene();
-    SDL_AtomicUnlock(&TileGridUnitLock);
+    //SDL_AtomicUnlock(&TileGridUnitLock);
     if (displayHud)
     {
         renderHUD();

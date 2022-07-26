@@ -53,14 +53,14 @@ void AiUnit::init() {
 
 void AiUnit::update() {
     updateCoords();
-    //updateAggro();
-    //if (currentState->id == UNIT_IDLE && !attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
-    //{
-    //    if (targetUnit == nullptr || !((std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1) && (std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1)))
-    //    {
-    //        randomMovement();
-    //    }
-    //}
+    updateAggro();
+    if (currentState->id == UNIT_IDLE && !attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)
+    {
+        if (targetUnit == nullptr || !((std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1) && (std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1)))
+        {
+            randomMovement();
+        }
+    }
     RpgUnit::update();
 }
 

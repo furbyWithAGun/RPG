@@ -111,7 +111,7 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
-    lockRender = false;
+    //lockRender = false;
     tickRatesCaptured = 0;
     fpsRatesCaptured = 0;
     lastTickCaptured = 0;
