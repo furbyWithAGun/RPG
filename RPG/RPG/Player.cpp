@@ -5,7 +5,7 @@
 
 //stat constants
 //const int PLAYER_SPEED = 4;
-const int PLAYER_SPEED = 4;
+const int PLAYER_SPEED = 20;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
@@ -62,6 +62,8 @@ void Player::init() {
     lastYDelta = 0;
     lastYDelta2 = 0;
     lastYDelta3 = 0;
+    changedXSpeedlastTick = false;
+    changedYSpeedlastTick = false;
 }
 
 void Player::init(RpgTileGridScene* gameScene) {
@@ -372,46 +374,98 @@ void Player::updateCamera()
     scene->desiredPlayerDrawLocation(desiredCoords);
     int desiredX = desiredCoords[0];
     int desiredY = desiredCoords[1];
+    int prevxoffset = scene->xOffset;
+    int prevyoffset = scene->yOffset;
 
 
     SDL_DisplayMode current;
     SDL_GetCurrentDisplayMode(0, &current);
-    double framesPerTick = (current.refresh_rate) / scene->engine->ticksPerSecond;
-    
+    //double framesPerTick = (current.refresh_rate) / scene->engine->ticksPerSecond;
+    double framesPerTick = scene->engine->getRollingFpsRate() / scene->engine->getRollingTickRate();
+    double xscrollSpeed = double (scene->tileWidth * ((double)speed / 100)) / framesPerTick;
+    double yscrollSpeed = double (scene->tileHeight * ((double)speed / 100)) / framesPerTick;
+    double xDelta = desiredX - x;
+    double yDelta = desiredY - y;
 
-    if (x < desiredX) { //moving left
-        int scrollSpeed = (scene->tileWidth / speed) / framesPerTick;
-        if (scrollSpeed > desiredX - x)
-        {
-            scrollSpeed = desiredX - x;
-        }
-        scene->xOffset += scrollSpeed;
+    //xscrollSpeed = lastXScrollSpeed;
+    //yscrollSpeed = lastYScrollSpeed;
+
+    if (std::abs(xDelta) > 2 * xscrollSpeed && !changedXSpeedlastTick)
+    {
+        xscrollSpeed = xscrollSpeed + 1;
     }
-    if (x > desiredX) { //moving right
-        int scrollSpeed = (scene->tileWidth / speed) / framesPerTick;
-        if (scrollSpeed < desiredX - x)
+    else if (std::abs(xDelta) < 2 * xscrollSpeed && !changedXSpeedlastTick) {
+        xscrollSpeed = xscrollSpeed - 1;
+    }
+
+    if (std::abs(yDelta) > 2 * yscrollSpeed && !changedYSpeedlastTick)
+    {
+        yscrollSpeed = yscrollSpeed + 1;
+    }
+
+    //if (x < desiredX && (tileDestinationBuffer->x < tileLocationBuffer->x)) { //moving left
+    if ((tileDestinationBuffer->x < tileLocationBuffer->x)) { //moving left
+        if (xscrollSpeed > xDelta && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)))
         {
-            scrollSpeed = desiredX - x;
+            xscrollSpeed = xDelta;
         }
-        scene->xOffset -= scrollSpeed;
+        scene->xOffsetTemp += xscrollSpeed;
+    }
+    //if (x > desiredX && (tileDestinationBuffer->x > tileLocationBuffer->x)) { //moving right
+    if ((tileDestinationBuffer->x > tileLocationBuffer->x)) { //moving right
+        if (xscrollSpeed < xDelta && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
+        {
+            xscrollSpeed = -xDelta;
+        }
+        scene->xOffsetTemp -= xscrollSpeed;
     }
     if (y < desiredY) {
-        int scrollSpeed = (scene->tileHeight / speed) / framesPerTick;
-        if (scrollSpeed > desiredY - y)
+        if (yscrollSpeed > yDelta)
         {
-            scrollSpeed = desiredY - y;
+            yscrollSpeed = yDelta;
         }
-        scene->yOffset += scrollSpeed;
+        scene->yOffsetTemp += yscrollSpeed;
     }
     if (y > desiredY) {
-        int scrollSpeed = (scene->tileHeight / speed) / framesPerTick;
-        if (scrollSpeed < desiredY - y)
+        if (yscrollSpeed < yDelta)
         {
-            scrollSpeed = desiredY - y;
+            yscrollSpeed = -yDelta;
         }
-        scene->yOffset -= scrollSpeed;
+        scene->yOffsetTemp -= yscrollSpeed;
     }
-    //updateCoords();
+    scene->xOffset = scene->xOffsetTemp;
+    scene->yOffset = scene->yOffsetTemp;
+    if (lastXScrollSpeed == xscrollSpeed)
+    {
+        changedXSpeedlastTick = false;
+    }
+    else {
+        changedXSpeedlastTick = true;
+    }
+    if (lastYScrollSpeed == yscrollSpeed)
+    {
+        changedYSpeedlastTick = false;
+    }
+    else {
+        changedYSpeedlastTick = true;
+    }
+    lastXScrollSpeed = xscrollSpeed;
+    lastYScrollSpeed = yscrollSpeed;
+    
+    if (leftToMoveBuffer)
+    {
+        if (xscrollSpeed != 0 && scene->xOffset - prevxoffset == 0)
+        {
+            int dfgfdgd = 234324;
+        }
+        std::cout << "\nxspeed: ";
+        std::cout << xscrollSpeed;
+        std::cout << " change: ";
+        std::cout << scene->xOffset - prevxoffset;
+        std::cout << " delta: ";
+        std::cout << xDelta;
+    }
+    updateCoords();
 }
 
 void Player::faceMouseDirection(int x, int y) {

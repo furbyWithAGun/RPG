@@ -1,16 +1,12 @@
 ﻿  Player.cpp
-D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(373,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(374,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(383,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(386,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(391,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(394,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(399,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(402,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(407,25): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(410,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(475,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\Player.cpp(476,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(375,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(376,18): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(436,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(437,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(452,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(453,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(529,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\Player.cpp(530,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

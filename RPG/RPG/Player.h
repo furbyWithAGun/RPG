@@ -28,6 +28,10 @@ public:
 
 private:
     //attributes
+    bool changedXSpeedlastTick;
+    bool changedYSpeedlastTick;
+    int lastXScrollSpeed;
+    int lastYScrollSpeed;
     int lastXDelta;
     int lastXDelta2;
     int lastXDelta3;

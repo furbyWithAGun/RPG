@@ -14,6 +14,8 @@
 #include <cmath>
 #include <iostream>
 
+const int ROLLING_INDEX_SIZE = 100;
+
 struct ChanceObject {
     double weight;
     double value;
@@ -107,11 +109,25 @@ class BaseGameEngine
         double pickElementByProbability(std::vector<ChanceObject> items);
         void setTicksPerSecond(int newTicksPerScond);
         int getScreenRefreshRate();
+        void addTickRateSample(int tickDelay);
+        void addFpsRateSample(int fpsDelay);
+        double getRollingTickRate();
+        double getRollingFpsRate();
 
     protected:
         
     private:
         //attributes
+        double rollingTickRate;
+        double rollingFps;
+        double rollingTickAverageDelay;
+        double rollingFpsAverageDelay;
+        double tickDelaySamples[ROLLING_INDEX_SIZE];
+        double fpsDelaySamples[ROLLING_INDEX_SIZE];
+        int lastTickCaptured;
+        int lastFpsCaptured;
+        int tickRatesCaptured;
+        int fpsRatesCaptured;
         int windowWidth;
         int windowHeight;
         std::string windowTitle;

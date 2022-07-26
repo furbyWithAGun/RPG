@@ -25,6 +25,7 @@ public:
     SDL_SpinLock TileGridUnitLock;
     int mainCanvasStartX;
     int xOffset, yOffset;
+    double xOffsetTemp, yOffsetTemp;
     ZoneMap* currentZone;
     std::unordered_map<int, MapTile> mapTiles;
     std::vector<int> zonePortalImages;
