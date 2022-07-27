@@ -22,6 +22,7 @@ class TileGridScene : public GameScene
 {
 public:
     //attributes
+    SDL_SpinLock unitDestroyLock;
     SDL_SpinLock TileGridUnitLock;
     int mainCanvasStartX;
     int xOffset, yOffset;

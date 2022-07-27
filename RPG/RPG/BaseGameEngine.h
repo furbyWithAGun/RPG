@@ -118,6 +118,8 @@ class BaseGameEngine
         
     private:
         //attributes
+        double targetFrameRate;
+        double fpsDelay;
         double rollingTickRate;
         double rollingFps;
         double rollingTickAverageDelay;

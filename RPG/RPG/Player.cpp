@@ -5,7 +5,7 @@
 
 //stat constants
 //const int PLAYER_SPEED = 4;
-const int PLAYER_SPEED = 20;
+const int PLAYER_SPEED = 8;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
@@ -64,6 +64,7 @@ void Player::init() {
     lastYDelta3 = 0;
     changedXSpeedlastTick = false;
     changedYSpeedlastTick = false;
+    lastRenderTimeStamp = 0;
 }
 
 void Player::init(RpgTileGridScene* gameScene) {
@@ -378,8 +379,8 @@ void Player::updateCamera()
     int prevyoffset = scene->yOffset;
 
 
-    SDL_DisplayMode current;
-    SDL_GetCurrentDisplayMode(0, &current);
+    //SDL_DisplayMode current;
+    //SDL_GetCurrentDisplayMode(0, &current);
     //double framesPerTick = (current.refresh_rate) / scene->engine->ticksPerSecond;
     double framesPerTick = scene->engine->getRollingFpsRate() / scene->engine->getRollingTickRate();
     double xSpeedPerTick = double(scene->tileWidth * ((double)speed / 100));
@@ -391,15 +392,17 @@ void Player::updateCamera()
     double xDelta = (int)desiredX - (int)x;
     double yDelta = (int)desiredY - (int)y;
     int pathFollowed = 0;
+    int xDistanceToDest = destCoords[0] - desiredCoords[0];
+    int yDistanceToDest = destCoords[1] - desiredCoords[1];
+
     if (leftToMoveBuffer)
     {
         if (xDelta < 0) // moving right
         {
             if (tileDestinationBuffer->x < tileLocationBuffer->x || (movingLeft && tileDestinationBuffer->x == tileLocationBuffer->x)) { // supposed to be moving left
-                //if ((std::abs(xDelta) < xBaseScrollSpeed * 1.5) && leftToMoveBuffer < (double)speed / (double)100 && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)))
-                if (((std::abs(xDelta) < xBaseScrollSpeed * 1.5) && leftToMoveBuffer <= 0 || (x - xDelta <= destCoords[0]) && std::abs(xDelta) < xBaseScrollSpeed * 1.5) && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)))
+                if(std::abs(xDistanceToDest) < xBaseScrollSpeed && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)))
                 {
-                    xScrollSpeed = -xDelta;
+                    xScrollSpeed = xDistanceToDest;
                     pathFollowed = 1;
                 }
                 else if ((std::abs(xDelta) > xSpeedPerTick * 1.5)) {
@@ -426,24 +429,9 @@ void Player::updateCamera()
         } else if (xDelta > 0) // moving left
         {
             if (tileDestinationBuffer->x > tileLocationBuffer->x || (movingRight && tileDestinationBuffer->x == tileLocationBuffer->x)) { // supposed to be moving right
-                /*std::cout << "\ntest 1: ";
-                std::cout << bool (std::abs(xDelta) < xBaseScrollSpeed * 1.5);
-                std::cout << " test 1 var 1: ";
-                std::cout << std::abs(xDelta);
-                std::cout << " test 1 var 2: ";
-                std::cout << xBaseScrollSpeed;
-                std::cout << " test 2: ";
-                std::cout << bool (leftToMoveBuffer < (double)speed / (double)100);
-                std::cout << " test 3: ";
-                std::cout << bool (!movingRight);
-                std::cout << " test 4: ";
-                std::cout << bool (!scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this));
-                std::cout << "\n";*/
-                //if ((std::abs(xDelta) < xBaseScrollSpeed * 1.5) && leftToMoveBuffer < (double)speed / (double)100 && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
-                //if ((std::abs(xDelta) < xBaseScrollSpeed * 1.5) && leftToMoveBuffer <= 0 && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
-                if (((std::abs(xDelta) < xBaseScrollSpeed * 1.5) && leftToMoveBuffer <= 0 ||( x + xDelta >= destCoords[0] && std::abs(xDelta) < xBaseScrollSpeed * 1.5)) && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
+                if (std::abs(xDistanceToDest) < xBaseScrollSpeed && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
                 {
-                    xScrollSpeed = xDelta;
+                    xScrollSpeed = -xDistanceToDest;
                     pathFollowed = 7;
                 }
                 else if ((std::abs(xDelta) > xSpeedPerTick * 1.5)) {
@@ -468,26 +456,127 @@ void Player::updateCamera()
                 pathFollowed = 12;
             }
         }
-        //else if (tileDestinationBuffer->x > tileLocationBuffer->x && (movingRight || leftToMoveBuffer >= (double)speed / (double)100)) {
-        else if (tileDestinationBuffer->x > tileLocationBuffer->x && (movingRight || x != destCoords[0])) {
-            xScrollSpeed = -xBaseScrollSpeed;
+        else if (tileDestinationBuffer->y == tileLocationBuffer->y && tileDestinationBuffer->x > tileLocationBuffer->x && (xDistanceToDest != 0 || movingRight && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this))) {
+            if (std::abs(xDistanceToDest) < xBaseScrollSpeed)
+            {
+                if (xDistanceToDest > 0)
+                {
+
+                    xScrollSpeed = -xDistanceToDest;
+                }
+                else {
+                    xScrollSpeed = xDistanceToDest;
+                }
+            }
+            else {
+                xScrollSpeed = -xBaseScrollSpeed;
+            }
             pathFollowed = 13;
         }
-        else if (movingRight && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)) {
+        else if (tileDestinationBuffer->y == tileLocationBuffer->y && movingRight && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)) {
             xScrollSpeed = -xBaseScrollSpeed;
             pathFollowed = 14;
         }
-        //else if (tileDestinationBuffer->x < tileLocationBuffer->x && (movingLeft || leftToMoveBuffer >= (double)speed / (double)100)) {
-        else if (tileDestinationBuffer->x < tileLocationBuffer->x && (movingLeft || x != destCoords[0])) {
-            xScrollSpeed = xBaseScrollSpeed;
+        else if (tileDestinationBuffer->y == tileLocationBuffer->y && tileDestinationBuffer->x < tileLocationBuffer->x && (xDistanceToDest != 0 || movingLeft && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this))) {
+            if (std::abs(xDistanceToDest) < xBaseScrollSpeed)
+            {
+                if (xDistanceToDest > 0)
+                {
+
+                    xScrollSpeed = xDistanceToDest;
+                }
+                else {
+                    xScrollSpeed = -xDistanceToDest;
+                }
+            }
+            else {
+                xScrollSpeed = xBaseScrollSpeed;
+            }
             pathFollowed = 15;
         }
-        else if (movingLeft && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)){
+        else if (tileDestinationBuffer->y == tileLocationBuffer->y && movingLeft && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)){
             xScrollSpeed = xBaseScrollSpeed;
             pathFollowed = 16;
         }
 
-        
+
+
+        if (yDelta < 0) // moving down
+        {
+            if (tileDestinationBuffer->y < tileLocationBuffer->y || (movingUp && tileDestinationBuffer->y == tileLocationBuffer->y)) { // supposed to be moving up
+                if (std::abs(yDistanceToDest) < yBaseScrollSpeed && (!movingUp || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this)))
+                {
+                    yScrollSpeed = yDistanceToDest;
+                    pathFollowed = 1;
+                }
+                else if ((std::abs(yDelta) > ySpeedPerTick * 1.5)) {
+                    yScrollSpeed = yBaseScrollSpeed / 2;
+                    pathFollowed = 2;
+                }
+                else {
+                    yScrollSpeed = yBaseScrollSpeed;
+                    pathFollowed = 3;
+                }
+            }
+            else if (std::abs(yDelta) > ySpeedPerTick * 1.5) {
+                yScrollSpeed = -yBaseScrollSpeed - 1;
+                pathFollowed = 4;
+            }
+            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingDown || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this))) {
+                yScrollSpeed = yDelta;
+                pathFollowed = 5;
+            }
+            else {
+                yScrollSpeed = -yBaseScrollSpeed;
+                pathFollowed = 6;
+            }
+        }
+        else if (yDelta > 0) // moving up
+        {
+            if (tileDestinationBuffer->y > tileLocationBuffer->y || (movingDown && tileDestinationBuffer->y == tileLocationBuffer->y)) { // supposed to be moving down
+                if (std::abs(yDistanceToDest) < yBaseScrollSpeed && (!movingDown || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this)))
+                {
+                    yScrollSpeed = -yDistanceToDest;
+                    pathFollowed = 7;
+                }
+                else if ((std::abs(yDelta) > ySpeedPerTick * 1.5)) {
+                    yScrollSpeed = -yBaseScrollSpeed / 2;
+                    pathFollowed = 8;
+                }
+                else {
+                    yScrollSpeed = -yBaseScrollSpeed;
+                    pathFollowed = 9;
+                }
+            }
+            else if (std::abs(yDelta) > ySpeedPerTick * 1.5) {
+                yScrollSpeed = yBaseScrollSpeed + 1;
+                pathFollowed = 10;
+            }
+            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingUp || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this))) {
+                yScrollSpeed = yDelta;
+                pathFollowed = 11;
+            }
+            else {
+                yScrollSpeed = yBaseScrollSpeed;
+                pathFollowed = 12;
+            }
+        }
+        else if (tileDestinationBuffer->x == tileLocationBuffer->x && tileDestinationBuffer->y > tileLocationBuffer->y && (yDistanceToDest != 0 || movingDown && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this))) {
+            yScrollSpeed = -yBaseScrollSpeed;
+            pathFollowed = 13;
+        }
+        else if (tileDestinationBuffer->x == tileLocationBuffer->x && movingDown && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this)) {
+            yScrollSpeed = -yBaseScrollSpeed;
+            pathFollowed = 14;
+        }
+        else if (tileDestinationBuffer->x == tileLocationBuffer->x && tileDestinationBuffer->y < tileLocationBuffer->y && (yDistanceToDest != 0 || movingUp && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this))) {
+            yScrollSpeed = yBaseScrollSpeed;
+            pathFollowed = 15;
+        }
+        else if (tileDestinationBuffer->x == tileLocationBuffer->x && movingUp && scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this)) {
+            yScrollSpeed = yBaseScrollSpeed;
+            pathFollowed = 16;
+        }
     }
     else {
         if (std::abs(xDelta) > 4 * xSpeedPerTick || std::abs(xDelta) < xBaseScrollSpeed)
@@ -518,64 +607,34 @@ void Player::updateCamera()
             yScrollSpeed = yBaseScrollSpeed;
         }
     }
-    if (destCoords[0] == x)
+
+    if (tileDestinationBuffer->x != tileLocationBuffer->x)
     {
-        //xScrollSpeed = 0;
+        yScrollSpeed = 0;
     }
 
-    scene->xOffsetTemp += xScrollSpeed;
-    scene->yOffsetTemp += yScrollSpeed;
+    if (tileDestinationBuffer->y != tileLocationBuffer->y)
+    {
+        xScrollSpeed = 0;
+    }
 
-    //xscrollSpeed = lastXScrollSpeed;
-    //yscrollSpeed = lastYScrollSpeed;
+    
+    /*if (xScrollSpeed > 0 && xScrollSpeed > lastXScrollSpeed + 1 && !changedXSpeedlastTick)
+    {
+        xScrollSpeed = lastXScrollSpeed + 1;
+    }
+    else if(changedXSpeedlastTick) {
+        xScrollSpeed = lastXScrollSpeed;
+    }
 
-    //if (std::abs(xDelta) > xSpeedPerTick)
-    //{
-    //    xscrollSpeed = xscrollSpeed + 1;
-    //}
+    if (xScrollSpeed < 0 && xScrollSpeed < lastXScrollSpeed - 1 && !changedXSpeedlastTick)
+    {
+        xScrollSpeed = lastXScrollSpeed - 1;
+    }
+    else if (changedXSpeedlastTick) {
+        xScrollSpeed = lastXScrollSpeed;
+    }*/
 
-    //if (std::abs(yDelta) > ySpeedPerTick)
-    //{
-    //    yscrollSpeed = yscrollSpeed + 1;
-    //}
-
-    //if (std::abs(yDelta) > 2 * yscrollSpeed && !changedYSpeedlastTick)
-    //{
-    //    yscrollSpeed = yscrollSpeed + 1;
-    //}
-
-    ////if (x < desiredX && (tileDestinationBuffer->x < tileLocationBuffer->x)) { //moving left
-    //if ((tileDestinationBuffer->x < tileLocationBuffer->x)) { //moving left
-    //    if (xscrollSpeed > xDelta && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this)))
-    //    {
-    //        xscrollSpeed = xDelta;
-    //    }
-    //    scene->xOffsetTemp += xscrollSpeed;
-    //}
-    ////if (x > desiredX && (tileDestinationBuffer->x > tileLocationBuffer->x)) { //moving right
-    //if ((tileDestinationBuffer->x > tileLocationBuffer->x)) { //moving right
-    //    if (xscrollSpeed < xDelta && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this)))
-    //    {
-    //        xscrollSpeed = -xDelta;
-    //    }
-    //    scene->xOffsetTemp -= xscrollSpeed;
-    //}
-    //if (y < desiredY) {
-    //    if (yscrollSpeed > yDelta)
-    //    {
-    //        yscrollSpeed = yDelta;
-    //    }
-    //    scene->yOffsetTemp += yscrollSpeed;
-    //}
-    //if (y > desiredY) {
-    //    if (yscrollSpeed < yDelta)
-    //    {
-    //        yscrollSpeed = -yDelta;
-    //    }
-    //    scene->yOffsetTemp -= yscrollSpeed;
-    //}
-    scene->xOffset = scene->xOffsetTemp;
-    scene->yOffset = scene->yOffsetTemp;
     if (lastXScrollSpeed == xScrollSpeed)
     {
         changedXSpeedlastTick = false;
@@ -592,6 +651,15 @@ void Player::updateCamera()
     }
     lastXScrollSpeed = xScrollSpeed;
     lastYScrollSpeed = yScrollSpeed;
+    scene->xOffsetTemp += xScrollSpeed;
+    scene->yOffsetTemp += yScrollSpeed;
+    scene->xOffset = scene->xOffsetTemp;
+    scene->yOffset = scene->yOffsetTemp;
+
+    
+
+    int frameDelay = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp;
+    lastRenderTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     
     if (xDelta!=0 || leftToMoveBuffer)
     {
@@ -617,7 +685,41 @@ void Player::updateCamera()
         std::cout << x;
         std::cout << " destx: ";
         std::cout << destCoords[0];
+        std::cout << " x Distance left: ";
+        std::cout << xDistanceToDest;
+        std::cout << " fps: ";
+        std::cout << scene->engine->getRollingFpsRate();
+        std::cout << " fps delay: ";
+        std::cout << frameDelay;
     }
+
+    /*if (yDelta != 0 || leftToMoveBuffer)
+    {
+        if (yScrollSpeed != 0 && scene->yOffset - prevyoffset == 0)
+        {
+            int dfgfdgd = 234324;
+        }
+        if (yDelta < 0 && tileDestinationBuffer->y < tileLocationBuffer->y)
+        {
+            int dfgfdg = 345435;
+        }
+        std::cout << "\nLeft To Move: ";
+        std::cout << leftToMoveBuffer;
+        std::cout << " yinput delta: ";
+        std::cout << yDelta;
+        std::cout << " yspeed: ";
+        std::cout << yScrollSpeed;
+        std::cout << " ychange: ";
+        std::cout << scene->yOffset - prevyoffset;
+        std::cout << " path: ";
+        std::cout << pathFollowed;
+        std::cout << " y: ";
+        std::cout << y;
+        std::cout << " desty: ";
+        std::cout << destCoords[1];
+        std::cout << " y Distance left: ";
+        std::cout << yDistanceToDest;
+    }*/
     updateCoords();
 }
 

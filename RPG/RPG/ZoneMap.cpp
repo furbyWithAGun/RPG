@@ -192,6 +192,7 @@ std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 {
 	int key = getMapKey(x, y);
 	if (unitMap.find(key) == unitMap.end())
+	//if(keyExistsInUnitMap(key))
 	{
 		return std::vector<Unit*>();
 	}
@@ -410,6 +411,17 @@ void ZoneMap::removeItemFromMap(int x, int y, Item* item)
 			itemIterator++;
 		}
 	}
+}
+
+bool ZoneMap::keyExistsInUnitMap(int testKey)
+{
+	for (auto key : unitMap) {
+		if (key.first == testKey)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void ZoneMap::assignNewTileMap(std::vector< std::vector<int> > tiles) {
@@ -769,6 +781,7 @@ void ZoneMap::draw(TileGridScene* scene)
 			}
 		}
 		//render units
+		//SDL_AtomicLock(&scene->unitDestroyLock);
 		for (int x = startX; x < endX; x++) {
 			if ((((scene->tileWidth * (x + 1)) + scene->mainCanvasStartX + scene->xOffset >= 0) && ((scene->tileWidth * (x - 1)) + scene->mainCanvasStartX + scene->xOffset <= SCREEN_WIDTH)) && ((scene->tileHeight * (y + 1) + scene->yOffset >= -scene->tileHeight) && (scene->tileHeight * (y - 1) + scene->yOffset <= SCREEN_HEIGHT)))
 			{
@@ -777,6 +790,7 @@ void ZoneMap::draw(TileGridScene* scene)
 				}
 			}
 		}
+		//SDL_AtomicUnlock(&scene->unitDestroyLock);
 	}
 }
 

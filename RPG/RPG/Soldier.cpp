@@ -2,7 +2,7 @@
 #include "BasicMeleeAttack.h"
 
 const int SOLDIER_MAX_HEALTH = 70;
-const int SOLDIER_SPEED = 10;
+const int SOLDIER_SPEED = 8;
 const int SOLDIER_STRENGTH = 6;
 const int SOLDIER_DEX = 6;
 const int SOLDIER_AGI = 5;

@@ -3,7 +3,7 @@
 #include "RpgTileGridScene.h"
 
 const int MAX_HEALTH = 300;
-const int SPEED = 10;
+const int SPEED = 8;
 const int DEX = 35;
 const int AGI = 20;
 const int STR = 35;

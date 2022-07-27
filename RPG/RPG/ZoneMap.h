@@ -184,6 +184,7 @@ class ZoneMap {
         Item* getItemFromMap(int x, int y);
         std::vector<Item*> getItemsFromMap(int x, int y);
         void removeItemFromMap(int x, int y, Item* item);
+        bool keyExistsInUnitMap(int testKey);
 };
 
 

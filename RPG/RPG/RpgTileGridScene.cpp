@@ -606,9 +606,11 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 
 void RpgTileGridScene::destroyFlaggedUnits()
 {
+    //SDL_AtomicLock(&unitDestroyLock);
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);
     }
+    //SDL_AtomicUnlock(&unitDestroyLock);
     unitsToDestroy.clear();
 }
 

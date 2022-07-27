@@ -722,8 +722,13 @@ int getPathThread(void* scene) {
             unit->gettingPath = false;
         }
         catch (...) {
-            unit->gettingPath = false;
-            continue;
+            try {
+                unit->gettingPath = false;
+                continue;
+            }
+            catch(...){
+                continue;
+            }
         }
         unit->gettingPath = false;
         continue;

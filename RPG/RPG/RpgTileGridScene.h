@@ -29,7 +29,6 @@ public:
     DooDad dooDadgBeingPlaced;
     bool placingBuilding;
     bool placingDooDad;
-    SDL_SpinLock unitDestroyLock;
 
     //pathing rates
     int aggroUpdateRate;
