@@ -196,6 +196,12 @@ std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 	{
 		return std::vector<Unit*>();
 	}
+	/*try {
+		return unitMap[key];
+	}
+	catch (...) {
+		return std::vector<Unit*>();
+	}*/
 	return unitMap[key];
 }
 

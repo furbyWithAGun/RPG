@@ -338,7 +338,7 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
-    //SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
+    SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
     pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
     //if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
     //{

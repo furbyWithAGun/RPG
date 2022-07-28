@@ -381,7 +381,7 @@ void Player::updateCamera()
 
     //SDL_DisplayMode current;
     //SDL_GetCurrentDisplayMode(0, &current);
-    //double framesPerTick = (current.refresh_rate) / scene->engine->ticksPerSecond;
+    //double framesPerTick = (current.refresh_rate) / scene->engine->getRollingTickRate();
     double framesPerTick = scene->engine->getRollingFpsRate() / scene->engine->getRollingTickRate();
     double xSpeedPerTick = double(scene->tileWidth * ((double)speed / 100));
     double ySpeedPerTick = double(scene->tileHeight * ((double)speed / 100));

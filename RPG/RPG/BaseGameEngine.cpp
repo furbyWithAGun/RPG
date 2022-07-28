@@ -462,12 +462,12 @@ void BaseGameEngine::addTickRateSample(int tickDelay)
     {
         tickRatesCaptured++;
     }
-    int sum = 0;
+    double sum = 0;
     for (size_t i = 0; i < tickRatesCaptured; i++)
     {
         sum += tickDelaySamples[i];
     }
-    rollingTickRate = sum / tickRatesCaptured;
+    rollingTickRate = sum / (double)tickRatesCaptured;
 }
 
 void BaseGameEngine::addFpsRateSample(int fpsDelay)
@@ -482,12 +482,12 @@ void BaseGameEngine::addFpsRateSample(int fpsDelay)
     {
         fpsRatesCaptured++;
     }
-    int sum = 0;
+    double sum = 0;
     for (size_t i = 0; i < fpsRatesCaptured; i++)
     {
         sum += fpsDelaySamples[i];
     }
-    rollingFps = sum / fpsRatesCaptured;
+    rollingFps = sum / (double)fpsRatesCaptured;
 }
 
 double BaseGameEngine::getRollingTickRate()
