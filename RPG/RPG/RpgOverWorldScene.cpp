@@ -670,12 +670,20 @@ int getPathThread(void* scene) {
     srand(time(NULL));
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
+    Unit* unit;
+    bool deleteUnit = true;
     
     while (rpgScene->unitsNeedingPath.size() > 0)
     {
-
-        Unit* unit = rpgScene->unitsNeedingPath.front();
-        rpgScene->unitsNeedingPath.pop_front();
+        deleteUnit = true;        
+        try {
+            unit = rpgScene->unitsNeedingPath.front();
+            rpgScene->unitsNeedingPath.pop_front();
+            deleteUnit = false;
+        }
+        catch (...) {
+            continue;
+        }
         try {
             std::vector<int> tempDirections;
 
