@@ -607,11 +607,13 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 void RpgTileGridScene::destroyFlaggedUnits()
 {
     //SDL_AtomicLock(&unitDestroyLock);
+    destroyingUnits = true;
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);
     }
     //SDL_AtomicUnlock(&unitDestroyLock);
     unitsToDestroy.clear();
+    destroyingUnits = false;
 }
 
 void RpgTileGridScene::destroyDooDad(DooDad* dooDad)
@@ -807,6 +809,7 @@ void RpgTileGridScene::createTiles()
 
 void RpgTileGridScene::init()
 {
+    destroyingUnits = false;
     player = nullptr;
     placingBuilding = false;
     //aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.75;

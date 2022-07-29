@@ -691,6 +691,8 @@ void Player::updateCamera()
         std::cout << scene->engine->getRollingFpsRate();
         std::cout << " fps delay: ";
         std::cout << frameDelay;
+        std::cout << " tick rate: ";
+        std::cout << scene->engine->getRollingTickRate();
     }
 
     /*if (yDelta != 0 || leftToMoveBuffer)

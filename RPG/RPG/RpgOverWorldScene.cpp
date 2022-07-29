@@ -29,6 +29,7 @@ void RpgOverWorldScene::init() {
     }
     saveGameName = NEW_GAME_SAVE_FILE;
     pathfindThreadActive = false;
+    aggroThreadActive = false;
 }
 
 void RpgOverWorldScene::pickUpItem(RpgUnit* unit, Item* item)
@@ -338,8 +339,16 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
-    SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
-    pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
+    if (!aggroThreadActive)
+    {
+        aggroThreadActive = true;
+        SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
+    }
+    if (!pathfindThreadActive)
+    {
+        pathfindThreadActive = true;
+        SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
+    }
     //if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
     //{
     //    pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
@@ -675,11 +684,15 @@ int getPathThread(void* scene) {
     
     while (rpgScene->unitsNeedingPath.size() > 0)
     {
+        unit = nullptr;
         deleteUnit = true;        
         try {
-            unit = rpgScene->unitsNeedingPath.front();
-            rpgScene->unitsNeedingPath.pop_front();
-            deleteUnit = false;
+            if (!rpgScene->destroyingUnits) {
+
+                unit = rpgScene->unitsNeedingPath.front();
+                rpgScene->unitsNeedingPath.pop_front();
+                deleteUnit = false;
+            }
         }
         catch (...) {
             continue;
@@ -742,7 +755,7 @@ int getPathThread(void* scene) {
         continue;
     }
     
-    //rpgScene->pathfindThreadActive = false;
+    rpgScene->pathfindThreadActive = false;
     return 0;
 }
 
@@ -772,6 +785,6 @@ int updateAggroThread(void* scene) {
             }
         }
     }
-    //rpgScene->pathfindThreadActive = false;
+    rpgScene->aggroThreadActive = false;
     return 0;
 }

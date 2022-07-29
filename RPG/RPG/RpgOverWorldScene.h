@@ -25,6 +25,7 @@ public:
     bool displayHud;
     //Player* player;
     bool pathfindThreadActive;
+    bool aggroThreadActive;
     SDL_Thread* pathFindingThread;
     SDL_Thread* aggroThread;
 

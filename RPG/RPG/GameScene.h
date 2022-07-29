@@ -48,8 +48,6 @@ public:
     void endScene();
     void removePrompt(Prompt* promptToDelete);
     void clearInputMessages();
-    double getLastTickTimeStamp();
-    void setLastTickTimeStamp();
 
 protected:
     //attributes
@@ -67,7 +65,6 @@ protected:
 
 private:
     //attributes
-    double lastTickTimeStamp;
     
     //methods
     void init();

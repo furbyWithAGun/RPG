@@ -17,7 +17,6 @@ void GameScene::init() {
     sceneRunning = true;
     gettingTextInput = false;
     controllerInterface = NULL;
-    lastTickTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
     timeToWaitDiscount = 0;
     lastTickDuration = 0;
 }
@@ -260,16 +259,6 @@ void GameScene::clearInputMessages()
         delete msg;
     }
     controllerInterface->messageQueue.clear();
-}
-
-double GameScene::getLastTickTimeStamp()
-{
-    return lastTickTimeStamp;
-}
-
-void GameScene::setLastTickTimeStamp()
-{
-    lastTickTimeStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
 }
 
 bool GameScene::getNextCommand(InputMessage* message) {

@@ -29,6 +29,7 @@ public:
     DooDad dooDadgBeingPlaced;
     bool placingBuilding;
     bool placingDooDad;
+    bool destroyingUnits;
 
     //pathing rates
     int aggroUpdateRate;

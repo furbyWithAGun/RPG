@@ -119,7 +119,7 @@ class ZoneMap {
         std::vector< DooDad* > dooDads;
         std::vector< Building* > buildings2;
         //object maps
-        std::unordered_map<int, std::vector<Unit*>> unitMap;
+        std::unordered_map<int, std::vector<Unit*>> unitMap;        
         std::unordered_map< int, std::vector<Item*> > itemMap;
         std::unordered_map< int, ZonePortal* > portalMap;
         std::unordered_map< int, DooDad* > dooDadMap;

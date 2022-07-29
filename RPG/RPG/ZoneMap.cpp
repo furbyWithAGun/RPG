@@ -191,18 +191,23 @@ Unit* ZoneMap::getUnitFromMap(int x, int y)
 std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 {
 	int key = getMapKey(x, y);
-	if (unitMap.find(key) == unitMap.end())
-	//if(keyExistsInUnitMap(key))
-	{
-		return std::vector<Unit*>();
-	}
-	/*try {
+	try {
+		if (unitMap.find(key) == unitMap.end())
+		{
+			return std::vector<Unit*>();
+		}
 		return unitMap[key];
 	}
 	catch (...) {
+		std::cout << "\nerror getting units from unitMap. Location: x-";
+		std::cout << x;
+		std::cout << " y-";
+		std::cout << y;
+		std::cout << " key: ";
+		std::cout << key;
+		std::cout << "\n";
 		return std::vector<Unit*>();
-	}*/
-	return unitMap[key];
+	}
 }
 
 void ZoneMap::removeUnitFromMap(Unit* unit)
@@ -221,8 +226,20 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 			unitIterator = unitMap[key].erase(unitIterator);
 			if (unitMap[key].size() <= 0)
 			{
-				unitMap.erase(key);
-				break;
+				try {
+					unitMap.erase(key);
+					break;
+				}
+				catch (...) {
+					std::cout << "\nerror removing unit from unitMap. Location: x-";
+					std::cout << x;
+					std::cout << " y-";
+					std::cout << y;
+					std::cout << " key: ";
+					std::cout <<key ;
+					std::cout << "\n";
+					return;
+				}
 			}
 		}
 		else {
