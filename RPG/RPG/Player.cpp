@@ -5,7 +5,7 @@
 
 //stat constants
 //const int PLAYER_SPEED = 4;
-const int PLAYER_SPEED = 8;
+const int PLAYER_SPEED = 12;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
