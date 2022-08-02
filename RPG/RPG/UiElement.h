@@ -50,6 +50,9 @@ public:
     UiElement(int elementId, GameScene* gameScene, int xpos, int ypos, int elementWidth, int elementHeight);
     UiElement(int elementId, GameScene* gameScene, SDL_Color spriteBackgroundColour, int xpos, int ypos, int elementWidth, int elementHeight);
 
+    //destructor
+    virtual ~UiElement();
+
     //methods
     virtual void draw() override;
     virtual void draw(int x, int y) override;

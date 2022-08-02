@@ -450,9 +450,9 @@ int BaseGameEngine::getScreenRefreshRate()
     return mode.refresh_rate;
 }
 
-void BaseGameEngine::addTickRateSample(int tickDelay)
+void BaseGameEngine::addTickRateSample(int newTickDelay)
 {
-    tickDelaySamples[lastTickCaptured] = tickDelay;
+    tickDelaySamples[lastTickCaptured] = newTickDelay;
     lastTickCaptured++;
     if (lastTickCaptured >= ROLLING_INDEX_SIZE)
     {
@@ -655,16 +655,22 @@ int logicThread(void* scene) {
     double lastNow = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     double now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     int timeToWait = 0;
+    int lastDelay = 0;
+    int lastSceneLogicTime = 0;
     static_cast <GameScene*> (scene)->timeToWaitDiscount = 0;
     while (static_cast <GameScene*> (scene)->sceneRunning)
     {
         now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-        static_cast <GameScene*> (scene)->engine->addTickRateSample(now - lastNow);
+        lastDelay = now - lastNow;
+        lastSceneLogicTime = endTime - startTime;
+        static_cast <GameScene*> (scene)->engine->addTickRateSample(lastDelay);
+        timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (lastSceneLogicTime) + static_cast <GameScene*> (scene)->timeToWaitDiscount;
+        //timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (now - lastNow) + static_cast <GameScene*> (scene)->timeToWaitDiscount;
         lastNow = now;
-        timeToWait = static_cast <GameScene*> (scene)->engine->tickDelay - (endTime - startTime) + static_cast <GameScene*> (scene)->timeToWaitDiscount;
+        
         if (timeToWait >= 0)
         {
-            while ((std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - startTime < timeToWait))
+            while ((std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - now < timeToWait))
             {
                 int xdfg = 44545;
             }

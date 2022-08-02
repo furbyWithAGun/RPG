@@ -78,6 +78,15 @@ UiElement::UiElement(int elementId, GameScene* gameScene, SDL_Color spriteBackgr
     init(elementId);
 }
 
+UiElement::~UiElement()
+{
+    for (size_t i = 0; i < subElements.size(); i++)
+    {
+        delete subElements[i];
+    }
+    subElements.clear();
+}
+
 void UiElement::init() {
     gettingText = false;
     id = -1;

@@ -493,7 +493,7 @@ void RpgOverWorldScene::sceneLogic()
         //    }
         //}
     }
-    
+    delete soldierSpawn;
     delete message;
 }
 

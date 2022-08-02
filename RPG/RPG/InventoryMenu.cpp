@@ -111,6 +111,10 @@ void InventoryMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
+    for (size_t i = 0; i < toolTips.size(); i++)
+    {
+        delete toolTips[i];
+    }
     toolTips.clear();
     for (int i=0 ; i < scene->player->inventory.size(); i++)
     {
