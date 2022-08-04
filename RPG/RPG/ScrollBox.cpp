@@ -178,7 +178,7 @@ void ScrollBox::clear()
 void ScrollBox::updateElementsStatus() {
     for (size_t i = 0; i < subElements.size(); i++)
     {
-        if (i <= displayIndex + numElementsToDisplay && i >= displayIndex) {
+        if (i < displayIndex + numElementsToDisplay && i >= displayIndex) {
             subElements[i]->active = true;
         }
         else {
