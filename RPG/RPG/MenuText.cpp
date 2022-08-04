@@ -82,7 +82,7 @@ MenuText* MenuText::setText(std::string newText)
     //text = newText;
     //height = scene->engine->getTextureHeight(textureKey);
     //width = scene->engine->getTextureWidth(textureKey);
-    UiElement::setText(newText);
+    UiElement::setText(newText, textColour);
     return this;
 }
 

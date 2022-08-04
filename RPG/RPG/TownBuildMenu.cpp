@@ -10,7 +10,9 @@ const int DEFAULT_DESIRED_TILES_ACROSS_BUILDING = 40;
 
 enum INVENTORY_MENU_IDS {
     BUILDINGS_SCROLL_BOX,
-    TOWN_BUILD_CANCEL_BUTTON
+    TOWN_BUILD_CANCEL_BUTTON,
+    BUILDING_MENU_GOLD_DISPLAY,
+    BUILDING_MENU_WOOD_DISPLAY
 };
 
 TownBuildMenu::TownBuildMenu() : GameMenu()
@@ -38,6 +40,8 @@ void TownBuildMenu::open()
 
 void TownBuildMenu::draw()
 {
+    ((MenuText*)getElementbyId(BUILDING_MENU_GOLD_DISPLAY))->setText("Gold: " + std::to_string(scene->player->gold + ((RpgTown*) scene->currentZone)->getTownGold()));
+    ((MenuText*)getElementbyId(BUILDING_MENU_WOOD_DISPLAY))->setText("Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory) + qtyInContainer(ITEM_WOOD, ((RpgTown*)scene->currentZone)->getTownInventory())));
     GameMenu::draw();
 }
 
@@ -48,7 +52,14 @@ void TownBuildMenu::update()
 
 bool TownBuildMenu::handleInput(InputMessage* message)
 {
-    return GameMenu::handleInput(message);
+    if (!GameMenu::handleInput(message)) {
+        if (message->id == BUTTON_1_OFF)
+        {
+            cancelBuild();
+            return true;
+        }
+    }
+    return false;
 }
 
 void TownBuildMenu::buildElements()
@@ -65,9 +76,11 @@ void TownBuildMenu::init()
 
 void TownBuildMenu::buildPageOne()
 {
-    mainPanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
+    mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_GOLD_DISPLAY, scene, "Gold: " + std::to_string(scene->player->gold), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
+    mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_WOOD_DISPLAY, scene, "Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory)), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.05));
+    mainPanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.09));
     ScrollBox* scroller;
-    scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.15, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
     scroller->numElementsToDisplay = 2;
 
     for (int i = 0; i < NUM_BUILDING_TYPES; i++)
@@ -79,11 +92,14 @@ void TownBuildMenu::buildPageOne()
         button->ypos = 0;
         button->width = engine->screenWidth / WIDTH_ADJUSTOR;
         button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
-        button->addOnClick([this, i]() {
+        button->addOnClick([this, i, scroller]() {
             if (scene->canAffordBuilding(&buildingTemplates[i], (RpgTown*)scene->currentZone))
             {
                 scene->buildingBeingPlaced = buildingTemplates[i];
                 scene->placingBuilding = true;
+            }
+            else {
+                scroller->selectedElement = nullptr;
             }
             });
         HoverToolTip* toolTip = createBuildBuildingToolTip(&buildingTemplates[i], scene);
@@ -107,4 +123,10 @@ void TownBuildMenu::buildPageOne()
     cancelButton->xpos = engine->screenWidth * 0.01;
     cancelButton->ypos = engine->screenHeight * 0.8;
     mainPanel->addElementToPage(0, TOWN_BUILD_CANCEL_BUTTON, cancelButton);
+}
+
+void TownBuildMenu::cancelBuild()
+{
+    scene->placingBuilding = false;
+    ((ScrollBox*)getElementbyId(BUILDINGS_SCROLL_BOX))->selectedElement = nullptr;
 }

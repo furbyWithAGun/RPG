@@ -24,6 +24,7 @@ public:
 
     //methods
     bool handleInput(InputMessage* message);
+    void cancelBuild();
 
 private:
     //attributes

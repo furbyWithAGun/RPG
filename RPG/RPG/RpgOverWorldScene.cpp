@@ -123,8 +123,8 @@ void RpgOverWorldScene::setUpScene()
     
     
     //build menus
-    menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
-    menus[TOWN_BUILD_MENU] = new TownBuildMenu(this, BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
+    menus[RPG_OVERWORLD_MENU] = new OverWorldSceneMenu(this, RPG_OVERWORLD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
+    menus[TOWN_BUILD_MENU] = new TownBuildMenu(this, TOWN_BUILD_MENU, mainCanvasStartX, engine->screenHeight * 0.8, 0, engine->screenHeight * 0.2);
     //menus[ITEM_SELL_MENU] = new ItemSellMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.25, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     //menus[ITEM_BUY_MENU] = new ItemBuyMenu(this, ITEM_SELL_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.01, engine->screenHeight * 0.15);
     menus[ITEM_SHOP_MENU] = new ItemShopMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
@@ -371,6 +371,10 @@ void RpgOverWorldScene::sceneLogic()
             if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && canAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone)) {
                 createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
                 payBuildingCosts(&buildingBeingPlaced, (RpgTown*)currentZone);
+            }
+            if (!canAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone))
+            {
+                ((TownBuildMenu*)menus[TOWN_BUILD_MENU])->cancelBuild();
             }
             break;
         case OVERWORLD_COMMAND_UNIT:
