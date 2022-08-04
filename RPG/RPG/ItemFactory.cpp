@@ -423,7 +423,7 @@ Item* createNewItemBlankId(int itemType)
 		((Armour*)itemToReturn)->slot = itemTemplate.slot;
 		break;
 	case RESOURCE:
-		itemToReturn = new Item();
+		itemToReturn = new Item(RESOURCE);
 		itemToReturn->name = itemTemplate.name;
 		itemToReturn->textureKey = itemTemplate.textureKey;
 		itemToReturn->value = itemTemplate.value;
@@ -443,6 +443,7 @@ Item* createNewItemBlankId(int itemType)
 		break;
 	default:
 		printf("Warning: creating blank Item() from item factory");
+		itemToReturn = new Item();
 		break;
 	}
 	itemToReturn->specificType = itemTemplate.specificType;

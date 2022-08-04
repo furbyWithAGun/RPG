@@ -7,3 +7,4 @@
 
 Building* createNewBuilding(int BuildingType, int direction);
 Building* createNewBuildingNoId(int BuildingType, int direction);
+HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene);

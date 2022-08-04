@@ -1,4 +1,5 @@
 #include "BuildingFactory.h"
+#include "MenuText.h"
 
 
 struct BuildingTemplate {
@@ -45,4 +46,23 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 		break;
 	}
 	return buildingToReturn;
+}
+
+HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene)
+{
+	HoverToolTip* returnToolTip = new HoverToolTip();
+	returnToolTip->setdimensions(scene->engine->screenWidth * 0.15, scene->engine->screenHeight * 0.2);
+	returnToolTip->subElements.push_back(new MenuText(scene,building->getBuildingName(), COLOR_WHITE, 10, 10));
+	if (building->goldCost > 0)
+	{
+		returnToolTip->subElements.push_back(new MenuText(scene, "Gold Cost: " + std::to_string(building->goldCost), COLOR_WHITE, 10, 40));
+	}
+	if (building->woodCost > 0)
+	{
+		returnToolTip->subElements.push_back(new MenuText(scene, "Wood Cost: " + std::to_string(building->woodCost), COLOR_WHITE, 10, 70));
+	}
+	
+
+	returnToolTip->setScene(scene);
+	return returnToolTip;
 }

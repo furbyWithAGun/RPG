@@ -44,7 +44,7 @@ void HoverToolTip::update()
 
 void HoverToolTip::draw()
 {
-    if (active)
+    if (active && parentElement->active)
     {
         Sprite::draw();
         if (displaySubElements)

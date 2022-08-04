@@ -81,6 +81,10 @@ void TransferItemsMenu::rebuildElements()
 {
     ScrollBox* items = (ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX);
     items->clear();
+    for (size_t i = 0; i < toolTips.size(); i++)
+    {
+        delete toolTips[i];
+    }
     toolTips.clear();
     if (container != nullptr)
     {
@@ -154,16 +158,16 @@ void TransferItemsMenu::buildElements()
                     {
                         addItemToContainer((*container)[selection], scene->player->inventory);
                         removeItemFromContainer(selection, *container);
-                        rebuildElements();
+                        //rebuildElements();
                         scene->menus[INVENTORY_MENU]->rebuildMenuElements(); rebuildMenuElements();
                     }
                     else if (numToXfer > 0) {
-                        Item* itemToXfer = createNewItem((*container)[selection]->generalType); // relies on fact each item type atm has a unique textureId
+                        Item* itemToXfer = createNewItem((*container)[selection]->specificType); // relies on fact each item type atm has a unique textureId
                         itemToXfer->stackSize = numToXfer;
                         //scene->addItemsToMap(scene->player->zone, scene->player->tileLocation->x, scene->player->tileLocation->y, { itemToDrop });
                         addItemToContainer(itemToXfer, scene->player->inventory);
                         (*container)[selection]->stackSize -= numToXfer;
-                        rebuildElements();
+                        //rebuildElements();
                         scene->menus[INVENTORY_MENU]->rebuildMenuElements(); 
                         rebuildMenuElements();
                     }
@@ -173,7 +177,7 @@ void TransferItemsMenu::buildElements()
             else {
                 addItemToContainer((*container)[selection], scene->player->inventory);
                 removeItemFromContainer(selection, *container);
-                rebuildElements();
+                //rebuildElements();
                 scene->menus[INVENTORY_MENU]->rebuildMenuElements(); 
                 rebuildMenuElements();
             }

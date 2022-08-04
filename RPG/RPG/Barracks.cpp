@@ -108,4 +108,5 @@ void Barracks::init()
     woodCost = 10;
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
+    buildingName = "Barracks";
 }

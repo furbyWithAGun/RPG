@@ -56,6 +56,7 @@ void WoodCutter::update(RpgTileGridScene* scene)
 
 void WoodCutter::init()
 {
+    buildingName = "Wood Cutters hut";
     productionOutputs.push_back({ITEM_WOOD, 5});
     type = BUILDING_WOODCUTTER;
     iconTextureId = BUILDING_ICON_WOODCUTTER;

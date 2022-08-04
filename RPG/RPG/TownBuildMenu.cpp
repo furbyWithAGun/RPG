@@ -86,6 +86,8 @@ void TownBuildMenu::buildPageOne()
                 scene->placingBuilding = true;
             }
             });
+        HoverToolTip* toolTip = createBuildBuildingToolTip(&buildingTemplates[i], scene);
+        registerToolTip(button, toolTip);
         scroller->addElement(button);
     }
 

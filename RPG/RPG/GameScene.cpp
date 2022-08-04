@@ -106,10 +106,6 @@ void GameScene::handleInput()
     {
         delete message;
     }
-}
-
-void GameScene::sceneLogic()
-{
     for (auto menu : menus)
     {
         if (menu.second->isActive)
@@ -117,6 +113,17 @@ void GameScene::sceneLogic()
             menu.second->update();
         }
     }
+}
+
+void GameScene::sceneLogic()
+{
+    /*for (auto menu : menus)
+    {
+        if (menu.second->isActive)
+        {
+            menu.second->update();
+        }
+    }*/
 }
 
 void GameScene::renderTexture(Texture* texture, int x, int y)
@@ -264,10 +271,17 @@ void GameScene::clearInputMessages()
 bool GameScene::getNextCommand(InputMessage* message) {
     if (commandQueue.size() > 0)
     {
-        *message = *commandQueue[0];
-        delete commandQueue[0];
-        commandQueue.erase(commandQueue.begin());
-        return true;
+        try {
+            *message = *commandQueue[0];
+            delete commandQueue[0];
+            commandQueue.erase(commandQueue.begin());
+            return true;
+        }
+        catch (...) {
+            std::cout << "\n read access violation trying to get next command\n";
+            message = NULL;
+            return false;
+        }
     }
     else {
         message = NULL;

@@ -51,6 +51,11 @@ void MainMenu::buildPrompt()
             scene->openMenu(LOAD_GAME_MENU);
             scene->removePrompt(mainMenuPrompt);
         }
+        else if (selectedOption == OVERWORLD) {
+            ((RpgOverWorldScene*)scene->engine->scenes[OVERWORLD])->setSaveGameName(SAVES_FILE_PATH + NEW_GAME_SAVE_FILE);
+            scene->engine->setNextScene(OVERWORLD);
+            scene->endScene();
+        }
         else {
             scene->engine->setNextScene(mainMenuPrompt->getSelectedOptionValue());
             scene->endScene();

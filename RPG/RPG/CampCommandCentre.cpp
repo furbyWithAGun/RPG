@@ -65,4 +65,5 @@ void CampCommandCentre::init()
     iconTextureId = BUILDING_ICON_TAVERN;
     goldCost = 500;
     woodCost = 300;
+    buildingName = "Town Centre";
 }
