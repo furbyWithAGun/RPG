@@ -492,12 +492,24 @@ void BaseGameEngine::addFpsRateSample(int fpsDelay)
 
 double BaseGameEngine::getRollingTickRate()
 {
-    return 1000 / rollingTickRate;
+    if (tickRatesCaptured < ROLLING_INDEX_SIZE * 0.5)
+    {
+        return ticksPerSecond;
+    }
+    else {
+        return 1000 / rollingTickRate;
+    }
 }
 
 double BaseGameEngine::getRollingFpsRate()
 {
-    return 1000 / rollingFps;
+    if (fpsRatesCaptured < ROLLING_INDEX_SIZE * 0.5)
+    {
+        return getScreenRefreshRate();
+    }
+    else {
+        return 1000 / rollingFps;
+    }
 }
 
 void BaseGameEngine::addScene(int sceneId, GameScene* sceneToAdd)
@@ -563,8 +575,16 @@ void BaseGameEngine::startMainGameLoop() {
             //std::cout << "\n";
             //handle input
             //SDL_AtomicLock(&sceneLock);
+            if (lockRender)
+            {
+                //SDL_AtomicLock(&sceneLock);
+            }
             currentScene->handleInput();
             currentScene->clearInputMessages();
+            if (lockRender)
+            {
+                //SDL_AtomicUnlock(&sceneLock);
+            }
             //SDL_AtomicUnlock(&sceneLock);
 
             //timeToWait = 20 - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp);
@@ -580,14 +600,14 @@ void BaseGameEngine::startMainGameLoop() {
             //call scene rendering
             if (lockRender)
             {
-                SDL_AtomicLock(&sceneLock);
+                //SDL_AtomicLock(&sceneLock);
             }
             currentScene->renderScene();
             currentScene->drawMenus();
             currentScene->drawPrompts();
             if (lockRender)
             {
-                SDL_AtomicUnlock(&sceneLock);
+                //SDL_AtomicUnlock(&sceneLock);
             }
             //Update screen
             SDL_RenderPresent(getMainRenderer());

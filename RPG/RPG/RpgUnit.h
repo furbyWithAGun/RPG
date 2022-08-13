@@ -137,6 +137,3 @@ private:
     std::string getEquippedItemsSavedString();
     void setEquippedItemsFromSavedString(std::string saveString);
 };
-
-std::string getItemVectorSaveString(std::vector<Item*> vector);
-std::vector<Item*> getItemVectorFromSaveString(std::string saveString);

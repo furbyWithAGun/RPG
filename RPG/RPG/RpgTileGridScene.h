@@ -16,8 +16,9 @@
 #include "BuildingFactory.h"
 #include "CombatText.h"
 #include "ItemShop.h"
+#include "UnitFactory.h"
 
-class Player;
+//class Player;
 
 class RpgTileGridScene : public TileGridScene
 {
@@ -27,6 +28,8 @@ public:
     std::unordered_map<int, std::unordered_map<int, int>> teamRelations;
     Building buildingBeingPlaced;
     DooDad dooDadgBeingPlaced;
+    Unit unitBeingPlaced;
+    bool placingUnit;
     bool placingBuilding;
     bool placingDooDad;
     bool destroyingUnits;
@@ -59,7 +62,7 @@ public:
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, int xpos, int ypos);
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
     void payBuildingCosts(Building* building, RpgTown* town);
-    bool canAffordBuilding(Building* building, RpgTown* town);
+    bool townCanAffordBuilding(Building* building, RpgTown* town);
     virtual void loadZones(std::string saveFile) override;
     virtual void loadZone(SaveObject saveObject);
     void resizeTiles();
@@ -69,8 +72,12 @@ public:
     void virtual destroyFlaggedDooDads();
     void pickUpItemAtLocation(RpgUnit* unit, int x, int y);
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
+    void setSaveGameName(std::string newSaveGameName);
+    std::string getSaveGameName();
 
 protected:
+    //attributes
+    std::string saveGameName;
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);

@@ -53,7 +53,7 @@ std::string Food::toSaveString(bool withHeaderAndFooter)
 
 void Food::init()
 {
-    hungerGain = 1;
+    hungerGain = 50;
     healthRegen = 1;
     healthRegenDurationInSeconds = 10;
     stackable = true;

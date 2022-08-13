@@ -164,6 +164,7 @@
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="GuardHouse.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="LoadSaveGameMenu.cpp" />
@@ -174,6 +175,7 @@
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
     <ClCompile Include="TransferItemsMenu.cpp" />
+    <ClCompile Include="UnitFactory.cpp" />
     <ClCompile Include="UnitSpawner.cpp" />
     <ClCompile Include="WhiteRat.cpp" />
     <ClCompile Include="Building.cpp" />
@@ -277,6 +279,7 @@
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="GuardHouse.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="LoadSaveGameMenu.h" />
@@ -287,6 +290,7 @@
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
     <ClInclude Include="TransferItemsMenu.h" />
+    <ClInclude Include="UnitFactory.h" />
     <ClInclude Include="UnitSpawner.h" />
     <ClInclude Include="WhiteRat.h" />
     <ClInclude Include="Building.h" />

@@ -98,6 +98,7 @@ void UiElement::init() {
     callback = []() {};
     btnOneCallback = []() {};
     needToUpdateTextImage = false;
+    autoUpdateDimensions = true;
 }
 
 void UiElement::init(int newId) {
@@ -108,8 +109,11 @@ void UiElement::init(int newId) {
 void UiElement::updateTextImage()
 {
     textTextureKey = scene->engine->createTextTexture(text, textColour);
-    height = scene->engine->getTextureHeight(textTextureKey);
-    width = scene->engine->getTextureWidth(textTextureKey);
+    if (autoUpdateDimensions)
+    {
+        height = scene->engine->getTextureHeight(textTextureKey);
+        width = scene->engine->getTextureWidth(textTextureKey);
+    }
 }
 
 void UiElement::draw() {
@@ -289,4 +293,9 @@ UiElement* UiElement::addBtnOneCallback(std::function<void()> newCallback)
 {
     btnOneCallback = newCallback;
     return this;
+}
+
+void UiElement::setAutoUpdateDimensions(bool valueToSet)
+{
+    autoUpdateDimensions = valueToSet;
 }

@@ -144,6 +144,7 @@ void ZoneMap::init() {
 	numUnitSpawners = 0;
 	updateSpawnerNumRate = 400;
 	updateSpawnerNumTick = 0;
+	unitMapLock = 0;
 }
 
 void ZoneMap::init(int newId) {
@@ -166,6 +167,7 @@ void ZoneMap::addToUnitMap(Unit* unit)
 void ZoneMap::addToUnitMap(int x, int y, Unit* unit)
 {
 	int key = getMapKey(x, y);
+	SDL_AtomicLock(&unitMapLock);
 	if (unitMap.find(key) == unitMap.end())
 	{
 		unitMap[key] = { unit };
@@ -176,6 +178,7 @@ void ZoneMap::addToUnitMap(int x, int y, Unit* unit)
 			unitMap[key].push_back(unit);
 		}
 	}
+	SDL_AtomicUnlock(&unitMapLock);
 }
 
 Unit* ZoneMap::getUnitFromMap(int x, int y)
@@ -191,11 +194,14 @@ Unit* ZoneMap::getUnitFromMap(int x, int y)
 std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 {
 	int key = getMapKey(x, y);
+	SDL_AtomicLock(&unitMapLock);
 	try {
 		if (unitMap.find(key) == unitMap.end())
 		{
+			SDL_AtomicUnlock(&unitMapLock);
 			return std::vector<Unit*>();
 		}
+		SDL_AtomicUnlock(&unitMapLock);
 		return unitMap[key];
 	}
 	catch (...) {
@@ -206,6 +212,7 @@ std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 		std::cout << " key: ";
 		std::cout << key;
 		std::cout << "\n";
+		SDL_AtomicUnlock(&unitMapLock);
 		return std::vector<Unit*>();
 	}
 }
@@ -219,6 +226,7 @@ void ZoneMap::removeUnitFromMap(Unit* unit)
 void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 {
 	int key = getMapKey(x, y);
+	SDL_AtomicLock(&unitMapLock);
 	auto unitIterator = unitMap[key].begin();
 	while (unitIterator != unitMap[key].end())
 	{
@@ -238,6 +246,7 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 					std::cout << " key: ";
 					std::cout <<key ;
 					std::cout << "\n";
+					SDL_AtomicUnlock(&unitMapLock);
 					return;
 				}
 			}
@@ -246,6 +255,7 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 			unitIterator++;
 		}
 	}
+	SDL_AtomicUnlock(&unitMapLock);
 }
 
 void ZoneMap::addToPortalMap(ZonePortal* portal)
@@ -1738,6 +1748,9 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 					break;
 				case BUILDING_HOUSE:
 					returnVector.push_back(new House(savedBuildings[i].rawString));;
+					break;
+				case BUILDING_GUARDHOUSE:
+					returnVector.push_back(new GuardHouse(savedBuildings[i].rawString));;
 					break;
 				default:
 					returnVector.push_back(new Building(savedBuildings[i].rawString));

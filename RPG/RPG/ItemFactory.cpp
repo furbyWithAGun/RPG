@@ -479,3 +479,48 @@ HoverToolTip* createItemToolTip(Item* item, GameScene* scene)
 	returnToolTip->setScene(scene);
 	return returnToolTip;
 }
+
+
+
+std::string getItemVectorSaveString(std::vector<Item*> vector) {
+	std::string returnString;
+	returnString += std::to_string(vector.size()) + "\n";
+	for (int i = 0; i < vector.size(); i++)
+	{
+		returnString += vector[i]->toSaveString() + "\n";
+	}
+	return returnString;
+}
+
+std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
+	std::vector<Item*> returnVector;
+
+	std::vector<SaveObject> savedItems = getSaveObjectVectorFromSaveString2(saveString);
+
+	for (size_t i = 0; i < savedItems.size(); i++)
+	{
+		for (int j = 0; j < savedItems[i].attributes.size(); j++)
+		{
+			if (savedItems[i].attributes[j].attributeType == ITEM_GENERAL_TYPE)
+			{
+				switch (stoi(savedItems[i].attributes[j].valueString)) {
+				case WEAPON:
+					returnVector.push_back(new Weapon(savedItems[i].rawString));;
+					break;
+				case ARMOUR:
+					returnVector.push_back(new Armour(savedItems[i].rawString));;
+					break;
+				case FOOD:
+					returnVector.push_back(new Food(savedItems[i].rawString));;
+					break;
+				default:
+					returnVector.push_back(new Item(savedItems[i].rawString));
+					break;
+				}
+				break;
+			}
+		}
+	}
+
+	return returnVector;
+}

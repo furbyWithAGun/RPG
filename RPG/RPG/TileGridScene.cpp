@@ -26,6 +26,7 @@ void TileGridScene::init() {
     processPathFailLimit = 30;
     TileGridUnitLock = 0;
     updatingUnits = false;
+    unitDestroyLock = 0;
 }
 
 void TileGridScene::declareSceneAssets()

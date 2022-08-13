@@ -62,4 +62,5 @@ void WoodCutter::init()
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
     woodCost = 10;
+    popCost = 5;
 }

@@ -17,7 +17,6 @@ public:
 
     //methods
     int onActionAssignedUnit(RpgUnit* unit) override;
-    void update(RpgTileGridScene* scene) override;
 
 private:
     //attributed

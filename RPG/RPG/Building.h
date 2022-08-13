@@ -34,6 +34,7 @@ class Building
 {
 public:
     //attributes
+    bool canBeBuiltOnOverworld;
     int type;
     int id;
     int iconTextureId;
@@ -77,11 +78,13 @@ public:
     virtual std::vector<Item*> production(RpgTown* town);
     void setZone(ZoneMap* newZone);
     int getPopSupported();
+    int getPopCost();
     std::string getBuildingName();
 
 protected:
     //attributes
     int popSupported;
+    int popCost;
     std::string buildingName;
     std::vector<ProductionInputOutput> productionInputs;
     std::vector<ProductionInputOutput> productionOutputs;

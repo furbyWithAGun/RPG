@@ -12,7 +12,8 @@ enum INVENTORY_MENU_IDS {
     BUILDINGS_SCROLL_BOX,
     TOWN_BUILD_CANCEL_BUTTON,
     BUILDING_MENU_GOLD_DISPLAY,
-    BUILDING_MENU_WOOD_DISPLAY
+    BUILDING_MENU_WOOD_DISPLAY,
+    BUILDING_MENU_POP_DISPLAY
 };
 
 TownBuildMenu::TownBuildMenu() : GameMenu()
@@ -42,6 +43,7 @@ void TownBuildMenu::draw()
 {
     ((MenuText*)getElementbyId(BUILDING_MENU_GOLD_DISPLAY))->setText("Gold: " + std::to_string(scene->player->gold + ((RpgTown*) scene->currentZone)->getTownGold()));
     ((MenuText*)getElementbyId(BUILDING_MENU_WOOD_DISPLAY))->setText("Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory) + qtyInContainer(ITEM_WOOD, ((RpgTown*)scene->currentZone)->getTownInventory())));
+    ((MenuText*)getElementbyId(BUILDING_MENU_POP_DISPLAY))->setText("Free Population: " + std::to_string(((RpgTown*)scene->currentZone)->getFreePop()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     GameMenu::draw();
 }
 
@@ -78,9 +80,12 @@ void TownBuildMenu::buildPageOne()
 {
     mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_GOLD_DISPLAY, scene, "Gold: " + std::to_string(scene->player->gold), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
     mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_WOOD_DISPLAY, scene, "Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory)), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.05));
-    mainPanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.09));
+    MenuText* popText = new MenuText(BUILDING_MENU_POP_DISPLAY, scene, "Free Population: " + std::to_string(0), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.09, scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+    popText->setAutoUpdateDimensions(false);
+    mainPanel->addElementToPage(0, popText);
+    mainPanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.15));
     ScrollBox* scroller;
-    scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.15, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.19, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
     scroller->numElementsToDisplay = 2;
 
     for (int i = 0; i < NUM_BUILDING_TYPES; i++)
@@ -93,7 +98,7 @@ void TownBuildMenu::buildPageOne()
         button->width = engine->screenWidth / WIDTH_ADJUSTOR;
         button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
         button->addOnClick([this, i, scroller]() {
-            if (scene->canAffordBuilding(&buildingTemplates[i], (RpgTown*)scene->currentZone))
+            if (scene->townCanAffordBuilding(&buildingTemplates[i], (RpgTown*)scene->currentZone))
             {
                 scene->buildingBeingPlaced = buildingTemplates[i];
                 scene->placingBuilding = true;

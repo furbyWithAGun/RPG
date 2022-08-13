@@ -41,7 +41,7 @@ void RpgWorldBuilderScene::declareSceneAssets() {
 }
 
 void RpgWorldBuilderScene::setUpScene() {
-    RpgTileGridScene::setUpScene();
+    RpgTileGridScene::setUpScene(saveGameName);
 
     desiredTilesAcross = WORLD_BUILDER_DESIRED_TILES_ACROSS;
     desiredTilesDown = WORLD_BUILDER_DESIRED_TILES_DOWN;
@@ -101,6 +101,14 @@ void RpgWorldBuilderScene::handleInput() {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                     addCommand(InputMessage(WORLD_BUILDER_PLACE_DOODAD, tileCoords[0], tileCoords[1], dooDadgBeingPlaced.type, {dooDadgBeingPlaced.textureKey}));
                 }
+                if (placingUnit && coordsAreOnDisplayedMapTile(message->x, message->y))
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    if (sceneToEdit.isTilePassable(this, tileCoords[0], tileCoords[1]));
+                    {
+                        addCommand(InputMessage(WORLD_BUILDER_PLACE_UNIT, tileCoords[0], tileCoords[1], unitBeingPlaced.type));
+                    }
+                }
                 if (placingBuilding && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
@@ -126,6 +134,10 @@ void RpgWorldBuilderScene::handleInput() {
             else if (sceneToEdit.getDooDadAtLocation(tileCoords[0], tileCoords[1]) != nullptr)
             {
                 addCommand(InputMessage(OPEN_PLACED_DOODAD_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
+            }
+            else if (sceneToEdit.getUnitAtLocation(tileCoords[0], tileCoords[1]) != nullptr)
+            {
+                addCommand(InputMessage(OPEN_PLACED_UNIT_OPTIONS_MENU, tileCoords[0], tileCoords[1]));
             }
             break;
         case SELECT_OFF:
@@ -228,6 +240,30 @@ void RpgWorldBuilderScene::sceneLogic() {
             dooDadSelectPrompt->closeOnClickMiss = true;
             addPrompt(dooDadSelectPrompt);
             break;
+        
+        case OPEN_PLACED_UNIT_OPTIONS_MENU:
+            Unit* selectedUnit;
+            selectedUnit = sceneToEdit.getUnitAtLocation(message->x, message->y);
+            double unitCoords[2];
+            coordsFromTileIndex(message->x, message->y, unitCoords);
+            SelectPrompt* unitSelectPrompt;
+            unitSelectPrompt = new SelectPrompt(this, COLOR_BLACK, unitCoords[0] + tileWidth, unitCoords[1] + tileHeight, 300, 300);
+            unitSelectPrompt->addSelectOption("Delete Unit", 1);
+            unitSelectPrompt->addCallBack([this, unitSelectPrompt, selectedUnit]() {
+                switch (unitSelectPrompt->getSelectedOptionValue())
+                {
+                case 1:
+                    addUnitToDestroy(selectedUnit);
+                    break;
+                default:
+                    break;
+                }
+                removePrompt(unitSelectPrompt);
+                });
+            unitSelectPrompt->active = true;
+            unitSelectPrompt->closeOnClickMiss = true;
+            addPrompt(unitSelectPrompt);
+            break;
         case OPEN_PLACED_PORTAL_OPTIONS_MENU:
             ZonePortal* selectedPortal;
             selectedPortal = getPortalAtLocation(&sceneToEdit, message->x, message->y);
@@ -270,6 +306,11 @@ void RpgWorldBuilderScene::sceneLogic() {
         case PLACE_BUILDING:
             if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, message->x, message->y)) {
                 createBuildingAtLocation(&sceneToEdit, message->misc, LEFT, message->x, message->y);
+            }
+            break;
+        case WORLD_BUILDER_PLACE_UNIT:
+            if (sceneToEdit.isTilePassable(this, message->x, message->y)) {
+                createUnitAtLocation(&sceneToEdit, message->misc, message->x, message->y);
             }
             break;
         default:
@@ -317,6 +358,13 @@ void RpgWorldBuilderScene::renderScene() {
             getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
             coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
             renderTexture(dooDadgBeingPlaced.textureKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
+            //engine->renderText("D", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
+        }
+        if (placingUnit && coordsAreOnDisplayedMapTile(controllerInterface->latestXpos, controllerInterface->latestYpos) && !mouseOnAMenu())
+        {
+            getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
+            coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
+            renderTexture(unitBeingPlaced.animations[IDLE_DOWN].spriteSheetKey, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
             //engine->renderText("D", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
         }
 

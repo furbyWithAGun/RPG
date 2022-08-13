@@ -190,6 +190,8 @@ void RpgTileGridScene::declareSceneAssets()
     //building
     texturesToLoad.insert({ TEXTURE_BUILDING_WOODCUTTER, "images/woodCutter.png" });
     texturesToLoad.insert({ TEXTURE_BUILDING_HOUSE, "images/house.png" });
+    texturesToLoad.insert({ TEXTURE_GUARDHOUSE_BOTTOM, "images/guardHouseBottom.png" });
+    texturesToLoad.insert({ TEXTURE_GUARDHOUSE_TOP, "images/guardHouseTop.png" });
     //building icons
     texturesToLoad.insert({ BUILDING_ICON_WEAPON_SHOP, "images/signWeapons.png" });
     texturesToLoad.insert({ BUILDING_ICON_ARMOUR_SHOP, "images/signArmour.png" });
@@ -369,7 +371,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building, RpgTown* town) {
     menus[INVENTORY_MENU]->update();
 }
 
-bool RpgTileGridScene::canAffordBuilding(Building* building, RpgTown* town)
+bool RpgTileGridScene::townCanAffordBuilding(Building* building, RpgTown* town)
 {
     if (player->gold < building->goldCost)
     {
@@ -378,6 +380,11 @@ bool RpgTileGridScene::canAffordBuilding(Building* building, RpgTown* town)
     int totalWood = qtyInContainer(ITEM_WOOD, player->inventory) + qtyInContainer(ITEM_WOOD, town->getTownInventory());
 
     if (totalWood < building->woodCost)
+    {
+        return false;
+    }
+
+    if (building->getPopCost() > town->getFreePop() && building->getPopCost() > 0)
     {
         return false;
     }
@@ -606,12 +613,12 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 
 void RpgTileGridScene::destroyFlaggedUnits()
 {
-    //SDL_AtomicLock(&unitDestroyLock);
-    destroyingUnits = true;
+    //destroyingUnits = true;
+    SDL_AtomicLock(&unitDestroyLock);
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);
     }
-    //SDL_AtomicUnlock(&unitDestroyLock);
+    SDL_AtomicUnlock(&unitDestroyLock);
     unitsToDestroy.clear();
     destroyingUnits = false;
 }
@@ -623,8 +630,8 @@ void RpgTileGridScene::destroyDooDad(DooDad* dooDad)
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)
 {
-    RpgUnit* createdUnit;
-    switch (unitType)
+    RpgUnit* createdUnit = (RpgUnit*)createNewUnit(getZones()[zoneId], this, unitType);
+    /*switch (unitType)
     {
     case PLAYER:
         createdUnit = new Player(zoneId, PLAYER, this, x, y);
@@ -653,7 +660,7 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
     default:
         createdUnit = NULL;
         break;
-    }
+    }*/
 
     getZones()[zoneId]->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
@@ -661,8 +668,8 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x,
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y)
 {
-    RpgUnit* createdUnit;
-    switch (unitType)
+    RpgUnit* createdUnit = (RpgUnit*)createNewUnit(zone, this, unitType);
+    /*switch (unitType)
     {
     case PLAYER:
         createdUnit = new Player(zone->id, PLAYER, this, x, y);
@@ -691,7 +698,7 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
     default:
         createdUnit = new RpgUnit();
         break;
-    }
+    }*/
     createdUnit->id = getUniqueUnitId();
     zone->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
@@ -722,6 +729,9 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         break;
     case BUILDING_HOUSE:
         createdBuilding = createNewBuilding(buildingType, direction);
+    case BUILDING_GUARDHOUSE:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        break;
         break;
     default:
         createdBuilding = nullptr;
@@ -757,6 +767,9 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
             createdBuilding = createNewBuilding(buildingType, direction);
             break;
         case BUILDING_HOUSE:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            break;
+        case BUILDING_GUARDHOUSE:
             createdBuilding = createNewBuilding(buildingType, direction);
             break;
         default:
@@ -812,6 +825,7 @@ void RpgTileGridScene::init()
     destroyingUnits = false;
     player = nullptr;
     placingBuilding = false;
+    placingUnit = false;
     //aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.75;
     aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.1;
 }
@@ -862,6 +876,16 @@ void RpgTileGridScene::scrollCamera() {
     if (y > engine->screenHeight * 0.99) {
         yOffset -= scrollSpeed;
     }
+}
+
+void RpgTileGridScene::setSaveGameName(std::string newSaveGameName)
+{
+    saveGameName = newSaveGameName;
+}
+
+std::string RpgTileGridScene::getSaveGameName()
+{
+    return saveGameName;
 }
 
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)

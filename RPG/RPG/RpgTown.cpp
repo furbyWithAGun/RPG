@@ -33,6 +33,9 @@ RpgTown::RpgTown(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgZone(s
         case RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP:
             ticksSinceTownUpdatePopCap = stoi(saveObject.attributes[i].valueString);
             break;
+        case RPG_TOWN_INVENTORY:
+            townInventory = getItemVectorFromSaveString(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -137,6 +140,7 @@ std::string RpgTown::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP, ticksSinceTownUpdatePopCap);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_GOLD, townGold);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TRAINED_SOLDIERS, trainedSoldiers);
+    saveString += getAttributeString(getUniqueId(), RPG_TOWN_INVENTORY, getItemVectorSaveString(townInventory));
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_TOWN) + "\n";
     }
@@ -155,7 +159,7 @@ void RpgTown::init()
 
 void RpgTown::processTownCycle()
 {
-    if (population < getTownPopLimit())
+    if (feedPopulace() && population + trainedSoldiers < getTownPopLimit())
     {
         population++;
     }
@@ -179,4 +183,45 @@ int RpgTown::getTownPopLimit()
         popLimit += building->getPopSupported();
     }
     return popLimit;
+}
+
+bool RpgTown::feedPopulace()
+{
+    bool returnValue = false;
+    int hungerToSatisfy = population + trainedSoldiers;
+    std::vector<Item*> itemsToDelete;
+    for (auto item : townInventory) {
+        if (item->generalType == FOOD)
+        {
+            if (((Food*)item)->hungerGain * item->stackSize > hungerToSatisfy) {
+                removeQtyFromContainer(item->specificType, hungerToSatisfy/ ((Food*)item)->hungerGain + (hungerToSatisfy % ((Food*)item)->hungerGain != 0), townInventory);
+                hungerToSatisfy = 0;
+                returnValue = true;
+                goto endOfFunction;
+            }
+            else {
+                hungerToSatisfy -= ((Food*)item)->hungerGain * item->stackSize;
+                itemsToDelete.push_back(item);
+            }
+        }
+    }
+    for (auto item : itemsToDelete) {
+        deleteItemFromContainer(item, townInventory);
+    }
+    endOfFunction:
+    return returnValue;
+}
+
+int RpgTown::getFreePop()
+{
+    int popCost = 0;
+    for (auto building : getBuildings()) {
+        popCost += building->getPopCost();
+    }
+    return population - popCost - trainedSoldiers;
+}
+
+void RpgTown::reducePopulation(int amount)
+{
+    population -= amount;
 }

@@ -9,6 +9,7 @@
 #include "PagedPanel.h"
 #include "BuildingFactory.h"
 #include "DooDadFactory.h"
+#include "UnitFactory.h"
 
 class ZoneBuilderMenu : public GameMenu
 {
@@ -16,6 +17,7 @@ public:
     //attributes
     PagedPanel* mainPanel;
     std::vector<Building> buildingTemplates;
+    std::vector<Unit> unitTemplates;
     std::vector<DooDad> DooDadTemplates;
 
     //constructors

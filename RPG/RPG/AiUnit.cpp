@@ -48,7 +48,7 @@ void AiUnit::init() {
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;
     checkToAttackTick = 0;
-    checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 4;
+    checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 7;
 }
 
 void AiUnit::update() {

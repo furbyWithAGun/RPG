@@ -477,6 +477,10 @@ void Unit::setTileLocation(int x, int y) {
     tileLocation->y = y;
     tileDestination->x = x;
     tileDestination->y = y;
+    tileLocationBuffer->x = x;
+    tileLocationBuffer->y = y;
+    tileDestinationBuffer->x = x;
+    tileDestinationBuffer->y = y;
 }
 
 void Unit::moveTo(int x, int y)

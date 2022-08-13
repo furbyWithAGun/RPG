@@ -24,6 +24,7 @@ void MapBuilderPortalButton::onClick() {
     scene->placingBuilding = false;
     scene->placingPortal = true;
     scene->placingDooDad = false;
+    scene->placingUnit = false;
     scene->portalBeingPlaced = portalKey;
 }
 

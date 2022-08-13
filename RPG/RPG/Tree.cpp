@@ -39,6 +39,8 @@ Tree::Tree(SaveObject saveObject, TileGridScene* gameScene) : DooDad(saveObject,
         case TREE_REGROW_TICK:
             regrowTick = stoi(saveObject.attributes[i].valueString);
             break;
+        case DOODAD_PASSABLE:
+            passable = stoi(saveObject.attributes[i].valueString);
         default:
             break;
         }

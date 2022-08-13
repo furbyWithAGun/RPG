@@ -52,8 +52,13 @@ void MainMenu::buildPrompt()
             scene->removePrompt(mainMenuPrompt);
         }
         else if (selectedOption == OVERWORLD) {
-            ((RpgOverWorldScene*)scene->engine->scenes[OVERWORLD])->setSaveGameName(SAVES_FILE_PATH + NEW_GAME_SAVE_FILE);
+            ((RpgTileGridScene*)scene->engine->scenes[OVERWORLD])->setSaveGameName(SAVES_FILE_PATH + NEW_GAME_SAVE_FILE);
             scene->engine->setNextScene(OVERWORLD);
+            scene->endScene();
+        }
+        else if (selectedOption == WORLD_BUILDER) {
+            ((RpgTileGridScene*)scene->engine->scenes[WORLD_BUILDER])->setSaveGameName(SAVES_FILE_PATH + NEW_GAME_SAVE_FILE);
+            scene->engine->setNextScene(WORLD_BUILDER);
             scene->endScene();
         }
         else {

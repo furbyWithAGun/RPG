@@ -414,9 +414,9 @@ void RpgUnit::updateAggro()
     if (targetUnit == nullptr)
     {
         RpgUnit* tempTarget;
-        for (int x = tileLocation->x - aggroTriggerDistance; x < tileLocation->x + aggroTriggerDistance; x++)
+        for (int x = tileLocation->x - aggroTriggerDistance; x < tileLocation->x + aggroTriggerDistance + 1; x++)
         {
-            for (int y = tileLocation->y - aggroTriggerDistance; y < tileLocation->y + aggroTriggerDistance; y++)
+            for (int y = tileLocation->y - aggroTriggerDistance; y < tileLocation->y + aggroTriggerDistance + 1; y++)
             {
                 tempTarget = (RpgUnit*)scene->getUnitAtLocation(zone, x, y);
                 if (tempTarget != nullptr && getTeamStatus(tempTarget) == ENEMY)
@@ -604,8 +604,8 @@ void RpgUnit::init()
     minNumDrops = 1;
     maxNumDrops = 1;
     dropChance = 0.0;
-    aggroTriggerDistance = 4;
-    aggroMaintainDistance = 6;
+    aggroTriggerDistance = 5;
+    aggroMaintainDistance = 7;
     aggroUpdateTick = 0;
     //special attributes for loading saved units
     assignedToBuildingId = -1;
@@ -661,47 +661,4 @@ void RpgUnit::death(RpgUnit* attackingUnit)
         scene->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, tileLocation->x, tileLocation->y, 140);
     }
     attackingUnit->gold += goldGiven;
-}
-
-std::string getItemVectorSaveString(std::vector<Item*> vector) {
-    std::string returnString;
-    returnString += std::to_string(vector.size()) + "\n";
-    for (int i = 0; i < vector.size(); i++)
-    {
-        returnString += vector[i]->toSaveString() + "\n";
-    }
-    return returnString;
-}
-
-std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
-    std::vector<Item*> returnVector;
-
-    std::vector<SaveObject> savedItems = getSaveObjectVectorFromSaveString2(saveString);
-
-    for (size_t i = 0; i < savedItems.size(); i++)
-    {
-        for (int j = 0; j < savedItems[i].attributes.size(); j++)
-        {
-            if (savedItems[i].attributes[j].attributeType == ITEM_GENERAL_TYPE)
-            {
-                switch (stoi(savedItems[i].attributes[j].valueString)) {
-                case WEAPON:
-                    returnVector.push_back(new Weapon(savedItems[i].rawString));;
-                    break;
-                case ARMOUR:
-                    returnVector.push_back(new Armour(savedItems[i].rawString));;
-                    break;
-                case FOOD:
-                    returnVector.push_back(new Food(savedItems[i].rawString));;
-                    break;
-                default:
-                    returnVector.push_back(new Item(savedItems[i].rawString));
-                    break;
-                }
-                break;
-            }
-        }
-    }
-
-    return returnVector;
 }

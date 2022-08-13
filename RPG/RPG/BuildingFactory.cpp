@@ -40,6 +40,9 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 	case BUILDING_HOUSE:
 		buildingToReturn = new House(direction);
 		break;
+	case BUILDING_GUARDHOUSE:
+		buildingToReturn = new GuardHouse(direction);
+		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");
 		buildingToReturn = new Building();
@@ -60,6 +63,14 @@ HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene)
 	if (building->woodCost > 0)
 	{
 		returnToolTip->subElements.push_back(new MenuText(scene, "Wood Cost: " + std::to_string(building->woodCost), COLOR_WHITE, 10, 70));
+	}
+
+	if (building->getPopCost() > 0)
+	{
+		returnToolTip->subElements.push_back(new MenuText(scene, "Population Cost: " + std::to_string(building->getPopCost()), COLOR_WHITE, 10, 100, scene->engine->screenWidth * 0.14, scene->engine->screenHeight * 0.03));
+	}
+	else if (building->getPopSupported() > 0) {
+		returnToolTip->subElements.push_back(new MenuText(scene, "Population Supported: " + std::to_string(building->getPopSupported()), COLOR_WHITE, 10, 100, scene->engine->screenWidth * 0.14, scene->engine->screenHeight * 0.03));
 	}
 	
 

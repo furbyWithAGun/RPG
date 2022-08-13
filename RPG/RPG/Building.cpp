@@ -270,6 +270,11 @@ int Building::getPopSupported()
     return popSupported;
 }
 
+int Building::getPopCost()
+{
+    return popCost;
+}
+
 std::string Building::getBuildingName()
 {
     return buildingName;
@@ -287,10 +292,12 @@ void Building::init()
     woodCost = 1;
     productionGoldCost = 0;
     popSupported = 0;
+    popCost = 0;
     productionInputs = {};
     productionOutputs = {};
     zone = nullptr;
     buildingName = "";
+    canBeBuiltOnOverworld = false;
 }
 
 void Building::init(int buildingType)

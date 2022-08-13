@@ -4,7 +4,8 @@
 enum RPG_OVERWORLD_MENU_IDS {
     OPEN_INVENTORY_BUTTON,
     QUIT_BUTTON,
-    SAVE_GAME_BUTTON
+    SAVE_GAME_BUTTON,
+    OPEN_BUILD_MENU
 };
 
 OverWorldSceneMenu::OverWorldSceneMenu() : GameMenu()
@@ -32,17 +33,29 @@ bool OverWorldSceneMenu::handleInput(InputMessage* message)
 
 void OverWorldSceneMenu::buildElements()
 {
+    MenuButton* openBuildMenu = new MenuButton(OPEN_BUILD_MENU, scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.6);
+    openBuildMenu->setText("Build")->addOnClick([this] {
+        scene->openMenu(TOWN_BUILD_MENU);
+        scene->closeMenu(RPG_OVERWORLD_MENU);
+        });
+    addElement(OPEN_BUILD_MENU, openBuildMenu);
+
     MenuButton* openInvBtn = new MenuButton(OPEN_INVENTORY_BUTTON, scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.7);
     openInvBtn->setText("Inventory")->addOnClick([this] {
         scene->openMenu(INVENTORY_MENU);
         });
     addElement(OPEN_INVENTORY_BUTTON, openInvBtn);
 
-    MenuButton* saveGameButton = new MenuButton(SAVE_GAME_BUTTON, this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.8);
+    /*MenuButton* saveGameButton = new MenuButton(SAVE_GAME_BUTTON, this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.8);
     saveGameButton->setText("Save Game")->addOnClick([this] {
         scene->openMenu(SAVE_GAME_MENU);
-        });
-    addElement(SAVE_GAME_BUTTON, saveGameButton);
+        });*/
+    //addElement(SAVE_GAME_BUTTON, saveGameButton);
+
+    //save game button
+    addElement(SAVE_GAME_BUTTON, (new MenuButton(this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.8))->setText("Save Game")->addOnClick([this] {
+        scene->openMenu(SAVE_GAME_MENU);
+        }));
 
     MenuButton* quitButton = new MenuButton(QUIT_BUTTON, this->scene, BUTTON_BACKGROUND, scene->engine->screenWidth * 0.01, scene->engine->screenHeight * 0.9);
     quitButton->setText("Quit")->addOnClick([this] {

@@ -37,6 +37,7 @@ class ZoneMap {
         int difficulty;
         int backGroundTile;
         bool mobSpawn;
+        SDL_SpinLock unitMapLock;
 
         //need to setup save attributes:
         int maxUnits;

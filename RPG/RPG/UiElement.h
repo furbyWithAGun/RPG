@@ -71,6 +71,7 @@ public:
     virtual void onRightClick();
     UiElement* addOnClick(std::function<void()> newCallback);
     UiElement* addBtnOneCallback(std::function<void()> newCallback);
+    void setAutoUpdateDimensions(bool valueToSet);
 
 protected:
 
@@ -81,6 +82,7 @@ protected:
 private:
     //attributes
     bool needToUpdateTextImage;
+    bool autoUpdateDimensions;
 
     //methods
     void init();

@@ -519,6 +519,12 @@
     <ClCompile Include="LoadSaveGameMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\MainMenu</Filter>
     </ClCompile>
+    <ClCompile Include="GuardHouse.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitFactory.cpp">
+      <Filter>Source Files\RpgGame\units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -856,6 +862,12 @@
     </ClInclude>
     <ClInclude Include="LoadSaveGameMenu.h">
       <Filter>Header Files\RpgGame\scenes\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="GuardHouse.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitFactory.h">
+      <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -43,6 +43,8 @@ public:
     int getNumTrainedSoldiers();
     void addToTrainedSoldiers(int amountToAdd);
     void subtractFromTrainedSoldiers(int amountToSubtract);
+    int getFreePop();
+    void reducePopulation(int amount);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
@@ -61,5 +63,6 @@ private:
     void init();
     void processTownCycle();
     int getTownPopLimit();
+    bool feedPopulace();
 };
 

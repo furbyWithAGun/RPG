@@ -17,6 +17,7 @@ enum SAVE_BUILDER_MENU_IDS {
     TXT_ZONE_TYPE,
     BUILDINGS_SCROLL_BOX,
     DOODADS_SCROLL_BOX,
+    UNITS_SCROLL_BOX,
     QUIT_BUTTON
 };
 
@@ -47,6 +48,7 @@ bool ZoneBuilderMenu::handleInput(InputMessage* message) {
         scene->placingPortal = false;
         scene->placingBuilding = false;
         scene->placingDooDad = false;
+        scene->placingUnit = false;
         scroller = (ScrollBox*)getElementbyId(TILE_SCROLL_BOX);
         scroller->selectedElement = NULL;
         scroller = (ScrollBox*)getElementbyId(PORTAL_SCROLL_BOX);
@@ -54,6 +56,8 @@ bool ZoneBuilderMenu::handleInput(InputMessage* message) {
         scroller = (ScrollBox*)getElementbyId(BUILDINGS_SCROLL_BOX);
         scroller->selectedElement = NULL;
         scroller = (ScrollBox*)getElementbyId(DOODADS_SCROLL_BOX);
+        scroller->selectedElement = NULL;
+        scroller = (ScrollBox*)getElementbyId(UNITS_SCROLL_BOX);
         scroller->selectedElement = NULL;
         break;
     default:
@@ -235,6 +239,7 @@ void ZoneBuilderMenu::buildPageTwo()
 
 void ZoneBuilderMenu::buildPageThree()
 {
+    // buildings scroller
     mainPanel->addElementToPage(2, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
     ScrollBox* buildingScroller;
     buildingScroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.05, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
@@ -255,12 +260,14 @@ void ZoneBuilderMenu::buildPageThree()
             scene->placingDooDad = false;
             scene->placingTile = false;
             scene->placingPortal = false;
+            scene->placingUnit = false;
             });
         buildingScroller->addElement(button);
     }
 
     mainPanel->addElementToPage(2, BUILDINGS_SCROLL_BOX, buildingScroller);
 
+    //doodads scroller
     mainPanel->addElementToPage(2, new MenuText(scene, "DooDads", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.4));
     ScrollBox* dooDadScroller;
     dooDadScroller = new ScrollBox(DOODADS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.45, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
@@ -279,6 +286,7 @@ void ZoneBuilderMenu::buildPageThree()
             button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
             button->addOnClick([this, i]() {
                 scene->dooDadgBeingPlaced = DooDadTemplates[i];
+                scene->placingUnit = false;
                 scene->placingDooDad = true;
                 scene->placingBuilding = false;
                 scene->placingTile = false;
@@ -289,4 +297,35 @@ void ZoneBuilderMenu::buildPageThree()
     }
 
     mainPanel->addElementToPage(2, DOODADS_SCROLL_BOX, dooDadScroller);
+
+    //units sroller
+    mainPanel->addElementToPage(2, new MenuText(scene, "units", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.65));
+    ScrollBox* unitScroller;
+    unitScroller = new ScrollBox(UNITS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.7, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
+    unitScroller->numElementsToDisplay = 2;
+
+    for (int i = 0; i < NUM_UNIT_TYPES; i++)
+    {
+        unitTemplates.push_back(*createNewUnitBlankId(&this->scene->sceneToEdit, this->scene, i));
+        MenuButton* button;
+        if (i != PLAYER)
+        {
+            button = new MenuButton(scene, unitTemplates[i].animations[IDLE_DOWN].spriteSheetKey);
+            button->xpos = 0;
+            button->ypos = 0;
+            button->width = engine->screenWidth / WIDTH_ADJUSTOR;
+            button->height = engine->screenHeight / HEIGHT_ADJUSTOR;
+            button->addOnClick([this, i]() {
+                scene->unitBeingPlaced = unitTemplates[i];
+                scene->placingUnit = true;
+                scene->placingBuilding = false;
+                scene->placingDooDad = false;
+                scene->placingTile = false;
+                scene->placingPortal = false;
+                });
+            unitScroller->addElement(button);
+        }
+    }
+
+    mainPanel->addElementToPage(2, UNITS_SCROLL_BOX, unitScroller);
 }

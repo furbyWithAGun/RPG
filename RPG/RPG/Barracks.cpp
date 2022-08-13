@@ -64,10 +64,11 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
             switch (barracksSelectPrompt->getSelectedOptionValue())
             {
             case 1:
-                if (unit->scene->player->gold >= 1000)
+                if (unit->scene->player->gold >= 1000 && ((RpgTown*)zone)->getFreePop() > 0)
                 {
                     unit->scene->player->gold -= 1000;
                     ((RpgTown*)zone)->addToTrainedSoldiers(1);
+                    ((RpgTown*)zone)->reducePopulation(1);
                 }
                 break;
             default:
@@ -82,22 +83,6 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
     return 0;
 }
 
-void Barracks::update(RpgTileGridScene* scene)
-{
-    if (zone != nullptr && ((RpgZone*)zone)->zoneType == ZONE_RPG_TOWN)
-    {
-        troopSpawnTick++;
-        if (troopSpawnTick >= troopSpawnRate)
-        {
-            troopSpawnTick = 0;
-            if (((RpgTown*)zone)->getNumTrainedSoldiers() > 0)
-            {
-                ((RpgTown*)zone)->subtractFromTrainedSoldiers(1);
-                ((RpgTown*)zone)->addUnitToLocation(new Soldier(zone->id, SOLDIER, scene, tileLocation->x + 1, tileLocation->y + 1), tileLocation->x + 1, tileLocation->y + 1);
-            }
-        }
-    }
-}
 
 
 void Barracks::init()
@@ -109,4 +94,5 @@ void Barracks::init()
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Barracks";
+    popCost = 20;
 }

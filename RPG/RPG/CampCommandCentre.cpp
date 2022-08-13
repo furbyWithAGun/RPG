@@ -66,4 +66,5 @@ void CampCommandCentre::init()
     goldCost = 500;
     woodCost = 300;
     buildingName = "Town Centre";
+    popSupported = 10;
 }
