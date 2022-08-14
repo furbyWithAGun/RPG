@@ -2,6 +2,7 @@
 #include "ZoneMap.h"
 
 class RpgTileGridScene;
+class RpgTown;
 
 enum RPG_ZONE_ATTRIBUTES {
     RPG_ZONE_TYPE = 1000
@@ -23,6 +24,7 @@ public:
     //methods
     int getNumUnits();
     int getNumUnitsOnTeam(int team);
+    virtual RpgTown* getNearestTown(Location* location);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

@@ -26,6 +26,7 @@ public:
     //attributes
     SDL_SpinLock unitDestroyLock;
     SDL_SpinLock TileGridUnitLock;
+    SDL_SpinLock unitPathQueueLock;
     int mainCanvasStartX;
     int xOffset, yOffset;
     double xOffsetTemp, yOffsetTemp;
@@ -35,7 +36,6 @@ public:
     int tileHeight;
     int tileWidth;
     int nextZoneId;
-    std::deque<Unit*> unitsNeedingPath;
     int desiredTilesAcross;
     int desiredTilesDown;
     //pathfinding rates
@@ -82,6 +82,10 @@ public:
     double getLastTickTimeStampBuffer();
     void setLastTickTimeStampBuffer();
     void addDooDadToDestroy(DooDad* dooDad);
+    bool unitsNeedPath();
+    Unit* getUnitNeedingPath();
+    void removeUnitFromPathQueue(Unit* unitToRemove);
+    void addUnitToPathQueue(Unit* unit);
     
 
 protected:
@@ -97,6 +101,7 @@ protected:
 private:
     //attributes
     double lastTickTimeStampBuffer;
+    std::deque<Unit*> unitsNeedingPath;
     std::unordered_map<int, ZoneMap*> zones;
     //methods
     virtual void createTiles();

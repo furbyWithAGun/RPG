@@ -225,3 +225,8 @@ void RpgTown::reducePopulation(int amount)
 {
     population -= amount;
 }
+
+RpgTown* RpgTown::getNearestTown(Location* location)
+{
+    return this;
+}

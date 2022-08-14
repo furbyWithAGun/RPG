@@ -19,6 +19,7 @@
 #include "RpgTileGridScene.h"
 
 const int PATH_FINDING_BREAK_LIMIT = 1500;
+const int PATH_FINDING_SECOND_BREAK_LIMIT = 3000;
 const int DEFAULT_MAX_UNITS = 400;
 
 ZoneMap::ZoneMap() {
@@ -1372,6 +1373,10 @@ std::vector<Location*> ZoneMap::getPathIgnoreAllUnits(TileGridScene* scene, Loca
 				priority = new_cost + manhattenDistance(neighbor, destinationLocation);
 				frontier.emplace(priority, neighbor);
 				cameFrom[*neighbor] = current;
+				if (cameFrom.size() > PATH_FINDING_SECOND_BREAK_LIMIT)
+				{
+					return std::vector<Location*>();
+				}
 
 				//int screenCoords[2];
 				//scene->coordsFromTileIndex(neighbor[0], neighbor[1], screenCoords);

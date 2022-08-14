@@ -27,6 +27,7 @@ void TileGridScene::init() {
     TileGridUnitLock = 0;
     updatingUnits = false;
     unitDestroyLock = 0;
+    unitPathQueueLock = 0;
 }
 
 void TileGridScene::declareSceneAssets()
@@ -234,6 +235,53 @@ void TileGridScene::addDooDadToDestroy(DooDad* dooDad)
         return;
     }
     dooDadsToDestroy.push_back(dooDad);
+}
+
+bool TileGridScene::unitsNeedPath()
+{
+    bool returnValue = false;
+    SDL_AtomicLock(&unitPathQueueLock);
+    if (unitsNeedingPath.size() != 0) {
+        returnValue = true;
+    }
+    SDL_AtomicUnlock(&unitPathQueueLock);
+    return returnValue;
+}
+
+Unit* TileGridScene::getUnitNeedingPath()
+{
+    SDL_AtomicLock(&unitPathQueueLock);
+    if (unitsNeedingPath.size()) {
+        Unit* returnUnit = unitsNeedingPath.front();
+        unitsNeedingPath.pop_front();
+        SDL_AtomicUnlock(&unitPathQueueLock);
+        return returnUnit;
+    }
+    SDL_AtomicUnlock(&unitPathQueueLock);
+    return nullptr;
+}
+
+void TileGridScene::removeUnitFromPathQueue(Unit* unitToRemove)
+{
+    SDL_AtomicLock(&unitPathQueueLock);
+    auto unitIterator = unitsNeedingPath.begin();
+    while (unitIterator != unitsNeedingPath.end())
+    {
+        if ((*unitIterator) == unitToRemove) {
+            unitIterator = unitsNeedingPath.erase(unitIterator);
+        }
+        else {
+            unitIterator++;
+        }
+    }
+    SDL_AtomicUnlock(&unitPathQueueLock);
+}
+
+void TileGridScene::addUnitToPathQueue(Unit* unit)
+{
+    SDL_AtomicLock(&unitPathQueueLock);
+    unitsNeedingPath.push_back(unit);
+    SDL_AtomicUnlock(&unitPathQueueLock);
 }
 
 

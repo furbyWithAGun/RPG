@@ -9,7 +9,7 @@ void Unit::getNewPath()
     if (!gettingPath)
     {
         gettingPath = true;
-        scene->unitsNeedingPath.push_back(this);
+        scene->addUnitToPathQueue(this);
     }
 }
 

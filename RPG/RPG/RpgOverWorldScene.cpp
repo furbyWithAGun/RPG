@@ -685,28 +685,21 @@ int getPathThread(void* scene) {
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
     Unit* unit;
-    bool deleteUnit = true;
     //std::cout << "\n";
     //std::cout << rpgScene->unitsNeedingPath.size();
     //std::cout << "\n";
-    while (rpgScene->unitsNeedingPath.size() > 0)
+    for (int i = 0; i <= 4 && rpgScene->unitsNeedPath(); i++)
     {
 
         SDL_AtomicLock(&rpgScene->unitDestroyLock);
-        unit = nullptr;
-        deleteUnit = true;        
-        try {
-            if (!rpgScene->destroyingUnits) {
-
-                unit = rpgScene->unitsNeedingPath.front();
-                rpgScene->unitsNeedingPath.pop_front();
-                deleteUnit = false;
-            }
-        }
-        catch (...) {
-            SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
-            continue;
-        }
+        //unit = nullptr;   
+        //try {
+        unit = rpgScene->getUnitNeedingPath();
+        //}
+        //catch (...) {
+            //SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+            //continue;
+        //}
         try {
             std::vector<int> tempDirections;
 
@@ -774,10 +767,6 @@ int getPathThread(void* scene) {
     }
     SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
     rpgScene->pathfindThreadActive = false;
-    if (rpgScene->unitDestroyLock)
-    {
-        int dfg = 4;
-    }
     return 0;
 }
 

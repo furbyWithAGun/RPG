@@ -591,6 +591,8 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     }
 
     //clear unit from pathfinding queue
+    removeUnitFromPathQueue(unit);
+    /*
     auto unitIterator = unitsNeedingPath.begin();
     while (unitIterator != unitsNeedingPath.end())
     {
@@ -600,7 +602,7 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
         else {
             unitIterator++;
         }
-    }
+    }*/
 
     //unassign unit from building
     if (((RpgUnit*)unit)->assignedToBuilding != nullptr)

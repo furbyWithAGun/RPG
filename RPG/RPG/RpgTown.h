@@ -45,6 +45,7 @@ public:
     void subtractFromTrainedSoldiers(int amountToSubtract);
     int getFreePop();
     void reducePopulation(int amount);
+    RpgTown* getNearestTown(Location* location) override;
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

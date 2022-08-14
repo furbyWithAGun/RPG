@@ -467,7 +467,8 @@ void RpgWorldBuilderScene::destroyUnit(RpgUnit* unit)
     }
 
     //clear unit from pathfinding queue
-    auto unitIterator = unitsNeedingPath.begin();
+    removeUnitFromPathQueue(unit);
+    /*auto unitIterator = unitsNeedingPath.begin();
     while (unitIterator != unitsNeedingPath.end())
     {
         if ((*unitIterator) == unit) {
@@ -476,7 +477,7 @@ void RpgWorldBuilderScene::destroyUnit(RpgUnit* unit)
         else {
             unitIterator++;
         }
-    }
+    }*/
 
 
     //unassign unit from building

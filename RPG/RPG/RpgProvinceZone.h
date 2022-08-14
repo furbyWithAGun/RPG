@@ -13,6 +13,7 @@ public:
 
     //methods
     void addTownToZone(RpgTown* townToAdd);
+    RpgTown* getNearestTown(Location* location) override;
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

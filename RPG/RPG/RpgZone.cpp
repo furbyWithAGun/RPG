@@ -75,6 +75,11 @@ int RpgZone::getNumUnitsOnTeam(int team)
     return numUnitsOnTeam;
 }
 
+RpgTown* RpgZone::getNearestTown(Location* location)
+{
+    return nullptr;
+}
+
 void RpgZone::init()
 {
     zoneType = -1;

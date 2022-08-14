@@ -1,5 +1,7 @@
 #include "RpgProvinceZone.h"
 #include "RpgUnit.h"
+#include "RpgTileGridScene.h"
+//#include "RpgTown.h"
 
 RpgProvinceZone::RpgProvinceZone() : RpgZone() {
     init();
@@ -29,6 +31,25 @@ RpgProvinceZone::RpgProvinceZone(const RpgProvinceZone& oldZone) : RpgZone(oldZo
 void RpgProvinceZone::addTownToZone(RpgTown* townToAdd)
 {
     towns.push_back(townToAdd);
+}
+
+RpgTown* RpgProvinceZone::getNearestTown(Location* location)
+{
+    RpgTown* returnZone = nullptr;
+    for (auto portal : getPortals()) {
+        if (((RpgZone*)scene->getZone(portal->exitZoneId))->zoneType == ZONE_RPG_TOWN)
+        {
+            Location* portalLocation = new Location{ portal->tileCoords[0], portal->tileCoords[1] };
+            if (!returnZone)
+            {
+                returnZone = ((RpgTown*) scene->getZone(portal->exitZoneId));
+            }
+            else if (manhattenDistance(location, portalLocation) < ){
+
+            }
+        }
+    }
+    return returnZone;
 }
 
 std::string RpgProvinceZone::toSaveString(bool withHeaderAndFooter)
