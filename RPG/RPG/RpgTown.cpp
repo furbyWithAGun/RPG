@@ -69,10 +69,6 @@ void RpgTown::update()
         processTownCycle();
         ticksSinceTownProduction = 0;
     }
-    for (auto building : getBuildings())
-    {
-        building->update(scene);
-    }
 }
 
 std::vector<Item*>& RpgTown::getTownInventory()
@@ -226,7 +222,17 @@ void RpgTown::reducePopulation(int amount)
     population -= amount;
 }
 
+void RpgTown::addPopulation(int amount)
+{
+    population += amount;
+}
+
 RpgTown* RpgTown::getNearestTown(Location* location)
+{
+    return this;
+}
+
+RpgTown* RpgTown::getNearestTown(int xpos, int ypos)
 {
     return this;
 }

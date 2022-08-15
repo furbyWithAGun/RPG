@@ -310,6 +310,10 @@ bool Unit::updateMovement() {
     if (leftToMove > 0) {
         leftToMove = leftToMove - (double)speed / 100;
     }
+    if (leftToMove <= 0.10 && leftToMove > 0)
+    {
+        int eer = 234;
+    }
     if (leftToMove <= 0) {
         if (tileDestination->x != tileLocation->x || tileDestination->y != tileLocation->y) {
             moveTo(tileDestination->x, tileDestination->y);
@@ -477,10 +481,10 @@ void Unit::setTileLocation(int x, int y) {
     tileLocation->y = y;
     tileDestination->x = x;
     tileDestination->y = y;
-    tileLocationBuffer->x = x;
-    tileLocationBuffer->y = y;
-    tileDestinationBuffer->x = x;
-    tileDestinationBuffer->y = y;
+    //tileLocationBuffer->x = x;
+    //tileLocationBuffer->y = y;
+    //tileDestinationBuffer->x = x;
+    //tileDestinationBuffer->y = y;
 }
 
 void Unit::moveTo(int x, int y)

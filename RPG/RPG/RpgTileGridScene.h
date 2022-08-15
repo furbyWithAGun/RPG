@@ -63,6 +63,7 @@ public:
     bool buildingCanBePlacedAtLocation(Building* building, ZoneMap* zoneMap, Location* location);
     void payBuildingCosts(Building* building, RpgTown* town);
     bool townCanAffordBuilding(Building* building, RpgTown* town);
+    bool playerCanAffordBuilding(Building* building);
     virtual void loadZones(std::string saveFile) override;
     virtual void loadZone(SaveObject saveObject);
     void resizeTiles();

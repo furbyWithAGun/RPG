@@ -200,6 +200,14 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BUILDING_ICON_BLACKSMITH, "images/signBlacksmith.png" });
     texturesToLoad.insert({ BUILDING_ICON_WOODCUTTER, "images/signTreeCutter.png" });
     texturesToLoad.insert({ BUILDING_ICON_HOUSE, "images/signHouse.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_BOTTOM, "images/picketFenceBottom.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_TOP, "images/picketFenceTop.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_LEFT, "images/picketFenceLeft.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_RIGHT, "images/picketFenceRight.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_BOTTOM_RIGHT, "images/picketFenceBottomRight.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_BOTTOM_LEFT, "images/picketFenceBottomLeft.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_TOP_RIGHT, "images/picketFenceTop.png" });
+    texturesToLoad.insert({ TEXTURE_PICKET_FENCE_TOP_LEFT, "images/picketFenceTop.png" });
     //doodad textures
     texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
     texturesToLoad.insert({ TEXTURE_APPLE_TREE_WITH_FRUIT, "images/appleTreeWithFruit.png" });
@@ -373,7 +381,7 @@ void RpgTileGridScene::payBuildingCosts(Building* building, RpgTown* town) {
 
 bool RpgTileGridScene::townCanAffordBuilding(Building* building, RpgTown* town)
 {
-    if (player->gold < building->goldCost)
+    if (player->gold + town->getTownGold() < building->goldCost)
     {
         return false;
     }
@@ -385,6 +393,27 @@ bool RpgTileGridScene::townCanAffordBuilding(Building* building, RpgTown* town)
     }
 
     if (building->getPopCost() > town->getFreePop() && building->getPopCost() > 0)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool RpgTileGridScene::playerCanAffordBuilding(Building* building)
+{
+    if (player->gold < building->goldCost)
+    {
+        return false;
+    }
+    int totalWood = qtyInContainer(ITEM_WOOD, player->inventory);
+
+    if (totalWood < building->woodCost)
+    {
+        return false;
+    }
+
+    if (building->getPopCost() > 0)
     {
         return false;
     }
@@ -819,6 +848,9 @@ void RpgTileGridScene::createTiles()
     mapTiles[TEXTURE_COAST_TOP_RIGHT] = MapTile(false, TEXTURE_COAST_TOP_RIGHT);
     mapTiles[TEXTURE_COAST_BOTTOM_LEFT] = MapTile(false, TEXTURE_COAST_BOTTOM_LEFT);
     mapTiles[TEXTURE_COAST_BOTTOM_RIGHT] = MapTile(false, TEXTURE_COAST_BOTTOM_RIGHT);
+    mapTiles[TEXTURE_PICKET_FENCE_BOTTOM] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM);
+    mapTiles[TEXTURE_PICKET_FENCE_BOTTOM_LEFT] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM_LEFT);
+    mapTiles[TEXTURE_PICKET_FENCE_BOTTOM_RIGHT] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM_RIGHT);
     resizeTiles();
 }
 

@@ -34,7 +34,7 @@ public:
     RpgTown();
 
     //methods
-    void update();
+    void update() override;
     std::vector<Item*>& getTownInventory();
     int getTownGold();
     void setTownGold(int goldAmount);
@@ -45,7 +45,9 @@ public:
     void subtractFromTrainedSoldiers(int amountToSubtract);
     int getFreePop();
     void reducePopulation(int amount);
+    void addPopulation(int amount);
     RpgTown* getNearestTown(Location* location) override;
+    RpgTown* getNearestTown(int xpos, int ypos) override;
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

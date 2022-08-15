@@ -109,12 +109,15 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_LEATHER_BODY)});
-    //Item* itemToDrop = createNewItem(ITEM_LOGS);
-    //itemToDrop->stackSize = 1000;
-    //addItemsToMap(0, 5, 6, { itemToDrop });
+    Item* itemToDrop = createNewItem(ITEM_WOOD);
+    itemToDrop->stackSize = 1000;
+    addItemsToMap(0, 10, 26, { itemToDrop });
+    itemToDrop = createNewItem(ITEM_APPLE);
+    itemToDrop->stackSize = 10000;
+    addItemsToMap(0, 10, 26, { itemToDrop });
     
     //player->gold = 5000;
-    //player->gold = 100000;
+    player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -137,6 +140,7 @@ void RpgOverWorldScene::setUpScene()
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
+    ((RpgTown*)getZones()[1])->addPopulation(1000);
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 }
 
@@ -360,13 +364,26 @@ void RpgOverWorldScene::sceneLogic()
         switch (message->id)
         {
         case OVERWORLD_PLACE_BUILDING:
-            if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && townCanAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone)) {
-                createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
-                payBuildingCosts(&buildingBeingPlaced, (RpgTown*)currentZone);
-            }
-            if (!townCanAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone))
+            if (((RpgZone*)currentZone)->zoneType == ZONE_RPG_TOWN)
             {
-                ((TownBuildMenu*)menus[TOWN_BUILD_MENU])->cancelBuild();
+                if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && townCanAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone)) {
+                    createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
+                    payBuildingCosts(&buildingBeingPlaced, (RpgTown*)currentZone);
+                }
+                if (!townCanAffordBuilding(&buildingBeingPlaced, (RpgTown*)currentZone))
+                {
+                    ((TownBuildMenu*)menus[TOWN_BUILD_MENU])->cancelBuild();
+                }
+            }
+            else if (((RpgZone*)currentZone)->zoneType == ZONE_RPG_PROVINCE) {
+                if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, currentZone, message->x, message->y) && playerCanAffordBuilding(&buildingBeingPlaced)) {
+                    createBuildingAtLocation(currentZone, message->misc, LEFT, message->x, message->y);
+                    payBuildingCosts(&buildingBeingPlaced, (RpgTown*)currentZone);
+                }
+                if (!playerCanAffordBuilding(&buildingBeingPlaced))
+                {
+                    ((TownBuildMenu*)menus[TOWN_BUILD_MENU])->cancelBuild();
+                }
             }
             break;
         case OVERWORLD_COMMAND_UNIT:
@@ -681,9 +698,10 @@ void RpgOverWorldScene::destroyUnit(RpgUnit* unit)
 //}
 
 int getPathThread(void* scene) {
-    srand(time(NULL));
+    //srand(time(NULL));
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
+    rpgScene->engine->seedRand();
     Unit* unit;
     //std::cout << "\n";
     //std::cout << rpgScene->unitsNeedingPath.size();
@@ -771,9 +789,10 @@ int getPathThread(void* scene) {
 }
 
 int updateAggroThread(void* scene) {
-    srand(time(NULL));
+    //srand(time(NULL));
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
+    rpgScene->engine->seedRand();
     for (auto zone : rpgScene->getZones())
     {
         SDL_AtomicLock(&rpgScene->unitDestroyLock);

@@ -36,16 +36,19 @@ GuardHouse::GuardHouse(int entranceDirection) : Building()
 
 void GuardHouse::update(RpgTileGridScene* scene)
 {
-    if (zone != nullptr && ((RpgZone*)zone)->zoneType == ZONE_RPG_TOWN)
+    RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
+    if (localTown != nullptr)
     {
         troopSpawnTick++;
         if (troopSpawnTick >= troopSpawnRate)
         {
             troopSpawnTick = 0;
-            if (((RpgTown*)zone)->getNumTrainedSoldiers() > 0 && assignedUnits.size() < maxTroops)
+            if (localTown->getNumTrainedSoldiers() > 0 && assignedUnits.size() < maxTroops)
             {
-                ((RpgTown*)zone)->subtractFromTrainedSoldiers(1);
-                ((RpgTown*)zone)->addUnitToLocation(new Soldier(zone->id, SOLDIER, scene, tileLocation->x, tileLocation->y + 1), tileLocation->x, tileLocation->y + 1);
+                localTown->subtractFromTrainedSoldiers(1);
+                RpgUnit* newUnit = new Soldier(zone->id, SOLDIER, scene, tileLocation->x, tileLocation->y + 1);
+                zone->addUnitToLocation(newUnit, tileLocation->x, tileLocation->y + 1);
+                assignUnit(newUnit);
             }
         }
     }
@@ -63,6 +66,6 @@ void GuardHouse::init()
     buildingName = "Guard House";
     popCost = 0;
     maxTroops = 2;
-    canBeBuiltOnOverworld = true;
+    setCanBeBuiltOnOverworld(true);
     //popSupported = 2;
 }

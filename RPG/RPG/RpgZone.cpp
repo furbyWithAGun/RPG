@@ -80,6 +80,21 @@ RpgTown* RpgZone::getNearestTown(Location* location)
     return nullptr;
 }
 
+RpgTown* RpgZone::getNearestTown(int xpos, int ypos)
+{
+    return nullptr;
+}
+
+void RpgZone::update()
+{
+    ZoneMap::update();
+
+    for (auto building : getBuildings())
+    {
+        building->update(scene);
+    }
+}
+
 void RpgZone::init()
 {
     zoneType = -1;

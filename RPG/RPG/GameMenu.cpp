@@ -142,7 +142,7 @@ void GameMenu::rebuildMenuElements()
 bool GameMenu::handleInput(InputMessage* message) {
     for (auto element : elements)
     {
-        if (element.second->handleInput(message))
+        if (element.second->active && element.second->handleInput(message))
         {
             return true;
         }

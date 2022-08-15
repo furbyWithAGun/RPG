@@ -96,6 +96,7 @@ class BaseGameEngine
         void renderRectangle(int x, int y, int width, int height, int r, int g, int b, int a);
         void addScene(int sceneId, GameScene* sceneToAdd);
         void setNextScene(int sceneId);
+        void seedRand();
         double randomDouble();
         int randomInt(int maxValue);
         int randomInt(int minValue, int maxValue);
@@ -118,6 +119,7 @@ class BaseGameEngine
         
     private:
         //attributes
+        int randSeeds;
         double targetFrameRate;
         double fpsDelay;
         double rollingTickRate;

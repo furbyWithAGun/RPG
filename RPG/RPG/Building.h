@@ -34,7 +34,6 @@ class Building
 {
 public:
     //attributes
-    bool canBeBuiltOnOverworld;
     int type;
     int id;
     int iconTextureId;
@@ -80,6 +79,8 @@ public:
     int getPopSupported();
     int getPopCost();
     std::string getBuildingName();
+    bool canBeBuiltOnOverworld();
+    void setCanBeBuiltOnOverworld(bool newVal);
 
 protected:
     //attributes
@@ -93,6 +94,7 @@ protected:
 private:
     //attributes
     int productionGoldCost;
+    bool overworldBuildable;
     //methods
     void init();
     void init(int buildingType);

@@ -2,7 +2,7 @@
 #include "RpgOverWorldScene.h"
 
 //constants
-const double RANDOM_MOVE_CHANCE = 0.005;
+const double RANDOM_MOVE_CHANCE = 0.1;
 
 //constructors
 AiUnit::AiUnit() : RpgUnit() {

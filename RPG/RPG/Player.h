@@ -21,6 +21,8 @@ public:
     //void setStartLocation(int x, int y);
     void update();
     void updateCamera();
+    void updateCamera2();
+    void updateCamera3();
     void faceMouseDirection(int x, int y);
     void portalTo(int zoneId, int x, int y) override;
     void death() override;
@@ -30,6 +32,8 @@ private:
     //attributes
     bool changedXSpeedlastTick;
     bool changedYSpeedlastTick;
+    bool canChangeXSpeed;
+    bool canChangeYSpeed;
     int lastXScrollSpeed;
     int lastYScrollSpeed;
     int lastXDelta;

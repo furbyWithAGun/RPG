@@ -7,6 +7,7 @@
 
 class RpgOverWorldScene;
 class Building;
+class RpgTown;
 
 class TownBuildMenu : public GameMenu
 {
@@ -30,9 +31,11 @@ public:
 private:
     //attributes
     RpgOverWorldScene* scene;
+    RpgTown* townBuildingFor;
 
     //methods
     void buildElements();
     void init();
     void buildPageOne();
+    void buildProvincePageOne();
 };

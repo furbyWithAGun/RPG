@@ -14,6 +14,7 @@ Building::Building()
 Building::Building(SaveObject saveObject)
 {
     init();
+    Location* savedLocation;
     for (int i = 0; i < saveObject.attributes.size(); i++)
     {
         switch (saveObject.attributes[i].attributeType) {
@@ -45,7 +46,11 @@ Building::Building(SaveObject saveObject)
             woodCost = stoi(saveObject.attributes[i].valueString);
             break;
         case BUILDING_LOCATION:
-            tileLocation = getLocationFromSaveObject(SaveObject(saveObject.attributes[i].valueString));
+            savedLocation = getLocationFromSaveObject(SaveObject(saveObject.attributes[i].valueString));
+            tileLocation->x = savedLocation->x;
+            tileLocation->y = savedLocation->y;
+            //tileLocation = getLocationFromSaveObject(SaveObject(saveObject.attributes[i].valueString));
+            delete savedLocation;
             break;
         default:
             break;
@@ -280,8 +285,19 @@ std::string Building::getBuildingName()
     return buildingName;
 }
 
+bool Building::canBeBuiltOnOverworld()
+{
+    return overworldBuildable;
+}
+
+void Building::setCanBeBuiltOnOverworld(bool newVal)
+{
+    overworldBuildable = newVal;
+}
+
 void Building::init()
 {
+    overworldBuildable = false;
     id = -1;
     type = -1;
     width = height = 0;
@@ -297,7 +313,7 @@ void Building::init()
     productionOutputs = {};
     zone = nullptr;
     buildingName = "";
-    canBeBuiltOnOverworld = false;
+    overworldBuildable = false;
 }
 
 void Building::init(int buildingType)

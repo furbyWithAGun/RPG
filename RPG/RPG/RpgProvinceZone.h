@@ -14,6 +14,7 @@ public:
     //methods
     void addTownToZone(RpgTown* townToAdd);
     RpgTown* getNearestTown(Location* location) override;
+    RpgTown* getNearestTown(int xpos, int ypos) override;
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

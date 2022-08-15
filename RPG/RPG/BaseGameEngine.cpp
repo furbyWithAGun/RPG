@@ -111,6 +111,7 @@ SDL_Renderer* BaseGameEngine::createRenderer(SDL_Window* window) {
 }
 
 bool BaseGameEngine::init() {
+    randSeeds = 0;
     lockRender = true;
     tickRatesCaptured = 0;
     fpsRatesCaptured = 0;
@@ -120,7 +121,8 @@ bool BaseGameEngine::init() {
     setSigmoidFunction(DEFAULT_SIGMOID_OMEGA, DEFAULT_SIGMOID_ALPHA);
 
     //init rand
-    srand(time(NULL));
+    //srand(time(NULL));
+    seedRand();
 
     //init sdl
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -522,6 +524,12 @@ void BaseGameEngine::setNextScene(int sceneId)
     nextScene = scenes[sceneId];
 }
 
+void BaseGameEngine::seedRand()
+{
+    srand(time(NULL) + randSeeds * 1000);
+    randSeeds++;
+}
+
 double BaseGameEngine::randomDouble() {
     return (double) rand() / RAND_MAX;
 }
@@ -669,7 +677,8 @@ bool BaseGameEngine::clearTextures() {
 //functions
 int logicThread(void* scene) {
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_HIGH);
-    srand(time(NULL));
+    //srand(time(NULL));
+    static_cast <GameScene*> (scene)->engine->seedRand();
     double startTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     double endTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
     double lastNow = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
