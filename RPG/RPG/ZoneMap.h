@@ -106,6 +106,7 @@ class ZoneMap {
         void setupGraph(TileGridScene* scene);
         void calculateDirectPaths(TileGridScene* scene);
         int manhattenDistance(Location* startLocation, Location* destinationLocation);
+        int manhattenDistance(int x1, int y1, int x2, int y2);
         std::vector<Location*> constructPath(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Location* destinationLocation);
         std::vector<Location*> constructPathToUnit(std::unordered_map< Location, Location*> cameFrom, Location* startLocation, Unit* unit);
         int getNumUnits();

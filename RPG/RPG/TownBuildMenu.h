@@ -13,6 +13,7 @@ class TownBuildMenu : public GameMenu
 public:
     //attributes
     PagedPanel* mainPanel;
+    PagedPanel* provincePanel;
     std::vector<Building> buildingTemplates;
 
     //constructors

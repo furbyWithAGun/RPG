@@ -36,16 +36,20 @@ void RpgProvinceZone::addTownToZone(RpgTown* townToAdd)
 RpgTown* RpgProvinceZone::getNearestTown(Location* location)
 {
     RpgTown* returnZone = nullptr;
+    int closestCoords[2] = { -1, -1 };
     for (auto portal : getPortals()) {
         if (((RpgZone*)scene->getZone(portal->exitZoneId))->zoneType == ZONE_RPG_TOWN)
         {
-            Location* portalLocation = new Location{ portal->tileCoords[0], portal->tileCoords[1] };
             if (!returnZone)
             {
                 returnZone = ((RpgTown*) scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
             }
-            else if (manhattenDistance(location, portalLocation) < ){
-
+            else if (manhattenDistance(location->x, location->y, portal->tileCoords[0], portal->tileCoords[1]) < manhattenDistance(location->x, location->y, closestCoords[0], closestCoords[1])){
+                returnZone = ((RpgTown*)scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
             }
         }
     }
