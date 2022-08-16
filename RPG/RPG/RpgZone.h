@@ -14,6 +14,9 @@ public:
     //attributes
     int zoneType;
 
+    //attributes
+    RpgTileGridScene* scene;
+
     //constructors
     RpgZone(int newId, std::vector< std::vector<int> > tiles, RpgTileGridScene* gameScene);
     RpgZone(int newId, RpgTileGridScene* gameScene);
@@ -31,8 +34,6 @@ public:
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 protected:
-    //attributes
-    RpgTileGridScene* scene;
 
 private:
 

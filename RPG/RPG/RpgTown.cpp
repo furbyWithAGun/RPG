@@ -164,6 +164,10 @@ void RpgTown::processTownCycle()
         for (auto item : building->production(this)) {
             producedItems.push_back(item);
         }
+        if (building->type == BUILDING_ITEM_SHOP)
+        {
+            ((ItemShop*)building)->setItemsForSale(this);
+        }
     }
     for (auto item : producedItems)
     {

@@ -81,6 +81,7 @@ public:
     std::string getBuildingName();
     bool canBeBuiltOnOverworld();
     void setCanBeBuiltOnOverworld(bool newVal);
+    std::vector<ProductionInputOutput> getProductionOutputs();
 
 protected:
     //attributes

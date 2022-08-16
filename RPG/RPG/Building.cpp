@@ -295,6 +295,11 @@ void Building::setCanBeBuiltOnOverworld(bool newVal)
     overworldBuildable = newVal;
 }
 
+std::vector<ProductionInputOutput> Building::getProductionOutputs()
+{
+    return productionOutputs;
+}
+
 void Building::init()
 {
     overworldBuildable = false;

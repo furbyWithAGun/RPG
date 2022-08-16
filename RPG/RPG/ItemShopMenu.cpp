@@ -40,7 +40,7 @@ void ItemShopMenu::rebuildElements()
     toolTips.clear();
     for (int i = 0; i < itemShop->itemsForSale.size(); i++)
     {
-        MenuText* txtInvItem = new MenuText(scene, itemShop->itemsForSale[i]->name + " Cost: " + std::to_string(itemShop->itemsForSale[i]->value * 2), 0, 0);
+        MenuText* txtInvItem = new MenuText(scene, itemShop->itemsForSale[i]->name + " X " + std::to_string(itemShop->itemsForSale[i]->stackSize) + " Cost: " + std::to_string(itemShop->itemsForSale[i]->value * 2 * itemShop->itemsForSale[i]->stackSize), 0, 0);
         HoverToolTip* toolTip = createItemToolTip(itemShop->itemsForSale[i], scene);
         toolTip->setScene(scene);
         registerToolTip(txtInvItem, toolTip);
@@ -82,10 +82,14 @@ void ItemShopMenu::buildElements()
         if (items->getSelectedElementValue() != -1)
         {
             Item* selectedItem = itemShop->itemsForSale[items->getSelectedElementValue()];
-            if (scene->player->gold >= selectedItem->value * 2)
+            int cost = selectedItem->value * 2 * selectedItem->stackSize;
+            if (scene->player->gold >= cost)
             {
-                scene->player->gold -= selectedItem->value * 2;
-                switch (selectedItem->generalType)
+                scene->player->gold -= cost;
+                scene->player->addToInventory(selectedItem);
+                removeItemFromContainer(selectedItem, itemShop->itemsForSale);
+                rebuildMenuElements();
+                /*switch (selectedItem->generalType)
                 {
                 case WEAPON:
                     scene->player->addToInventory(new Weapon(*(Weapon*)selectedItem));
@@ -102,7 +106,7 @@ void ItemShopMenu::buildElements()
                         scene->player->addToInventory(new Item(*(Item*)selectedItem));
                     }
                     break;
-                }
+                }*/
             }
             update();
         }

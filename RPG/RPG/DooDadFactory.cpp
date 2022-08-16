@@ -1,6 +1,12 @@
 #include "DooDadFactory.h"
 #include "TileGridScene.h"
 
+
+std::unordered_map<int, int> SPAWNER_TEXTURE_MAP = { {RAT, TEXTURE_RAT_SPAWNER},
+												{WHITE_RAT, TEXTURE_RAT_SPAWNER},
+												{SKELETON, TEXTURE_RAT_SPAWNER},
+};
+
 DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId)
 {
 	std::unordered_map<int, int> treeTextureMap = { {TREE_TYPE_ONE, TREE},
@@ -54,11 +60,10 @@ DooDad* createNewDooDad(int dooDadType, int newTextureKey, TileGridScene* gameSc
 
 UnitSpawner* createNewUnitSpawner(TileGridScene* gameScene, int newUnitToSpawn, int zoneId)
 {
-	std::unordered_map<int, int> spawnerTextureMap = { {RAT, TEXTURE_RAT_SPAWNER},
-												{WHITE_RAT, TEXTURE_RAT_SPAWNER},
-												{SKELETON, TEXTURE_RAT_SPAWNER},
-	};
+	
+
+
 	UnitSpawner* spawnerToReturn = new UnitSpawner(gameScene, newUnitToSpawn, zoneId);
-	spawnerToReturn->addTextureKey(spawnerTextureMap[newUnitToSpawn]);
+	spawnerToReturn->addTextureKey(SPAWNER_TEXTURE_MAP[newUnitToSpawn]);
 	return spawnerToReturn;
 }

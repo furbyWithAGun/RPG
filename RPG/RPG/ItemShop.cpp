@@ -4,6 +4,8 @@
 #include "SelectPrompt.h"
 #include "RpgTileGridScene.h"
 
+const int BASE_NUMBER_OF_ITEMS_IN_SHOP = 5;
+
 ItemShop::ItemShop() : Building()
 {
     init();
@@ -78,10 +80,28 @@ int ItemShop::onActionAssignedUnit(RpgUnit* unit)
     return 0;
 }
 
-void ItemShop::setItemsForSale(std::vector<Item*> newItemsForSale)
+void ItemShop::setItemsForSale(RpgTown* town)
 {
-    itemsForSale = newItemsForSale;
+    int itemType;
+    clearItemsForSale();
+    for (Building* building : town->getBuildings())
+    {
+        for (ProductionInputOutput producedItem : building->getProductionOutputs()) {
+            for (size_t i = 0; i < producedItem.qty; i++)
+            {
+                addItemToContainer(createNewItem(producedItem.itemType), itemsForSale);
+            }
+        }
+    }
+
+    for (size_t i = 0; i < BASE_NUMBER_OF_ITEMS_IN_SHOP; i++)
+    {
+        itemType = town->scene->engine->randomInt(ITEM_LEATHER_BODY);
+        addItemToContainer(createNewItem(itemType), itemsForSale);
+    }
+    town->scene->menus[ITEM_SHOP_MENU]->rebuildMenuElements();
 }
+
 
 void ItemShop::init()
 {
@@ -93,5 +113,14 @@ void ItemShop::init()
     goldCost = 700;
     woodCost = 10;
     popCost = 10;
-    setItemsForSale({ createNewItem(ITEM_CLUB), createNewItem(ITEM_SHORT_SWORD),createNewItem(ITEM_MACE), createNewItem(ITEM_LONG_SWORD), createNewItem(ITEM_RAG_BODY), createNewItem(ITEM_RAG_BOOTS), createNewItem(ITEM_RAG_GLOVES), createNewItem(ITEM_RAG_HAT), createNewItem(ITEM_RAG_PANTS), createNewItem(ITEM_LINEN_BODY), createNewItem(ITEM_LINEN_BOOTS), createNewItem(ITEM_LINEN_GLOVES), createNewItem(ITEM_LINEN_HAT), createNewItem(ITEM_LINEN_PANTS), createNewItem(ITEM_LEATHER_HAT) });
+    //setItemsForSale({ createNewItem(ITEM_CLUB), createNewItem(ITEM_SHORT_SWORD),createNewItem(ITEM_MACE), createNewItem(ITEM_LONG_SWORD), createNewItem(ITEM_RAG_BODY), createNewItem(ITEM_RAG_BOOTS), createNewItem(ITEM_RAG_GLOVES), createNewItem(ITEM_RAG_HAT), createNewItem(ITEM_RAG_PANTS), createNewItem(ITEM_LINEN_BODY), createNewItem(ITEM_LINEN_BOOTS), createNewItem(ITEM_LINEN_GLOVES), createNewItem(ITEM_LINEN_HAT), createNewItem(ITEM_LINEN_PANTS), createNewItem(ITEM_LEATHER_HAT) });
+}
+
+void ItemShop::clearItemsForSale()
+{
+    for (size_t i = 0; i < itemsForSale.size(); i++)
+    {
+        delete itemsForSale[i];
+    }
+    itemsForSale.clear();
 }

@@ -3,6 +3,7 @@
 #include "RpgGameConstants.h"
 
 class Item;
+class RpgTown;
 class ItemShop : public Building
 {
 public:
@@ -18,9 +19,11 @@ public:
 
     //methods
     int onActionAssignedUnit(RpgUnit* unit) override;
-    void setItemsForSale(std::vector<Item*> newItemsForSale);
+    void setItemsForSale(RpgTown* town);
+    //void setItemsForSale(std::vector<Item*> newItemsForSale);
 
 private:
     void init();
+    void clearItemsForSale();
 };
 
