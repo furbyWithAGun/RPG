@@ -525,6 +525,9 @@
     <ClCompile Include="UnitFactory.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
+    <ClCompile Include="Orchard.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -868,6 +871,9 @@
     </ClInclude>
     <ClInclude Include="UnitFactory.h">
       <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="Orchard.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,5 @@
 #pragma once
 #include "Building.h"
-
 #include "RpgGameConstants.h"
 
 class WoodCutter : public Building

@@ -12,11 +12,11 @@
 #include "SkeletonKing.h"
 #include "RpgTown.h"
 #include "RpgProvinceZone.h"
-#include "TownCommand.h"
 #include "BuildingFactory.h"
 #include "CombatText.h"
 #include "ItemShop.h"
 #include "UnitFactory.h"
+#include "DooDadFactory.h"
 
 //class Player;
 

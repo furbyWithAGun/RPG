@@ -778,6 +778,7 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         //return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
         Building* createdBuilding;
         TownCommand* newTownCommand;
+        DooDad* newAppleTree;
         switch (buildingType)
         {
         case BUILDING_ITEM_SHOP:
@@ -802,6 +803,25 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
             break;
         case BUILDING_GUARDHOUSE:
             createdBuilding = createNewBuilding(buildingType, direction);
+            break;
+        case BUILDING_APPLE_ORCHARD:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            //
+            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+            createdBuilding->assignDooDad(newAppleTree);
+            zone->addDooDadToLocation(newAppleTree, x + 2, y + 2);
+            //
+            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+            createdBuilding->assignDooDad(newAppleTree);
+            zone->addDooDadToLocation(newAppleTree, x + 4, y + 2);
+            //
+            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+            createdBuilding->assignDooDad(newAppleTree);
+            zone->addDooDadToLocation(newAppleTree, x + 2, y + 4);
+            //
+            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+            createdBuilding->assignDooDad(newAppleTree);
+            zone->addDooDadToLocation(newAppleTree, x + 4, y + 4);
             break;
         default:
             createdBuilding = nullptr;
@@ -851,6 +871,9 @@ void RpgTileGridScene::createTiles()
     mapTiles[TEXTURE_PICKET_FENCE_BOTTOM] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM);
     mapTiles[TEXTURE_PICKET_FENCE_BOTTOM_LEFT] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM_LEFT);
     mapTiles[TEXTURE_PICKET_FENCE_BOTTOM_RIGHT] = MapTile(false, TEXTURE_PICKET_FENCE_BOTTOM_RIGHT);
+    mapTiles[TEXTURE_PICKET_FENCE_LEFT] = MapTile(false, TEXTURE_PICKET_FENCE_LEFT);
+    mapTiles[TEXTURE_PICKET_FENCE_RIGHT] = MapTile(false, TEXTURE_PICKET_FENCE_RIGHT);
+    mapTiles[TEXTURE_PICKET_FENCE_TOP] = MapTile(false, TEXTURE_PICKET_FENCE_TOP);
     resizeTiles();
 }
 

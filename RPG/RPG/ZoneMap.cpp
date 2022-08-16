@@ -1762,6 +1762,9 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 				case BUILDING_GUARDHOUSE:
 					returnVector.push_back(new GuardHouse(savedBuildings[i].rawString));;
 					break;
+				case BUILDING_APPLE_ORCHARD:
+					returnVector.push_back(new Orchard(savedBuildings[i].rawString));;
+					break;
 				default:
 					returnVector.push_back(new Building(savedBuildings[i].rawString));
 					break;
