@@ -82,7 +82,7 @@ void RpgOverWorldScene::setUpScene()
         //createUnitAtLocation(currentZone->id, SOLDIER, 10, 27);
         //createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
         //createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
-        createUnitAtLocation(1, SOLDIER, 3, 8);
+        //createUnitAtLocation(1, SOLDIER, 3, 8);
         getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
         getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
         getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
@@ -109,15 +109,15 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_LEATHER_BODY)});
-    Item* itemToDrop = createNewItem(ITEM_WOOD);
-    itemToDrop->stackSize = 1000;
-    addItemsToMap(0, 10, 26, { itemToDrop });
-    itemToDrop = createNewItem(ITEM_APPLE);
-    itemToDrop->stackSize = 10000;
-    addItemsToMap(0, 10, 26, { itemToDrop });
+    //Item* itemToDrop = createNewItem(ITEM_WOOD);
+    //itemToDrop->stackSize = 1000;
+    //addItemsToMap(0, 10, 26, { itemToDrop });
+    //itemToDrop = createNewItem(ITEM_APPLE);
+    //itemToDrop->stackSize = 10000;
+    //addItemsToMap(0, 10, 26, { itemToDrop });
     
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
@@ -140,7 +140,7 @@ void RpgOverWorldScene::setUpScene()
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
-    ((RpgTown*)getZones()[1])->addPopulation(1000);
+    //((RpgTown*)getZones()[1])->addPopulation(1000);
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 }
 
@@ -713,9 +713,13 @@ int getPathThread(void* scene) {
         //unit = nullptr;   
         //try {
         unit = rpgScene->getUnitNeedingPath();
+        if (unit == nullptr)
+        {
+            break;
+        }
         //}
         //catch (...) {
-            //SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+            //SDL_AtomicUnlock(&rpgScene->unitDestroyLock);b6
             //continue;
         //}
         try {
