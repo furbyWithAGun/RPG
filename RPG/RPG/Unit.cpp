@@ -99,9 +99,9 @@ Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gam
             if (id > uniqueUnitId) {
                 uniqueUnitId = id;
             }
-            else {
-                id = getUniqueUnitId();
-            }
+            //else {
+            //    id = getUniqueUnitId();
+            //}
             break;
         case UNIT_BEING_TARGETED_BY:
             savedBeingTargetedByIds = getIntVectorFromSaveString(saveObject.attributes[i].valueString);

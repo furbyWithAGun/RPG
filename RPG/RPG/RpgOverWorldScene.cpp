@@ -109,19 +109,7 @@ void RpgOverWorldScene::setUpScene()
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_GLOVES)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_RAG_PANTS)});
     //addItemsToMap(0, 5, 6, {createNewItem(ITEM_LEATHER_BODY)});
-    //Item* itemToDrop = createNewItem(ITEM_WOOD);
-    //itemToDrop->stackSize = 1000;
-    //addItemsToMap(0, 10, 26, { itemToDrop });
-    //itemToDrop = createNewItem(ITEM_APPLE);
-    //itemToDrop->stackSize = 10000;
-    //addItemsToMap(0, 10, 26, { itemToDrop });
     
-    //player->gold = 5000;
-    //player->gold = 100000;
-    //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(COMBAT_EXPERIENCE, 999999999);
-    //player->health = 9999999;
-    //player->maxHealth = 9999999;
 
     //createUnitAtLocation(currentZone->id, RAT, 8, 8);
     
@@ -140,8 +128,23 @@ void RpgOverWorldScene::setUpScene()
 
     //setup town
     ((RpgZone*)getZones()[1])->zoneType = ZONE_RPG_TOWN;
-    //((RpgTown*)getZones()[1])->addPopulation(1000);
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
+
+    //h4x
+    Item* itemToDrop = createNewItem(ITEM_WOOD);
+    itemToDrop->stackSize = 1000;
+    addItemsToMap(0, 10, 26, { itemToDrop });
+    //itemToDrop = createNewItem(ITEM_APPLE);
+    //itemToDrop->stackSize = 10000;
+    //addItemsToMap(0, 10, 26, { itemToDrop });
+
+    player->gold = 5000;
+    //player->gold = 100000;
+    //player->addExp(COMBAT_EXPERIENCE, 250);
+    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->health = 9999999;
+    //player->maxHealth = 9999999;
+    ((RpgTown*)getZones()[1])->addPopulation(1000);
 }
 
 void RpgOverWorldScene::handleInput()

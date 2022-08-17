@@ -739,6 +739,8 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
 {
     Building* createdBuilding;
     TownCommand* newTownCommand;
+    DooDad* newAppleTree;
+
     switch (buildingType)
     {
     case BUILDING_ITEM_SHOP:
@@ -760,9 +762,28 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
         break;
     case BUILDING_HOUSE:
         createdBuilding = createNewBuilding(buildingType, direction);
+        break;
     case BUILDING_GUARDHOUSE:
         createdBuilding = createNewBuilding(buildingType, direction);
         break;
+    case BUILDING_APPLE_ORCHARD:
+        createdBuilding = createNewBuilding(buildingType, direction);
+        //
+        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+        createdBuilding->assignDooDad(newAppleTree);
+        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 2);
+        //
+        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+        createdBuilding->assignDooDad(newAppleTree);
+        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 2);
+        //
+        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+        createdBuilding->assignDooDad(newAppleTree);
+        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 4);
+        //
+        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+        createdBuilding->assignDooDad(newAppleTree);
+        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 4);
         break;
     default:
         createdBuilding = nullptr;

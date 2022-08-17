@@ -23,9 +23,9 @@ Building::Building(SaveObject saveObject)
             if (id > uniqueBuildingId) {
                 uniqueBuildingId = id;
             }
-            else {
-                id = getUniqueBuildingId();
-            }
+            //else {
+            //  id = getUniqueBuildingId();
+            //}
             break;
         case BULDING_TYPE:
             type = stoi(saveObject.attributes[i].valueString);
