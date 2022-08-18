@@ -41,12 +41,12 @@ std::string Armour::toSaveString(bool withHeaderAndFooter)
 
 void Armour::onEquip(RpgUnit* unit)
 {
-    unit->armour += armour;
+    unit->changeAttributeLevel(UNIT_STAT_ARMOUR, armour);
 }
 
 void Armour::onUnequip(RpgUnit* unit)
 {
-    unit->armour -= armour;
+    unit->changeAttributeLevel(UNIT_STAT_ARMOUR, -armour);
 }
 
 void Armour::init()

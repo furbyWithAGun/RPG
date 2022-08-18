@@ -1,11 +1,11 @@
 #include "Soldier.h"
 #include "BasicMeleeAttack.h"
 
-const int SOLDIER_MAX_HEALTH = 70;
-const int SOLDIER_SPEED = 8;
-const int SOLDIER_STRENGTH = 6;
-const int SOLDIER_DEX = 6;
-const int SOLDIER_AGI = 5;
+const int MAX_HEALTH = 70;
+const int SPEED = 8;
+const int STR = 6;
+const int DEX = 6;
+const int AGI = 5;
 const int SOLDIER_EXP_VALUE = 3;
 
 //animation constants
@@ -37,13 +37,16 @@ Soldier::Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
 }
 
 void Soldier::init() {
-    setAttributeLevel(UNIT_STAT_SPEED, SOLDIER_SPEED);
-    health = SOLDIER_MAX_HEALTH;
-    setAttributeLevel(UNIT_STAT_MAX_HEALTH, SOLDIER_MAX_HEALTH);
+    setAttributeLevel(UNIT_STAT_SPEED, SPEED);
+    health = MAX_HEALTH;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     expValue = SOLDIER_EXP_VALUE;
-    agi = SOLDIER_AGI;
-    dex = SOLDIER_DEX;
-    str = SOLDIER_STRENGTH;
+    setAttributeLevel(UNIT_STAT_DEX, DEX);
+    setAttributeLevel(UNIT_STAT_AGI, AGI);
+    setAttributeLevel(UNIT_STAT_STR, STR);
+    //dex = DEX;
+    //agi = AGI;
+    //str = STR;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = PLAYER_TEAM;

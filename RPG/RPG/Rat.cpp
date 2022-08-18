@@ -34,9 +34,9 @@ void Rat::init() {
     health = MAX_HEALTH;
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     expValue = EXP_VALUE;
-    dex = DEX;
-    agi = AGI;
-    str = STR;
+    setAttributeLevel(UNIT_STAT_DEX, DEX);
+    setAttributeLevel(UNIT_STAT_AGI, AGI);
+    setAttributeLevel(UNIT_STAT_STR, STR);
     goldValue = GOLD_VALUE;
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];

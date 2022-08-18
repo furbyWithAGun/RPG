@@ -86,6 +86,7 @@ public:
     Unit* getUnitNeedingPath();
     void removeUnitFromPathQueue(Unit* unitToRemove);
     void addUnitToPathQueue(Unit* unit);
+    void updateUnitBuffers();
     
 
 protected:

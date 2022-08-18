@@ -8,6 +8,7 @@
 #include "ItemShopMenu.h"
 #include "TransferItemsMenu.h"
 #include "SaveGameMenu.h"
+#include "CraftingMenu.h"
 #include <cmath>
 #include <deque>
 

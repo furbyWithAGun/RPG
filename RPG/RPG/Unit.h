@@ -35,7 +35,7 @@ enum UNIT_SAVE_ATTRIBUTES {
 };
 
 struct unitSkillAttributeData {
-    int level, experience, experienceNextLevel, experienceLastLevel;
+    int level, baseLevel, experience, experienceNextLevel, experienceLastLevel;
 };
 
 class Unit : public AnimatedSprite
@@ -111,6 +111,7 @@ public:
     void setScene(TileGridScene* gameScene);
     int getAttributeLevel(int attribute);
     void setAttributeLevel(int attribute, int newLevel);
+    void changeAttributeLevel(int attribute, int attributeChange);
     int getHealth();
     int changeHealth(int change);
     int setHealth(int newHealth);
@@ -125,7 +126,7 @@ protected:
     //attributes
     int health;
     std::unordered_map<int, UnitState*> unitStates;
-    std::unordered_map<int, unitSkillAttributeData> unitAttributes;
+    std::vector<unitSkillAttributeData> unitAttributes;
 
     //methods
     void setUnitState(int newState);

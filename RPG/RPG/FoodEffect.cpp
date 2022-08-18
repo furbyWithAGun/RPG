@@ -63,10 +63,6 @@ void FoodEffect::init()
         if (tick % updateOnTick == 0)
         {
             affectedUnit->changeHealth(healthRegen);
-            if (affectedUnit->getHealth() > affectedUnit->getAttributeLevel(UNIT_STAT_MAX_HEALTH))
-            {
-                affectedUnit->setFullHealth();
-            }
         }
     };
 }

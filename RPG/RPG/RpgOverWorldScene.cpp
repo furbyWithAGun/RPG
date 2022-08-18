@@ -122,8 +122,9 @@ void RpgOverWorldScene::setUpScene()
     menus[ITEM_SHOP_MENU] = new ItemShopMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[TRANSFER_ITEMS_MENU] = new TransferItemsMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU);
-    menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
+    //menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
     menus[SAVE_GAME_MENU] = new SaveGameMenu(this, SAVE_GAME_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
+    menus[CRAFTING_MENU] = new CraftingMenu(this, CRAFTING_MENU);
 
 
     //setup town
@@ -602,7 +603,7 @@ void RpgOverWorldScene::renderHUD()
     renderRectangle(engine->screenWidth * 0.01, engine->screenHeight * 0.1, (engine->screenWidth * 0.05) * (double) ((double)player->getHealth() / (double)player->getAttributeLevel(UNIT_STAT_MAX_HEALTH)), engine->screenHeight * 0.01, COLOR_RED);
     engine->renderText("Mana: " + std::to_string(player->mana), engine->screenWidth * 0.01, engine->screenHeight * 0.11, COLOR_WHITE);
     renderRectangle(engine->screenWidth * 0.01, engine->screenHeight * 0.15, engine->screenWidth * 0.05, engine->screenHeight * 0.01, COLOR_GREY);
-    renderRectangle(engine->screenWidth * 0.01, engine->screenHeight * 0.15, (engine->screenWidth * 0.05) * (double)((double)player->mana / (double)player->maxMana), engine->screenHeight * 0.01, COLOR_BLUE);
+    renderRectangle(engine->screenWidth * 0.01, engine->screenHeight * 0.15, (engine->screenWidth * 0.05) * (double)((double)player->mana / (double)player->getAttributeLevel(UNIT_STAT_MAX_MANA)), engine->screenHeight * 0.01, COLOR_BLUE);
     engine->renderText("Gold: " + std::to_string(player->gold), engine->screenWidth * 0.01, engine->screenHeight * 0.16, COLOR_GOLD);
 
     for (size_t i = 0; i < player->foodEffects.size(); i++)

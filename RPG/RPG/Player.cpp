@@ -51,8 +51,10 @@ void Player::init() {
     activeAttack = equipedAttacks[MAIN_ATTACK];
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, PLAYER_MAX_HEALTH);
     health = PLAYER_MAX_HEALTH;
-    dex = PLAYER_DEX;
-    agi = PLAYER_AGI;
+    setAttributeLevel(UNIT_STAT_DEX, PLAYER_DEX);
+    setAttributeLevel(UNIT_STAT_AGI, PLAYER_AGI);
+    //dex = PLAYER_DEX;
+    //agi = PLAYER_AGI;
     team = PLAYER_TEAM;
     cameraFollowPlayer = true;
     createAnimations();
@@ -895,11 +897,12 @@ void Player::death()
     scene->engine->setNextScene(MAIN_MENU_SCENE);
     scene->endScene();*/
     combatExperience = combatExperienceLastLevel;
-    inventory.clear();
+
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
-        scene->player->equippedItems[i] = nullptr;
+        unEquipItem(i);
     }
+    inventory.clear();
     health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
     gold = 0;
     foodEffects.clear();

@@ -23,7 +23,7 @@ int BasicMeleeAttack::damageDealt()
 {
     Weapon* weapon = owningUnit->getEquippedWeapon();
     //return owningUnit->scene->engine->randomInt(1, BASIC_MELEE_ATTACK_BASE_DMG * owningUnit->str + 1);
-    return owningUnit->scene->engine->randomInt(weapon->minDamage + (owningUnit->str + 1) / 3, weapon->maxDamage + (owningUnit->str + 1) * 0.8);
+    return owningUnit->scene->engine->randomInt(weapon->minDamage + (owningUnit->getAttributeLevel(UNIT_STAT_STR) + 1) / 3, weapon->maxDamage + (owningUnit->getAttributeLevel(UNIT_STAT_STR) + 1) * 0.8);
 }
 
 bool BasicMeleeAttack::startAttack() {
@@ -76,7 +76,7 @@ void BasicMeleeAttack::processHit(RpgUnit* targetUnit) {
     {
         return;
     }
-    if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->dex * 2, targetUnit->agi) > owningUnit->scene->engine->randomDouble())
+    if (owningUnit->scene->engine->getProbFromSigmoid(owningUnit->getAttributeLevel(UNIT_STAT_DEX) * 2, targetUnit->getAttributeLevel(UNIT_STAT_AGI)) > owningUnit->scene->engine->randomDouble())
     {
         int damage = this->damageDealt();
         targetUnit->assignDamage(owningUnit,damage);

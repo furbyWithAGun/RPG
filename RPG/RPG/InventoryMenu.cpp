@@ -39,6 +39,7 @@ InventoryMenu::InventoryMenu(RpgOverWorldScene* gameScene, int newId) : GameMenu
 void InventoryMenu::open()
 {
     GameMenu::open();
+    scene->closeMenu(CRAFTING_MENU);
     rebuildElements();
     ((ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX))->displayIndex = 0;
 }
@@ -89,7 +90,7 @@ void InventoryMenu::draw()
             btnXfer->active = true;
         }
     }
-    engine->renderText("Armour: " + std::to_string(scene->player->armour), engine->screenWidth * 0.06, engine->screenHeight * 0.01, COLOR_WHITE);
+    
     
     GameMenu::draw();
     for (auto displaySlot : displaySlots)
@@ -99,6 +100,7 @@ void InventoryMenu::draw()
             displaySlot.second.icon.draw(xpos + displaySlot.second.x, ypos + displaySlot.second.y);
         }
     }
+    engine->renderText("Armour: " + std::to_string(scene->player->getAttributeLevel(UNIT_STAT_ARMOUR)), xpos + width * 0.1, ypos + height * 0.05, COLOR_WHITE);
     for (auto toolTip : toolTips)
     {
         if (toolTip->active) {
@@ -185,16 +187,16 @@ bool InventoryMenu::handleInput(InputMessage* message)
 
 void InventoryMenu::buildElements()
 {
-    UiElement* silh = new UiElement(scene, TEXTURE_EQUIPPED_MENU_SILHOUETTE, xpos + width * 0.1, ypos + height * 0.05, width * 0.55, height * 0.4);
+    UiElement* silh = new UiElement(scene, TEXTURE_EQUIPPED_MENU_SILHOUETTE, xpos + width * 0.1, ypos + height * 0.1, width * 0.55, height * 0.4);
     silh->backgroundColour = COLOR_LIGHT_GREY;
     addElement(silh);
 
     ScrollBox* items;
-    items = new ScrollBox(ITEMS_SCROLL_BOX, scene, COLOR_GREY, xpos + width * 0.1, ypos + height * 0.4, width * 0.55, height * 0.4);
+    items = new ScrollBox(ITEMS_SCROLL_BOX, scene, COLOR_GREY, xpos + width * 0.1, ypos + height * 0.45, width * 0.55, height * 0.4);
     items->numElementsToDisplay = 5;
     addElement(ITEMS_SCROLL_BOX, items);
 
-    MenuButton* closeBtn = new MenuButton(INVENTORY_CLOSE_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.1, ypos + height * 0.85);
+    MenuButton* closeBtn = new MenuButton(INVENTORY_CLOSE_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.1, ypos + height * 0.9);
     closeBtn->setText("Close")->addOnClick([this]() {
         this->close();
         });
@@ -311,7 +313,7 @@ void InventoryMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+                            //scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                             rebuildElements();
                         }
                         else if (numToSell > 0) {
@@ -322,7 +324,7 @@ void InventoryMenu::buildElements()
                             }
                             scene->player->gold += goldToAdd;
                             selectedItem->stackSize -= numToSell;
-                            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+                            //scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                             rebuildElements();
                         }
                     }
@@ -337,7 +339,7 @@ void InventoryMenu::buildElements()
                 }
                 scene->player->gold += goldToAdd;
                 scene->player->deleteItemFromInventory(items->getSelectedElementValue());
-                scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+                //scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
                 rebuildElements();
             }
         }
@@ -399,19 +401,19 @@ void InventoryMenu::buildElements()
 
 void InventoryMenu::defineEquipmentSlots()
 {
-    displaySlots[HEAD_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[NECK_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[SHOULDERS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[BODY_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.096), 0, 0, UiElement(scene, -1)};
-    displaySlots[ARMS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[HANDS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.14), 0, 0, UiElement(scene, -1)};
-    displaySlots[LEFT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.2), 0, 0, UiElement(scene, -1)};
-    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[LEFT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.2), 0, 0, UiElement(scene, -1)};
-    displaySlots[RIGHT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[BELT_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.036), 0, 0, UiElement(scene, -1)};
-    displaySlots[LEGS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.18), 0, 0, UiElement(scene, -1)};
-    displaySlots[FEET_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.23), 0, 0, UiElement(scene, -1)};
+    displaySlots[HEAD_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[NECK_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[SHOULDERS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[BODY_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.146), 0, 0, UiElement(scene, -1)};
+    displaySlots[ARMS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[HANDS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.19), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEFT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1)};
+    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEFT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1)};
+    displaySlots[RIGHT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[BELT_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[LEGS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.21), 0, 0, UiElement(scene, -1)};
+    displaySlots[FEET_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.26), 0, 0, UiElement(scene, -1)};
 }
 
 

@@ -35,6 +35,7 @@ TownBuildMenu::TownBuildMenu(RpgOverWorldScene* gameScene, int newId, int newWid
 
 void TownBuildMenu::open()
 {
+    scene->closeAllMenus();
     GameMenu::open();
     scene->displayHud = false;
     scene->desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS_BUILDING;

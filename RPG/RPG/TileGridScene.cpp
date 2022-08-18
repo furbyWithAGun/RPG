@@ -90,16 +90,17 @@ void TileGridScene::handleInput()
 
 void TileGridScene::sceneLogic()
 {
-    SDL_AtomicLock(&TileGridUnitLock);
-    for (Unit* unit : currentZone->getUnits()) {
+    //SDL_AtomicLock(&TileGridUnitLock);
+    /*for (Unit* unit : currentZone->getUnits()) {
         unit->leftToMoveBuffer = unit->leftToMove;
         unit->tileLocationBuffer->x = unit->tileLocation->x;
         unit->tileLocationBuffer->y = unit->tileLocation->y;
         unit->tileDestinationBuffer->x = unit->tileDestination->x;
         unit->tileDestinationBuffer->y = unit->tileDestination->y;
-    }
-    setLastTickTimeStampBuffer();
-    SDL_AtomicUnlock(&TileGridUnitLock);
+    }*/
+    //setLastTickTimeStampBuffer();
+    //SDL_AtomicUnlock(&TileGridUnitLock);
+    updateUnitBuffers();
     GameScene::sceneLogic();
     for (auto zone : zones)
     {
@@ -282,6 +283,20 @@ void TileGridScene::addUnitToPathQueue(Unit* unit)
     SDL_AtomicLock(&unitPathQueueLock);
     unitsNeedingPath.push_back(unit);
     SDL_AtomicUnlock(&unitPathQueueLock);
+}
+
+void TileGridScene::updateUnitBuffers()
+{
+    SDL_AtomicLock(&TileGridUnitLock);
+    for (Unit* unit : currentZone->getUnits()) {
+        unit->leftToMoveBuffer = unit->leftToMove;
+        unit->tileLocationBuffer->x = unit->tileLocation->x;
+        unit->tileLocationBuffer->y = unit->tileLocation->y;
+        unit->tileDestinationBuffer->x = unit->tileDestination->x;
+        unit->tileDestinationBuffer->y = unit->tileDestination->y;
+    }
+    setLastTickTimeStampBuffer();
+    SDL_AtomicUnlock(&TileGridUnitLock);
 }
 
 

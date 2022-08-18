@@ -966,6 +966,19 @@ std::string RpgTileGridScene::getSaveGameName()
     return saveGameName;
 }
 
+bool RpgTileGridScene::unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe)
+{
+    bool canCraft = true;
+    for (CraftingSkillRequirements skillRequirement : recipe->getSkillRequirements()[BARELY_USABLE])
+    {
+        if (skillRequirement.level > craftingUnit->getSkillLevel(skillRequirement.skill)) {
+            return false;
+        }
+    }
+    return canCraft;
+
+}
+
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)
 {
     if (itemToAdd->stackable)

@@ -5,6 +5,17 @@ CraftingRecipe::CraftingRecipe()
     init();
 }
 
+CraftingRecipe::CraftingRecipe(std::string newRecipeName)
+{
+    init();
+    recipeName = newRecipeName;
+}
+
+std::string CraftingRecipe::getName()
+{
+    return recipeName;
+}
+
 std::vector<CraftingReagent> CraftingRecipe::getInputs()
 {
     return inputs;
@@ -43,6 +54,11 @@ void CraftingRecipe::addCraftingStation(int newCraftingStation)
 void CraftingRecipe::addSkillRequirement(int quality, int skill, int level)
 {
     skillRequirements[quality].push_back({skill, level});
+}
+
+void CraftingRecipe::addSkillExperience(int skill, int experience)
+{
+    skillExperience.push_back({skill, experience});
 }
 
 bool CraftingRecipe::canBeCraftedAtStation(int thisCraftingStation)

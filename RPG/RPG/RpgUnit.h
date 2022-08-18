@@ -69,15 +69,15 @@ public:
     bool isPlayer;
 
     //character stats
-    int maxMana;
+    //int maxMana;
     int mana;
-    int dex;
-    int str;
-    int agi;
-    int end;
-    int intl;
-    int baseArmour;
-    int armour;
+    //int dex;
+    //int str;
+    //int agi;
+    //int end;
+    //int intl;
+    //int baseArmour;
+    //int armour;
     int combatExperience;
     int combatExperienceNextLevel;
     int combatExperienceLastLevel;
@@ -127,11 +127,15 @@ public:
     void eatFood(Food* foodToEat);
     void updateFoodEffects();
     void addToInventory(Item* itemToAdd);
+    int getSkillLevel(int skill);
+    void setSkillLevel(int skill, int newLevel);
+    void changeSkillLevel(int skill, int skillChange);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 private:
-
+    //attributes
+    std::vector<unitSkillAttributeData> unitSkills;
     //methods
     void init();
     virtual void createAnimations() {};

@@ -29,6 +29,11 @@ void Unit::setAttributeLevel(int attribute, int newLevel)
     unitAttributes[attribute].level = newLevel;
 }
 
+void Unit::changeAttributeLevel(int attribute, int attributeChange)
+{
+    unitAttributes[attribute].level += attributeChange;
+}
+
 int Unit::getHealth()
 {
     return health;
@@ -37,11 +42,20 @@ int Unit::getHealth()
 int Unit::changeHealth(int change)
 {
     health += change;
+    if (health > getAttributeLevel(UNIT_STAT_MAX_HEALTH))
+    {
+        health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
+    }
     return health;
 }
 
 int Unit::setHealth(int newHealth)
 {
+    if (newHealth > getAttributeLevel(UNIT_STAT_MAX_HEALTH))
+    {
+        health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
+        return health;
+    }
    health = newHealth;
    return health;
 }
@@ -265,8 +279,9 @@ void Unit::init() {
     getPathRate = DEFAULT_GET_PATH_RATE;
     adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
     health = 1;
-    unitAttributes[UNIT_STAT_SPEED] = {1, 0, 100, 0};
-    unitAttributes[UNIT_STAT_MAX_HEALTH] = {1, 0, 100, 0};
+    unitAttributes.resize(NUM_RPG_ATTRIBUTES, { 1, 1, 0, 100, 0 });
+    //unitAttributes[UNIT_STAT_SPEED] = {1, 0, 100, 0};
+    //unitAttributes[UNIT_STAT_MAX_HEALTH] = {1, 0, 100, 0};
 }
 
 void Unit::init(int zoneId, int unitType) {

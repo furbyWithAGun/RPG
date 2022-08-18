@@ -12,13 +12,19 @@ struct CraftingSkillRequirements {
     int skill, level;
 };
 
+struct CraftingSkillExperience {
+    int skill, level;
+};
+
 class CraftingRecipe
 {
 public:
     //contructors
     CraftingRecipe();
+    CraftingRecipe(std::string newRecipeName);
 
     //methods
+    std::string getName();
     std::vector<CraftingReagent> getInputs();
     std::vector<CraftingReagent> getOutputs();
     std::unordered_map<int, std::vector<CraftingSkillRequirements>> getSkillRequirements();
@@ -27,6 +33,7 @@ public:
     void addOutput(int item, int qty);
     void addCraftingStation(int newCraftingStation);
     void addSkillRequirement(int quality, int skill, int level);
+    void addSkillExperience(int skill, int experience);
     bool canBeCraftedAtStation(int thisCraftingStation);
 
 private:
@@ -34,6 +41,7 @@ private:
     std::string recipeName;
     std::vector<CraftingReagent> inputs;
     std::vector<CraftingReagent> outputs;
+    std::vector<CraftingSkillExperience> skillExperience;
     std::unordered_map<int, std::vector<CraftingSkillRequirements>> skillRequirements;
     std::vector<int> craftingStations;
 

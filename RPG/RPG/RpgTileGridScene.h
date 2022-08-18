@@ -17,6 +17,7 @@
 #include "ItemShop.h"
 #include "UnitFactory.h"
 #include "DooDadFactory.h"
+#include "CraftingRecipe.h"
 
 //class Player;
 
@@ -75,6 +76,7 @@ public:
     virtual RpgUnit* createUnitAtLocation(int zoneId, int unitType, int x, int y);
     void setSaveGameName(std::string newSaveGameName);
     std::string getSaveGameName();
+    bool unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe);
 
 protected:
     //attributes

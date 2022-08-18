@@ -77,31 +77,38 @@ RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(save
             aggroMaintainDistance = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_MAX_MANA:
-            maxMana = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_MAX_MANA, stoi(saveObject.attributes[i].valueString));
+            //maxMana = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_MANA:
             mana = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_DEX:
-            dex = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_DEX, stoi(saveObject.attributes[i].valueString));
+            //dex = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_STR:
-            str = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_STR, stoi(saveObject.attributes[i].valueString));
+            //str = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_AGI:
-            agi = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_AGI, stoi(saveObject.attributes[i].valueString));
+            //agi = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_END:
-            end = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_END, stoi(saveObject.attributes[i].valueString));
+            //end = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_INTL:
-            intl = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_INTL, stoi(saveObject.attributes[i].valueString));
+            //intl = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_BASE_ARMOUR:
-            baseArmour = stoi(saveObject.attributes[i].valueString);
+            //baseArmour = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_ARMOUR:
-            armour = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_ARMOUR, stoi(saveObject.attributes[i].valueString));
+            //armour = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_COMBAT_EXPERIENCE:
             combatExperience = stoi(saveObject.attributes[i].valueString);
@@ -152,7 +159,7 @@ bool RpgUnit::performAttack(int attackId)
 
 int RpgUnit::assignDamage(int damageTaken)
 {
-    damageTaken -= armour;
+    damageTaken -= getAttributeLevel(UNIT_STAT_ARMOUR);
     if (damageTaken < 1)
     {
         damageTaken = 1;
@@ -168,7 +175,7 @@ int RpgUnit::assignDamage(int damageTaken)
 
 int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
 {
-    damageTaken -= armour;
+    damageTaken -= getAttributeLevel(UNIT_STAT_ARMOUR);
     if (damageTaken < 1)
     {
         damageTaken = 1;
@@ -234,18 +241,24 @@ void RpgUnit::levelUp()
     else {
         combatExperienceNextLevel = combatExperienceNextLevel * 2;
     }
-    dex += 1;
-    str += 1;
-    agi += 1;
-    end += 1;
-    intl += 1;
-    setAttributeLevel(UNIT_STAT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH) + 10);
+    changeAttributeLevel(UNIT_STAT_DEX, 1);
+    changeAttributeLevel(UNIT_STAT_STR, 1);
+    changeAttributeLevel(UNIT_STAT_AGI, 1);
+    changeAttributeLevel(UNIT_STAT_END, 1);
+    changeAttributeLevel(UNIT_STAT_INTL, 1);
+    //dex += 1;
+    //str += 1;
+    //agi += 1;
+    //end += 1;
+    //intl += 1;
+    changeAttributeLevel(UNIT_STAT_MAX_HEALTH, 10);
+    //setAttributeLevel(UNIT_STAT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH) + 10);
     health += 10;
     if (scene->getZone(zone) == scene->currentZone)
     {
         scene->addCombatMessage("***LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
     }
-    //updateStats();
+    levelCheck();
 }
 
 //void RpgUnit::updateStats()
@@ -292,10 +305,10 @@ bool RpgUnit::equipItem(Equipment* item)
         {
             scene->menus[INVENTORY_MENU]->rebuildMenuElements();
         }
-        if (scene->menus[EQUIPPED_MENU]->isActive)
-        {
-            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
-        }
+        //if (scene->menus[EQUIPPED_MENU]->isActive)
+        //{
+        //    scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+        //}
         return true;
     }
     return false;
@@ -308,10 +321,10 @@ bool RpgUnit::unEquipItem(int slot)
         equippedItems[slot]->onUnequip(this);
         addToInventory(equippedItems[slot]);
         equippedItems[slot] = nullptr;
-        if (scene->menus[EQUIPPED_MENU]->isActive)
-        {
-            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
-        }
+        //if (scene->menus[EQUIPPED_MENU]->isActive)
+        //{
+        //    scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+        //}
         if (scene->menus[INVENTORY_MENU]->isActive)
         {
             scene->menus[INVENTORY_MENU]->rebuildMenuElements();
@@ -532,6 +545,21 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     }
 }
 
+int RpgUnit::getSkillLevel(int skill)
+{
+    return unitSkills[skill].level;
+}
+
+void RpgUnit::setSkillLevel(int skill, int newLevel)
+{
+    unitSkills[skill].level = newLevel;
+}
+
+void RpgUnit::changeSkillLevel(int skill, int skillChange)
+{
+    unitSkills[skill].level += skillChange;
+}
+
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;
@@ -557,15 +585,22 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), UNIT_DROP_CHANCE, dropChance);
     saveString += getAttributeString(getUniqueId(), UNIT_AGGRO_TRIGGER_DISTANCE, aggroTriggerDistance);
     saveString += getAttributeString(getUniqueId(), UNIT_AGGRO_MAINTAIN_DISTANCE, aggroMaintainDistance);
-    saveString += getAttributeString(getUniqueId(), UNIT_MAX_MANA, maxMana);
+    //saveString += getAttributeString(getUniqueId(), UNIT_MAX_MANA, maxMana);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_MANA, getAttributeLevel(UNIT_STAT_MAX_MANA));
     saveString += getAttributeString(getUniqueId(), UNIT_MANA, mana);
-    saveString += getAttributeString(getUniqueId(), UNIT_DEX, dex);
-    saveString += getAttributeString(getUniqueId(), UNIT_STR, str);
-    saveString += getAttributeString(getUniqueId(), UNIT_AGI, agi);
-    saveString += getAttributeString(getUniqueId(), UNIT_END, end);
-    saveString += getAttributeString(getUniqueId(), UNIT_INTL, intl);
-    saveString += getAttributeString(getUniqueId(), UNIT_BASE_ARMOUR, baseArmour);
-    saveString += getAttributeString(getUniqueId(), UNIT_ARMOUR, armour);
+    //saveString += getAttributeString(getUniqueId(), UNIT_DEX, dex);
+    saveString += getAttributeString(getUniqueId(), UNIT_DEX, getAttributeLevel(UNIT_STAT_DEX));
+    //saveString += getAttributeString(getUniqueId(), UNIT_STR, str);
+    saveString += getAttributeString(getUniqueId(), UNIT_STR, getAttributeLevel(UNIT_STAT_STR));
+    //saveString += getAttributeString(getUniqueId(), UNIT_AGI, agi);
+    saveString += getAttributeString(getUniqueId(), UNIT_AGI, getAttributeLevel(UNIT_STAT_AGI));
+    //saveString += getAttributeString(getUniqueId(), UNIT_END, end);
+    saveString += getAttributeString(getUniqueId(), UNIT_END, getAttributeLevel(UNIT_STAT_END));
+    //saveString += getAttributeString(getUniqueId(), UNIT_INTL, intl);
+    saveString += getAttributeString(getUniqueId(), UNIT_INTL, getAttributeLevel(UNIT_STAT_INTL));
+    //saveString += getAttributeString(getUniqueId(), UNIT_BASE_ARMOUR, baseArmour);
+    //saveString += getAttributeString(getUniqueId(), UNIT_ARMOUR, armour);
+    saveString += getAttributeString(getUniqueId(), UNIT_ARMOUR, getAttributeLevel(UNIT_STAT_ARMOUR));
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE, combatExperience);
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_NEXT_LEVEL, combatExperienceNextLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_COMBAT_EXPERIENCE_LAST_LEVEL, combatExperienceLastLevel);
@@ -585,15 +620,15 @@ void RpgUnit::init()
     scene = nullptr;
     maxHungerLevel = 500;
     hungerLevel = maxHungerLevel;
-    maxMana = 1;
+    //maxMana = 1;
     mana = 1;
-    dex = 1;
-    str = 1;
-    agi = 1;
-    end = 1;
-    intl = 1;
-    armour = 1;
-    baseArmour = 1;
+    //dex = 1;
+    //str = 1;
+    //agi = 1;
+    //end = 1;
+    //intl = 1;
+    //armour = 1;
+    //baseArmour = 1;
     combatExperience = 0;
     combatExperienceLastLevel = 0;
     combatLevel = 1;
@@ -630,6 +665,7 @@ void RpgUnit::init()
     equippedItems[BARE_HANDS] = new BareHands();
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
+    unitSkills.resize(NUM_RPG_SKILLS, { 1, 1, 0, 100, 0 });
 
     setDropTable();
     createAnimations();
@@ -660,6 +696,10 @@ void RpgUnit::death()
 {
     scene->addItemsToMap(zone, tileLocation->x, tileLocation->y, getDrops());
     active = false;
+    for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
+    {
+        unEquipItem(i);
+    }
     scene->addUnitToDestroy(this);
 }
 

@@ -3,8 +3,10 @@
 #include "MenuButton.h"
 #include "ScrollBox.h"
 #include "MenuText.h"
+#include "CraftingRecipe.h"
 
 class RpgOverWorldScene;
+class RpgUnit;
 
 class CraftingMenu : public GameMenu
 {
@@ -16,6 +18,7 @@ public:
     CraftingMenu(RpgOverWorldScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
     CraftingMenu(RpgOverWorldScene* gameScene, int newId);
     void open() override;
+    void open(RpgUnit* newCraftingUnit, int newCraftingStation);
     void draw() override;
     void rebuildElements() override;
 
@@ -25,8 +28,12 @@ public:
 private:
     //attributes
     RpgOverWorldScene* scene;
+    int currentCraftingStation;
+    RpgUnit* craftingUnit;
+    std::vector<CraftingRecipe> craftingRecipes;
 
     //methods
     void buildElements();
     void init();
+    void buildCraftingRecipes();
 };

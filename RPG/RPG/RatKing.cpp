@@ -36,9 +36,9 @@ void RatKing::init() {
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     expValue = EXP_VALUE;
     goldValue = GOLD_VALUE;
-    dex = DEX;
-    agi = AGI;
-    str = STR;
+    setAttributeLevel(UNIT_STAT_DEX, DEX);
+    setAttributeLevel(UNIT_STAT_AGI, AGI);
+    setAttributeLevel(UNIT_STAT_STR, STR);
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     team = MONSTER_TEAM;

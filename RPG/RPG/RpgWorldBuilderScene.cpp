@@ -170,6 +170,7 @@ void RpgWorldBuilderScene::sceneLogic() {
     //RpgTileGridScene::sceneLogic();
     destroyFlaggedUnits();
     destroyFlaggedDooDads();
+    updateUnitBuffers();
     //handle commands
     InputMessage* message = new InputMessage();
     while (getNextCommand(message)) {
