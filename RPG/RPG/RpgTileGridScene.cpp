@@ -968,14 +968,13 @@ std::string RpgTileGridScene::getSaveGameName()
 
 bool RpgTileGridScene::unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe)
 {
-    bool canCraft = true;
     for (CraftingSkillRequirements skillRequirement : recipe->getSkillRequirements()[BARELY_USABLE])
     {
         if (skillRequirement.level > craftingUnit->getSkillLevel(skillRequirement.skill)) {
             return false;
         }
     }
-    return canCraft;
+    return true;
 
 }
 
