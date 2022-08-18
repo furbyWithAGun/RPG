@@ -46,10 +46,10 @@ Player::Player(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX
 void Player::init() {
     isStatic = true;
     isPlayer = true;
-    speed = PLAYER_SPEED;
+    setAttributeLevel(UNIT_STAT_SPEED, PLAYER_SPEED);
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
-    maxHealth = PLAYER_MAX_HEALTH;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, PLAYER_MAX_HEALTH);
     health = PLAYER_MAX_HEALTH;
     dex = PLAYER_DEX;
     agi = PLAYER_AGI;
@@ -125,7 +125,7 @@ void Player::updateCamera()
             int c = 23436;
         }
 
-        double movementPerTick = ((double)speed / 100);
+        double movementPerTick = ((double)getAttributeLevel(UNIT_STAT_SPEED) / 100);
         double timeSinceLastTick = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - scene->getLastTickTimeStampBuffer();
         if (timeSinceLastTick > scene->engine->tickDelay)
         {
@@ -435,8 +435,8 @@ void Player::updateCamera3()
     //SDL_GetCurrentDisplayMode(0, &current);
     //double framesPerTick = (current.refresh_rate) / scene->engine->getRollingTickRate();
     double framesPerTick = scene->engine->getRollingFpsRate() / scene->engine->getRollingTickRate();
-    double xSpeedPerTick = double(scene->tileWidth * ((double)speed / 100));
-    double ySpeedPerTick = double(scene->tileHeight * ((double)speed / 100));
+    double xSpeedPerTick = double(scene->tileWidth * ((double)getAttributeLevel(UNIT_STAT_SPEED) / 100));
+    double ySpeedPerTick = double(scene->tileHeight * ((double)getAttributeLevel(UNIT_STAT_SPEED) / 100));
     double xBaseScrollSpeed = xSpeedPerTick / framesPerTick;
     double yBaseScrollSpeed = ySpeedPerTick / framesPerTick;
     double xScrollSpeed = 0;
@@ -474,7 +474,7 @@ void Player::updateCamera3()
                 xScrollSpeed = -xBaseScrollSpeed - 1;
                 pathFollowed = 4;
             }
-            else if (std::abs(xDelta) < xBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this))) {
+            else if (std::abs(xDelta) < xBaseScrollSpeed && leftToMoveBuffer < (double)getAttributeLevel(UNIT_STAT_SPEED) / (double)100 && (!movingRight || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x + 1, tileDestinationBuffer->y, this))) {
                 xScrollSpeed = xDelta;
                 pathFollowed = 5;
             }
@@ -503,7 +503,7 @@ void Player::updateCamera3()
                 xScrollSpeed = xBaseScrollSpeed + 1;
                 pathFollowed = 10;
             }
-            else if (std::abs(xDelta) < xBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this))) {
+            else if (std::abs(xDelta) < xBaseScrollSpeed && leftToMoveBuffer < (double)getAttributeLevel(UNIT_STAT_SPEED) / (double)100 && (!movingLeft || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x - 1, tileDestinationBuffer->y, this))) {
                 xScrollSpeed = xDelta;
                 pathFollowed = 11;
             }
@@ -580,7 +580,7 @@ void Player::updateCamera3()
                 yScrollSpeed = -yBaseScrollSpeed - 1;
                 pathFollowed = 4;
             }
-            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingDown || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this))) {
+            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)getAttributeLevel(UNIT_STAT_SPEED) / (double)100 && (!movingDown || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y + 1, this))) {
                 yScrollSpeed = yDelta;
                 pathFollowed = 5;
             }
@@ -610,7 +610,7 @@ void Player::updateCamera3()
                 yScrollSpeed = yBaseScrollSpeed + 1;
                 pathFollowed = 10;
             }
-            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)speed / (double)100 && (!movingUp || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this))) {
+            else if (std::abs(yDelta) < yBaseScrollSpeed && leftToMoveBuffer < (double)getAttributeLevel(UNIT_STAT_SPEED) / (double)100 && (!movingUp || !scene->isTilePassableIgnoreUnit(zone, tileDestinationBuffer->x, tileDestinationBuffer->y - 1, this))) {
                 yScrollSpeed = yDelta;
                 pathFollowed = 11;
             }
@@ -900,7 +900,7 @@ void Player::death()
     {
         scene->player->equippedItems[i] = nullptr;
     }
-    health = maxHealth;
+    health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
     gold = 0;
     foodEffects.clear();
     scene->menus[INVENTORY_MENU]->rebuildMenuElements();

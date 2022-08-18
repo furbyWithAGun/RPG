@@ -164,6 +164,8 @@
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="CraftingMenu.cpp" />
+    <ClCompile Include="CraftingRecipe.cpp" />
     <ClCompile Include="GuardHouse.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
@@ -280,6 +282,8 @@
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="CraftingMenu.h" />
+    <ClInclude Include="CraftingRecipe.h" />
     <ClInclude Include="GuardHouse.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />

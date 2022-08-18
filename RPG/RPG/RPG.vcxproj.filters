@@ -528,6 +528,12 @@
     <ClCompile Include="Orchard.cpp">
       <Filter>Source Files\RpgGame\map\buildings</Filter>
     </ClCompile>
+    <ClCompile Include="CraftingMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftingRecipe.cpp">
+      <Filter>Source Files\RpgGame\Items</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -874,6 +880,12 @@
     </ClInclude>
     <ClInclude Include="Orchard.h">
       <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftingRecipe.h">
+      <Filter>Header Files\RpgGame\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

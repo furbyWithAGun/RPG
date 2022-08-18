@@ -163,6 +163,7 @@ int RpgUnit::assignDamage(int damageTaken)
         death();
         return health;
     }
+    return health;
 }
 
 int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
@@ -201,7 +202,7 @@ void RpgUnit::drawHealth()
     else {
         healthToDisplay = health;
     }
-    double healthPercent = (double)healthToDisplay / (double)maxHealth;
+    double healthPercent = (double)healthToDisplay / (double)getAttributeLevel(UNIT_STAT_MAX_HEALTH);
     scene->engine->renderRectangle(xpos + scene->tileWidth, ypos + scene->tileHeight, (double)scene->tileWidth * healthPercent, (double)scene->tileHeight * 0.05, 0xff, 0, 0);
 }
 
@@ -219,7 +220,7 @@ void RpgUnit::addExp(int expType, int expValue)
     {
         combatExperience += expValue;
     }
-    updateStats();
+    levelCheck();
 }
 
 void RpgUnit::levelUp()
@@ -238,32 +239,39 @@ void RpgUnit::levelUp()
     agi += 1;
     end += 1;
     intl += 1;
-    maxHealth += 10;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH) + 10);
     health += 10;
     if (scene->getZone(zone) == scene->currentZone)
     {
         scene->addCombatMessage("***LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
     }
-    updateStats();
+    //updateStats();
 }
 
-void RpgUnit::updateStats()
+//void RpgUnit::updateStats()
+//{
+//    if (combatExperience >= combatExperienceNextLevel)
+//    {
+//        levelUp();
+//    }
+//    armour = baseArmour;
+//    for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
+//    {
+//        if (equippedItems[i] != nullptr)
+//        {
+//            if (equippedItems[i]->generalType == ARMOUR)
+//            {
+//                armour += ((Armour*)equippedItems[i])->armour;
+//            }
+//        }
+//    }
+//}
+
+void RpgUnit::levelCheck()
 {
     if (combatExperience >= combatExperienceNextLevel)
     {
         levelUp();
-    }
-    armour = baseArmour;
-    for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
-    {
-        if (equippedItems[i] != nullptr)
-        {
-            if (equippedItems[i]->generalType == ARMOUR)
-            {
-                armour += ((Armour*)equippedItems[i])->armour;
-            }
-            equippedItems[i]->statModifier(this);
-        }
     }
 }
 
@@ -276,11 +284,9 @@ bool RpgUnit::equipItem(Equipment* item)
 {
     if (item->slot != -1)
     {
-        if (equippedItems[item->slot] != nullptr)
-        {
-            addToInventory(equippedItems[item->slot]);
-        }
+        unEquipItem(item->slot);
         equippedItems[item->slot] = item;
+        item->onEquip(this);
         removeItemFromInventory(item);
         if (scene->menus[INVENTORY_MENU]->isActive)
         {
@@ -297,17 +303,23 @@ bool RpgUnit::equipItem(Equipment* item)
 
 bool RpgUnit::unEquipItem(int slot)
 {
-    addToInventory(equippedItems[slot]);
-    equippedItems[slot] = nullptr;
-    if (scene->menus[EQUIPPED_MENU]->isActive)
+    if (equippedItems[slot] != nullptr)
     {
-        scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+        equippedItems[slot]->onUnequip(this);
+        addToInventory(equippedItems[slot]);
+        equippedItems[slot] = nullptr;
+        if (scene->menus[EQUIPPED_MENU]->isActive)
+        {
+            scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
+        }
+        if (scene->menus[INVENTORY_MENU]->isActive)
+        {
+            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+        }
+
+        return true;
     }
-    if (scene->menus[INVENTORY_MENU]->isActive)
-    {
-        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
-    }
-    return true;
+    return false;
 }
 
 Weapon* RpgUnit::getEquippedWeapon()

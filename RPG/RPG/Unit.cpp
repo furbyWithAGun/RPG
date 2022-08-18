@@ -19,6 +19,39 @@ void Unit::setScene(TileGridScene* gameScene)
     Sprite::scene = gameScene;
 }
 
+int Unit::getAttributeLevel(int attribute)
+{
+    return unitAttributes[attribute].level;
+}
+
+void Unit::setAttributeLevel(int attribute, int newLevel)
+{
+    unitAttributes[attribute].level = newLevel;
+}
+
+int Unit::getHealth()
+{
+    return health;
+}
+
+int Unit::changeHealth(int change)
+{
+    health += change;
+    return health;
+}
+
+int Unit::setHealth(int newHealth)
+{
+   health = newHealth;
+   return health;
+}
+
+int Unit::setFullHealth()
+{
+    health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
+    return health;
+}
+
 std::string Unit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;
@@ -67,9 +100,9 @@ std::string Unit::toSaveString(bool withHeaderAndFooter)
     }
     saveString += getAttributeString(getUniqueId(), UNIT_PATH_DIRECTIONS, getIntVectorSaveString(pathDirections));
     saveString += getAttributeString(getUniqueId(), UNIT_CURRENT_STATE, currentState->id);
-    saveString += getAttributeString(getUniqueId(), UNIT_MAX_HEALTH, maxHealth);
+    saveString += getAttributeString(getUniqueId(), UNIT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH));
     saveString += getAttributeString(getUniqueId(), UNIT_HEALTH, health);
-    saveString += getAttributeString(getUniqueId(), UNIT_SPEED, speed);
+    saveString += getAttributeString(getUniqueId(), UNIT_SPEED, getAttributeLevel(UNIT_STAT_SPEED));
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT) + "\n";
@@ -164,13 +197,15 @@ Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gam
             setUnitState(savedCurrentStateId);
             break;
         case UNIT_MAX_HEALTH:
-            maxHealth = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_MAX_HEALTH, stoi(saveObject.attributes[i].valueString));
+            //maxHealth = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_HEALTH:
             health = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_SPEED:
-            speed = stoi(saveObject.attributes[i].valueString);
+            setAttributeLevel(UNIT_STAT_SPEED, stoi(saveObject.attributes[i].valueString));
+            //speed = stoi(saveObject.attributes[i].valueString);
             break;
         default:
             break;
@@ -204,9 +239,8 @@ void Unit::init() {
     tileDestination = new Location{ 0, 0 };
     tileLocationBuffer = new Location{ 0, 0 };
     tileDestinationBuffer = new Location{ 0, 0 };
-    maxHealth = 1;
-    health = 1;
-    speed = 1;
+    //maxHealth = 1;
+    //speed = 1;
     leftToMove = 0;
     leftToMoveBuffer = 0;
     isStatic = false;
@@ -230,6 +264,9 @@ void Unit::init() {
     //pathfinding vars
     getPathRate = DEFAULT_GET_PATH_RATE;
     adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
+    health = 1;
+    unitAttributes[UNIT_STAT_SPEED] = {1, 0, 100, 0};
+    unitAttributes[UNIT_STAT_MAX_HEALTH] = {1, 0, 100, 0};
 }
 
 void Unit::init(int zoneId, int unitType) {
@@ -253,7 +290,7 @@ bool Unit::isAlive()
 //destructor
 Unit::~Unit() {
     name = "";
-    health = 0;
+    //health = 0;
     leftToMove = 0;
 }
 
@@ -308,7 +345,7 @@ void Unit::update() {
 bool Unit::updateMovement() {
     //return true if unit still moving, else, return false
     if (leftToMove > 0) {
-        leftToMove = leftToMove - (double)speed / 100;
+        leftToMove = leftToMove - (double)getAttributeLevel(UNIT_STAT_SPEED) / 100;
     }
     if (leftToMove <= 0.10 && leftToMove > 0)
     {

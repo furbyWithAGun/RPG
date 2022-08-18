@@ -89,7 +89,7 @@ void InventoryMenu::draw()
             btnXfer->active = true;
         }
     }
-
+    engine->renderText("Armour: " + std::to_string(scene->player->armour), engine->screenWidth * 0.06, engine->screenHeight * 0.01, COLOR_WHITE);
     
     GameMenu::draw();
     for (auto displaySlot : displaySlots)

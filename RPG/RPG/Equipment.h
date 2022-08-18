@@ -2,7 +2,7 @@
 #include "Item.h"
 #include "RpgGameConstants.h"
 
-class Unit;
+class RpgUnit;
 
 enum EQUIPMENT_SAVE_ATTRIBUTES {
     EQUIPMENT_SLOT = NUM_ITEM_ATTRIBUTES,
@@ -22,7 +22,8 @@ public:
     Equipment(int itemType);
 
     //methods
-    virtual void statModifier(Unit* unit) {};
+    virtual void onEquip(RpgUnit* unit) {};
+    virtual void onUnequip(RpgUnit* unit) {};
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 private:

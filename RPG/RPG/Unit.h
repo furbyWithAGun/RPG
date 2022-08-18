@@ -34,6 +34,10 @@ enum UNIT_SAVE_ATTRIBUTES {
     NUM_UNIT_ATTRIBUTES
 };
 
+struct unitSkillAttributeData {
+    int level, experience, experienceNextLevel, experienceLastLevel;
+};
+
 class Unit : public AnimatedSprite
 {
 public:
@@ -64,9 +68,6 @@ public:
     int processPathFailTick;
     UnitState* currentState;
     //attributes
-    int maxHealth;
-    int health;
-    int speed;
     //special attributes for loading saved units
     int savedSceneId;
     int savedTargetUnitId;
@@ -108,7 +109,13 @@ public:
     void faceCoords(int x, int y);
     void getNewPath();
     void setScene(TileGridScene* gameScene);
-    
+    int getAttributeLevel(int attribute);
+    void setAttributeLevel(int attribute, int newLevel);
+    int getHealth();
+    int changeHealth(int change);
+    int setHealth(int newHealth);
+    int setFullHealth();
+
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
     static void resetUid();
 
@@ -116,7 +123,9 @@ public:
 
 protected:
     //attributes
+    int health;
     std::unordered_map<int, UnitState*> unitStates;
+    std::unordered_map<int, unitSkillAttributeData> unitAttributes;
 
     //methods
     void setUnitState(int newState);

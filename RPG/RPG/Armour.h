@@ -5,6 +5,7 @@ enum ARMOUR_SAVE_ATTRIBUTES {
     ARMOUR_ARMOUR_VALUE = NUM_EQUIPMENT_ATTRIBUTES
 };
 
+
 class Armour : public Equipment
 {
 public:
@@ -17,6 +18,8 @@ public:
 
     //methods
     std::string toSaveString(bool withHeaderAndFooter = true) override;
+    virtual void onEquip(RpgUnit* unit) override;
+    virtual void onUnequip(RpgUnit* unit) override;
 
 private:
     //methods

@@ -30,9 +30,9 @@ WhiteRat::WhiteRat(int zoneId, int unitType, RpgTileGridScene* gameScene, int st
 }
 
 void WhiteRat::init() {
-    speed = SPEED;
+    setAttributeLevel(UNIT_STAT_SPEED, SPEED);
     health = MAX_HEALTH;
-    maxHealth = MAX_HEALTH;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     expValue = EXP_VALUE;
     dex = DEX;
     agi = AGI;

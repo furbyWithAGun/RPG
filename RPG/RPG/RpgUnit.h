@@ -106,7 +106,8 @@ public:
     void updateAttacks();
     void addExp(int expType, int expValue);
     void levelUp();
-    void updateStats();
+    //void updateStats();
+    void levelCheck();
     int getTeamStatus(RpgUnit* otherUnit);
     virtual void death();
     void death(RpgUnit* attackingUnit);

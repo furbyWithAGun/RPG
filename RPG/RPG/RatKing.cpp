@@ -31,9 +31,9 @@ RatKing::RatKing(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
 }
 
 void RatKing::init() {
-    speed = SPEED;
+    setAttributeLevel(UNIT_STAT_SPEED, SPEED);
     health = MAX_HEALTH;
-    maxHealth = MAX_HEALTH;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     expValue = EXP_VALUE;
     goldValue = GOLD_VALUE;
     dex = DEX;

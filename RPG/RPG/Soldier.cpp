@@ -37,9 +37,9 @@ Soldier::Soldier(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
 }
 
 void Soldier::init() {
-    speed = SOLDIER_SPEED;
+    setAttributeLevel(UNIT_STAT_SPEED, SOLDIER_SPEED);
     health = SOLDIER_MAX_HEALTH;
-    maxHealth = SOLDIER_MAX_HEALTH;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, SOLDIER_MAX_HEALTH);
     expValue = SOLDIER_EXP_VALUE;
     agi = SOLDIER_AGI;
     dex = SOLDIER_DEX;

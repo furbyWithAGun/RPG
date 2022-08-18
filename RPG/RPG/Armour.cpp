@@ -1,4 +1,5 @@
 #include "Armour.h"
+#include "RpgUnit.h"
 
 Armour::Armour() : Equipment(ARMOUR)
 {
@@ -36,6 +37,16 @@ std::string Armour::toSaveString(bool withHeaderAndFooter)
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_ARMOUR) + "\n";
     }
     return saveString;
+}
+
+void Armour::onEquip(RpgUnit* unit)
+{
+    unit->armour += armour;
+}
+
+void Armour::onUnequip(RpgUnit* unit)
+{
+    unit->armour -= armour;
 }
 
 void Armour::init()

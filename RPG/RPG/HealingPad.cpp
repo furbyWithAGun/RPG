@@ -23,7 +23,7 @@ HealingPad::HealingPad(SaveObject saveObject, TileGridScene* gameScene) : DooDad
 
 void HealingPad::walkOn(Unit* unit)
 {
-	unit->health = unit->maxHealth;
+	unit->setFullHealth();
 }
 
 void HealingPad::init()
