@@ -53,7 +53,8 @@ protected:
     //attributes
     std::unordered_map<int, std::string> texturesToLoad;
     ControllerInterface* controllerInterface;
-    std::vector<InputMessage*> commandQueue;
+    //std::vector<InputMessage*> commandQueue;
+    SDL_SpinLock commandQueueLock;
 
     //methods
     virtual void declareSceneAssets() {};
@@ -65,7 +66,8 @@ protected:
 
 private:
     //attributes
-    
+    std::vector<InputMessage*> commandQueue;
+
     //methods
     void init();
     void handleTextInput();

@@ -932,6 +932,48 @@ void RpgTileGridScene::updateCombatMessages() {
         }), end(combatMessages));
 }
 
+void RpgTileGridScene::buildCraftingRecipes()
+{
+    CraftingRecipe newRecipe;
+
+    //recipe name
+    newRecipe = CraftingRecipe("Club");
+    //inputs
+    newRecipe.addInput(ITEM_WOOD, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_CLUB, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name
+    newRecipe = CraftingRecipe("Long Sword");
+    //inputs
+    newRecipe.addInput(ITEM_WOOD, 5);
+    newRecipe.addInput(ITEM_APPLE, 5);
+    newRecipe.addInput(ITEM_SHORT_SWORD, 2);
+    //outputs
+    newRecipe.addOutput(ITEM_LONG_SWORD, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_METAL_WORKING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+}
+
 void RpgTileGridScene::scrollCamera() {
     int x, y, scrollSpeed;
     scrollSpeed = SCROLL_SPEED;
@@ -978,11 +1020,11 @@ bool RpgTileGridScene::unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, Craftin
 
 }
 
-bool RpgTileGridScene::unitHasMatsForRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe)
+bool RpgTileGridScene::containerHasMatsForRecipe(std::vector<Item*>& container, CraftingRecipe* recipe)
 {
     for (CraftingReagent input : recipe->getInputs())
     {
-        if (!containerContainsAmount(input.item, input.qty, player->inventory)) {
+        if (!containerContainsAmount(input.item, input.qty, container)) {
             return false;
         }
     }
@@ -991,7 +1033,7 @@ bool RpgTileGridScene::unitHasMatsForRecipe(RpgUnit* craftingUnit, CraftingRecip
 
 void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation)
 {
-    if (recipe->canBeCraftedAtStation(craftingStation) && unitHasMatsForRecipe(craftingUnit, recipe), unitHasSkillsToCraftRecipe(craftingUnit, recipe))
+    if (unitCanCraftRecipe(craftingUnit, recipe, craftingStation))
     {
         Item* crafteditem;
         for (CraftingReagent input : recipe->getInputs())
@@ -1007,7 +1049,7 @@ void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, 
             }
             else 
             {
-                for (size_t i = 1; i < output.qty; i++)
+                for (int i = 0; i < output.qty - 1; i++)
                 {
                     craftingUnit->addToInventory(createNewItem(output.item));
                 }
@@ -1016,6 +1058,26 @@ void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, 
         }
     }
 }
+
+bool RpgTileGridScene::unitCanCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation)
+{
+    if (recipe->canBeCraftedAtStation(craftingStation) && containerHasMatsForRecipe(craftingUnit->inventory, recipe) && unitHasSkillsToCraftRecipe(craftingUnit, recipe))
+    {
+        return true;
+    }
+    return false;
+}
+
+std::vector<CraftingRecipe> RpgTileGridScene::getCraftingRecipes()
+{
+    return craftingRecipes;
+}
+
+CraftingRecipe RpgTileGridScene::getCraftingRecipe(int recipeIndex)
+{
+    return craftingRecipes[recipeIndex];
+}
+
 
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)
 {

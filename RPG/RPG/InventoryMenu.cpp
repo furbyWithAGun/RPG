@@ -39,7 +39,6 @@ InventoryMenu::InventoryMenu(RpgOverWorldScene* gameScene, int newId) : GameMenu
 void InventoryMenu::open()
 {
     GameMenu::open();
-    scene->closeMenu(CRAFTING_MENU);
     rebuildElements();
     ((ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX))->displayIndex = 0;
 }

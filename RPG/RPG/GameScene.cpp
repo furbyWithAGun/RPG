@@ -19,6 +19,7 @@ void GameScene::init() {
     controllerInterface = NULL;
     timeToWaitDiscount = 0;
     lastTickDuration = 0;
+    commandQueueLock = 0;
 }
 
 
@@ -236,10 +237,12 @@ void GameScene::drawPrompts()
 
 void GameScene::clearCommandQueue()
 {
+    SDL_AtomicLock(&commandQueueLock);
     for (auto command : commandQueue) {
         delete command;
         commandQueue.clear();
     }
+    SDL_AtomicUnlock(&commandQueueLock);
 }
 
 Prompt* GameScene::addPrompt(Prompt* newPrompt)
@@ -269,22 +272,26 @@ void GameScene::clearInputMessages()
 }
 
 bool GameScene::getNextCommand(InputMessage* message) {
+    SDL_AtomicLock(&commandQueueLock);
     if (commandQueue.size() > 0)
     {
         try {
             *message = *commandQueue[0];
             delete commandQueue[0];
             commandQueue.erase(commandQueue.begin());
+            SDL_AtomicUnlock(&commandQueueLock);
             return true;
         }
         catch (...) {
             std::cout << "\n read access violation trying to get next command\n";
             message = NULL;
+            SDL_AtomicUnlock(&commandQueueLock);
             return false;
         }
     }
     else {
         message = NULL;
+        SDL_AtomicUnlock(&commandQueueLock);
         return false;
     }
 }
@@ -292,13 +299,17 @@ bool GameScene::getNextCommand(InputMessage* message) {
 void GameScene::addCommand(InputMessage* newMessage) {
     InputMessage* message = new InputMessage();
     *message = *newMessage;
+    SDL_AtomicLock(&commandQueueLock);
     commandQueue.push_back(message);
+    SDL_AtomicUnlock(&commandQueueLock);
 }
 
 void GameScene::addCommand(InputMessage newMessage) {
     InputMessage* message = new InputMessage();
     *message = newMessage;
+    SDL_AtomicLock(&commandQueueLock);
     commandQueue.push_back(message);
+    SDL_AtomicUnlock(&commandQueueLock);
 }
 
 void GameScene::handleTextInput()

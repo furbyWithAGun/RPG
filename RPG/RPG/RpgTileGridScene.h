@@ -77,8 +77,11 @@ public:
     void setSaveGameName(std::string newSaveGameName);
     std::string getSaveGameName();
     bool unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe);
-    bool unitHasMatsForRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe);
+    bool containerHasMatsForRecipe(std::vector<Item*>& container, CraftingRecipe* recipe);
     void unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation);
+    bool unitCanCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation);
+    std::vector<CraftingRecipe> getCraftingRecipes();
+    CraftingRecipe getCraftingRecipe(int recipeIndex);
 
 protected:
     //attributes
@@ -89,10 +92,12 @@ protected:
     void removeBuildingFromZone(ZoneMap* zone, Building* building);
     void removeBuildingFromZone(ZoneMap zone, Building* building);
     void scrollCamera();
+    void buildCraftingRecipes();
 
 private:
     //attributes
     std::vector<CombatText> combatMessages;
+    std::vector<CraftingRecipe> craftingRecipes;
 
     //methods
     void createTiles();

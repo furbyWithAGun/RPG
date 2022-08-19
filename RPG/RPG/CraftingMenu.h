@@ -30,10 +30,8 @@ private:
     RpgOverWorldScene* scene;
     int currentCraftingStation;
     RpgUnit* craftingUnit;
-    std::vector<CraftingRecipe> craftingRecipes;
 
     //methods
     void buildElements();
     void init();
-    void buildCraftingRecipes();
 };

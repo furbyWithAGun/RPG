@@ -20,6 +20,8 @@ RpgOverWorldScene::RpgOverWorldScene(BaseGameEngine* gameEngine) : RpgTileGridSc
 }
 
 void RpgOverWorldScene::init() {
+
+    buildCraftingRecipes();
     controllerInterface = new RpgKeysMouseController();
     testUnit = nullptr;
     displayHud = true;
@@ -132,20 +134,20 @@ void RpgOverWorldScene::setUpScene()
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 
     //h4x
-    Item* itemToDrop = createNewItem(ITEM_WOOD);
-    itemToDrop->stackSize = 1000;
-    addItemsToMap(0, 10, 26, { itemToDrop });
+    //Item* itemToDrop = createNewItem(ITEM_WOOD);
+    //itemToDrop->stackSize = 1000;
+    //addItemsToMap(0, 10, 26, { itemToDrop });
     //itemToDrop = createNewItem(ITEM_APPLE);
     //itemToDrop->stackSize = 10000;
     //addItemsToMap(0, 10, 26, { itemToDrop });
 
-    player->gold = 5000;
+    //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
     //player->addExp(COMBAT_EXPERIENCE, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
-    ((RpgTown*)getZones()[1])->addPopulation(1000);
+    //((RpgTown*)getZones()[1])->addPopulation(1000);
 }
 
 void RpgOverWorldScene::handleInput()
@@ -367,6 +369,9 @@ void RpgOverWorldScene::sceneLogic()
         player->handleInput(message);
         switch (message->id)
         {
+        case OVERWORLD_PLAYER_CRAFT:
+            unitCraft(player, &getCraftingRecipe(message->misc), message->params[0]);
+            break;
         case OVERWORLD_PLACE_BUILDING:
             if (((RpgZone*)currentZone)->zoneType == ZONE_RPG_TOWN)
             {
