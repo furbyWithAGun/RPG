@@ -978,6 +978,45 @@ bool RpgTileGridScene::unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, Craftin
 
 }
 
+bool RpgTileGridScene::unitHasMatsForRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe)
+{
+    for (CraftingReagent input : recipe->getInputs())
+    {
+        if (!containerContainsAmount(input.item, input.qty, player->inventory)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation)
+{
+    if (recipe->canBeCraftedAtStation(craftingStation) && unitHasMatsForRecipe(craftingUnit, recipe), unitHasSkillsToCraftRecipe(craftingUnit, recipe))
+    {
+        Item* crafteditem;
+        for (CraftingReagent input : recipe->getInputs())
+        {
+            removeQtyFromContainer(input.item, input.qty, craftingUnit->inventory);
+        }
+        for (CraftingReagent output : recipe->getOutputs())
+        {
+            crafteditem = createNewItem(output.item);
+            if (crafteditem->stackable)
+            {
+                crafteditem->stackSize = output.qty;
+            }
+            else 
+            {
+                for (size_t i = 1; i < output.qty; i++)
+                {
+                    craftingUnit->addToInventory(createNewItem(output.item));
+                }
+            }
+            craftingUnit->addToInventory(crafteditem);
+        }
+    }
+}
+
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container)
 {
     if (itemToAdd->stackable)
@@ -1028,12 +1067,12 @@ void removeQtyFromContainer(int itemType, int qty, std::vector<Item*>& container
     }
 }
 
-bool containerContainsAmount(int itemType, int qty, std::vector<Item*>& container)
+bool containerContainsAmount(int itemSpecificType, int qty, std::vector<Item*>& container)
 {
     int qtyInContainer = 0;
 
     for (auto item : container) {
-        if (item->specificType == itemType) {
+        if (item->specificType == itemSpecificType) {
             qtyInContainer += item->stackSize;
             if (qtyInContainer >= qty)
             {

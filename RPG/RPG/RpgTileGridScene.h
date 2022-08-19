@@ -77,6 +77,8 @@ public:
     void setSaveGameName(std::string newSaveGameName);
     std::string getSaveGameName();
     bool unitHasSkillsToCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe);
+    bool unitHasMatsForRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe);
+    void unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation);
 
 protected:
     //attributes
