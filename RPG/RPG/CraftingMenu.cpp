@@ -3,6 +3,8 @@
 #include "Player.h"
 #include "inputPrompt.h"
 
+const int MAX_NUM_CRAFT_INPUTS = 5;
+
 enum CRAFTING_MENU_IDS {
     RECIPE_SCROLL_BOX,
     RECIPE_CRAFT_BUTTON,
@@ -54,7 +56,19 @@ void CraftingMenu::draw()
 
 void CraftingMenu::rebuildElements()
 {
-    
+    ScrollBox* recipeList = (ScrollBox*)getElementbyId(RECIPE_SCROLL_BOX);
+    if (recipeList->selectedElement != nullptr)
+    {
+        for (int i = 0; i < scene->getCraftingRecipe(recipeList->getSelectedElementValue()).getInputs().size(); i++) {
+            craftingInputsDisplay[i].icon->textureKey = getItemTextureId(scene->getCraftingRecipe(recipeList->getSelectedElementValue()).getInputs()[i].item);
+            craftingInputsDisplay[i].icon->active = true;
+        }
+
+        for (int i = 0; i < scene->getCraftingRecipe(recipeList->getSelectedElementValue()).getInputs().size(); i++) {
+            craftingInputsDisplay[i].icon->textureKey = getItemTextureId(scene->getCraftingRecipe(recipeList->getSelectedElementValue()).getInputs()[i].item);
+            craftingInputsDisplay[i].icon->active = true;
+        }
+    }
 }
 
 bool CraftingMenu::handleInput(InputMessage* message)
@@ -82,6 +96,18 @@ void CraftingMenu::buildElements()
     addElement(RECIPE_CRAFT_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.65, height * 0.7))->setText("Craft")->addOnClick([this, recipeList] {
         scene->addCommand(InputMessage(OVERWORLD_PLAYER_CRAFT, 0, 0, recipeList->getSelectedElementValue(), {currentCraftingStation}));
         }));
+
+    for (size_t i = 0; i < MAX_NUM_CRAFT_INPUTS; i++)
+    {
+        UiElement* newInput = new UiElement(scene, BLANK_PORTAL, i, i);
+        UiElement* newOutput = new UiElement(scene, BLANK_PORTAL, i, i);
+        craftingInputsDisplay.push_back(craftingItemDisplay{ newInput, 0, 0 });
+        craftingOutputsDisplay.push_back(craftingItemDisplay{ newOutput, 0, 0 });
+        craftingInputsDisplay[i].icon->active = false;
+        craftingOutputsDisplay[i].icon->active = false;
+        addElement(craftingInputsDisplay[i].icon);
+        addElement(craftingInputsDisplay[i].icon);
+    }
 
 }
 

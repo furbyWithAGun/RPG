@@ -8,6 +8,11 @@
 class RpgOverWorldScene;
 class RpgUnit;
 
+struct craftingItemDisplay {
+    UiElement* icon;
+    int xpos, ypos;
+};
+
 class CraftingMenu : public GameMenu
 {
 public:
@@ -30,6 +35,9 @@ private:
     RpgOverWorldScene* scene;
     int currentCraftingStation;
     RpgUnit* craftingUnit;
+    std::vector<craftingItemDisplay> craftingInputsDisplay;
+    std::vector<craftingItemDisplay> craftingOutputsDisplay;
+
 
     //methods
     void buildElements();

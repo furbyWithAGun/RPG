@@ -27,3 +27,5 @@ HoverToolTip* createItemToolTip(Item* item, GameScene* scene);
 
 std::string getItemVectorSaveString(std::vector<Item*> vector);
 std::vector<Item*> getItemVectorFromSaveString(std::string saveString);
+
+int getItemTextureId(int itemSpecificType);

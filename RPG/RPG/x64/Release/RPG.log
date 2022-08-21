@@ -1,7 +1,23 @@
-﻿  GameScene.cpp
+﻿  CraftingMenu.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(30,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(31,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(32,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(33,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(82,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(82,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(82,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(82,56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(92,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(92,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(96,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(96,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(102,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\CraftingMenu.cpp(103,72): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  4 of 12219 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    13 functions had inline decision re-evaluated but remain unchanged
+  1628 of 12265 functions (13.3%) were compiled, the rest were copied from previous compilation.
+    3 functions were new in current compilation
+    218 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Release\RPG.exe

@@ -524,3 +524,8 @@ std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
 
 	return returnVector;
 }
+
+int getItemTextureId(int itemSpecificType)
+{
+	return itemTemplates[itemSpecificType].textureKey;
+}
