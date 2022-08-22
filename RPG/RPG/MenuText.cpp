@@ -86,6 +86,13 @@ MenuText* MenuText::setText(std::string newText)
     return this;
 }
 
+MenuText* MenuText::setTextColour(SDL_Color newTextColour)
+{
+    colour = newTextColour;
+    UiElement::setText(text, newTextColour);
+    return this;
+}
+
 void MenuText::draw()
 {
     if (active)

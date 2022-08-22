@@ -11,6 +11,7 @@ class RpgUnit;
 struct craftingItemDisplay {
     UiElement* icon;
     int xpos, ypos;
+    MenuText* txtQty;
 };
 
 class CraftingMenu : public GameMenu
@@ -40,6 +41,8 @@ private:
     int MAX_NUM_CRAFT_INPUTS;
     int INPUT_DISPLAY_X;
     int INPUT_DISPLAY_Y;
+    int OUTPUT_DISPLAY_X;
+    int OUTPUT_DISPLAY_Y;
     int REAGENT_ICON_ROW_OFFSET;
 
 
@@ -47,4 +50,5 @@ private:
     void buildElements();
     void init();
     void init(RpgOverWorldScene* gameScene);
+    CraftingRecipe getSelectedRecipe();
 };

@@ -61,6 +61,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
     //texturesToLoad.insert({ TEXTURE_EQUIPPED_MENU_SILHOUETTE, "images/silhouetteGrey.png" });
     texturesToLoad.insert({ TEXTURE_EQUIPPED_MENU_SILHOUETTE, "images/silhouette.png" });
+    texturesToLoad.insert({ TEXTURE_LARGE_ARROW_RIGHT, "images/largeArrowRight.png" });
+    
     //player textures
     //movement
     texturesToLoad.insert({ PLAYER_IDLE_UP_LEFT_SHEET, "images/playerIdleUp2.png" });
@@ -1039,6 +1041,8 @@ void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, 
         for (CraftingReagent input : recipe->getInputs())
         {
             removeQtyFromContainer(input.item, input.qty, craftingUnit->inventory);
+            menus[INVENTORY_MENU]->rebuildMenuElements();
+            menus[CRAFTING_MENU]->rebuildMenuElements();
         }
         for (CraftingReagent output : recipe->getOutputs())
         {

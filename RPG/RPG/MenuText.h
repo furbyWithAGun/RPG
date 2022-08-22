@@ -27,6 +27,7 @@ public:
     void setBackground(SDL_Color newColour);
     void disableBackground();
     MenuText* setText(std::string newText);
+    MenuText* setTextColour(SDL_Color newTextColour);
 
 private:
     //methods

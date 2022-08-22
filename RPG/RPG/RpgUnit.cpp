@@ -301,7 +301,7 @@ bool RpgUnit::equipItem(Equipment* item)
         equippedItems[item->slot] = item;
         item->onEquip(this);
         removeItemFromInventory(item);
-        if (scene->menus[INVENTORY_MENU]->isActive)
+        if (scene->menus[INVENTORY_MENU]->isActive && this == scene->player)
         {
             scene->menus[INVENTORY_MENU]->rebuildMenuElements();
         }
@@ -325,7 +325,7 @@ bool RpgUnit::unEquipItem(int slot)
         //{
         //    scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
         //}
-        if (scene->menus[INVENTORY_MENU]->isActive)
+        if (scene->menus[INVENTORY_MENU]->isActive && this == scene->player)
         {
             scene->menus[INVENTORY_MENU]->rebuildMenuElements();
         }
@@ -542,6 +542,10 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
     {
         scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+    }
+
+    if (this == scene->player && scene->menus[CRAFTING_MENU]->isActive) {
+        scene->menus[CRAFTING_MENU]->rebuildMenuElements();
     }
 }
 

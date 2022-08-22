@@ -167,8 +167,8 @@ void ZoneMap::addToUnitMap(Unit* unit)
 
 void ZoneMap::addToUnitMap(int x, int y, Unit* unit)
 {
-	int key = getMapKey(x, y);
 	SDL_AtomicLock(&unitMapLock);
+	int key = getMapKey(x, y);
 	if (unitMap.find(key) == unitMap.end())
 	{
 		unitMap[key] = { unit };
@@ -194,8 +194,8 @@ Unit* ZoneMap::getUnitFromMap(int x, int y)
 
 std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 {
+	SDL_AtomicLock(&unitMapLock); 
 	int key = getMapKey(x, y);
-	SDL_AtomicLock(&unitMapLock);
 	try {
 		if (unitMap.find(key) == unitMap.end())
 		{
@@ -226,8 +226,8 @@ void ZoneMap::removeUnitFromMap(Unit* unit)
 
 void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 {
-	int key = getMapKey(x, y);
 	SDL_AtomicLock(&unitMapLock);
+	int key = getMapKey(x, y);
 	auto unitIterator = unitMap[key].begin();
 	while (unitIterator != unitMap[key].end())
 	{
