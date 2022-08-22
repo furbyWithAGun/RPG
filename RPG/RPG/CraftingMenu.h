@@ -37,9 +37,14 @@ private:
     RpgUnit* craftingUnit;
     std::vector<craftingItemDisplay> craftingInputsDisplay;
     std::vector<craftingItemDisplay> craftingOutputsDisplay;
+    int MAX_NUM_CRAFT_INPUTS;
+    int INPUT_DISPLAY_X;
+    int INPUT_DISPLAY_Y;
+    int REAGENT_ICON_ROW_OFFSET;
 
 
     //methods
     void buildElements();
     void init();
+    void init(RpgOverWorldScene* gameScene);
 };
