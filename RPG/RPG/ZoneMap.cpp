@@ -35,6 +35,20 @@ ZoneMap::ZoneMap() {
 	setUpMaps();
 }
 
+ZoneMap::ZoneMap(int zoneWidth, int zoneHeight)
+{
+	init();
+	for (size_t i = 0; i < zoneWidth; i++)
+	{
+		std::vector <int> zoneRow;
+		for (size_t j = 0; j < zoneHeight; j++) {
+			zoneRow.push_back(0);
+		}
+		tileMap.push_back(zoneRow);
+	}
+	setUpMaps();
+}
+
 ZoneMap::ZoneMap(int newId) {
 	init(newId);
 	for (size_t i = 0; i < MAX_ZONE_WIDTH; i++)

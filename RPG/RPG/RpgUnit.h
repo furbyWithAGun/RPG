@@ -42,7 +42,7 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
 };
 
 enum EXPERIENCE_TYPES {
-    COMBAT_EXPERIENCE
+    //COMBAT_EXPERIENCE
 };
 
 class RpgUnit : public Unit
@@ -106,6 +106,7 @@ public:
     void updateAttacks();
     void addExp(int expType, int expValue);
     void levelUp();
+    void skillLevelUp(int skill);
     //void updateStats();
     void levelCheck();
     int getTeamStatus(RpgUnit* otherUnit);

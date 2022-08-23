@@ -4,6 +4,7 @@
 #include "PortalPropertiesMenu.h"
 #include "saveZoneMenu.h"
 #include "LoadZoneMenu.h"
+#include "NewZoneDetailsMenu.h"
 
 //constants
 const int WORLD_BUILDER_DESIRED_TILES_DOWN = 15;
@@ -67,6 +68,7 @@ void RpgWorldBuilderScene::setUpScene() {
     menus[PORTAL_PROPERTIES_MENU] = new PortalPropertiesMenu(this, PORTAL_PROPERTIES_MENU, 300, 300, 300, 300);
     menus[SAVE_ZONE_MENU] = new saveZoneMenu(this, SAVE_ZONE_MENU, 300, 200, 300, 300);
     menus[LOAD_ZONE_MENU] = new LoadZoneMenu(this, SAVE_ZONE_MENU, 500, 500, 300, 300);
+    menus[WORLD_BUILDING_NEW_ZONE_MENU] = new NewZoneDetailsMenu(this, SAVE_ZONE_MENU, 500, 500, 300, 300);
 }
 
 void RpgWorldBuilderScene::handleInput() {
@@ -176,6 +178,9 @@ void RpgWorldBuilderScene::sceneLogic() {
     while (getNextCommand(message)) {
         switch (message->id)
         {
+        case WORLD_BUILDER_CREATE_NEW_ZONE:
+            createNewZone(message->x, message->y);
+            break;
         case PLACE_TILE:
             if (gettingTextInput) {
                 int x = 1;
@@ -415,7 +420,20 @@ void RpgWorldBuilderScene::setCurrentZone(int zoneId)
 void RpgWorldBuilderScene::createNewZone()
 {
     //loadZones();
-    sceneToEdit = RpgZone();
+    createNewZone(MAX_ZONE_WIDTH, MAX_ZONE_HEIGHT);
+    //sceneToEdit = RpgZone();
+    //sceneToEdit.id = nextZoneId;
+    //sceneToEdit.zoneName = std::to_string(sceneToEdit.id);
+    //currentZone = &sceneToEdit;
+    //nextZoneId++;
+    //((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
+    //((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
+    //((ZoneBuilderMenu*)menus[BUILD_MENU])->updateZoneTypeText();
+}
+
+void RpgWorldBuilderScene::createNewZone(int zoneWidth, int zoneHeight)
+{
+    sceneToEdit = RpgZone(zoneWidth, zoneHeight);
     sceneToEdit.id = nextZoneId;
     sceneToEdit.zoneName = std::to_string(sceneToEdit.id);
     currentZone = &sceneToEdit;

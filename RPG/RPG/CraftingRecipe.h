@@ -13,7 +13,7 @@ struct CraftingSkillRequirements {
 };
 
 struct CraftingSkillExperience {
-    int skill, level;
+    int skill, experience;
 };
 
 class CraftingRecipe
@@ -34,6 +34,7 @@ public:
     void addCraftingStation(int newCraftingStation);
     void addSkillRequirement(int quality, int skill, int level);
     void addSkillExperience(int skill, int experience);
+    std::vector<CraftingSkillExperience> getSkillExperience();
     bool canBeCraftedAtStation(int thisCraftingStation);
 
 private:

@@ -223,9 +223,12 @@ void RpgUnit::updateAttacks()
 
 void RpgUnit::addExp(int expType, int expValue)
 {
-    if (expType == COMBAT_EXPERIENCE)
+    if (expType == SKILL_COMBAT)
     {
         combatExperience += expValue;
+    }
+    else {
+        unitSkills[expType].experience += expValue;
     }
     levelCheck();
 }
@@ -261,6 +264,24 @@ void RpgUnit::levelUp()
     levelCheck();
 }
 
+void RpgUnit::skillLevelUp(int skillToLevel)
+{
+    changeSkillLevel(skillToLevel, 1);
+    unitSkills[skillToLevel].baseLevel += 1;
+    unitSkills[skillToLevel].experienceLastLevel = unitSkills[skillToLevel].experienceNextLevel;
+    if (nextLevelExp.find(unitSkills[skillToLevel].level) != nextLevelExp.end())
+    {
+        unitSkills[skillToLevel].experienceNextLevel += nextLevelExp[unitSkills[skillToLevel].level];
+    }
+    else {
+        unitSkills[skillToLevel].experienceNextLevel = unitSkills[skillToLevel].experienceNextLevel * 2;
+    }
+    if (scene->getZone(zone) == scene->currentZone)
+    {
+        scene->addCombatMessage("***SKILL LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
+    }
+}
+
 //void RpgUnit::updateStats()
 //{
 //    if (combatExperience >= combatExperienceNextLevel)
@@ -285,6 +306,13 @@ void RpgUnit::levelCheck()
     if (combatExperience >= combatExperienceNextLevel)
     {
         levelUp();
+    }
+
+    for (int i = 0; i < unitSkills.size(); i++)
+    {
+        if (unitSkills[i].experience >= unitSkills[i].experienceNextLevel) {
+            skillLevelUp(i);
+        }
     }
 }
 
@@ -669,7 +697,8 @@ void RpgUnit::init()
     equippedItems[BARE_HANDS] = new BareHands();
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
-    unitSkills.resize(NUM_RPG_SKILLS, { 1, 1, 0, 100, 0 });
+    unitSkills.resize(NUM_RPG_SKILLS, { 1, 1, 0, nextLevelExp[1], 0 });
+
 
     setDropTable();
     createAnimations();
@@ -710,7 +739,7 @@ void RpgUnit::death()
 void RpgUnit::death(RpgUnit* attackingUnit)
 {
     death();
-    attackingUnit->addExp(COMBAT_EXPERIENCE, expValue);
+    attackingUnit->addExp(SKILL_COMBAT, expValue);
     int goldGiven = scene->engine->randomInt(1, goldValue);
     if (zone == scene->currentZone->id && attackingUnit == scene->player)
     {

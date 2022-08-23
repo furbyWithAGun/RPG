@@ -38,6 +38,11 @@ RpgZone::RpgZone() : ZoneMap()
     init();
 }
 
+RpgZone::RpgZone(int zoneWidth, int zoneHeight) : ZoneMap(zoneWidth, zoneHeight)
+{
+    init();
+}
+
 std::string RpgZone::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;

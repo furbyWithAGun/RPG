@@ -950,8 +950,8 @@ void RpgTileGridScene::buildCraftingRecipes()
     newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
     newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
     //skill experience
-    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 1);
-    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 10);
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 5);
     //add to array
     craftingRecipes.push_back(newRecipe);
 
@@ -1059,6 +1059,9 @@ void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, 
                 }
             }
             craftingUnit->addToInventory(crafteditem);
+        }
+        for (auto skill : recipe->getSkillExperience()) {
+            craftingUnit->addExp(skill.skill, skill.experience);
         }
     }
 }

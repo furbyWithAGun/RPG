@@ -534,6 +534,9 @@
     <ClCompile Include="CraftingRecipe.cpp">
       <Filter>Source Files\RpgGame\Items</Filter>
     </ClCompile>
+    <ClCompile Include="NewZoneDetailsMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -886,6 +889,9 @@
     </ClInclude>
     <ClInclude Include="CraftingRecipe.h">
       <Filter>Header Files\RpgGame\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="NewZoneDetailsMenu.h">
+      <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

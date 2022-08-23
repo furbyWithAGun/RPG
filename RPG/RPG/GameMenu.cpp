@@ -183,6 +183,7 @@ int GameMenu::addElement(int elementId, UiElement* newElement) {
     if (elements.find(elementId) == elements.end())
     {
         elements[elementId] = newElement;
+        newElement->id = elementId;
         return elementId;
     }
     else {

@@ -34,6 +34,7 @@ public:
     void renderScene() override;
     void setCurrentZone(int zoneId) override;
     void createNewZone() override;
+    void createNewZone(int zoneWidth, int zoneHeight);
     void createFirstZone();
     void virtual destroyUnit(RpgUnit* unit) override;
     void virtual destroyDooDad(DooDad* dooDad) override;

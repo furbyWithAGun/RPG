@@ -10,6 +10,7 @@ class UiElement;
 class GameScene;
 class GameEngine;
 class HoverToolTip;
+class TextBox;
 class GameMenu
 {
 public:

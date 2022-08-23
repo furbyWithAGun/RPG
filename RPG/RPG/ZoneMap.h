@@ -51,6 +51,7 @@ class ZoneMap {
         ZoneMap(SaveObject saveObject, RpgTileGridScene* gameScene);
         ZoneMap(const ZoneMap &oldMap);
         ZoneMap();
+        ZoneMap(int zoneWidth, int zoneHeight);
 
         //destructor
         ~ZoneMap();

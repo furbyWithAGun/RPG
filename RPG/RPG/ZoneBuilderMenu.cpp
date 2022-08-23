@@ -169,7 +169,8 @@ void ZoneBuilderMenu::buildPageOne()
 
     MenuButton* newZoneButton = new MenuButton(NEW_ZONE_BUTTON, this->scene, BUTTON_BACKGROUND, width * 0.2, height * 0.83);
     newZoneButton->setText("New Map")->addOnClick([this] {
-        scene->createNewZone();
+        //scene->createNewZone();
+        scene->openMenu(WORLD_BUILDING_NEW_ZONE_MENU);
         });
     mainPanel->addElementToPage(0, NEW_ZONE_BUTTON, newZoneButton);
 

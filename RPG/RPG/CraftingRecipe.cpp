@@ -61,6 +61,11 @@ void CraftingRecipe::addSkillExperience(int skill, int experience)
     skillExperience.push_back({skill, experience});
 }
 
+std::vector<CraftingSkillExperience> CraftingRecipe::getSkillExperience()
+{
+    return skillExperience;
+}
+
 bool CraftingRecipe::canBeCraftedAtStation(int thisCraftingStation)
 {
     for (int craftingStation : craftingStations) {

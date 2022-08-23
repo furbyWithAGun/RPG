@@ -170,6 +170,7 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="LoadSaveGameMenu.cpp" />
+    <ClCompile Include="NewZoneDetailsMenu.cpp" />
     <ClCompile Include="Orchard.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="RpgProvinceZone.cpp" />
@@ -288,6 +289,7 @@
     <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="LoadSaveGameMenu.h" />
+    <ClInclude Include="NewZoneDetailsMenu.h" />
     <ClInclude Include="Orchard.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="RpgProvinceZone.h" />

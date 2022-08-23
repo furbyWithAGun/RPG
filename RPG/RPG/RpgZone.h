@@ -23,6 +23,7 @@ public:
     RpgZone(SaveObject saveObject, RpgTileGridScene* gameScene);
     RpgZone(const RpgZone& oldMap);
     RpgZone();
+    RpgZone(int zoneWidth, int zoneHeight);
 
     //methods
     int getNumUnits();
