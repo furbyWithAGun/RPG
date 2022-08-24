@@ -68,7 +68,7 @@ void RpgWorldBuilderScene::setUpScene() {
     menus[PORTAL_PROPERTIES_MENU] = new PortalPropertiesMenu(this, PORTAL_PROPERTIES_MENU, 300, 300, 300, 300);
     menus[SAVE_ZONE_MENU] = new saveZoneMenu(this, SAVE_ZONE_MENU, 300, 200, 300, 300);
     menus[LOAD_ZONE_MENU] = new LoadZoneMenu(this, SAVE_ZONE_MENU, 500, 500, 300, 300);
-    menus[WORLD_BUILDING_NEW_ZONE_MENU] = new NewZoneDetailsMenu(this, SAVE_ZONE_MENU, 500, 500, 300, 300);
+    menus[WORLD_BUILDING_NEW_ZONE_MENU] = new NewZoneDetailsMenu(this, SAVE_ZONE_MENU, 400, 400, 300, 300);
 }
 
 void RpgWorldBuilderScene::handleInput() {

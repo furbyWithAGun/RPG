@@ -97,3 +97,14 @@ void TextBox::deactivate()
     UiElement::deactivate();
     gettingText = false;
 }
+
+int TextBox::getIntInput()
+{
+    
+    if (text == "") {
+        return 0;
+    } else if (stringIsAnInt(text)) {
+        return stoi(text);
+    }
+    return -99999999999;
+}

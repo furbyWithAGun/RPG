@@ -17,6 +17,7 @@ public:
     void draw() override;
     bool handleInput(InputMessage* message) override;
     void deactivate() override;
+    int getIntInput();
 
 private:
     //methods
