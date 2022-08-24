@@ -1,4 +1,5 @@
 #include "MapBuilderPortalButton.h"
+#include "PortalPropertiesMenu.h"
 
 //constants
 static const int WIDTH_ADJUSTOR = 38;
@@ -25,7 +26,10 @@ void MapBuilderPortalButton::onClick() {
     scene->placingPortal = true;
     scene->placingDooDad = false;
     scene->placingUnit = false;
-    scene->portalBeingPlaced = portalKey;
+    scene->portalBeingPlaced->textureId = portalKey;
+    PortalPropertiesMenu* editPortalMenu;
+    editPortalMenu = (PortalPropertiesMenu*)scene->menus[PORTAL_PROPERTIES_MENU];
+    editPortalMenu->open(scene->portalBeingPlaced);;
 }
 
 void MapBuilderPortalButton::init() {

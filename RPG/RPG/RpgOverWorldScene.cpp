@@ -77,7 +77,7 @@ void RpgOverWorldScene::setUpScene()
     RpgTileGridScene::setUpScene(saveGameName);
     if (saveGameName == SAVES_FILE_PATH + NEW_GAME_SAVE_FILE)
     {
-        player = (Player*)createUnitAtLocation(0, PLAYER, 10, 26);
+        player = (Player*)createUnitAtLocation(0, PLAYER, 124, 52);
         //player = (Player*)createUnitAtLocation(4, PLAYER, 18, 14);
         //squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
         //squadUnits[1]->doesRandomMovement = false;
@@ -85,11 +85,11 @@ void RpgOverWorldScene::setUpScene()
         //createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
         //createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
         //createUnitAtLocation(1, SOLDIER, 3, 8);
-        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
-        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
-        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
-        createUnitAtLocation(2, RAT_KING, 29, 1);
-        createUnitAtLocation(3, SKELETON_KING, 28, 28);
+        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
+        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
+        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
+        //createUnitAtLocation(2, RAT_KING, 29, 1);
+        //createUnitAtLocation(3, SKELETON_KING, 28, 28);
     }
 
     currentZone = getZone(player->zone);

@@ -42,6 +42,8 @@ ZonePortal::ZonePortal(SaveObject saveObject) {
 void ZonePortal::init() {
     textureId = -1;
     exitZoneId = -1;
+    tileCoords = { -1, -1 };
+    exitTileCoords = { -1, -1 };
 }
 
 ZonePortal::~ZonePortal() {

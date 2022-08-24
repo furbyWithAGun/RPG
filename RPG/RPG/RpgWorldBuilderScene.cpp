@@ -27,13 +27,15 @@ void RpgWorldBuilderScene::init() {
     placingTile = false;
     placingPortal = false;
     pickingPortalCoords = false;
-    portalBeingPlaced = -1;
+    //portalBeingPlaced = -1;
     controllerInterface = new RpgKeysMouseController();
-    portalBeingPlacedExitId = 0;
-    portalBeingPlacedExitCoordsX = 0;
-    portalBeingPlacedExitCoordsY = 0;
+    //portalBeingPlacedExitId = 0;
+    //portalBeingPlacedExitCoordsX = 0;
+    //portalBeingPlacedExitCoordsY = 0;
     previousZoneXoffset = 0;
     previousZoneYoffset = 0;
+    portalBeingPlaced = new ZonePortal();
+    portalBeingPlaced->textureId = BLANK_PORTAL;
 }
 
 void RpgWorldBuilderScene::declareSceneAssets() {
@@ -96,7 +98,7 @@ void RpgWorldBuilderScene::handleInput() {
                 if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
                     getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
-                    addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
+                    addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced->textureId));
                 }
                 if (placingDooDad && coordsAreOnDisplayedMapTile(message->x, message->y))
                 {
@@ -153,7 +155,7 @@ void RpgWorldBuilderScene::handleInput() {
             if (placingPortal && coordsAreOnDisplayedMapTile(message->x, message->y) && controllerInterface->selectOn)
             {
                 getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
-                addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced));
+                addCommand(InputMessage(PLACE_PORTAL, tileCoords[0], tileCoords[1], portalBeingPlaced->textureId));
             }
             if (placingDooDad && coordsAreOnDisplayedMapTile(message->x, message->y) && controllerInterface->selectOn)
             {
@@ -190,7 +192,7 @@ void RpgWorldBuilderScene::sceneLogic() {
         case PLACE_PORTAL:
             if (getPortalAtLocation(&sceneToEdit, message->x, message->y) == nullptr)
             {
-                sceneToEdit.addZonePortal(message->misc, { message->x, message->y }, portalBeingPlacedExitId, { portalBeingPlacedExitCoordsX, portalBeingPlacedExitCoordsY });
+                sceneToEdit.addZonePortal(message->misc, { message->x, message->y }, portalBeingPlaced->exitZoneId, { portalBeingPlaced->exitTileCoords[0], portalBeingPlaced->exitTileCoords[1] });
             }
             break;
         case WORLD_BUILDER_PLACE_DOODAD:
@@ -355,7 +357,7 @@ void RpgWorldBuilderScene::renderScene() {
         {
             getTileIndexFromScreenCoords(controllerInterface->latestXpos, controllerInterface->latestYpos, tileCoords);
             coordsFromTileIndex(tileCoords[0], tileCoords[1], screenCoords);
-            renderTexture(portalBeingPlaced, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
+            renderTexture(portalBeingPlaced->textureId, screenCoords[0] - tileWidth, screenCoords[1] - tileWidth, tileWidth * 3, tileHeight * 3);
             engine->renderText("P", screenCoords[0], screenCoords[1], tileWidth, tileHeight);
         }
 
@@ -415,6 +417,8 @@ void RpgWorldBuilderScene::setCurrentZone(int zoneId)
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateMobSpawnButton();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateDifficultyText();
     ((ZoneBuilderMenu*)menus[BUILD_MENU])->updateZoneTypeText();
+    xOffset = 0;
+    yOffset = 0;
 }
 
 void RpgWorldBuilderScene::createNewZone()

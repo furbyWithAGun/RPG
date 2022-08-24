@@ -13,10 +13,10 @@ public:
     MapTile* tileBeingPlaced;
     bool placingPortal;
     bool pickingPortalCoords;
-    int portalBeingPlaced;
-    int portalBeingPlacedExitId;
-    int portalBeingPlacedExitCoordsX;
-    int portalBeingPlacedExitCoordsY;
+    ZonePortal* portalBeingPlaced;
+    //int portalBeingPlacedExitId;
+    //int portalBeingPlacedExitCoordsX;
+    //int portalBeingPlacedExitCoordsY;
     RpgZone* portalExitZone;
     int previousZoneXoffset, previousZoneYoffset;
     RpgZone sceneToEdit;

@@ -56,6 +56,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ CAVE_WALL_BOTTOM, "images/caveWallBottom.png" });
     texturesToLoad.insert({ CAVE_STAIRS_UP, "images/caveStairsUp.png" });
     texturesToLoad.insert({ TILE_DIRT_ROAD, "images/DirtRoadFilled.png" });
+    texturesToLoad.insert({ TEXTURE_BACKGROUND_TREE, "images/backGroundTree.png" });
 
     //UI textures
     texturesToLoad.insert({ BUTTON_BACKGROUND, "images/buttonBackground.png" });
@@ -897,6 +898,7 @@ void RpgTileGridScene::createTiles()
     mapTiles[TEXTURE_PICKET_FENCE_LEFT] = MapTile(false, TEXTURE_PICKET_FENCE_LEFT);
     mapTiles[TEXTURE_PICKET_FENCE_RIGHT] = MapTile(false, TEXTURE_PICKET_FENCE_RIGHT);
     mapTiles[TEXTURE_PICKET_FENCE_TOP] = MapTile(false, TEXTURE_PICKET_FENCE_TOP);
+    mapTiles[TEXTURE_BACKGROUND_TREE] = MapTile(false, TEXTURE_BACKGROUND_TREE);
     resizeTiles();
 }
 
