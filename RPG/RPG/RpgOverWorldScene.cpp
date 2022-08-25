@@ -652,7 +652,6 @@ void RpgOverWorldScene::destroyUnit(RpgUnit* unit)
 //}
 
 int getPathThread(void* scene) {
-    //srand(time(NULL));
     SDL_SetThreadPriority(SDL_THREAD_PRIORITY_LOW);
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
     rpgScene->engine->seedRand();
@@ -664,18 +663,11 @@ int getPathThread(void* scene) {
     {
 
         SDL_AtomicLock(&rpgScene->unitDestroyLock);
-        //unit = nullptr;   
-        //try {
         unit = rpgScene->getUnitNeedingPath();
         if (unit == nullptr)
         {
             break;
         }
-        //}
-        //catch (...) {
-            //SDL_AtomicUnlock(&rpgScene->unitDestroyLock);b6
-            //continue;
-        //}
         try {
             std::vector<int> tempDirections;
 

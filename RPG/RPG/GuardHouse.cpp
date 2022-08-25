@@ -3,6 +3,7 @@
 #include "RpgUnit.h"
 #include "SelectPrompt.h"
 #include "RpgTileGridScene.h"
+#include "ZoneMap.h"
 
 GuardHouse::GuardHouse() : Building()
 {
@@ -50,6 +51,13 @@ void GuardHouse::update(RpgTileGridScene* scene)
                 zone->addUnitToLocation(newUnit, tileLocation->x, tileLocation->y + 1);
                 assignUnit(newUnit);
             }
+        }
+    }
+
+    for (auto unit : assignedUnits) {
+        if (unit->zone == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
+        {
+            unit->setTargetLocation(tileLocation->x, tileLocation->y + 2);
         }
     }
 }
