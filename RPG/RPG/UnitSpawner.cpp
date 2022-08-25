@@ -1,5 +1,6 @@
 #include "UnitSpawner.h"
 #include "RpgTileGridScene.h"
+#include "RpgOverWorldScene.h"
 
 UnitSpawner::UnitSpawner() : DooDad()
 {
@@ -65,7 +66,10 @@ void UnitSpawner::update()
         {
             if (scene->getUnitAtLocation(zoneId, tileCoords[0], tileCoords[1]) == nullptr){
 
-                ((RpgTileGridScene*)scene)->createUnitAtLocation(zoneId, unitToSpawn, tileCoords[0], tileCoords[1]);
+                RpgUnit* newUnit = ((RpgTileGridScene*)scene)->createUnitAtLocation(zoneId, unitToSpawn, tileCoords[0], tileCoords[1]);
+                Location* newTargetLocation = ((RpgZone*)scene->getZone(zoneId))->getNearestTownLocation(newUnit->tileLocation);
+                newUnit->setTargetLocation(newTargetLocation);
+                delete newTargetLocation;
             }
         }
     }

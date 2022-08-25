@@ -30,6 +30,8 @@ public:
     int getNumUnitsOnTeam(int team);
     virtual RpgTown* getNearestTown(Location* location);
     virtual RpgTown* getNearestTown(int xpos, int ypos);
+    virtual Location* getNearestTownLocation(Location* location);
+    virtual Location* getNearestTownLocation(int xpos, int ypos);
     virtual void update() override;
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;

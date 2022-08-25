@@ -17,7 +17,7 @@ bool ControllerInterface::getNextMessage(InputMessage* message) {
         return true;
     }
     else {
-        message = NULL;
+        message = nullptr;
         return false;
     }
 }

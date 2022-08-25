@@ -90,6 +90,16 @@ RpgTown* RpgZone::getNearestTown(int xpos, int ypos)
     return nullptr;
 }
 
+Location* RpgZone::getNearestTownLocation(Location* location)
+{
+    return nullptr;
+}
+
+Location* RpgZone::getNearestTownLocation(int xpos, int ypos)
+{
+    return nullptr;
+}
+
 void RpgZone::update()
 {
     ZoneMap::update();

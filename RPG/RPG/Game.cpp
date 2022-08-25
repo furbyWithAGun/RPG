@@ -68,7 +68,6 @@ int main(int argc, char* args[])
     BaseGameEngine engine = BaseGameEngine(GAME_TITLE, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     engine.setTicksPerSecond(RPG_GAME_TICKS_PER_SECOND);
-    //engine.setTicksPerSecond(60);
     engine.init();
     engine.addScene(MAIN_MENU_SCENE, new MainMenuScene(&engine));
     engine.setNextScene(MAIN_MENU_SCENE);

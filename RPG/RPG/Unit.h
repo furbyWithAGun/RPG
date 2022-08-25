@@ -59,7 +59,6 @@ public:
     bool canGoThroughPortal;
     int zone;
     Unit* targetUnit;
-    Location* targetLocation;
     //std::vector<std::vector<int>> directions = { {0, -1},{0, 1},{-1, 0},{1, 0},{1, -1},{1, 1},{-1, -1},{-1, 1} }; // UP, DOWN, LEFT, RIGHT, UP RIGHT, DOWN RIGHT, UP LEFT, DOWN LEFT
     std::vector<int> pathDirections;
     int getPathTick;
@@ -92,7 +91,9 @@ public:
     void startMovement(int direction);
     bool updateMovement();
     bool processPath();
+    Location* getTargetLocation();
     void setTargetLocation(Location* newTargetLocation);
+    void setTargetLocation(int newX, int newY);
     void setTargetUnit(Unit* newTargetUnit);
     void setTileLocation(int x, int y);
     void moveTo(int x, int y);
@@ -127,11 +128,14 @@ protected:
     int health;
     std::unordered_map<int, UnitState*> unitStates;
     std::vector<unitSkillAttributeData> unitAttributes;
+    int getPathAttempts;
 
     //methods
     void setUnitState(int newState);
 
 private:
+    //attributes
+    Location* targetLocation;
     //methods
     void init();
     void init(int zoneId, int unitType);

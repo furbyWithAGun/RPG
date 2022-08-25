@@ -79,6 +79,52 @@ RpgTown* RpgProvinceZone::getNearestTown(int xpos, int ypos)
     return returnZone;
 }
 
+Location* RpgProvinceZone::getNearestTownLocation(Location* location)
+{
+    RpgTown* returnZone = nullptr;
+    int closestCoords[2] = { -1, -1 };
+    for (auto portal : getPortals()) {
+        if (((RpgZone*)scene->getZone(portal->exitZoneId))->zoneType == ZONE_RPG_TOWN)
+        {
+            if (!returnZone)
+            {
+                returnZone = ((RpgTown*)scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
+            }
+            else if (manhattenDistance(location->x, location->y, portal->tileCoords[0], portal->tileCoords[1]) < manhattenDistance(location->x, location->y, closestCoords[0], closestCoords[1])) {
+                returnZone = ((RpgTown*)scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
+            }
+        }
+    }
+    return new Location{ closestCoords[0], closestCoords[1] };
+}
+
+Location* RpgProvinceZone::getNearestTownLocation(int xpos, int ypos)
+{
+    RpgTown* returnZone = nullptr;
+    int closestCoords[2] = { -1, -1 };
+    for (auto portal : getPortals()) {
+        if (((RpgZone*)scene->getZone(portal->exitZoneId))->zoneType == ZONE_RPG_TOWN)
+        {
+            if (!returnZone)
+            {
+                returnZone = ((RpgTown*)scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
+            }
+            else if (manhattenDistance(xpos, ypos, portal->tileCoords[0], portal->tileCoords[1]) < manhattenDistance(xpos, ypos, closestCoords[0], closestCoords[1])) {
+                returnZone = ((RpgTown*)scene->getZone(portal->exitZoneId));
+                closestCoords[0] = portal->tileCoords[0];
+                closestCoords[1] = portal->tileCoords[1];
+            }
+        }
+    }
+    return new Location{ closestCoords[0], closestCoords[1] };
+}
+
 std::string RpgProvinceZone::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;

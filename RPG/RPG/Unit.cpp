@@ -3,11 +3,21 @@
 #include "RpgTileGridScene.h"
 
 int uniqueUnitId = 0;
+const int MAX_PATH_ATTEMPTS = 5;
 
 void Unit::getNewPath()
 {
     if (!gettingPath)
     {
+        getPathAttempts++;
+        if (getPathAttempts > MAX_PATH_ATTEMPTS)
+        {
+            getPathAttempts = 0;
+            delete targetLocation;
+            targetLocation = nullptr;
+            targetUnit = nullptr;
+            return;
+        }
         gettingPath = true;
         scene->addUnitToPathQueue(this);
     }
@@ -64,6 +74,11 @@ int Unit::setFullHealth()
 {
     health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
     return health;
+}
+
+Location* Unit::getTargetLocation()
+{
+    return targetLocation;
 }
 
 std::string Unit::toSaveString(bool withHeaderAndFooter)
@@ -280,6 +295,7 @@ void Unit::init() {
     adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
     health = 1;
     unitAttributes.resize(NUM_RPG_ATTRIBUTES, { 1, 1, 0, 100, 0 });
+    getPathAttempts = 0;
     //unitAttributes[UNIT_STAT_SPEED] = {1, 0, 100, 0};
     //unitAttributes[UNIT_STAT_MAX_HEALTH] = {1, 0, 100, 0};
 }
@@ -517,7 +533,25 @@ bool Unit::processPath()
 
 void Unit::setTargetLocation(Location* newTargetLocation)
 {
-    targetLocation = newTargetLocation;
+    if (targetLocation == nullptr)
+    {
+        targetLocation = new Location();
+    }
+    targetLocation->x = newTargetLocation->x;
+    targetLocation->y = newTargetLocation->y;
+    getPathAttempts = 0;
+    getNewPath();
+}
+
+void Unit::setTargetLocation(int newX, int newY)
+{
+    if (targetLocation == nullptr)
+    {
+        targetLocation = new Location();
+    }
+    targetLocation->x = newX;
+    targetLocation->y = newY;
+    getPathAttempts = 0;
     getNewPath();
 }
 
@@ -525,6 +559,7 @@ void Unit::setTargetUnit(Unit* newTargetUnit)
 {
     targetUnit = newTargetUnit;
     targetUnit->beingTargetedBy.push_back(this);
+    getPathAttempts = 0;
     getNewPath();
 }
 
@@ -549,6 +584,7 @@ void Unit::moveTo(int x, int y)
     if (targetLocation != nullptr && x == targetLocation->x && y == targetLocation->y)
     {
         pathDirections.clear();
+        delete targetLocation;
         targetLocation = nullptr;
     }
 }

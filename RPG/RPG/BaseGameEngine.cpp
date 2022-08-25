@@ -593,18 +593,9 @@ void BaseGameEngine::startMainGameLoop() {
             {
                 //SDL_AtomicUnlock(&sceneLock);
             }
-            //SDL_AtomicUnlock(&sceneLock);
 
-            //timeToWait = 20 - (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count() - lastRenderTimeStamp);
-            //int currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-            //delay
-            //while ((currentStamp < lastRenderTimeStamp + timeToWait))
-            //{
-                //currentStamp = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
-            //}
-            //clear screen
-            SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
-            SDL_RenderClear(getMainRenderer());
+            //SDL_SetRenderDrawColor(getMainRenderer(), 0xFF, 0xFF, 0xFF, 0xFF);
+            //SDL_RenderClear(getMainRenderer());
             //call scene rendering
             if (lockRender)
             {

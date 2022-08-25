@@ -502,7 +502,7 @@ void RpgUnit::update()
 {
     Unit::update();
     updateAttacks();
-    if ((targetLocation != nullptr || targetUnit != nullptr) && pathDirections.size() <= 0)
+    if ((getTargetLocation() != nullptr || targetUnit != nullptr) && pathDirections.size() <= 0)
     {
         if (getPathRate == getPathTick)
         {

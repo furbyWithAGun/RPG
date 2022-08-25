@@ -275,22 +275,22 @@ bool GameScene::getNextCommand(InputMessage* message) {
     SDL_AtomicLock(&commandQueueLock);
     if (commandQueue.size() > 0)
     {
-        try {
-            *message = *commandQueue[0];
-            delete commandQueue[0];
-            commandQueue.erase(commandQueue.begin());
-            SDL_AtomicUnlock(&commandQueueLock);
-            return true;
-        }
-        catch (...) {
-            std::cout << "\n read access violation trying to get next command\n";
-            message = NULL;
-            SDL_AtomicUnlock(&commandQueueLock);
-            return false;
-        }
+        //try {
+        *message = *commandQueue[0];
+        delete commandQueue[0];
+        commandQueue.erase(commandQueue.begin());
+        SDL_AtomicUnlock(&commandQueueLock);
+        return true;
+        //}
+        //catch (...) {
+        //    std::cout << "\n read access violation trying to get next command\n";
+        //    message = nullptr;
+        //    SDL_AtomicUnlock(&commandQueueLock);
+        //    return false;
+        //}
     }
     else {
-        message = NULL;
+        message = nullptr;
         SDL_AtomicUnlock(&commandQueueLock);
         return false;
     }

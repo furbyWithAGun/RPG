@@ -77,7 +77,7 @@ void RpgOverWorldScene::setUpScene()
     RpgTileGridScene::setUpScene(saveGameName);
     if (saveGameName == SAVES_FILE_PATH + NEW_GAME_SAVE_FILE)
     {
-        player = (Player*)createUnitAtLocation(0, PLAYER, 124, 52);
+        player = (Player*)createUnitAtLocation(0, PLAYER, 104, 23);
         //player = (Player*)createUnitAtLocation(4, PLAYER, 18, 14);
         //squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
         //squadUnits[1]->doesRandomMovement = false;
@@ -358,7 +358,7 @@ void RpgOverWorldScene::sceneLogic()
     //}
     //call base class logic
     RpgTileGridScene::sceneLogic();
-    Location* soldierSpawn = new Location{ 22, 27 };
+    //Location* soldierSpawn = new Location{ 22, 27 };
     //Location* ratSpawn = new Location{32, 11};
     //Location* ratSpawn2 = new Location{7, 34};
 
@@ -419,10 +419,14 @@ void RpgOverWorldScene::sceneLogic()
             break;
         }
     }
+
+    delete message;
+    message = nullptr;
     
-    for (auto zone : getZones())
+    for (auto zoneMap : getZones())
     {
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 10000 + zone.second->numUnitSpawners * 4000) > engine->randomDouble() && zone.second->zoneName == "zoneOne")
+        RpgZone* zone = (RpgZone*)zoneMap.second;
+        if (zone->zoneType == ZONE_RPG_PROVINCE && engine->getProbFromSigmoid(zone->getDifficulty() + 1, zone->getDevelopmentLevel() + 10000 + zone->numUnitSpawners * 4000) > engine->randomDouble())
         {
             int targetCoords[2] = { 0, 0 };
             int attempts = 0;
@@ -430,9 +434,9 @@ void RpgOverWorldScene::sceneLogic()
             while (true)
             {
                 attempts++;
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                if (isTilePassable(zone.second->id, targetCoords[0], targetCoords[1]))
+                targetCoords[0] = engine->randomInt(0, zone->tileMap.size() - 1);
+                targetCoords[1] = engine->randomInt(0, zone->tileMap[0].size() - 1);
+                if (isTilePassable(zone->id, targetCoords[0], targetCoords[1]))
                 {
                     foundLocation = true;
                     break;
@@ -442,86 +446,27 @@ void RpgOverWorldScene::sceneLogic()
                     break;
                 }
             }
-            if (foundLocation && getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
+            if (foundLocation && getUnitAtLocation(zone->id, targetCoords[0], targetCoords[1]) == nullptr)
             {
-                getZones()[zone.second->id]->addDooDadToLocation(createNewUnitSpawner(this, getUnitTypeByDifficulty(zone.second->difficulty), zone.second->id), targetCoords[0], targetCoords[1]);
+                getZones()[zone->id]->addDooDadToLocation(createNewUnitSpawner(this, getUnitTypeByDifficulty(zone->difficulty), zone->id), targetCoords[0], targetCoords[1]);
             }
-        }
-
-        //spawn WhiteRats
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName== "caveOne")
+        } else if (zone->zoneType == ZONE_RPG_CAVE && engine->getProbFromSigmoid(zone->getDifficulty() + 1, zone->getDevelopmentLevel() + 5000) > engine->randomDouble())
         {
             int targetCoords[2] = { 0, 0 };
             while (true)
             {
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                if (mapTiles[zone.second->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
+                targetCoords[0] = engine->randomInt(0, zone->tileMap.size() - 1);
+                targetCoords[1] = engine->randomInt(0, zone->tileMap[0].size() - 1);
+                if (mapTiles[zone->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone, targetCoords[0], targetCoords[1]) == nullptr)
                 {
                     break;
                 }
             }
-            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
+            if (getUnitAtLocation(zone->id, targetCoords[0], targetCoords[1]) == nullptr)
             {
-                createUnitAtLocation(zone.second->id, WHITE_RAT, targetCoords[0], targetCoords[1]);
+                createUnitAtLocation(zone->id, getUnitTypeByDifficulty(zone->difficulty), targetCoords[0], targetCoords[1]);
             }
         }
-
-        //spawn skeletons
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 8000) > engine->randomDouble() && zone.second->zoneName == "caveTwo")
-        {
-            int targetCoords[2] = { 0, 0 };
-            while (true)
-            {
-                targetCoords[0] = engine->randomInt(0, zone.second->tileMap.size() - 1);
-                targetCoords[1] = engine->randomInt(0, zone.second->tileMap[0].size() - 1);
-                if (mapTiles[zone.second->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone.second, targetCoords[0], targetCoords[1]) == nullptr)
-                {
-                    break;
-                }
-            }
-            if (getUnitAtLocation(zone.second->id, targetCoords[0], targetCoords[1]) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, SKELETON, targetCoords[0], targetCoords[1]);
-            }
-        }
-
-        //spawn troops
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 24000) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 400) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        {
-            if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
-            {
-                createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y);
-                //createUnitAtLocation(zone.second->id, SOLDIER, soldierSpawn->x, soldierSpawn->y)->setTargetLocation(new Location{ 9, 54 });
-            }
-        }
-
-        ////spawn enemy troops
-        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 700) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        //{
-        //    if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
-        //    {
-        //        createUnitAtLocation(zone.second->id, WHITE_RAT, 21, 26)->setTargetLocation(new Location{ 7, 7 });
-        //    }
-        //}
-
-        ////spawn enemy troops
-        //if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 400) > engine->randomDouble() && zone.second->mobSpawn && zone.second->zoneName == "zoneOne")
-        //{
-        //    if (getUnitAtLocation(zone.second->id, soldierSpawn->x, soldierSpawn->y) == nullptr)
-        //    {
-        //        createUnitAtLocation(zone.second->id, RAT, 22, 24)->setTargetLocation(new Location{ 7, 7 });
-        //    }
-        //}
-    }
-
-    try {
-        delete soldierSpawn;
-        delete message;
-    }
-    catch (...) {
-
     }
 
     if (!aggroThreadActive)
@@ -760,8 +705,8 @@ int getPathThread(void* scene) {
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
                 continue;
             }
-            else if (unit->targetLocation != nullptr) {
-                tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->targetLocation);
+            else if (unit->getTargetLocation() != nullptr) {
+                tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->getTargetLocation());
                 if (tempDirections.size() > 0)
                 {
                     unit->pathDirections = tempDirections;
@@ -773,7 +718,7 @@ int getPathThread(void* scene) {
                 if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
                 {
                     unit->getNewPathFailTick = 0;
-                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetLocation);
+                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->getTargetLocation());
                 }
                 unit->gettingPath = false;
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
