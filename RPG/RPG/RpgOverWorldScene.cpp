@@ -449,7 +449,7 @@ void RpgOverWorldScene::sceneLogic()
         }
 
         //spawn WhiteRats
-        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName == "caveOne")
+        if (engine->getProbFromSigmoid(zone.second->getDifficulty() + 1, zone.second->getDevelopmentLevel() + 5000) > engine->randomDouble() && zone.second->zoneName== "caveOne")
         {
             int targetCoords[2] = { 0, 0 };
             while (true)

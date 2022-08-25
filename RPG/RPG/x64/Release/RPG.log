@@ -1,4 +1,24 @@
-﻿  RpgOverWorldScene.cpp
+﻿  AiUnit.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(123,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(172,54): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(172,51): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(177,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(177,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(178,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\AiUnit.cpp(178,64): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  RpgTown.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  RpgProvinceZone.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  FoodEffect.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Mace.cpp
+  RpgOverWorldScene.cpp
 D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(30,21): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
@@ -126,9 +146,17 @@ D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(617,126): warning C4244: 'ar
 D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(617,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(626,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 D:\Coding\c++\rpgGame\RPG\RPG\RpgOverWorldScene.cpp(628,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  RpgTileGridScene.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(912,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(923,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(923,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1181,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1204,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1 of 12356 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  0 of 12356 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    40 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
