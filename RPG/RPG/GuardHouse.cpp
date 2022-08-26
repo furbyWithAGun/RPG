@@ -5,6 +5,8 @@
 #include "RpgTileGridScene.h"
 #include "ZoneMap.h"
 
+const int MAX_UNIT_DISTANCE = 5;
+
 GuardHouse::GuardHouse() : Building()
 {
     init();
