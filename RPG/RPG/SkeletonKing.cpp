@@ -4,10 +4,10 @@
 
 const int MAX_HEALTH = 300;
 const int SPEED = 8;
-const int DEX = 35;
-const int AGI = 20;
-const int STR = 35;
-const int EXP_VALUE = 300;
+const int DEX = 37;
+const int AGI = 22;
+const int STR = 37;
+const int EXP_VALUE = 600;
 const int GOLD_VALUE = 3000;
 
 SkeletonKing::SkeletonKing() : AiUnit() {
@@ -84,7 +84,25 @@ void SkeletonKing::createAnimations() {
 void SkeletonKing::setDropTable()
 {
     dropChance = 1.0;
-    dropTable.push_back({ 1.0, ITEM_LONG_SWORD });
+    maxNumDrops = 5;
+    dropTable.push_back({ 0.05, ITEM_SHORT_SWORD });
+    dropTable.push_back({ 0.1, ITEM_MACE });
+    dropTable.push_back({ 0.1, ITEM_LONG_SWORD });
+    dropTable.push_back({ 0.01, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.01, ITEM_RAG_BOOTS });
+    dropTable.push_back({ 0.01, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.01, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.01, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.05, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.05, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.05, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.05, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.05, ITEM_LINEN_PANTS });
+    dropTable.push_back({ 0.09, ITEM_LEATHER_BODY });
+    dropTable.push_back({ 0.09, ITEM_LEATHER_BOOTS });
+    dropTable.push_back({ 0.09, ITEM_LEATHER_GLOVES });
+    dropTable.push_back({ 0.09, ITEM_LEATHER_HAT });
+    dropTable.push_back({ 0.09, ITEM_LEATHER_PANTS });
 }
 
 void SkeletonKing::death()

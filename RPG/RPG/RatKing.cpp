@@ -2,11 +2,11 @@
 #include "BasicMeleeAttack.h"
 #include "RpgTileGridScene.h"
 
-const int MAX_HEALTH = 175;
+const int MAX_HEALTH = 200;
 const int SPEED = 8;
-const int DEX = 25;
-const int AGI = 15;
-const int STR = 25;
+const int DEX = 30;
+const int AGI = 17;
+const int STR = 27;
 const int EXP_VALUE = 300;
 const int GOLD_VALUE = 1000;
 
@@ -81,7 +81,25 @@ void RatKing::createAnimations() {
 void RatKing::setDropTable()
 {
     dropChance = 1.0;
-    dropTable.push_back({ 1.0, ITEM_LONG_SWORD });
+    maxNumDrops = 3;
+    dropTable.push_back({ 0.05, ITEM_SHORT_SWORD });
+    dropTable.push_back({ 0.1, ITEM_MACE });
+    dropTable.push_back({ 0.1, ITEM_LONG_SWORD });
+    dropTable.push_back({ 0.03, ITEM_RAG_BODY });
+    dropTable.push_back({ 0.03, ITEM_RAG_BOOTS });
+    dropTable.push_back({ 0.03, ITEM_RAG_GLOVES });
+    dropTable.push_back({ 0.03, ITEM_RAG_HAT });
+    dropTable.push_back({ 0.03, ITEM_RAG_PANTS });
+    dropTable.push_back({ 0.09, ITEM_LINEN_BODY });
+    dropTable.push_back({ 0.09, ITEM_LINEN_BOOTS });
+    dropTable.push_back({ 0.09, ITEM_LINEN_GLOVES });
+    dropTable.push_back({ 0.09, ITEM_LINEN_HAT });
+    dropTable.push_back({ 0.09, ITEM_LINEN_PANTS });
+    dropTable.push_back({ 0.03, ITEM_LEATHER_BODY });
+    dropTable.push_back({ 0.03, ITEM_LEATHER_BOOTS });
+    dropTable.push_back({ 0.03, ITEM_LEATHER_GLOVES });
+    dropTable.push_back({ 0.03, ITEM_LEATHER_HAT });
+    dropTable.push_back({ 0.03, ITEM_LEATHER_PANTS });
 }
 
 void RatKing::death()

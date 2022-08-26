@@ -537,6 +537,7 @@ void ZoneMap::destroyDooDad(DooDad* dooDad)
 	removeDooDadFromMap(dooDad, dooDad->tileCoords[0], dooDad->tileCoords[1]);
 	removeFromDooDadVector(dooDad);
 	delete dooDad;
+	dooDad = nullptr;
 }
 
 void ZoneMap::destroyBuilding(Building* building)
