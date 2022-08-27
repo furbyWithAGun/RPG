@@ -6,10 +6,11 @@
 
 class RpgOverWorldScene;
 
-struct EquipmentDisplaySlot {
-    int x, y, width, height;
-    UiElement icon;
-};
+struct EquipmentDisplaySlot;
+//struct EquipmentDisplaySlot {
+//    int x, y, width, height;
+//    UiElement icon;
+//};
 
 class InventoryMenu : public GameMenu
 {

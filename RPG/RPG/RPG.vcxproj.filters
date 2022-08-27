@@ -537,6 +537,9 @@
     <ClCompile Include="NewZoneDetailsMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
     </ClCompile>
+    <ClCompile Include="OtherUnitInventoryMenu.cpp">
+      <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -892,6 +895,9 @@
     </ClInclude>
     <ClInclude Include="NewZoneDetailsMenu.h">
       <Filter>Header Files\RpgGame\scenes\worldBuilderScene\zoneBuilderMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherUnitInventoryMenu.h">
+      <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

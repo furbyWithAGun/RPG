@@ -172,6 +172,7 @@
     <ClCompile Include="LoadSaveGameMenu.cpp" />
     <ClCompile Include="NewZoneDetailsMenu.cpp" />
     <ClCompile Include="Orchard.cpp" />
+    <ClCompile Include="OtherUnitInventoryMenu.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="RpgProvinceZone.cpp" />
     <ClCompile Include="RpgZone.cpp" />
@@ -291,6 +292,7 @@
     <ClInclude Include="LoadSaveGameMenu.h" />
     <ClInclude Include="NewZoneDetailsMenu.h" />
     <ClInclude Include="Orchard.h" />
+    <ClInclude Include="OtherUnitInventoryMenu.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="RpgProvinceZone.h" />
     <ClInclude Include="RpgZone.h" />

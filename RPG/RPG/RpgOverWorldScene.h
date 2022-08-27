@@ -4,6 +4,7 @@
 #include "OverWorldSceneMenu.h"
 #include "TownBuildMenu.h"
 #include "InventoryMenu.h"
+#include "OtherUnitInventoryMenu.h"
 #include "EquippedMenu.h"
 #include "ItemShopMenu.h"
 #include "TransferItemsMenu.h"

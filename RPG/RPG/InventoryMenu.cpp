@@ -3,6 +3,11 @@
 #include "Player.h"
 #include "inputPrompt.h"
 
+struct EquipmentDisplaySlot {
+    int x, y, width, height;
+    UiElement icon;
+};
+
 enum INVENTORY_MENU_IDS {
     ITEMS_SCROLL_BOX,
     INVENTORY_CLOSE_BUTTON,

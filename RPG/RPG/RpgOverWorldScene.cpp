@@ -124,6 +124,7 @@ void RpgOverWorldScene::setUpScene()
     menus[ITEM_SHOP_MENU] = new ItemShopMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[TRANSFER_ITEMS_MENU] = new TransferItemsMenu(this, ITEM_SHOP_MENU, engine->screenWidth * 0.35, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.3, engine->screenHeight * 0.2);
     menus[INVENTORY_MENU] = new InventoryMenu(this, INVENTORY_MENU);
+    menus[OTHER_UNIT_INVENTORY_MENU] = new OtherUnitInventoryMenu(this, OTHER_UNIT_INVENTORY_MENU);
     //menus[EQUIPPED_MENU] = new EquippedMenu(this, EQUIPPED_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
     menus[SAVE_GAME_MENU] = new SaveGameMenu(this, SAVE_GAME_MENU, engine->screenWidth * 0.3, engine->screenHeight * 0.5, mainCanvasStartX + engine->screenWidth * 0.30, engine->screenHeight * 0.15);
     menus[CRAFTING_MENU] = new CraftingMenu(this, CRAFTING_MENU);
@@ -241,6 +242,20 @@ void RpgOverWorldScene::handleInput()
                     }
                 }
                 addCommand(InputMessage(PERFORM_MAIN_ATTACK, message->x, message->y));
+                break;
+            case BUTTON_1_OFF:
+                if (controllerInterface->ctrlOn)
+                {
+                    getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                    if (tileCoords[0] >= 0 && tileCoords[1] >= 0)
+                    {
+                        RpgUnit* unitAtLocation = getUnitAtLocation(currentZone->id, tileCoords[0], tileCoords[1]);
+                        if (unitAtLocation != nullptr)
+                        {
+                            ((OtherUnitInventoryMenu*)menus[OTHER_UNIT_INVENTORY_MENU])->open(unitAtLocation);
+                        }
+                    }
+                }
                 break;
             case BUTTON_2_ON:
                 addCommand(InputMessage(START_MOVE_UP, message->x, message->y));
