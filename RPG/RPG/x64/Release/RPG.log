@@ -1,12 +1,41 @@
-﻿  RpgUnit.cpp
-D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(213,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(213,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(450,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  OtherUnitInventoryMenu.cpp
+C:\coding\c++\rpgGame\RPG\RPG\Graph.h(36,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(37,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(38,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(39,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(40,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(113,129): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(113,109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(210,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(210,125): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(210,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(210,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(215,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(215,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(215,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(215,69): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(219,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(219,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(225,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(225,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(232,178): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(232,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(266,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(266,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(289,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(289,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(308,111): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(308,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(315,178): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(315,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(370,119): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(370,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(381,182): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\rpgGame\RPG\RPG\OtherUnitInventoryMenu.cpp(381,147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Generating code
-  0 of 12598 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  39 of 12618 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    38 functions were new in current compilation
+    32 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
+  RPG.vcxproj -> C:\coding\c++\rpgGame\RPG\x64\Release\RPG.exe

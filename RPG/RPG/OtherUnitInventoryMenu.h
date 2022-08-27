@@ -24,6 +24,7 @@ public:
     void draw() override;
     void rebuildElements() override;
     void setUnit(RpgUnit* newUnit);
+    RpgUnit* getSelectedUnit();
 
     //methods
     bool handleInput(InputMessage* message);

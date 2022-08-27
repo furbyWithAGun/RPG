@@ -253,6 +253,7 @@ void RpgOverWorldScene::handleInput()
                         if (unitAtLocation != nullptr)
                         {
                             ((OtherUnitInventoryMenu*)menus[OTHER_UNIT_INVENTORY_MENU])->open(unitAtLocation);
+                            menus[INVENTORY_MENU]->open();
                         }
                     }
                 }

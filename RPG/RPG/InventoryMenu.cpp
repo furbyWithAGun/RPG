@@ -89,7 +89,7 @@ void InventoryMenu::draw()
         {
             btnSell->active = true;
         }
-        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive || scene->menus[OTHER_UNIT_INVENTORY_MENU]->isActive)
         {
             btnXfer->active = true;
         }
@@ -352,48 +352,89 @@ void InventoryMenu::buildElements()
 
     MenuButton* xferBtn = new MenuButton(IVENTORY_TRANSFER_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.85);
     xferBtn->setText("Transfer")->addOnClick([this, items]() {
-        if (!scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive)
         {
-            return;
-        }
-        int selection = items->getSelectedElementValue();
-        if (selection != -1)
-        {
-            if (scene->player->inventory[selection]->stackSize > 1)
+            int selection = items->getSelectedElementValue();
+            if (selection != -1)
             {
-                InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
-                qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
-                qtyPrompt->addCallBack([selection, this](std::string enteredText) {
-                    int numToXfer;
-                    if (stringIsAnInt(enteredText))
-                    {
-                        numToXfer = std::stoi(enteredText);
-                    }
-                    else {
-                        numToXfer = 0;
-                    }
+                if (scene->player->inventory[selection]->stackSize > 1)
+                {
+                    InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                    qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                    qtyPrompt->addCallBack([selection, this](std::string enteredText) {
+                        int numToXfer;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToXfer = std::stoi(enteredText);
+                        }
+                        else {
+                            numToXfer = 0;
+                        }
 
-                    if (numToXfer >= scene->player->inventory[selection]->stackSize)
-                    {
-                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
-                        scene->player->removeItemFromInventory(selection);
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
-                    }
-                    else if (numToXfer > 0) {
-                        Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
-                        itemToXfer->stackSize = numToXfer;
-                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
-                        scene->player->inventory[selection]->stackSize -= numToXfer;
-                        rebuildElements();
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
-                    }
-                    });
-                scene->addPrompt(qtyPrompt);
+                        if (numToXfer >= scene->player->inventory[selection]->stackSize)
+                        {
+                            ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                            scene->player->removeItemFromInventory(selection);
+                            scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                        }
+                        else if (numToXfer > 0) {
+                            Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
+                            itemToXfer->stackSize = numToXfer;
+                            ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
+                            scene->player->inventory[selection]->stackSize -= numToXfer;
+                            rebuildElements();
+                            scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                        }
+                        });
+                    scene->addPrompt(qtyPrompt);
+                }
+                else {
+                    ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                    scene->player->removeItemFromInventory(selection);
+                    scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                }
             }
-            else {
-                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
-                scene->player->removeItemFromInventory(selection);
-                scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+        }
+        else if (scene->menus[OTHER_UNIT_INVENTORY_MENU]->isActive) {
+            int selection = items->getSelectedElementValue();
+            if (selection != -1)
+            {
+                if (scene->player->inventory[selection]->stackSize > 1)
+                {
+                    InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                    qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                    qtyPrompt->addCallBack([selection, this](std::string enteredText) {
+                        int numToXfer;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToXfer = std::stoi(enteredText);
+                        }
+                        else {
+                            numToXfer = 0;
+                        }
+
+                        if (numToXfer >= scene->player->inventory[selection]->stackSize)
+                        {
+                            addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                            scene->player->removeItemFromInventory(selection);
+                            scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
+                        }
+                        else if (numToXfer > 0) {
+                            Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
+                            itemToXfer->stackSize = numToXfer;
+                            addItemToContainer(itemToXfer, ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                            scene->player->inventory[selection]->stackSize -= numToXfer;
+                            rebuildElements();
+                            scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
+                        }
+                        });
+                    scene->addPrompt(qtyPrompt);
+                }
+                else {
+                    addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                    scene->player->removeItemFromInventory(selection);
+                    scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
+                }
             }
         }
         });

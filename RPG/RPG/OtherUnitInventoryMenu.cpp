@@ -83,7 +83,7 @@ void OtherUnitInventoryMenu::draw()
     if (itemIndex != -1)
     {
         btnDrop->active = true;;
-        item = scene->player->inventory[items->getSelectedElementValue()];
+        item = selectedUnit->inventory[items->getSelectedElementValue()];
         if (item->generalType == FOOD)
         {
             btnEat->active = true;
@@ -128,34 +128,34 @@ void OtherUnitInventoryMenu::rebuildElements()
         delete toolTips[i];
     }
     toolTips.clear();
-    for (int i = 0; i < scene->player->inventory.size(); i++)
+    for (int i = 0; i < selectedUnit->inventory.size(); i++)
     {
-        MenuText* txtInvItem = new MenuText(scene, scene->player->inventory[i]->name, 0, 0);
-        HoverToolTip* toolTip = createItemToolTip(scene->player->inventory[i], scene);
+        MenuText* txtInvItem = new MenuText(scene, selectedUnit->inventory[i]->name, 0, 0);
+        HoverToolTip* toolTip = createItemToolTip(selectedUnit->inventory[i], scene);
         registerToolTip(txtInvItem, toolTip);
 
-        if (scene->player->inventory[i]->generalType == FOOD) {
+        if (selectedUnit->inventory[i]->generalType == FOOD) {
             txtInvItem->addBtnOneCallback([this, i]() {
-                Item* selectedItem = scene->player->inventory[i];
+                Item* selectedItem = selectedUnit->inventory[i];
                 if (selectedItem->generalType == FOOD)
                 {
                     Food* itemToEat = (Food*)selectedItem;
                     selectedUnit->eatFood(itemToEat);
                     if (itemToEat->stackSize <= 0)
                     {
-                        scene->player->inventory.erase(scene->player->inventory.begin() + i);
+                        selectedUnit->inventory.erase(selectedUnit->inventory.begin() + i);
                     }
                     rebuildElements();
                 }
                 });
         }
 
-        if (scene->player->inventory[i]->stackSize > 1)
+        if (selectedUnit->inventory[i]->stackSize > 1)
         {
-            items->addElement(txtInvItem->setText(scene->player->inventory[i]->name + " X " + std::to_string(scene->player->inventory[i]->stackSize)), i);
+            items->addElement(txtInvItem->setText(selectedUnit->inventory[i]->name + " X " + std::to_string(selectedUnit->inventory[i]->stackSize)), i);
         }
         else {
-            items->addElement(txtInvItem->setText(scene->player->inventory[i]->name), i);
+            items->addElement(txtInvItem->setText(selectedUnit->inventory[i]->name), i);
         }
     }
     items->selectedElement = nullptr;
@@ -184,6 +184,11 @@ void OtherUnitInventoryMenu::rebuildElements()
 void OtherUnitInventoryMenu::setUnit(RpgUnit* newUnit)
 {
     selectedUnit = newUnit;
+}
+
+RpgUnit* OtherUnitInventoryMenu::getSelectedUnit()
+{
+    return selectedUnit;
 }
 
 bool OtherUnitInventoryMenu::handleInput(InputMessage* message)
@@ -222,10 +227,10 @@ void OtherUnitInventoryMenu::buildElements()
         int selection = items->getSelectedElementValue();
         if (selection != -1)
         {
-            if (scene->player->inventory[selection]->stackSize > 1)
+            if (selectedUnit->inventory[selection]->stackSize > 1)
             {
                 InputPrompt* qtyPrompt = new InputPrompt(scene, "Drop How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
-                qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                qtyPrompt->setInputText(std::to_string(selectedUnit->inventory[selection]->stackSize));
                 qtyPrompt->addCallBack([selection, this](std::string enteredText) {
                     int numToDrop;
                     if (stringIsAnInt(enteredText))
@@ -236,15 +241,15 @@ void OtherUnitInventoryMenu::buildElements()
                         numToDrop = 0;
                     }
 
-                    if (numToDrop >= scene->player->inventory[selection]->stackSize)
+                    if (numToDrop >= selectedUnit->inventory[selection]->stackSize)
                     {
                         selectedUnit->dropItemFromInventory(selection);
                     }
                     else if (numToDrop > 0) {
-                        Item* itemToDrop = createNewItem(scene->player->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
+                        Item* itemToDrop = createNewItem(selectedUnit->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
                         itemToDrop->stackSize = numToDrop;
                         scene->addItemsToMap(selectedUnit->zone, selectedUnit->tileLocation->x, selectedUnit->tileLocation->y, { itemToDrop });
-                        scene->player->inventory[selection]->stackSize -= numToDrop;
+                        selectedUnit->inventory[selection]->stackSize -= numToDrop;
                         rebuildElements();
                     }
                     });
@@ -262,19 +267,20 @@ void OtherUnitInventoryMenu::buildElements()
     equipBtn->setText("Equip")->addOnClick([this, items]() {
         if (items->getSelectedElementValue() != -1)
         {
-            Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
+            Item* selectedItem = selectedUnit->inventory[items->getSelectedElementValue()];
             if (selectedItem->equipable)
             {
                 Equipment* itemToEquip = (Equipment*)selectedItem;
                 selectedUnit->equipItem(itemToEquip);
                 /*if (selectedUnit->equippedItems[itemToEquip->slot] != nullptr)
                 {
-                    scene->player->inventory.push_back(selectedUnit->equippedItems[itemToEquip->slot]);
+                    selectedUnit->inventory.push_back(selectedUnit->equippedItems[itemToEquip->slot]);
                 }
                 selectedUnit->equippedItems[itemToEquip->slot] = itemToEquip;
-                scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
+                selectedUnit->inventory.erase(selectedUnit->inventory.begin() + items->getSelectedElementValue());
                 scene->menus[EQUIPPED_MENU]->rebuildElements();
                 rebuildElements();*/
+                rebuildMenuElements();
             }
         }
         });
@@ -284,16 +290,16 @@ void OtherUnitInventoryMenu::buildElements()
     eatBtn->setText("Eat")->addOnClick([this, items]() {
         if (items->getSelectedElementValue() != -1)
         {
-            Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
+            Item* selectedItem = selectedUnit->inventory[items->getSelectedElementValue()];
             if (selectedItem->generalType == FOOD)
             {
                 Food* itemToEat = (Food*)selectedItem;
                 selectedUnit->eatFood(itemToEat);
                 if (itemToEat->stackSize <= 0)
                 {
-                    scene->player->inventory.erase(scene->player->inventory.begin() + items->getSelectedElementValue());
+                    selectedUnit->inventory.erase(selectedUnit->inventory.begin() + items->getSelectedElementValue());
                 }
-                rebuildElements();
+                rebuildMenuElements();
             }
         }
         });
@@ -303,7 +309,7 @@ void OtherUnitInventoryMenu::buildElements()
     sellBtn->setText("Sell")->addOnClick([this, items]() {
         if (items->getSelectedElementValue() != -1)
         {
-            Item* selectedItem = scene->player->inventory[items->getSelectedElementValue()];
+            Item* selectedItem = selectedUnit->inventory[items->getSelectedElementValue()];
             if (selectedItem->stackSize > 1)
             {
                 InputPrompt* qtyPrompt = new InputPrompt(scene, "Sell How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
@@ -370,10 +376,10 @@ void OtherUnitInventoryMenu::buildElements()
         int selection = items->getSelectedElementValue();
         if (selection != -1)
         {
-            if (scene->player->inventory[selection]->stackSize > 1)
+            if (selectedUnit->inventory[selection]->stackSize > 1)
             {
                 InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
-                qtyPrompt->setInputText(std::to_string(scene->player->inventory[selection]->stackSize));
+                qtyPrompt->setInputText(std::to_string(selectedUnit->inventory[selection]->stackSize));
                 qtyPrompt->addCallBack([selection, this](std::string enteredText) {
                     int numToXfer;
                     if (stringIsAnInt(enteredText))
@@ -384,17 +390,17 @@ void OtherUnitInventoryMenu::buildElements()
                         numToXfer = 0;
                     }
 
-                    if (numToXfer >= scene->player->inventory[selection]->stackSize)
+                    if (numToXfer >= selectedUnit->inventory[selection]->stackSize)
                     {
-                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
                         selectedUnit->removeItemFromInventory(selection);
                         scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
                     }
                     else if (numToXfer > 0) {
-                        Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
+                        Item* itemToXfer = createNewItem(selectedUnit->inventory[selection]->specificType);
                         itemToXfer->stackSize = numToXfer;
                         ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
-                        scene->player->inventory[selection]->stackSize -= numToXfer;
+                        selectedUnit->inventory[selection]->stackSize -= numToXfer;
                         rebuildElements();
                         scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
                     }
@@ -402,7 +408,7 @@ void OtherUnitInventoryMenu::buildElements()
                 scene->addPrompt(qtyPrompt);
             }
             else {
-                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(scene->player->inventory[selection]);
+                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
                 selectedUnit->removeItemFromInventory(selection);
                 scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
             }
