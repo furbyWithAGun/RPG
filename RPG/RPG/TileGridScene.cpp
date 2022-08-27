@@ -104,7 +104,10 @@ void TileGridScene::sceneLogic()
     GameScene::sceneLogic();
     for (auto zone : zones)
     {
-        zone.second->update();
+        if (zone.second)
+        {
+            zone.second->update();
+        }
     }
 }
 

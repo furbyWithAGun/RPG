@@ -12,7 +12,7 @@ const int MAX_ZONE_WIDTH = 200;
 const int MAX_ZONE_HEIGHT = 200;
 const int RPG_GAME_TICKS_PER_SECOND = 40;
 const int DEFAULT_GET_PATH_RATE = 25;
-const int DEFAULT_ADJUST_PATH_RATE = 1;
+const int DEFAULT_ADJUST_PATH_RATE = 0;
 
 
 //enums

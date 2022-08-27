@@ -720,6 +720,10 @@ std::string RpgUnit::getEquippedItemsSavedString()
 void RpgUnit::setEquippedItemsFromSavedString(std::string saveString)
 {
     for (auto item : getItemVectorFromSaveString(saveString)) {
+        if (item->name == "Bare Hands")
+        {
+            continue;
+        }
         equippedItems[((Equipment*)item)->slot] = (Equipment*)item;
     }
 }
