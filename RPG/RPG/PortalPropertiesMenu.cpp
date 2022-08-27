@@ -91,7 +91,7 @@ void PortalPropertiesMenu::buildElements()
         MenuButton* selectExitIdButton = new MenuButton(this->scene, BUTTON_BACKGROUND, xpos + engine->screenWidth * 0.04, ypos + engine->screenHeight * 0.09);
         selectExitIdButton->addOnClick([this]() {
             SelectPrompt* zoneSelectPrompt;
-            zoneSelectPrompt = new SelectPrompt(this->scene, COLOR_BLACK, this->xpos + this->width, this->ypos, 300, 300);
+            zoneSelectPrompt = new SelectPrompt(this->scene, COLOR_BLACK, this->xpos + this->width, this->ypos, 300, 500);
             for (auto zone : this->scene->getZones())
             {
                 zoneSelectPrompt->addSelectOption(zone.second->zoneName, zone.second->id);

@@ -1155,6 +1155,20 @@ bool containerContainsAmount(int itemSpecificType, int qty, std::vector<Item*>& 
     return false;
 }
 
+Food* getSomeFoodFromContainer(std::vector<Item*>& container)
+{
+    Food* foodToReturn = nullptr;
+    for (Item* item : container) {
+        if (item->generalType == FOOD)
+        {
+            foodToReturn = (Food*) createNewItem(item->specificType);
+            removeQtyFromContainer(item->specificType, 1, container);
+            return foodToReturn;
+        }
+    }
+    return foodToReturn;
+}
+
 int qtyInContainer(int itemType, std::vector<Item*>& container)
 {
     int qtyInContainer = 0;

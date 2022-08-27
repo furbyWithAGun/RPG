@@ -108,6 +108,7 @@ private:
 
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container);
 bool containerContainsAmount(int itemType, int qty, std::vector<Item*>& container);
+Food* getSomeFoodFromContainer(std::vector<Item*>& container);
 int qtyInContainer(int itemType, std::vector<Item*>& container);
 void removeQtyFromContainer(int itemType, int qty, std::vector<Item*>& container);
 void removeItemFromContainer(int index, std::vector<Item*>& container);

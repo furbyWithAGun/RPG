@@ -134,6 +134,11 @@ void RpgOverWorldScene::setUpScene()
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 
     //h4x
+    ((RpgTown*)getZones()[1])->addPopulation(30);
+    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //Item* itemToDrop = createNewItem(ITEM_WOOD);
     //itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 10, 26, { itemToDrop });
@@ -144,7 +149,7 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(COMBAT_EXPERIENCE, 999999999);
+    //player->addExp(SKILL_COMBAT, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
     //((RpgTown*)getZones()[1])->addPopulation(1000);
@@ -417,6 +422,16 @@ void RpgOverWorldScene::sceneLogic()
             break;
         default:
             break;
+        }
+    }
+
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        if (squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
+            if (squadUnits[i]->getTargetLocation() == nullptr && currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
+            {
+                squadUnits[i]->setTargetLocation(player->tileLocation);
+            }
         }
     }
 
