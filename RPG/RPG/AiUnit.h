@@ -35,7 +35,7 @@ private:
     //attribues
     double chanceToMoveEachTick;
     int checkToAttackTick;
-    int checkToAttackRate;
+    //int checkToAttackRate;
 
     //methods
     bool meleeAttackUnitInDirection(int direction);

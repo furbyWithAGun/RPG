@@ -429,6 +429,10 @@ bool Unit::updateMovement() {
 
 bool Unit::processPath()
 {
+    if (targetUnit && (std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1 && std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1))
+    {
+        return false;
+    }
     int newDirection = pathDirections.back();
     //pathDirections.pop_back();
     switch (newDirection)

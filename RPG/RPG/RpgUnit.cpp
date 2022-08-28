@@ -649,6 +649,7 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 
 void RpgUnit::init()
 {
+    attackingNearbyEnemy = false;
     scene = nullptr;
     maxHungerLevel = 500;
     hungerLevel = maxHungerLevel;

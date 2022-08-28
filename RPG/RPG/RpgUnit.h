@@ -137,6 +137,8 @@ public:
 private:
     //attributes
     std::vector<unitSkillAttributeData> unitSkills;
+    bool attackingNearbyEnemy;
+
     //methods
     void init();
     virtual void createAnimations() {};

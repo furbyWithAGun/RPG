@@ -48,7 +48,7 @@ void AiUnit::init() {
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;
     checkToAttackTick = 0;
-    checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 7;
+    //checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 7;
 }
 
 void AiUnit::update() {
@@ -126,8 +126,8 @@ void AiUnit::randomMovement() {
 }
 
 bool AiUnit::attackNearbyUnit() {
-    checkToAttackTick++;
-    if (checkToAttackTick >= checkToAttackRate)
+    //checkToAttackTick++;
+    /*if (checkToAttackTick >= checkToAttackRate)
     {
         checkToAttackTick = 0;
         for (size_t i = 0; i < NUM_DIRECTIONS; i++)
@@ -135,6 +135,16 @@ bool AiUnit::attackNearbyUnit() {
             if (meleeAttackUnitInDirection(i)) {
                 return true;
             }
+        }
+    }*/
+    if (!targetUnit)
+    {
+        return false;
+    }
+    for (size_t i = 0; i < NUM_DIRECTIONS; i++)
+    {
+        if (meleeAttackUnitInDirection(i)) {
+            return true;
         }
     }
     return false;
