@@ -95,7 +95,7 @@ void OtherUnitInventoryMenu::draw()
         {
             btnSell->active = true;
         }
-        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive || scene->menus[INVENTORY_MENU]->isActive)
         {
             btnXfer->active = true;
         }
@@ -171,6 +171,7 @@ void OtherUnitInventoryMenu::rebuildElements()
             displaySlots[i].icon = UiElement(scene, selectedUnit->equippedItems[i]->textureKey, xpos + displaySlots[i].x, ypos + displaySlots[i].y);
             displaySlots[i].icon.addOnClick([this, i]() {
                 selectedUnit->unEquipItem(i);
+                rebuildMenuElements();
                 });
             HoverToolTip* toolTip = createItemToolTip(selectedUnit->equippedItems[i], scene);
             registerToolTip(&displaySlots[i].icon, toolTip);
@@ -244,6 +245,7 @@ void OtherUnitInventoryMenu::buildElements()
                     if (numToDrop >= selectedUnit->inventory[selection]->stackSize)
                     {
                         selectedUnit->dropItemFromInventory(selection);
+                        rebuildElements();
                     }
                     else if (numToDrop > 0) {
                         Item* itemToDrop = createNewItem(selectedUnit->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
@@ -257,6 +259,7 @@ void OtherUnitInventoryMenu::buildElements()
             }
             else {
                 selectedUnit->dropItemFromInventory(selection);
+                rebuildElements();
             }
         }
         });
@@ -369,51 +372,100 @@ void OtherUnitInventoryMenu::buildElements()
 
     MenuButton* xferBtn = new MenuButton(IVENTORY_TRANSFER_BUTTON, scene, BUTTON_BACKGROUND, xpos + width * 0.7, ypos + height * 0.85);
     xferBtn->setText("Transfer")->addOnClick([this, items]() {
-        if (!scene->menus[TRANSFER_ITEMS_MENU]->isActive)
+        if (scene->menus[TRANSFER_ITEMS_MENU]->isActive)
         {
-            return;
-        }
-        int selection = items->getSelectedElementValue();
-        if (selection != -1)
-        {
-            if (selectedUnit->inventory[selection]->stackSize > 1)
+            int selection = items->getSelectedElementValue();
+            if (selection != -1)
             {
-                InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
-                qtyPrompt->setInputText(std::to_string(selectedUnit->inventory[selection]->stackSize));
-                qtyPrompt->addCallBack([selection, this](std::string enteredText) {
-                    int numToXfer;
-                    if (stringIsAnInt(enteredText))
-                    {
-                        numToXfer = std::stoi(enteredText);
-                    }
-                    else {
-                        numToXfer = 0;
-                    }
+                if (selectedUnit->inventory[selection]->stackSize > 1)
+                {
+                    InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                    qtyPrompt->setInputText(std::to_string(selectedUnit->inventory[selection]->stackSize));
+                    qtyPrompt->addCallBack([selection, this](std::string enteredText) {
+                        int numToXfer;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToXfer = std::stoi(enteredText);
+                        }
+                        else {
+                            numToXfer = 0;
+                        }
 
-                    if (numToXfer >= selectedUnit->inventory[selection]->stackSize)
-                    {
-                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
-                        selectedUnit->removeItemFromInventory(selection);
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
-                    }
-                    else if (numToXfer > 0) {
-                        Item* itemToXfer = createNewItem(selectedUnit->inventory[selection]->specificType);
-                        itemToXfer->stackSize = numToXfer;
-                        ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
-                        selectedUnit->inventory[selection]->stackSize -= numToXfer;
-                        rebuildElements();
-                        scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
-                    }
-                    });
-                scene->addPrompt(qtyPrompt);
-            }
-            else {
-                ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
-                selectedUnit->removeItemFromInventory(selection);
-                scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                        if (numToXfer >= selectedUnit->inventory[selection]->stackSize)
+                        {
+                            ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
+                            selectedUnit->removeItemFromInventory(selection);
+                            rebuildElements();
+                            scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                        }
+                        else if (numToXfer > 0) {
+                            Item* itemToXfer = createNewItem(selectedUnit->inventory[selection]->specificType);
+                            itemToXfer->stackSize = numToXfer;
+                            ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(itemToXfer);
+                            selectedUnit->inventory[selection]->stackSize -= numToXfer;
+                            rebuildElements();
+                            scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                        }
+                        });
+                    scene->addPrompt(qtyPrompt);
+                }
+                else {
+                    ((TransferItemsMenu*)scene->menus[TRANSFER_ITEMS_MENU])->transferItemToContainer(selectedUnit->inventory[selection]);
+                    selectedUnit->removeItemFromInventory(selection);
+                    rebuildElements();
+                    scene->menus[TRANSFER_ITEMS_MENU]->rebuildMenuElements();
+                    scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                }
             }
         }
-        });
+        else if (scene->menus[INVENTORY_MENU]->isActive) {
+            int selection = items->getSelectedElementValue();
+            if (selection != -1)
+            {
+                if (selectedUnit->inventory[selection]->stackSize > 1)
+                {
+                    InputPrompt* qtyPrompt = new InputPrompt(scene, "Transfer How Many?", COLOR_BLACK, xpos + width, ypos, scene->engine->screenWidth * 0.2, scene->engine->screenHeight * 0.2);
+                    qtyPrompt->setInputText(std::to_string(selectedUnit->inventory[selection]->stackSize));
+                    qtyPrompt->addCallBack([selection, this](std::string enteredText) {
+                        int numToXfer;
+                        if (stringIsAnInt(enteredText))
+                        {
+                            numToXfer = std::stoi(enteredText);
+                        }
+                        else {
+                            numToXfer = 0;
+                        }
+
+                        if (numToXfer >= selectedUnit->inventory[selection]->stackSize)
+                        {
+                            addItemToContainer(selectedUnit->inventory[selection], scene->player->inventory);
+                            selectedUnit->removeItemFromInventory(selection);
+                            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                            rebuildMenuElements();
+                        }
+                        else if (numToXfer > 0) {
+                            Item* itemToXfer = createNewItem(selectedUnit->inventory[selection]->specificType);
+                            itemToXfer->stackSize = numToXfer;
+                            addItemToContainer(itemToXfer, scene->player->inventory);
+                            selectedUnit->inventory[selection]->stackSize -= numToXfer;
+                            rebuildElements();
+                            scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                            rebuildMenuElements();
+                        }
+                        });
+                    scene->addPrompt(qtyPrompt);
+                }
+                else {
+                    addItemToContainer(selectedUnit->inventory[selection], scene->player->inventory);
+                    selectedUnit->removeItemFromInventory(selection);
+                    rebuildMenuElements();
+                    scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+                }
+            }
+        }
+    });
 
     addElement(IVENTORY_TRANSFER_BUTTON, xferBtn);
 

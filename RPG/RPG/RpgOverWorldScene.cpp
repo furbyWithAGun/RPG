@@ -456,6 +456,11 @@ void RpgOverWorldScene::sceneLogic()
     
     for (auto zoneMap : getZones())
     {
+        if (!zoneMap.second)
+        {
+            std::cout << "\ninvalid zone in array";
+            continue;
+        }
         RpgZone* zone = (RpgZone*)zoneMap.second;
         if (zone->zoneType == ZONE_RPG_PROVINCE && engine->getProbFromSigmoid(zone->getDifficulty() + 1, zone->getDevelopmentLevel() + 10000 + zone->numUnitSpawners * 4000) > engine->randomDouble())
         {
