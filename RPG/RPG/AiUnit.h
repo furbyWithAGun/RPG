@@ -17,6 +17,7 @@ public:
     //attributes
     bool isHostile;
     bool doesRandomMovement;
+    bool speedUp;
 
     //constructor
     AiUnit();

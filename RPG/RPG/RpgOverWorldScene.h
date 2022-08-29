@@ -45,6 +45,7 @@ public:
     void renderScene() override;
     void renderHUD();
     void virtual destroyUnit(RpgUnit* unit) override;
+    std::unordered_map<int, AiUnit*> getSquadUnits();
 
 private:
     //attributes

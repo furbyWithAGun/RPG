@@ -1,6 +1,6 @@
 #include "Unit.h"
 #include"GameScene.h"
-#include "RpgTileGridScene.h"
+#include "RpgOverWorldScene.h"
 
 int uniqueUnitId = 0;
 const int MAX_PATH_ATTEMPTS = 5;
@@ -599,6 +599,15 @@ void Unit::portalTo(int zoneId, int x, int y)
     scene->getZone(zone)->removeUnitFromZone(this);
     //add unit to new zone
     scene->getZone(zoneId)->addUnitToLocation(this, x, y);
+    //if its a command squad unit disable further portaling
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        if (((RpgOverWorldScene*)scene)->getSquadUnits()[i] == this) {
+            ((RpgOverWorldScene*)scene)->getSquadUnits()[i]->canGoThroughPortal = false;
+        }
+    }
+    //clear old target location
+    targetLocation = nullptr;
 }
 
 void Unit::updateCoords() {

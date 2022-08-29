@@ -44,6 +44,7 @@ AiUnit::AiUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX
 
 void AiUnit::init() {
     isStatic = false;
+    speedUp = false;
     isHostile = false;
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;

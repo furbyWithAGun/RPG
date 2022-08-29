@@ -425,12 +425,23 @@ void RpgOverWorldScene::sceneLogic()
             if (squadUnits[message->misc] != nullptr)
             {
                 squadUnits[message->misc]->setTargetLocation(new Location{ message->x, message->y });
+                if (getPortalAtLocation(currentZone, message->x, message->y))
+                {
+                    squadUnits[message->misc]->canGoThroughPortal = true;
+                }
             }
             break;
         case OVERWORLD_ASSIGN_UNIT:
             RpgUnit* unitAtLocation;
             unitAtLocation = getUnitAtLocation(currentZone->id, message->x, message->y);
-            if (unitAtLocation != nullptr && unitAtLocation->team == player->team && unitAtLocation != player)
+            if (unitAtLocation != nullptr && unitAtLocation->team == player->team && unitAtLocation == squadUnits[message->misc])
+            {
+                ((AiUnit*)squadUnits[message->misc])->doesRandomMovement = true;
+                ((AiUnit*)squadUnits[message->misc])->adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
+                ((AiUnit*)squadUnits[message->misc])->canGoThroughPortal = false;
+                squadUnits[message->misc]= nullptr;
+            }
+            else if (unitAtLocation != nullptr && unitAtLocation->team == player->team && unitAtLocation != player)
             {
                 if (squadUnits[message->misc] != nullptr) {
                     ((AiUnit*)squadUnits[message->misc])->doesRandomMovement = true;
@@ -448,11 +459,21 @@ void RpgOverWorldScene::sceneLogic()
 
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
-        if (squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
-            if (squadUnits[i]->getTargetLocation() == nullptr && currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
+        if (squadUnits[i] && squadUnits[i]->zone == currentZone->id) {
+            //if (squadUnits[i]->getTargetLocation() == nullptr && currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
+            if (currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
             {
                 squadUnits[i]->setTargetLocation(player->tileLocation);
             }
+        }
+        if (squadUnits[i] && !squadUnits[i]->speedUp && currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 10)
+        {
+            squadUnits[i]->setAttributeLevel(UNIT_STAT_SPEED, squadUnits[i]->getAttributeLevel(UNIT_STAT_SPEED) * 2);
+            squadUnits[i]->speedUp = true;
+        }
+        else if(squadUnits[i] && squadUnits[i]->speedUp){
+            squadUnits[i]->setAttributeLevel(UNIT_STAT_SPEED, squadUnits[i]->getAttributeLevel(UNIT_STAT_SPEED) / 2);
+            squadUnits[i]->speedUp = false;
         }
     }
 
@@ -542,7 +563,7 @@ void RpgOverWorldScene::renderScene()
 
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
-        if (squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
+        if (controllerInterface->ctrlOn && squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
             double coords[2];
             double destCoords[2];
             coordsFromTileIndex(squadUnits[i]->tileLocation->x, squadUnits[i]->tileLocation->y, coords);
@@ -616,6 +637,11 @@ void RpgOverWorldScene::destroyUnit(RpgUnit* unit)
     }
 
     RpgTileGridScene::destroyUnit(unit);
+}
+
+std::unordered_map<int, AiUnit*> RpgOverWorldScene::getSquadUnits()
+{
+    return squadUnits;
 }
 
 

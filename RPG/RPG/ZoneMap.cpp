@@ -16,7 +16,7 @@
 #include "Skeleton.h"
 #include "SkeletonKing.h"
 #include <algorithm>
-#include "RpgTileGridScene.h"
+#include "RpgOverWorldScene.h"
 
 const int PATH_FINDING_BREAK_LIMIT = 1500;
 const int PATH_FINDING_SECOND_BREAK_LIMIT = 3000;

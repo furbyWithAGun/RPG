@@ -888,6 +888,12 @@ void Player::portalTo(int zoneId, int x, int y)
     scene->setCurrentZone(zone);
     tileDestinationBuffer->x = x;
     tileDestinationBuffer->y = y;
+    for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
+    {
+        if (((RpgOverWorldScene*)scene)->getSquadUnits()[i] != nullptr) {
+            ((RpgOverWorldScene*)scene)->getSquadUnits()[i]->portalTo(zoneId, x, y);
+        }
+    }
 }
 
 void Player::death()
