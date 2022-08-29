@@ -185,6 +185,11 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_LEATHER_PANTS, "images/leatherPants.png" });
     texturesToLoad.insert({ TEXTURE_LEATHER_GLOVES, "images/leatherGloves.png" });
     texturesToLoad.insert({ TEXTURE_LEATHER_BOOTS, "images/leatherBoots.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_HELM, "images/bronzeHelm.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_BODY, "images/bronzeBody.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_PANTS, "images/bronzeLegs.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_GLOVES, "images/bronzeGloves.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_BOOTS, "images/bronzeBoots.png" });
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     //food

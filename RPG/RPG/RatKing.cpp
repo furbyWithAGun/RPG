@@ -82,7 +82,7 @@ void RatKing::setDropTable()
 {
     dropChance = 1.0;
     maxNumDrops = 3;
-    dropTable.push_back({ 0.05, ITEM_SHORT_SWORD });
+    dropTable.push_back({ 0.04, ITEM_SHORT_SWORD });
     dropTable.push_back({ 0.1, ITEM_MACE });
     dropTable.push_back({ 0.1, ITEM_LONG_SWORD });
     dropTable.push_back({ 0.03, ITEM_RAG_BODY });
@@ -100,6 +100,11 @@ void RatKing::setDropTable()
     dropTable.push_back({ 0.03, ITEM_LEATHER_GLOVES });
     dropTable.push_back({ 0.03, ITEM_LEATHER_HAT });
     dropTable.push_back({ 0.03, ITEM_LEATHER_PANTS });
+    dropTable.push_back({ 0.002, ITEM_BRONZE_BODY });
+    dropTable.push_back({ 0.002, ITEM_BRONZE_BOOTS });
+    dropTable.push_back({ 0.002, ITEM_BRONZE_GLOVES });
+    dropTable.push_back({ 0.002, ITEM_BRONZE_HELM });
+    dropTable.push_back({ 0.002, ITEM_BRONZE_PANTS });
 }
 
 void RatKing::death()

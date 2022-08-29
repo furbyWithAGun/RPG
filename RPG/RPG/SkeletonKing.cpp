@@ -85,7 +85,6 @@ void SkeletonKing::setDropTable()
 {
     dropChance = 1.0;
     maxNumDrops = 5;
-    dropTable.push_back({ 0.05, ITEM_SHORT_SWORD });
     dropTable.push_back({ 0.1, ITEM_MACE });
     dropTable.push_back({ 0.1, ITEM_LONG_SWORD });
     dropTable.push_back({ 0.01, ITEM_RAG_BODY });
@@ -103,6 +102,11 @@ void SkeletonKing::setDropTable()
     dropTable.push_back({ 0.09, ITEM_LEATHER_GLOVES });
     dropTable.push_back({ 0.09, ITEM_LEATHER_HAT });
     dropTable.push_back({ 0.09, ITEM_LEATHER_PANTS });
+    dropTable.push_back({ 0.01, ITEM_BRONZE_BODY });
+    dropTable.push_back({ 0.01, ITEM_BRONZE_BOOTS });
+    dropTable.push_back({ 0.01, ITEM_BRONZE_GLOVES });
+    dropTable.push_back({ 0.01, ITEM_BRONZE_HELM });
+    dropTable.push_back({ 0.01, ITEM_BRONZE_PANTS });
 }
 
 void SkeletonKing::death()

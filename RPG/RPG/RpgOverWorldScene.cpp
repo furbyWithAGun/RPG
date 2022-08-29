@@ -78,6 +78,11 @@ void RpgOverWorldScene::setUpScene()
     if (saveGameName == SAVES_FILE_PATH + NEW_GAME_SAVE_FILE)
     {
         player = (Player*)createUnitAtLocation(0, PLAYER, 104, 23);
+        //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
+        //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_HELM) });
+        //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_GLOVES) });
+        //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BOOTS) });
+        //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_PANTS) });
         //player = (Player*)createUnitAtLocation(4, PLAYER, 18, 14);
         //squadUnits[1] = (AiUnit*)createUnitAtLocation(currentZone->id, SOLDIER, 9, 25);
         //squadUnits[1]->doesRandomMovement = false;

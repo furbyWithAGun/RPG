@@ -341,6 +341,76 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		false,
 		1
+	} },
+	{ ITEM_BRONZE_BODY, ItemTemplate{
+		"Bronze Armour",
+		ITEM_BRONZE_BODY,
+		ARMOUR,
+		TEXTURE_BRONZE_BODY,
+		BODY_SLOT,
+		0,
+		0,
+		500,
+		4,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_BRONZE_BOOTS, ItemTemplate{
+		"Bronze Boots",
+		ITEM_BRONZE_BOOTS,
+		ARMOUR,
+		TEXTURE_BRONZE_BOOTS,
+		FEET_SLOT,
+		0,
+		0,
+		500,
+		4,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_BRONZE_GLOVES, ItemTemplate{
+		"Bronze Gloves",
+		ITEM_BRONZE_GLOVES,
+		ARMOUR,
+		TEXTURE_BRONZE_GLOVES,
+		HANDS_SLOT,
+		0,
+		0,
+		500,
+		4,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_BRONZE_HELM, ItemTemplate{
+		"Bronze Helm",
+		ITEM_BRONZE_HELM,
+		ARMOUR,
+		TEXTURE_BRONZE_HELM,
+		HEAD_SLOT,
+		0,
+		0,
+		500,
+		4,
+		false,
+		false,
+		1
+	} },
+	{ ITEM_BRONZE_PANTS, ItemTemplate{
+		"Bronze Leggings",
+		ITEM_BRONZE_PANTS,
+		ARMOUR,
+		TEXTURE_BRONZE_PANTS,
+		LEGS_SLOT,
+		0,
+		0,
+		500,
+		4,
+		false,
+		false,
+		1
 	} }
 };
 
