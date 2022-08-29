@@ -1716,22 +1716,25 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 			{
 				switch (stoi(savedDooDads[i].attributes[j].valueString)) {
 				case HEALING_PAD:
-					returnVector.push_back(new HealingPad(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new HealingPad(savedDooDads[i].rawString, gameScene));
 					break;
 				case DOODAD_TOWN_COMMAND:
-					returnVector.push_back(new TownCommand(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new TownCommand(savedDooDads[i].rawString, gameScene));
 					break;
 				case DOODAD_TREE:
-					returnVector.push_back(new Tree(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new Tree(savedDooDads[i].rawString, gameScene));
 					break;
 				case DOODAD_APPLE_TREE:
-					returnVector.push_back(new FruitTree(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new FruitTree(savedDooDads[i].rawString, gameScene));
 					break;
 				case DOODAD_RASPBERRY_BUSH:
-					returnVector.push_back(new BerryBush(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new BerryBush(savedDooDads[i].rawString, gameScene));
 					break;
 				case DOODAD_UNIT_SPAWNER:
-					returnVector.push_back(new UnitSpawner(savedDooDads[i].rawString, gameScene));;
+					returnVector.push_back(new UnitSpawner(savedDooDads[i].rawString, gameScene));
+					break;
+				case DOODAD_TREASURE_CHEST:
+					returnVector.push_back(new TreasureChest(savedDooDads[i].rawString, gameScene));
 					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString, gameScene));

@@ -34,6 +34,8 @@ public:
     bool placingBuilding;
     bool placingDooDad;
     bool destroyingUnits;
+    std::vector<std::vector<ChanceObject>> chestDropTable;
+    std::vector<int> chestDropNum;
 
     //pathing rates
     int aggroUpdateRate;
@@ -104,6 +106,7 @@ private:
     void init();
     void drawCombatMessages();
     void updateCombatMessages();
+    void buildChestDropTable();
 };
 
 void addItemToContainer(Item* itemToAdd, std::vector<Item*>& container);

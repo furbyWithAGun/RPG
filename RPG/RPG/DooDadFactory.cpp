@@ -42,6 +42,9 @@ DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId)
 		((BerryBush*)dooDadToReturn)->grownBerryTextureKey = TEXTURE_RASPBERRY_BUSH_WITH_BERRIES;
 		((BerryBush*)dooDadToReturn)->noBerryTextureKey = TEXTURE_RASPBERRY_BUSH_NO_BERRIES;
 		break;
+	case DOODAD_TREASURE_CHEST:
+		dooDadToReturn = new TreasureChest(gameScene);
+		break;
 	default:
 		printf("Warning: creating blank DooDad() from DooDad factory");
 		dooDadToReturn = new DooDad(gameScene);

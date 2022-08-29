@@ -180,6 +180,7 @@
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
     <ClCompile Include="TransferItemsMenu.cpp" />
+    <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="UnitFactory.cpp" />
     <ClCompile Include="UnitSpawner.cpp" />
     <ClCompile Include="WhiteRat.cpp" />
@@ -300,6 +301,7 @@
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
     <ClInclude Include="TransferItemsMenu.h" />
+    <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="UnitFactory.h" />
     <ClInclude Include="UnitSpawner.h" />
     <ClInclude Include="WhiteRat.h" />

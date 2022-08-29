@@ -6,6 +6,7 @@
 #include "FruitTree.h"
 #include "BerryBush.h"
 #include "UnitSpawner.h"
+#include "TreasureChest.h"
 
 
 

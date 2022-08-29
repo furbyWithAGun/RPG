@@ -224,6 +224,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_RASPBERRY_BUSH_NO_BERRIES, "images/raspberryBushNoBerries.png" });
     texturesToLoad.insert({ TEXTURE_TOWN_COMMAND, "images/townCommandDooDad.png" });
     texturesToLoad.insert({ TEXTURE_RAT_SPAWNER, "images/ratSpawner.png" });
+    texturesToLoad.insert({ TEXTURE_CHEST_CLOSED, "images/chestClosed.png" });
+    texturesToLoad.insert({ TEXTURE_CHEST_OPEN, "images/chestOpen.png" });
 }
 
 void RpgTileGridScene::setUpScene()
@@ -915,6 +917,9 @@ void RpgTileGridScene::init()
     placingUnit = false;
     //aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.75;
     aggroUpdateRate = RPG_GAME_TICKS_PER_SECOND * 0.1;
+    chestDropTable.resize(100);
+    chestDropNum.resize(100);
+    buildChestDropTable();
 }
 
 void RpgTileGridScene::drawCombatMessages()
@@ -939,6 +944,95 @@ void RpgTileGridScene::updateCombatMessages() {
         {
             return u.tickCount >= u.duration;
         }), end(combatMessages));
+}
+
+void RpgTileGridScene::buildChestDropTable()
+{
+    chestDropNum[1] = 2;
+    chestDropTable[1].push_back({ 0.1, ITEM_CLUB });
+    chestDropTable[1].push_back({ 0.3, ITEM_SHORT_SWORD });
+    chestDropTable[1].push_back({ 0.1, ITEM_RAG_HAT });
+    chestDropTable[1].push_back({ 0.1, ITEM_RAG_BODY });
+    chestDropTable[1].push_back({ 0.1, ITEM_RAG_PANTS });
+    chestDropTable[1].push_back({ 0.1, ITEM_RAG_BOOTS });
+    chestDropTable[1].push_back({ 0.1, ITEM_RAG_GLOVES });
+    chestDropTable[1].push_back({ 0.1, ITEM_LINEN_HAT });
+
+    chestDropNum[2] = 3;
+    chestDropTable[2].push_back({ 0.05, ITEM_CLUB });
+    chestDropTable[2].push_back({ 0.1, ITEM_MACE });
+    chestDropTable[2].push_back({ 0.25, ITEM_SHORT_SWORD });
+    chestDropTable[2].push_back({ 0.1, ITEM_RAG_HAT });
+    chestDropTable[2].push_back({ 0.1, ITEM_RAG_BODY });
+    chestDropTable[2].push_back({ 0.1, ITEM_RAG_PANTS });
+    chestDropTable[2].push_back({ 0.1, ITEM_RAG_BOOTS });
+    chestDropTable[2].push_back({ 0.1, ITEM_RAG_GLOVES });
+    chestDropTable[2].push_back({ 0.1, ITEM_LINEN_HAT });
+
+    chestDropNum[3] = 3;
+    chestDropTable[3].push_back({ 0.25, ITEM_MACE });
+    chestDropTable[3].push_back({ 0.15, ITEM_SHORT_SWORD });
+    chestDropTable[3].push_back({ 0.1, ITEM_LINEN_HAT });
+    chestDropTable[3].push_back({ 0.1, ITEM_LINEN_BODY });
+    chestDropTable[3].push_back({ 0.1, ITEM_LINEN_PANTS });
+    chestDropTable[3].push_back({ 0.1, ITEM_LINEN_BOOTS });
+    chestDropTable[3].push_back({ 0.1, ITEM_LINEN_GLOVES });
+    chestDropTable[3].push_back({ 0.1, ITEM_LEATHER_HAT });
+
+    chestDropNum[4] = 3;
+    chestDropTable[4].push_back({ 0.1, ITEM_SHORT_SWORD });
+    chestDropTable[4].push_back({ 0.3, ITEM_MACE });
+    chestDropTable[4].push_back({ 0.1, ITEM_LONG_SWORD });
+    chestDropTable[4].push_back({ 0.05, ITEM_LINEN_HAT });
+    chestDropTable[4].push_back({ 0.05, ITEM_LINEN_BODY });
+    chestDropTable[4].push_back({ 0.05, ITEM_LINEN_PANTS });
+    chestDropTable[4].push_back({ 0.05, ITEM_LINEN_BOOTS });
+    chestDropTable[4].push_back({ 0.05, ITEM_LINEN_GLOVES });
+    chestDropTable[4].push_back({ 0.05, ITEM_LEATHER_HAT });
+    chestDropTable[4].push_back({ 0.05, ITEM_LEATHER_BODY });
+    chestDropTable[4].push_back({ 0.05, ITEM_LEATHER_PANTS });
+    chestDropTable[4].push_back({ 0.05, ITEM_LEATHER_BOOTS });
+    chestDropTable[4].push_back({ 0.05, ITEM_LEATHER_GLOVES });
+
+    chestDropNum[5] = 4;
+    chestDropTable[5].push_back({ 0.05, ITEM_SHORT_SWORD });
+    chestDropTable[5].push_back({ 0.3, ITEM_MACE });
+    chestDropTable[5].push_back({ 0.15, ITEM_LONG_SWORD });
+    chestDropTable[5].push_back({ 0.04, ITEM_LINEN_HAT });
+    chestDropTable[5].push_back({ 0.04, ITEM_LINEN_BODY });
+    chestDropTable[5].push_back({ 0.04, ITEM_LINEN_PANTS });
+    chestDropTable[5].push_back({ 0.04, ITEM_LINEN_BOOTS });
+    chestDropTable[5].push_back({ 0.04, ITEM_LINEN_GLOVES });
+    chestDropTable[5].push_back({ 0.05, ITEM_LEATHER_HAT });
+    chestDropTable[5].push_back({ 0.05, ITEM_LEATHER_BODY });
+    chestDropTable[5].push_back({ 0.05, ITEM_LEATHER_PANTS });
+    chestDropTable[5].push_back({ 0.05, ITEM_LEATHER_BOOTS });
+    chestDropTable[5].push_back({ 0.05, ITEM_LEATHER_GLOVES });
+    chestDropTable[5].push_back({ 0.01, ITEM_BRONZE_HELM });
+    chestDropTable[5].push_back({ 0.01, ITEM_BRONZE_BODY });
+    chestDropTable[5].push_back({ 0.01, ITEM_BRONZE_PANTS });
+    chestDropTable[5].push_back({ 0.01, ITEM_BRONZE_BOOTS });
+    chestDropTable[5].push_back({ 0.01, ITEM_BRONZE_GLOVES });
+
+    chestDropNum[6] = 4;
+    chestDropTable[6].push_back({ 0.05, ITEM_SHORT_SWORD });
+    chestDropTable[6].push_back({ 0.2, ITEM_MACE });
+    chestDropTable[6].push_back({ 0.25, ITEM_LONG_SWORD });
+    chestDropTable[6].push_back({ 0.03, ITEM_LINEN_HAT });
+    chestDropTable[6].push_back({ 0.03, ITEM_LINEN_BODY });
+    chestDropTable[6].push_back({ 0.03, ITEM_LINEN_PANTS });
+    chestDropTable[6].push_back({ 0.03, ITEM_LINEN_BOOTS });
+    chestDropTable[6].push_back({ 0.03, ITEM_LINEN_GLOVES });
+    chestDropTable[6].push_back({ 0.04, ITEM_LEATHER_HAT });
+    chestDropTable[6].push_back({ 0.04, ITEM_LEATHER_BODY });
+    chestDropTable[6].push_back({ 0.04, ITEM_LEATHER_PANTS });
+    chestDropTable[6].push_back({ 0.04, ITEM_LEATHER_BOOTS });
+    chestDropTable[6].push_back({ 0.04, ITEM_LEATHER_GLOVES });
+    chestDropTable[6].push_back({ 0.03, ITEM_BRONZE_HELM });
+    chestDropTable[6].push_back({ 0.03, ITEM_BRONZE_BODY });
+    chestDropTable[6].push_back({ 0.03, ITEM_BRONZE_PANTS });
+    chestDropTable[6].push_back({ 0.03, ITEM_BRONZE_BOOTS });
+    chestDropTable[6].push_back({ 0.03, ITEM_BRONZE_GLOVES });
 }
 
 void RpgTileGridScene::buildCraftingRecipes()

@@ -540,6 +540,9 @@
     <ClCompile Include="OtherUnitInventoryMenu.cpp">
       <Filter>Source Files\RpgGame\scenes\overWorldScene\menus</Filter>
     </ClCompile>
+    <ClCompile Include="TreasureChest.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -898,6 +901,9 @@
     </ClInclude>
     <ClInclude Include="OtherUnitInventoryMenu.h">
       <Filter>Header Files\RpgGame\scenes\overWorldScene\menus</Filter>
+    </ClInclude>
+    <ClInclude Include="TreasureChest.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
