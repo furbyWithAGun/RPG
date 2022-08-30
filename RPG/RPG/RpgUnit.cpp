@@ -575,7 +575,7 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     if (this == scene->player && scene->menus[CRAFTING_MENU]->isActive) {
         scene->menus[CRAFTING_MENU]->rebuildMenuElements();
     }
-    if (itemToAdd->equipable && !inventory[((Equipment*)itemToAdd)->slot])
+    if (itemToAdd->equipable && !equippedItems[((Equipment*)itemToAdd)->slot])
     {
         equipItem((Equipment*)itemToAdd);
     }

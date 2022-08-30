@@ -415,14 +415,16 @@ void InventoryMenu::buildElements()
 
                         if (numToXfer >= scene->player->inventory[selection]->stackSize)
                         {
-                            addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                            //addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                             scene->player->removeItemFromInventory(selection);
                             scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
                         }
                         else if (numToXfer > 0) {
                             Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
                             itemToXfer->stackSize = numToXfer;
-                            addItemToContainer(itemToXfer, ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                            //addItemToContainer(itemToXfer, ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                             scene->player->inventory[selection]->stackSize -= numToXfer;
                             rebuildElements();
                             scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
@@ -431,7 +433,8 @@ void InventoryMenu::buildElements()
                     scene->addPrompt(qtyPrompt);
                 }
                 else {
-                    addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
+                    ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                    //addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                     scene->player->removeItemFromInventory(selection);
                     scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
                 }

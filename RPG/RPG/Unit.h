@@ -96,6 +96,7 @@ public:
     void setTargetLocation(int newX, int newY);
     void setTargetUnit(Unit* newTargetUnit);
     void setTileLocation(int x, int y);
+    void clearTargetLocation();
     void moveTo(int x, int y);
     virtual void portalTo(int zoneId, int x, int y);
     void updateCoords();
@@ -106,7 +107,7 @@ public:
     virtual void update();
     void getLocationUnitIsFacing(double tileXY[2]);
     void getLocationUnitDestinationIsFacing(int tileXY[2]);
-    void handleInput(InputMessage* message);
+    virtual void handleInput(InputMessage* message);
     void faceCoords(int x, int y);
     void getNewPath();
     void setScene(TileGridScene* gameScene);
@@ -136,6 +137,8 @@ protected:
 private:
     //attributes
     Location* targetLocation;
+    Location* targetLocationBuffer;
+    SDL_SpinLock targetLocationLock;
     //methods
     void init();
     void init(int zoneId, int unitType);

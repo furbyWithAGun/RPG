@@ -13,8 +13,7 @@ void Unit::getNewPath()
         if (getPathAttempts > MAX_PATH_ATTEMPTS)
         {
             getPathAttempts = 0;
-            delete targetLocation;
-            targetLocation = nullptr;
+            clearTargetLocation();
             targetUnit = nullptr;
             return;
         }
@@ -78,7 +77,14 @@ int Unit::setFullHealth()
 
 Location* Unit::getTargetLocation()
 {
-    return targetLocation;
+    if (!targetLocation) {
+        return nullptr;
+    }
+    SDL_AtomicLock(&targetLocationLock);
+    targetLocationBuffer->x = targetLocation->x;
+    targetLocationBuffer->y = targetLocation->y;
+    SDL_AtomicUnlock(&targetLocationLock);
+    return targetLocationBuffer;
 }
 
 std::string Unit::toSaveString(bool withHeaderAndFooter)
@@ -216,7 +222,7 @@ Unit::Unit(SaveObject saveObject, TileGridScene* gameScene) : AnimatedSprite(gam
             savedTargetUnitId = stoi(saveObject.attributes[i].valueString);
             break;
         case UNIT_TARGET_LOCATION:
-            targetLocation = getLocationFromSaveObject(saveObject.attributes[i].valueString);
+            setTargetLocation(getLocationFromSaveObject(saveObject.attributes[i].valueString));
             break;
         case UNIT_PATH_DIRECTIONS:
             pathDirections = getIntVectorFromSaveString(saveObject.attributes[i].valueString);
@@ -261,6 +267,7 @@ Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int s
 }
 
 void Unit::init() {
+    targetLocationLock = 0;
     gettingPath = false;
     type = -1;
     name = "";
@@ -268,6 +275,7 @@ void Unit::init() {
     tileDestination = new Location{ 0, 0 };
     tileLocationBuffer = new Location{ 0, 0 };
     tileDestinationBuffer = new Location{ 0, 0 };
+    targetLocationBuffer = new Location{ 0, 0 };
     //maxHealth = 1;
     //speed = 1;
     leftToMove = 0;
@@ -340,13 +348,53 @@ void Unit::startMovement(int direction) {
             tileDestination->y = tileLocation->y - 1;
             leftToMove = 1;
         }
+        else 
+        {
+            RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x, tileLocation->y - 1);
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            {
+                unitAtLocation->tileDestination->x = tileLocation->x;
+                unitAtLocation->tileDestination->y = tileLocation->y;
+                unitAtLocation->leftToMove = 1;
+                unitAtLocation->movingUp = false;
+                unitAtLocation->movingDown = true;
+                unitAtLocation->movingRight = false;
+                unitAtLocation->movingLeft = false;
+                unitAtLocation->setUnitState(UNIT_MOVING);
+                unitAtLocation->handleInput(&InputMessage(STOP_MOVE_DOWN));
+                unitAtLocation->directionFacing = DOWN;
+                unitAtLocation->setTargetLocation(unitAtLocation->tileLocation);
+                tileDestination->y = tileLocation->y - 1;
+                leftToMove = 1;
+            }
+        }
         break;
     case DOWN:
         if (scene->isTilePassable(zone, tileLocation->x, tileLocation->y + 1))
         {
             tileDestination->y = tileLocation->y + 1;
             leftToMove = 1;
-        }            
+        }
+        else
+        {
+            RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x, tileLocation->y + 1);
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            {
+                unitAtLocation->tileDestination->x = tileLocation->x;
+                unitAtLocation->tileDestination->y = tileLocation->y;
+                unitAtLocation->leftToMove = 1;
+                unitAtLocation->movingUp = true;
+                unitAtLocation->movingDown = false;;
+                unitAtLocation->movingRight = false;
+                unitAtLocation->movingLeft = false;
+                unitAtLocation->setUnitState(UNIT_MOVING);
+                unitAtLocation->handleInput(&InputMessage(STOP_MOVE_UP));
+                unitAtLocation->directionFacing = UP;
+                unitAtLocation->setTargetLocation(unitAtLocation->tileLocation);
+                tileDestination->y = tileLocation->y + 1;
+                leftToMove = 1;
+            }
+        }
         break;
     case RIGHT:
         if (scene->isTilePassable(zone, tileLocation->x + 1, tileLocation->y))
@@ -354,12 +402,52 @@ void Unit::startMovement(int direction) {
             tileDestination->x = tileLocation->x + 1;
             leftToMove = 1;
         }
+        else
+        {
+            RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x + 1, tileLocation->y);
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            {
+                unitAtLocation->tileDestination->x = tileLocation->x;
+                unitAtLocation->tileDestination->y = tileLocation->y;
+                unitAtLocation->leftToMove = 1;
+                unitAtLocation->movingUp = false;
+                unitAtLocation->movingDown = false;
+                unitAtLocation->movingRight = false;
+                unitAtLocation->movingLeft = true;
+                unitAtLocation->setUnitState(UNIT_MOVING);
+                unitAtLocation->handleInput(&InputMessage(STOP_MOVE_LEFT));
+                unitAtLocation->directionFacing = LEFT;
+                unitAtLocation->setTargetLocation(unitAtLocation->tileLocation);
+                tileDestination->x = tileLocation->x + 1;
+                leftToMove = 1;
+            }
+        }
         break;
     case LEFT:
         if (scene->isTilePassable(zone, tileLocation->x - 1, tileLocation->y))
         {
             tileDestination->x = tileLocation->x - 1;
             leftToMove = 1;
+        }
+        else
+        {
+            RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x - 1, tileLocation->y);
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            {
+                unitAtLocation->tileDestination->x = tileLocation->x;
+                unitAtLocation->tileDestination->y = tileLocation->y;
+                unitAtLocation->leftToMove = 1;
+                unitAtLocation->movingUp = false;
+                unitAtLocation->movingDown = false;
+                unitAtLocation->movingRight = true;
+                unitAtLocation->movingLeft = false;
+                unitAtLocation->setUnitState(UNIT_MOVING);
+                unitAtLocation->handleInput(&InputMessage(STOP_MOVE_RIGHT));
+                unitAtLocation->directionFacing = RIGHT;
+                unitAtLocation->setTargetLocation(unitAtLocation->tileLocation);
+                tileDestination->x = tileLocation->x - 1;
+                leftToMove = 1;
+            }
         }
         break;
     default:
@@ -537,6 +625,7 @@ bool Unit::processPath()
 
 void Unit::setTargetLocation(Location* newTargetLocation)
 {
+    SDL_AtomicLock(&targetLocationLock);
     if (targetLocation == nullptr)
     {
         targetLocation = new Location();
@@ -545,10 +634,12 @@ void Unit::setTargetLocation(Location* newTargetLocation)
     targetLocation->y = newTargetLocation->y;
     getPathAttempts = 0;
     getNewPath();
+    SDL_AtomicUnlock(&targetLocationLock);
 }
 
 void Unit::setTargetLocation(int newX, int newY)
 {
+    SDL_AtomicLock(&targetLocationLock);
     if (targetLocation == nullptr)
     {
         targetLocation = new Location();
@@ -557,6 +648,7 @@ void Unit::setTargetLocation(int newX, int newY)
     targetLocation->y = newY;
     getPathAttempts = 0;
     getNewPath();
+    SDL_AtomicUnlock(&targetLocationLock);
 }
 
 void Unit::setTargetUnit(Unit* newTargetUnit)
@@ -578,6 +670,15 @@ void Unit::setTileLocation(int x, int y) {
     //tileDestinationBuffer->y = y;
 }
 
+void Unit::clearTargetLocation()
+{
+    SDL_AtomicLock(&targetLocationLock);
+    delete targetLocation;
+    targetLocation = nullptr;
+    scene->removeUnitFromPathQueue(this);
+    SDL_AtomicUnlock(&targetLocationLock);
+}
+
 void Unit::moveTo(int x, int y)
 {
     scene->getZone(zone)->removeUnitFromLocation(this, tileLocation->x, tileLocation->y);
@@ -588,8 +689,7 @@ void Unit::moveTo(int x, int y)
     if (targetLocation != nullptr && x == targetLocation->x && y == targetLocation->y)
     {
         pathDirections.clear();
-        delete targetLocation;
-        targetLocation = nullptr;
+        clearTargetLocation();
     }
 }
 
@@ -607,7 +707,7 @@ void Unit::portalTo(int zoneId, int x, int y)
         }
     }
     //clear old target location
-    targetLocation = nullptr;
+    clearTargetLocation();
 }
 
 void Unit::updateCoords() {
