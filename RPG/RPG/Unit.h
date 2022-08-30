@@ -43,7 +43,6 @@ class Unit : public AnimatedSprite
 public:
     int id;
     bool gettingPath;
-    std::vector<Unit*> beingTargetedBy;
     int type;
     TileGridScene* scene;
     Location* tileLocation;
@@ -57,8 +56,6 @@ public:
     bool movingUp, movingDown, movingRight, movingLeft;
     int directionFacing;
     bool canGoThroughPortal;
-    int zone;
-    Unit* targetUnit;
     //std::vector<std::vector<int>> directions = { {0, -1},{0, 1},{-1, 0},{1, 0},{1, -1},{1, 1},{-1, -1},{-1, 1} }; // UP, DOWN, LEFT, RIGHT, UP RIGHT, DOWN RIGHT, UP LEFT, DOWN LEFT
     std::vector<int> pathDirections;
     int getPathTick;
@@ -95,6 +92,8 @@ public:
     void setTargetLocation(Location* newTargetLocation);
     void setTargetLocation(int newX, int newY);
     void setTargetUnit(Unit* newTargetUnit);
+    void clearTargetUnit();
+    Unit* getTargetUnit();
     void setTileLocation(int x, int y);
     void clearTargetLocation();
     void moveTo(int x, int y);
@@ -118,6 +117,11 @@ public:
     int changeHealth(int change);
     int setHealth(int newHealth);
     int setFullHealth();
+    void setZone(int newZone);
+    int getZone();
+    std::vector<Unit*> getBeingTargetedBy();
+    void addUnitToBeingTargetedBy(Unit* newUnit);
+    void removeUnitFromBeingTargetedBy(Unit* newUnit);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
     static void resetUid();
@@ -139,6 +143,13 @@ private:
     Location* targetLocation;
     Location* targetLocationBuffer;
     SDL_SpinLock targetLocationLock;
+    SDL_SpinLock targetUnitLock;
+    SDL_SpinLock targetedByUnitLock;
+    Unit* targetUnit;
+    Unit* targetUnitBuffer;
+    int zone;
+    std::vector<Unit*> beingTargetedBy;
+
     //methods
     void init();
     void init(int zoneId, int unitType);

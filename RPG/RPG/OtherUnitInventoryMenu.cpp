@@ -43,6 +43,7 @@ OtherUnitInventoryMenu::OtherUnitInventoryMenu(RpgOverWorldScene* gameScene, int
 
 void OtherUnitInventoryMenu::open()
 {
+    scene->closeMenu(CRAFTING_MENU);
     GameMenu::open();
     rebuildElements();
     ((ScrollBox*)getElementbyId(ITEMS_SCROLL_BOX))->displayIndex = 0;
@@ -250,7 +251,7 @@ void OtherUnitInventoryMenu::buildElements()
                     else if (numToDrop > 0) {
                         Item* itemToDrop = createNewItem(selectedUnit->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
                         itemToDrop->stackSize = numToDrop;
-                        scene->addItemsToMap(selectedUnit->zone, selectedUnit->tileLocation->x, selectedUnit->tileLocation->y, { itemToDrop });
+                        scene->addItemsToMap(selectedUnit->getZone(), selectedUnit->tileLocation->x, selectedUnit->tileLocation->y, { itemToDrop });
                         selectedUnit->inventory[selection]->stackSize -= numToDrop;
                         rebuildElements();
                     }

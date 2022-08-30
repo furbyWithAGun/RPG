@@ -64,7 +64,7 @@ void Tree::actionOn(Unit* unit, int actionType)
                 regrowTick = 0;
                 Item* logs = createNewItem(ITEM_WOOD);
                 logs->stackSize = 5;
-                unit->scene->addItemsToMap(unit->zone, tileCoords[0], tileCoords[1], { logs });
+                unit->scene->addItemsToMap(unit->getZone(), tileCoords[0], tileCoords[1], { logs });
             }
         }
         break;

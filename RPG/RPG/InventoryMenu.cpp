@@ -232,7 +232,7 @@ void InventoryMenu::buildElements()
                     else if (numToDrop > 0){
                         Item* itemToDrop = createNewItem(scene->player->inventory[selection]->textureKey); // relies on fact each item type atm has a unique textureId
                         itemToDrop->stackSize = numToDrop;
-                        scene->addItemsToMap(scene->player->zone, scene->player->tileLocation->x, scene->player->tileLocation->y, {itemToDrop});
+                        scene->addItemsToMap(scene->player->getZone(), scene->player->tileLocation->x, scene->player->tileLocation->y, {itemToDrop});
                         scene->player->inventory[selection]->stackSize -= numToDrop;
                         rebuildElements();
                     }
@@ -423,7 +423,7 @@ void InventoryMenu::buildElements()
                         else if (numToXfer > 0) {
                             Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
                             itemToXfer->stackSize = numToXfer;
-                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(itemToXfer);
                             //addItemToContainer(itemToXfer, ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                             scene->player->inventory[selection]->stackSize -= numToXfer;
                             rebuildElements();

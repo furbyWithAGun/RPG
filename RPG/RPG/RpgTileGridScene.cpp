@@ -607,27 +607,26 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     }
 
     //clear unit from units that are targetting it
-    if (unit->beingTargetedBy.size() > 0)
-    {
-        for (auto targetingUnit : unit->beingTargetedBy) {
-            targetingUnit->targetUnit = nullptr;
-        }
+    for (auto targetingUnit : unit->getBeingTargetedBy()) {
+        targetingUnit->clearTargetUnit();
     }
 
     //clear unit from units that are being targeted by it
-    if (unit->targetUnit != nullptr)
+    unit->clearTargetUnit();
+    /*if (unit->getTargetUnit())
     {
-        auto targetingUnitIterator = unit->targetUnit->beingTargetedBy.begin();
-        while (targetingUnitIterator != unit->targetUnit->beingTargetedBy.end())
+        auto targetingUnitIterator = unit->getTargetUnit()->beingTargetedBy.begin();
+        while (targetingUnitIterator != unit->getTargetUnit()->beingTargetedBy.end())
         {
             if ((*targetingUnitIterator) == unit) {
-                targetingUnitIterator = unit->targetUnit->beingTargetedBy.erase(targetingUnitIterator);
+                targetingUnitIterator = unit->getTargetUnit()->beingTargetedBy.erase(targetingUnitIterator);
             }
             else {
                 targetingUnitIterator++;
             }
         }
-    }
+    }*/
+
 
     //clear unit from pathfinding queue
     removeUnitFromPathQueue(unit);
@@ -655,6 +654,10 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 void RpgTileGridScene::destroyFlaggedUnits()
 {
     //destroyingUnits = true;
+    if (!unitsToDestroy.size())
+    {
+        return;
+    }
     SDL_AtomicLock(&unitDestroyLock);
     for (auto unit : unitsToDestroy) {
         destroyUnit((RpgUnit*)unit);

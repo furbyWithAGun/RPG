@@ -162,6 +162,10 @@ void TileGridScene::getTileIndexFromScreenCoords(int x, int y, double tileIndice
 void TileGridScene::addZone(ZoneMap* newZone)
 {
     zones[newZone->id] = newZone;
+    if (newZone->id < 0)
+    {
+        int sdfsd = 23423;
+    }
 }
 
 void TileGridScene::addZone(int zoneId, ZoneMap* newZone)
@@ -177,6 +181,11 @@ std::unordered_map<int, ZoneMap*> TileGridScene::getZones()
 
 ZoneMap* TileGridScene::getZone(int zoneId)
 {
+    if (zoneId < 0)
+    {
+        int sdfsd = 23423;
+        return nullptr;
+    }
     return zones[zoneId];
 }
 
@@ -278,6 +287,7 @@ void TileGridScene::removeUnitFromPathQueue(Unit* unitToRemove)
             unitIterator++;
         }
     }
+    unitToRemove->gettingPath = false;
     SDL_AtomicUnlock(&unitPathQueueLock);
 }
 
@@ -319,6 +329,10 @@ bool TileGridScene::tileCoordsAreDisplayedMapTile(int x, int y) {
 
 Unit* TileGridScene::getUnitAtLocation(int zoneId, int x, int y)
 {
+    if (zoneId < 0)
+    {
+        return nullptr;
+    }
     return zones[zoneId]->getUnitAtLocation(x, y);
 }
 

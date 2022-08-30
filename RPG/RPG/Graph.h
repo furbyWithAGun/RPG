@@ -12,6 +12,9 @@ struct Location {
     bool operator==(const Location& o) const {
         return x == o.x && y == o.y;
     }
+    //bool operator!=(const Location& o) const {
+    //    return !(x == o.x && y == o.y);
+    //}
 };
 
 template <> struct std::hash<Location> {

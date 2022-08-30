@@ -56,7 +56,7 @@ void AiUnit::update() {
     updateCoords();
     if (health < getAttributeLevel(UNIT_STAT_MAX_HEALTH) && team == PLAYER_TEAM && foodEffects.size() == 0)
     {
-        RpgTown* nearestTown = ((RpgZone*)scene->getZone(zone))->getNearestTown(tileDestination);
+        RpgTown* nearestTown = ((RpgZone*)scene->getZone(getZone()))->getNearestTown(tileDestination);
         if (nearestTown) {
             Food* foodToEat = getSomeFoodFromContainer(nearestTown->getTownInventory());
             if (foodToEat)
@@ -138,7 +138,7 @@ bool AiUnit::attackNearbyUnit() {
             }
         }
     }*/
-    if (!targetUnit)
+    if (!getTargetUnit())
     {
         return false;
     }
@@ -192,7 +192,7 @@ bool AiUnit::meleeAttackUnitInDirection(int direction)
     default:
         break;
     }
-    targetedUnit = scene->getUnitAtLocation(zone, x, y);
+    targetedUnit = scene->getUnitAtLocation(getZone(), x, y);
     //if (targetUnit != NULL && targetUnit->type == PLAYER)
     if (targetedUnit != NULL && getTeamStatus((RpgUnit*)targetedUnit) == ENEMY)
     {

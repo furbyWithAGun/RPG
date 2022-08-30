@@ -464,30 +464,16 @@ void RpgWorldBuilderScene::destroyUnit(RpgUnit* unit)
     {
         zone.second->removeUnitFromZone(unit);
     }*/
+    Unit* targetUnit;
     sceneToEdit.removeUnitFromZone(unit);
 
     //clear unit from units that are targetting it
-    if (unit->beingTargetedBy.size() > 0)
-    {
-        for (auto targetingUnit : unit->beingTargetedBy) {
-            targetingUnit->targetUnit = nullptr;
-        }
+    for (auto targetingUnit : unit->getBeingTargetedBy()) {
+        targetingUnit->clearTargetUnit();
     }
 
     //clear unit from units that are being targeted by it
-    if (unit->targetUnit != nullptr)
-    {
-        auto targetingUnitIterator = unit->targetUnit->beingTargetedBy.begin();
-        while (targetingUnitIterator != unit->targetUnit->beingTargetedBy.end())
-        {
-            if ((*targetingUnitIterator) == unit) {
-                targetingUnitIterator = unit->targetUnit->beingTargetedBy.erase(targetingUnitIterator);
-            }
-            else {
-                targetingUnitIterator++;
-            }
-        }
-    }
+    unit->clearTargetUnit();
 
     //clear unit from pathfinding queue
     removeUnitFromPathQueue(unit);

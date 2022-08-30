@@ -180,7 +180,7 @@ int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
     {
         damageTaken = 1;
     }
-    if (zone == scene->currentZone->id)
+    if (getZone() == scene->currentZone->id)
     {
         scene->addCombatMessage(std::to_string(damageTaken), SDL_Color{ 255, 0, 0, 0 }, tileLocation->x, tileLocation->y);
     }
@@ -257,7 +257,7 @@ void RpgUnit::levelUp()
     changeAttributeLevel(UNIT_STAT_MAX_HEALTH, 10);
     //setAttributeLevel(UNIT_STAT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH) + 10);
     health += 10;
-    if (scene->getZone(zone) == scene->currentZone)
+    if (scene->getZone(getZone()) == scene->currentZone)
     {
         scene->addCombatMessage("***LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
     }
@@ -276,7 +276,7 @@ void RpgUnit::skillLevelUp(int skillToLevel)
     else {
         unitSkills[skillToLevel].experienceNextLevel = unitSkills[skillToLevel].experienceNextLevel * 2;
     }
-    if (scene->getZone(zone) == scene->currentZone)
+    if (scene->getZone(getZone()) == scene->currentZone)
     {
         scene->addCombatMessage("***SKILL LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
     }
@@ -464,14 +464,15 @@ void RpgUnit::updateAggro()
     else {
         aggroUpdateTick = 0;
     }
-    if (targetUnit == nullptr)
+    Unit* target = getTargetUnit();
+    if (!target)
     {
         RpgUnit* tempTarget;
         for (int x = tileLocation->x - aggroTriggerDistance; x < tileLocation->x + aggroTriggerDistance + 1; x++)
         {
             for (int y = tileLocation->y - aggroTriggerDistance; y < tileLocation->y + aggroTriggerDistance + 1; y++)
             {
-                tempTarget = (RpgUnit*)scene->getUnitAtLocation(zone, x, y);
+                tempTarget = (RpgUnit*)scene->getUnitAtLocation(getZone(), x, y);
                 if (tempTarget != nullptr && getTeamStatus(tempTarget) == ENEMY)
                 {
                     setTargetUnit(tempTarget);
@@ -481,20 +482,21 @@ void RpgUnit::updateAggro()
         }
     }
     else {
-        if (targetUnit->scene->isUnitToBeDestroyed(targetUnit) || (std::abs(targetUnit->tileLocation->x - tileLocation->x) > aggroMaintainDistance) || (std::abs(targetUnit->tileLocation->y - tileLocation->y) > aggroMaintainDistance))
+        if (target->scene->isUnitToBeDestroyed(target) || (std::abs(target->tileLocation->x - tileLocation->x) > aggroMaintainDistance) || (std::abs(target->tileLocation->y - tileLocation->y) > aggroMaintainDistance))
         {
-            auto unitIterator = targetUnit->beingTargetedBy.begin();
-            while (unitIterator != targetUnit->beingTargetedBy.end())
+            clearTargetUnit();
+            /*auto unitIterator = target->beingTargetedBy.begin();
+            while (unitIterator != target->beingTargetedBy.end())
             {
                 if ((*unitIterator) == this) {
-                    unitIterator = targetUnit->beingTargetedBy.erase(unitIterator);
+                    unitIterator = target->beingTargetedBy.erase(unitIterator);
                     break;
                 }
                 else {
                     unitIterator++;
                 }
             }
-            targetUnit = nullptr;
+            target = nullptr;*/
         }
     }
 }
@@ -502,16 +504,23 @@ void RpgUnit::update()
 {
     Unit::update();
     updateAttacks();
-    if ((getTargetLocation() != nullptr || targetUnit != nullptr) && pathDirections.size() <= 0)
+    bool hasTarget = false;
+    Location* targetLocation = getTargetLocation();
+    if (targetLocation->x != tileDestination->x || targetLocation->y != tileDestination->y)
     {
-        if (getPathRate == getPathTick)
-        {
-            getPathTick = 0;
-            getNewPath();
-        }
-        else {
-            getPathTick++;
-        }
+        hasTarget = true;
+    }
+    if ((hasTarget || getTargetUnit()) && pathDirections.size() <= 0)
+    {
+        getNewPath();
+        //if (getPathRate == getPathTick)
+        //{
+        //    getPathTick = 0;
+        //    getNewPath();
+        //}
+        //else {
+        //    getPathTick++;
+        //}
     }
     updateFoodEffects();
 }
@@ -682,7 +691,6 @@ void RpgUnit::init()
     unitStates.insert({ UNIT_IDLE, new IdleState(UNIT_IDLE, this) });
     //unitStates.insert({ UNIT_IDLE, newState });
     setUnitState(UNIT_IDLE);
-    targetUnit = nullptr;
     team = UNKNOWN_TEAM;
     assignedToBuilding = nullptr;
     minNumDrops = 1;
@@ -736,7 +744,7 @@ void RpgUnit::setEquippedItemsFromSavedString(std::string saveString)
 
 void RpgUnit::death()
 {
-    scene->addItemsToMap(zone, tileLocation->x, tileLocation->y, getDrops());
+    scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, getDrops());
     active = false;
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
@@ -750,7 +758,7 @@ void RpgUnit::death(RpgUnit* attackingUnit)
     death();
     attackingUnit->addExp(SKILL_COMBAT, expValue);
     int goldGiven = scene->engine->randomInt(1, goldValue);
-    if (zone == scene->currentZone->id && attackingUnit == scene->player)
+    if (getZone() == scene->currentZone->id && attackingUnit == scene->player)
     {
         scene->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, tileLocation->x, tileLocation->y, 140);
     }

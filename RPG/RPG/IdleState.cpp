@@ -41,7 +41,7 @@ int IdleState::handleInput(InputMessage* message) {
         break;
     case USER_ACTION:
         RpgUnit* actionedUnit;
-        actionedUnit = unit->scene->getUnitAtLocation(unit->zone, message->x, message->y);
+        actionedUnit = unit->scene->getUnitAtLocation(unit->getZone(), message->x, message->y);
         if (actionedUnit != nullptr)
         {
             if (actionedUnit->assignedToBuilding != nullptr)
@@ -50,14 +50,14 @@ int IdleState::handleInput(InputMessage* message) {
             }
         }
         DooDad* actionedDooDad;
-        actionedDooDad = unit->scene->getZones()[unit->zone]->getDooDadAtLocation(message->x, message->y);
+        actionedDooDad = unit->scene->getZone(unit->getZone())->getDooDadAtLocation(message->x, message->y);
         if (actionedDooDad != nullptr)
         {
             actionedDooDad->actionOn(unit, OVERWORLD_USE);
         }
         break;
     case OVERWORLD_STRIKE:
-        actionedDooDad = unit->scene->getZones()[unit->zone]->getDooDadAtLocation(message->x, message->y);
+        actionedDooDad = unit->scene->getZone(unit->getZone())->getDooDadAtLocation(message->x, message->y);
         if (actionedDooDad != nullptr && (std::abs(actionedDooDad->tileCoords[0] - unit->tileLocation->x) <= 1) && (std::abs(actionedDooDad->tileCoords[1] - unit->tileLocation->y) <= 1))
         {
             if (actionedDooDad->canBeDamaged)

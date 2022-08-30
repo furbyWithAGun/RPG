@@ -81,7 +81,7 @@ void BasicMeleeAttack::processHit(RpgUnit* targetUnit) {
         int damage = this->damageDealt();
         targetUnit->assignDamage(owningUnit,damage);
     }
-    else if (owningUnit->zone == owningUnit->scene->currentZone->id) {
+    else if (owningUnit->getZone() == owningUnit->scene->currentZone->id) {
         owningUnit->scene->addCombatMessage("MISS", targetUnit->tileLocation->x, targetUnit->tileLocation->y);
     }
 }
@@ -91,7 +91,7 @@ void BasicMeleeAttack::processHit(DooDad* targetDooDad) {
     {
         int damage = this->damageDealt();
         targetDooDad->assignDamage(owningUnit, damage);
-        if (owningUnit->zone == owningUnit->scene->currentZone->id)
+        if (owningUnit->getZone() == owningUnit->scene->currentZone->id)
         {
             owningUnit->scene->addCombatMessage(std::to_string(damage), SDL_Color{ 255, 0, 0, 0 }, targetDooDad->tileCoords[0], targetDooDad->tileCoords[1]);
         }
@@ -102,13 +102,13 @@ void BasicMeleeAttack::processAttack() {
     int attackTargetLocation[2];
     RpgUnit* targetUnit;
     owningUnit->getLocationUnitDestinationIsFacing(attackTargetLocation);
-    targetUnit = (RpgUnit*)owningUnit->scene->getUnitAtLocation(owningUnit->zone, attackTargetLocation[0], attackTargetLocation[1]);
+    targetUnit = (RpgUnit*)owningUnit->scene->getUnitAtLocation(owningUnit->getZone(), attackTargetLocation[0], attackTargetLocation[1]);
     if (targetUnit != nullptr && targetUnit != owningUnit) {
         processHit(targetUnit);
         return;
     }
     DooDad* targetDooDad;
-    targetDooDad = (DooDad*)owningUnit->scene->getDooDadAtLocation(owningUnit->scene->getZone(owningUnit->zone), attackTargetLocation[0], attackTargetLocation[1]);
+    targetDooDad = (DooDad*)owningUnit->scene->getDooDadAtLocation(owningUnit->scene->getZone(owningUnit->getZone()), attackTargetLocation[0], attackTargetLocation[1]);
     if (targetDooDad != nullptr) {
         processHit(targetDooDad);
     }

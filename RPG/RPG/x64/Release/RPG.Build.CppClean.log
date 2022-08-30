@@ -115,11 +115,13 @@ d:\coding\c++\rpggame\rpg\rpg\x64\release\towncommand.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\release\tilegridscene.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\release\texture.obj
 d:\coding\c++\rpggame\rpg\rpg\x64\release\textbox.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\release\otherunitinventorymenu.obj
+d:\coding\c++\rpggame\rpg\rpg\x64\release\treasurechest.obj
 d:\coding\c++\rpggame\rpg\x64\release\rpg.exe
+d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.ipdb
 d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.iobj
 d:\coding\c++\rpggame\rpg\x64\release\rpg.pdb
 d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.res
-d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.ipdb
 d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.tlog\cl.command.1.tlog
 d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.tlog\cl.read.1.tlog
 d:\coding\c++\rpggame\rpg\rpg\x64\release\rpg.tlog\cl.write.1.tlog

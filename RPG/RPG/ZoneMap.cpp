@@ -210,16 +210,16 @@ std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 {
 	SDL_AtomicLock(&unitMapLock); 
 	int key = getMapKey(x, y);
-	try {
-		if (unitMap.find(key) == unitMap.end())
-		{
-			SDL_AtomicUnlock(&unitMapLock);
-			return std::vector<Unit*>();
-		}
+	//try {
+	if (unitMap.find(key) == unitMap.end())
+	{
 		SDL_AtomicUnlock(&unitMapLock);
-		return unitMap[key];
+		return std::vector<Unit*>();
 	}
-	catch (...) {
+	SDL_AtomicUnlock(&unitMapLock);
+	return unitMap[key];
+	//}
+	/*catch (...) {
 		std::cout << "\nerror getting units from unitMap. Location: x-";
 		std::cout << x;
 		std::cout << " y-";
@@ -229,7 +229,7 @@ std::vector<Unit*> ZoneMap::getUnitsFromMap(int x, int y)
 		std::cout << "\n";
 		SDL_AtomicUnlock(&unitMapLock);
 		return std::vector<Unit*>();
-	}
+	}*/
 }
 
 void ZoneMap::removeUnitFromMap(Unit* unit)
@@ -249,11 +249,11 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 			unitIterator = unitMap[key].erase(unitIterator);
 			if (unitMap[key].size() <= 0)
 			{
-				try {
-					unitMap.erase(key);
-					break;
-				}
-				catch (...) {
+				//try {
+				unitMap.erase(key);
+				break;
+				//}
+				/*catch (...) {
 					std::cout << "\nerror removing unit from unitMap. Location: x-";
 					std::cout << x;
 					std::cout << " y-";
@@ -263,7 +263,7 @@ void ZoneMap::removeUnitFromMap(int x, int y, Unit* unit)
 					std::cout << "\n";
 					SDL_AtomicUnlock(&unitMapLock);
 					return;
-				}
+				}*/
 			}
 		}
 		else {
@@ -848,13 +848,7 @@ Unit* ZoneMap::getUnitAtLocation(int x, int y)
 	std::vector<Unit*> unitsAtLocation = getUnitsFromMap(x, y);
 	if (unitsAtLocation.size() > 0)
 	{
-		try {
-
-			return unitsAtLocation.at(0);
-		}
-		catch (...) {
-			return nullptr;
-		}
+		return unitsAtLocation.at(0);
 	}
 	else {
 		return nullptr;
@@ -863,7 +857,7 @@ Unit* ZoneMap::getUnitAtLocation(int x, int y)
 
 bool ZoneMap::addUnitToLocation(Unit* unit, int x, int y)
 {
-	unit->zone = id;
+	unit->setZone(id);
 	unit->setTileLocation(x, y);
 	addToUnitVector(unit);
 	addToUnitMap(x, y, unit);
@@ -872,7 +866,7 @@ bool ZoneMap::addUnitToLocation(Unit* unit, int x, int y)
 
 bool ZoneMap::addUnitToDestinationLocation(Unit* unit)
 {
-	unit->zone = id;
+	unit->setZone(id);
 	addToUnitVector(unit);
 	addToUnitMap(unit->tileDestination->x, unit->tileDestination->y, unit);
 	return true;
@@ -880,7 +874,7 @@ bool ZoneMap::addUnitToDestinationLocation(Unit* unit)
 
 bool ZoneMap::removeUnitFromZone(Unit* unit)
 {
-	unit->zone = -1;
+	//unit->zone = -1;
 	removeUnitFromMap(unit);
 	removeFromUnitVector(unit);
 	return true;

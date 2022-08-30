@@ -57,7 +57,7 @@ void GuardHouse::update(RpgTileGridScene* scene)
     }
 
     for (auto unit : assignedUnits) {
-        if (unit->zone == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
+        if (unit->getZone() == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
         {
             unit->setTargetLocation(tileLocation->x, tileLocation->y + 2);
         }

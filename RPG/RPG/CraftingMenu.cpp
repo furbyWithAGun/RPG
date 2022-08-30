@@ -32,6 +32,7 @@ void CraftingMenu::open()
 {
     //scene->closeAllMenus();
     scene->closeMenu(ITEM_SHOP_MENU);
+    scene->closeMenu(OTHER_UNIT_INVENTORY_MENU);
     GameMenu::open();
     scene->openMenu(INVENTORY_MENU);
 }

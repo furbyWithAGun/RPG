@@ -75,14 +75,61 @@ int Unit::setFullHealth()
     return health;
 }
 
+void Unit::setZone(int newZone)
+{
+    if (newZone < 0)
+    {
+        int test = 32423;
+    }
+    zone = newZone;
+}
+
+int Unit::getZone()
+{
+    return zone;
+}
+
+std::vector<Unit*> Unit::getBeingTargetedBy()
+{
+    //SDL_AtomicLock(&targetedByUnitLock);
+    return beingTargetedBy;
+    //SDL_AtomicUnlock(&targetedByUnitLock);
+}
+
+void Unit::addUnitToBeingTargetedBy(Unit* newUnit)
+{
+    SDL_AtomicLock(&targetedByUnitLock);
+    beingTargetedBy.push_back(newUnit);
+    SDL_AtomicUnlock(&targetedByUnitLock);
+}
+
+void Unit::removeUnitFromBeingTargetedBy(Unit* newUnit)
+{
+    SDL_AtomicLock(&targetedByUnitLock);
+    auto targetingUnitIterator = beingTargetedBy.begin();
+    while (targetingUnitIterator != beingTargetedBy.end())
+    {
+        if ((*targetingUnitIterator) == newUnit) {
+            targetingUnitIterator = beingTargetedBy.erase(targetingUnitIterator);
+        }
+        else {
+            targetingUnitIterator++;
+        }
+    }
+    SDL_AtomicUnlock(&targetedByUnitLock);
+}
+
 Location* Unit::getTargetLocation()
 {
-    if (!targetLocation) {
-        return nullptr;
-    }
     SDL_AtomicLock(&targetLocationLock);
-    targetLocationBuffer->x = targetLocation->x;
-    targetLocationBuffer->y = targetLocation->y;
+    if (!targetLocation) {
+        targetLocationBuffer->x = tileDestination->x;
+        targetLocationBuffer->y = tileDestination->y;
+    }
+    else {
+        targetLocationBuffer->x = targetLocation->x;
+        targetLocationBuffer->y = targetLocation->y;
+    }
     SDL_AtomicUnlock(&targetLocationLock);
     return targetLocationBuffer;
 }
@@ -267,6 +314,8 @@ Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int s
 }
 
 void Unit::init() {
+    targetedByUnitLock = 0;
+    targetUnitLock = 0;
     targetLocationLock = 0;
     gettingPath = false;
     type = -1;
@@ -290,6 +339,7 @@ void Unit::init() {
     //setUnitState(UNIT_IDLE);
     zone = 0;
     targetUnit = nullptr;
+    targetUnitBuffer = nullptr;
     getPathTick = 0;
     adjustPathTick = 0;
     getNewPathFailTick = 0;
@@ -311,7 +361,7 @@ void Unit::init() {
 void Unit::init(int zoneId, int unitType) {
     init();
     type = unitType;
-    zone = zoneId;
+    setZone(zoneId);
 }
 
 void Unit::init(int zoneId, int unitType, TileGridScene* gameScene) {
@@ -653,10 +703,40 @@ void Unit::setTargetLocation(int newX, int newY)
 
 void Unit::setTargetUnit(Unit* newTargetUnit)
 {
+    SDL_AtomicLock(&targetUnitLock);
+
+    if (targetUnit)
+    {
+        targetUnit->removeUnitFromBeingTargetedBy(this);
+    }
+
     targetUnit = newTargetUnit;
-    targetUnit->beingTargetedBy.push_back(this);
+    targetUnit->addUnitToBeingTargetedBy(this);
+    //targetUnit->beingTargetedBy.push_back(this);
     getPathAttempts = 0;
     getNewPath();
+    SDL_AtomicUnlock(&targetUnitLock);
+}
+
+void Unit::clearTargetUnit()
+{
+    SDL_AtomicLock(&targetUnitLock);
+    if (targetUnit)
+    {
+        targetUnit->removeUnitFromBeingTargetedBy(this);
+    }
+    targetUnit = nullptr;
+    getPathAttempts = 0;
+    //getNewPath();
+    SDL_AtomicUnlock(&targetUnitLock);
+}
+
+Unit* Unit::getTargetUnit()
+{
+    SDL_AtomicLock(&targetUnitLock);
+    targetUnitBuffer = targetUnit;
+    SDL_AtomicUnlock(&targetUnitLock);
+    return targetUnitBuffer;
 }
 
 void Unit::setTileLocation(int x, int y) {

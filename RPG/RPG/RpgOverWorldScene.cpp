@@ -97,7 +97,7 @@ void RpgOverWorldScene::setUpScene()
         //createUnitAtLocation(3, SKELETON_KING, 28, 28);
     }
 
-    currentZone = getZone(player->zone);
+    currentZone = getZone(player->getZone());
     setUpMonsterTable();
     //set up teams
     teamRelations[PLAYER_TEAM][MONSTER_TEAM] = ENEMY;
@@ -155,7 +155,7 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    //player->addExp(SKILL_COMBAT, 999999999);
+    player->addExp(SKILL_COMBAT, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
     //((RpgTown*)getZones()[1])->addPopulation(1000);
@@ -376,7 +376,6 @@ void RpgOverWorldScene::handleInput()
 
 void RpgOverWorldScene::sceneLogic()
 {
-    
     //if (unitsNeedingPath.size() > 0 && pathfindThreadActive == false)
     //{
     //    pathFindingThread = SDL_CreateThread(getPathThread, "getPathThread", (void*)this);
@@ -438,7 +437,6 @@ void RpgOverWorldScene::sceneLogic()
             {
                 ((AiUnit*)squadUnits[message->misc])->doesRandomMovement = true;
                 ((AiUnit*)squadUnits[message->misc])->adjustPathRate = DEFAULT_ADJUST_PATH_RATE;
-                ((AiUnit*)squadUnits[message->misc])->canGoThroughPortal = false;
                 squadUnits[message->misc]= nullptr;
             }
             else if (unitAtLocation != nullptr && unitAtLocation->team == player->team && unitAtLocation != player)
@@ -450,6 +448,7 @@ void RpgOverWorldScene::sceneLogic()
                 squadUnits[message->misc] = (AiUnit*)unitAtLocation;
                 ((AiUnit*)unitAtLocation)->doesRandomMovement = false;
                 ((AiUnit*)squadUnits[message->misc])->adjustPathRate = 0;
+                ((AiUnit*)squadUnits[message->misc])->canGoThroughPortal = false;
             }
             break;
         default:
@@ -459,7 +458,7 @@ void RpgOverWorldScene::sceneLogic()
 
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
-        if (squadUnits[i] && squadUnits[i]->zone == currentZone->id) {
+        if (squadUnits[i] && squadUnits[i]->getZone() == currentZone->id) {
             //if (squadUnits[i]->getTargetLocation() == nullptr && currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
             if (currentZone->manhattenDistance(squadUnits[i]->tileLocation, player->tileLocation) > 5)
             {
@@ -563,7 +562,7 @@ void RpgOverWorldScene::renderScene()
 
     for (size_t i = 1; i < MAX_NUM_SQUAD_UNITS; i++)
     {
-        if (controllerInterface->ctrlOn && squadUnits[i] != nullptr && squadUnits[i]->zone == currentZone->id) {
+        if (controllerInterface->ctrlOn && squadUnits[i] != nullptr && squadUnits[i]->getZone() == currentZone->id) {
             double coords[2];
             double destCoords[2];
             coordsFromTileIndex(squadUnits[i]->tileLocation->x, squadUnits[i]->tileLocation->y, coords);
@@ -723,6 +722,7 @@ int getPathThread(void* scene) {
     RpgOverWorldScene* rpgScene = static_cast <RpgOverWorldScene*> (scene);
     rpgScene->engine->seedRand();
     Unit* unit;
+    Unit* targetUnit;
     //std::cout << "\n";
     //std::cout << rpgScene->unitsNeedingPath.size();
     //std::cout << "\n";
@@ -735,56 +735,56 @@ int getPathThread(void* scene) {
         {
             break;
         }
-        try {
-            std::vector<int> tempDirections;
-
-            if (unit->targetUnit != nullptr)
-            {
-                if ((std::abs(unit->targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(unit->targetUnit->tileDestination->y - unit->tileDestination->y) <= 1)) {
-                    unit->pathDirections = tempDirections;
-                    unit->gettingPath = false;
-                    SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
-                    continue;
-                }
-                tempDirections = unit->scene->getZones()[unit->zone]->getPathDirectionsToUnit(rpgScene, unit->tileDestination, unit->targetUnit, unit);
-                if (tempDirections.size() > 0)
-                {
-                    unit->pathDirections = tempDirections;
-                    unit->gettingPath = false;
-                    SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
-                    continue;
-                }
-                unit->getNewPathFailTick++;
-                if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
-                {
-                    unit->getNewPathFailTick = 0;
-                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->targetUnit->tileDestination);
-                }
+        //try {
+        std::vector<int> tempDirections;
+        targetUnit = unit->getTargetUnit();
+        if (targetUnit != nullptr)
+        {
+            if ((std::abs(targetUnit->tileDestination->x - unit->tileDestination->x) <= 1) && (std::abs(targetUnit->tileDestination->y - unit->tileDestination->y) <= 1)) {
+                unit->pathDirections = tempDirections;
                 unit->gettingPath = false;
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
                 continue;
             }
-            else if (unit->getTargetLocation() != nullptr) {
-                tempDirections = rpgScene->getZones()[unit->zone]->getPathDirections(rpgScene, unit->tileDestination, unit->getTargetLocation());
-                if (tempDirections.size() > 0)
-                {
-                    unit->pathDirections = tempDirections;
-                    unit->gettingPath = false;
-                    SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
-                    continue;
-                }
-                unit->getNewPathFailTick++;
-                if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
-                {
-                    unit->getNewPathFailTick = 0;
-                    unit->pathDirections = rpgScene->getZones()[unit->zone]->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->getTargetLocation());
-                }
+            tempDirections = unit->scene->getZone(unit->getZone())->getPathDirectionsToUnit(rpgScene, unit->tileDestination, targetUnit, unit);
+            if (tempDirections.size() > 0)
+            {
+                unit->pathDirections = tempDirections;
                 unit->gettingPath = false;
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
                 continue;
+            }
+            unit->getNewPathFailTick++;
+            if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+            {
+                unit->getNewPathFailTick = 0;
+                unit->pathDirections = rpgScene->getZone(unit->getZone())->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, targetUnit->tileDestination);
             }
             unit->gettingPath = false;
+            SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+            continue;
         }
+        else if (unit->getTargetLocation() != unit->tileDestination) {
+            tempDirections = rpgScene->getZone(unit->getZone())->getPathDirections(rpgScene, unit->tileDestination, unit->getTargetLocation());
+            if (tempDirections.size() > 0)
+            {
+                unit->pathDirections = tempDirections;
+                unit->gettingPath = false;
+                SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+                continue;
+            }
+            unit->getNewPathFailTick++;
+            if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
+            {
+                unit->getNewPathFailTick = 0;
+                unit->pathDirections = rpgScene->getZone(unit->getZone())->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->getTargetLocation());
+            }
+            unit->gettingPath = false;
+            SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+            continue;
+        }
+        unit->gettingPath = false;
+        /*}
         catch (...) {
             try {
                 unit->gettingPath = false;
@@ -795,7 +795,7 @@ int getPathThread(void* scene) {
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
                 continue;
             }
-        }
+        }*/
         unit->gettingPath = false;
         SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
         continue;
@@ -818,10 +818,10 @@ int updateAggroThread(void* scene) {
             if (unit != rpgScene->player)
             {
                 AiUnit* aiUnit = (AiUnit*)unit;
-                ((RpgUnit*)unit)->updateAggro();
+                aiUnit->updateAggro();
                 if (aiUnit->currentState->id == UNIT_IDLE && !aiUnit->attackNearbyUnit() && aiUnit->doesRandomMovement && aiUnit->pathDirections.size() <= 0)
                 {
-                    if (aiUnit->targetUnit == nullptr || !((std::abs(aiUnit->targetUnit->tileDestination->x - aiUnit->tileDestination->x) <= 1) && (std::abs(aiUnit->targetUnit->tileDestination->y - aiUnit->tileDestination->y) <= 1)))
+                    if (!aiUnit->getTargetUnit() || !((std::abs(aiUnit->getTargetUnit()->tileDestination->x - aiUnit->tileDestination->x) <= 1) && (std::abs(aiUnit->getTargetUnit()->tileDestination->y - aiUnit->tileDestination->y) <= 1)))
                     {
                         aiUnit->randomMovement();
                     }
