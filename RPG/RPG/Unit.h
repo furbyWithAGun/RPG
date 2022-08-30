@@ -41,6 +41,7 @@ struct unitSkillAttributeData {
 class Unit : public AnimatedSprite
 {
 public:
+    SDL_SpinLock deleteLock;
     int id;
     bool gettingPath;
     int type;

@@ -194,11 +194,14 @@ bool AiUnit::meleeAttackUnitInDirection(int direction)
     }
     targetedUnit = scene->getUnitAtLocation(getZone(), x, y);
     //if (targetUnit != NULL && targetUnit->type == PLAYER)
-    if (targetedUnit != NULL && getTeamStatus((RpgUnit*)targetedUnit) == ENEMY)
+    if (targetedUnit != nullptr && getTeamStatus((RpgUnit*)targetedUnit) == ENEMY)
     {
-        setTargetUnit(targetedUnit);
         scene->coordsFromTileIndex(x, y, coords);
         handleInput(&InputMessage(PERFORM_MAIN_ATTACK, coords[0], coords[1]));
+        if (!getTargetUnit())
+        {
+            setTargetUnit(targetedUnit);
+        }
         return true;
     }
     return false;

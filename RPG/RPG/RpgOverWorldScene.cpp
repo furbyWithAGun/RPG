@@ -812,9 +812,14 @@ int updateAggroThread(void* scene) {
     rpgScene->engine->seedRand();
     for (auto zone : rpgScene->getZones())
     {
-        SDL_AtomicLock(&rpgScene->unitDestroyLock);
+        //SDL_AtomicLock(&rpgScene->unitDestroyLock);
         for (Unit* unit : zone.second->getUnits()) {
             //try {
+            if (unit->deleteLock)
+            {
+                continue;
+            }
+            SDL_AtomicLock(&unit->deleteLock);
             if (unit != rpgScene->player)
             {
                 AiUnit* aiUnit = (AiUnit*)unit;
@@ -832,8 +837,9 @@ int updateAggroThread(void* scene) {
                 SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
                 continue;
             }*/
+            SDL_AtomicUnlock(&unit->deleteLock);
         }
-        SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
+        //SDL_AtomicUnlock(&rpgScene->unitDestroyLock);
     }
     //SDL_AtomicLock(&rpgScene->unitDestroyLock);
     rpgScene->aggroThreadActive = false;

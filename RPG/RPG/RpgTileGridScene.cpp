@@ -612,6 +612,10 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     }
 
     //clear unit from units that are being targeted by it
+    //if (unit->getTargetUnit()->getBeingTargetedBy().size() > 5)
+    //{
+    //    int sdf = 34435;
+    //}
     unit->clearTargetUnit();
     /*if (unit->getTargetUnit())
     {
@@ -653,6 +657,7 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
 
 void RpgTileGridScene::destroyFlaggedUnits()
 {
+
     //destroyingUnits = true;
     if (!unitsToDestroy.size())
     {
@@ -660,7 +665,13 @@ void RpgTileGridScene::destroyFlaggedUnits()
     }
     SDL_AtomicLock(&unitDestroyLock);
     for (auto unit : unitsToDestroy) {
+        //if (unit->deleteLock)
+        //{
+        //    continue;
+        //}
+        SDL_AtomicLock(&unit->deleteLock);
         destroyUnit((RpgUnit*)unit);
+        SDL_AtomicUnlock(&unit->deleteLock);
     }
     SDL_AtomicUnlock(&unitDestroyLock);
     unitsToDestroy.clear();

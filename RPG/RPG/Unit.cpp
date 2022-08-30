@@ -14,7 +14,7 @@ void Unit::getNewPath()
         {
             getPathAttempts = 0;
             clearTargetLocation();
-            targetUnit = nullptr;
+            clearTargetUnit();
             return;
         }
         gettingPath = true;
@@ -99,6 +99,13 @@ std::vector<Unit*> Unit::getBeingTargetedBy()
 void Unit::addUnitToBeingTargetedBy(Unit* newUnit)
 {
     SDL_AtomicLock(&targetedByUnitLock);
+    for (Unit* unit : beingTargetedBy) {
+        if (unit == newUnit)
+        {
+            SDL_AtomicUnlock(&targetedByUnitLock);
+            return;
+        }
+    }
     beingTargetedBy.push_back(newUnit);
     SDL_AtomicUnlock(&targetedByUnitLock);
 }
@@ -317,6 +324,7 @@ void Unit::init() {
     targetedByUnitLock = 0;
     targetUnitLock = 0;
     targetLocationLock = 0;
+    deleteLock = 0;
     gettingPath = false;
     type = -1;
     name = "";
