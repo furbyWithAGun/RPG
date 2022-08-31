@@ -140,7 +140,7 @@ void RpgOverWorldScene::setUpScene()
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 
     //h4x
-    ((RpgTown*)getZones()[1])->addPopulation(30);
+    ((RpgTown*)getZones()[1])->addPopulation(10);
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());

@@ -27,6 +27,7 @@ public:
     int getSelectedElementValue();
     void draw() override;
     void clear();
+    void activate() override;
 
 private:
     void init();

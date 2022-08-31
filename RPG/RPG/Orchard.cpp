@@ -75,6 +75,6 @@ void Orchard::init()
     type = BUILDING_APPLE_ORCHARD;
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
-    woodCost = 10;
+    woodCost = 100;
     popCost = 5;
 }

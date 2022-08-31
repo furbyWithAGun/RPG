@@ -65,6 +65,7 @@ public:
     virtual void addElement(int elementId, UiElement* element);
     virtual UiElement* getElementbyId(int elementId);
     virtual void deactivate();
+    virtual void activate();
     virtual bool isGettingText();
     virtual void update();
     virtual void onClick();

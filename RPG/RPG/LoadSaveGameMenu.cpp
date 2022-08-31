@@ -82,6 +82,10 @@ void LoadSaveGameMenu::buildScrollBox()
 
     std::string path = SAVES_FILE_PATH;
     for (const auto& entry : std::filesystem::directory_iterator(path)) {
+        if (entry.path().stem().string() == "zones")
+        {
+            continue;
+        }
         MenuText* saveName = new MenuText(scene, entry.path().stem().string(), 0, 0);
         saveName->setBackground({ 100, 100, 100 });
         scroller->addElement(saveName);

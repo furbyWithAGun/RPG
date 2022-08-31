@@ -110,8 +110,8 @@ void ItemShop::init()
     buildingName = "Item Shop";
     type = BUILDING_ITEM_SHOP;
     iconTextureId = BUILDING_ICON_WEAPON_SHOP;
-    goldCost = 700;
-    woodCost = 10;
+    goldCost = 200;
+    woodCost = 150;
     popCost = 10;
     //setItemsForSale({ createNewItem(ITEM_CLUB), createNewItem(ITEM_SHORT_SWORD),createNewItem(ITEM_MACE), createNewItem(ITEM_LONG_SWORD), createNewItem(ITEM_RAG_BODY), createNewItem(ITEM_RAG_BOOTS), createNewItem(ITEM_RAG_GLOVES), createNewItem(ITEM_RAG_HAT), createNewItem(ITEM_RAG_PANTS), createNewItem(ITEM_LINEN_BODY), createNewItem(ITEM_LINEN_BOOTS), createNewItem(ITEM_LINEN_GLOVES), createNewItem(ITEM_LINEN_HAT), createNewItem(ITEM_LINEN_PANTS), createNewItem(ITEM_LEATHER_HAT) });
 }

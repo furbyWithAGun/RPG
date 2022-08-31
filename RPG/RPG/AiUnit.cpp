@@ -56,13 +56,20 @@ void AiUnit::update() {
     updateCoords();
     if (health < getAttributeLevel(UNIT_STAT_MAX_HEALTH) && team == PLAYER_TEAM && foodEffects.size() == 0)
     {
-        RpgTown* nearestTown = ((RpgZone*)scene->getZone(getZone()))->getNearestTown(tileDestination);
-        if (nearestTown) {
-            Food* foodToEat = getSomeFoodFromContainer(nearestTown->getTownInventory());
-            if (foodToEat)
-            {
-                eatFood(foodToEat);
-                delete foodToEat;
+        Food* foodToEat = getSomeFoodFromContainer(inventory);
+        if (foodToEat)
+        {
+            eatFood(foodToEat);
+            delete foodToEat;
+        } else {
+            RpgTown* nearestTown = ((RpgZone*)scene->getZone(getZone()))->getNearestTown(tileDestination);
+            if (nearestTown) {
+                Food* foodToEat = getSomeFoodFromContainer(nearestTown->getTownInventory());
+                if (foodToEat)
+                {
+                    eatFood(foodToEat);
+                    delete foodToEat;
+                }
             }
         }
     }

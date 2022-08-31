@@ -70,7 +70,7 @@ void GuardHouse::init()
     type = BUILDING_GUARDHOUSE;
     iconTextureId = BUILDING_ICON_BLACKSMITH;
     goldCost = 100;
-    woodCost = 10;
+    woodCost = 75;
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Guard House";

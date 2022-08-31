@@ -24,6 +24,8 @@ public:
     bool handleInput(InputMessage* message) override;
     void draw() override;
     bool isGettingText() override;
+    void deactivate() override;
+    void activate() override;
 
 private:
     void init();

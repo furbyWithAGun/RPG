@@ -57,10 +57,10 @@ void WoodCutter::update(RpgTileGridScene* scene)
 void WoodCutter::init()
 {
     buildingName = "Wood Cutters hut";
-    productionOutputs.push_back({ITEM_WOOD, 5});
+    productionOutputs.push_back({ITEM_WOOD, 2});
     type = BUILDING_WOODCUTTER;
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
-    woodCost = 10;
-    popCost = 5;
+    woodCost = 30;
+    popCost = 2;
 }

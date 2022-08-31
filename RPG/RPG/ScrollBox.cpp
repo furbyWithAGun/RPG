@@ -175,6 +175,13 @@ void ScrollBox::clear()
     subElements.clear();
 }
 
+void ScrollBox::activate()
+{
+    UiElement::activate();
+    updateElementsStatus();
+}
+
+
 void ScrollBox::updateElementsStatus() {
     for (size_t i = 0; i < subElements.size(); i++)
     {

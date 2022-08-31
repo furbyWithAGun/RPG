@@ -158,3 +158,23 @@ bool PagedPanel::isGettingText()
     }
     return false;
 }
+
+void PagedPanel::deactivate()
+{
+    UiElement::deactivate();
+    for (std::vector<UiElement*> page : pages) {
+        for (UiElement* element : page) {
+            element->deactivate();
+        }
+    }
+}
+
+void PagedPanel::activate()
+{
+    UiElement::activate();
+    for (std::vector<UiElement*> page : pages) {
+        for (UiElement* element : page) {
+            element->activate();
+        }
+    }
+}

@@ -58,8 +58,8 @@ void House::init()
 {
     type = BUILDING_HOUSE;
     iconTextureId = BUILDING_ICON_HOUSE;
-    goldCost = 100;
-    woodCost = 10;
+    goldCost = 50;
+    woodCost = 40;
     popSupported = 10;
     buildingName = "House";
 }

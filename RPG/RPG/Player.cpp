@@ -898,6 +898,12 @@ void Player::portalTo(int zoneId, int x, int y)
     scene->setCurrentZone(getZone());
     tileDestinationBuffer->x = x;
     tileDestinationBuffer->y = y;
+    if (((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_CAVE) {
+        ((OverWorldSceneMenu*)scene->menus[RPG_OVERWORLD_MENU])->setBuildButtonStatus(false);
+    }
+    else {
+        ((OverWorldSceneMenu*)scene->menus[RPG_OVERWORLD_MENU])->setBuildButtonStatus(true);
+    }
 }
 
 void Player::portalToNoCommandUnits(int zoneId, int x, int y)
@@ -906,6 +912,12 @@ void Player::portalToNoCommandUnits(int zoneId, int x, int y)
     scene->setCurrentZone(getZone());
     tileDestinationBuffer->x = x;
     tileDestinationBuffer->y = y;
+    if (((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_CAVE) {
+        ((OverWorldSceneMenu*)scene->menus[RPG_OVERWORLD_MENU])->setBuildButtonStatus(false);
+    }
+    else {
+        ((OverWorldSceneMenu*)scene->menus[RPG_OVERWORLD_MENU])->setBuildButtonStatus(true);
+    }
 }
 
 void Player::death()

@@ -27,6 +27,11 @@ void OverWorldSceneMenu::close()
     GameMenu::close();
 }
 
+void OverWorldSceneMenu::setBuildButtonStatus(bool newStatus)
+{
+    getElementbyId(OPEN_BUILD_MENU)->active = newStatus;
+}
+
 bool OverWorldSceneMenu::handleInput(InputMessage* message)
 {
     return GameMenu::handleInput(message);

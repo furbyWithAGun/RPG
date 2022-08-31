@@ -64,11 +64,11 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
             switch (barracksSelectPrompt->getSelectedOptionValue())
             {
             case 1:
-                if (unit->scene->player->gold >= 1000 && ((RpgTown*)zone)->getFreePop() > 0)
+                if (unit->scene->player->gold >= 500 && ((RpgTown*)zone)->getFreePop() > 0)
                 {
-                    unit->scene->player->gold -= 1000;
+                    unit->scene->player->gold -= 500;
                     ((RpgTown*)zone)->addToTrainedSoldiers(1);
-                    ((RpgTown*)zone)->reducePopulation(1);
+                    //((RpgTown*)zone)->reducePopulation(1);
                 }
                 break;
             default:
@@ -90,9 +90,9 @@ void Barracks::init()
     type = BUILDING_BARRACKS;
     iconTextureId = BUILDING_ICON_BLACKSMITH;
     goldCost = 100;
-    woodCost = 10;
+    woodCost = 200;
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Barracks";
-    popCost = 20;
+    popCost = 10;
 }

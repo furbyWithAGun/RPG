@@ -221,6 +221,19 @@ UiElement* UiElement::getElementbyId(int elementId) {
 void UiElement::deactivate()
 {
     active = false;
+    for (auto element : subElements)
+    {
+        element->deactivate();
+    }
+}
+
+void UiElement::activate()
+{
+    active = true;
+    for (auto element : subElements)
+    {
+        element->activate();
+    }
 }
 
 bool UiElement::isGettingText()

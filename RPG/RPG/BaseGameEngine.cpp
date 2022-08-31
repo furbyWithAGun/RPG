@@ -769,6 +769,10 @@ std::string getChancObjectVectorSaveString(std::vector<ChanceObject> vector) {
 
 bool stringIsAnInt(std::string string)
 {
+    if (string == "")
+    {
+        return false;
+    }
     for (char& c : string) {
         if(!std::isdigit(c)){
             return false;

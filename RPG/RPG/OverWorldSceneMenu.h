@@ -12,6 +12,7 @@ public:
     OverWorldSceneMenu();
     OverWorldSceneMenu(RpgOverWorldScene* gameScene, int newId, int newWidth, int newHeight, int newXPos, int newYPos);
     void close() override;
+    void setBuildButtonStatus(bool newStatus);
 
     //methods
     bool handleInput(InputMessage* message);

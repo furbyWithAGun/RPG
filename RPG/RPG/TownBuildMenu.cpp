@@ -38,11 +38,14 @@ void TownBuildMenu::open()
     scene->closeAllMenus();
     GameMenu::open();
     scene->displayHud = false;
-    scene->desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS_BUILDING;
-    scene->desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN_BUILDING;
-    scene->resizeTiles();
-    scene->player->updateCamera();
-    scene->player->cameraFollowPlayer = false;
+    if (((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_TOWN)
+    {
+        scene->desiredTilesAcross = DEFAULT_DESIRED_TILES_ACROSS_BUILDING;
+        scene->desiredTilesDown = DEFAULT_DESIRED_TILES_DOWN_BUILDING;
+        scene->resizeTiles();
+        scene->player->updateCamera();
+        scene->player->cameraFollowPlayer = false;
+    }    
     townBuildingFor = ((RpgZone*)scene->currentZone)->getNearestTown(scene->player->tileDestination);
 }
 
@@ -66,12 +69,12 @@ void TownBuildMenu::update()
 {
     GameMenu::update();
     if (((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_TOWN) {
-        mainPanel->active = true;
-        provincePanel->active = false;
+        mainPanel->activate();
+        provincePanel->deactivate();
     }
     else if (((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_PROVINCE) {
-        mainPanel->active = false;
-        provincePanel->active = true;
+        mainPanel->deactivate();
+        provincePanel->activate();
     }
 }
 
