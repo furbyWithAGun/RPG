@@ -141,10 +141,10 @@ void RpgOverWorldScene::setUpScene()
 
     //h4x
     ((RpgTown*)getZones()[1])->addPopulation(30);
-    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
-    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
-    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
-    addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
+    //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //Item* itemToDrop = createNewItem(ITEM_WOOD);
     //itemToDrop->stackSize = 1000;
     //addItemsToMap(0, 10, 26, { itemToDrop });
@@ -155,7 +155,7 @@ void RpgOverWorldScene::setUpScene()
     //player->gold = 5000;
     //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(SKILL_COMBAT, 999999999);
+    //player->addExp(SKILL_COMBAT, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
     //((RpgTown*)getZones()[1])->addPopulation(1000);
@@ -449,6 +449,10 @@ void RpgOverWorldScene::sceneLogic()
                 ((AiUnit*)unitAtLocation)->doesRandomMovement = false;
                 ((AiUnit*)squadUnits[message->misc])->adjustPathRate = 0;
                 ((AiUnit*)squadUnits[message->misc])->canGoThroughPortal = false;
+                ((AiUnit*)squadUnits[message->misc])->canGoThroughPortal = false;
+                if (squadUnits[message->misc]->assignedToBuilding) {
+                    squadUnits[message->misc]->assignedToBuilding->unAssignUnit(squadUnits[message->misc]);
+                }
             }
             break;
         default:
