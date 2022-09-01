@@ -27,7 +27,7 @@ public:
 
 private:
 	void init();
-	void openChest();
+	void openChest(RpgUnit* unit);
 	std::vector<Item*> getDrops();
 };
 

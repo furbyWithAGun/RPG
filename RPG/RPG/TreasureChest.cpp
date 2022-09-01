@@ -44,13 +44,14 @@ TreasureChest::TreasureChest(SaveObject saveObject, TileGridScene* gameScene) : 
 
 void TreasureChest::actionOn(Unit* unit, int actionType)
 {
+    RpgUnit* rpgUnit = (RpgUnit*) unit;
     switch (actionType)
     {
     case OVERWORLD_USE:
-        openChest();
+        openChest(rpgUnit);
         break;
     case OVERWORLD_STRIKE:
-        openChest();
+        openChest(rpgUnit);
         break;
     default:
         break;
@@ -84,13 +85,22 @@ void TreasureChest::init()
     type = DOODAD_TREASURE_CHEST;
 }
 
-void TreasureChest::openChest()
+void TreasureChest::openChest(RpgUnit* unit)
 {
+
     if (closed)
     {
+        int goldGiven = 0;
         closed = false;
         textureKey = TEXTURE_CHEST_OPEN;
         scene->addItemsToMap(zoneId, tileCoords[0], tileCoords[1], getDrops());
+
+        goldGiven = scene->engine->randomInt(((RpgTileGridScene*)scene)->currentZone->difficulty * 100) + 50;
+        if (zoneId == scene->currentZone->id && unit == ((RpgTileGridScene*)scene)->player)
+        {
+            ((RpgTileGridScene*)scene)->addDelayedCombatMessage(15, "+" + std::to_string(goldGiven) + " Gold", COLOR_GOLD, unit->tileLocation->x, unit->tileLocation->y, 140);
+        }
+        unit->gold += goldGiven;
     }
 }
 

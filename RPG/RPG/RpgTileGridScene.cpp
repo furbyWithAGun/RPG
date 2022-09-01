@@ -1088,7 +1088,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 1);
     newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
     //add to array
-    craftingRecipes.push_back(newRecipe);
+    //craftingRecipes.push_back(newRecipe);
 }
 
 void RpgTileGridScene::scrollCamera() {
