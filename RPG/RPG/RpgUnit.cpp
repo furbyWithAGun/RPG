@@ -3,7 +3,7 @@
 #include "AttackingState.h"
 #include "IdleState.h"
 #include "BareHands.h"
-#include "RpgTileGridScene.h"
+#include "RpgOverWorldScene.h"
 #include "BasicMeleeAttack.h"
 std::unordered_map<int, int> nextLevelExp = {
     {1, 30},
@@ -744,6 +744,11 @@ void RpgUnit::setEquippedItemsFromSavedString(std::string saveString)
 
 void RpgUnit::death()
 {
+    if (this == ((OtherUnitInventoryMenu*)(((RpgOverWorldScene*)scene)->menus[OTHER_UNIT_INVENTORY_MENU]))->getSelectedUnit())
+    {
+        scene->menus[OTHER_UNIT_INVENTORY_MENU]->close();
+        ((OtherUnitInventoryMenu*)(((RpgOverWorldScene*)scene)->menus[OTHER_UNIT_INVENTORY_MENU]))->setUnit(nullptr);
+    }
     scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, getDrops());
     active = false;
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)

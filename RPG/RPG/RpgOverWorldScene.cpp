@@ -647,6 +647,16 @@ std::unordered_map<int, AiUnit*> RpgOverWorldScene::getSquadUnits()
     return squadUnits;
 }
 
+bool RpgOverWorldScene::unitIsSquadUnit(AiUnit* unit)
+{
+    for (auto squadUnit : squadUnits) {
+        if (squadUnit.second == unit) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 //functions
