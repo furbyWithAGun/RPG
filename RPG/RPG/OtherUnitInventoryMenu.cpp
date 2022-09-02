@@ -144,7 +144,7 @@ void OtherUnitInventoryMenu::rebuildElements()
                     selectedUnit->eatFood(itemToEat);
                     if (itemToEat->stackSize <= 0)
                     {
-                        selectedUnit->inventory.erase(selectedUnit->inventory.begin() + i);
+                        selectedUnit->deleteItemFromInventory(i);
                     }
                     rebuildElements();
                 }

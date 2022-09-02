@@ -1197,6 +1197,10 @@ std::vector<CraftingRecipe> RpgTileGridScene::getCraftingRecipes()
 
 CraftingRecipe RpgTileGridScene::getCraftingRecipe(int recipeIndex)
 {
+    if (recipeIndex == -1)
+    {
+        return CraftingRecipe();
+    }
     return craftingRecipes[recipeIndex];
 }
 

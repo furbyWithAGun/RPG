@@ -60,7 +60,11 @@ void AiUnit::update() {
         if (foodToEat)
         {
             eatFood(foodToEat);
-            delete foodToEat;
+            deleteItemFromInventory(foodToEat);
+            if (scene->menus[OTHER_UNIT_INVENTORY_MENU]->isActive && ((RpgOverWorldScene*)scene)->unitIsSquadUnit(this))
+            {
+                scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
+            }
         } else {
             RpgTown* nearestTown = ((RpgZone*)scene->getZone(getZone()))->getNearestTown(tileDestination);
             if (nearestTown) {
@@ -68,7 +72,11 @@ void AiUnit::update() {
                 if (foodToEat)
                 {
                     eatFood(foodToEat);
-                    delete foodToEat;
+                    deleteItemFromInventory(foodToEat);
+                    if (scene->menus[OTHER_UNIT_INVENTORY_MENU]->isActive && ((RpgOverWorldScene*)scene)->unitIsSquadUnit(this))
+                    {
+                        scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
+                    }
                 }
             }
         }

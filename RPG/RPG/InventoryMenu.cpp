@@ -137,7 +137,7 @@ void InventoryMenu::rebuildElements()
                     scene->player->eatFood(itemToEat);
                     if (itemToEat->stackSize <= 0)
                     {
-                        scene->player->inventory.erase(scene->player->inventory.begin() + i);
+                        scene->player->deleteItemFromInventory(i);
                     }
                     rebuildElements();
                 }
