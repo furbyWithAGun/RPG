@@ -17,7 +17,7 @@ public:
     BasicMeleeAttack(int newType, RpgUnit* newOwningUnit);
 
     //methods
-    bool startAttack() override;
+    bool startAttack(int x, int y) override;
     void processHit(RpgUnit* targetUnit) override;
     void processHit(DooDad* targetDooDad) override;
     void processAttack() override;

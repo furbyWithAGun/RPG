@@ -126,6 +126,13 @@ void Unit::removeUnitFromBeingTargetedBy(Unit* newUnit)
     SDL_AtomicUnlock(&targetedByUnitLock);
 }
 
+void Unit::getCentreCoords(double coords[2])
+{
+    scene->coordsFromTileIndex(tileLocation->x, tileLocation->y, coords);
+    coords[0] += scene->tileWidth / 2;
+    coords[1] += scene->tileHeight / 2;
+}
+
 Location* Unit::getTargetLocation()
 {
     SDL_AtomicLock(&targetLocationLock);

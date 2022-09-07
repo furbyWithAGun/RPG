@@ -151,10 +151,10 @@ RpgUnit::RpgUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
     scene = gameScene;
 }
 
-bool RpgUnit::performAttack(int attackId)
+bool RpgUnit::performAttack(int attackId, int x, int y)
 {
     activeAttack = equipedAttacks[attackId];
-    return activeAttack->startAttack();
+    return activeAttack->startAttack(x, y);
 }
 
 int RpgUnit::assignDamage(int damageTaken)

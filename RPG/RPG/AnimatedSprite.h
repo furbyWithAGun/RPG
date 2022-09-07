@@ -22,6 +22,7 @@ public:
     void setup();
     virtual void update();
     void draw();
+    void draw(int x, int y);
     void resize(int x , int y);
 
 private:

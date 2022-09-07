@@ -1,5 +1,6 @@
 #pragma once
 #include "ZoneMap.h"
+#include "Projectile.h"
 
 class RpgTileGridScene;
 class RpgTown;
@@ -33,13 +34,20 @@ public:
     virtual Location* getNearestTownLocation(Location* location);
     virtual Location* getNearestTownLocation(int xpos, int ypos);
     virtual void update() override;
+    void draw(TileGridScene* scene) override;
+    //projectile vector
+    void addToProjectileVector(Projectile* projectileToAdd);
+    void removeFromProjectileVector(Projectile* projectileToRemove);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
 protected:
 
 private:
+    //attributes
+    std::vector<Projectile*> projectiles;
 
+    //methods
     void init();
     void init(RpgTileGridScene* gameScene);
 };

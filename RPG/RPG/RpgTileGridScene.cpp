@@ -226,6 +226,8 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_RAT_SPAWNER, "images/ratSpawner.png" });
     texturesToLoad.insert({ TEXTURE_CHEST_CLOSED, "images/chestClosed.png" });
     texturesToLoad.insert({ TEXTURE_CHEST_OPEN, "images/chestOpen.png" });
+    //misc
+    texturesToLoad.insert({ TEXTURE_TEST_PROJECTILE, "images/testProjectile.png" });
 }
 
 void RpgTileGridScene::setUpScene()
@@ -671,7 +673,7 @@ void RpgTileGridScene::destroyFlaggedUnits()
         //}
         SDL_AtomicLock(&unit->deleteLock);
         destroyUnit((RpgUnit*)unit);
-        SDL_AtomicUnlock(&unit->deleteLock);
+        //SDL_AtomicUnlock(&unit->deleteLock);
     }
     SDL_AtomicUnlock(&unitDestroyLock);
     unitsToDestroy.clear();

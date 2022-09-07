@@ -26,8 +26,8 @@ int BasicMeleeAttack::damageDealt()
     return owningUnit->scene->engine->randomInt(weapon->minDamage + (owningUnit->getAttributeLevel(UNIT_STAT_STR) + 1) / 3, weapon->maxDamage + (owningUnit->getAttributeLevel(UNIT_STAT_STR) + 1) * 0.8);
 }
 
-bool BasicMeleeAttack::startAttack() {
-    if (Attack::startAttack()) {
+bool BasicMeleeAttack::startAttack(int x, int y) {
+    if (Attack::startAttack(x, y)) {
         switch (owningUnit->directionFacing)
         {
         case UP_LEFT:

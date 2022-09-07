@@ -164,6 +164,7 @@
     <ClCompile Include="BareHands.cpp" />
     <ClCompile Include="Barracks.cpp" />
     <ClCompile Include="BasicMeleeAttack.cpp" />
+    <ClCompile Include="BasicRangedAttack.cpp" />
     <ClCompile Include="CraftingMenu.cpp" />
     <ClCompile Include="CraftingRecipe.cpp" />
     <ClCompile Include="GuardHouse.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="NewZoneDetailsMenu.cpp" />
     <ClCompile Include="Orchard.cpp" />
     <ClCompile Include="OtherUnitInventoryMenu.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="RpgTown.cpp" />
     <ClCompile Include="RpgProvinceZone.cpp" />
     <ClCompile Include="RpgZone.cpp" />
@@ -285,6 +287,7 @@
     <ClInclude Include="Barracks.h" />
     <ClInclude Include="BaseGameEngine.h" />
     <ClInclude Include="BasicMeleeAttack.h" />
+    <ClInclude Include="BasicRangedAttack.h" />
     <ClInclude Include="CraftingMenu.h" />
     <ClInclude Include="CraftingRecipe.h" />
     <ClInclude Include="GuardHouse.h" />
@@ -294,6 +297,7 @@
     <ClInclude Include="NewZoneDetailsMenu.h" />
     <ClInclude Include="Orchard.h" />
     <ClInclude Include="OtherUnitInventoryMenu.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="RpgTown.h" />
     <ClInclude Include="RpgProvinceZone.h" />
     <ClInclude Include="RpgZone.h" />

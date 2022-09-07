@@ -108,6 +108,46 @@ void RpgZone::update()
     {
         building->update(scene);
     }
+
+    std::vector<Projectile*>::iterator iter;
+    for (iter = projectiles.begin(); iter != projectiles.end(); ) {
+        (*iter)->update();
+        if ((*iter)->duration > (*iter)->maxDuration || !(*iter)->active)
+            iter = projectiles.erase(iter);
+        else
+            ++iter;
+    }
+}
+
+void RpgZone::draw(TileGridScene* scene)
+{
+    ZoneMap::draw(scene);
+    for (Projectile* projectile : projectiles) {
+        projectile->draw(projectile->xpos + scene->xOffset ,projectile->ypos + scene->yOffset);
+    }
+}
+
+void RpgZone::addToProjectileVector(Projectile* projectileToAdd)
+{
+    if (std::find(projectiles.begin(), projectiles.end(), projectileToAdd) == projectiles.end())
+    {
+        projectiles.push_back(projectileToAdd);
+    }
+}
+
+void RpgZone::removeFromProjectileVector(Projectile* projectileToRemove)
+{
+    auto projectileIterator = projectiles.begin();
+    while (projectileIterator != projectiles.end())
+    {
+        if (*(projectileIterator) == projectileToRemove) {
+            delete *projectileIterator;
+            projectileIterator = projectiles.erase(projectileIterator);
+        }
+        else {
+            projectileIterator++;
+        }
+    }
 }
 
 void RpgZone::init()

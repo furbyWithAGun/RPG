@@ -17,25 +17,26 @@ AttackingState::AttackingState(int newId, RpgUnit* controlledUnit) : UnitState(n
 int AttackingState::update() {
     UnitState::update();
     if (unit->activeAttack->cooldown - unit->activeAttack->cooldownTimeLeft >= unit->activeAttack->attackTime) {
-        if (unit->movingUp) {
-            //unit->startMovement(UP);
-            return UNIT_MOVING;
-        }
-        else if (unit->movingDown) {
-            //unit->startMovement(DOWN);
-            return UNIT_MOVING;
-        }
-        else if (unit->movingRight) {
-            //unit->startMovement(RIGHT);
-            return UNIT_MOVING;
-        }
-        else if (unit->movingLeft) {
-            //unit->startMovement(LEFT);
-            return UNIT_MOVING;
-        }
-        else {
-            return UNIT_IDLE;
-        }
+        //if (unit->movingUp) {
+        //    //unit->startMovement(UP);
+        //    return UNIT_MOVING;
+        //}
+        //else if (unit->movingDown) {
+        //    //unit->startMovement(DOWN);
+        //    return UNIT_MOVING;
+        //}
+        //else if (unit->movingRight) {
+        //    //unit->startMovement(RIGHT);
+        //    return UNIT_MOVING;
+        //}
+        //else if (unit->movingLeft) {
+        //    //unit->startMovement(LEFT);
+        //    return UNIT_MOVING;
+        //}
+        //else {
+        //    return UNIT_IDLE;
+        //}
+        return UNIT_IDLE;
     }
     //unit->updateMovement();
     return id;

@@ -262,6 +262,9 @@ void RpgOverWorldScene::handleInput()
                         }
                     }
                 }
+                else {
+                    addCommand(InputMessage(PERFORM_SECONDARY_ATTACK, message->x, message->y));
+                }
                 break;
             case BUTTON_2_ON:
                 addCommand(InputMessage(START_MOVE_UP, message->x, message->y));

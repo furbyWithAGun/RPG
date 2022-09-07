@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "RpgTileGridScene.h"
 #include "BasicMeleeAttack.h"
+#include "BasicRangedAttack.h"
 #include "RpgOverWorldScene.h"
 
 //stat constants
@@ -48,6 +49,7 @@ void Player::init() {
     isPlayer = true;
     setAttributeLevel(UNIT_STAT_SPEED, PLAYER_SPEED);
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    equipedAttacks[SECONDARY_ATTACK] = new BasicRangedAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, PLAYER_MAX_HEALTH);
     health = PLAYER_MAX_HEALTH;

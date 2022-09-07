@@ -16,7 +16,7 @@ public:
     Attack(int newType, RpgUnit* newOwningUnit);
 
     //methods
-    virtual bool startAttack();
+    virtual bool startAttack(int x, int y);
     virtual void processHit(RpgUnit* targetUnit) {};
     virtual void processHit(DooDad* targetUnit) {};
     virtual void update();

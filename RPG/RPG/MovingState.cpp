@@ -35,11 +35,11 @@ int MovingState::handleInput(InputMessage* message) {
     switch (message->id)
     {
     case PERFORM_MAIN_ATTACK:
-        unit->faceCoords(message->x, message->y);
-        if (unit->performAttack(MAIN_ATTACK))
-        {
-            return UNIT_ATTACKING;
-        }
+        //unit->faceCoords(message->x, message->y);
+        //if (unit->performAttack(MAIN_ATTACK))
+        //{
+        //    return UNIT_ATTACKING;
+        //}
         break;
     case START_MOVE_UP:
         unit->movingUp = true;

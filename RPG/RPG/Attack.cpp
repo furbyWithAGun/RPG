@@ -22,7 +22,7 @@ void Attack::init() {
     owningUnit = NULL;
 }
 
-bool Attack::startAttack() {
+bool Attack::startAttack(int x, int y) {
     if (cooldownTimeLeft <= 0) {
         cooldownTimeLeft = cooldown;
         return true;

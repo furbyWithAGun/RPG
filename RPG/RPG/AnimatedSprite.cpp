@@ -91,6 +91,17 @@ void AnimatedSprite::draw()
     }
 }
 
+void AnimatedSprite::draw(int x, int y)
+{
+    if (tempAnimation != NULL && tempAnimation->active)
+    {
+        scene->engine->renderAnimation(tempAnimation, x, y, width, height);
+    }
+    else if (currentAnimation != NULL && currentAnimation->active) {
+        scene->engine->renderAnimation(currentAnimation, x, y, width, height);
+    }
+}
+
 void AnimatedSprite::resize(int x, int y) {
     width = x;
     height = y;

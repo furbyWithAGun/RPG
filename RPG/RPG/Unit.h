@@ -123,6 +123,7 @@ public:
     std::vector<Unit*> getBeingTargetedBy();
     void addUnitToBeingTargetedBy(Unit* newUnit);
     void removeUnitFromBeingTargetedBy(Unit* newUnit);
+    void getCentreCoords(double coords[2]);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
     static void resetUid();

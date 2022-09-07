@@ -34,7 +34,14 @@ int IdleState::handleInput(InputMessage* message) {
     {
     case PERFORM_MAIN_ATTACK:
         unit->faceCoords(message->x, message->y);
-        if (unit->performAttack(MAIN_ATTACK))
+        if (unit->performAttack(MAIN_ATTACK, message->x, message->y))
+        {
+            return UNIT_ATTACKING;
+        }
+        break;
+    case PERFORM_SECONDARY_ATTACK:
+        unit->faceCoords(message->x, message->y);
+        if (unit->performAttack(SECONDARY_ATTACK, message->x, message->y))
         {
             return UNIT_ATTACKING;
         }
@@ -65,7 +72,7 @@ int IdleState::handleInput(InputMessage* message) {
                 double tileCoords[2];
                 unit->scene->coordsFromTileIndex(message->x, message->y, tileCoords);
                 unit->faceCoords(tileCoords[0], tileCoords[1]);
-                if (unit->performAttack(MAIN_ATTACK))
+                if (unit->performAttack(MAIN_ATTACK, message->x, message->y))
                 {
                     return UNIT_ATTACKING;
                 }

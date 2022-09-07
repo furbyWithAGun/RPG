@@ -79,7 +79,7 @@ class ZoneMap {
         virtual std::string toSaveString(bool withHeaderAndFooter = true);
         int getDevelopmentLevel();
         int getDifficulty();
-        void draw(TileGridScene* scene);
+        virtual void draw(TileGridScene* scene);
         Building* getBuildingAtLocation(int x, int y);
         Building* getBuildingById(int buildingId);
         bool addBuildingToLocation(Building* building, int x, int y);
