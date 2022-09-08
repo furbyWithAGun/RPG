@@ -10,6 +10,7 @@ const int PLAYER_SPEED = 10;
 const int PLAYER_DEX = 4;
 const int PLAYER_AGI = 3;
 const int PLAYER_MAX_HEALTH = 100;
+const int PLAYER_MAX_MANA = 100;
 
 //animation constants
 const int NUM_PLAYER_IDLE_FRAMES = 1;
@@ -52,7 +53,9 @@ void Player::init() {
     equipedAttacks[SECONDARY_ATTACK] = new BasicRangedAttack(MELEE, this); //potential memory leak
     activeAttack = equipedAttacks[MAIN_ATTACK];
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, PLAYER_MAX_HEALTH);
+    setAttributeLevel(UNIT_STAT_MAX_MANA, PLAYER_MAX_MANA);
     health = PLAYER_MAX_HEALTH;
+    mana = PLAYER_MAX_MANA;
     setAttributeLevel(UNIT_STAT_DEX, PLAYER_DEX);
     setAttributeLevel(UNIT_STAT_AGI, PLAYER_AGI);
     //dex = PLAYER_DEX;

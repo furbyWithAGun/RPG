@@ -40,6 +40,10 @@ void Projectile::update()
     {
         unitCollideFunction(collidedUnit);
     }
+    if (!scene->isTilePassableIgnoreAllUnits(zoneId, tileCoords[0], tileCoords[1]))
+    {
+        active = false;
+    }
     updateFunction();
 }
 
@@ -60,11 +64,17 @@ void Projectile::setTarget(double newX, double newY)
     ySpeed = yDelta * hypRatio;
 }
 
+int Projectile::getTeam()
+{
+    return team;
+}
+
 void Projectile::init(RpgUnit* unit)
 {
     init();
     scene = unit->scene;
     zoneId = unit->getZone();
+    team = unit->team;
     double coords[2];
     unit->getCentreCoords(coords);
     xpos = coords[0] - scene->xOffset;

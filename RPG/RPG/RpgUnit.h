@@ -136,6 +136,8 @@ public:
 
 private:
     //attributes
+    int manaRegenDelay;
+    int manaRegenTick;
     std::vector<unitSkillAttributeData> unitSkills;
     bool attackingNearbyEnemy;
 

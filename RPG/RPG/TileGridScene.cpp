@@ -349,6 +349,11 @@ bool TileGridScene::isTilePassableIgnoreUnit(int zoneId, int x, int y, Unit* uni
     return zones[zoneId]->isTilePassableIgnoreUnit(this, x, y, unitToIgnore);
 }
 
+bool TileGridScene::isTilePassableIgnoreAllUnits(int zoneId, int x, int y)
+{
+    return zones[zoneId]->isTilePassableIgnoreAllUnits(this, x, y);
+}
+
 //private methods
 void TileGridScene::createTiles() {
     //resize tiles depending on screen size

@@ -29,7 +29,7 @@ int BasicRangedAttack::damageDealt()
 }
 
 bool BasicRangedAttack::startAttack(int x, int y) {
-    if (Attack::startAttack(x, y)) {
+    if (Attack::startAttack(x, y) && owningUnit->mana >= 10) {
         xTarget = x;
         yTarget = y;
         switch (owningUnit->directionFacing)
@@ -103,15 +103,23 @@ void BasicRangedAttack::processHit(DooDad* targetDooDad) {
 }
 
 void BasicRangedAttack::processAttack() {
-    Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_TEST_PROJECTILE);
-    newProjectile->setTarget(xTarget, yTarget);
-    newProjectile->addOnCollide([this, newProjectile](RpgUnit* collidedUnit) {
-        if (newProjectile->active && collidedUnit != owningUnit)
-        {
-            //collidedUnit->scene->addCombatMessage("hit", SDL_Color{ 255, 0, 0, 0 }, collidedUnit->tileLocation->x, collidedUnit->tileLocation->y);
-            collidedUnit->assignDamage(owningUnit, 10);
-            newProjectile->active = false;
-        }
-        });
-    ((RpgZone*)owningUnit->scene->getZone(owningUnit->getZone()))->addToProjectileVector(newProjectile);
+    if (owningUnit->mana >= 10)
+    {
+        owningUnit->mana -= 10;
+        Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_TEST_PROJECTILE);
+        newProjectile->setTarget(xTarget, yTarget);
+        int intl = owningUnit->getAttributeLevel(UNIT_STAT_INTL);
+        newProjectile->addOnCollide([this, newProjectile, intl](RpgUnit* collidedUnit) {
+            if (newProjectile->active && collidedUnit != owningUnit)
+            {
+                //collidedUnit->scene->addCombatMessage("hit", SDL_Color{ 255, 0, 0, 0 }, collidedUnit->tileLocation->x, collidedUnit->tileLocation->y);
+                if (newProjectile->getTeam() != collidedUnit->team)
+                {
+                    collidedUnit->assignDamage(owningUnit, collidedUnit->scene->engine->randomInt(1,10) + collidedUnit->scene->engine->randomInt(intl));
+                    newProjectile->active = false;
+                }
+            }
+            });
+        ((RpgZone*)owningUnit->scene->getZone(owningUnit->getZone()))->addToProjectileVector(newProjectile);
+    }
 }

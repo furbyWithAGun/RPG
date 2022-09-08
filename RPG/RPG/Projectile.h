@@ -25,6 +25,7 @@ public:
     void update();
     void deleteProjectile();
     void setTarget(double newX, double newY);
+    int getTeam();
 
 private:
     //attributes

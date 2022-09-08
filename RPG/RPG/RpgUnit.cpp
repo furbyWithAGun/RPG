@@ -189,6 +189,12 @@ int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
     {
         death(attackingUnit);
     }
+    else {
+        if (!getTargetUnit() && this != scene->player)
+        {
+            setTargetUnit(attackingUnit);
+        }
+    }
     return health;
 }
 
@@ -255,8 +261,11 @@ void RpgUnit::levelUp()
     //end += 1;
     //intl += 1;
     changeAttributeLevel(UNIT_STAT_MAX_HEALTH, 10);
+    changeAttributeLevel(UNIT_STAT_MAX_MANA, 10);
     //setAttributeLevel(UNIT_STAT_MAX_HEALTH, getAttributeLevel(UNIT_STAT_MAX_HEALTH) + 10);
     health += 10;
+    mana += 10;
+    mana += 10;
     if (scene->getZone(getZone()) == scene->currentZone)
     {
         scene->addCombatMessage("***LEVEL UP***", COLOR_GREEN, tileLocation->x, tileLocation->y, 150);
@@ -504,6 +513,14 @@ void RpgUnit::update()
 {
     Unit::update();
     updateAttacks();
+    manaRegenTick++;
+    if (manaRegenTick >= manaRegenDelay) {
+        manaRegenTick = 0;
+        if (mana < getAttributeLevel(UNIT_STAT_MAX_MANA))
+        {
+            mana++;
+        }
+    }
     bool hasTarget = false;
     Location* targetLocation = getTargetLocation();
     if (targetLocation->x != tileDestination->x || targetLocation->y != tileDestination->y)
@@ -662,6 +679,8 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 
 void RpgUnit::init()
 {
+    manaRegenDelay = 80;
+    manaRegenTick = 0;
     attackingNearbyEnemy = false;
     scene = nullptr;
     maxHungerLevel = 500;
@@ -696,7 +715,7 @@ void RpgUnit::init()
     minNumDrops = 1;
     maxNumDrops = 1;
     dropChance = 0.0;
-    aggroTriggerDistance = 5;
+    aggroTriggerDistance = 6;
     aggroMaintainDistance = 7;
     aggroUpdateTick = 0;
     //special attributes for loading saved units
