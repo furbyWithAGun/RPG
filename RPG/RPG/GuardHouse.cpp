@@ -50,18 +50,13 @@ void GuardHouse::update(RpgTileGridScene* scene)
             {
                 localTown->subtractFromTrainedSoldiers(1);
                 RpgUnit* newUnit = new Soldier(zone->id, SOLDIER, scene, tileLocation->x, tileLocation->y + 1);
-                zone->addUnitToLocation(newUnit, tileLocation->x, tileLocation->y + 1);
+                zone->addUnitToLocation(newUnit, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
                 assignUnit(newUnit);
             }
         }
     }
 
-    for (auto unit : assignedUnits) {
-        if (unit->getZone() == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
-        {
-            unit->setTargetLocation(tileLocation->x, tileLocation->y + 2);
-        }
-    }
+    Building::update(scene);
 }
 
 
@@ -71,11 +66,12 @@ void GuardHouse::init()
     iconTextureId = BUILDING_ICON_BLACKSMITH;
     goldCost = 100;
     woodCost = 75;
+    maxTroops = 2;
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Guard House";
     popCost = 0;
-    maxTroops = 2;
+    unitTeatherLocationOffset[1] = 1;
     setCanBeBuiltOnOverworld(true);
     //popSupported = 2;
 }

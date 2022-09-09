@@ -84,11 +84,11 @@ public:
     bool unitCanCraftRecipe(RpgUnit* craftingUnit, CraftingRecipe* recipe, int craftingStation);
     std::vector<CraftingRecipe> getCraftingRecipes();
     CraftingRecipe getCraftingRecipe(int recipeIndex);
+    virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
 
 protected:
     //attributes
     std::string saveGameName;
-    virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);
     void removeBuildingFromZone(ZoneMap* zone, Building* building);

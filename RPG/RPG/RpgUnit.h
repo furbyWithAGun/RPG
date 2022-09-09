@@ -131,6 +131,8 @@ public:
     int getSkillLevel(int skill);
     void setSkillLevel(int skill, int newLevel);
     void changeSkillLevel(int skill, int skillChange);
+    void setTethered(bool tetherUnit);
+    bool isTethered();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
@@ -140,6 +142,7 @@ private:
     int manaRegenTick;
     std::vector<unitSkillAttributeData> unitSkills;
     bool attackingNearbyEnemy;
+    bool unitIsTethered;
 
     //methods
     void init();

@@ -48,10 +48,6 @@ int House::onActionAssignedUnit(RpgUnit* unit)
     return 0;
 }
 
-void House::update(RpgTileGridScene* scene)
-{
-
-}
 
 
 void House::init()
@@ -62,5 +58,9 @@ void House::init()
     woodCost = 40;
     popSupported = 10;
     buildingName = "House";
+    spawnedUnitType = TOWNSPERSON;
+    maxUnits = 1;
+    unitSpawnTick = 0;
+    unitSpawnRate = 1000;
 }
 

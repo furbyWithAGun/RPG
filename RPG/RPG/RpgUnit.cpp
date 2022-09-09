@@ -190,7 +190,7 @@ int RpgUnit::assignDamage(RpgUnit* attackingUnit, int damageTaken)
         death(attackingUnit);
     }
     else {
-        if (!getTargetUnit() && this != scene->player)
+        if ((!getTargetUnit() || scene->getZone(getZone())->manhattenDistance(attackingUnit->tileLocation, tileLocation) < scene->getZone(getZone())->manhattenDistance(getTargetUnit()->tileLocation, tileLocation)) && this != scene->player)
         {
             setTargetUnit(attackingUnit);
         }
@@ -622,6 +622,16 @@ void RpgUnit::changeSkillLevel(int skill, int skillChange)
     unitSkills[skill].level += skillChange;
 }
 
+void RpgUnit::setTethered(bool tetherUnit)
+{
+    unitIsTethered = tetherUnit;
+}
+
+bool RpgUnit::isTethered()
+{
+    return unitIsTethered;
+}
+
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;
@@ -679,6 +689,7 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 
 void RpgUnit::init()
 {
+    unitIsTethered = false;
     manaRegenDelay = 80;
     manaRegenTick = 0;
     attackingNearbyEnemy = false;

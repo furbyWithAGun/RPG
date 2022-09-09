@@ -84,7 +84,6 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
 }
 
 
-
 void Barracks::init()
 {
     type = BUILDING_BARRACKS;
@@ -95,4 +94,10 @@ void Barracks::init()
     troopSpawnRate = 1000;
     buildingName = "Barracks";
     popCost = 10;
+    unitTeatherLocationOffset[0] = 3;
+    unitTeatherLocationOffset[1] = 2;
+    spawnedUnitType = TOWNSPERSON;
+    maxUnits = 1;
+    unitSpawnTick = 0;
+    unitSpawnRate = 1000;
 }

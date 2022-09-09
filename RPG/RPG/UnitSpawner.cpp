@@ -64,7 +64,9 @@ void UnitSpawner::update()
         spawnTick = 0;
         if (scene->engine->getProbFromSigmoid(scene->getZone(zoneId)->getDifficulty() + 100, scene->getZone(zoneId)->getDevelopmentLevel() + scene->getZone(zoneId)->getNumUnits() * 2) > scene->engine->randomDouble())
         {
-            if (scene->getUnitAtLocation(zoneId, tileCoords[0], tileCoords[1]) == nullptr){
+            //if (scene->getUnitAtLocation(zoneId, tileCoords[0], tileCoords[1]) == nullptr){
+            for (size_t i = 0; i < 10; i++)
+            {
 
                 RpgUnit* newUnit = ((RpgTileGridScene*)scene)->createUnitAtLocation(zoneId, unitToSpawn, tileCoords[0], tileCoords[1]);
                 Location* newTargetLocation = ((RpgZone*)scene->getZone(zoneId))->getNearestTownLocation(newUnit->tileLocation);

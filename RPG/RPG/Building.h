@@ -60,7 +60,7 @@ public:
     int getY();
 
     //methods
-    virtual void update(RpgTileGridScene* scene) {};
+    virtual void update(RpgTileGridScene* scene);
     BuildingTile* getTileAtMapLocation(int x, int y);
     virtual int onActionAssignedUnit(RpgUnit* unit);
     virtual int onActionAssignedDooDad(DooDad* dooDad);
@@ -85,6 +85,11 @@ public:
 
 protected:
     //attributes
+    int maxUnits;
+    int unitSpawnTick;
+    int unitSpawnRate;
+    int spawnedUnitType;
+    int unitTeatherLocationOffset[2];
     int popSupported;
     int popCost;
     std::string buildingName;

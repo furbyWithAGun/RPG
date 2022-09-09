@@ -1,9 +1,9 @@
 #include "TownsPerson.h"
 #include "BasicMeleeAttack.h"
 
-const int MAX_HEALTH = 10000;
+const int MAX_HEALTH = 75;
 const int SPEED = 8;
-const int DEX = 1;
+const int DEX = 2;
 const int AGI = 2;
 const int EXP_VALUE = 3;
 
@@ -40,7 +40,10 @@ void TownsPerson::init(RpgTileGridScene* gameScene) {
     //resize(scene->tileWidth, scene->tileWidth);
     doesRandomMovement = false;
     health = MAX_HEALTH;
-    setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);;
+    setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
+    setAttributeLevel(UNIT_STAT_SPEED, SPEED);
+    setAttributeLevel(UNIT_STAT_DEX, DEX);
+    setAttributeLevel(UNIT_STAT_AGI, AGI);
 }
 
 

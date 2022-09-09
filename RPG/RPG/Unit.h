@@ -139,6 +139,8 @@ protected:
 
     //methods
     void setUnitState(int newState);
+    void setAttackingNearby(bool newValue);
+    bool getAttackingNearby();
 
 private:
     //attributes
@@ -151,6 +153,8 @@ private:
     Unit* targetUnitBuffer;
     int zone;
     std::vector<Unit*> beingTargetedBy;
+    bool attackingNearbyUnit;
+    SDL_SpinLock attackNearbyLock;
 
     //methods
     void init();

@@ -30,6 +30,7 @@ Player::Player(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgUnit(sav
     isStatic = true;
     isPlayer = true;
     cameraFollowPlayer = true;
+    equipedAttacks[SECONDARY_ATTACK] = new BasicRangedAttack(MELEE, this); //potential memory leak
 }
 
 Player::Player(int zoneId, int unitType) : RpgUnit(zoneId, unitType) {

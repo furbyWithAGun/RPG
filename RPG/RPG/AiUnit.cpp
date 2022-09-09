@@ -52,6 +52,7 @@ void AiUnit::init() {
     //checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 7;
 }
 
+
 void AiUnit::update() {
     updateCoords();
     if (health < getAttributeLevel(UNIT_STAT_MAX_HEALTH) && team == PLAYER_TEAM && foodEffects.size() == 0)
@@ -155,14 +156,17 @@ bool AiUnit::attackNearbyUnit() {
     }*/
     if (!getTargetUnit())
     {
+        setAttackingNearby(false);
         return false;
     }
     for (size_t i = 0; i < NUM_DIRECTIONS; i++)
     {
         if (meleeAttackUnitInDirection(i)) {
+            setAttackingNearby(true);
             return true;
         }
     }
+    setAttackingNearby(false);
     return false;
 }
 

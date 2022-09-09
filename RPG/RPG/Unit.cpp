@@ -328,6 +328,7 @@ Unit::Unit(int zoneId, int unitType, TileGridScene* gameScene, int startX, int s
 }
 
 void Unit::init() {
+    attackNearbyLock = 0;
     targetedByUnitLock = 0;
     targetUnitLock = 0;
     targetLocationLock = 0;
@@ -385,6 +386,22 @@ void Unit::init(int zoneId, int unitType, TileGridScene* gameScene) {
     resize(scene->tileWidth * 3, scene->tileHeight * 3);
 }
 
+
+void Unit::setAttackingNearby(bool newValue)
+{
+    SDL_AtomicLock(&attackNearbyLock);
+    attackingNearbyUnit = newValue;
+    SDL_AtomicUnlock(&attackNearbyLock);
+}
+
+bool Unit::getAttackingNearby()
+{
+    SDL_AtomicLock(&attackNearbyLock);
+    bool returnValue = attackingNearbyUnit;
+    SDL_AtomicUnlock(&attackNearbyLock);
+    return returnValue;
+}
+
 bool Unit::isAlive()
 {
     return health > 0 && active;
@@ -416,7 +433,7 @@ void Unit::startMovement(int direction) {
         else 
         {
             RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x, tileLocation->y - 1);
-            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE && scene->getZone(zone)->isTilePassableIgnoreUnit(scene, tileLocation->x, tileLocation->y - 1, unitAtLocation))
             {
                 unitAtLocation->tileDestination->x = tileLocation->x;
                 unitAtLocation->tileDestination->y = tileLocation->y;
@@ -443,7 +460,7 @@ void Unit::startMovement(int direction) {
         else
         {
             RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x, tileLocation->y + 1);
-            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE && scene->getZone(zone)->isTilePassableIgnoreUnit(scene, tileLocation->x, tileLocation->y + 1, unitAtLocation))
             {
                 unitAtLocation->tileDestination->x = tileLocation->x;
                 unitAtLocation->tileDestination->y = tileLocation->y;
@@ -470,7 +487,7 @@ void Unit::startMovement(int direction) {
         else
         {
             RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x + 1, tileLocation->y);
-            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE && scene->getZone(zone)->isTilePassableIgnoreUnit(scene, tileLocation->x + 1, tileLocation->y, unitAtLocation))
             {
                 unitAtLocation->tileDestination->x = tileLocation->x;
                 unitAtLocation->tileDestination->y = tileLocation->y;
@@ -497,7 +514,7 @@ void Unit::startMovement(int direction) {
         else
         {
             RpgUnit* unitAtLocation = (RpgUnit*)scene->getZone(zone)->getUnitAtLocation(tileLocation->x - 1, tileLocation->y);
-            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE)
+            if (unitAtLocation && unitAtLocation->team == PLAYER_TEAM && unitAtLocation != ((RpgOverWorldScene*)scene)->player && unitAtLocation->currentState->id == UNIT_IDLE && scene->getZone(zone)->isTilePassableIgnoreUnit(scene, tileLocation->x - 1, tileLocation->y, unitAtLocation))
             {
                 unitAtLocation->tileDestination->x = tileLocation->x;
                 unitAtLocation->tileDestination->y = tileLocation->y;
@@ -582,7 +599,7 @@ bool Unit::updateMovement() {
 
 bool Unit::processPath()
 {
-    if (targetUnit && (std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1 && std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1))
+    if (!getAttackingNearby() && targetUnit && (std::abs(targetUnit->tileDestination->x - tileDestination->x) <= 1 && std::abs(targetUnit->tileDestination->y - tileDestination->y) <= 1))
     {
         return false;
     }

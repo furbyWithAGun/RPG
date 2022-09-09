@@ -78,6 +78,14 @@ void RpgOverWorldScene::setUpScene()
     if (saveGameName == SAVES_FILE_PATH + NEW_GAME_SAVE_FILE)
     {
         player = (Player*)createUnitAtLocation(0, PLAYER, 104, 23);
+        
+        //h4x
+        ((RpgTown*)getZones()[1])->addPopulation(50);
+        Item* itemToDrop = createNewItem(ITEM_WOOD);
+        itemToDrop->stackSize = 1000;
+        addItemsToMap(0, 107, 23, { itemToDrop });
+        player->gold = 100000;
+
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_HELM) });
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_GLOVES) });
@@ -140,7 +148,7 @@ void RpgOverWorldScene::setUpScene()
     //aggroThread = SDL_CreateThread(updateAggroThread, "updateAggroThread", (void*)this);
 
     //h4x
-    ((RpgTown*)getZones()[1])->addPopulation(10);
+    //((RpgTown*)getZones()[1])->addPopulation(10);
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());

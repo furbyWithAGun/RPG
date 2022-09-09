@@ -99,6 +99,35 @@ int Building::getY()
     return tileLocation->y;
 }
 
+void Building::update(RpgTileGridScene* scene)
+{
+    for (auto unit : assignedUnits) {
+        if (unit->isTethered() && unit->getZone() == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
+        {
+            unit->setTargetLocation(tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
+        }
+    }
+
+    if (spawnedUnitType != -1)
+    {
+        RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
+        if (localTown != nullptr)
+        {
+            unitSpawnTick++;
+            if (unitSpawnTick >= unitSpawnRate)
+            {
+                unitSpawnTick = 0;
+                if (localTown->getFreePop() > 0 && assignedUnits.size() < maxUnits)
+                {
+                    localTown->reducePopulation(1);
+                    RpgUnit* newUnit = scene->createUnitAtLocation(zone, spawnedUnitType, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
+                    assignUnit(newUnit);
+                }
+            }
+        }
+    }
+}
+
 BuildingTile* Building::getTileAtMapLocation(int x, int y)
 {
     if (x < 0 + tileLocation->x || y < 0 + tileLocation->y || x > tileLocation->x + width || y > tileLocation->y + height)
@@ -124,10 +153,13 @@ void Building::assignUnit(RpgUnit* unit)
 {
     assignedUnits.push_back(unit);
     unit->assignedToBuilding = this;
+    unit->canGoThroughPortal = false;
+    unit->setTethered(true);
 }
 
 void Building::unAssignUnit(RpgUnit* unit)
 {
+    unit->setTethered(false);
     unit->assignedToBuilding = nullptr;
     auto unitIterator = assignedUnits.begin();
     while (unitIterator != assignedUnits.end())
@@ -306,7 +338,7 @@ void Building::init()
     id = -1;
     type = -1;
     width = height = 0;
-    tileLocation = new Location{ -1, -1 };
+    tileLocation = new Location{ -1, -1 }; // memory leak
     active = true;
     iconTextureId = -1;
     goldCost = 1;
@@ -319,6 +351,12 @@ void Building::init()
     zone = nullptr;
     buildingName = "";
     overworldBuildable = false;
+    unitTeatherLocationOffset[0] = 0;
+    unitTeatherLocationOffset[1] = 0;
+    spawnedUnitType = -1;
+    maxUnits= 0;
+    unitSpawnTick = 0;
+    unitSpawnRate = 0;
 }
 
 void Building::init(int buildingType)
