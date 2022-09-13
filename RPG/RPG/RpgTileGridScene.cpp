@@ -1288,6 +1288,20 @@ Food* getSomeFoodFromContainer(std::vector<Item*>& container)
     return foodToReturn;
 }
 
+Equipment* getItemForSlotFromContainer(std::vector<Item*>& container, int itemSlot)
+{
+    Equipment* itemToReturn = nullptr;
+    for (Item* item : container) {
+        if (item->equipable && ((Equipment*)item)->slot == itemSlot)
+        {
+            itemToReturn = (Equipment*)createNewItem(item->specificType);
+            removeQtyFromContainer(item->specificType, 1, container);
+            return itemToReturn;
+        }
+    }
+    return itemToReturn;
+}
+
 int qtyInContainer(int itemType, std::vector<Item*>& container)
 {
     int qtyInContainer = 0;
