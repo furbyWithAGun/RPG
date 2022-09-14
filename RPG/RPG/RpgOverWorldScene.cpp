@@ -83,8 +83,8 @@ void RpgOverWorldScene::setUpScene()
         ((RpgTown*)getZones()[1])->addPopulation(50);
         Item* itemToDrop = createNewItem(ITEM_WOOD);
         itemToDrop->stackSize = 1000;
-        addItemsToMap(0, 107, 23, { itemToDrop });
-        player->gold = 100000;
+        //addItemsToMap(0, 107, 23, { itemToDrop });
+        //player->gold = 100000;
 
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_HELM) });
@@ -98,9 +98,10 @@ void RpgOverWorldScene::setUpScene()
         //createUnitAtLocation(currentZone->id, SOLDIER, 15, 27);
         //createUnitAtLocation(currentZone->id, SOLDIER, 16, 27);
         //createUnitAtLocation(1, SOLDIER, 3, 8);
-        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 9, 11);
-        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 48, 23);
-        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 29, 36);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 76, 10);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id),135, 3);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 126, 56);
+        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 168, 15);
         //createUnitAtLocation(2, RAT_KING, 29, 1);
         //createUnitAtLocation(3, SKELETON_KING, 28, 28);
     }
