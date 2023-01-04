@@ -575,13 +575,13 @@ std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
 			{
 				switch (stoi(savedItems[i].attributes[j].valueString)) {
 				case WEAPON:
-					returnVector.push_back(new Weapon(savedItems[i].rawString));;
+					returnVector.push_back(new Weapon(savedItems[i].rawString));
 					break;
 				case ARMOUR:
-					returnVector.push_back(new Armour(savedItems[i].rawString));;
+					returnVector.push_back(new Armour(savedItems[i].rawString));
 					break;
 				case FOOD:
-					returnVector.push_back(new Food(savedItems[i].rawString));;
+					returnVector.push_back(new Food(savedItems[i].rawString));
 					break;
 				default:
 					returnVector.push_back(new Item(savedItems[i].rawString));

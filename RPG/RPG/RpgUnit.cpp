@@ -131,6 +131,9 @@ RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(save
         case UNIT_IS_PLAYER:
             isPlayer = stoi(saveObject.attributes[i].valueString);
             break;
+        case UNIT_SKILLS:
+            setUnitSkillAttributeVectorFromSaveString(&unitSkills, saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -235,6 +238,7 @@ void RpgUnit::addExp(int expType, int expValue)
     }
     else {
         unitSkills[expType].experience += expValue;
+        printf(std::to_string(unitSkills[expType].level).c_str());
     }
     levelCheck();
 }
@@ -680,6 +684,7 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), UNIT_HUNGER_LEVEL, hungerLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_MAX_HUNGER_LEVEL, maxHungerLevel);
     saveString += getAttributeString(getUniqueId(), UNIT_IS_PLAYER, isPlayer);
+    saveString += getAttributeString(getUniqueId(), UNIT_SKILLS, unitSkillAttributeVectorSaveString(unitSkills));
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_UNIT) + "\n";
