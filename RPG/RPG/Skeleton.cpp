@@ -84,27 +84,31 @@ void Skeleton::createAnimations() {
 void Skeleton::setDropTable()
 {
     dropChance = 0.25;
-    dropTable.push_back({ 0.09, ITEM_SHORT_SWORD });
-    dropTable.push_back({ 0.09, ITEM_MACE });
-    dropTable.push_back({ 0.06, ITEM_LONG_SWORD });
-    dropTable.push_back({ 0.10, ITEM_RAG_BODY });
-    dropTable.push_back({ 0.10, ITEM_RAG_BOOTS });
-    dropTable.push_back({ 0.10, ITEM_RAG_GLOVES });
-    dropTable.push_back({ 0.10, ITEM_RAG_HAT });
-    dropTable.push_back({ 0.10, ITEM_RAG_PANTS });
-    dropTable.push_back({ 0.04, ITEM_LINEN_BODY });
-    dropTable.push_back({ 0.04, ITEM_LINEN_BOOTS });
-    dropTable.push_back({ 0.04, ITEM_LINEN_GLOVES });
-    dropTable.push_back({ 0.04, ITEM_LINEN_HAT });
-    dropTable.push_back({ 0.04, ITEM_LINEN_PANTS });
-    dropTable.push_back({ 0.01, ITEM_LEATHER_BODY });
-    dropTable.push_back({ 0.01, ITEM_LEATHER_BOOTS });
-    dropTable.push_back({ 0.01, ITEM_LEATHER_GLOVES });
-    dropTable.push_back({ 0.01, ITEM_LEATHER_HAT });
-    dropTable.push_back({ 0.01, ITEM_LEATHER_PANTS });
-    dropTable.push_back({ 0.002, ITEM_BRONZE_BODY });
-    dropTable.push_back({ 0.002, ITEM_BRONZE_BOOTS });
-    dropTable.push_back({ 0.002, ITEM_BRONZE_GLOVES });
-    dropTable.push_back({ 0.002, ITEM_BRONZE_HELM });
-    dropTable.push_back({ 0.002, ITEM_BRONZE_PANTS });
+
+    DropTable dropTable = DropTable();
+    dropTable.chance = 0.25;
+    dropTable.items.push_back({ 0.09, ITEM_SHORT_SWORD });
+    dropTable.items.push_back({ 0.09, ITEM_MACE });
+    dropTable.items.push_back({ 0.06, ITEM_LONG_SWORD });
+    dropTable.items.push_back({ 0.10, ITEM_RAG_BODY });
+    dropTable.items.push_back({ 0.10, ITEM_RAG_BOOTS });
+    dropTable.items.push_back({ 0.10, ITEM_RAG_GLOVES });
+    dropTable.items.push_back({ 0.10, ITEM_RAG_HAT });
+    dropTable.items.push_back({ 0.10, ITEM_RAG_PANTS });
+    dropTable.items.push_back({ 0.04, ITEM_LINEN_BODY });
+    dropTable.items.push_back({ 0.04, ITEM_LINEN_BOOTS });
+    dropTable.items.push_back({ 0.04, ITEM_LINEN_GLOVES });
+    dropTable.items.push_back({ 0.04, ITEM_LINEN_HAT });
+    dropTable.items.push_back({ 0.04, ITEM_LINEN_PANTS });
+    dropTable.items.push_back({ 0.01, ITEM_LEATHER_BODY });
+    dropTable.items.push_back({ 0.01, ITEM_LEATHER_BOOTS });
+    dropTable.items.push_back({ 0.01, ITEM_LEATHER_GLOVES });
+    dropTable.items.push_back({ 0.01, ITEM_LEATHER_HAT });
+    dropTable.items.push_back({ 0.01, ITEM_LEATHER_PANTS });
+    dropTable.items.push_back({ 0.002, ITEM_BRONZE_BODY });
+    dropTable.items.push_back({ 0.002, ITEM_BRONZE_BOOTS });
+    dropTable.items.push_back({ 0.002, ITEM_BRONZE_GLOVES });
+    dropTable.items.push_back({ 0.002, ITEM_BRONZE_HELM });
+    dropTable.items.push_back({ 0.002, ITEM_BRONZE_PANTS });
+    dropTables.push_back(dropTable);
 }

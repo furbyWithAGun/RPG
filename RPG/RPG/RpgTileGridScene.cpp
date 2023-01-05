@@ -192,9 +192,12 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_BRONZE_BOOTS, "images/bronzeBoots.png" });
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
+    texturesToLoad.insert({ TEXTURE_CRUDE_HIDE, "images/crudeHide.png" });
+    texturesToLoad.insert({ TEXTURE_SCRAP_MEAT, "images/scrapMeat.png" });
     //food
     texturesToLoad.insert({ TEXTURE_APPLE, "images/apple.png" });
     texturesToLoad.insert({ TEXTURE_RASPBERRY, "images/raspberries.png" });
+    texturesToLoad.insert({ TEXTURE_COOKED_SCRAP_MEAT, "images/cookedScrapMeat.png" });
     //building
     texturesToLoad.insert({ TEXTURE_BUILDING_WOODCUTTER, "images/woodCutter.png" });
     texturesToLoad.insert({ TEXTURE_BUILDING_HOUSE, "images/house.png" });
@@ -1055,7 +1058,7 @@ void RpgTileGridScene::buildCraftingRecipes()
 {
     CraftingRecipe newRecipe;
 
-    //recipe name
+    //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Club");
     //inputs
     newRecipe.addInput(ITEM_WOOD, 5);
@@ -1072,25 +1075,106 @@ void RpgTileGridScene::buildCraftingRecipes()
     //add to array
     craftingRecipes.push_back(newRecipe);
 
-    //recipe name
-    newRecipe = CraftingRecipe("Long Sword");
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Rag Shirt");
     //inputs
-    newRecipe.addInput(ITEM_WOOD, 5);
-    newRecipe.addInput(ITEM_APPLE, 5);
-    newRecipe.addInput(ITEM_SHORT_SWORD, 2);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
     //outputs
-    newRecipe.addOutput(ITEM_LONG_SWORD, 1);
+    newRecipe.addOutput(ITEM_RAG_BODY, 1);
     //crafting stations
     newRecipe.addCraftingStation(NO_CRAFTING_STATION);
     //skills requirements
-    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
-    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_METAL_WORKING, 1);
-    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_TAILORING, 1);
     //skill experience
-    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 1);
-    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
     //add to array
-    //craftingRecipes.push_back(newRecipe);
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Rag Hat");
+    //inputs
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_RAG_HAT, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Rag Boots");
+    //inputs
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_RAG_BOOTS, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Rag Gloves");
+    //inputs
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_RAG_GLOVES, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Rag Pants");
+    //inputs
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_RAG_PANTS, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_TAILORING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Cooked Scrap Meat");
+    //inputs
+    newRecipe.addInput(ITEM_SCRAP_MEAT, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_COOKED_SCRAP_MEAT, 1);
+    //crafting stations
+    //newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_COOKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_COOKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
 }
 
 void RpgTileGridScene::scrollCamera() {

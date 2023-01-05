@@ -1,7 +1,4 @@
-﻿  RpgUnit.cpp
+﻿  Rat.cpp
 D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(222,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(222,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\RpgUnit.cpp(463,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe

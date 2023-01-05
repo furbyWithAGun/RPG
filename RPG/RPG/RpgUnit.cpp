@@ -453,7 +453,15 @@ void RpgUnit::removeItemFromInventory(Item* itemToDelete)
 std::vector<Item*> RpgUnit::getDrops()
 {
     std::vector<Item*> returnItems;
-    if (dropChance > scene->engine->randomDouble())
+
+    for (auto table: dropTables) {
+        if (table.chance > scene->engine->randomDouble())
+        {
+            returnItems.push_back(createNewItem(scene->engine->pickElementByProbability(table.items)));
+        }
+    }
+
+    /*if (dropChance > scene->engine->randomDouble())
     {
         if (dropTable.size() > 0)
         {
@@ -463,7 +471,7 @@ std::vector<Item*> RpgUnit::getDrops()
                 returnItems.push_back(createNewItem(scene->engine->pickElementByProbability(dropTable)));
             }
         }
-    }
+    }*/
     return returnItems;
 }
 

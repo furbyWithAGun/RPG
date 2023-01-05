@@ -46,6 +46,11 @@ enum EXPERIENCE_TYPES {
     //COMBAT_EXPERIENCE
 };
 
+struct DropTable {
+    std::vector<ChanceObject> items;
+    double chance;
+};
+
 class RpgUnit : public Unit
 {
 public:
@@ -61,7 +66,8 @@ public:
     std::unordered_map<int, Equipment*> equippedItems;
     std::vector<Item*> inventory;
     Building* assignedToBuilding;
-    std::vector<ChanceObject> dropTable;
+    //std::vector<ChanceObject> dropTable;
+    std::vector<DropTable> dropTables;
     int minNumDrops;
     int maxNumDrops;
     double dropChance;
