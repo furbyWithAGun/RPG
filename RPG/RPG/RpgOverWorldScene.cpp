@@ -80,7 +80,7 @@ void RpgOverWorldScene::setUpScene()
         player = (Player*)createUnitAtLocation(0, PLAYER, 104, 23);
         
         //h4x
-        ((RpgTown*)getZones()[1])->addPopulation(50);
+        ((RpgTown*)getZones()[1])->addPopulation(10);
         //Item* itemToDrop = createNewItem(ITEM_WOOD);
         //itemToDrop->stackSize = 1000;
         //addItemsToMap(0, 107, 23, { itemToDrop });
@@ -100,8 +100,8 @@ void RpgOverWorldScene::setUpScene()
         //createUnitAtLocation(1, SOLDIER, 3, 8);
         //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 76, 10);
         //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 135, 3);
-        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 126, 56);
-        getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 168, 15);
+        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 126, 56);
+        //getZones()[currentZone->id]->addDooDadToLocation(createNewUnitSpawner(this, RAT, currentZone->id), 168, 15);
         //createUnitAtLocation(2, RAT_KING, 29, 1);
         //createUnitAtLocation(3, SKELETON_KING, 28, 28);
     }

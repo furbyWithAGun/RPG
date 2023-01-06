@@ -549,6 +549,9 @@
     <ClCompile Include="Projectile.cpp">
       <Filter>Source Files\RpgGame\units</Filter>
     </ClCompile>
+    <ClCompile Include="CampFire.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -916,6 +919,9 @@
     </ClInclude>
     <ClInclude Include="Projectile.h">
       <Filter>Header Files\RpgGame\units</Filter>
+    </ClInclude>
+    <ClInclude Include="CampFire.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@
 #include "BerryBush.h"
 #include "UnitSpawner.h"
 #include "TreasureChest.h"
+#include "CampFire.h"
 
 
 

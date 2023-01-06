@@ -45,6 +45,9 @@ DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId)
 	case DOODAD_TREASURE_CHEST:
 		dooDadToReturn = new TreasureChest(gameScene);
 		break;
+	case DOODAD_CAMP_FIRE:
+		dooDadToReturn = new CampFire(gameScene);
+		break;
 	default:
 		printf("Warning: creating blank DooDad() from DooDad factory");
 		dooDadToReturn = new DooDad(gameScene);

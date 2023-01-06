@@ -229,6 +229,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_RAT_SPAWNER, "images/ratSpawner.png" });
     texturesToLoad.insert({ TEXTURE_CHEST_CLOSED, "images/chestClosed.png" });
     texturesToLoad.insert({ TEXTURE_CHEST_OPEN, "images/chestOpen.png" });
+    texturesToLoad.insert({ TEXTURE_CAMP_FIRE, "images/campFire.png" });
     //misc
     texturesToLoad.insert({ TEXTURE_TEST_PROJECTILE, "images/testProjectile.png" });
 }
@@ -1078,7 +1079,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Shirt");
     //inputs
-    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 10);
     //outputs
     newRecipe.addOutput(ITEM_RAG_BODY, 1);
     //crafting stations
@@ -1095,7 +1096,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Hat");
     //inputs
-    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 10);
     //outputs
     newRecipe.addOutput(ITEM_RAG_HAT, 1);
     //crafting stations
@@ -1112,7 +1113,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Boots");
     //inputs
-    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 10);
     //outputs
     newRecipe.addOutput(ITEM_RAG_BOOTS, 1);
     //crafting stations
@@ -1129,7 +1130,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Gloves");
     //inputs
-    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 10);
     //outputs
     newRecipe.addOutput(ITEM_RAG_GLOVES, 1);
     //crafting stations
@@ -1146,7 +1147,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Pants");
     //inputs
-    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 10);
     //outputs
     newRecipe.addOutput(ITEM_RAG_PANTS, 1);
     //crafting stations
@@ -1168,7 +1169,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     newRecipe.addOutput(ITEM_COOKED_SCRAP_MEAT, 1);
     //crafting stations
     //newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
-    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_COOKING, 1);
     //skill experience

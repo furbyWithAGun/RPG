@@ -90,17 +90,17 @@ void Rat::setDropTable()
     dropTable.push_back({ 0.156, ITEM_RAG_PANTS });*/
 
     DropTable dropTable = DropTable();   
-    dropTable.chance = 0.9;
+    dropTable.chance = 0.8;
     dropTable.items.push_back({ 1.0, ITEM_CRUDE_HIDE });
     dropTables.push_back(dropTable);
 
     dropTable = DropTable();
-    dropTable.chance = 0.9;
+    dropTable.chance = 0.8;
     dropTable.items.push_back({ 1.0, ITEM_SCRAP_MEAT });
     dropTables.push_back(dropTable);
 
     dropTable = DropTable();
-    dropTable.chance = 0.25;
+    dropTable.chance = 0.05;
     dropTable.items.push_back({ 1.0, ITEM_WOOD });
     dropTables.push_back(dropTable);
 }

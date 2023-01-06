@@ -1,4 +1,9 @@
-﻿  Rat.cpp
+﻿  RpgTileGridScene.cpp
 D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(939,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(953,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(953,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1413,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1436,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Debug\RPG.exe
