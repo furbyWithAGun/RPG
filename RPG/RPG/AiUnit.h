@@ -1,6 +1,8 @@
 #pragma once
 #include "RpgUnit.h"
 
+const int GET_GEAR_DELAY = 200;
+
 class RpgOverWorldScene;
 
 
@@ -36,6 +38,7 @@ private:
     //attribues
     double chanceToMoveEachTick;
     int checkToAttackTick;
+    int checkForGearTick;
     //int checkToAttackRate;
 
     //methods

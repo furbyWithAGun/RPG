@@ -38,11 +38,17 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_HUNGER_LEVEL,
     UNIT_MAX_HUNGER_LEVEL,
     UNIT_IS_PLAYER,
+    UNIT_SKILLS,
     NUM_RPG_UNIT_ATTRIBUTES
 };
 
 enum EXPERIENCE_TYPES {
     //COMBAT_EXPERIENCE
+};
+
+struct DropTable {
+    std::vector<ChanceObject> items;
+    double chance;
 };
 
 class RpgUnit : public Unit
@@ -60,7 +66,8 @@ public:
     std::unordered_map<int, Equipment*> equippedItems;
     std::vector<Item*> inventory;
     Building* assignedToBuilding;
-    std::vector<ChanceObject> dropTable;
+    //std::vector<ChanceObject> dropTable;
+    std::vector<DropTable> dropTables;
     int minNumDrops;
     int maxNumDrops;
     double dropChance;

@@ -34,8 +34,17 @@ enum UNIT_SAVE_ATTRIBUTES {
     NUM_UNIT_ATTRIBUTES
 };
 
+enum UNIT_SKILL_ATTR_SAVE_ATTRIBUTES {
+    SKILL_ATTR_LEVEL = NUM_UNIT_ATTRIBUTES + 20000,
+    SKILL_ATTR_BASE_LEVEL,
+    SKILL_ATTR_EXP,
+    SKILL_ATTR_EXP_NXT_LVL,
+    SKILL_ATTR_EXP_LAST_LVL,
+    SKILL_ATTR_ID
+};
+
 struct unitSkillAttributeData {
-    int level, baseLevel, experience, experienceNextLevel, experienceLastLevel;
+    int level, baseLevel, experience, experienceNextLevel, experienceLastLevel, id;
 };
 
 class Unit : public AnimatedSprite
@@ -163,3 +172,9 @@ private:
 };
 
 int getUniqueUnitId();
+
+std::string unitSkillAttributeVectorSaveString(std::vector<unitSkillAttributeData> skillData);
+void setUnitSkillAttributeVectorFromSaveString(std::vector<unitSkillAttributeData> * skillData, std::string saveString);
+
+std::string unitSkillAttributeSaveString(unitSkillAttributeData skillData, int skillId);
+unitSkillAttributeData getUnitSkillAttributeFromSaveString(std::string saveString);

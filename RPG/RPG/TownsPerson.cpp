@@ -1,7 +1,7 @@
 #include "TownsPerson.h"
 #include "BasicMeleeAttack.h"
 
-const int MAX_HEALTH = 75;
+const int MAX_HEALTH = 60;
 const int SPEED = 8;
 const int DEX = 2;
 const int AGI = 2;

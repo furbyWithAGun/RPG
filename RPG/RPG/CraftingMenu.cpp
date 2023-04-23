@@ -45,6 +45,7 @@ void CraftingMenu::open(RpgUnit* newCraftingUnit, int newCraftingStation)
     needToRebuildElements = true;
     ScrollBox* recipeList = (ScrollBox*)getElementbyId(RECIPE_SCROLL_BOX);
     recipeList->selectedElement = nullptr;
+    buildCraftingList();
 }
 
 void CraftingMenu::draw()
@@ -122,14 +123,7 @@ void CraftingMenu::buildElements()
     addElement(RECIPE_SCROLL_BOX, recipeList);
 
     //for (CraftingRecipe recipe : craftingRecipes)
-    for(int i = 0; i < scene->getCraftingRecipes().size(); i++)
-    {
-        MenuText* newtext = new MenuText(scene, scene->getCraftingRecipe(i).getName(), 0, 0);
-        newtext->addOnClick([this]() {
-            rebuildMenuElements();
-            });
-        recipeList->addElement(newtext, i);
-    }
+    buildCraftingList();
 
     addElement(CRAFTING_MENU_CLOSE_BUTTON, (new MenuButton(scene, BUTTON_BACKGROUND, xpos + width * 0.65, height * 0.8))->setText("Cancel")->addOnClick([this] {
         this->close();
@@ -198,5 +192,24 @@ CraftingRecipe CraftingMenu::getSelectedRecipe()
         return scene->getCraftingRecipe(recipeList->getSelectedElementValue());
     }
     return CraftingRecipe("NULL");
+}
+
+void CraftingMenu::buildCraftingList()
+{
+    bool canBeCraftedHere = false;
+    ScrollBox* recipeList;
+    recipeList = (ScrollBox*)getElementbyId(RECIPE_SCROLL_BOX);
+    recipeList->clear();
+    for (int i = 0; i < scene->getCraftingRecipes().size(); i++)
+    {
+        if (scene->getCraftingRecipe(i).canBeCraftedAtStation(currentCraftingStation))
+        {
+            MenuText* newtext = new MenuText(scene, scene->getCraftingRecipe(i).getName(), 0, 0);
+            newtext->addOnClick([this]() {
+                rebuildMenuElements();
+                });
+            recipeList->addElement(newtext, i);
+        }
+    }
 }
 

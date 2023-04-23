@@ -32,6 +32,10 @@ std::unordered_map<int, FoodTemplate> foodTemplates = {
 		10,
 		1,
 		120
+}},{ITEM_COOKED_SCRAP_MEAT, FoodTemplate{
+		10,
+		1,
+		180
 }}
 };
 
@@ -62,11 +66,50 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		true,
 		1
+	}},{ITEM_COOKED_SCRAP_MEAT, ItemTemplate{
+		"Cooked Scrap Meat",
+		ITEM_COOKED_SCRAP_MEAT,
+		FOOD,
+		TEXTURE_COOKED_SCRAP_MEAT,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
 	}},{ITEM_WOOD, ItemTemplate{
 		"Wood",
 		ITEM_WOOD,
 		RESOURCE,
 		TEXTURE_LOGS,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_CRUDE_HIDE, ItemTemplate{
+		"Animal Parts",
+		ITEM_CRUDE_HIDE,
+		RESOURCE,
+		TEXTURE_CRUDE_HIDE,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_SCRAP_MEAT, ItemTemplate{
+		"Scrap Meat",
+		ITEM_SCRAP_MEAT,
+		RESOURCE,
+		TEXTURE_SCRAP_MEAT,
 		-1,
 		0,
 		0,
@@ -575,13 +618,13 @@ std::vector<Item*> getItemVectorFromSaveString(std::string saveString) {
 			{
 				switch (stoi(savedItems[i].attributes[j].valueString)) {
 				case WEAPON:
-					returnVector.push_back(new Weapon(savedItems[i].rawString));;
+					returnVector.push_back(new Weapon(savedItems[i].rawString));
 					break;
 				case ARMOUR:
-					returnVector.push_back(new Armour(savedItems[i].rawString));;
+					returnVector.push_back(new Armour(savedItems[i].rawString));
 					break;
 				case FOOD:
-					returnVector.push_back(new Food(savedItems[i].rawString));;
+					returnVector.push_back(new Food(savedItems[i].rawString));
 					break;
 				default:
 					returnVector.push_back(new Item(savedItems[i].rawString));

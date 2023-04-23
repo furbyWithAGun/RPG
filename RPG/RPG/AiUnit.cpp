@@ -49,6 +49,7 @@ void AiUnit::init() {
     chanceToMoveEachTick = RANDOM_MOVE_CHANCE;
     doesRandomMovement = true;
     checkToAttackTick = 0;
+    checkForGearTick = 0;
     //checkToAttackRate = RPG_GAME_TICKS_PER_SECOND / 7;
 }
 
@@ -81,6 +82,29 @@ void AiUnit::update() {
                 }
             }
         }
+    }
+    
+    if (checkForGearTick >= GET_GEAR_DELAY) {
+        checkForGearTick = 0;
+        if (getTargetUnit()) {
+            RpgTown* nearestTown = ((RpgZone*)scene->getZone(getZone()))->getNearestTown(tileDestination);
+            if (nearestTown && team == PLAYER_TEAM) {
+                Equipment* itemToEquip;
+                for (int i = BARE_HANDS + 1; i < NUM_EQUIPMENT_SLOTS; i++) {
+                    if (!equippedItems[i])
+                    {
+                        itemToEquip = getItemForSlotFromContainer(nearestTown->getTownInventory(), i);
+                        if (itemToEquip)
+                        {
+                            equipItem(itemToEquip);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else {
+        checkForGearTick++;
     }
     /*updateAggro();
     if (currentState->id == UNIT_IDLE && !attackNearbyUnit() && doesRandomMovement && pathDirections.size() <= 0)

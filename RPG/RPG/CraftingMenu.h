@@ -51,4 +51,5 @@ private:
     void init();
     void init(RpgOverWorldScene* gameScene);
     CraftingRecipe getSelectedRecipe();
+    void buildCraftingList();
 };

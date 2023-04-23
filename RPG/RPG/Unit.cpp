@@ -1037,3 +1037,78 @@ int getUniqueUnitId()
     uniqueUnitId++;
     return uniqueUnitId;
 }
+
+std::string unitSkillAttributeVectorSaveString(std::vector<unitSkillAttributeData> skillData)
+{
+    std::string returnString;
+    returnString += std::to_string(skillData.size()) + "\n";
+    for (int i = 0; i < skillData.size(); i++)
+    {
+        returnString += unitSkillAttributeSaveString(skillData[i], i) + "\n";
+    }
+    return returnString;
+}
+
+void setUnitSkillAttributeVectorFromSaveString(std::vector<unitSkillAttributeData>* skillData, std::string saveString)
+{
+    std::vector<SaveObject> savedItems = getSaveObjectVectorFromSaveString2(saveString);
+
+    for (size_t i = 0; i < savedItems.size(); i++)
+    {
+        unitSkillAttributeData savedSkill = getUnitSkillAttributeFromSaveString(savedItems[i].rawString);
+        (*skillData)[savedSkill.id].level = savedSkill.level;
+        (*skillData)[savedSkill.id].baseLevel = savedSkill.baseLevel;
+        (*skillData)[savedSkill.id].experience = savedSkill.experience;
+        (*skillData)[savedSkill.id].experienceNextLevel = savedSkill.experienceNextLevel;
+        (*skillData)[savedSkill.id].experienceLastLevel = savedSkill.experienceLastLevel;
+    }
+
+}
+
+std::string unitSkillAttributeSaveString(unitSkillAttributeData skillData, int skillId)
+{
+    std::string saveString = "";
+    int uniqueObjectId = getUniqueId();
+    saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT_SKILL_ATTR) + "\n";
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_ID, skillId);
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_LEVEL, skillData.level);
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_BASE_LEVEL, skillData.baseLevel);
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_EXP, skillData.experience);
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_EXP_NXT_LVL, skillData.experienceNextLevel);
+    saveString += getAttributeString(getUniqueId(), SKILL_ATTR_EXP_LAST_LVL, skillData.experienceLastLevel);
+    saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_UNIT_SKILL_ATTR) + "\n";
+    return saveString;
+}
+
+unitSkillAttributeData getUnitSkillAttributeFromSaveString(std::string saveString)
+{
+    SaveObject savedSkill = SaveObject(saveString);
+    unitSkillAttributeData returnSkill = unitSkillAttributeData();
+    for (int i = 0; i < savedSkill.attributes.size(); i++)
+    {
+        switch (savedSkill.attributes[i].attributeType) {
+        case SKILL_ATTR_LEVEL:
+            returnSkill.level = stoi(savedSkill.attributes[i].valueString);
+            break;
+        case SKILL_ATTR_BASE_LEVEL:
+            returnSkill.baseLevel = stoi(savedSkill.attributes[i].valueString);
+            break;
+        case SKILL_ATTR_EXP:
+            returnSkill.experience = stoi(savedSkill.attributes[i].valueString);
+            break;
+        case SKILL_ATTR_EXP_NXT_LVL:
+            returnSkill.experienceNextLevel = stoi(savedSkill.attributes[i].valueString);
+            break;
+        case SKILL_ATTR_EXP_LAST_LVL:
+            returnSkill.experienceLastLevel = stoi(savedSkill.attributes[i].valueString);
+            break;
+        case SKILL_ATTR_ID:
+            returnSkill.id = stoi(savedSkill.attributes[i].valueString);
+            break;
+        default:
+            break;
+        }
+    }
+
+    return returnSkill;
+}
