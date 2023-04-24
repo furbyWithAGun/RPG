@@ -23,6 +23,7 @@ public:
     void updateCamera();
     void updateCamera2();
     void updateCamera3();
+    void updateCamera4();
     void faceMouseDirection(int x, int y);
     void portalTo(int zoneId, int x, int y) override;
     void portalToNoCommandUnits(int zoneId, int x, int y);

@@ -99,7 +99,26 @@ void Player::update() {
 
 }
 
-void Player::updateCamera()
+void Player::updateCamera() {
+
+    //updateCoords();
+    scene->xOffset = -xpos + scene->engine->screenWidth / 2;
+    scene->yOffset = -ypos + scene->engine->screenHeight / 2;
+
+    std::cout << "\nx offset: ";
+    std::cout << scene->xOffset;
+    std::cout << "\ny offset: ";
+    std::cout << scene->yOffset;
+    std::cout << "\nxpos: ";
+    std::cout << xpos;
+    std::cout << "\nypos: ";
+    std::cout << ypos;
+    //xpos = scene->engine->screenWidth / 2;
+    //ypos = scene->engine->screenHeight / 2;
+    updateCoords();
+}
+
+void Player::updateCamera2()
 {
     double coords[2];
     double destCoords[2];
@@ -377,7 +396,7 @@ void Player::updateCamera()
     updateCoords();
 }
 
-void Player::updateCamera2()
+void Player::updateCamera3()
 {
     //updateCoords();
     double coords[2];
@@ -423,7 +442,7 @@ void Player::updateCamera2()
     //updateCoords();
 }
 
-void Player::updateCamera3()
+void Player::updateCamera4()
 {
     double coords[2];
     double destCoords[2];
