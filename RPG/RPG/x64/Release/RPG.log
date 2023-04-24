@@ -1,16 +1,13 @@
-<<<<<<< HEAD
 ﻿  AiUnit.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(164,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(214,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(214,56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(218,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(218,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(219,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(219,64): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  AnimatedSprite.cpp
-  Animation.cpp
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(188,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(238,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(238,56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(242,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(242,36): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(243,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\AiUnit.cpp(243,64): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Armour.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -36,32 +33,35 @@ C:\coding\c++\timbres of war\RPG\RPG\BasicMeleeAttack.cpp(26,143): warning C4244
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\BasicRangedAttack.cpp(28,143): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  CampFire.cpp
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   CraftingMenu.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(120,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(120,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(120,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(120,56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(134,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(134,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(138,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(138,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(148,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(148,82): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(155,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(155,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(156,176): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(156,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(179,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(180,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(181,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(182,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(185,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(186,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(187,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(188,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(189,52): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(121,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(121,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(121,76): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(121,56): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(128,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(128,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(132,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(132,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(142,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(142,82): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(149,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(149,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(150,176): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(150,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(173,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(174,35): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(175,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(176,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(179,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(180,28): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(181,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(182,29): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\CraftingMenu.cpp(183,52): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
   CraftingRecipe.cpp
 C:\coding\c++\timbres of war\RPG\RPG\CraftingRecipe.cpp(89,28): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   GuardHouse.cpp
@@ -172,10 +172,10 @@ C:\coding\c++\timbres of war\RPG\RPG\Projectile.cpp(57,20): warning C4244: '=': 
 C:\coding\c++\timbres of war\RPG\RPG\Projectile.cpp(58,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\Projectile.cpp(80,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\Projectile.cpp(81,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Compiling...
   RpgTown.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Compiling...
   RpgProvinceZone.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -256,8 +256,6 @@ C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Club.cpp
-  CombatText.cpp
-  ControllerInterface.cpp
   DooDad.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -265,7 +263,6 @@ C:\coding\c++\timbres of war\RPG\RPG\DooDad.cpp(137,134): warning C4244: 'argume
 C:\coding\c++\timbres of war\RPG\RPG\DooDad.cpp(137,91): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\DooDad.cpp(137,63): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\DooDad.cpp(137,48): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Compiling...
   DooDadFactory.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -289,6 +286,7 @@ C:\coding\c++\timbres of war\RPG\RPG\EquippedMenu.cpp(100,162): warning C4244: '
 C:\coding\c++\timbres of war\RPG\RPG\EquippedMenu.cpp(100,142): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\EquippedMenu.cpp(106,157): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\EquippedMenu.cpp(106,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Compiling...
   Food.cpp
   FoodEffect.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -303,128 +301,66 @@ C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpe
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(529,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(569,29): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-=======
-﻿  BaseGameEngine.cpp
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(529,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(569,29): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(570,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(570,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(613,140): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(613,140): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(673,22): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(673,22): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(674,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(674,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(675,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(675,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(676,16): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(676,16): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(683,127): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(683,127): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(684,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(685,38): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(687,97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(705,133): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(684,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(685,38): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(687,97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(705,133): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
 C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(709,131): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-=======
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(709,131): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
           with
           [
               _Rep=__int64
           ]
-<<<<<<< HEAD
-  GameMenu.cpp
-  GameScene.cpp
-  Graph.cpp
-C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   HealingPad.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  HoverToolTip.cpp
   IdleState.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\IdleState.cpp(74,61): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\IdleState.cpp(74,46): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  InputMessage.cpp
-  InputPrompt.cpp
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(103,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(114,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(114,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(114,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(114,60): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(117,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(117,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(125,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\InputPrompt.cpp(125,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   InventoryMenu.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -465,14 +401,14 @@ C:\coding\c++\timbres of war\RPG\RPG\InventoryMenu.cpp(404,151): warning C4244: 
   Item.cpp
   ItemFactory.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(529,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(529,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(534,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(534,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(539,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(539,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(544,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(544,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(572,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(572,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(577,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(577,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(582,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(582,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(587,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.cpp(587,59): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   ItemShop.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -480,7 +416,6 @@ C:\coding\c++\timbres of war\RPG\RPG\ItemShop.cpp(62,222): warning C4244: 'argum
 C:\coding\c++\timbres of war\RPG\RPG\ItemShop.cpp(62,181): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemShop.cpp(62,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemShop.cpp(62,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Compiling...
   LinenBody.cpp
   LinenBoots.cpp
   LinenGloves.cpp
@@ -518,6 +453,7 @@ C:\coding\c++\timbres of war\RPG\RPG\MainMenu.cpp(38,190): warning C4244: 'argum
 C:\coding\c++\timbres of war\RPG\RPG\MainMenu.cpp(38,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\MainMenu.cpp(38,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\MainMenu.cpp(38,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Compiling...
   MainMenuScene.cpp
   MapBuilderPortalButton.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -525,14 +461,6 @@ C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpe
   MapBuilderTileButton.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  MapTile.cpp
-  MenuButton.cpp
-C:\coding\c++\timbres of war\RPG\RPG\MenuButton.cpp(52,33): warning C4806: '!=': unsafe operation: no value of type 'bool' promoted to type 'int' can equal the given constant
-C:\coding\c++\timbres of war\RPG\RPG\MenuButton.cpp(62,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\MenuButton.cpp(63,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\MenuButton.cpp(64,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\MenuButton.cpp(65,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  MenuText.cpp
   MovingState.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -549,15 +477,6 @@ C:\coding\c++\timbres of war\RPG\RPG\OverWorldSceneMenu.cpp(63,145): warning C42
 C:\coding\c++\timbres of war\RPG\RPG\OverWorldSceneMenu.cpp(63,109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\OverWorldSceneMenu.cpp(67,153): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\OverWorldSceneMenu.cpp(67,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  PagedPanel.cpp
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(23,118): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(23,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(24,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(24,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(27,161): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(27,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(28,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\PagedPanel.cpp(28,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   Player.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -637,11 +556,9 @@ C:\coding\c++\timbres of war\RPG\RPG\PortalPropertiesMenu.cpp(91,129): warning C
 C:\coding\c++\timbres of war\RPG\RPG\PortalPropertiesMenu.cpp(91,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\PortalPropertiesMenu.cpp(109,133): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\PortalPropertiesMenu.cpp(109,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  Compiling...
   PortalPropertiesOkButton.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Prompt.cpp
   RagBody.cpp
   RagBoots.cpp
   RagGloves.cpp
@@ -659,154 +576,154 @@ C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(30,21): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(43,44): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(133,152): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(133,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(134,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(134,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(137,191): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(137,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(137,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(137,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,201): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,151): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(142,191): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(142,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(142,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(142,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(194,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(195,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(196,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(196,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(197,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(197,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(219,109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(219,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(231,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(231,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(238,87): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(238,72): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(240,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(240,73): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(242,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(242,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(247,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(247,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(248,82): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(248,67): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(252,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(252,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(265,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(265,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(291,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(291,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(306,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(306,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(309,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(309,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(316,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(316,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(319,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(319,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(326,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(326,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(329,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(329,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(336,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(336,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(339,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(339,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(365,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(365,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(378,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(378,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(476,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(478,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(480,29): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(483,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(485,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(485,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(134,152): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(134,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(135,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(135,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,191): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,141): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(138,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(139,201): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(139,151): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(139,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(139,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(143,191): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(143,140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(143,116): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(143,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(195,81): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(196,84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(197,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(197,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(198,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(198,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(220,109): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(220,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(232,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(232,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(239,87): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(239,72): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(241,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(241,73): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(243,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(243,79): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(248,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(248,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(249,82): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(249,67): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(253,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(253,83): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(266,113): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(266,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(292,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(292,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(307,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(307,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(310,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(310,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(317,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(317,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(320,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(320,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(327,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(327,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(330,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(330,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(337,95): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(337,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(340,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(340,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(366,101): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(366,86): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(379,100): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(379,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(477,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(479,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(481,29): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(484,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(486,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(488,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(489,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(489,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(486,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(487,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(489,16): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(490,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(513,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(514,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(534,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(535,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(580,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(583,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(583,77): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(490,75): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(491,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(514,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(515,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(535,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(536,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(581,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(584,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(584,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(585,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(585,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(584,77): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(585,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(585,80): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(586,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(586,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(594,69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(595,72): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(596,147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(596,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(601,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(601,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(612,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(612,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(624,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(624,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,298): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(587,83): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(587,22): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(595,69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(596,72): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(597,147): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(597,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(602,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(602,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(613,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(613,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(625,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(626,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,227): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,298): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(627,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,123): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(628,94): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,97): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(629,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,218): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,227): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(630,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(631,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(632,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(637,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(637,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,193): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(647,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(649,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,218): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,107): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,70): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(633,41): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(634,114): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(634,85): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(638,81): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(639,193): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(639,154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(639,126): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(639,75): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(648,12): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgOverWorldScene.cpp(650,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   RpgTileGridScene.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(935,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(949,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(949,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1314,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1337,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(939,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(953,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(953,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1413,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1436,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   RpgUnit.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(219,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(219,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(459,92): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(222,155): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(222,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\RpgUnit.cpp(460,88): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   RpgWorldBuilderScene.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -886,16 +803,10 @@ C:\coding\c++\timbres of war\RPG\RPG\RpgWorldBuilderScene.cpp(389,59): warning C
 C:\coding\c++\timbres of war\RPG\RPG\RpgWorldBuilderScene.cpp(400,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgWorldBuilderScene.cpp(400,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\RpgWorldBuilderScene.cpp(467,11): warning C4101: 'targetUnit': unreferenced local variable
-  SaveAttribute.cpp
-C:\coding\c++\timbres of war\RPG\RPG\SaveAttribute.cpp(51,38): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\SaveAttribute.cpp(103,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\SaveAttribute.cpp(152,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Compiling...
   SaveMapBuilderButton.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  SaveObject.cpp
-C:\coding\c++\timbres of war\RPG\RPG\SaveObject.cpp(150,9): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  SaveFile.cpp
   saveZoneMenu.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -909,36 +820,10 @@ C:\coding\c++\timbres of war\RPG\RPG\saveZoneMenu.cpp(37,102): warning C4244: 'a
 C:\coding\c++\timbres of war\RPG\RPG\saveZoneMenu.cpp(37,80): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\saveZoneMenu.cpp(57,105): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\saveZoneMenu.cpp(57,84): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-  ScrollBox.cpp
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(33,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(33,137): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(33,53): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(34,175): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(34,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(34,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(35,221): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(35,185): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(35,120): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(35,55): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(36,223): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(36,187): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(36,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(36,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(156,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ScrollBox.cpp(157,112): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  Compiling...
-  SelectPrompt.cpp
-C:\coding\c++\timbres of war\RPG\RPG\SelectPrompt.cpp(31,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\SelectPrompt.cpp(92,220): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   ShortSword.cpp
   Soldier.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Sprite.cpp
-  TextBox.cpp
-C:\coding\c++\timbres of war\RPG\RPG\TextBox.cpp(109,24): warning C4305: 'return': truncation from '__int64' to 'int'
-C:\coding\c++\timbres of war\RPG\RPG\TextBox.cpp(109,13): warning C4309: 'return': truncation of constant value
-  Texture.cpp
   TileGridScene.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -992,7 +877,6 @@ C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpe
   Tree.cpp
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  UiElement.cpp
   Unit.cpp
 C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
@@ -1084,22 +968,11 @@ C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1379,74): warning C4804: '>': u
 C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1481,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1482,96): warning C4804: '>': unsafe use of type 'bool' in operation
 C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1551,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1927,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\coding\c++\timbres of war\RPG\RPG\ZoneMap.cpp(1930,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   ZonePortal.cpp
   Generating code
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(440): warning C4715: 'BaseGameEngine::pickElementByProbability': not all control paths return a value
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(285): warning C4715: 'BaseGameEngine::createTextTexture': not all control paths return a value
-  12961 of 12971 functions (99.9%) were compiled, the rest were copied from previous compilation.
-    1500 functions were new in current compilation
-    2 functions had inline decision re-evaluated but remain unchanged
+  1936 of 13051 functions (14.8%) were compiled, the rest were copied from previous compilation.
+    100 functions were new in current compilation
+    663 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RPG.vcxproj -> C:\coding\c++\timbres of war\RPG\x64\Release\RPG.exe
-=======
-  Generating code
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(440): warning C4715: 'BaseGameEngine::pickElementByProbability': not all control paths return a value
-D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(285): warning C4715: 'BaseGameEngine::createTextTexture': not all control paths return a value
-  All 13051 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
->>>>>>> 58dac9996763a37974c88a0ef5e9b1915c38b53e
