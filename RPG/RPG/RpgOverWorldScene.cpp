@@ -85,7 +85,7 @@ void RpgOverWorldScene::setUpScene()
         //itemToDrop->stackSize = 1000;
         //addItemsToMap(0, 107, 23, { itemToDrop });
         //player->gold = 100000;
-
+        player->addExp(UNIT_COMBAT_EXPERIENCE, 99999);
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_HELM) });
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_GLOVES) });

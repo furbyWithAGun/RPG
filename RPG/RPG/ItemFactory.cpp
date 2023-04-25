@@ -79,6 +79,58 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		true,
 		1
+	}},{ITEM_STONE, ItemTemplate{
+		"Stone",
+		ITEM_STONE,
+		RESOURCE,
+		TEXTURE_STONE,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_COAL, ItemTemplate{
+		"Coal",
+		ITEM_COAL,
+		RESOURCE,
+		TEXTURE_COAL,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_TIN_ORE, ItemTemplate{
+		"Tin Ore",
+		ITEM_TIN_ORE,
+		RESOURCE,
+		TEXTURE_TIN_ORE,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
+	}},{ITEM_COPPER_ORE, ItemTemplate{
+		"Copper Ore",
+		ITEM_COPPER_ORE,
+		RESOURCE,
+		TEXTURE_COPPER_ORE,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
 	}},{ITEM_WOOD, ItemTemplate{
 		"Wood",
 		ITEM_WOOD,

@@ -194,6 +194,13 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     texturesToLoad.insert({ TEXTURE_CRUDE_HIDE, "images/crudeHide.png" });
     texturesToLoad.insert({ TEXTURE_SCRAP_MEAT, "images/scrapMeat.png" });
+    texturesToLoad.insert({ TEXTURE_STONE, "images/stone.png" });
+    texturesToLoad.insert({ TEXTURE_COAL, "images/coal.png" });
+    texturesToLoad.insert({ TEXTURE_TIN_ORE, "images/tinOre.png" });
+    texturesToLoad.insert({ TEXTURE_COPPER_ORE, "images/copperOre.png" });
+    texturesToLoad.insert({ TEXTURE_TIN_BAR, "images/tinBar.png" });
+    texturesToLoad.insert({ TEXTURE_COPPER_BAR, "images/copperBar.png" });
+    texturesToLoad.insert({ TEXTURE_BRONZE_BAR, "images/bronzeBar.png" });
     //food
     texturesToLoad.insert({ TEXTURE_APPLE, "images/apple.png" });
     texturesToLoad.insert({ TEXTURE_RASPBERRY, "images/raspberries.png" });

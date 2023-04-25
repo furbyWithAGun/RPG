@@ -63,9 +63,16 @@ void MineBlock::actionOn(Unit* unit, int actionType)
                 state = MINEBLOCK_STATE_DEPLETED;
                 textureKey = BLANK_PORTAL;
                 regrowTick = 0;
-                Item* bronze = createNewItem(ITEM_BRONZE_BODY);
+                //Item* bronze = createNewItem(ITEM_BRONZE_BODY);
+                std::vector<ChanceObject> potentialFinds = { 
+                    {0.7, ITEM_STONE}, 
+                    {0.1, ITEM_COAL}, 
+                    {0.1, ITEM_TIN_ORE}, 
+                    {0.1, ITEM_COPPER_ORE}, 
+                };
+                Item* item = createNewItem(scene->engine->pickElementByProbability(potentialFinds));
                 //logs->stackSize = 5;
-                unit->scene->addItemsToMap(unit->getZone(), tileCoords[0], tileCoords[1], { bronze });
+                unit->scene->addItemsToMap(unit->getZone(), tileCoords[0], tileCoords[1], { item });
             }
         }
         break;
