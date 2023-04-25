@@ -552,6 +552,9 @@
     <ClCompile Include="CampFire.cpp">
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
+    <ClCompile Include="MineBlock.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -921,6 +924,9 @@
       <Filter>Header Files\RpgGame\units</Filter>
     </ClInclude>
     <ClInclude Include="CampFire.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="MineBlock.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>

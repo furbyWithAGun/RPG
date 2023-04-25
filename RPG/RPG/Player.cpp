@@ -99,7 +99,7 @@ void Player::update() {
 
 }
 
-void Player::updateCamera() {
+void Player::updateCamera2() {
 
     //updateCoords();
     scene->xOffset = -xpos + scene->engine->screenWidth / 2;
@@ -118,7 +118,7 @@ void Player::updateCamera() {
     updateCoords();
 }
 
-void Player::updateCamera2()
+void Player::updateCamera()
 {
     double coords[2];
     double destCoords[2];

@@ -230,6 +230,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_CHEST_CLOSED, "images/chestClosed.png" });
     texturesToLoad.insert({ TEXTURE_CHEST_OPEN, "images/chestOpen.png" });
     texturesToLoad.insert({ TEXTURE_CAMP_FIRE, "images/campFire.png" });
+    texturesToLoad.insert({ TEXTURE_MINEBLOCK, "images/mineBlock.png" });
     //misc
     texturesToLoad.insert({ TEXTURE_TEST_PROJECTILE, "images/testProjectile.png" });
 }

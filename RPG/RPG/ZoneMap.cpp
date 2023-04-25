@@ -1733,6 +1733,9 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 				case DOODAD_CAMP_FIRE:
 					returnVector.push_back(new CampFire(savedDooDads[i].rawString, gameScene));
 					break;
+				case DOODAD_MINEBLOCK:
+					returnVector.push_back(new MineBlock(savedDooDads[i].rawString, gameScene));
+					break;
 				default:
 					returnVector.push_back(new DooDad(savedDooDads[i].rawString, gameScene));
 					break;

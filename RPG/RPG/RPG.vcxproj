@@ -172,6 +172,7 @@
     <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
     <ClCompile Include="LoadSaveGameMenu.cpp" />
+    <ClCompile Include="MineBlock.cpp" />
     <ClCompile Include="NewZoneDetailsMenu.cpp" />
     <ClCompile Include="Orchard.cpp" />
     <ClCompile Include="OtherUnitInventoryMenu.cpp" />
@@ -296,6 +297,7 @@
     <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />
     <ClInclude Include="LoadSaveGameMenu.h" />
+    <ClInclude Include="MineBlock.h" />
     <ClInclude Include="NewZoneDetailsMenu.h" />
     <ClInclude Include="Orchard.h" />
     <ClInclude Include="OtherUnitInventoryMenu.h" />
