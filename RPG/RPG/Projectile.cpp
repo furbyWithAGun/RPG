@@ -59,7 +59,7 @@ void Projectile::setTarget(double newX, double newY)
     double xDelta = xTarget - xpos;
     double yDelta = yTarget - ypos;
     double hyp = sqrt(xDelta * xDelta + yDelta * yDelta);
-    double hypRatio = 15 / hyp;
+    double hypRatio = 25 / hyp;
     xSpeed = xDelta * hypRatio;
     ySpeed = yDelta * hypRatio;
 }

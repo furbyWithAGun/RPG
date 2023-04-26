@@ -605,10 +605,11 @@ void RpgTileGridScene::destroyFlaggedDooDads()
 
 void RpgTileGridScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
 {
-    if (currentZone->getItemsAtLocation(x, y).size() > 0)
+    int itemsAtLocation = currentZone->getItemsAtLocation(x, y).size();
+    if (itemsAtLocation > 0)
     {
-        unit->addToInventory(currentZone->getItemsAtLocation(x, y)[0]);
-        currentZone->removeItemAtLocation(currentZone->getItemsAtLocation(x, y)[0], x, y);
+        unit->addToInventory(currentZone->getItemsAtLocation(x, y)[itemsAtLocation - 1]);
+        currentZone->removeItemAtLocation(currentZone->getItemsAtLocation(x, y)[itemsAtLocation - 1], x, y);
     }
 }
 
