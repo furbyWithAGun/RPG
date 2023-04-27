@@ -1154,6 +1154,59 @@ void RpgTileGridScene::buildCraftingRecipes()
     craftingRecipes.push_back(newRecipe);
 
     //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Bar");
+    //inputs
+    newRecipe.addInput(ITEM_TIN_ORE, 5);
+    newRecipe.addInput(ITEM_COPPER_ORE, 5);
+    newRecipe.addInput(ITEM_COAL, 3);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_BAR, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    newRecipe.addSkillExperience(SKILL_SMELTING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    newRecipe.addSkillExperience(SKILL_SMELTING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Short Sword");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_SHORT_SWORD, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Armour");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 10);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_BODY, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Rag Pants");
     //inputs
     newRecipe.addInput(ITEM_CRUDE_HIDE, 10);

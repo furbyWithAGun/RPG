@@ -105,6 +105,19 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		false,
 		true,
 		1
+	}},{ITEM_BRONZE_BAR, ItemTemplate{
+		"BRONZE_BAR",
+		ITEM_BRONZE_BAR,
+		RESOURCE,
+		TEXTURE_BRONZE_BAR,
+		-1,
+		0,
+		0,
+		2,
+		0,
+		false,
+		true,
+		1
 	}},{ITEM_TIN_ORE, ItemTemplate{
 		"Tin Ore",
 		ITEM_TIN_ORE,
