@@ -40,6 +40,7 @@ GuardHouse::GuardHouse(int entranceDirection) : Building()
 void GuardHouse::update(RpgTileGridScene* scene)
 {
     RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
+
     if (localTown != nullptr)
     {
         troopSpawnTick++;
@@ -71,7 +72,7 @@ void GuardHouse::init()
     troopSpawnRate = 1000;
     buildingName = "Guard House";
     popCost = 0;
-    unitTeatherLocationOffset[1] = 1;
+    unitTeatherLocationOffset[1] = 2;
     setCanBeBuiltOnOverworld(true);
     //popSupported = 2;
 }
