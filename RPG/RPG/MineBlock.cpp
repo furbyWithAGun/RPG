@@ -121,7 +121,7 @@ std::string MineBlock::toSaveString(bool withHeaderAndFooter)
 void MineBlock::init()
 {
     type = DOODAD_MINEBLOCK;
-    textureKey = TEXTURE_MINEBLOCK;
+    //textureKey = TEXTURE_MINEBLOCK;
     passable = false;
     health = 10;
     maxhealth = 10;
