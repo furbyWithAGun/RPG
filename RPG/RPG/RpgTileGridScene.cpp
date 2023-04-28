@@ -1162,7 +1162,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_BAR, 1);
     //crafting stations
-    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
     newRecipe.addSkillExperience(SKILL_SMELTING, 1);
