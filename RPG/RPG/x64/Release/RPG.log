@@ -1,124 +1,95 @@
 ﻿  BaseGameEngine.cpp
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(529,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(569,29): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(35,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(529,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(569,29): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(570,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(570,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(613,140): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(613,140): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(673,22): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(673,22): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(674,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(674,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(675,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(675,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(676,16): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(676,16): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(683,127): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(683,127): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(684,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(685,38): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(687,97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(705,133): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(684,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(685,38): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(687,97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(705,133): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(709,131): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(709,131): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
           with
           [
               _Rep=__int64
           ]
   RpgTileGridScene.cpp
-C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(608,71): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(948,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(962,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(962,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1475,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\RpgTileGridScene.cpp(1498,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  ZoneBuilderMenu.cpp
-C:\coding\c++\timbres of war\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(123,134): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(124,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(126,183): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(126,154): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(126,122): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(126,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(142,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(142,160): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(142,128): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(142,99): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(151,88): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(159,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(160,27): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(164,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(164,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(170,117): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(170,103): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(177,110): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(177,96): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(188,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(190,194): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(190,165): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(190,133): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(190,104): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(209,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(211,196): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(211,167): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(211,135): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(211,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(232,139): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(233,173): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(233,115): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(236,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(237,170): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(237,112): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(244,138): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(246,196): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(246,167): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(246,135): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(246,106): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(272,136): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(274,192): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(274,163): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(274,131): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(274,102): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(303,134): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(305,187): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(305,158): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(305,127): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\ZoneBuilderMenu.cpp(305,98): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(608,71): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(948,49): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(962,121): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(962,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1475,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTileGridScene.cpp(1498,25): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  ZoneMap.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(703,294): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(711,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(712,13): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(713,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(714,11): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(723,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(732,24): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(741,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(750,27): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(908,91): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(936,96): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1314,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1315,60): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1378,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1379,74): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1481,37): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1482,96): warning C4804: '>': unsafe use of type 'bool' in operation
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1551,26): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\ZoneMap.cpp(1933,31): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1624 of 13078 functions (12.4%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    141 functions had inline decision re-evaluated but remain unchanged
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(440): warning C4715: 'BaseGameEngine::pickElementByProbability': not all control paths return a value
+D:\Coding\c++\rpgGame\RPG\RPG\BaseGameEngine.cpp(285): warning C4715: 'BaseGameEngine::createTextTexture': not all control paths return a value
+  13068 of 13078 functions (99.9%) were compiled, the rest were copied from previous compilation.
+    1528 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  RPG.vcxproj -> C:\coding\c++\timbres of war\RPG\x64\Release\RPG.exe
+  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
