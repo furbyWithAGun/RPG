@@ -57,6 +57,46 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 	return buildingToReturn;
 }
 
+Building* restoreBuildingFromSaveObject(SaveObject savedBuilding)
+{
+	for (int j = 0; j < savedBuilding.attributes.size(); j++)
+	{
+		if (savedBuilding.attributes[j].attributeType == BULDING_TYPE)
+		{
+			switch (stoi(savedBuilding.attributes[j].valueString)) {
+				case BUILDING_ITEM_SHOP:
+					return new ItemShop(savedBuilding.rawString);
+					break;
+				case BUILDING_CAMP_COMMAND_CENTRE:
+					return new CampCommandCentre(savedBuilding.rawString);
+					break;
+				case BUILDING_BARRACKS:
+					return new Barracks(savedBuilding.rawString);
+					break;
+				case BUILDING_WOODCUTTER:
+					return new WoodCutter(savedBuilding.rawString);
+					break;
+				case BUILDING_HOUSE:
+					return new House(savedBuilding.rawString);
+					break;
+				case BUILDING_GUARDHOUSE:
+					return new GuardHouse(savedBuilding.rawString);
+					break;
+				case BUILDING_APPLE_ORCHARD:
+					return new Orchard(savedBuilding.rawString);
+					break;
+				case BUILDING_SMELTING_WORKS:
+					return new SmeltingWorks(savedBuilding.rawString);
+					break;
+				default:
+					return new Building(savedBuilding.rawString);
+					break;
+				}
+			break;
+		}
+	}
+}
+
 HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene)
 {
 	HoverToolTip* returnToolTip = new HoverToolTip();

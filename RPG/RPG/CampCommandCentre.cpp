@@ -67,4 +67,5 @@ void CampCommandCentre::init()
     woodCost = 300;
     buildingName = "Town Centre";
     popSupported = 10;
+    doodadsOnConstruct.push_back({ DOODAD_TOWN_COMMAND , 2, 2});
 }

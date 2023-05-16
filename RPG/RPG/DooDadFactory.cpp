@@ -67,11 +67,51 @@ DooDad* createNewDooDad(int dooDadType, int newTextureKey, TileGridScene* gameSc
 	return dooDadToReturn;
 }
 
+DooDad* restoreDoodadFromSaveObject(SaveObject savedDoodad, TileGridScene* gameScene)
+{
+	for (int j = 0; j < savedDoodad.attributes.size(); j++)
+	{
+		if (savedDoodad.attributes[j].attributeType == DOODAD_TYPE)
+		{
+			switch (stoi(savedDoodad.attributes[j].valueString)) {
+			case HEALING_PAD:
+				return new HealingPad(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_TOWN_COMMAND:
+				return new TownCommand(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_TREE:
+				return new Tree(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_APPLE_TREE:
+				return new FruitTree(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_RASPBERRY_BUSH:
+				return new BerryBush(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_UNIT_SPAWNER:
+				return new UnitSpawner(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_TREASURE_CHEST:
+				return new TreasureChest(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_CAMP_FIRE:
+				return new CampFire(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_MINEBLOCK:
+				return new MineBlock(savedDoodad.rawString, gameScene);
+				break;
+			default:
+				return new DooDad(savedDoodad.rawString, gameScene);
+				break;
+			}
+			break;
+		}
+	}
+}
+
 UnitSpawner* createNewUnitSpawner(TileGridScene* gameScene, int newUnitToSpawn, int zoneId)
 {
-	
-
-
 	UnitSpawner* spawnerToReturn = new UnitSpawner(gameScene, newUnitToSpawn, zoneId);
 	spawnerToReturn->addTextureKey(SPAWNER_TEXTURE_MAP[newUnitToSpawn]);
 	return spawnerToReturn;

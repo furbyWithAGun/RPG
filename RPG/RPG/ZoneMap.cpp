@@ -1704,7 +1704,8 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 
 	for (size_t i = 0; i < savedDooDads.size(); i++)
 	{
-		for (int j = 0; j < savedDooDads[i].attributes.size(); j++)
+		returnVector.push_back(restoreDoodadFromSaveObject(savedDooDads[i], gameScene));
+		/*for (int j = 0; j < savedDooDads[i].attributes.size(); j++)
 		{
 			if (savedDooDads[i].attributes[j].attributeType == DOODAD_TYPE)
 			{
@@ -1742,7 +1743,7 @@ std::vector<DooDad*> ZoneMap::getDooDadVectorFromSaveString(std::string saveStri
 				}
 				break;
 			}
-		}
+		}*/
 	}
 
 
@@ -1756,10 +1757,12 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 	std::vector<SaveObject> savedBuildings= getSaveObjectVectorFromSaveString2(saveString);
 
 	for (size_t i = 0; i < savedBuildings.size(); i++)
+		returnVector.push_back(restoreBuildingFromSaveObject(savedBuildings[i]));
 	{
-		for (int j = 0; j < savedBuildings[i].attributes.size(); j++)
-		{
-			if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
+		//for (int j = 0; j < savedBuildings[i].attributes.size(); j++)
+		//{
+			
+			/*if (savedBuildings[i].attributes[j].attributeType == BULDING_TYPE)
 			{
 				switch (stoi(savedBuildings[i].attributes[j].valueString)) {
 				case BUILDING_ITEM_SHOP:
@@ -1791,8 +1794,8 @@ std::vector<Building*> ZoneMap::getBuildingVectorFromSaveString(std::string save
 					break;
 				}
 				break;
-			}
-		}
+			}*/
+		//}
 	}
 
 
@@ -1987,34 +1990,35 @@ std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGr
 
 	for (size_t i = 0; i < savedItems.size(); i++)
 	{
-		for (int j = 0; j < savedItems[i].attributes.size(); j++)
+		returnVector.push_back(restoreUnitFromSaveObject(savedItems[i], gameScene));
+		/*for (int j = 0; j < savedItems[i].attributes.size(); j++)
 		{
 			if (savedItems[i].attributes[j].attributeType == UNIT_TYPE)
 			{
 				switch (stoi(savedItems[i].attributes[j].valueString)) {
 				case PLAYER:
-					returnVector.push_back(new Player(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new Player(savedItems[i].rawString, gameScene));
 					break;
 				case RAT:
-					returnVector.push_back(new Rat(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new Rat(savedItems[i].rawString, gameScene));
 					break;
 				case SOLDIER:
-					returnVector.push_back(new Soldier(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new Soldier(savedItems[i].rawString, gameScene));
 					break;
 				case TOWNSPERSON:
-					returnVector.push_back(new TownsPerson(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new TownsPerson(savedItems[i].rawString, gameScene));
 					break;
 				case WHITE_RAT:
-					returnVector.push_back(new WhiteRat(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new WhiteRat(savedItems[i].rawString, gameScene));
 					break;
 				case RAT_KING:
-					returnVector.push_back(new RatKing(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new RatKing(savedItems[i].rawString, gameScene));
 					break;
 				case SKELETON:
-					returnVector.push_back(new Skeleton(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new Skeleton(savedItems[i].rawString, gameScene));
 					break;
 				case SKELETON_KING:
-					returnVector.push_back(new SkeletonKing(savedItems[i].rawString, gameScene));;
+					returnVector.push_back(new SkeletonKing(savedItems[i].rawString, gameScene));
 					break;
 				default:
 					returnVector.push_back(new RpgUnit(savedItems[i].rawString, gameScene));
@@ -2022,7 +2026,7 @@ std::vector<Unit*> getUnitVectorFromSaveString(std::string saveString, RpgTileGr
 				}
 				break;
 			}
-		}
+		}*/
 	}
 
 	return returnVector;

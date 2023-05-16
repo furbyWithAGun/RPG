@@ -10,4 +10,5 @@
 
 Building* createNewBuilding(int BuildingType, int direction);
 Building* createNewBuildingNoId(int BuildingType, int direction);
+Building* restoreBuildingFromSaveObject(SaveObject savedBuilding);
 HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene);

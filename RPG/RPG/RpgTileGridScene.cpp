@@ -701,74 +701,22 @@ void RpgTileGridScene::destroyDooDad(DooDad* dooDad)
 RpgUnit* RpgTileGridScene::createUnitAtLocation(int zoneId, int unitType, int x, int y)
 {
     RpgUnit* createdUnit = (RpgUnit*)createNewUnit(getZones()[zoneId], this, unitType);
-    /*switch (unitType)
-    {
-    case PLAYER:
-        createdUnit = new Player(zoneId, PLAYER, this, x, y);
-        break;
-    case RAT:
-        createdUnit = new Rat(zoneId, RAT, this, x, y);
-        break;
-    case RAT_KING:
-        createdUnit = new RatKing(zoneId, RAT_KING, this, x, y);
-        break;
-    case WHITE_RAT:
-        createdUnit = new WhiteRat(zoneId, WHITE_RAT, this, x, y);
-        break;
-    case SOLDIER:
-        createdUnit = new Soldier(zoneId, SOLDIER, this, x, y);
-        break;
-    case TOWNSPERSON:
-        createdUnit = new TownsPerson(zoneId, TOWNSPERSON, this, x, y);
-        break;
-    case SKELETON:
-        createdUnit = new Skeleton(zoneId, SKELETON, this, x, y);
-        break;
-    case SKELETON_KING:
-        createdUnit = new SkeletonKing(zoneId, SKELETON_KING, this, x, y);
-        break;
-    default:
-        createdUnit = NULL;
-        break;
-    }*/
-
     getZones()[zoneId]->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
 }
 
 RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y)
 {
+    return createUnitAtLocation(zone->id, unitType, x, y);
+    //RpgUnit* createdUnit = (RpgUnit*)createNewUnit(zone, this, unitType);
+    //createdUnit->id = getUniqueUnitId();
+    //zone->addUnitToLocation(createdUnit, x, y);
+    //return createdUnit;
+}
+
+RpgUnit* RpgTileGridScene::createUnitAtLocationWorldBuilder(ZoneMap* zone, int unitType, int x, int y)
+{
     RpgUnit* createdUnit = (RpgUnit*)createNewUnit(zone, this, unitType);
-    /*switch (unitType)
-    {
-    case PLAYER:
-        createdUnit = new Player(zone->id, PLAYER, this, x, y);
-        break;
-    case RAT:
-        createdUnit = new Rat(zone->id, RAT, this, x, y);
-        break;
-    case RAT_KING:
-        createdUnit = new RatKing(zone->id, RAT_KING, this, x, y);
-        break;
-    case WHITE_RAT:
-        createdUnit = new WhiteRat(zone->id, WHITE_RAT, this, x, y);
-        break;
-    case SOLDIER:
-        createdUnit = new Soldier(zone->id, SOLDIER, this, x, y);
-        break;
-    case TOWNSPERSON:
-        createdUnit = new TownsPerson(zone->id, TOWNSPERSON, this, x, y);
-        break;
-    case SKELETON:
-        createdUnit = new Skeleton(zone->id, SKELETON, this, x, y);
-        break;
-    case SKELETON_KING:
-        createdUnit = new SkeletonKing(zone->id, SKELETON_KING, this, x, y);
-        break;
-    default:
-        createdUnit = new RpgUnit();
-        break;
-    }*/
     createdUnit->id = getUniqueUnitId();
     zone->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
@@ -776,125 +724,151 @@ RpgUnit* RpgTileGridScene::createUnitAtLocation(ZoneMap* zone, int unitType, int
 
 Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y)
 {
-    Building* createdBuilding;
-    TownCommand* newTownCommand;
-    DooDad* newAppleTree;
-
-    switch (buildingType)
-    {
-    case BUILDING_ITEM_SHOP:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
-        break;
-    case BUILDING_CAMP_COMMAND_CENTRE:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
-        createdBuilding->assignDooDad(newTownCommand);
-        getZone(zoneId)->addDooDadToLocation(newTownCommand, x + 2, y + 2);
-        break;
-    case BUILDING_BARRACKS:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
-        break;
-    case BUILDING_WOODCUTTER:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        break;
-    case BUILDING_HOUSE:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        break;
-    case BUILDING_GUARDHOUSE:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        break;
-    case BUILDING_APPLE_ORCHARD:
-        createdBuilding = createNewBuilding(buildingType, direction);
-        //
-        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
-        createdBuilding->assignDooDad(newAppleTree);
-        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 2);
-        //
-        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
-        createdBuilding->assignDooDad(newAppleTree);
-        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 2);
-        //
-        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
-        createdBuilding->assignDooDad(newAppleTree);
-        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 4);
-        //
-        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
-        createdBuilding->assignDooDad(newAppleTree);
-        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 4);
-        break;
-    default:
-        createdBuilding = nullptr;
-        break;
-    }
+    DooDad* newConstructDoodad;
+    Building* createdBuilding = createNewBuilding(buildingType, direction);
     getZone(zoneId)->addBuildingToLocation(createdBuilding, x, y);
-
+    for (DoodadOnConstruct newDoodad : createdBuilding->doodadsOnConstruct) {
+        newConstructDoodad = createNewDooDad(newDoodad.doodadType, this, getZone(zoneId)->id);
+        createdBuilding->assignDooDad(newConstructDoodad);
+        getZone(zoneId)->addDooDadToLocation(newConstructDoodad, x + newDoodad.x, y + newDoodad.y);
+    }
     return createdBuilding;
 }
 
+//Building* RpgTileGridScene::createBuildingAtLocation2(int zoneId, int buildingType, int direction, int x, int y)
+//{
+//    Building* createdBuilding;
+//    TownCommand* newTownCommand;
+//    DooDad* newAppleTree;
+//
+//    switch (buildingType)
+//    {
+//    case BUILDING_ITEM_SHOP:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
+//        break;
+//    case BUILDING_CAMP_COMMAND_CENTRE:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+//        createdBuilding->assignDooDad(newTownCommand);
+//        getZone(zoneId)->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+//        break;
+//    case BUILDING_BARRACKS:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        createdBuilding->assignUnit(createUnitAtLocation(zoneId, TOWNSPERSON, x + 3, y + 2));
+//        break;
+//    case BUILDING_WOODCUTTER:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        break;
+//    case BUILDING_HOUSE:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        break;
+//    case BUILDING_GUARDHOUSE:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        break;
+//    case BUILDING_APPLE_ORCHARD:
+//        createdBuilding = createNewBuilding(buildingType, direction);
+//        //
+//        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+//        createdBuilding->assignDooDad(newAppleTree);
+//        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 2);
+//        //
+//        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+//        createdBuilding->assignDooDad(newAppleTree);
+//        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 2);
+//        //
+//        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+//        createdBuilding->assignDooDad(newAppleTree);
+//        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 2, y + 4);
+//        //
+//        newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, getZone(zoneId)->id);
+//        createdBuilding->assignDooDad(newAppleTree);
+//        getZone(zoneId)->addDooDadToLocation(newAppleTree, x + 4, y + 4);
+//        break;
+//    default:
+//        createdBuilding = nullptr;
+//        break;
+//    }
+//    getZone(zoneId)->addBuildingToLocation(createdBuilding, x, y);
+//
+//    return createdBuilding;
+//}
+
     Building* RpgTileGridScene::createBuildingAtLocation(ZoneMap * zone, int buildingType, int direction, int x, int y)
     {
-        //return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
-        Building* createdBuilding;
-        TownCommand* newTownCommand;
-        DooDad* newAppleTree;
-        switch (buildingType)
-        {
-        case BUILDING_ITEM_SHOP:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
-            break;
-        case BUILDING_CAMP_COMMAND_CENTRE:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
-            createdBuilding->assignDooDad(newTownCommand);
-            zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
-            break;
-        case BUILDING_BARRACKS:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
-            break;
-        case BUILDING_WOODCUTTER:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            break;
-        case BUILDING_HOUSE:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            break;
-        case BUILDING_GUARDHOUSE:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            break;
-        case BUILDING_APPLE_ORCHARD:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            //
-            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
-            createdBuilding->assignDooDad(newAppleTree);
-            zone->addDooDadToLocation(newAppleTree, x + 2, y + 2);
-            //
-            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
-            createdBuilding->assignDooDad(newAppleTree);
-            zone->addDooDadToLocation(newAppleTree, x + 4, y + 2);
-            //
-            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
-            createdBuilding->assignDooDad(newAppleTree);
-            zone->addDooDadToLocation(newAppleTree, x + 2, y + 4);
-            //
-            newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
-            createdBuilding->assignDooDad(newAppleTree);
-            zone->addDooDadToLocation(newAppleTree, x + 4, y + 4);
-            break;
-        case BUILDING_SMELTING_WORKS:
-            createdBuilding = createNewBuilding(buildingType, direction);
-            //newFurnace = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
-            //createdBuilding->assignDooDad(newTownCommand);
-            //zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
-            break;
-        default:
-            createdBuilding = nullptr;
-            break;
-        }
-        zone->addBuildingToLocation(createdBuilding, x, y);
+        return createBuildingAtLocation(zone->id, buildingType, direction, x, y);
+        //Building* createdBuilding;
+        //TownCommand* newTownCommand;
+        //DooDad* newAppleTree;
+        //switch (buildingType)
+        //{
+        //case BUILDING_ITEM_SHOP:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
+        //    break;
+        //case BUILDING_CAMP_COMMAND_CENTRE:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    newTownCommand = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+        //    createdBuilding->assignDooDad(newTownCommand);
+        //    zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+        //    break;
+        //case BUILDING_BARRACKS:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    createdBuilding->assignUnit(createUnitAtLocation(zone, TOWNSPERSON, x + 3, y + 2));
+        //    break;
+        //case BUILDING_WOODCUTTER:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    break;
+        //case BUILDING_HOUSE:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    break;
+        //case BUILDING_GUARDHOUSE:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    break;
+        //case BUILDING_APPLE_ORCHARD:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    //
+        //    newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+        //    createdBuilding->assignDooDad(newAppleTree);
+        //    zone->addDooDadToLocation(newAppleTree, x + 2, y + 2);
+        //    //
+        //    newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+        //    createdBuilding->assignDooDad(newAppleTree);
+        //    zone->addDooDadToLocation(newAppleTree, x + 4, y + 2);
+        //    //
+        //    newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+        //    createdBuilding->assignDooDad(newAppleTree);
+        //    zone->addDooDadToLocation(newAppleTree, x + 2, y + 4);
+        //    //
+        //    newAppleTree = createNewDooDad(DOODAD_APPLE_TREE, this, zone->id);
+        //    createdBuilding->assignDooDad(newAppleTree);
+        //    zone->addDooDadToLocation(newAppleTree, x + 4, y + 4);
+        //    break;
+        //case BUILDING_SMELTING_WORKS:
+        //    createdBuilding = createNewBuilding(buildingType, direction);
+        //    //newFurnace = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+        //    //createdBuilding->assignDooDad(newTownCommand);
+        //    //zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+        //    break;
+        //default:
+        //    createdBuilding = nullptr;
+        //    break;
+        //}
+        //zone->addBuildingToLocation(createdBuilding, x, y);
 
+        //return createdBuilding;
+    }
+
+    Building* RpgTileGridScene::createBuildingAtLocationWorldBuilder(ZoneMap* zone, int buildingType, int direction, int x, int y)
+    {
+        DooDad* newConstructDoodad;
+        Building* createdBuilding = createNewBuilding(buildingType, direction);
+        zone->addBuildingToLocation(createdBuilding, x, y);
+        for (DoodadOnConstruct newDoodad : createdBuilding->doodadsOnConstruct) {
+            newConstructDoodad = createNewDooDad(newDoodad.doodadType, this, zone->id);
+            createdBuilding->assignDooDad(newConstructDoodad);
+            zone->addDooDadToLocation(newConstructDoodad, x + newDoodad.x, y + newDoodad.y);
+        }
         return createdBuilding;
     }
 

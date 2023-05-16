@@ -16,6 +16,12 @@ struct ProductionInputOutput {
     int qty;
 };
 
+struct DoodadOnConstruct{
+    int doodadType;
+    int x;
+    int y;
+};
+
 enum BUILDING_SAVE_ATTRIBUTES {
     BULDING_TYPE,
     BUILDING_TILE_MAP,
@@ -46,6 +52,7 @@ public:
     std::vector<RpgUnit*> assignedUnits;
     std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;
+    std::vector<DoodadOnConstruct> doodadsOnConstruct;
 
 
     //constructors

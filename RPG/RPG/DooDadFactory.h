@@ -14,4 +14,5 @@
 
 DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId);
 DooDad* createNewDooDad(int dooDadType, int newTextureKey, TileGridScene* gameScene, int zoneId);
+DooDad* restoreDoodadFromSaveObject(SaveObject savedDoodad, TileGridScene* gameScene);
 UnitSpawner* createNewUnitSpawner(TileGridScene* gameScene, int newUnitToSpawn, int zoneId);

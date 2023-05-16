@@ -85,12 +85,14 @@ public:
     std::vector<CraftingRecipe> getCraftingRecipes();
     CraftingRecipe getCraftingRecipe(int recipeIndex);
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
+    virtual RpgUnit* createUnitAtLocationWorldBuilder(ZoneMap* zone, int unitType, int x, int y);
 
 protected:
     //attributes
     std::string saveGameName;
     Building* createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y);
     Building* createBuildingAtLocation(ZoneMap* zone, int buildingType, int direction, int x, int y);
+    Building* createBuildingAtLocationWorldBuilder(ZoneMap* zone, int buildingType, int direction, int x, int y);
     void removeBuildingFromZone(ZoneMap* zone, Building* building);
     void removeBuildingFromZone(ZoneMap zone, Building* building);
     void scrollCamera();

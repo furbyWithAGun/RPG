@@ -313,12 +313,12 @@ void RpgWorldBuilderScene::sceneLogic() {
             break;
         case PLACE_BUILDING:
             if (buildingCanBePlacedAtLocation(&buildingBeingPlaced, &sceneToEdit, message->x, message->y)) {
-                createBuildingAtLocation(&sceneToEdit, message->misc, LEFT, message->x, message->y);
+                createBuildingAtLocationWorldBuilder(&sceneToEdit, message->misc, LEFT, message->x, message->y);
             }
             break;
         case WORLD_BUILDER_PLACE_UNIT:
             if (sceneToEdit.isTilePassable(this, message->x, message->y)) {
-                createUnitAtLocation(&sceneToEdit, message->misc, message->x, message->y);
+                createUnitAtLocationWorldBuilder(&sceneToEdit, message->misc, message->x, message->y);
             }
             break;
         default:
