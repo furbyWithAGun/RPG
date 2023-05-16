@@ -46,6 +46,9 @@ Building* createNewBuildingNoId(int newBuildingType, int direction)
 	case BUILDING_APPLE_ORCHARD:
 		buildingToReturn = new Orchard(direction);
 		break;
+	case BUILDING_SMELTING_WORKS:
+		buildingToReturn = new SmeltingWorks(direction);
+		break;
 	default:
 		printf("Warning: creating blank Building() from building factory");
 		buildingToReturn = new Building();

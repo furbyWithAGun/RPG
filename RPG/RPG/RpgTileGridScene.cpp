@@ -883,6 +883,12 @@ Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingTyp
             createdBuilding->assignDooDad(newAppleTree);
             zone->addDooDadToLocation(newAppleTree, x + 4, y + 4);
             break;
+        case BUILDING_SMELTING_WORKS:
+            createdBuilding = createNewBuilding(buildingType, direction);
+            //newFurnace = new TownCommand(this, TEXTURE_TOWN_COMMAND, x + 2, y + 2);
+            //createdBuilding->assignDooDad(newTownCommand);
+            //zone->addDooDadToLocation(newTownCommand, x + 2, y + 2);
+            break;
         default:
             createdBuilding = nullptr;
             break;

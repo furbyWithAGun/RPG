@@ -555,6 +555,9 @@
     <ClCompile Include="MineBlock.cpp">
       <Filter>Source Files\RpgGame\map\DooDads</Filter>
     </ClCompile>
+    <ClCompile Include="SmeltingWorks.cpp">
+      <Filter>Source Files\RpgGame\map\buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -928,6 +931,9 @@
     </ClInclude>
     <ClInclude Include="MineBlock.h">
       <Filter>Header Files\RpgGame\map\DooDads</Filter>
+    </ClInclude>
+    <ClInclude Include="SmeltingWorks.h">
+      <Filter>Header Files\RpgGame\map\Buildings</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

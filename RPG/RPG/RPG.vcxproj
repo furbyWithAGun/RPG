@@ -183,6 +183,7 @@
     <ClCompile Include="SaveGameMenu.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="SkeletonKing.cpp" />
+    <ClCompile Include="SmeltingWorks.cpp" />
     <ClCompile Include="TransferItemsMenu.cpp" />
     <ClCompile Include="TreasureChest.cpp" />
     <ClCompile Include="UnitFactory.cpp" />
@@ -308,6 +309,7 @@
     <ClInclude Include="SaveGameMenu.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="SkeletonKing.h" />
+    <ClInclude Include="SmeltingWorks.h" />
     <ClInclude Include="TransferItemsMenu.h" />
     <ClInclude Include="TreasureChest.h" />
     <ClInclude Include="UnitFactory.h" />
