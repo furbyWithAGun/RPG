@@ -38,7 +38,7 @@ void TownsPerson::init(RpgTileGridScene* gameScene) {
     init();
     //createAnimations();
     //resize(scene->tileWidth, scene->tileWidth);
-    doesRandomMovement = false;
+    doesRandomMovement = true;
     health = MAX_HEALTH;
     setAttributeLevel(UNIT_STAT_MAX_HEALTH, MAX_HEALTH);
     setAttributeLevel(UNIT_STAT_SPEED, SPEED);

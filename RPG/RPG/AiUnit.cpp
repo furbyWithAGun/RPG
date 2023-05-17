@@ -22,7 +22,7 @@ AiUnit::AiUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgUnit(sav
             doesRandomMovement = stoi(saveObject.attributes[i].valueString);
             break;
         case AI_UNIT_CHANCE_TO_MOVE_EACH_TICK:
-            chanceToMoveEachTick = stoi(saveObject.attributes[i].valueString);
+            //chanceToMoveEachTick = stod(saveObject.attributes[i].valueString);
             break;
         default:
             break;

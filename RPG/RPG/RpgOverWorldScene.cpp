@@ -850,6 +850,10 @@ int updateAggroThread(void* scene) {
             {
                 AiUnit* aiUnit = (AiUnit*)unit;
                 aiUnit->updateAggro();
+                if (aiUnit->type == SOLDIER)
+                {
+                    int dsf = 23434;
+                }
                 if (aiUnit->currentState->id == UNIT_IDLE && !aiUnit->attackNearbyUnit() && aiUnit->doesRandomMovement && aiUnit->pathDirections.size() <= 0)
                 {
                     if (!aiUnit->getTargetUnit() || !((std::abs(aiUnit->getTargetUnit()->tileDestination->x - aiUnit->tileDestination->x) <= 1) && (std::abs(aiUnit->getTargetUnit()->tileDestination->y - aiUnit->tileDestination->y) <= 1)))

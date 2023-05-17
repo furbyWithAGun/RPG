@@ -99,6 +99,7 @@ protected:
     int unitTeatherLocationOffset[2];
     int popSupported;
     int popCost;
+    bool unitRandomMovement;
     std::string buildingName;
     std::vector<ProductionInputOutput> productionInputs;
     std::vector<ProductionInputOutput> productionOutputs;

@@ -155,6 +155,10 @@ void Building::assignUnit(RpgUnit* unit)
     unit->assignedToBuilding = this;
     unit->canGoThroughPortal = false;
     unit->setTethered(true);
+    if (unit->type != PLAYER)
+    {
+        ((AiUnit*)unit)->doesRandomMovement = unitRandomMovement;
+    }
 }
 
 void Building::unAssignUnit(RpgUnit* unit)
@@ -357,6 +361,7 @@ void Building::init()
     maxUnits= 0;
     unitSpawnTick = 0;
     unitSpawnRate = 0;
+    unitRandomMovement = true;
 }
 
 void Building::init(int buildingType)

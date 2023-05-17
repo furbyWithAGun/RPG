@@ -1,7 +1,7 @@
 #pragma once
 #include "DooDad.h"
 #include "ItemFactory.h"
-const int MINEBLOCK_REGROW_TIME = 7000000;
+const int MINEBLOCK_REGROW_TIME = 700000;
 
 enum MINEBLOCK_SAVE_ATTRIBUTES {
 	MINEBLOCK_HEALTH = NUM_DOODAD_ATTRIBUTES,

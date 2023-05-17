@@ -100,4 +100,5 @@ void Barracks::init()
     maxUnits = 1;
     unitSpawnTick = 0;
     unitSpawnRate = 1000;
+    unitRandomMovement = false;
 }

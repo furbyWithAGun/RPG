@@ -28,22 +28,25 @@ MineBlock::MineBlock(SaveObject saveObject, TileGridScene* gameScene) : DooDad(s
     for (int i = 0; i < saveObject.attributes.size(); i++)
     {
         switch (saveObject.attributes[i].attributeType) {
-        case MINEBLOCK_HEALTH:
-            //health = stoi(saveObject.attributes[i].valueString);
-            break;
-        case MINEBLOCK_MAX_HEALTH:
-            //maxhealth = stoi(saveObject.attributes[i].valueString);
-            break;
-        case MINEBLOCK_STATE:
-            state = stoi(saveObject.attributes[i].valueString);
-            break;
-        case MINEBLOCK_REGROW_TICK:
-            regrowTick = stoi(saveObject.attributes[i].valueString);
-            break;
-        case DOODAD_PASSABLE:
-            passable = stoi(saveObject.attributes[i].valueString);
-        default:
-            break;
+            case DOODAD_TEXTURE_ID:
+                textureKey = stoi(saveObject.attributes[i].valueString);
+                break;
+            case MINEBLOCK_HEALTH:
+                //health = stoi(saveObject.attributes[i].valueString);
+                break;
+            case MINEBLOCK_MAX_HEALTH:
+                //maxhealth = stoi(saveObject.attributes[i].valueString);
+                break;
+            case MINEBLOCK_STATE:
+                state = stoi(saveObject.attributes[i].valueString);
+                break;
+            case MINEBLOCK_REGROW_TICK:
+                regrowTick = stoi(saveObject.attributes[i].valueString);
+                break;
+            case DOODAD_PASSABLE:
+                passable = stoi(saveObject.attributes[i].valueString);
+            default:
+                break;
         }
     }
 }
@@ -121,7 +124,7 @@ std::string MineBlock::toSaveString(bool withHeaderAndFooter)
 void MineBlock::init()
 {
     type = DOODAD_MINEBLOCK;
-    //textureKey = TEXTURE_MINEBLOCK;
+    textureKey = TEXTURE_MINEBLOCK;
     passable = false;
     health = 10;
     maxhealth = 10;

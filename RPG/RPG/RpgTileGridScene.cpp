@@ -1170,11 +1170,96 @@ void RpgTileGridScene::buildCraftingRecipes()
     craftingRecipes.push_back(newRecipe);
 
     //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Long Sword");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 15);
+    //outputs
+    newRecipe.addOutput(ITEM_LONG_SWORD, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Bronze Armour");
     //inputs
     newRecipe.addInput(ITEM_BRONZE_BAR, 10);
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_BODY, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Helm");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 10);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_HELM, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Boots");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 10);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_BOOTS, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Gloves");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 10);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_GLOVES, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    //skills requirements
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
+    newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bronze Leggings");
+    //inputs
+    newRecipe.addInput(ITEM_BRONZE_BAR, 10);
+    //outputs
+    newRecipe.addOutput(ITEM_BRONZE_PANTS, 1);
     //crafting stations
     newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
     //skills requirements
