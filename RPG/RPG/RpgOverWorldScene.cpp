@@ -154,26 +154,26 @@ void RpgOverWorldScene::setUpScene()
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
     //addItemToContainer(createNewItem(ITEM_APPLE), ((RpgTown*)getZones()[1])->getTownInventory());
-    Item* itemToDrop = createNewItem(ITEM_COAL);
-    itemToDrop->stackSize = 1000;
-    addItemsToMap(1, 5, 5, { itemToDrop });
-    itemToDrop = createNewItem(ITEM_COPPER_ORE);
-    itemToDrop->stackSize = 1000;
-    addItemsToMap(1, 5, 5, { itemToDrop });
-    itemToDrop = createNewItem(ITEM_TIN_ORE);
-    itemToDrop->stackSize = 1000;
-    addItemsToMap(1, 5, 5, { itemToDrop });
+    //Item* itemToDrop = createNewItem(ITEM_COAL);
+    //itemToDrop->stackSize = 1000;
+    //addItemsToMap(1, 5, 5, { itemToDrop });
+    //itemToDrop = createNewItem(ITEM_COPPER_ORE);
+    //itemToDrop->stackSize = 1000;
+    //addItemsToMap(1, 5, 5, { itemToDrop });
+    //itemToDrop = createNewItem(ITEM_TIN_ORE);
+    //itemToDrop->stackSize = 1000;
+    //addItemsToMap(1, 5, 5, { itemToDrop });
     //itemToDrop = createNewItem(ITEM_APPLE);
     //itemToDrop->stackSize = 10000;
     //addItemsToMap(0, 10, 26, { itemToDrop });
 
     //player->gold = 5000;
-    player->gold = 100000;
+    //player->gold = 100000;
     //player->addExp(COMBAT_EXPERIENCE, 250);
-    player->addExp(SKILL_COMBAT, 999999999);
+    //player->addExp(SKILL_COMBAT, 999999999);
     //player->health = 9999999;
     //player->maxHealth = 9999999;
-    ((RpgTown*)getZones()[1])->addPopulation(1000);
+    //((RpgTown*)getZones()[1])->addPopulation(1000);
 }
 
 void RpgOverWorldScene::handleInput()
