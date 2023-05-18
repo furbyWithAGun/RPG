@@ -558,6 +558,9 @@
     <ClCompile Include="SmeltingWorks.cpp">
       <Filter>Source Files\RpgGame\map\buildings</Filter>
     </ClCompile>
+    <ClCompile Include="Furnace.cpp">
+      <Filter>Source Files\RpgGame\map\DooDads</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEngine.h">
@@ -934,6 +937,9 @@
     </ClInclude>
     <ClInclude Include="SmeltingWorks.h">
       <Filter>Header Files\RpgGame\map\Buildings</Filter>
+    </ClInclude>
+    <ClInclude Include="Furnace.h">
+      <Filter>Header Files\RpgGame\map\DooDads</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -168,6 +168,7 @@
     <ClCompile Include="CampFire.cpp" />
     <ClCompile Include="CraftingMenu.cpp" />
     <ClCompile Include="CraftingRecipe.cpp" />
+    <ClCompile Include="Furnace.cpp" />
     <ClCompile Include="GuardHouse.cpp" />
     <ClCompile Include="House.cpp" />
     <ClCompile Include="ItemShopMenu.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="CampFire.h" />
     <ClInclude Include="CraftingMenu.h" />
     <ClInclude Include="CraftingRecipe.h" />
+    <ClInclude Include="Furnace.h" />
     <ClInclude Include="GuardHouse.h" />
     <ClInclude Include="House.h" />
     <ClInclude Include="ItemShopMenu.h" />

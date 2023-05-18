@@ -9,6 +9,7 @@
 #include "TreasureChest.h"
 #include "CampFire.h"
 #include "MineBlock.h"
+#include "Furnace.h"
 
 
 

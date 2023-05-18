@@ -238,6 +238,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_CHEST_OPEN, "images/chestOpen.png" });
     texturesToLoad.insert({ TEXTURE_CAMP_FIRE, "images/campFire.png" });
     texturesToLoad.insert({ TEXTURE_MINEBLOCK, "images/mineBlock.png" });
+    texturesToLoad.insert({ TEXTURE_FURNACE, "images/furnace.png" });
     //misc
     texturesToLoad.insert({ TEXTURE_TEST_PROJECTILE, "images/testProjectile.png" });
 }
@@ -1142,7 +1143,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_BAR, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
     newRecipe.addSkillExperience(SKILL_SMELTING, 1);
@@ -1159,7 +1160,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_SHORT_SWORD, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1176,7 +1177,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_LONG_SWORD, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1193,7 +1194,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_BODY, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1210,7 +1211,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_HELM, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1227,7 +1228,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_BOOTS, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1244,7 +1245,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_GLOVES, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);
@@ -1261,7 +1262,7 @@ void RpgTileGridScene::buildCraftingRecipes()
     //outputs
     newRecipe.addOutput(ITEM_BRONZE_PANTS, 1);
     //crafting stations
-    newRecipe.addCraftingStation(CRAFTING_STATION_CAMP_FIRE);
+    newRecipe.addCraftingStation(CRAFTING_STATION_FURNACE);
     //skills requirements
     newRecipe.addSkillExperience(SKILL_ARMOUR_CRAFTING, 1);
     newRecipe.addSkillExperience(SKILL_METAL_WORKING, 1);

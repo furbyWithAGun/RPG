@@ -51,6 +51,9 @@ DooDad* createNewDooDad(int dooDadType, TileGridScene* gameScene, int zoneId)
 	case DOODAD_MINEBLOCK:
 		dooDadToReturn = new MineBlock(gameScene);
 		break;
+	case DOODAD_FURNACE:
+		dooDadToReturn = new Furnace(gameScene);
+		break;
 	default:
 		printf("Warning: creating blank DooDad() from DooDad factory");
 		dooDadToReturn = new DooDad(gameScene);
@@ -100,6 +103,9 @@ DooDad* restoreDoodadFromSaveObject(SaveObject savedDoodad, TileGridScene* gameS
 				break;
 			case DOODAD_MINEBLOCK:
 				return new MineBlock(savedDoodad.rawString, gameScene);
+				break;
+			case DOODAD_FURNACE:
+				return new Furnace(savedDoodad.rawString, gameScene);
 				break;
 			default:
 				return new DooDad(savedDoodad.rawString, gameScene);

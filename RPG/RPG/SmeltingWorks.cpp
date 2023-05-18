@@ -69,4 +69,10 @@ void SmeltingWorks::init()
     maxUnits = 1;
     unitSpawnTick = 0;
     unitSpawnRate = 1000;
+    doodadsOnConstruct.push_back({ DOODAD_FURNACE , 2, 1 });
+    //production
+    productionInputs.push_back({ ITEM_TIN_ORE, 5 });
+    productionInputs.push_back({ ITEM_COPPER_ORE, 5 });
+    productionInputs.push_back({ ITEM_COAL, 3 });
+    productionOutputs.push_back({ ITEM_BRONZE_BAR, 1 });
 }
