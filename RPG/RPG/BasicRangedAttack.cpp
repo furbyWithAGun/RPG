@@ -105,17 +105,17 @@ void BasicRangedAttack::processHit(DooDad* targetDooDad) {
 void BasicRangedAttack::processAttack() {
     if (owningUnit->mana >= 10)
     {
-        owningUnit->mana -= 10;
+        //owningUnit->mana -= 10;
         Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_TEST_PROJECTILE);
         newProjectile->setTarget(xTarget, yTarget);
-        int intl = owningUnit->getAttributeLevel(UNIT_STAT_INTL);
-        newProjectile->addOnCollide([this, newProjectile, intl](RpgUnit* collidedUnit) {
+        int dex = owningUnit->getAttributeLevel(UNIT_STAT_DEX);
+        newProjectile->addOnCollide([this, newProjectile, dex](RpgUnit* collidedUnit) {
             if (newProjectile->active && collidedUnit != owningUnit)
             {
                 //collidedUnit->scene->addCombatMessage("hit", SDL_Color{ 255, 0, 0, 0 }, collidedUnit->tileLocation->x, collidedUnit->tileLocation->y);
                 if (newProjectile->getTeam() != collidedUnit->team)
                 {
-                    collidedUnit->assignDamage(owningUnit, collidedUnit->scene->engine->randomInt(1,10) + collidedUnit->scene->engine->randomInt(intl));
+                    collidedUnit->assignDamage(owningUnit, collidedUnit->scene->engine->randomInt(1,5) + collidedUnit->scene->engine->randomInt(dex));
                     newProjectile->active = false;
                 }
             }

@@ -953,11 +953,21 @@ void Player::death()
     scene->endScene();*/
     combatExperience = combatExperienceLastLevel;
 
+    std::vector<Item*> itemsToDrop = getDrops();
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
-        unEquipItem(i);
+        if (equippedItems[i] != nullptr) {
+            itemsToDrop.push_back(equippedItems[i]);
+            unEquipItem(i);
+        }
     }
-    inventory.clear();
+
+    while (inventory.size())
+    {
+        itemsToDrop.push_back(inventory[0]);
+        removeItemFromInventory(0);
+    }
+    scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, itemsToDrop);
     health = getAttributeLevel(UNIT_STAT_MAX_HEALTH);
     gold = 0;
     foodEffects.clear();

@@ -792,12 +792,23 @@ void RpgUnit::death()
         scene->menus[OTHER_UNIT_INVENTORY_MENU]->close();
         ((OtherUnitInventoryMenu*)(((RpgOverWorldScene*)scene)->menus[OTHER_UNIT_INVENTORY_MENU]))->setUnit(nullptr);
     }
-    scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, getDrops());
+    //scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, getDrops());
     active = false;
+    std::vector<Item*> itemsToDrop = getDrops();
     for (int i = BARE_HANDS + 1; i != NUM_EQUIPMENT_SLOTS; i++)
     {
-        unEquipItem(i);
+        if (equippedItems[i] != nullptr) {
+            itemsToDrop.push_back(equippedItems[i]);
+            unEquipItem(i);
+        }
     }
+    
+    while (inventory.size())
+    {
+        itemsToDrop.push_back(inventory[0]);
+        removeItemFromInventory(0);
+    }
+    scene->addItemsToMap(getZone(), tileLocation->x, tileLocation->y, itemsToDrop);
     scene->addUnitToDestroy(this);
 }
 
