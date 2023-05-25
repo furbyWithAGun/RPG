@@ -190,6 +190,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_BRONZE_PANTS, "images/bronzeLegs.png" });
     texturesToLoad.insert({ TEXTURE_BRONZE_GLOVES, "images/bronzeGloves.png" });
     texturesToLoad.insert({ TEXTURE_BRONZE_BOOTS, "images/bronzeBoots.png" });
+    texturesToLoad.insert({ TEXTURE_BOW, "images/bow.png" });
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     texturesToLoad.insert({ TEXTURE_CRUDE_HIDE, "images/crudeHide.png" });
@@ -960,7 +961,8 @@ void RpgTileGridScene::buildChestDropTable()
 {
     chestDropNum[1] = 2;
     chestDropTable[1].push_back({ 0.1, ITEM_CLUB });
-    chestDropTable[1].push_back({ 0.3, ITEM_SHORT_SWORD });
+    chestDropTable[1].push_back({ 0.1, ITEM_BOW});
+    chestDropTable[1].push_back({ 0.2, ITEM_SHORT_SWORD });
     chestDropTable[1].push_back({ 0.1, ITEM_RAG_HAT });
     chestDropTable[1].push_back({ 0.1, ITEM_RAG_BODY });
     chestDropTable[1].push_back({ 0.1, ITEM_RAG_PANTS });
@@ -1055,6 +1057,24 @@ void RpgTileGridScene::buildCraftingRecipes()
     newRecipe.addInput(ITEM_WOOD, 5);
     //outputs
     newRecipe.addOutput(ITEM_CLUB, 1);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 10);
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 5);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bow");
+    //inputs
+    newRecipe.addInput(ITEM_WOOD, 5);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 5);
+    //outputs
+    newRecipe.addOutput(ITEM_BOW, 1);
     //crafting stations
     newRecipe.addCraftingStation(NO_CRAFTING_STATION);
     //skills requirements

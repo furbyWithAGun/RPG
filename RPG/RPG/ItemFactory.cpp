@@ -15,6 +15,7 @@ struct ItemTemplate {
 	bool twoHanded;
 	bool stackable;
 	int stackSize;
+	int weaponClass;
 };
 
 struct FoodTemplate {
@@ -52,7 +53,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_APPLE, ItemTemplate{
 		"Apple",
 		ITEM_APPLE,
@@ -65,7 +67,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_COOKED_SCRAP_MEAT, ItemTemplate{
 		"Cooked Scrap Meat",
 		ITEM_COOKED_SCRAP_MEAT,
@@ -78,7 +81,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_STONE, ItemTemplate{
 		"Stone",
 		ITEM_STONE,
@@ -91,7 +95,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_COAL, ItemTemplate{
 		"Coal",
 		ITEM_COAL,
@@ -104,7 +109,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_BRONZE_BAR, ItemTemplate{
 		"Bronze Bar",
 		ITEM_BRONZE_BAR,
@@ -117,7 +123,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_TIN_ORE, ItemTemplate{
 		"Tin Ore",
 		ITEM_TIN_ORE,
@@ -130,7 +137,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_COPPER_ORE, ItemTemplate{
 		"Copper Ore",
 		ITEM_COPPER_ORE,
@@ -143,7 +151,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_WOOD, ItemTemplate{
 		"Wood",
 		ITEM_WOOD,
@@ -156,7 +165,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_CRUDE_HIDE, ItemTemplate{
 		"Animal Parts",
 		ITEM_CRUDE_HIDE,
@@ -169,7 +179,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},{ITEM_SCRAP_MEAT, ItemTemplate{
 		"Scrap Meat",
 		ITEM_SCRAP_MEAT,
@@ -182,7 +193,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		true,
-		1
+		1,
+		-1
 	}},
 	{ITEM_SHORT_SWORD, ItemTemplate{
 		"Short Sword",
@@ -196,7 +208,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		false,
-		1
+		1,
+		SWORD
 	}},
 	{ITEM_LONG_SWORD, ItemTemplate{
 		"Long Sword",
@@ -210,7 +223,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		false,
-		1
+		1,
+		SWORD
 	}},
 	{ITEM_CLUB, ItemTemplate{
 		"Club",
@@ -224,7 +238,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		false,
-		1
+		1,
+		MACE
 	}},
 	{ITEM_MACE, ItemTemplate{
 		"Mace",
@@ -238,8 +253,24 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		0,
 		false,
 		false,
-		1
+		1,
+		MACE
 	}},
+	{ ITEM_BOW, ItemTemplate{
+		"Bow",
+		ITEM_BOW,
+		WEAPON,
+		TEXTURE_BOW,
+		LEFT_HAND,
+		1,
+		4,
+		100,
+		0,
+		false,
+		false,
+		1,
+		BOW
+	} },
 	{ITEM_RAG_BODY, ItemTemplate{
 		"Rag Shirt",
 		ITEM_RAG_BODY,
@@ -252,7 +283,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ITEM_RAG_BOOTS, ItemTemplate{
 		"Rag Boots",
@@ -266,7 +298,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ITEM_RAG_GLOVES, ItemTemplate{
 		"Rag Gloves",
@@ -280,7 +313,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ITEM_RAG_HAT, ItemTemplate{
 		"Rag Hat",
@@ -294,7 +328,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ITEM_RAG_PANTS, ItemTemplate{
 		"Rag Pants",
@@ -308,7 +343,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ITEM_LINEN_BODY, ItemTemplate{
 		"Linen Shirt",
@@ -322,7 +358,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		2,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ ITEM_LINEN_BOOTS, ItemTemplate{
 		"Linen Boots",
@@ -336,7 +373,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		2,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LINEN_GLOVES, ItemTemplate{
 		"Linen Gloves",
@@ -350,7 +388,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		2,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LINEN_HAT, ItemTemplate{
 		"Linen Hat",
@@ -364,7 +403,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		2,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LINEN_PANTS, ItemTemplate{
 		"Linen Pants",
@@ -378,7 +418,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		2,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ITEM_LEATHER_BODY, ItemTemplate{
 		"Leather Armour",
@@ -392,7 +433,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		3,
 		false,
 		false,
-		1
+		1,
+		-1
 	}},
 	{ ITEM_LEATHER_BOOTS, ItemTemplate{
 		"Leather Boots",
@@ -406,7 +448,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		3,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LEATHER_GLOVES, ItemTemplate{
 		"leather Gloves",
@@ -420,7 +463,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		3,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LEATHER_HAT, ItemTemplate{
 		"Leather Helm",
@@ -434,7 +478,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		3,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_LEATHER_PANTS, ItemTemplate{
 		"Leather Leggings",
@@ -448,7 +493,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		3,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_BRONZE_BODY, ItemTemplate{
 		"Bronze Armour",
@@ -462,7 +508,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		4,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_BRONZE_BOOTS, ItemTemplate{
 		"Bronze Boots",
@@ -476,7 +523,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		4,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_BRONZE_GLOVES, ItemTemplate{
 		"Bronze Gloves",
@@ -490,7 +538,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		4,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_BRONZE_HELM, ItemTemplate{
 		"Bronze Helm",
@@ -504,7 +553,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		4,
 		false,
 		false,
-		1
+		1,
+		-1
 	} },
 	{ ITEM_BRONZE_PANTS, ItemTemplate{
 		"Bronze Leggings",
@@ -518,7 +568,8 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		4,
 		false,
 		false,
-		1
+		1,
+		-1
 	} }
 };
 
@@ -591,6 +642,7 @@ Item* createNewItemBlankId(int itemType)
 		((Weapon*)itemToReturn)->value = itemTemplate.value;
 		((Weapon*)itemToReturn)->twoHanded = itemTemplate.twoHanded;
 		((Weapon*)itemToReturn)->slot = itemTemplate.slot;
+		((Weapon*)itemToReturn)->weaponClass = itemTemplate.weaponClass;
 		break;
 	case ARMOUR:
 		itemToReturn = new Armour();

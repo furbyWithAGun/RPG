@@ -13,6 +13,7 @@ public:
     //attributes
     int minDamage;
     int maxDamage;
+    int weaponClass;
     bool twoHanded;
 
     //constructors

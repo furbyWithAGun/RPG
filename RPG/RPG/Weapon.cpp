@@ -52,4 +52,5 @@ void Weapon::init()
     maxDamage = 2;
     twoHanded = false;
     slot = LEFT_HAND;
+    weaponClass = SWORD;
 }
