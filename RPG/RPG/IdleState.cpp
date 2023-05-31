@@ -41,7 +41,8 @@ int IdleState::handleInput(InputMessage* message) {
         break;
     case PERFORM_SECONDARY_ATTACK:
         unit->faceCoords(message->x, message->y);
-        if (unit->getEquippedWeapon()->weaponClass == BOW && unit->performAttack(SECONDARY_ATTACK, message->x, message->y))
+        if (unit->getEquippedWeapon()->weaponClass == BOW && unit->equippedItems[RIGHT_HAND] != nullptr && ((Weapon*)unit->equippedItems[RIGHT_HAND])->weaponClass == ARROW && unit->equippedItems[RIGHT_HAND]->stackSize > 0 && unit->performAttack(SECONDARY_ATTACK, message->x, message->y))
+        //if (unit->performAttack(SECONDARY_ATTACK, message->x, message->y))
         {
             return UNIT_ATTACKING;
         }

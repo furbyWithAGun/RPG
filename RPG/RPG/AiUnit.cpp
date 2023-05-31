@@ -190,6 +190,14 @@ bool AiUnit::attackNearbyUnit() {
             return true;
         }
     }
+
+    Unit* targetUnit = getTargetUnit();
+    if (targetUnit)
+    {
+        double coords[2];
+        scene->coordsFromTileIndex(targetUnit->tileDestination->x, targetUnit->tileDestination->y, coords);
+        handleInput(&InputMessage(PERFORM_SECONDARY_ATTACK, coords[0] + scene->tileWidth / 2, coords[1] + scene->tileWidth / 2));
+    }
     setAttackingNearby(false);
     return false;
 }

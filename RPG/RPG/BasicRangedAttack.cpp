@@ -29,7 +29,8 @@ int BasicRangedAttack::damageDealt()
 }
 
 bool BasicRangedAttack::startAttack(int x, int y) {
-    if (Attack::startAttack(x, y) && owningUnit->mana >= 10) {
+    //if (Attack::startAttack(x, y) && owningUnit->mana >= 10) {
+    if (Attack::startAttack(x, y)) {
         xTarget = x;
         yTarget = y;
         switch (owningUnit->directionFacing)
@@ -103,10 +104,18 @@ void BasicRangedAttack::processHit(DooDad* targetDooDad) {
 }
 
 void BasicRangedAttack::processAttack() {
-    if (owningUnit->mana >= 10)
+    Weapon* arrows = (Weapon*)owningUnit->equippedItems[RIGHT_HAND];
+    if (owningUnit->getEquippedWeapon()->weaponClass == BOW && arrows != nullptr && arrows->weaponClass == ARROW && arrows->stackSize > 0)
+    //if (owningUnit->mana >= 0)
     {
         //owningUnit->mana -= 10;
-        Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_TEST_PROJECTILE);
+        arrows->stackSize -= 1;
+        if (arrows->stackSize <= 0)
+        {
+            owningUnit->equippedItems[RIGHT_HAND] = nullptr;
+            delete arrows;
+        }
+        Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_ARROW);
         newProjectile->setTarget(xTarget, yTarget);
         int dex = owningUnit->getAttributeLevel(UNIT_STAT_DEX);
         newProjectile->addOnCollide([this, newProjectile, dex](RpgUnit* collidedUnit) {

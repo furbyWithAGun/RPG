@@ -86,7 +86,7 @@ void ItemShopMenu::buildElements()
             if (scene->player->gold >= cost)
             {
                 scene->player->gold -= cost;
-                scene->player->addToInventory(selectedItem);
+                scene->player->addToInventory(selectedItem, true);
                 removeItemFromContainer(selectedItem, itemShop->itemsForSale);
                 rebuildMenuElements();
                 /*switch (selectedItem->generalType)

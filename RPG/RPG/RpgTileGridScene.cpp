@@ -191,6 +191,7 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_BRONZE_GLOVES, "images/bronzeGloves.png" });
     texturesToLoad.insert({ TEXTURE_BRONZE_BOOTS, "images/bronzeBoots.png" });
     texturesToLoad.insert({ TEXTURE_BOW, "images/bow.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW, "images/arrowProjectileUp.png" });
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     texturesToLoad.insert({ TEXTURE_CRUDE_HIDE, "images/crudeHide.png" });
@@ -610,7 +611,7 @@ void RpgTileGridScene::pickUpItemAtLocation(RpgUnit* unit, int x, int y)
     int itemsAtLocation = currentZone->getItemsAtLocation(x, y).size();
     if (itemsAtLocation > 0)
     {
-        unit->addToInventory(currentZone->getItemsAtLocation(x, y)[itemsAtLocation - 1]);
+        unit->addToInventory(currentZone->getItemsAtLocation(x, y)[itemsAtLocation - 1], true);
         currentZone->removeItemAtLocation(currentZone->getItemsAtLocation(x, y)[itemsAtLocation - 1], x, y);
     }
 }
@@ -1069,6 +1070,24 @@ void RpgTileGridScene::buildCraftingRecipes()
     craftingRecipes.push_back(newRecipe);
 
     //recipe name -------------------------------------------------------------------------------------------
+    newRecipe = CraftingRecipe("Bone Arrows");
+    //inputs
+    newRecipe.addInput(ITEM_WOOD, 2);
+    newRecipe.addInput(ITEM_CRUDE_HIDE, 2);
+    //outputs
+    newRecipe.addOutput(ITEM_BONE_ARROW, 5);
+    //crafting stations
+    newRecipe.addCraftingStation(NO_CRAFTING_STATION);
+    //skills requirements
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WOOD_WORKING, 1);
+    newRecipe.addSkillRequirement(BARELY_USABLE, SKILL_WEAPON_CRAFTING, 1);
+    //skill experience
+    newRecipe.addSkillExperience(SKILL_WOOD_WORKING, 10);
+    newRecipe.addSkillExperience(SKILL_WEAPON_CRAFTING, 5);
+    //add to array
+    craftingRecipes.push_back(newRecipe);
+
+    //recipe name -------------------------------------------------------------------------------------------
     newRecipe = CraftingRecipe("Bow");
     //inputs
     newRecipe.addInput(ITEM_WOOD, 5);
@@ -1405,10 +1424,10 @@ void RpgTileGridScene::unitCraft(RpgUnit* craftingUnit, CraftingRecipe* recipe, 
             {
                 for (int i = 0; i < output.qty - 1; i++)
                 {
-                    craftingUnit->addToInventory(createNewItem(output.item));
+                    craftingUnit->addToInventory(createNewItem(output.item), true);
                 }
             }
-            craftingUnit->addToInventory(crafteditem);
+            craftingUnit->addToInventory(crafteditem, true);
         }
         for (auto skill : recipe->getSkillExperience()) {
             craftingUnit->addExp(skill.skill, skill.experience);

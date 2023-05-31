@@ -5,6 +5,7 @@
 #include "BareHands.h"
 #include "RpgOverWorldScene.h"
 #include "BasicMeleeAttack.h"
+#include "BasicRangedAttack.h"
 std::unordered_map<int, int> nextLevelExp = {
     {1, 30},
     {2, 50},
@@ -357,11 +358,12 @@ bool RpgUnit::equipItem(Equipment* item)
 
 bool RpgUnit::unEquipItem(int slot)
 {
-    if (equippedItems[slot] != nullptr)
+    Equipment* existingItem = equippedItems[slot];
+    if (existingItem != nullptr)
     {
-        equippedItems[slot]->onUnequip(this);
-        addToInventory(equippedItems[slot]);
+        existingItem->onUnequip(this);
         equippedItems[slot] = nullptr;
+        addToInventory(existingItem, false);
         //if (scene->menus[EQUIPPED_MENU]->isActive)
         //{
         //    scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
@@ -602,7 +604,7 @@ void RpgUnit::updateFoodEffects()
     }
 }
 
-void RpgUnit::addToInventory(Item* itemToAdd)
+void RpgUnit::addToInventory(Item* itemToAdd, bool autoEquip)
 {
     addItemToContainer(itemToAdd, inventory);
     if (this == scene->player && scene->menus[INVENTORY_MENU]->isActive)
@@ -613,9 +615,13 @@ void RpgUnit::addToInventory(Item* itemToAdd)
     if (this == scene->player && scene->menus[CRAFTING_MENU]->isActive) {
         scene->menus[CRAFTING_MENU]->rebuildMenuElements();
     }
-    if (itemToAdd->equipable && !equippedItems[((Equipment*)itemToAdd)->slot])
+    if (itemToAdd->equipable && autoEquip && !equippedItems[((Equipment*)itemToAdd)->slot])
     {
         equipItem((Equipment*)itemToAdd);
+    }
+    else if (itemToAdd->equipable && itemToAdd->stackable && equippedItems[((Equipment*)itemToAdd)->slot] && itemToAdd->specificType == equippedItems[((Equipment*)itemToAdd)->slot]->specificType){
+        equippedItems[((Equipment*)itemToAdd)->slot]->stackSize += itemToAdd->stackSize;
+        deleteItemFromInventory(itemToAdd);
     }
 }
 
@@ -752,6 +758,7 @@ void RpgUnit::init()
     }
     equippedItems[BARE_HANDS] = new BareHands();
     equipedAttacks[MAIN_ATTACK] = new BasicMeleeAttack(MELEE, this); //potential memory leak
+    equipedAttacks[SECONDARY_ATTACK] = new BasicRangedAttack(MELEE, this);
     activeAttack = equipedAttacks[MAIN_ATTACK];
     unitSkills.resize(NUM_RPG_SKILLS, { 1, 1, 0, nextLevelExp[1], 0 });
 

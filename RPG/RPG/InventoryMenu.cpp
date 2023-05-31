@@ -415,7 +415,7 @@ void InventoryMenu::buildElements()
 
                         if (numToXfer >= scene->player->inventory[selection]->stackSize)
                         {
-                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection], true);
                             //addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                             scene->player->removeItemFromInventory(selection);
                             scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
@@ -423,7 +423,7 @@ void InventoryMenu::buildElements()
                         else if (numToXfer > 0) {
                             Item* itemToXfer = createNewItem(scene->player->inventory[selection]->specificType);
                             itemToXfer->stackSize = numToXfer;
-                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(itemToXfer);
+                            ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(itemToXfer, true);
                             //addItemToContainer(itemToXfer, ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                             scene->player->inventory[selection]->stackSize -= numToXfer;
                             rebuildElements();
@@ -433,7 +433,7 @@ void InventoryMenu::buildElements()
                     scene->addPrompt(qtyPrompt);
                 }
                 else {
-                    ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection]);
+                    ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->addToInventory(scene->player->inventory[selection], true);
                     //addItemToContainer(scene->player->inventory[selection], ((OtherUnitInventoryMenu*)scene->menus[OTHER_UNIT_INVENTORY_MENU])->getSelectedUnit()->inventory);
                     scene->player->removeItemFromInventory(selection);
                     scene->menus[OTHER_UNIT_INVENTORY_MENU]->rebuildMenuElements();
@@ -456,7 +456,7 @@ void InventoryMenu::defineEquipmentSlots()
     displaySlots[ARMS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
     displaySlots[HANDS_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.19), 0, 0, UiElement(scene, -1)};
     displaySlots[LEFT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1)};
-    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
+    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.12),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1)};
     displaySlots[LEFT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1)};
     displaySlots[RIGHT_RING_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};
     displaySlots[BELT_SLOT] = EquipmentDisplaySlot{(int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1)};

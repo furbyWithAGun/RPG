@@ -256,6 +256,21 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		1,
 		MACE
 	}},
+	{ ITEM_BONE_ARROW, ItemTemplate{
+		"Bone Arrow",
+		ITEM_BONE_ARROW,
+		WEAPON,
+		TEXTURE_ARROW,
+		RIGHT_HAND,
+		1,
+		4,
+		100,
+		0,
+		false,
+		true,
+		1,
+		ARROW
+	} },
 	{ ITEM_BOW, ItemTemplate{
 		"Bow",
 		ITEM_BOW,
@@ -643,6 +658,7 @@ Item* createNewItemBlankId(int itemType)
 		((Weapon*)itemToReturn)->twoHanded = itemTemplate.twoHanded;
 		((Weapon*)itemToReturn)->slot = itemTemplate.slot;
 		((Weapon*)itemToReturn)->weaponClass = itemTemplate.weaponClass;
+		itemToReturn->stackable = itemTemplate.stackable;
 		break;
 	case ARMOUR:
 		itemToReturn = new Armour();

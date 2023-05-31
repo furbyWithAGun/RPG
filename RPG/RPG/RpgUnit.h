@@ -134,7 +134,7 @@ public:
     void setScene(RpgTileGridScene* gameScene);
     void eatFood(Food* foodToEat);
     void updateFoodEffects();
-    void addToInventory(Item* itemToAdd);
+    void addToInventory(Item* itemToAdd, bool autoEquip);
     int getSkillLevel(int skill);
     void setSkillLevel(int skill, int newLevel);
     void changeSkillLevel(int skill, int skillChange);

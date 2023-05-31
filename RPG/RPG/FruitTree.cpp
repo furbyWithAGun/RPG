@@ -69,7 +69,7 @@ void FruitTree::actionOn(Unit* unit, int actionType)
     case OVERWORLD_USE:
         if (fruitState == FRUIT_TREE_AVAILABLE_FRUIT)
         {
-            ((RpgUnit*)unit)->addToInventory(createNewItem(fruitGrown));
+            ((RpgUnit*)unit)->addToInventory(createNewItem(fruitGrown), true);
             fruitState = FRUIT_TREE_NO_FRUIT;
             textureKey = noFruitTextureKey;
         }
@@ -80,7 +80,7 @@ void FruitTree::actionOn(Unit* unit, int actionType)
     case OVERWORLD_STRIKE:
         if (fruitState == FRUIT_TREE_AVAILABLE_FRUIT)
         {
-            ((RpgUnit*)unit)->addToInventory(createNewItem(fruitGrown));
+            ((RpgUnit*)unit)->addToInventory(createNewItem(fruitGrown), true);
             fruitState = FRUIT_TREE_NO_FRUIT;
             textureKey = noFruitTextureKey;
         }
