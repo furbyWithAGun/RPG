@@ -82,7 +82,10 @@ void RpgOverWorldScene::setUpScene()
         //h4x
         ((RpgTown*)getZones()[1])->addPopulation(10);
         Item* itemToDrop = createNewItem(ITEM_CRUDE_HIDE);
-        itemToDrop->stackSize = 1000;
+        itemToDrop->stackSize = 100;
+        addItemsToMap(0, 107, 23, { itemToDrop });
+        itemToDrop = createNewItem(ITEM_WOOD);
+        itemToDrop->stackSize = 100;
         addItemsToMap(0, 107, 23, { itemToDrop });
         //player->gold = 100000;
         //player->addExp(SKILL_COMBAT, 99999);
