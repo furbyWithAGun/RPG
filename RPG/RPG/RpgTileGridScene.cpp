@@ -191,7 +191,14 @@ void RpgTileGridScene::declareSceneAssets()
     texturesToLoad.insert({ TEXTURE_BRONZE_GLOVES, "images/bronzeGloves.png" });
     texturesToLoad.insert({ TEXTURE_BRONZE_BOOTS, "images/bronzeBoots.png" });
     texturesToLoad.insert({ TEXTURE_BOW, "images/bow.png" });
-    texturesToLoad.insert({ TEXTURE_ARROW, "images/arrowProjectileUp.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_UP, "images/arrowProjectileUp.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_UP_LEFT, "images/arrowProjectileUp.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_LEFT, "images/arrowProjectileLeft.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_DOWN_LEFT, "images/arrowProjectileDown.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_DOWN, "images/arrowProjectileDown.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_DOWN_RIGHT, "images/arrowProjectileDown.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_RIGHT, "images/arrowProjectileRight.png" });
+    texturesToLoad.insert({ TEXTURE_ARROW_UP_RIGHT, "images/arrowProjectileUp.png" });
     //resources
     texturesToLoad.insert({ TEXTURE_LOGS, "images/logs.png" });
     texturesToLoad.insert({ TEXTURE_CRUDE_HIDE, "images/crudeHide.png" });

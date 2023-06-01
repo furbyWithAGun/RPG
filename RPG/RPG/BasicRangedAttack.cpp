@@ -4,6 +4,17 @@
 
 const int BASIC_MELEE_ATTACK_BASE_DMG = 1;
 
+std::unordered_map<int, int> directionTextureMap = {
+    {UP, TEXTURE_ARROW_UP},
+    {DOWN, TEXTURE_ARROW_DOWN},
+    {LEFT, TEXTURE_ARROW_LEFT},
+    {RIGHT, TEXTURE_ARROW_RIGHT},
+    {UP_RIGHT, TEXTURE_ARROW_UP_RIGHT},
+    {UP_LEFT, TEXTURE_ARROW_UP_LEFT},
+    {DOWN_RIGHT, TEXTURE_ARROW_DOWN_RIGHT},
+    {DOWN_LEFT, TEXTURE_ARROW_DOWN_LEFT},
+};
+
 BasicRangedAttack::BasicRangedAttack() : Attack() {
     init();
 }
@@ -115,7 +126,7 @@ void BasicRangedAttack::processAttack() {
             owningUnit->equippedItems[RIGHT_HAND] = nullptr;
             delete arrows;
         }
-        Projectile* newProjectile = new Projectile(owningUnit, TEXTURE_ARROW);
+        Projectile* newProjectile = new Projectile(owningUnit, directionTextureMap[owningUnit->getDirectionOfCoordsRelativeToUnit(xTarget, yTarget)]);
         newProjectile->setTarget(xTarget, yTarget);
         int dex = owningUnit->getAttributeLevel(UNIT_STAT_DEX);
         newProjectile->addOnCollide([this, newProjectile, dex](RpgUnit* collidedUnit) {

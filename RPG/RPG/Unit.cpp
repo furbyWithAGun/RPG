@@ -133,6 +133,35 @@ void Unit::getCentreCoords(double coords[2])
     coords[1] += scene->tileHeight / 2;
 }
 
+int Unit::getDirectionOfCoordsRelativeToUnit(int x, int y)
+{
+    if (x < xpos && y < ypos)
+    {
+        return UP_LEFT;
+    }
+    else if (x >= xpos && x <= xpos + width && y < ypos) {
+        return UP;
+    }
+    else if (x > xpos + width && y < ypos) {
+        return UP_RIGHT;
+    }
+    else if (x > xpos + width && y > ypos && y < ypos + height) {
+        return RIGHT;
+    }
+    else if (x > xpos + width && y > ypos + height) {
+        return DOWN_RIGHT;
+    }
+    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+        return DOWN;
+    }
+    else if (x < xpos && y > ypos + height) {
+        return DOWN_LEFT;
+    }
+    else if (x < xpos && y > ypos && y < ypos + height) {
+        return LEFT;
+    }
+}
+
 Location* Unit::getTargetLocation()
 {
     SDL_AtomicLock(&targetLocationLock);

@@ -260,7 +260,7 @@ std::unordered_map<int, ItemTemplate> itemTemplates = {
 		"Bone Arrow",
 		ITEM_BONE_ARROW,
 		WEAPON,
-		TEXTURE_ARROW,
+		TEXTURE_ARROW_UP,
 		RIGHT_HAND,
 		1,
 		4,

@@ -133,6 +133,7 @@ public:
     void addUnitToBeingTargetedBy(Unit* newUnit);
     void removeUnitFromBeingTargetedBy(Unit* newUnit);
     void getCentreCoords(double coords[2]);
+    int getDirectionOfCoordsRelativeToUnit(int x, int y);
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true);
     static void resetUid();
