@@ -60,7 +60,7 @@ bool BuildingTile::isDamagable()
 
 bool BuildingTile::isPassable()
 {
-	if (passable || health <= 0)
+	if (passable == UNIT_PASSABLE || health <= 0)
 	{
 		return true;
 	}

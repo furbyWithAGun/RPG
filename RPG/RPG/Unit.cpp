@@ -135,30 +135,44 @@ void Unit::getCentreCoords(double coords[2])
 
 int Unit::getDirectionOfCoordsRelativeToUnit(int x, int y)
 {
-    if (x < xpos && y < ypos)
+    int xp, yp;
+    xp = xpos + width / 3;
+    yp = ypos + height / 3;
+    //if (x < xpos && y < ypos)
+    if (x < xp && y < yp)
     {
         return UP_LEFT;
     }
-    else if (x >= xpos && x <= xpos + width && y < ypos) {
+    //else if (x >= xpos && x <= xpos + width && y < ypos) {
+    else if (x >= xp && x <= xp + width/3 && y < yp) {
         return UP;
     }
-    else if (x > xpos + width && y < ypos) {
+    //else if (x > xpos + width && y < ypos) {
+    else if (x > xp + width/3 && y < yp) {
         return UP_RIGHT;
     }
-    else if (x > xpos + width && y > ypos && y < ypos + height) {
+    //else if (x > xpos + width && y > ypos && y < ypos + height) {
+    else if (x > xp + width/3 && y > yp && y < yp + height/3) {
         return RIGHT;
     }
-    else if (x > xpos + width && y > ypos + height) {
+    //else if (x > xpos + width && y > ypos + height) {
+    else if (x > xp + width/3 && y > yp + height/3) {
         return DOWN_RIGHT;
     }
-    else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+    //else if (x >= xpos && x <= xpos + width && y > ypos + height) {
+    else if (x >= xp && x <= xp + width/3 && y > yp + height/3) {
         return DOWN;
     }
-    else if (x < xpos && y > ypos + height) {
+    //else if (x < xpos && y > ypos + height) {
+    else if (x < xp && y > yp + height/3) {
         return DOWN_LEFT;
     }
-    else if (x < xpos && y > ypos && y < ypos + height) {
+    //else if (x < xpos && y > ypos && y < ypos + height) {
+    else if (x < xp && y > yp && y < yp + height/3) {
         return LEFT;
+    }
+    else {
+        return UP;
     }
 }
 

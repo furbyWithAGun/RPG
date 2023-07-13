@@ -40,7 +40,7 @@ void Projectile::update()
     {
         unitCollideFunction(collidedUnit);
     }
-    if (!scene->isTilePassableIgnoreAllUnits(zoneId, tileCoords[0], tileCoords[1]))
+    if (!scene->isTilePassableByProjectile(zoneId, tileCoords[0], tileCoords[1]))
     {
         active = false;
     }

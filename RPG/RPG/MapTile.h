@@ -8,18 +8,24 @@ enum MAP_TILE_SAVE_ATTRIBUTES {
     NUM_MAP_TILE_SAVE_ATTRIBUTES
 };
 
+enum MAP_TILE_PASSABLE {
+    UNPASSABLE,
+    UNIT_PASSABLE,
+    PROJECTILE_PASSABLE
+};
+
 class MapTile
 {
 public:
     //attributes
-    bool passable;
+    int passable;
     int textureKey;
     int width;
     int height;
 
     //constructor
-    MapTile(bool tileIsPassable, int tileTextureKey);
-    MapTile(bool tileIsPassable, int tileTextureKey, int newWidth, int newHeight);
+    MapTile(int tileIsPassable, int tileTextureKey);
+    MapTile(int tileIsPassable, int tileTextureKey, int newWidth, int newHeight);
     MapTile();
 
     // deconstructor

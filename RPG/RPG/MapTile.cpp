@@ -4,13 +4,13 @@ MapTile::MapTile() {
     init();
 }
 
-MapTile::MapTile(bool tileIsPassable, int tileTextureKey) {
+MapTile::MapTile(int tileIsPassable, int tileTextureKey) {
     init();
     passable = tileIsPassable;
     textureKey = tileTextureKey;
 }
 
-MapTile::MapTile(bool tileIsPassable, int tileTextureKey, int newWidth, int newHeight) {
+MapTile::MapTile(int tileIsPassable, int tileTextureKey, int newWidth, int newHeight) {
     init();
     passable = tileIsPassable;
     textureKey = tileTextureKey;
@@ -19,13 +19,13 @@ MapTile::MapTile(bool tileIsPassable, int tileTextureKey, int newWidth, int newH
 }
 
 MapTile::~MapTile() {
-    passable = false;
+    passable = UNPASSABLE;
     textureKey = 0;
 }
 
 void MapTile::init()
 {
-    passable = false;
+    passable = UNPASSABLE;
     textureKey = 0;
     width = 0;
     height = 0;

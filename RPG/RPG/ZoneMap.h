@@ -95,6 +95,7 @@ class ZoneMap {
         void updateUnitMap();
         bool isTilePassable(TileGridScene* scene, int x, int y);
         bool isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y);
+        bool isTilePassableByProjectile(TileGridScene* scene, int x, int y);
         bool isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit* unitToIgnore);
         bool isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std::vector<Unit*> unitsToIgnore);
         void unitEntersTile(Unit* unit, int x, int y);

@@ -83,10 +83,10 @@ void RpgOverWorldScene::setUpScene()
         ((RpgTown*)getZones()[1])->addPopulation(10);
         Item* itemToDrop = createNewItem(ITEM_CRUDE_HIDE);
         itemToDrop->stackSize = 100;
-        //addItemsToMap(0, 107, 23, { itemToDrop });
+        addItemsToMap(0, 107, 23, { itemToDrop });
         itemToDrop = createNewItem(ITEM_WOOD);
         itemToDrop->stackSize = 100;
-        //addItemsToMap(0, 107, 23, { itemToDrop });
+        addItemsToMap(0, 107, 23, { itemToDrop });
         //player->gold = 100000;
         //player->addExp(SKILL_COMBAT, 99999);
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
@@ -543,7 +543,7 @@ void RpgOverWorldScene::sceneLogic()
             {
                 targetCoords[0] = engine->randomInt(0, zone->tileMap.size() - 1);
                 targetCoords[1] = engine->randomInt(0, zone->tileMap[0].size() - 1);
-                if (mapTiles[zone->tileMap[targetCoords[0]][targetCoords[1]]].passable && getPortalAtLocation(zone, targetCoords[0], targetCoords[1]) == nullptr)
+                if (mapTiles[zone->tileMap[targetCoords[0]][targetCoords[1]]].passable == UNIT_PASSABLE && getPortalAtLocation(zone, targetCoords[0], targetCoords[1]) == nullptr)
                 {
                     break;
                 }

@@ -983,7 +983,15 @@ void ZoneMap::updateUnitMap()
 
 bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 {
-	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
+	//if (scene->mapTiles[tileMap[x][y]].textureKey == WATER) {
+	//	int sdfdsf = 213;
+	//}
+
+	//if (!scene->mapTiles[tileMap[x][y]].passable == UNIT_PASSABLE) {
+	//	int sdfsdfsd = 234;
+	//}
+
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || scene->mapTiles[tileMap[x][y]].passable != UNIT_PASSABLE)
 	{
 		return false;
 	}
@@ -1011,7 +1019,35 @@ bool ZoneMap::isTilePassable(TileGridScene* scene,  int x, int y)
 
 bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 {
-	if(x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
+	if(x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || scene->mapTiles[tileMap[x][y]].passable != UNIT_PASSABLE)
+	{
+		return false;
+	}
+
+	Building* building = getBuildingAtLocation(x, y);
+	if (building != nullptr)
+	{
+		BuildingTile* tile = building->getTileAtMapLocation(x, y);
+		if (tile != nullptr)
+		{
+			if (!tile->isPassable()) {
+				return false;
+			}
+		}
+	}
+
+	DooDad* dooDad = getDooDadAtLocation(x, y);
+	if (dooDad != nullptr && !dooDad->passable)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool ZoneMap::isTilePassableByProjectile(TileGridScene* scene, int x, int y)
+{
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || scene->mapTiles[tileMap[x][y]].passable == UNPASSABLE)
 	{
 		return false;
 	}
@@ -1039,7 +1075,7 @@ bool ZoneMap::isTilePassableIgnoreAllUnits(TileGridScene* scene, int x, int y)
 
 bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit* unitToIgnore)
 {
-	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || scene->mapTiles[tileMap[x][y]].passable != UNIT_PASSABLE)
 	{
 		return false;
 	}
@@ -1076,7 +1112,7 @@ bool ZoneMap::isTilePassableIgnoreUnit(TileGridScene* scene, int x, int y, Unit*
 
 bool ZoneMap::isTilePassableIgnoreUnits(TileGridScene* scene, int x, int y, std::vector<Unit*> unitsToIgnore)
 {
-	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || !scene->mapTiles[tileMap[x][y]].passable)
+	if (x < 0 || y < 0 || x >= tileMap.size() || y >= tileMap[x].size() || scene->mapTiles[tileMap[x][y]].passable != UNIT_PASSABLE)
 	{
 		return false;
 	}
@@ -1558,31 +1594,31 @@ void ZoneMap::setupGraph(TileGridScene* scene)
 	{
 		for (int y = 0; y < tileMap[x].size(); y++) 
 		{
-			if (scene->mapTiles[tileMap[x][y]].passable)
+			if (scene->mapTiles[tileMap[x][y]].passable == UNIT_PASSABLE)
 			{
 				std::vector<Location*> neighbors = std::vector<Location*>();
 				for (int direction : directions) {
 					switch (direction)
 					{
 					case UP:
-						if (y > 0 && scene->mapTiles[tileMap[x][y - 1]].passable)
+						if (y > 0 && scene->mapTiles[tileMap[x][y - 1]].passable == UNIT_PASSABLE)
 						{
 							neighbors.push_back(new Location{ x, y - 1 });
 						}
 						break;
 					case DOWN:
-						if (y + 1 < tileMap[x].size() && scene->mapTiles[tileMap[x][y + 1]].passable)
+						if (y + 1 < tileMap[x].size() && scene->mapTiles[tileMap[x][y + 1]].passable == UNIT_PASSABLE)
 						{
 							neighbors.push_back(new Location{ x, y + 1 });
 						}
 						break;
 					case LEFT:
-						if (x > 0 && scene->mapTiles[tileMap[x - 1][y]].passable)
+						if (x > 0 && scene->mapTiles[tileMap[x - 1][y]].passable == UNIT_PASSABLE)
 						{
 							neighbors.push_back(new Location{ x - 1, y });
 						}
 					case RIGHT:
-						if (x + 1 < tileMap.size() && scene->mapTiles[tileMap[x + 1][y]].passable)
+						if (x + 1 < tileMap.size() && scene->mapTiles[tileMap[x + 1][y]].passable == UNIT_PASSABLE)
 						{
 							neighbors.push_back(new Location{ x + 1, y });
 						}
@@ -1611,13 +1647,13 @@ void ZoneMap::calculateDirectPaths(TileGridScene* scene)
 	{
 		for (int y = 0; y < tileMap[x].size(); y++)
 		{
-			if (scene->mapTiles[tileMap[x][y]].passable)
+			if (scene->mapTiles[tileMap[x][y]].passable == UNIT_PASSABLE)
 			{
 				for (int xto = 0; xto < tileMap.size(); xto++)
 				{
 					for (int yto = 0; yto < tileMap[0].size(); yto++)
 					{
-						if (scene->mapTiles[tileMap[xto][yto]].passable)
+						if (scene->mapTiles[tileMap[xto][yto]].passable == UNIT_PASSABLE)
 						{
 							PathKey key = {};
 							Location* from = new Location{ 0,0 };

@@ -183,7 +183,6 @@ ZoneMap* TileGridScene::getZone(int zoneId)
 {
     if (zoneId < 0)
     {
-        int sdfsd = 23423;
         return nullptr;
     }
     return zones[zoneId];
@@ -352,6 +351,11 @@ bool TileGridScene::isTilePassableIgnoreUnit(int zoneId, int x, int y, Unit* uni
 bool TileGridScene::isTilePassableIgnoreAllUnits(int zoneId, int x, int y)
 {
     return zones[zoneId]->isTilePassableIgnoreAllUnits(this, x, y);
+}
+
+bool TileGridScene::isTilePassableByProjectile(int zoneId, int x, int y)
+{
+    return zones[zoneId]->isTilePassableByProjectile(this, x, y);
 }
 
 //private methods
