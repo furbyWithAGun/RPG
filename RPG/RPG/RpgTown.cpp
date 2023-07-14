@@ -155,9 +155,28 @@ void RpgTown::init()
 
 void RpgTown::processTownCycle()
 {
-    if (feedPopulace() && population + trainedSoldiers < getTownPopLimit())
+    int townPopLimit = getTownPopLimit();
+    if (feedPopulace() && population + trainedSoldiers < townPopLimit)
     {
-        population++;
+        int foodToPopRatio;
+        int totalFoodPower = 0;
+        for (auto item : townInventory) {
+            if (item->generalType == FOOD)
+            {
+                totalFoodPower += ((Food*)item)->hungerGain * item->stackSize;
+            }
+        }
+
+        foodToPopRatio = floor(totalFoodPower / population);
+        if (foodToPopRatio > townPopLimit - (population + trainedSoldiers))
+        {
+            foodToPopRatio = townPopLimit - (population + trainedSoldiers);
+        }
+        if (foodToPopRatio < 1)
+        {
+            foodToPopRatio = 1;
+        }
+        population += foodToPopRatio;
     }
     std::vector<Item*> producedItems;
     for (auto building : getBuildings()){

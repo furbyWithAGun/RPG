@@ -20,6 +20,9 @@ Weapon::Weapon(SaveObject saveObject) : Equipment(saveObject)
         case WEAPON_TWO_HANDED:
             twoHanded = stoi(saveObject.attributes[i].valueString);
             break;
+        case WEAPON_CLASS:
+            weaponClass = stoi(saveObject.attributes[i].valueString);
+            break;
         default:
             break;
         }
@@ -39,6 +42,7 @@ std::string Weapon::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), WEAPON_MIN_DAMAGE, minDamage);
     saveString += getAttributeString(getUniqueId(), WEAPON_MAX_DAMAGE, maxDamage);
     saveString += getAttributeString(getUniqueId(), WEAPON_TWO_HANDED, twoHanded);
+    saveString += getAttributeString(getUniqueId(), WEAPON_CLASS, weaponClass);
     if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_WEAPON) + "\n";

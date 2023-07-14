@@ -112,6 +112,7 @@ void OtherUnitInventoryMenu::draw()
         }
     }
     engine->renderText("Armour: " + std::to_string(selectedUnit->getAttributeLevel(UNIT_STAT_ARMOUR)), xpos + width * 0.1, ypos + height * 0.05, COLOR_WHITE);
+    engine->renderText("Level: " + std::to_string(selectedUnit->combatLevel), xpos + width * 0.45, ypos + height * 0.05, COLOR_WHITE);
     for (auto toolTip : toolTips)
     {
         if (toolTip->active) {
