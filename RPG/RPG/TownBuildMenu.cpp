@@ -18,7 +18,9 @@ enum BUILDING_MENU_IDS {
     PROVINCE_TOWN_BUILD_CANCEL_BUTTON,
     PROVINCE_BUILDING_MENU_GOLD_DISPLAY,
     PROVINCE_BUILDING_MENU_WOOD_DISPLAY,
-    PROVINCE_BUILDING_MENU_POP_DISPLAY
+    PROVINCE_BUILDING_MENU_POP_DISPLAY,
+    BUILDING_MENU_SOL_DISPLAY,
+    PROVINCE_BUILDING_MENU_SOL_DISPLAY
 };
 
 TownBuildMenu::TownBuildMenu() : GameMenu()
@@ -56,11 +58,13 @@ void TownBuildMenu::draw()
         ((MenuText*)getElementbyId(BUILDING_MENU_GOLD_DISPLAY))->setText("Gold: " + std::to_string(scene->player->gold + ((RpgTown*)scene->currentZone)->getTownGold()));
         ((MenuText*)getElementbyId(BUILDING_MENU_WOOD_DISPLAY))->setText("Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory) + qtyInContainer(ITEM_WOOD, ((RpgTown*)scene->currentZone)->getTownInventory())));
         ((MenuText*)getElementbyId(BUILDING_MENU_POP_DISPLAY))->setText("Free Population: " + std::to_string(((RpgTown*)scene->currentZone)->getFreePop()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+        ((MenuText*)getElementbyId(BUILDING_MENU_SOL_DISPLAY))->setText("Soldiers: " + std::to_string(((RpgTown*)scene->currentZone)->getNumTrainedSoldiers()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     }
     else if (townBuildingFor != nullptr && ((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_PROVINCE) {
         ((MenuText*)getElementbyId(PROVINCE_BUILDING_MENU_GOLD_DISPLAY))->setText("Gold: " + std::to_string(scene->player->gold));
         ((MenuText*)getElementbyId(PROVINCE_BUILDING_MENU_WOOD_DISPLAY))->setText("Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory)));
         ((MenuText*)getElementbyId(PROVINCE_BUILDING_MENU_POP_DISPLAY))->setText("Free Population: N/A")->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+        ((MenuText*)getElementbyId(PROVINCE_BUILDING_MENU_SOL_DISPLAY))->setText("Soldiers: N/A")->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     }
     GameMenu::draw();
 }
@@ -110,8 +114,11 @@ void TownBuildMenu::buildPageOne()
     mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_GOLD_DISPLAY, scene, "Gold: " + std::to_string(scene->player->gold), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
     mainPanel->addElementToPage(0, new MenuText(BUILDING_MENU_WOOD_DISPLAY, scene, "Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory)), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.05));
     MenuText* popText = new MenuText(BUILDING_MENU_POP_DISPLAY, scene, "Free Population: " + std::to_string(0), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.09, scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+    MenuText* solText = new MenuText(BUILDING_MENU_SOL_DISPLAY, scene, "Soldiers: " + std::to_string(0), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.13, scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     popText->setAutoUpdateDimensions(false);
+    solText->setAutoUpdateDimensions(false);
     mainPanel->addElementToPage(0, popText);
+    mainPanel->addElementToPage(0, solText);
     mainPanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.15));
     ScrollBox* scroller;
     scroller = new ScrollBox(BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.19, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
@@ -164,8 +171,11 @@ void TownBuildMenu::buildProvincePageOne()
     provincePanel->addElementToPage(0, new MenuText(PROVINCE_BUILDING_MENU_GOLD_DISPLAY, scene, "Gold: " + std::to_string(scene->player->gold), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.01));
     provincePanel->addElementToPage(0, new MenuText(PROVINCE_BUILDING_MENU_WOOD_DISPLAY, scene, "Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory)), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.05));
     MenuText* popText = new MenuText(PROVINCE_BUILDING_MENU_POP_DISPLAY, scene, "Free Population: " + std::to_string(0), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.09, scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+    MenuText* solText = new MenuText(PROVINCE_BUILDING_MENU_SOL_DISPLAY, scene, "Soldiers: " + std::to_string(0), { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.13, scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     popText->setAutoUpdateDimensions(false);
+    solText->setAutoUpdateDimensions(false);
     provincePanel->addElementToPage(0, popText);
+    provincePanel->addElementToPage(0, solText);
     provincePanel->addElementToPage(0, new MenuText(scene, "Buildings", { 255, 255, 255 }, scene->mainCanvasStartX / 6, engine->screenHeight * 0.15));
     ScrollBox* scroller;
     scroller = new ScrollBox(PROVINCE_BUILDINGS_SCROLL_BOX, scene, { 100, 100, 100 }, engine->screenWidth * 0.01, engine->screenHeight * 0.19, scene->mainCanvasStartX * 0.85, engine->screenHeight * 0.2);
