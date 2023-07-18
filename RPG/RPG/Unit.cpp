@@ -15,6 +15,7 @@ void Unit::getNewPath()
             getPathAttempts = 0;
             clearTargetLocation();
             clearTargetUnit();
+            //ignoreThreatsWhileMoving = false;
             return;
         }
         gettingPath = true;
@@ -77,10 +78,6 @@ int Unit::setFullHealth()
 
 void Unit::setZone(int newZone)
 {
-    if (newZone < 0)
-    {
-        int test = 32423;
-    }
     zone = newZone;
 }
 
@@ -415,6 +412,7 @@ void Unit::init() {
     getPathAttempts = 0;
     //unitAttributes[UNIT_STAT_SPEED] = {1, 0, 100, 0};
     //unitAttributes[UNIT_STAT_MAX_HEALTH] = {1, 0, 100, 0};
+    ignoreThreatsWhileMoving = false;
 }
 
 void Unit::init(int zoneId, int unitType) {
@@ -778,6 +776,10 @@ void Unit::setTargetLocation(int newX, int newY)
 
 void Unit::setTargetUnit(Unit* newTargetUnit)
 {
+    if (ignoreThreatsWhileMoving)
+    {
+        return;
+    }
     SDL_AtomicLock(&targetUnitLock);
 
     if (targetUnit)
@@ -843,6 +845,7 @@ void Unit::moveTo(int x, int y)
     scene->getZone(zone)->unitEntersTile(this, tileLocation->x, tileLocation->y);
     if (targetLocation != nullptr && x == targetLocation->x && y == targetLocation->y)
     {
+        ignoreThreatsWhileMoving = false;
         pathDirections.clear();
         clearTargetLocation();
     }

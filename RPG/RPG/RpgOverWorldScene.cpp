@@ -319,6 +319,16 @@ void RpgOverWorldScene::handleInput()
                     addCommand(InputMessage(OVERWORLD_COMMAND_UNIT, tileCoords[0], tileCoords[1], 1));
                 }
                 break;
+            case BUTTON_8_DOUBLE_PRESS:
+                getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
+                if (controllerInterface->ctrlOn)
+                {
+                    addCommand(InputMessage(OVERWORLD_ASSIGN_UNIT, tileCoords[0], tileCoords[1], 1));
+                }
+                else if (squadUnits[1] != nullptr) {
+                    addCommand(InputMessage(OVERWORLD_FORCE_COMMAND_UNIT, tileCoords[0], tileCoords[1], 1));
+                }
+                break;
             case BUTTON_9_ON:
                 getTileIndexFromScreenCoords(message->x, message->y, tileCoords);
                 if (controllerInterface->ctrlOn)
@@ -445,6 +455,20 @@ void RpgOverWorldScene::sceneLogic()
             if (squadUnits[message->misc] != nullptr)
             {
                 squadUnits[message->misc]->setTargetLocation(new Location{ message->x, message->y });
+                squadUnits[message->misc]->ignoreThreatsWhileMoving = false;
+                if (getPortalAtLocation(currentZone, message->x, message->y))
+                {
+                    squadUnits[message->misc]->canGoThroughPortal = true;
+                }
+            }
+            break;
+        case OVERWORLD_FORCE_COMMAND_UNIT:
+            if (squadUnits[message->misc] != nullptr)
+            {
+                squadUnits[message->misc]->clearTargetUnit();
+                squadUnits[message->misc]->clearTargetLocation();
+                squadUnits[message->misc]->setTargetLocation(new Location{ message->x, message->y });
+                squadUnits[message->misc]->ignoreThreatsWhileMoving = true;
                 if (getPortalAtLocation(currentZone, message->x, message->y))
                 {
                     squadUnits[message->misc]->canGoThroughPortal = true;
@@ -770,6 +794,10 @@ int getPathThread(void* scene) {
         {
             break;
         }
+        if (unit->ignoreThreatsWhileMoving)
+        {
+            int dsfsf = 324;
+        }
         //try {
         std::vector<int> tempDirections;
         targetUnit = unit->getTargetUnit();
@@ -812,6 +840,7 @@ int getPathThread(void* scene) {
             if (unit->getNewPathFailTick >= unit->scene->getNewPathFailLimit)
             {
                 unit->getNewPathFailTick = 0;
+                unit->ignoreThreatsWhileMoving = false;
                 unit->pathDirections = rpgScene->getZone(unit->getZone())->getPathDirectionsIgnoreAllunits(rpgScene, unit->tileDestination, unit->getTargetLocation());
             }
             unit->gettingPath = false;
@@ -858,6 +887,11 @@ int updateAggroThread(void* scene) {
             if (unit != rpgScene->player)
             {
                 AiUnit* aiUnit = (AiUnit*)unit;
+                if (aiUnit->ignoreThreatsWhileMoving)
+                {
+                    SDL_AtomicUnlock(&unit->deleteLock);
+                    continue;
+                }
                 aiUnit->updateAggro();
                 if (aiUnit->type == SOLDIER)
                 {

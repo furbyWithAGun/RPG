@@ -12,6 +12,7 @@ const int KEY_G_VALUE = 0;
 const int KEY_B_VALUE = 255;
 const int DEFAULT_FONT_SIZE = 28;
 const double DEFAULT_TICKS_PER_SECOND = 120;
+const int DEFAULT_MS_DOUBLE_PRESS_DELAY = 500;
 //const double DEFAULT_TICK_DELAY = 1000 / DEFAULT_TICKS_PER_SECOND;
 const std::string DEFAULT_BUTTON_TEXTURE_PATH = "images/buttonBackground.png";
 const double DEFAULT_SIGMOID_OMEGA = 1;
@@ -79,9 +80,9 @@ SDL_Window* BaseGameEngine::createWindow(const char* title, int height, int widt
         printf("Warning: Linear texture filtering not enabled!");
     }
 
-    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
+    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
     //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
-    newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP); //********************USE THIS ONE******************************************
+    //newWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP); //********************USE THIS ONE******************************************
     
     if (newWindow == NULL)
     {
@@ -173,7 +174,6 @@ bool BaseGameEngine::init() {
     SDL_GetCurrentDisplayMode(0, &current);
     targetFrameRate = current.refresh_rate;
     fpsDelay = 1000 / targetFrameRate;
-
     return true;
 }
 
@@ -443,6 +443,7 @@ void BaseGameEngine::setTicksPerSecond(int newTicksPerScond)
 {
     ticksPerSecond = newTicksPerScond;
     tickDelay = 1000 / newTicksPerScond;
+    doublePressDelay = ticksPerSecond / (1000 / DEFAULT_MS_DOUBLE_PRESS_DELAY);
 }
 
 int BaseGameEngine::getScreenRefreshRate()

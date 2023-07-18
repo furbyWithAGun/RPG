@@ -4,7 +4,10 @@
 
 //constructors
 RpgKeysMouseController::RpgKeysMouseController() : ControllerInterface() {
-
+    buttonLastPressStamp[SDLK_1] = 0;
+    buttonLastPressStamp[SDLK_2] = 0;
+    buttonLastPressStamp[SDLK_3] = 0;
+    buttonLastPressStamp[SDLK_4] = 0;
 }
 
 //methods
@@ -12,6 +15,7 @@ void RpgKeysMouseController::populateMessageQueue() {
     SDL_Event e;
     int x, y;
     SDL_GetMouseState(&x, &y);
+    int thisTick = SDL_GetTicks();
 
     addMessage(InputMessage(POINTER_STATE, x, y));
     while (SDL_PollEvent(&e) != 0) {
@@ -126,7 +130,14 @@ void RpgKeysMouseController::populateMessageQueue() {
                 addMessage(InputMessage(BUTTON_7_OFF, x, y));
                 break;
             case SDLK_1:
-                addMessage(InputMessage(BUTTON_8_OFF, x, y));
+                if (thisTick - buttonLastPressStamp[SDLK_1] >= DEFAULT_MS_DOUBLE_PRESS_DELAY)
+                {
+                    addMessage(InputMessage(BUTTON_8_OFF, x, y));
+                }
+                else {
+                    addMessage(InputMessage(BUTTON_8_DOUBLE_PRESS, x, y));
+                }
+                buttonLastPressStamp[SDLK_1] = thisTick;
                 break;
             case SDLK_2:
                 addMessage(InputMessage(BUTTON_9_OFF, x, y));

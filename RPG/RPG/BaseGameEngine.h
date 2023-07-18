@@ -142,6 +142,7 @@ class BaseGameEngine
         int auto_texturekey;
         double sigmoidOmega, sigmoidAlpha;
         bool lockRender;
+        int doublePressDelay;
         
 
         //methods

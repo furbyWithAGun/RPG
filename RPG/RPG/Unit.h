@@ -82,6 +82,8 @@ public:
     //pathfinding rates
     int getPathRate;
     int adjustPathRate;
+    //force move
+    bool ignoreThreatsWhileMoving;
     
     //constructors
     Unit();
