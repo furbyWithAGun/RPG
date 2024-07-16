@@ -4,6 +4,8 @@
 #include <string>
 #include "ItemFactory.h"
 
+const int DEFAULT_UNIT_TETHER_DISTANCE = 5;
+
 class RpgUnit;
 class DooDad;
 struct Location;
@@ -50,6 +52,7 @@ public:
     int goldCost;
     int woodCost;
     std::vector<RpgUnit*> assignedUnits;
+    std::vector<RpgUnit*> housedUnits;
     std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;
     std::vector<DoodadOnConstruct> doodadsOnConstruct;
@@ -72,7 +75,9 @@ public:
     virtual int onActionAssignedUnit(RpgUnit* unit);
     virtual int onActionAssignedDooDad(DooDad* dooDad);
     void assignUnit(RpgUnit* unit);
+    void houseUnit(RpgUnit* unit);
     void unAssignUnit(RpgUnit* unit);
+    void unHouseUnit(RpgUnit* unit);
     void assignDooDad(DooDad* dooDad);
     void unAssignDooDad(DooDad* dooDad);
     void setTileMap(std::vector< std::vector<BuildingTile*> > newTileMap);
@@ -89,6 +94,7 @@ public:
     bool canBeBuiltOnOverworld();
     void setCanBeBuiltOnOverworld(bool newVal);
     std::vector<ProductionInputOutput> getProductionOutputs();
+    RpgUnit* createHousedUnit(RpgTileGridScene* scene);
 
 protected:
     //attributes
@@ -109,6 +115,7 @@ private:
     //attributes
     int productionGoldCost;
     bool overworldBuildable;
+    int tetherUnitDistance;
     //methods
     void init();
     void init(int buildingType);

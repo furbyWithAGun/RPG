@@ -156,7 +156,12 @@ void RpgTown::init()
 void RpgTown::processTownCycle()
 {
     int townPopLimit = getTownPopLimit();
-    if (feedPopulace() && population + trainedSoldiers < townPopLimit)
+    int totalPopulation = getPopulation();
+    if (totalPopulation <= 1) {
+        totalPopulation = 1;
+    }
+    //if (feedPopulace() && totalPopulation + trainedSoldiers < townPopLimit)
+    if (feedPopulace())
     {
         int foodToPopRatio;
         int totalFoodPower = 0;
@@ -167,16 +172,20 @@ void RpgTown::processTownCycle()
             }
         }
 
-        foodToPopRatio = floor(totalFoodPower / population);
-        if (foodToPopRatio > townPopLimit - (population + trainedSoldiers))
+        foodToPopRatio = floor(totalFoodPower / totalPopulation);
+        if (foodToPopRatio > townPopLimit - (totalPopulation + trainedSoldiers))
         {
-            foodToPopRatio = townPopLimit - (population + trainedSoldiers);
+            foodToPopRatio = townPopLimit - (totalPopulation + trainedSoldiers);
         }
         if (foodToPopRatio < 1)
         {
             foodToPopRatio = 1;
         }
-        population += foodToPopRatio;
+        for (size_t i = 0; i < foodToPopRatio; i++)
+        {
+            createTownsperson();
+        }
+        //population += foodToPopRatio;
     }
     std::vector<Item*> producedItems;
     for (auto building : getBuildings()){
@@ -207,7 +216,7 @@ int RpgTown::getTownPopLimit()
 bool RpgTown::feedPopulace()
 {
     bool returnValue = false;
-    int hungerToSatisfy = population + trainedSoldiers;
+    int hungerToSatisfy = getPopulation() + trainedSoldiers;
     std::vector<Item*> itemsToDelete;
     for (auto item : townInventory) {
         if (item->generalType == FOOD)
@@ -229,6 +238,20 @@ bool RpgTown::feedPopulace()
     }
     endOfFunction:
     return returnValue;
+}
+
+RpgUnit* RpgTown::createTownsperson()
+{
+    RpgUnit* returnUnit = nullptr;
+    for (Building* building : getBuildings())
+    {
+        if (building->housedUnits.size() < building->getPopSupported()) {
+            returnUnit = building->createHousedUnit(scene);
+            return returnUnit;
+        }
+    }
+
+    return returnUnit;
 }
 
 int RpgTown::getFreePop()
@@ -258,4 +281,14 @@ RpgTown* RpgTown::getNearestTown(Location* location)
 RpgTown* RpgTown::getNearestTown(int xpos, int ypos)
 {
     return this;
+}
+
+int RpgTown::getPopulation()
+{
+    int totalPop = 0;
+    for (Building* building : getBuildings())
+    {
+        totalPop += building->housedUnits.size();
+    }
+    return totalPop;
 }

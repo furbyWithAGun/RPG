@@ -102,7 +102,7 @@ int Building::getY()
 void Building::update(RpgTileGridScene* scene)
 {
     for (auto unit : assignedUnits) {
-        if (unit->isTethered() && unit->getZone() == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > 5)
+        if (unit->isTethered() && unit->getZone() == zone->id && zone->manhattenDistance(unit->tileDestination, tileLocation) > tetherUnitDistance)
         {
             unit->setTargetLocation(tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
         }
@@ -117,12 +117,12 @@ void Building::update(RpgTileGridScene* scene)
             if (unitSpawnTick >= unitSpawnRate)
             {
                 unitSpawnTick = 0;
-                if (localTown->getFreePop() > 0 && assignedUnits.size() < maxUnits)
+                /*if (localTown->getFreePop() > 0 && assignedUnits.size() < maxUnits)
                 {
                     localTown->reducePopulation(1);
                     RpgUnit* newUnit = scene->createUnitAtLocation(zone, spawnedUnitType, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
                     assignUnit(newUnit);
-                }
+                }*/
             }
         }
     }
@@ -161,6 +161,12 @@ void Building::assignUnit(RpgUnit* unit)
     }
 }
 
+void Building::houseUnit(RpgUnit* unit)
+{
+    housedUnits.push_back(unit);
+    unit->unitHouse = this;
+}
+
 void Building::unAssignUnit(RpgUnit* unit)
 {
     unit->setTethered(false);
@@ -170,6 +176,22 @@ void Building::unAssignUnit(RpgUnit* unit)
     {
         if ((*unitIterator) == unit) {
             unitIterator = assignedUnits.erase(unitIterator);
+            break;
+        }
+        else {
+            unitIterator++;
+        }
+    }
+}
+
+void Building::unHouseUnit(RpgUnit* unit)
+{
+    unit->unitHouse = nullptr;
+    auto unitIterator = housedUnits.begin();
+    while (unitIterator != housedUnits.end())
+    {
+        if ((*unitIterator) == unit) {
+            unitIterator = housedUnits.erase(unitIterator);
             break;
         }
         else {
@@ -336,6 +358,13 @@ std::vector<ProductionInputOutput> Building::getProductionOutputs()
     return productionOutputs;
 }
 
+RpgUnit* Building::createHousedUnit(RpgTileGridScene* scene)
+{
+    RpgUnit* newUnit = scene->createUnitAtLocation(zone, spawnedUnitType, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
+    houseUnit(newUnit);
+    return newUnit;
+}
+
 void Building::init()
 {
     overworldBuildable = false;
@@ -362,6 +391,7 @@ void Building::init()
     unitSpawnTick = 0;
     unitSpawnRate = 0;
     unitRandomMovement = true;
+    tetherUnitDistance = DEFAULT_UNIT_TETHER_DISTANCE;
 }
 
 void Building::init(int buildingType)

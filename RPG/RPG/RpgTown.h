@@ -48,6 +48,7 @@ public:
     void addPopulation(int amount);
     RpgTown* getNearestTown(Location* location) override;
     RpgTown* getNearestTown(int xpos, int ypos) override;
+    int getPopulation();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
@@ -61,11 +62,13 @@ private:
     std::vector<Item*> townInventory;
     std::vector<Equipment*> townArmoury;
     std::vector<Food*> townGranary;
+    int freeTownsPeople;
         
     //methods
     void init();
     void processTownCycle();
     int getTownPopLimit();
     bool feedPopulace();
+    RpgUnit* createTownsperson();
 };
 

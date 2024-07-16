@@ -67,5 +67,8 @@ void CampCommandCentre::init()
     woodCost = 300;
     buildingName = "Town Centre";
     popSupported = 10;
+    spawnedUnitType = TOWNSPERSON;
+    unitTeatherLocationOffset[0] = 3;
+    unitTeatherLocationOffset[1] = 2;
     doodadsOnConstruct.push_back({ DOODAD_TOWN_COMMAND , 2, 2});
 }

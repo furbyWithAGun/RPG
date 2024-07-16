@@ -676,6 +676,12 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     {
         ((RpgUnit*)unit)->assignedToBuilding->unAssignUnit(((RpgUnit*)unit));
     }
+
+    //unhouse unit
+    if (((RpgUnit*)unit)->unitHouse != nullptr)
+    {
+        ((RpgUnit*)unit)->unitHouse->unHouseUnit(((RpgUnit*)unit));
+    }
     
     delete (unit);
 }

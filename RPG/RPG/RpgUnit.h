@@ -66,6 +66,7 @@ public:
     std::unordered_map<int, Equipment*> equippedItems;
     std::vector<Item*> inventory;
     Building* assignedToBuilding;
+    Building* unitHouse;
     //std::vector<ChanceObject> dropTable;
     std::vector<DropTable> dropTables;
     int minNumDrops;

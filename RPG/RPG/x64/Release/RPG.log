@@ -1,63 +1,11 @@
-﻿  BaseGameEngine.cpp
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(36,23): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(446,39): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(530,22): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(570,29): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(571,22): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(614,140): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(674,22): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(675,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(676,20): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(677,16): warning C4244: 'initializing': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(684,127): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(685,25): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(686,38): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(688,97): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(706,133): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\coding\c++\timbres of war\RPG\RPG\BaseGameEngine.cpp(710,131): warning C4244: '=': conversion from '_Rep' to 'double', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
+﻿  RpgTown.cpp
+D:\Coding\c++\rpgGame\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+D:\Coding\c++\rpgGame\RPG\RPG\Graph.h(39,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTown.cpp(175,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Coding\c++\rpgGame\RPG\RPG\RpgTown.cpp(291,49): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
   Generating code
-  1653 of 13210 functions (12.5%) were compiled, the rest were copied from previous compilation.
+  2 of 13214 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    146 functions had inline decision re-evaluated but remain unchanged
+    18 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  RPG.vcxproj -> C:\coding\c++\timbres of war\RPG\x64\Release\RPG.exe
+  RPG.vcxproj -> D:\Coding\c++\rpgGame\RPG\x64\Release\RPG.exe
