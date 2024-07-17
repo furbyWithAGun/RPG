@@ -62,6 +62,9 @@ RpgUnit::RpgUnit(SaveObject saveObject, RpgTileGridScene* gameScene) : Unit(save
         case UNIT_ASSIGNED_TO_BUILDING:
             assignedToBuildingId = stoi(saveObject.attributes[i].valueString);
             break;
+        case UNIT_HOUSING_BUILDING:
+            houseBuildingId = stoi(saveObject.attributes[i].valueString);
+            break;
         case UNIT_MIN_NUM_DROPS:
             minNumDrops = stoi(saveObject.attributes[i].valueString);
             break;
@@ -670,6 +673,11 @@ std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
     {
         saveString += getAttributeString(getUniqueId(), UNIT_ASSIGNED_TO_BUILDING, assignedToBuilding->id);
     }
+
+    if (unitHouse != nullptr)
+    {
+        saveString += getAttributeString(getUniqueId(), UNIT_HOUSING_BUILDING, unitHouse->id);
+    }
     saveString += getAttributeString(getUniqueId(), UNIT_MIN_NUM_DROPS, minNumDrops);
     saveString += getAttributeString(getUniqueId(), UNIT_MAX_NUM_DROPS, maxNumDrops);
     saveString += getAttributeString(getUniqueId(), UNIT_DROP_CHANCE, dropChance);
@@ -750,6 +758,7 @@ void RpgUnit::init()
     aggroUpdateTick = 0;
     //special attributes for loading saved units
     assignedToBuildingId = -1;
+    houseBuildingId = -1;
     isPlayer = false;
     
     for (int i = BARE_HANDS; i != NUM_EQUIPMENT_SLOTS; i++)

@@ -66,7 +66,7 @@ void CampCommandCentre::init()
     goldCost = 500;
     woodCost = 300;
     buildingName = "Town Centre";
-    popSupported = 10;
+    popSupported = 5;
     spawnedUnitType = TOWNSPERSON;
     unitTeatherLocationOffset[0] = 3;
     unitTeatherLocationOffset[1] = 2;

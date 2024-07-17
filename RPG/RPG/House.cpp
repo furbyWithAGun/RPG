@@ -56,11 +56,8 @@ void House::init()
     iconTextureId = BUILDING_ICON_HOUSE;
     goldCost = 50;
     woodCost = 40;
-    popSupported = 10;
+    popSupported = 2;
     buildingName = "House";
     spawnedUnitType = TOWNSPERSON;
-    maxUnits = 1;
-    unitSpawnTick = 0;
-    unitSpawnRate = 1000;
 }
 

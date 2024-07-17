@@ -39,6 +39,7 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_MAX_HUNGER_LEVEL,
     UNIT_IS_PLAYER,
     UNIT_SKILLS,
+    UNIT_HOUSING_BUILDING,
     NUM_RPG_UNIT_ATTRIBUTES
 };
 
@@ -97,6 +98,7 @@ public:
 
     //special attributes for loading saved units
     int assignedToBuildingId;
+    int houseBuildingId;
 
     //constructors
     RpgUnit();

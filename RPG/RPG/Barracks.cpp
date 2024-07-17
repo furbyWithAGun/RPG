@@ -64,12 +64,12 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
             switch (barracksSelectPrompt->getSelectedOptionValue())
             {
             case 1:
-                if (unit->scene->player->gold >= 500 && ((RpgTown*)zone)->getFreePop() > 0)
+                /*if (unit->scene->player->gold >= 500 && ((RpgTown*)zone)->getFreePop() > 0)
                 {
                     unit->scene->player->gold -= 500;
                     ((RpgTown*)zone)->addToTrainedSoldiers(1);
-                    //((RpgTown*)zone)->reducePopulation(1);
-                }
+                   */ //((RpgTown*)zone)->reducePopulation(1);
+                //}
                 break;
             default:
                 break;
@@ -93,12 +93,9 @@ void Barracks::init()
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Barracks";
-    popCost = 10;
     unitTeatherLocationOffset[0] = 3;
     unitTeatherLocationOffset[1] = 2;
     spawnedUnitType = TOWNSPERSON;
     maxUnits = 1;
-    unitSpawnTick = 0;
-    unitSpawnRate = 1000;
     unitRandomMovement = false;
 }

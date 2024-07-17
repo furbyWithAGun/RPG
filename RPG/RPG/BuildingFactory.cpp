@@ -111,10 +111,6 @@ HoverToolTip* createBuildBuildingToolTip(Building* building, GameScene* scene)
 		returnToolTip->subElements.push_back(new MenuText(scene, "Wood Cost: " + std::to_string(building->woodCost), COLOR_WHITE, 10, 70));
 	}
 
-	if (building->getPopCost() > 0)
-	{
-		returnToolTip->subElements.push_back(new MenuText(scene, "Population Cost: " + std::to_string(building->getPopCost()), COLOR_WHITE, 10, 100, scene->engine->screenWidth * 0.14, scene->engine->screenHeight * 0.03));
-	}
 	else if (building->getPopSupported() > 0) {
 		returnToolTip->subElements.push_back(new MenuText(scene, "Population Supported: " + std::to_string(building->getPopSupported()), COLOR_WHITE, 10, 100, scene->engine->screenWidth * 0.14, scene->engine->screenHeight * 0.03));
 	}

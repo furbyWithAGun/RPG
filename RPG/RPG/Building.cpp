@@ -108,23 +108,31 @@ void Building::update(RpgTileGridScene* scene)
         }
     }
 
-    if (spawnedUnitType != -1)
+    if (spawnedUnitType != -1 && assignedUnits.size() < maxUnits)
     {
         RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
-        if (localTown != nullptr)
+
+        RpgUnit* newWorker = localTown->getFreeTownsperson();
+
+        if (newWorker)
         {
-            unitSpawnTick++;
-            if (unitSpawnTick >= unitSpawnRate)
-            {
-                unitSpawnTick = 0;
-                /*if (localTown->getFreePop() > 0 && assignedUnits.size() < maxUnits)
-                {
-                    localTown->reducePopulation(1);
-                    RpgUnit* newUnit = scene->createUnitAtLocation(zone, spawnedUnitType, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
-                    assignUnit(newUnit);
-                }*/
-            }
+            assignUnit(newWorker);
         }
+
+        //if (localTown != nullptr)
+        //{
+        //    unitSpawnTick++;
+        //    if (unitSpawnTick >= unitSpawnRate)
+        //    {
+        //        unitSpawnTick = 0;
+        //        /*if (localTown->getFreePop() > 0 && assignedUnits.size() < maxUnits)
+        //        {
+        //            localTown->reducePopulation(1);
+        //            RpgUnit* newUnit = scene->createUnitAtLocation(zone, spawnedUnitType, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
+        //            assignUnit(newUnit);
+        //        }*/
+        //    }
+        //}
     }
 }
 
@@ -333,11 +341,6 @@ int Building::getPopSupported()
     return popSupported;
 }
 
-int Building::getPopCost()
-{
-    return popCost;
-}
-
 std::string Building::getBuildingName()
 {
     return buildingName;
@@ -378,7 +381,6 @@ void Building::init()
     woodCost = 1;
     productionGoldCost = 0;
     popSupported = 0;
-    popCost = 0;
     productionInputs = {};
     productionOutputs = {};
     zone = nullptr;
@@ -388,8 +390,6 @@ void Building::init()
     unitTeatherLocationOffset[1] = 0;
     spawnedUnitType = -1;
     maxUnits= 0;
-    unitSpawnTick = 0;
-    unitSpawnRate = 0;
     unitRandomMovement = true;
     tetherUnitDistance = DEFAULT_UNIT_TETHER_DISTANCE;
 }

@@ -76,7 +76,6 @@ void Orchard::init()
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
     woodCost = 100;
-    popCost = 5;
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 2, 2 });
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 4, 2 });
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 2, 4 });

@@ -89,7 +89,6 @@ public:
     virtual std::vector<Item*> production(RpgTown* town);
     void setZone(ZoneMap* newZone);
     int getPopSupported();
-    int getPopCost();
     std::string getBuildingName();
     bool canBeBuiltOnOverworld();
     void setCanBeBuiltOnOverworld(bool newVal);
@@ -99,12 +98,9 @@ public:
 protected:
     //attributes
     int maxUnits;
-    int unitSpawnTick;
-    int unitSpawnRate;
     int spawnedUnitType;
     int unitTeatherLocationOffset[2];
     int popSupported;
-    int popCost;
     bool unitRandomMovement;
     std::string buildingName;
     std::vector<ProductionInputOutput> productionInputs;

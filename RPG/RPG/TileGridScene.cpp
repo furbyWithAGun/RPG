@@ -28,6 +28,7 @@ void TileGridScene::init() {
     updatingUnits = false;
     unitDestroyLock = 0;
     unitPathQueueLock = 0;
+    zonesLoaded = 0;
 }
 
 void TileGridScene::declareSceneAssets()

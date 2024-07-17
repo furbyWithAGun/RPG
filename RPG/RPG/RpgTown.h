@@ -43,12 +43,12 @@ public:
     int getNumTrainedSoldiers();
     void addToTrainedSoldiers(int amountToAdd);
     void subtractFromTrainedSoldiers(int amountToSubtract);
-    int getFreePop();
     void reducePopulation(int amount);
     void addPopulation(int amount);
     RpgTown* getNearestTown(Location* location) override;
     RpgTown* getNearestTown(int xpos, int ypos) override;
     int getPopulation();
+    RpgUnit* getFreeTownsperson();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

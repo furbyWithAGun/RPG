@@ -426,10 +426,6 @@ bool RpgTileGridScene::townCanAffordBuilding(Building* building, RpgTown* town)
         return false;
     }
 
-    if (building->getPopCost() > town->getFreePop() && building->getPopCost() > 0)
-    {
-        return false;
-    }
 
     return true;
 }
@@ -447,10 +443,6 @@ bool RpgTileGridScene::playerCanAffordBuilding(Building* building)
         return false;
     }
 
-    if (building->getPopCost() > 0)
-    {
-        return false;
-    }
 
     return true;
 }
@@ -486,7 +478,18 @@ void RpgTileGridScene::loadZone(SaveObject saveObject)
     {
         nextZoneId = newZone->id + 1;
     }
+
     for (auto* unit : newZone->getUnits())
+    {
+        if (((RpgUnit*)unit)->isPlayer)
+        {
+            player = (Player*)unit;
+            break;
+        }
+    }
+
+
+    /*for (auto* unit : newZone->getUnits())
     {
         if (((RpgUnit*)unit)->isPlayer)
         {
@@ -511,6 +514,46 @@ void RpgTileGridScene::loadZone(SaveObject saveObject)
         else {
             dooDad->assignedToBuildingId = -1;
         }
+    }*/
+    zonesLoaded += 1;
+}
+
+void RpgTileGridScene::assignUnitsAndDoodads()
+{
+    for (auto zoneItem: getZones()) {
+        ZoneMap* zone = zoneItem.second;
+        for (auto* unit : zone->getUnits())
+        {
+            Building* assignedBuilding = getBuildingById(((RpgUnit*)unit)->assignedToBuildingId);
+            if (assignedBuilding != nullptr)
+            {
+                assignedBuilding->assignUnit((RpgUnit*)unit);
+            }
+            else {
+                ((RpgUnit*)unit)->assignedToBuildingId = -1;
+            }
+
+            Building* houseBuilding = getBuildingById(((RpgUnit*)unit)->houseBuildingId);
+            if (houseBuilding != nullptr)
+            {
+                houseBuilding->houseUnit((RpgUnit*)unit);
+            }
+            else {
+                ((RpgUnit*)unit)->houseBuildingId = -1;
+            }
+        }
+
+        for (auto* dooDad : zone->getDooDads())
+        {
+            Building* assignedBuilding = getBuildingById(dooDad->assignedToBuildingId);
+            if (assignedBuilding != nullptr)
+            {
+                assignedBuilding->assignDooDad(dooDad);
+            }
+            else {
+                dooDad->assignedToBuildingId = -1;
+            }
+        }
     }
 }
 
@@ -520,60 +563,23 @@ void RpgTileGridScene::loadZones(std::string saveFile)
     //SaveFile zonesFile = SaveFile("zones.txt");
     SaveFile zonesFile = SaveFile(saveFile);
     zonesFile.loadFile();
+    int numZones = zonesFile.objects.size();
+    zonesLoaded = 0;
     for (auto zone : zonesFile.objects) {
-        loadZone(zone);
-        //RpgZone* newZone = nullptr;
-        //for (int i = 0; i < zone.attributes.size(); i++)
-        //{
-        //    if (zone.attributes[i].attributeType == RPG_ZONE_TYPE) {
-        //        switch (std::stoi(zone.attributes[i].valueString))
-        //        {
-        //        case ZONE_RPG_TOWN:
-        //            newZone = new RpgTown(zone.rawString, this);
-        //            break;
-        //        case ZONE_RPG_PROVINCE:
-        //            newZone = new RpgProvinceZone(zone.rawString, this);
-        //            break;
-        //        default:
-        //            newZone = new RpgZone(zone.rawString, this);
-        //            break;
-        //        }
-        //    }
-        //}
-        ////RpgZone* newZone = new RpgZone(zone.rawString, this);
-        //if (newZone == nullptr)
-        //{
-        //    newZone = new RpgZone(zone.rawString, this);
-        //}
-        //newZone->setupGraph(this);
-        //addZone(newZone);
-        //if (newZone->id >= nextZoneId)
-        //{
-        //    nextZoneId = newZone->id + 1;
-        //}
-        //for (auto* unit : newZone->getUnits())
-        //{
-        //    if (((RpgUnit*)unit)->assignedToBuildingId != -1) {
-        //        for (auto building : newZone->getBuildings()) {
-        //            if (building->id == ((RpgUnit*)unit)->assignedToBuildingId)
-        //            {
-        //                building->assignUnit((RpgUnit*)unit);
-        //            }
-        //        }
-        //    }
-        //}
-        //for (auto* dooDad : newZone->getDooDads())
-        //{
-        //    if (dooDad->assignedToBuildingId != -1) {
-        //        for (auto building : newZone->getBuildings()) {
-        //            if (building->id == dooDad->assignedToBuildingId)
-        //            {
-        //                building->assignDooDad(dooDad);
-        //            }
-        //        }
-        //    }
-        //}
+        LoadZoneThreadData* threadData = new LoadZoneThreadData;
+        threadData->saveObject = zone;
+        threadData->scene = this;
+        SDL_CreateThread(loadZoneThread, "loadZoneThread", (void*)threadData);
+        //loadZone(zone);
     }
+
+    while (zonesLoaded < numZones)
+    {
+        int x = 123;
+    }
+
+    assignUnitsAndDoodads();
+
     currentZone = getZones()[0];
     xOffset = 0;
     yOffset = 0;
@@ -582,8 +588,6 @@ void RpgTileGridScene::loadZones(std::string saveFile)
 
 void RpgTileGridScene::resizeTiles()
 {
-
-
     //resize tiles depending on screen size
     int tilesImpliedWidth = engine->screenWidth / desiredTilesAcross;
     int tilesImpliedHeight = engine->screenHeight / desiredTilesDown;
@@ -736,6 +740,19 @@ RpgUnit* RpgTileGridScene::createUnitAtLocationWorldBuilder(ZoneMap* zone, int u
     createdUnit->id = getUniqueUnitId();
     zone->addUnitToLocation(createdUnit, x, y);
     return createdUnit;
+}
+
+Building* RpgTileGridScene::getBuildingById(int buildingId)
+{
+    Building* returnBuilding = nullptr;
+    for (auto zone : getZones()) {
+        returnBuilding = zone.second->getBuildingById(buildingId);
+        if (returnBuilding != nullptr)
+        {
+            return returnBuilding;
+        }
+    }
+    return returnBuilding;
 }
 
 Building* RpgTileGridScene::createBuildingAtLocation(int zoneId, int buildingType, int direction, int x, int y)
@@ -1622,4 +1639,13 @@ void deleteItemFromContainer(Item* item, std::vector<Item*>& container)
         return;
     }
     deleteItemFromContainer(delIndex, container);
+}
+
+int loadZoneThread(void* data)
+{
+    SaveObject zone = ((LoadZoneThreadData*)data)->saveObject;
+    RpgTileGridScene* scene = ((LoadZoneThreadData*)data)->scene;
+    scene->loadZone(zone);
+    delete data;
+    return 1;
 }

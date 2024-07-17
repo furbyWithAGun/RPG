@@ -62,13 +62,10 @@ void SmeltingWorks::init()
     goldCost = 100;
     woodCost = 200;
     buildingName = "Smelting Works";
-    popCost = 10;
     unitTeatherLocationOffset[0] = 3;
     unitTeatherLocationOffset[1] = 2;
     spawnedUnitType = TOWNSPERSON;
     maxUnits = 1;
-    unitSpawnTick = 0;
-    unitSpawnRate = 1000;
     doodadsOnConstruct.push_back({ DOODAD_FURNACE , 2, 1 });
     //production
     productionInputs.push_back({ ITEM_TIN_ORE, 5 });

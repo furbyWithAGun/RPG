@@ -71,7 +71,6 @@ void GuardHouse::init()
     troopSpawnTick = 0;
     troopSpawnRate = 1000;
     buildingName = "Guard House";
-    popCost = 0;
     unitTeatherLocationOffset[1] = 2;
     setCanBeBuiltOnOverworld(true);
     //popSupported = 2;

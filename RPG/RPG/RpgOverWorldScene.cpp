@@ -87,6 +87,9 @@ void RpgOverWorldScene::setUpScene()
         itemToDrop = createNewItem(ITEM_WOOD);
         itemToDrop->stackSize = 100;
         addItemsToMap(0, 107, 23, { itemToDrop });
+        itemToDrop = createNewItem(ITEM_APPLE);
+        itemToDrop->stackSize = 100;
+        addItemsToMap(0, 107, 23, { itemToDrop });
         //player->gold = 100000;
         //player->addExp(SKILL_COMBAT, 99999);
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });

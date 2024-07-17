@@ -19,6 +19,12 @@
 #include "DooDadFactory.h"
 #include "CraftingRecipe.h"
 
+
+typedef struct {
+    SaveObject saveObject;
+    RpgTileGridScene* scene;
+} LoadZoneThreadData;
+
 //class Player;
 
 class RpgTileGridScene : public TileGridScene
@@ -69,6 +75,7 @@ public:
     bool playerCanAffordBuilding(Building* building);
     virtual void loadZones(std::string saveFile) override;
     virtual void loadZone(SaveObject saveObject);
+    void assignUnitsAndDoodads();
     void resizeTiles();
     void virtual destroyUnit(RpgUnit* unit);
     void virtual destroyFlaggedUnits();
@@ -86,6 +93,7 @@ public:
     CraftingRecipe getCraftingRecipe(int recipeIndex);
     virtual RpgUnit* createUnitAtLocation(ZoneMap* zone, int unitType, int x, int y);
     virtual RpgUnit* createUnitAtLocationWorldBuilder(ZoneMap* zone, int unitType, int x, int y);
+    Building* getBuildingById(int buildingId);
 
 protected:
     //attributes
@@ -121,5 +129,6 @@ void removeItemFromContainer(int index, std::vector<Item*>& container);
 void removeItemFromContainer(Item* item, std::vector<Item*>& container);
 void deleteItemFromContainer(int index, std::vector<Item*>& container);
 void deleteItemFromContainer(Item* item, std::vector<Item*>& container);
+int loadZoneThread(void* data);
 
 

@@ -95,6 +95,7 @@ protected:
     //attributes
     std::vector<Unit*> unitsToDestroy;
     std::vector<DooDad*> dooDadsToDestroy;
+    int zonesLoaded;
 
     //methods
     bool tileCoordsAreDisplayedMapTile(int x, int y);

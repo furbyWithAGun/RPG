@@ -254,14 +254,6 @@ RpgUnit* RpgTown::createTownsperson()
     return returnUnit;
 }
 
-int RpgTown::getFreePop()
-{
-    int popCost = 0;
-    for (auto building : getBuildings()) {
-        popCost += building->getPopCost();
-    }
-    return population - popCost - trainedSoldiers;
-}
 
 void RpgTown::reducePopulation(int amount)
 {
@@ -291,4 +283,17 @@ int RpgTown::getPopulation()
         totalPop += building->housedUnits.size();
     }
     return totalPop;
+}
+
+RpgUnit* RpgTown::getFreeTownsperson()
+{
+    for (Building* building: getBuildings()) {
+        for (RpgUnit* unit : building->housedUnits) {
+            if (unit->assignedToBuilding == nullptr && unit->type == TOWNSPERSON) {
+                return unit;
+            }
+        }
+    }
+
+    return nullptr;
 }

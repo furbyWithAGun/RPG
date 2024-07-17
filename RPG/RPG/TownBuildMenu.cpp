@@ -57,7 +57,7 @@ void TownBuildMenu::draw()
     {
         ((MenuText*)getElementbyId(BUILDING_MENU_GOLD_DISPLAY))->setText("Gold: " + std::to_string(scene->player->gold + ((RpgTown*)scene->currentZone)->getTownGold()));
         ((MenuText*)getElementbyId(BUILDING_MENU_WOOD_DISPLAY))->setText("Wood: " + std::to_string(qtyInContainer(ITEM_WOOD, scene->player->inventory) + qtyInContainer(ITEM_WOOD, ((RpgTown*)scene->currentZone)->getTownInventory())));
-        ((MenuText*)getElementbyId(BUILDING_MENU_POP_DISPLAY))->setText("Free Population: " + std::to_string(((RpgTown*)scene->currentZone)->getFreePop()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
+        //((MenuText*)getElementbyId(BUILDING_MENU_POP_DISPLAY))->setText("Free Population: " + std::to_string(((RpgTown*)scene->currentZone)->getFreePop()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
         ((MenuText*)getElementbyId(BUILDING_MENU_SOL_DISPLAY))->setText("Soldiers: " + std::to_string(((RpgTown*)scene->currentZone)->getNumTrainedSoldiers()))->setdimensions(scene->engine->screenWidth * 0.08, scene->engine->screenHeight * 0.03);
     }
     else if (townBuildingFor != nullptr && ((RpgZone*)scene->currentZone)->zoneType == ZONE_RPG_PROVINCE) {

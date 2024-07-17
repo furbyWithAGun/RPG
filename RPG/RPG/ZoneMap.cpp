@@ -558,12 +558,57 @@ void ZoneMap::destroyBuilding(Building* building)
 		unit->assignedToBuilding = nullptr;
 		((TileGridScene*)unit->scene)->addUnitToDestroy(unit);
 	}
+
+	for (auto unit : building->housedUnits)
+	{
+		auto unitIterator = building->housedUnits.begin();
+		while (unitIterator != building->housedUnits.end())
+		{
+			if ((*unitIterator) == unit) {
+				unitIterator = building->housedUnits.erase(unitIterator);
+			}
+			else {
+				unitIterator++;
+			}
+		}
+		unit->unitHouse = nullptr;
+	}
+
 	delete building;
 }
 
 void ZoneMap::destroyBuildingButNotunits(Building* building)
 {
 	removeBuildingFromZone(building);
+	for (auto unit : building->assignedUnits)
+	{
+		auto unitIterator = building->assignedUnits.begin();
+		while (unitIterator != building->assignedUnits.end())
+		{
+			if ((*unitIterator) == unit) {
+				unitIterator = building->assignedUnits.erase(unitIterator);
+			}
+			else {
+				unitIterator++;
+			}
+		}
+		unit->assignedToBuilding = nullptr;
+	}
+
+	for (auto unit : building->housedUnits)
+	{
+		auto unitIterator = building->housedUnits.begin();
+		while (unitIterator != building->housedUnits.end())
+		{
+			if ((*unitIterator) == unit) {
+				unitIterator = building->housedUnits.erase(unitIterator);
+			}
+			else {
+				unitIterator++;
+			}
+		}
+		unit->unitHouse = nullptr;
+	}
 	delete building;
 }
 
