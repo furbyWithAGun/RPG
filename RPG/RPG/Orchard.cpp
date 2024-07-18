@@ -64,18 +64,20 @@ int Orchard::onActionAssignedUnit(RpgUnit* unit)
 
 void Orchard::update(RpgTileGridScene* scene)
 {
-
+    Building::update(scene);
 }
 
 
 void Orchard::init()
 {
     buildingName = "Orchard";
+    spawnedUnitType = TOWNSPERSON;
     productionOutputs.push_back({ ITEM_APPLE, 4 });
     type = BUILDING_APPLE_ORCHARD;
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
     woodCost = 100;
+    maxUnits = 2;
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 2, 2 });
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 4, 2 });
     doodadsOnConstruct.push_back({ DOODAD_APPLE_TREE , 2, 4 });

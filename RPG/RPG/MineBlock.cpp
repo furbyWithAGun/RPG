@@ -74,7 +74,7 @@ void MineBlock::actionOn(Unit* unit, int actionType)
                     {0.1, ITEM_COPPER_ORE}, 
                 };
                 Item* item = createNewItem(scene->engine->pickElementByProbability(potentialFinds));
-                //logs->stackSize = 5;
+                item->stackSize = 5;
                 unit->scene->addItemsToMap(unit->getZone(), tileCoords[0], tileCoords[1], { item });
             }
         }

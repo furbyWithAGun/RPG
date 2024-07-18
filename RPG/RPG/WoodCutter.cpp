@@ -50,16 +50,18 @@ int WoodCutter::onActionAssignedUnit(RpgUnit* unit)
 
 void WoodCutter::update(RpgTileGridScene* scene)
 {
-
+    Building::update(scene);
 }
 
 
 void WoodCutter::init()
 {
     buildingName = "Wood Cutters hut";
-    productionOutputs.push_back({ITEM_WOOD, 2});
+    productionOutputs.push_back({ITEM_WOOD, 10});
     type = BUILDING_WOODCUTTER;
+    spawnedUnitType = TOWNSPERSON;
     iconTextureId = BUILDING_ICON_WOODCUTTER;
     goldCost = 100;
     woodCost = 30;
+    maxUnits = 1;
 }

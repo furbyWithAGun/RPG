@@ -402,6 +402,10 @@ void Building::init(int buildingType)
 
 bool Building::townCanAfffordProduction(RpgTown* town)
 {
+    if (assignedUnits.size() != maxUnits) {
+        return false;
+    }
+
     if (town->getTownGold() < productionGoldCost)
     {
         return false;
