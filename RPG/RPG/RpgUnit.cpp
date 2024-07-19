@@ -653,6 +653,14 @@ bool RpgUnit::isTethered()
     return unitIsTethered;
 }
 
+void RpgUnit::unAssignFromBuilding()
+{
+    if (assignedToBuilding)
+    {
+        assignedToBuilding->unAssignUnit(this);
+    }
+}
+
 std::string RpgUnit::toSaveString(bool withHeaderAndFooter)
 {
     std::string saveString;

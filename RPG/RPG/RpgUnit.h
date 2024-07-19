@@ -143,6 +143,7 @@ public:
     void changeSkillLevel(int skill, int skillChange);
     void setTethered(bool tetherUnit);
     bool isTethered();
+    void unAssignFromBuilding();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 

@@ -28,7 +28,13 @@ RpgTown::RpgTown(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgZone(s
             townGold = stoi(saveObject.attributes[i].valueString);
             break;
         case RPG_TOWN_TRAINED_SOLDIERS:
-            trainedSoldiers = stoi(saveObject.attributes[i].valueString);
+            //trainedSoldiers = stoi(saveObject.attributes[i].valueString);
+            try {
+                trainedSoldiers = getUnitVectorFromSaveString(saveObject.attributes[i].valueString, gameScene);
+            }
+            catch(...){
+                trainedSoldiers = {};
+            }
             break;
         case RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP:
             ticksSinceTownUpdatePopCap = stoi(saveObject.attributes[i].valueString);
@@ -104,7 +110,7 @@ void RpgTown::addToTownGold(int goldAmount)
 
 int RpgTown::getNumTrainedSoldiers()
 {
-    return trainedSoldiers;
+    return trainedSoldiers.size();
 }
 
 void RpgTown::addToTrainedSoldiers(int amountToAdd)
@@ -135,7 +141,7 @@ std::string RpgTown::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_PRODUCTION, ticksSinceTownProduction);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP, ticksSinceTownUpdatePopCap);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_GOLD, townGold);
-    saveString += getAttributeString(getUniqueId(), RPG_TOWN_TRAINED_SOLDIERS, trainedSoldiers);
+    saveString += getUnitVectorSaveString(trainedSoldiers);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_INVENTORY, getItemVectorSaveString(townInventory));
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_TOWN) + "\n";
@@ -150,13 +156,12 @@ void RpgTown::init()
     ticksSinceTownProduction = 0;
     ticksSinceTownUpdatePopCap = 0;
     population = 0;
-    trainedSoldiers = 0;
 }
 
 void RpgTown::processTownCycle()
 {
     int townPopLimit = getTownPopLimit();
-    int totalPopulation = getPopulation();
+    int totalPopulation = getPopulation() + trainedSoldiers.size();
     if (totalPopulation <= 1) {
         totalPopulation = 1;
     }
@@ -173,9 +178,9 @@ void RpgTown::processTownCycle()
         }
 
         foodToPopRatio = floor(totalFoodPower / totalPopulation);
-        if (foodToPopRatio > townPopLimit - (totalPopulation + trainedSoldiers))
+        if (foodToPopRatio > townPopLimit - (totalPopulation))
         {
-            foodToPopRatio = townPopLimit - (totalPopulation + trainedSoldiers);
+            foodToPopRatio = townPopLimit - (totalPopulation);
         }
         if (foodToPopRatio < 1)
         {
@@ -216,7 +221,7 @@ int RpgTown::getTownPopLimit()
 bool RpgTown::feedPopulace()
 {
     bool returnValue = false;
-    int hungerToSatisfy = getPopulation() + trainedSoldiers;
+    int hungerToSatisfy = getPopulation() + trainedSoldiers.size();
     std::vector<Item*> itemsToDelete;
     for (auto item : townInventory) {
         if (item->generalType == FOOD)
@@ -296,4 +301,21 @@ RpgUnit* RpgTown::getFreeTownsperson()
     }
 
     return nullptr;
+}
+
+RpgUnit* RpgTown::getAnyTownsperson()
+{
+    RpgUnit* returnUnit = getFreeTownsperson();
+    if (returnUnit) {
+        return returnUnit;
+    }
+
+    for (Building* building : getBuildings()) {
+        for (RpgUnit* unit : building->assignedUnits) {
+            if (unit->type == TOWNSPERSON) {
+                return unit;
+            }
+        }
+    }
+    return returnUnit;
 }

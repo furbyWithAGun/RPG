@@ -14,6 +14,7 @@ public:
 
     //methods
     void createAnimations() override;
+    void convertToSoldier();
 
 private:
     void init();

@@ -49,6 +49,7 @@ public:
     RpgTown* getNearestTown(int xpos, int ypos) override;
     int getPopulation();
     RpgUnit* getFreeTownsperson();
+    RpgUnit* getAnyTownsperson();
 
     virtual std::string toSaveString(bool withHeaderAndFooter = true) override;
 
@@ -58,7 +59,7 @@ private:
     int ticksSinceTownProduction;
     int ticksSinceTownUpdatePopCap;
     int townGold;
-    int trainedSoldiers;
+    std::vector<Unit*> trainedSoldiers;
     std::vector<Item*> townInventory;
     std::vector<Equipment*> townArmoury;
     std::vector<Food*> townGranary;

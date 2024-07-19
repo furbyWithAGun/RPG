@@ -3,6 +3,8 @@
 #include "SelectPrompt.h"
 #include "RpgTileGridScene.h"
 
+const int SOLDIER_GOLD_COST = 500;
+
 Barracks::Barracks() : Building()
 {
     init();
@@ -61,6 +63,7 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
         barracksSelectPrompt = new SelectPrompt(unit->scene, COLOR_BLACK, unit->scene->engine->screenWidth * 0.5, unit->scene->engine->screenHeight * 0.5, unit->scene->engine->screenWidth * 0.1, unit->scene->engine->screenHeight * 0.1);
         barracksSelectPrompt->addSelectOption("Train Soldier", 1);
         barracksSelectPrompt->addCallBack([this, barracksSelectPrompt, unit]() {
+            TownsPerson* newSoldier = (TownsPerson*)((RpgTown*)zone)->getAnyTownsperson();
             switch (barracksSelectPrompt->getSelectedOptionValue())
             {
             case 1:
@@ -70,6 +73,12 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
                     ((RpgTown*)zone)->addToTrainedSoldiers(1);
                    */ //((RpgTown*)zone)->reducePopulation(1);
                 //}
+                if (unit->scene->player->gold >= SOLDIER_GOLD_COST && newSoldier) { //add test for avil pop
+                    unit->scene->player->gold -= SOLDIER_GOLD_COST;
+                    newSoldier->convertToSoldier();
+                    newSoldier->unAssignFromBuilding();
+                    //((RpgTown*)zone)->reducePopulation(1);
+                }
                 break;
             default:
                 break;
