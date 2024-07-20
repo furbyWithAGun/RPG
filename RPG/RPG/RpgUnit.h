@@ -40,6 +40,7 @@ enum RPG_UNIT_SAVE_ATTRIBUTES {
     UNIT_IS_PLAYER,
     UNIT_SKILLS,
     UNIT_HOUSING_BUILDING,
+    UNIT_TOWN,
     NUM_RPG_UNIT_ATTRIBUTES
 };
 
@@ -68,6 +69,7 @@ public:
     std::vector<Item*> inventory;
     Building* assignedToBuilding;
     Building* unitHouse;
+    RpgTown* town;
     //std::vector<ChanceObject> dropTable;
     std::vector<DropTable> dropTables;
     int minNumDrops;
@@ -99,6 +101,7 @@ public:
     //special attributes for loading saved units
     int assignedToBuildingId;
     int houseBuildingId;
+    int townId;
 
     //constructors
     RpgUnit();

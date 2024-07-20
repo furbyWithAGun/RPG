@@ -541,6 +541,12 @@ void RpgTileGridScene::assignUnitsAndDoodads()
             else {
                 ((RpgUnit*)unit)->houseBuildingId = -1;
             }
+
+            if (((RpgUnit*)unit)->townId != -1)
+            {
+                ((RpgTown*)getZone(((RpgUnit*)unit)->townId))->addToTrainedSoldiers(((RpgUnit*)unit));
+            }
+            RpgTown* town;
         }
 
         for (auto* dooDad : zone->getDooDads())
@@ -685,6 +691,12 @@ void RpgTileGridScene::destroyUnit(RpgUnit* unit)
     if (((RpgUnit*)unit)->unitHouse != nullptr)
     {
         ((RpgUnit*)unit)->unitHouse->unHouseUnit(((RpgUnit*)unit));
+    }
+
+    //remove from soldiers
+    if (((RpgUnit*)unit)->town != nullptr)
+    {
+        ((RpgUnit*)unit)->town->subtractFromTrainedSoldiers(((RpgUnit*)unit));
     }
     
     delete (unit);

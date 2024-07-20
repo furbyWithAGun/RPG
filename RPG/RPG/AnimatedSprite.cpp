@@ -27,6 +27,11 @@ void AnimatedSprite::addAnimation(int animationKey, int spriteSheetKey, int numF
     }
 }
 
+void AnimatedSprite::replaceAnimation(int animationKey, int spriteSheetKey, int numFrames, int ticksBetweenFrames, bool isLoop)
+{
+    animations[animationKey] = Animation(scene, spriteSheetKey, numFrames, ticksBetweenFrames, isLoop);
+}
+
 void AnimatedSprite::setAnimation(int animationKey) {
     if (currentAnimation != &animations[animationKey])
     {

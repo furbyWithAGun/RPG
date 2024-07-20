@@ -49,10 +49,10 @@ void GuardHouse::update(RpgTileGridScene* scene)
             troopSpawnTick = 0;
             if (localTown->getNumTrainedSoldiers() > 0 && assignedUnits.size() < maxTroops)
             {
-                localTown->subtractFromTrainedSoldiers(1);
+                /*localTown->subtractFromTrainedSoldiers(1);
                 RpgUnit* newUnit = new Soldier(zone->id, SOLDIER, scene, tileLocation->x, tileLocation->y + 1);
                 zone->addUnitToLocation(newUnit, tileLocation->x + unitTeatherLocationOffset[0], tileLocation->y + unitTeatherLocationOffset[1]);
-                assignUnit(newUnit);
+                assignUnit(newUnit);*/
             }
         }
     }

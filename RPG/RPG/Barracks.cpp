@@ -77,7 +77,8 @@ int Barracks::onActionAssignedUnit(RpgUnit* unit)
                     unit->scene->player->gold -= SOLDIER_GOLD_COST;
                     newSoldier->convertToSoldier();
                     newSoldier->unAssignFromBuilding();
-                    //((RpgTown*)zone)->reducePopulation(1);
+                    ((RpgTown*)zone)->addToTrainedSoldiers(newSoldier);
+                    newSoldier->setTargetLocation(tileLocation->x - 1, tileLocation->y + 2);
                 }
                 break;
             default:

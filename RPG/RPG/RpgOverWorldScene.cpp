@@ -85,7 +85,7 @@ void RpgOverWorldScene::setUpScene()
         itemToDrop->stackSize = 100;
         //addItemsToMap(0, 107, 23, { itemToDrop });
         itemToDrop = createNewItem(ITEM_WOOD);
-        itemToDrop->stackSize = 100;
+        itemToDrop->stackSize = 1000;
         //addItemsToMap(0, 107, 23, { itemToDrop });
         itemToDrop = createNewItem(ITEM_APPLE);
         itemToDrop->stackSize = 100;

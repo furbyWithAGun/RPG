@@ -15,7 +15,6 @@ enum RPG_TOWN_SAVE_ATTRIBUTES {
     RPG_TOWN_INVENTORY,
     RPG_TOWN_ARMOURY,
     RPG_TOWN_GRANARY,
-    RPG_TOWN_TRAINED_SOLDIERS,
     RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP
 };
 
@@ -41,8 +40,8 @@ public:
     bool subtractFromTownGold(int goldAmount);
     void addToTownGold(int goldAmount);
     int getNumTrainedSoldiers();
-    void addToTrainedSoldiers(int amountToAdd);
-    void subtractFromTrainedSoldiers(int amountToSubtract);
+    void addToTrainedSoldiers(RpgUnit* newSoldier);
+    void subtractFromTrainedSoldiers(RpgUnit* soldier);
     void reducePopulation(int amount);
     void addPopulation(int amount);
     RpgTown* getNearestTown(Location* location) override;

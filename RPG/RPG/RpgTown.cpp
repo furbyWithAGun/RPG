@@ -27,15 +27,6 @@ RpgTown::RpgTown(SaveObject saveObject, RpgTileGridScene* gameScene) : RpgZone(s
         case RPG_TOWN_GOLD:
             townGold = stoi(saveObject.attributes[i].valueString);
             break;
-        case RPG_TOWN_TRAINED_SOLDIERS:
-            //trainedSoldiers = stoi(saveObject.attributes[i].valueString);
-            try {
-                trainedSoldiers = getUnitVectorFromSaveString(saveObject.attributes[i].valueString, gameScene);
-            }
-            catch(...){
-                trainedSoldiers = {};
-            }
-            break;
         case RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP:
             ticksSinceTownUpdatePopCap = stoi(saveObject.attributes[i].valueString);
             break;
@@ -113,17 +104,26 @@ int RpgTown::getNumTrainedSoldiers()
     return trainedSoldiers.size();
 }
 
-void RpgTown::addToTrainedSoldiers(int amountToAdd)
+void RpgTown::addToTrainedSoldiers(RpgUnit* newSoldier)
 {
-    trainedSoldiers += amountToAdd;
+    newSoldier->town = this;
+    newSoldier->townId = this->id;
+    trainedSoldiers.push_back(newSoldier);
 }
 
-void RpgTown::subtractFromTrainedSoldiers(int amountToSubtract)
+void RpgTown::subtractFromTrainedSoldiers(RpgUnit* soldier)
 {
-    trainedSoldiers -= amountToSubtract;
-    if (trainedSoldiers < 0)
+    soldier->town = nullptr;
+    soldier->townId = -1;
+    auto unitIterator = trainedSoldiers.begin();
+    while (unitIterator != trainedSoldiers.end())
     {
-        trainedSoldiers = 0;
+        if ((*unitIterator) == soldier) {
+            unitIterator = trainedSoldiers.erase(unitIterator);
+        }
+        else {
+            unitIterator++;
+        }
     }
 }
 
