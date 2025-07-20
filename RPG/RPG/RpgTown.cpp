@@ -311,7 +311,7 @@ RpgUnit* RpgTown::getAnyTownsperson()
     }
 
     for (Building* building : getBuildings()) {
-        for (RpgUnit* unit : building->assignedUnits) {
+        for (RpgUnit* unit : building->getAssignedUnits()) {
             if (unit->type == TOWNSPERSON) {
                 return unit;
             }

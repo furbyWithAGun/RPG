@@ -368,6 +368,16 @@ RpgUnit* Building::createHousedUnit(RpgTileGridScene* scene)
     return newUnit;
 }
 
+std::vector<RpgUnit*> Building::getAssignedUnits()
+{
+    return assignedUnits;
+}
+
+std::vector<DooDad*> Building::getAssignedDooDads()
+{
+    return assignedDooDads;
+}
+
 void Building::init()
 {
     overworldBuildable = false;

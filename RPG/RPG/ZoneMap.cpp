@@ -543,13 +543,13 @@ void ZoneMap::destroyDooDad(DooDad* dooDad)
 void ZoneMap::destroyBuilding(Building* building)
 {
 	removeBuildingFromZone(building);
-	for (auto unit : building->assignedUnits)
+	for (auto unit : building->getAssignedUnits())
 	{
-		auto unitIterator = building->assignedUnits.begin();
-		while (unitIterator != building->assignedUnits.end())
+		auto unitIterator = building->getAssignedUnits().begin();
+		while (unitIterator != building->getAssignedUnits().end())
 		{
 			if ((*unitIterator) == unit) {
-				unitIterator = building->assignedUnits.erase(unitIterator);
+				unitIterator = building->getAssignedUnits().erase(unitIterator);
 			}
 			else {
 				unitIterator++;
@@ -580,13 +580,13 @@ void ZoneMap::destroyBuilding(Building* building)
 void ZoneMap::destroyBuildingButNotunits(Building* building)
 {
 	removeBuildingFromZone(building);
-	for (auto unit : building->assignedUnits)
+	for (auto unit : building->getAssignedUnits())
 	{
-		auto unitIterator = building->assignedUnits.begin();
-		while (unitIterator != building->assignedUnits.end())
+		auto unitIterator = building->getAssignedUnits().begin();
+		while (unitIterator != building->getAssignedUnits().end())
 		{
 			if ((*unitIterator) == unit) {
-				unitIterator = building->assignedUnits.erase(unitIterator);
+				unitIterator = building->getAssignedUnits().erase(unitIterator);
 			}
 			else {
 				unitIterator++;
@@ -963,9 +963,9 @@ bool ZoneMap::removeBuildingFromZone(Building* building)
 {
 	removeAllBuildingTilesFromMap(building);
 	removeFromBuildingVector(building);
-	while (building->assignedDooDads.size() > 0)
+	while (building->getAssignedDooDads().size() > 0)
 	{
-		DooDad* dooDad = building->assignedDooDads[0];
+		DooDad* dooDad = building->getAssignedDooDads()[0];
 		building->unAssignDooDad(dooDad);
 		dooDad->scene->addDooDadToDestroy(dooDad);
 	}

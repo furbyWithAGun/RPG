@@ -51,9 +51,7 @@ public:
     bool active;
     int goldCost;
     int woodCost;
-    std::vector<RpgUnit*> assignedUnits;
     std::vector<RpgUnit*> housedUnits;
-    std::vector<DooDad*> assignedDooDads;
     std::vector<Location> unitLocations;
     std::vector<DoodadOnConstruct> doodadsOnConstruct;
 
@@ -95,6 +93,10 @@ public:
     std::vector<ProductionInputOutput> getProductionOutputs();
     RpgUnit* createHousedUnit(RpgTileGridScene* scene);
 
+
+    std::vector<RpgUnit*> getAssignedUnits();
+    std::vector<DooDad*> getAssignedDooDads();
+
 protected:
     //attributes
     int maxUnits;
@@ -106,6 +108,9 @@ protected:
     std::vector<ProductionInputOutput> productionInputs;
     std::vector<ProductionInputOutput> productionOutputs;
     ZoneMap* zone;
+
+    std::vector<RpgUnit*> assignedUnits;
+    std::vector<DooDad*> assignedDooDads;
 
 private:
     //attributes
