@@ -111,6 +111,7 @@ public:
     RpgUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int startX, int startY);
 
     //methods
+    void swapWeapons();
     bool performAttack(int attackId, int x, int y);
     int assignDamage(int damageTaken);
     int assignDamage(RpgUnit* attackingUnit, int damageTaken);

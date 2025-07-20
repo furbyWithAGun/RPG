@@ -161,6 +161,21 @@ RpgUnit::RpgUnit(int zoneId, int unitType, RpgTileGridScene* gameScene, int star
     scene = gameScene;
 }
 
+void RpgUnit::swapWeapons()
+{
+    Equipment* altwep1 = equippedItems[ALT_LEFT_HAND];
+    Equipment* altwep2 = equippedItems[ALT_RIGHT_HAND];
+    equippedItems[ALT_LEFT_HAND] = equippedItems[LEFT_HAND];
+    equippedItems[ALT_RIGHT_HAND] = equippedItems[RIGHT_HAND];
+    equippedItems[LEFT_HAND] = altwep1;
+    equippedItems[RIGHT_HAND] = altwep2;
+
+    if (scene->menus[INVENTORY_MENU]->isActive && this == scene->player)
+    {
+        scene->menus[INVENTORY_MENU]->rebuildMenuElements();
+    }
+}
+
 bool RpgUnit::performAttack(int attackId, int x, int y)
 {
     activeAttack = equipedAttacks[attackId];
@@ -345,18 +360,38 @@ bool RpgUnit::equipItem(Equipment* item)
 {
     if (item->slot != -1)
     {
-        unEquipItem(item->slot);
-        equippedItems[item->slot] = item;
-        item->onEquip(this);
-        removeItemFromInventory(item);
+        if (item->slot == LEFT_HAND && equippedItems[item->slot] && equippedItems[ALT_LEFT_HAND] == nullptr)
+        {
+            equippedItems[ALT_LEFT_HAND] = item;
+            item->onEquip(this);
+            removeItemFromInventory(item);
+        } else if (item->slot == RIGHT_HAND) {
+            if (item->generalType == WEAPON && ((Weapon*)item)->weaponClass == ARROW) {
+                Equipment* altWeapon = equippedItems[ALT_LEFT_HAND];
+                if (altWeapon && ((Weapon*)altWeapon)->weaponClass == BOW) {
+                    unEquipItem(ALT_RIGHT_HAND);
+                    equippedItems[ALT_RIGHT_HAND] = item;
+                    item->onEquip(this);
+                    removeItemFromInventory(item);
+                }
+                else {
+                    unEquipItem(item->slot);
+                    equippedItems[item->slot] = item;
+                    item->onEquip(this);
+                    removeItemFromInventory(item);
+                }
+            }
+        } else {
+            unEquipItem(item->slot);
+            equippedItems[item->slot] = item;
+            item->onEquip(this);
+            removeItemFromInventory(item);
+        }
+        
         if (scene->menus[INVENTORY_MENU]->isActive && this == scene->player)
         {
             scene->menus[INVENTORY_MENU]->rebuildMenuElements();
         }
-        //if (scene->menus[EQUIPPED_MENU]->isActive)
-        //{
-        //    scene->menus[EQUIPPED_MENU]->rebuildMenuElements();
-        //}
         return true;
     }
     return false;

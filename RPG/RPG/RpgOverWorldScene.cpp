@@ -83,13 +83,13 @@ void RpgOverWorldScene::setUpScene()
         ((RpgTown*)getZones()[1])->addPopulation(10);
         Item* itemToDrop = createNewItem(ITEM_CRUDE_HIDE);
         itemToDrop->stackSize = 100;
-        //addItemsToMap(0, 107, 23, { itemToDrop });
+        addItemsToMap(0, 107, 23, { itemToDrop });
         itemToDrop = createNewItem(ITEM_WOOD);
         itemToDrop->stackSize = 1000;
-        //addItemsToMap(0, 107, 23, { itemToDrop });
+        addItemsToMap(0, 107, 23, { itemToDrop });
         itemToDrop = createNewItem(ITEM_APPLE);
         itemToDrop->stackSize = 100;
-        //addItemsToMap(0, 107, 23, { itemToDrop });
+        addItemsToMap(0, 107, 23, { itemToDrop });
         //player->gold = 100000;
         //player->addExp(SKILL_COMBAT, 99999);
         //addItemsToMap(0, 104, 23, { createNewItem(ITEM_BRONZE_BODY) });
@@ -374,6 +374,9 @@ void RpgOverWorldScene::handleInput()
             case BUTTON_5_OFF:
                 addCommand(InputMessage(STOP_MOVE_RIGHT, message->x, message->y));
                 break;
+            case BUTTON_12_ON:
+                addCommand(InputMessage(PLAYER_SWAP_WEAPONS, message->x, message->y));
+                break;
             default:
                 break;
             }
@@ -502,6 +505,9 @@ void RpgOverWorldScene::sceneLogic()
                     squadUnits[message->misc]->assignedToBuilding->unAssignUnit(squadUnits[message->misc]);
                 }
             }
+            break;
+        case PLAYER_SWAP_WEAPONS:
+            player->swapWeapons();
             break;
         default:
             break;

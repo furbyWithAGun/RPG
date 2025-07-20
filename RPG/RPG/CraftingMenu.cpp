@@ -90,16 +90,20 @@ void CraftingMenu::rebuildElements()
                 craftingOutputsDisplay[i].icon->active = true;
                 craftingOutputsDisplay[i].txtQty->active = true;
                 int outQty = recipe.getOutputs()[i].qty;
+                int inQty = recipe.getInputs()[i].qty;
                 if (outQty > 1)
                 {
                     craftingOutputsDisplay[i].txtQty->setText(" X " + std::to_string(outQty));
-                    if (amountInContainer >= outQty)
+                    if (amountInContainer >= inQty)
                     {
                         craftingOutputsDisplay[i].txtQty->setTextColour(COLOR_GREEN);
                     }
                     else {
                         craftingOutputsDisplay[i].txtQty->setTextColour(COLOR_RED);
                     }
+                }
+                else {
+                    craftingOutputsDisplay[i].txtQty->setText("");
                 }
             }
             else {

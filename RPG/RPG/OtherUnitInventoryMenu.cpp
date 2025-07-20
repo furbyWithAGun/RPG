@@ -171,6 +171,10 @@ void OtherUnitInventoryMenu::rebuildElements()
         if (selectedUnit->equippedItems[i] != nullptr)
         {
             displaySlots[i].icon = UiElement(scene, selectedUnit->equippedItems[i]->textureKey, xpos + displaySlots[i].x, ypos + displaySlots[i].y);
+            if (i == ALT_LEFT_HAND || i == ALT_RIGHT_HAND) {
+                displaySlots[i].icon.height = displaySlots[i].icon.height * 0.6;
+                displaySlots[i].icon.width = displaySlots[i].icon.width * 0.6;
+            }
             displaySlots[i].icon.addOnClick([this, i]() {
                 selectedUnit->unEquipItem(i);
                 rebuildMenuElements();
@@ -482,8 +486,10 @@ void OtherUnitInventoryMenu::defineEquipmentSlots()
     displaySlots[BODY_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.146), 0, 0, UiElement(scene, -1) };
     displaySlots[ARMS_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1) };
     displaySlots[HANDS_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.19), 0, 0, UiElement(scene, -1) };
-    displaySlots[LEFT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1) };
-    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1) };
+    displaySlots[LEFT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.22), 0, 0, UiElement(scene, -1) };
+    displaySlots[RIGHT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.12),(int)(scene->engine->screenHeight * 0.22), 0, 0, UiElement(scene, -1) };
+    displaySlots[ALT_LEFT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.04),(int)(scene->engine->screenHeight * 0.26), 0, 0, UiElement(scene, -1) };
+    displaySlots[ALT_RIGHT_HAND] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.12),(int)(scene->engine->screenHeight * 0.26), 0, 0, UiElement(scene, -1) };
     displaySlots[LEFT_RING_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.25), 0, 0, UiElement(scene, -1) };
     displaySlots[RIGHT_RING_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1) };
     displaySlots[BELT_SLOT] = EquipmentDisplaySlot{ (int)(scene->engine->screenWidth * 0.081),(int)(scene->engine->screenHeight * 0.086), 0, 0, UiElement(scene, -1) };
