@@ -543,9 +543,9 @@ void ZoneMap::destroyDooDad(DooDad* dooDad)
 void ZoneMap::destroyBuilding(Building* building)
 {
 	removeBuildingFromZone(building);
-	for (auto unit : building->getAssignedUnits())
+	for (RpgUnit* unit : building->getAssignedUnits())
 	{
-		auto unitIterator = building->getAssignedUnits().begin();
+		/*auto unitIterator = building->getAssignedUnits().begin();
 		while (unitIterator != building->getAssignedUnits().end())
 		{
 			if ((*unitIterator) == unit) {
@@ -555,7 +555,8 @@ void ZoneMap::destroyBuilding(Building* building)
 				unitIterator++;
 			}
 		}
-		unit->assignedToBuilding = nullptr;
+		unit->assignedToBuilding = nullptr;*/
+		building->unAssignUnit(unit);
 		((TileGridScene*)unit->scene)->addUnitToDestroy(unit);
 	}
 
