@@ -1206,12 +1206,11 @@ void ZoneMap::unitEntersTile(Unit* unit, int x, int y)
 			//unit->scene->portalUnit(currentPortal, unit);
 			unit->portalTo(currentPortal->exitZoneId, currentPortal->exitTileCoords[0], currentPortal->exitTileCoords[1]);
 		}
-
-		DooDad* currentDooDad = getDooDadAtLocation(unit->tileLocation->x, unit->tileLocation->y);
-		if (currentDooDad != nullptr)
-		{
-			currentDooDad->walkOn(unit);
-		}
+	}
+	DooDad* currentDooDad = getDooDadAtLocation(unit->tileLocation->x, unit->tileLocation->y);
+	if (currentDooDad != nullptr)
+	{
+		currentDooDad->walkOn(unit);
 	}
 }
 

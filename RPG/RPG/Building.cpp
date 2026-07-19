@@ -110,7 +110,8 @@ void Building::update(RpgTileGridScene* scene)
 
     if (spawnedUnitType != -1 && assignedUnits.size() < maxUnits)
     {
-        RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
+        //RpgTown* localTown = ((RpgZone*)scene->currentZone)->getNearestTown(tileLocation);
+        RpgTown* localTown = ((RpgZone*)zone)->getNearestTown(tileLocation);
 
         RpgUnit* newWorker = localTown->getFreeTownsperson();
 

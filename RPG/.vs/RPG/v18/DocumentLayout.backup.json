@@ -1,0 +1,349 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\coding\\RPG game\\RPG\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\WoodCutter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\WoodCutter.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\RpgZone.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\RpgZone.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\ZoneMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\ZoneMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\Building.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\Building.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\RpgTown.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\RpgTown.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\Orchard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\Orchard.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\TileGridScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\TileGridScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\RpgOverWorldScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\RpgOverWorldScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\RpgTileGridScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\RpgTileGridScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\vector||{3B902123-F8A7-4915-9F01-361F908088D0}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\ZonePortal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\ZonePortal.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\BuildingFactory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\BuildingFactory.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\BaseGameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\BaseGameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\SaveObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\SaveObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\Barracks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\Barracks.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\House.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\House.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|C:\\coding\\RPG game\\RPG\\RPG\\GameScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{23324235-F94C-4BD7-8228-6C783646D8A0}|RPG\\RPG.vcxproj|solutionrelative:RPG\\GameScene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\Player.cpp",
+              "RelativeDocumentMoniker": "RPG\\Player.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\Player.cpp",
+              "RelativeToolTip": "RPG\\Player.cpp",
+              "ViewState": "AgIAAJMDAAAAAAAAAAAvwJoDAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T14:48:29.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RpgTown.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\RpgTown.cpp",
+              "RelativeDocumentMoniker": "RPG\\RpgTown.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\RpgTown.cpp",
+              "RelativeToolTip": "RPG\\RpgTown.cpp",
+              "ViewState": "AgIAABgBAAAAAAAAAAAewCYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:19:26.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RpgOverWorldScene.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\RpgOverWorldScene.cpp",
+              "RelativeDocumentMoniker": "RPG\\RpgOverWorldScene.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\RpgOverWorldScene.cpp",
+              "RelativeToolTip": "RPG\\RpgOverWorldScene.cpp",
+              "ViewState": "AgIAAHAAAAAAAAAAAADwv3IAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:29:56.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TileGridScene.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\TileGridScene.cpp",
+              "RelativeDocumentMoniker": "RPG\\TileGridScene.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\TileGridScene.cpp",
+              "RelativeToolTip": "RPG\\TileGridScene.cpp",
+              "ViewState": "AgIAADAAAAAAAAAAAAAvwDUAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:28:21.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Orchard.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\Orchard.cpp",
+              "RelativeDocumentMoniker": "RPG\\Orchard.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\Orchard.cpp",
+              "RelativeToolTip": "RPG\\Orchard.cpp",
+              "ViewState": "AgIAADQAAAAAAAAAAAAewEIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:30:38.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RpgZone.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\RpgZone.cpp",
+              "RelativeDocumentMoniker": "RPG\\RpgZone.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\RpgZone.cpp",
+              "RelativeToolTip": "RPG\\RpgZone.cpp",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAgwGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:30:34.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ZoneMap.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\ZoneMap.cpp",
+              "RelativeDocumentMoniker": "RPG\\ZoneMap.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\ZoneMap.cpp",
+              "RelativeToolTip": "RPG\\ZoneMap.cpp",
+              "ViewState": "AgIAAHsBAAAAAAAAAAAgwI0BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:29:11.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Building.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\Building.cpp",
+              "RelativeDocumentMoniker": "RPG\\Building.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\Building.cpp",
+              "RelativeToolTip": "RPG\\Building.cpp",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAewG4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:29:14.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WoodCutter.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\WoodCutter.cpp",
+              "RelativeDocumentMoniker": "RPG\\WoodCutter.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\WoodCutter.cpp",
+              "RelativeToolTip": "RPG\\WoodCutter.cpp",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:37:05.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RpgTileGridScene.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\RpgTileGridScene.cpp",
+              "RelativeDocumentMoniker": "RPG\\RpgTileGridScene.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\RpgTileGridScene.cpp",
+              "RelativeToolTip": "RPG\\RpgTileGridScene.cpp",
+              "ViewState": "AgIAADACAAAAAAAAAIAwwEwCAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:29:22.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "vector",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\vector",
+              "RelativeDocumentMoniker": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\vector",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\vector",
+              "RelativeToolTip": "..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.51.36231\\include\\vector",
+              "ViewState": "AgIAANsCAAAAAAAAAAAgwO0CAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-07-19T13:29:03.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ZonePortal.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\ZonePortal.cpp",
+              "RelativeDocumentMoniker": "RPG\\ZonePortal.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\ZonePortal.cpp",
+              "RelativeToolTip": "RPG\\ZonePortal.cpp",
+              "ViewState": "AgIAACEAAAAAAAAAAIAwwDQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T14:33:39.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BuildingFactory.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\BuildingFactory.cpp",
+              "RelativeDocumentMoniker": "RPG\\BuildingFactory.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\BuildingFactory.cpp",
+              "RelativeToolTip": "RPG\\BuildingFactory.cpp",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAewEwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:28:21.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BaseGameEngine.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\BaseGameEngine.cpp",
+              "RelativeDocumentMoniker": "RPG\\BaseGameEngine.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\BaseGameEngine.cpp",
+              "RelativeToolTip": "RPG\\BaseGameEngine.cpp",
+              "ViewState": "AgIAAGUCAAAAAAAAAAAgwHcCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:45:22.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SaveObject.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\SaveObject.cpp",
+              "RelativeDocumentMoniker": "RPG\\SaveObject.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\SaveObject.cpp",
+              "RelativeToolTip": "RPG\\SaveObject.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:28:21.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\Game.cpp",
+              "RelativeDocumentMoniker": "RPG\\Game.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\Game.cpp",
+              "RelativeToolTip": "RPG\\Game.cpp",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAEoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:37:38.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Barracks.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\Barracks.cpp",
+              "RelativeDocumentMoniker": "RPG\\Barracks.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\Barracks.cpp",
+              "RelativeToolTip": "RPG\\Barracks.cpp",
+              "ViewState": "AgIAADwAAAAAAAAAAAAwwEwAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:22:22.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "House.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\House.cpp",
+              "RelativeDocumentMoniker": "RPG\\House.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\House.cpp",
+              "RelativeToolTip": "RPG\\House.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-07-19T13:19:20.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "GameScene.cpp",
+              "DocumentMoniker": "C:\\coding\\RPG game\\RPG\\RPG\\GameScene.cpp",
+              "RelativeDocumentMoniker": "RPG\\GameScene.cpp",
+              "ToolTip": "C:\\coding\\RPG game\\RPG\\RPG\\GameScene.cpp",
+              "RelativeToolTip": "RPG\\GameScene.cpp",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-06-21T19:59:54.298Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
