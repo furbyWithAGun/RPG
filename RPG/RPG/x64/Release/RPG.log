@@ -1,4 +1,15 @@
-﻿  WoodCutter.cpp
+﻿  Barracks.cpp
+C:\coding\RPG game\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  (compiling source file 'Barracks.cpp')
+  
+C:\coding\RPG game\RPG\RPG\Graph.h(39,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'Barracks.cpp')
+  
+C:\coding\RPG game\RPG\RPG\Barracks.cpp(63,230): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\RPG game\RPG\RPG\Barracks.cpp(63,189): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\RPG game\RPG\RPG\Barracks.cpp(63,149): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\coding\RPG game\RPG\RPG\Barracks.cpp(63,108): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  WoodCutter.cpp
 C:\coding\RPG game\RPG\RPG\ItemFactory.h(17,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   (compiling source file 'WoodCutter.cpp')
   
@@ -6,8 +17,8 @@ C:\coding\RPG game\RPG\RPG\Graph.h(39,24): warning C4267: 'initializing': conver
   (compiling source file 'WoodCutter.cpp')
   
   Generating code
-  1 of 13295 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+  20 of 13295 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    18 functions were new in current compilation
     18 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   RPG.vcxproj -> C:\coding\RPG game\RPG\x64\Release\RPG.exe
