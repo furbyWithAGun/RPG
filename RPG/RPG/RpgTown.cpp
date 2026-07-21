@@ -141,8 +141,9 @@ std::string RpgTown::toSaveString(bool withHeaderAndFooter)
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_PRODUCTION, ticksSinceTownProduction);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_TICKS_SINCE_TOWN_UPDATE_POP_CAP, ticksSinceTownUpdatePopCap);
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_GOLD, townGold);
-    saveString += getUnitVectorSaveString(trainedSoldiers);
+    saveString += getAttributeString(getUniqueId(), RPG_TOWN_TRAINED_UNITS, getUnitVectorSaveString(trainedSoldiers));
     saveString += getAttributeString(getUniqueId(), RPG_TOWN_INVENTORY, getItemVectorSaveString(townInventory));
+    if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_TOWN) + "\n";
     }

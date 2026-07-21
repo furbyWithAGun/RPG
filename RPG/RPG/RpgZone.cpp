@@ -54,6 +54,7 @@ std::string RpgZone::toSaveString(bool withHeaderAndFooter)
     }
     saveString += ZoneMap::toSaveString(false);
     saveString += getAttributeString(getUniqueId(), RPG_ZONE_TYPE, zoneType);
+    if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_ZONE) + "\n";
     }

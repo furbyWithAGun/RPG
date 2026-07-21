@@ -135,6 +135,7 @@ std::string RpgProvinceZone::toSaveString(bool withHeaderAndFooter)
         saveString = BEGIN_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_PROVINCE) + "\n";
     }
     saveString += RpgZone::toSaveString(false);
+    if (withHeaderAndFooter)
     {
         saveString += END_OBJECT_IDENTIFIER + std::to_string(uniqueObjectId) + "-" + std::to_string(SAVED_RPG_PROVINCE) + "\n";
     }
